@@ -1,0 +1,48 @@
+{
+  "name": "storefront-x",
+  "version": "0.1.0",
+  "description": "Storefront X",
+  "main": "index.js",
+  "repository": "git@git.magexo.cz:magexo-projects-v2/storefront-x.git",
+  "author": "MageXo",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@3.2.1",
+  "workspaces": [
+    "./modules/*"
+  ],
+  "scripts": {
+    "test:unit": "vitest run",
+    "test:playwright": "playwright test",
+    "test:playwright:install": "playwright install chromium && playwright test",
+    "lint": "eslint --ext .js,.ts,.vue .",
+    "dev": "sfx dev",
+    "build": "sfx build",
+    "serve": "sfx serve",
+    "start": "sfx start",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "postinstall": "husky install"
+  },
+  "dependencies": {
+    "@storefront-x/core": "*"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.24.1",
+    "@types/yargs": "^17.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.3.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4",
+    "vitepress": "^1.0.0-alpha.4",
+    "vitest": "^0.19.1"
+  }
+}

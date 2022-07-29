@@ -1,0 +1,10 @@
+{
+  "name": "@storefront-x/vue-head",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "type": "module",
+  "dependencies": {
+    "@vueuse/head": "^0.7.7",
+    "vue": "^3.2.37"
+  }
+}

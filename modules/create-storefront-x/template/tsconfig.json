@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+    "allowJs": true,
+    "paths": {
+      "@storefront-x/*": ["./modules/*"],
+      "#ioc/*": ["./.sfx/ioc/*"],
+      "~/*": ["./*"]
+    },
+    "types": ["vitest/globals"]
+  },
+  "include": ["modules/**/*", ".sfx/**/*"],
+  "exclude": [".sfx/vite"]
+}

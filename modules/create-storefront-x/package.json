@@ -1,0 +1,13 @@
+{
+  "name": "create-storefront-x",
+  "version": "0.0.2",
+  "type": "module",
+  "bin": "index.js",
+  "main": "index.js",
+  "dependencies": {
+    "fs-extra": "^10.1.0",
+    "kolorist": "^1.5.1",
+    "prompts": "^2.4.2",
+    "yargs": "^17.5.1"
+  }
+}
