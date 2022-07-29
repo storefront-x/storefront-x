@@ -1,0 +1,39 @@
+h1 {
+  @apply text-3xl font-semibold leading-tight tracking-tight mt-3 mb-2 text-gray-900;
+}
+
+h2 {
+  @apply text-2xl font-semibold leading-tight tracking-tight mt-3 mb-2 text-gray-900;
+}
+
+h3 {
+  @apply text-xl font-semibold leading-tight tracking-tight mt-3 mb-2 text-gray-900;
+}
+
+h4 {
+  @apply text-lg font-semibold leading-tight tracking-tight mt-3 mb-2 text-gray-900;
+}
+
+h5 {
+  @apply text-lg font-semibold leading-tight tracking-tight mt-3 mb-2 text-gray-900;
+}
+
+h6 {
+  @apply font-semibold leading-tight mt-3 mb-2 tracking-tight text-gray-900;
+}
+
+ol {
+  @apply list-decimal list-inside pl-2 text-lg mb-2 text-gray-800;
+}
+
+ul {
+  @apply list-disc list-inside pl-2 text-lg mb-2 text-gray-800;
+}
+
+p {
+  @apply my-2 leading-7 tracking-wide  text-gray-700;
+}
+
+p br {
+  @apply hidden;
+}

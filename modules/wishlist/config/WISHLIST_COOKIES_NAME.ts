@@ -1,0 +1,1 @@
+export default 'wishlist:items'

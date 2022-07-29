@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=3000
+    ports:
+      - 3000:3000 # SFX dev server
+      - 24678:24678 # Vite HMR
+    volumes:
+      - .:/app
+      - ./node_modules:/app/node_modules

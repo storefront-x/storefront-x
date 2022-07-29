@@ -1,0 +1,36 @@
+{
+  "name": "@storefront-x/core",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "sfx": "sfx.js"
+  },
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "compression": "^1.7.4",
+    "consola": "^2.15.3",
+    "devalue": "^2.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "lodash-es": "^4.17.21",
+    "node-fetch": "^3.2.9",
+    "open": "^8.4.0",
+    "rollup": "^2.77.2",
+    "rollup-plugin-visualizer": "^5.7.1",
+    "vite": "^3.0.3",
+    "yargs": "^17.5.1",
+    "youch": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.2",
+    "@types/ejs": "^3.1.1",
+    "@types/express": "^4.17.13",
+    "@types/lodash-es": "^4.17.6",
+    "@types/minimist": "^1.2.2"
+  }
+}

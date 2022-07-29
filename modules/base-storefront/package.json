@@ -1,0 +1,10 @@
+{
+  "name": "@storefront-x/base-storefront",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "type": "module",
+  "dependencies": {
+    "lru-cache": "^7.13.1",
+    "sharp": "^0.30.7"
+  }
+}

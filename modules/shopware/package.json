@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/shopware",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "type": "module",
+  "dependencies": {
+    "http-proxy-middleware": "^2.0.6"
+  }
+}
