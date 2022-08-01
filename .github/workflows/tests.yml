@@ -12,6 +12,7 @@ jobs:
         with:
           node-version: 16
       - run: yarn install
+      - run: yarn build --onlyBootstrap
       - run: yarn test:unit
   playwright:
     runs-on: ubuntu-latest
