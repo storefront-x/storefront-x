@@ -13,7 +13,7 @@ export default defineConfig({
     nav: [
       { text: 'Demo', link: 'https://demo.storefrontx.io' },
       { text: 'Blog', link: 'https://www.storefrontx.io/' },
-      { text: 'GitLab', link: 'https://git.magexo.cz/magexo-projects-v2/storefront-x' },
+      { text: 'GitHub', link: 'https://github.com/storefront-x/storefront' },
     ],
 
     sidebar: [

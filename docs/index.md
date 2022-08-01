@@ -19,8 +19,8 @@ hero:
       text: Why Storefront X
       link: /guide/why-storefront-x
     - theme: alt
-      text: View on GitLab
-      link: https://git.magexo.cz/magexo-projects-v2/storefront-x
+      text: View on GitHub
+      link: https://github.com/storefront-x/storefront
 
 features:
   - title: Modular

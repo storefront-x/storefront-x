@@ -26,6 +26,8 @@ const main = async () => {
 
   await fs.copy(src, dst)
 
+  await fs.writeFile(path.join(dst, '.npmrc'), `//registry.npmjs.org/:_authToken=${responses.npmToken}`)
+
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
 
@@ -35,7 +37,7 @@ const main = async () => {
   }
   switch (pkgManager) {
     case 'yarn':
-      console.log('  yarn')
+      console.log('  yarn install')
       console.log('  yarn dev')
       break
     default:
@@ -73,6 +75,11 @@ async function getResponses() {
             return null
           },
           name: 'overwriteChecker',
+        },
+        {
+          type: 'text',
+          name: 'npmToken',
+          message: 'NPM token',
         },
       ],
       {

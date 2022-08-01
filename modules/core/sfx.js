@@ -22,7 +22,9 @@ yargs(hideBin(process.argv))
         })
     },
     handler: async (argv) => {
-      const { default: config } = await import(url.pathToFileURL(path.resolve(process.cwd(), 'sfx.config.js')).href)
+      const { default: config } = await import(
+        url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js')).href
+      )
       const { default: Dev } = await import('./src/Dev.js')
 
       const dev = new Dev(config, argv)
@@ -50,7 +52,9 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
-        const { default: config } = await import(url.pathToFileURL(path.resolve(process.cwd(), 'sfx.config.js')).href)
+        const { default: config } = await import(
+          url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js')).href
+        )
         const { default: Build } = await import('./src/Build.js')
 
         const build = new Build(config, argv)
