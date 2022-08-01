@@ -24,7 +24,7 @@ export default defineConfig({
           { text: 'Why Storefront X', link: '/guide/why-storefront-x' },
           { text: 'Getting Started', link: '/guide/getting-started' },
           { text: 'How it works', link: '/guide/how-it-works' },
-          { text: 'Contributing', link: '/guide/contributing' },
+          { text: 'Contributing', link: '/contributing' },
         ],
       },
       {
