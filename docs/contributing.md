@@ -1,8 +1,10 @@
-# Storefront X Contributing guide
+# Contributing
 
-## Repo setup
+Thank you for investing your time in contributing to Storefront X!
 
-### Requirements
+## Repo setup
+
+### 1. Requirements
 
 - [Git](https://git-scm.com/)
 - [Node.js v16+](https://nodejs.org/en/)
@@ -10,26 +12,28 @@
 
 > You can install Yarn using `npm i -g yarn` command.
 
-1. Clone the repository
+### 2. Clone the repository
 
 ```sh
 git clone git@github.com:storefront-x/storefront.git storefront-x
 cd storefront-x
 ```
 
-2. Install dependencies
+### 3. Install dependencies
 
 ```sh
 yarn install
 ```
 
-3. Start the development server
+### 4. Start the development server
 
 ```sh
 yarn dev
 ```
 
-## Running tests
+You can now visit Storefront X on http://localhost:3000. Development server has hot-module-reloading, so you don't have to reload the browser for changes in source code to take effect.
+
+## Running tests
 
 For most of the tests to work, Storefront X has to be bootstrapped. This is done automatically when starting the development server or you can run the bootstrap manually using this command:
 
@@ -37,7 +41,7 @@ For most of the tests to work, Storefront X has to be bootstrapped. This is done
 yarn build --onlyBootstrap
 ```
 
-## Integration tests
+### Integration tests
 
 Storefront X uses [Playwright](https://playwright.dev) for its integration tests. These tests can be found inside `tests/playwright` directories inside Storefront X modules.
 
@@ -47,7 +51,7 @@ You can run integrations tests using this command:
 yarn test:playwright
 ```
 
-## Unit tests
+### Unit tests
 
 Storefront X uses [Vitest](https://vitest.dev) for its unit tests. These tests can be found inside `tests/unit` directories inside Storefront X modules.
 
@@ -57,7 +61,7 @@ You can run unit tests using this command:
 yarn test:unit
 ```
 
-## Pull request guidelines
+## Pull request guidelines
 
 - Checkout a branch from the `main` branch, and merge back against that branch.
 
