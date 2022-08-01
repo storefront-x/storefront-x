@@ -12,4 +12,4 @@ Modern e-commerce platform for building performant PWAs with server-side renderi
 
 ## Contributing
 
-See [Contributing Guide](https://docs.storefrontx.io/guide/contributing.html).
+See [Contributing Guide](https://docs.storefrontx.io/contributing.html).
