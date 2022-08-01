@@ -31,7 +31,7 @@ yarn install
 yarn dev
 ```
 
-You can now visit Storefront X on http://localhost:3000. Development server has hot-module-reloading, so you don't have to reload the browser for changes in source code to take effect.
+You can now view Storefront X on localhost. Development server has hot-module-reloading, so you don't have to reload the browser for changes in source code to take effect.
 
 ## Running tests
 
