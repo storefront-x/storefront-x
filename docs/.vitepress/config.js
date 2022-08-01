@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'en-US',
   title: 'Storefront X',
-  description: 'Modular and extension e-commerce solution',
+  description: 'Modular and extendable e-commerce solution',
 
   lastUpdated: true,
 
