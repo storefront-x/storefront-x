@@ -1,19 +1,26 @@
 {
-  "name": "storefront-x-start",
+  "name": "storefront-x-app",
   "version": "0.1.0",
+  "description": "Storefront X",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "./modules/*"
+  ],
   "scripts": {
     "dev": "sfx dev",
     "build": "sfx build",
     "serve": "sfx serve"
   },
   "dependencies": {
+    "@storefront-x/core": "*",
     "@storefront-x/base": "*",
     "@storefront-x/vue": "*",
     "@storefront-x/vue-router": "*",
     "@storefront-x/vue-head": "*",
     "@storefront-x/vue-i18n": "*",
     "@storefront-x/vue-pinia": "*",
-    "@storefront-x/storefront-x": "*",
+    "@storefront-x/base-commerce": "*",
     "@storefront-x/atomic-design": "*",
     "@storefront-x/catalog": "*",
     "@storefront-x/cart": "*",

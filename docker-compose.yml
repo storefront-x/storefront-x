@@ -8,7 +8,7 @@ services:
       - SERVER_HOST=0.0.0.0
       - SERVER_PORT=3000
     ports:
-      - 3000:3000 # SFX dev server
+      - 3000:3000 # Storefront X dev server
       - 24678:24678 # Vite HMR
     volumes:
       - .:/app
