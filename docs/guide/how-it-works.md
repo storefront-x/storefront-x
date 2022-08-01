@@ -2,7 +2,7 @@
 
 ## Modules
 
-Storefront X application is made of modules. Modules can represent parts of the application (catalog, checkout, blog, ...), themes (theme-tailwind, theme-magento, ...), functionalities (gtm, partytown, ssr-cache, basic-auth, ...), backend specific integration (catalog-magento, catalog-shopware, ...) and so on. Each module can be turned on/off during build-time and final application si build from turned on modules.
+Storefront X application is made of modules. Modules can represent parts of the application (`catalog`, `checkout`, `blog`, ...), themes (`theme-tailwind`, `theme-bootstrap`, ...), functionalities (`gtm`, `partytown`, `ssr-cache`, `basic-auth`, ...), backend specific integration (`catalog-magento`, `catalog-shopware`, ...) and so on. Each module can be turned on/off during build-time and final application si build from turned on modules.
 
 Each module is split into concepts. Concept is something that multiple modules might have in common. For example pages, components, composables and stores. If you are familiar with [Nuxt.js](https://nuxtjs.org/) you might recognize them. For example pages are components from which the router is build and which determine pages that user can visit. So while catalog module might add pages like `/product/:id` and `/category/:id`, the blog module might add `/blog` and `/blog/article/:id` pages.
 

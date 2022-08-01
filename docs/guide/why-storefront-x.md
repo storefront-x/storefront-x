@@ -1,9 +1,11 @@
 # Why Storefront X?
 
-Imagine this situation: you need to develop new web application. You don't want to start from scratch so you search for framework that you can use to build your application. You compare multiple frameworks and choose the one that suits you the best. You start developing and in the beginning everything is great. The framework is well thought out, full of features and great documentations. But sooner or later you will want to add feature that the framework doesn't support. Or you want to modify some functionality of the framework. Now what? Create a ticket and wait until the developers publish new version? Or start hacking the framework and bending it in gnarly ways to somehow make it work?
+When creating new software, it's rarely written from scratch. Instead, libraries, frameworks and/or platforms are used which help us to get up and running. This is the right approach if we are constrained by time and/or budget. But there is one catch.
 
-**Using third party code is great until it isn't.**
+**Using third party code is great, until it isn't.**
 
-Storefront X is built from scratch to allow for super easy addition/modification/removal of any feature. Storefront X uses modular architecture which allows modules to override each other. So adding and removing features is just as easy as enabling and disabling modules. And if some functionality in some module doesn't suit your needs, you can override it with your own module.
+One one hand, third party libraries and frameworks provide us with with features, utilities and tools which can accelerate development of new project. But they also constrain us by the features they provide. Sooner or later, every project will require functionality which is not provided or supported by the underlying framework. Sooner or later, every project will outgrow its underlying framework. If such event occurs, frameworks and libraries stop being accelerators and start slowing us down.
 
-This approach allows for unparalleled flexibility while also allowing Storefront X to ship default functionality, themes and utilities.
+Storefront X is made from the ground up to solve this issue. Storefront X uses highly modular architecture in which everything can be extended, overridden or changed. This allows Storefront X to provide application authors with a tons of functionality while never limiting or slowing down the application development.
+
+**Storefront X improves time-to-market, lowers project costs and increases code reusability.**

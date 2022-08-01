@@ -46,19 +46,17 @@ export default class Core {
   }
 
   async bootstrap() {
+    if (process.env.NODE_ENV !== 'test') logger.log('Starting bootstrap')
+
     await this.clearBuildDir()
 
     await this.loadModules()
 
     await this.loadConcepts()
 
-    for (const concept of this.concepts) {
-      await concept.before()
-      for (const module of this.modules) {
-        await concept.run(module)
-      }
-      await concept.after()
-    }
+    await this.executeConcepts()
+
+    if (process.env.NODE_ENV !== 'test') logger.log('Bootstrap finished')
   }
 
   /**
@@ -89,6 +87,8 @@ export default class Core {
   }
 
   async loadModules() {
+    if (process.env.NODE_ENV !== 'test') logger.log('Loading modules')
+
     for (const name of this.config.modules) {
       const module = new Module(this, {
         name,
@@ -100,12 +100,32 @@ export default class Core {
 
       this.modules.push(module)
     }
+
+    if (process.env.NODE_ENV !== 'test') logger.log('Modules loaded')
   }
 
   async loadConcepts() {
+    if (process.env.NODE_ENV !== 'test') logger.log('Loading concepts')
+
     for (const module of this.modules) {
       this.concepts.push(...(await module.getConcepts()))
     }
+
+    if (process.env.NODE_ENV !== 'test') logger.log('Concepts loaded')
+  }
+
+  async executeConcepts() {
+    if (process.env.NODE_ENV !== 'test') logger.log('Executing concepts')
+
+    for (const concept of this.concepts) {
+      await concept.before()
+      for (const module of this.modules) {
+        await concept.run(module)
+      }
+      await concept.after()
+    }
+
+    if (process.env.NODE_ENV !== 'test') logger.log('Concepts executed')
   }
 
   async loadViteConfigs() {
