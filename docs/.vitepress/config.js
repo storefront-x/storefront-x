@@ -10,10 +10,11 @@ export default defineConfig({
   themeConfig: {
     logo: '/icon.svg',
 
+    socialLinks: [{ icon: 'github', link: 'https://github.com/storefront-x/storefront' }],
+
     nav: [
       { text: 'Demo', link: 'https://demo.storefrontx.io' },
       { text: 'Blog', link: 'https://www.storefrontx.io/' },
-      { text: 'GitLab', link: 'https://git.magexo.cz/magexo-projects-v2/storefront-x' },
     ],
 
     sidebar: [
@@ -22,7 +23,7 @@ export default defineConfig({
         items: [
           { text: 'Why Storefront X', link: '/guide/why-storefront-x' },
           { text: 'Getting Started', link: '/guide/getting-started' },
-          { text: 'Inversion of Control', link: '/guide/inversion-of-control' },
+          { text: 'How it works', link: '/guide/how-it-works' },
           { text: 'Contributing', link: '/guide/contributing' },
         ],
       },

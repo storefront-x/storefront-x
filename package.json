@@ -1,6 +1,6 @@
 {
   "name": "storefront-x",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Storefront X",
   "main": "index.js",
   "repository": "git@git.magexo.cz:magexo-projects-v2/storefront-x.git",
@@ -20,7 +20,6 @@
     "dev": "sfx dev",
     "build": "sfx build",
     "serve": "sfx serve",
-    "start": "sfx start",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
@@ -39,6 +38,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.3.0",
     "husky": "^8.0.1",
+    "lerna": "^5.3.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4",
