@@ -45,7 +45,7 @@ export default class Module {
 
       const concept = new _Concept(this.core)
 
-      if (process.env.NODE_ENV !== 'test') logger.log('Loaded concept', concept.directory)
+      if (process.env.NODE_ENV !== 'test') logger.log('Loaded concept', concept.directory, '-', this.name)
 
       concepts.push(concept)
     }

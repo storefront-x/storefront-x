@@ -17,8 +17,6 @@ RUN find modules \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs 
 # Second stage
 FROM node:16-alpine
 
-ARG VERDACCIO_TOKEN
-
 WORKDIR /app
 
 # Coppy all of the files from first stage to the second one.
