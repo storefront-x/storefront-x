@@ -38,9 +38,15 @@ yargs(hideBin(process.argv))
     command: 'build',
     description: 'Build the production bundle',
     builder: (yargs) => {
-      yargs.option('analyze', {
-        type: 'boolean',
-      })
+      yargs
+        .option('analyze', {
+          type: 'boolean',
+          description: 'Shows visualization of built JS bundles for analysis.',
+        })
+        .option('onlyBootstrap', {
+          type: 'boolean',
+          description: 'Run only SFX bootstrap instead of full build.',
+        })
     },
     handler: async (argv) => {
       try {
@@ -49,6 +55,7 @@ yargs(hideBin(process.argv))
 
         const build = new Build(config, argv)
         await build.bootstrap()
+        if (argv.onlyBootstrap) return
         await build.build()
       } catch (e) {
         consola.error(e)
