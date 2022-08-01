@@ -222,7 +222,7 @@ Because in SFX, GraphQL queries are pure JS, it's easy to combine them with othe
 
 ```javascript
 // fragments/cartItems.js
-import { field } from '@storefront-x/storefront/adapters/GraphQL'
+import { field } from '@storefront-x/base-commerce/adapters/GraphQL'
 
 export const cartItemsFragment = {
   items: field({
@@ -238,7 +238,7 @@ export const cartItemsFragment = {
 
 ```javascript
 // queries/cartItems.js
-import { query, field } from '@storefront-x/storefront/adapters/GraphQL'
+import { query, field } from '@storefront-x/base-commerce/adapters/GraphQL'
 import { cartItemsFragment } from '../fragments/cartItems'
 
 export const cartItemsQuery = query()
@@ -310,7 +310,7 @@ This technique results in shorted generated queries (no duplication of fragments
 Storefront X GraphQL builder also supports mutations. They have exactly the same syntax as queries, except we start mutation with `mutation()` function helper.
 
 ```javascript
-import { mutation, field } from '@storefront-x/storefront/adapters/GraphQL'
+import { mutation, field } from '@storefront-x/base-commerce/adapters/GraphQL'
 
 export const generateCustomerTokenMutation = mutation()
   .variables({

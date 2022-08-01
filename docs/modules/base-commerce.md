@@ -1,6 +1,6 @@
-# Storefront - `@storefront-x/storefront`
+# Base Commerce - `@storefront-x/base-commerce`
 
-The `@storefront-x/storefront` module contains general concepts, components, utilities, functionalities and best practices for e-commerce storefronts.
+The `@storefront-x/base-commerce` module contains general concepts, components, utilities, functionalities and best practices for e-commerce storefronts.
 
 ### Data-flow
 
@@ -39,7 +39,7 @@ IoC concept containing GraphQL fragments.
 
 ```ts
 // gql/fragments/Product.ts
-import { fragment, field } from '@storefront-x/storefront/adapters/GraphQL'
+import { fragment, field } from '@storefront-x/base-commerce/adapters/GraphQL'
 
 export default (name = 'product') =>
   fragment(name, 'ProductInterface', {
@@ -57,7 +57,7 @@ IoC concept containing GraphQL mutations.
 
 ```ts
 // gql/mutations/CreateEmptyCart.ts
-import { mutation, field } from '@storefront-x/storefront/adapters/GraphQL'
+import { mutation, field } from '@storefront-x/base-commerce/adapters/GraphQL'
 
 export default () =>
   mutation({
@@ -73,7 +73,7 @@ IoC concept containing GraphQL mutations.
 
 ```ts
 // gql/queries/Product.ts
-import { query, field } from '@storefront-x/storefront/adapters/GraphQL'
+import { query, field } from '@storefront-x/base-commerce/adapters/GraphQL'
 import Cart from '#ioc/gql/fragments/Cart'
 
 export default () =>

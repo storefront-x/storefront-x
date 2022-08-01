@@ -54,7 +54,7 @@ By default Storefront X provides many modules. Here are some of the the most com
 - `@storefront-x/vue-head` adds support for adding page meta data like `<title>`.
 - `@storefront-x/vue-i18n` adds support for internationalization - multiple languages.
 - `@storefront-x/vue-pinia` allows using the [Pinia](https://pinia.vuejs.org/) library for global state management.
-- `@storefront-x/storefront` includes components and best practices recommended for every Storefront X application.
+- `@storefront-x/base-commerce` includes components and best practices recommended for every Storefront X application.
 - `@storefront-x/magento` Magento integration.
 - `@storefront-x/shopware` Shopware integration.
 - `@storefront-x/catalog`, `@storefront-x/cart`, `@storefront-x/checkout`, `@storefront-x/blog`, ... contain generic, domain specific code.

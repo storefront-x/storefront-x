@@ -20,7 +20,6 @@
     "dev": "sfx dev",
     "build": "sfx build",
     "serve": "sfx serve",
-    "start": "sfx start",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
