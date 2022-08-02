@@ -1,4 +1,6 @@
-# Shopware - `@storefront-x/shopware`
+# Shopware
+
+> `@storefront-x/shopware`
 
 This module provides basic functionality for Shopware integration.
 

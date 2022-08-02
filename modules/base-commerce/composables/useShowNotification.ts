@@ -7,7 +7,7 @@ export default () => {
   const notificationStore = useNotificationStore()
   const hideNotification = useHideNotification()
 
-  return (title = '', message = '', level = 'INFO', timeout = 6 * SECONDS) => {
+  return (title = '', message = '', level = 'INFO', { timeout = 6 * SECONDS } = {}) => {
     const newNotification = {
       id: uuid(),
       title,

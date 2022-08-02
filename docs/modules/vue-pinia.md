@@ -1,4 +1,6 @@
-# Vue Pinia - `@storefront-x/vue-pinia`
+# Vue Pinia
+
+> `@storefront-x/vue-pinia`
 
 Wrapper around the [Pinia](https://pinia.vuejs.org) library. Adds server -> client data transfer and special action executed at the beginning of every server request.
 

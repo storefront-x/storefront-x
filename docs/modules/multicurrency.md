@@ -1,4 +1,6 @@
-# Multicurrency - `@storefront-x/multicurrency`
+# Multicurrency
+
+> `@storefront-x/multicurrency`
 
 Module enabling switching between currencies. It uses `SfxCurrencySwitcher` component to switch between currencies which are sourced from the `useMulticurrencyStore` store. Requires corresponding integration module (e.g. `@storefront-x/multicurrency-shopware`).
 
