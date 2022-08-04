@@ -29,6 +29,10 @@ export default defineConfig({
         ],
       },
       {
+        text: 'Integrations',
+        items: [{ text: 'Shopware', link: '/integrations/shopware' }],
+      },
+      {
         text: 'Modules',
         items: [
           { text: 'Base', link: '/modules/base' },
@@ -53,6 +57,7 @@ export default defineConfig({
       {
         text: 'In-depth',
         items: [
+          { text: 'FAQ', link: '/in-depth/faq' },
           { text: 'Bootstrap', link: '/in-depth/bootstrap' },
           { text: 'GraphQL', link: '/in-depth/graphql' },
           { text: 'Functionalities', link: '/in-depth/functionalities' },

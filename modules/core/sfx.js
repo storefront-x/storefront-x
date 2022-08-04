@@ -5,6 +5,9 @@ import url from 'node:url'
 import yargs from 'yargs'
 import consola from 'consola'
 import { hideBin } from 'yargs/helpers'
+import Dev from './src/Dev.js'
+import Build from './src/Build.js'
+import Serve from './src/Serve.js'
 
 yargs(hideBin(process.argv))
   .command({
@@ -22,18 +25,17 @@ yargs(hideBin(process.argv))
         })
     },
     handler: async (argv) => {
-      const { default: config } = await import(
-        url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js')).href
-      )
-      const { default: Dev } = await import('./src/Dev.js')
+      const { href } = url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js'))
+
+      const { default: config } = await import(href)
 
       const dev = new Dev(config, argv)
       await dev.bootstrap()
       const server = await dev.createServer()
 
-      server.listen(argv.port, argv.host, () =>
-        consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`),
-      )
+      server.listen(argv.port, argv.host, () => {
+        consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`)
+      })
     },
   })
   .command({
@@ -52,10 +54,9 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
-        const { default: config } = await import(
-          url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js')).href
-        )
-        const { default: Build } = await import('./src/Build.js')
+        const { href } = url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js'))
+
+        const { default: config } = await import(href)
 
         const build = new Build(config, argv)
         await build.bootstrap()
@@ -92,17 +93,18 @@ yargs(hideBin(process.argv))
         })
     },
     handler: async (argv) => {
+      const start = Date.now()
+
       consola.wrapAll()
       consola.setReporters(new consola.BasicReporter())
-
-      const { default: Serve } = await import('./src/Serve.js')
 
       const serve = new Serve({}, argv)
       const server = await serve.createServer()
 
-      server.listen(argv.port, argv.host, () =>
-        consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`),
-      )
+      server.listen(argv.port, argv.host, () => {
+        consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`)
+        consola.withTag('cli').log(`Server started in ${Date.now() - start}ms`)
+      })
     },
   })
   .demandCommand(1)

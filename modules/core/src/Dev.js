@@ -91,7 +91,7 @@ export default class Dev extends Core {
       router.stack.splice(1)
 
       try {
-        const middlewares = await viteDevServer.ssrLoadModule('/server/middleware.ts', {
+        const { default: middlewares } = await viteDevServer.ssrLoadModule('/server/middleware.ts', {
           fixStacktrace: true,
         })
 
@@ -119,7 +119,7 @@ export default class Dev extends Core {
       router.stack.splice(1)
 
       try {
-        const routes = await viteDevServer.ssrLoadModule('/server/routes.ts', {
+        const { default: routes } = await viteDevServer.ssrLoadModule('/server/routes.ts', {
           fixStacktrace: true,
         })
 
