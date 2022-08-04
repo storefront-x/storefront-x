@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "git@git.magexo.cz:magexo-projects-v2/storefront-x.git",
   "author": "MageXo",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "type": "module",
   "packageManager": "yarn@3.2.1",
