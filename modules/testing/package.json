@@ -1,7 +1,7 @@
 {
   "name": "@storefront-x/testing",
   "version": "0.1.3",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "main": "./index.js",
   "dependencies": {
