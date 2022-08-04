@@ -11,4 +11,5 @@ export default createProxyMiddleware({
   onProxyReq(proxyReq) {
     proxyReq.setHeader('sw-access-key', SHOPWARE_ACCESS_KEY)
   },
+  logLevel: process.env.NODE_ENV === 'test' ? 'silent' : undefined,
 })

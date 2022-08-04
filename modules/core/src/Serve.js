@@ -57,7 +57,9 @@ export default class Serve extends Core {
    * @param {express.Express} server
    */
   async _loadServerMiddleware(server) {
-    const middlewares = await import(url.pathToFileURL(path.join(this.distDir, 'server', 'middleware.js')).href)
+    const { href } = url.pathToFileURL(path.join(this.distDir, 'server', 'middleware.js'))
+
+    const { default: middlewares } = await import(href)
 
     for (const middleware of Object.values(middlewares)) {
       server.use(middleware)
@@ -68,7 +70,9 @@ export default class Serve extends Core {
    * @param {express.Express} server
    */
   async _loadServerRoutes(server) {
-    const routes = await import(url.pathToFileURL(path.join(this.distDir, 'server', 'routes.js')).href)
+    const { href } = url.pathToFileURL(path.join(this.distDir, 'server', 'routes.js'))
+
+    const { default: routes } = await import(href)
 
     for (const [path, route] of Object.entries(routes)) {
       server.use(`/${path}`, route)
