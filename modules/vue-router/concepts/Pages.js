@@ -80,6 +80,21 @@ export default class Pages extends GeneratingConcept {
       }
     }
 
+    for (const page of Object.values(pages)) {
+      let containsIndex = false
+      for (const item of page) {
+        if (item.name.includes('index')) {
+          containsIndex = true
+          break
+        }
+      }
+      const errorPage = page[page.length - 1]
+
+      if (!containsIndex) {
+        page.splice(page.length - 1, 0, { ...errorPage, name: ':undefined', path: '' })
+      }
+    }
+
     await this.renderTemplate(this.compiledTemplate, { pages, layouts, paths })
   }
 
@@ -137,7 +152,7 @@ export default class Pages extends GeneratingConcept {
 
   get template() {
     return `
-    import * as plugins from './vueRouter/plugins'
+    import plugins from './vueRouter/plugins'
 
 const _routes = [
   <%_ for (var i = 0; i < pages.length; i++) { _%>

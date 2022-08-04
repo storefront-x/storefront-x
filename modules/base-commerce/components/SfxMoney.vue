@@ -2,7 +2,7 @@
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 import useStoreStore from '#ioc/stores/useStoreStore'
 import { computed, defineComponent, h } from 'vue'
-import * as formatters from '~/.sfx/formatters/money'
+import formatters from '~/.sfx/formatters/money'
 
 export default defineComponent({
   props: {

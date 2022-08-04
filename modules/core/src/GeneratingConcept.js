@@ -40,7 +40,8 @@ export default class GeneratingConcept extends OverridingConcept {
       const filewithoutExt = file.replace(/\.\w+$/, '').replace(/\\/g, '')
 
       const record = {
-        ident: filewithoutExt.replace(/[.\s]/g, '_'),
+        ident: filewithoutExt,
+        importName: filewithoutExt.replace(/[^A-Za-z0-9]/g, ''),
         path: this.getPathForFile(module, file),
       }
 
@@ -102,10 +103,18 @@ export default class GeneratingConcept extends OverridingConcept {
   }
 
   get template() {
-    return `//@ts-check
-<%_ for (const [ident, {path}] of Object.entries(records)) { _%>
-export ${this.exportAll ? '* as <%= ident %>' : '{ default as <%= ident %> }'} from '<%= path %>'
+    return `
+<%_ for (const item in records) { _%>
+import ${
+      this.exportAll ? '* as <%= records[item].importName %>' : '<%= records[item].importName %>'
+    } from '<%= records[item].path %>'
 <%_ } _%>
+
+export default {
+<%_ for (const [ident, {importName}] of Object.entries(records)) { _%>
+  '<%= ident %>': <%= importName %>,
+<%_ } _%>
+}
 `
   }
 
