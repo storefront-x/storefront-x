@@ -10,7 +10,7 @@ export default defineConfig({
   themeConfig: {
     logo: '/icon.svg',
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/storefront-x/storefront' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/storefront-x/storefront-x' }],
 
     nav: [
       { text: 'Demo', link: 'https://demo.storefrontx.io' },
