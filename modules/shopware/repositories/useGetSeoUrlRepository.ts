@@ -16,7 +16,7 @@ export default () => {
 
     return {
       foreignKey: elements[0].foreignKey as string,
-      ident: elements[0].routeName.split('.')[1].toUpperCase() as string,
+      ident: elements[0].routeName as string,
     }
   }
 }
