@@ -39,8 +39,6 @@
 <script>
 import Button from '#ioc/atoms/Button'
 import UsesFilters from '#ioc/mixins/UsesFilters'
-import CATALOG_FILTER_ATTRIBUTES_HIDDEN from '#ioc/config/CATALOG_FILTER_ATTRIBUTES_HIDDEN'
-import CATALOG_FILTER_ATTRIBUTES_RANGE from '#ioc/config/CATALOG_FILTER_ATTRIBUTES_RANGE'
 import useI18n from '#ioc/composables/useI18n'
 import { defineComponent } from 'vue'
 
@@ -74,12 +72,10 @@ export default defineComponent({
   computed: {
     filteredAggregations() {
       return this.aggregations.filter((aggregation) => {
-        if (CATALOG_FILTER_ATTRIBUTES_HIDDEN.includes(aggregation.attributeCode)) return false
-        if (this.filters[aggregation.attributeCode]) return true
-        if (this.isRange(aggregation)) return true
         return aggregation.options.length > 0
       })
     },
+
     areAnyFiltersSelected() {
       return Object.keys(this.filters).length > 0
     },
@@ -94,10 +90,6 @@ export default defineComponent({
       } else {
         this.removeFilter(key, value)
       }
-    },
-
-    isRange(filter) {
-      return CATALOG_FILTER_ATTRIBUTES_RANGE.includes(filter.attributeCode)
     },
 
     isCollapsed(code) {

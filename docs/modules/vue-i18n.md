@@ -1,4 +1,6 @@
-# Vue I18n - `@storefront-x/vue-i18n`
+# Vue I18n
+
+> `@storefront-x/vue-i18n`
 
 Wrapper module around the [vue-i18n](https://www.npmjs.com/package/vue-i18n) library. It extends router to allow for translated routes, locale route prefixes and other functionalities.
 

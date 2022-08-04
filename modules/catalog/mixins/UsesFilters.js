@@ -3,7 +3,6 @@ import isNullish from '#ioc/utils/isNullish'
 import debounce from '#ioc/utils/debounce'
 import isDeepEqual from '#ioc/utils/isDeepEqual'
 import ensureArray from '#ioc/utils/array/ensureArray'
-import CATALOG_FILTER_ATTRIBUTES_RANGE from '#ioc/config/CATALOG_FILTER_ATTRIBUTES_RANGE'
 
 export default {
   data: (vm) => {
@@ -81,11 +80,7 @@ export default {
 
       const filters = { ...this.innerFilters }
 
-      if (filters[key] && !CATALOG_FILTER_ATTRIBUTES_RANGE.includes(key)) {
-        filters[key] = [...filters[key], value]
-      } else {
-        filters[key] = [value]
-      }
+      filters[key] = [...filters[key], value]
 
       this.innerFilters = filters
     },

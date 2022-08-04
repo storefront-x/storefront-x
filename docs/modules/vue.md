@@ -1,4 +1,6 @@
-# Vue - `@storefront-x/vue`
+# Vue
+
+> `@storefront-x/vue`
 
 Framework module enabling usage of [Vue.js](https://vuejs.org) in the application.
 
