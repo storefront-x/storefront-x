@@ -2,17 +2,19 @@
 
 import { GeneratingConcept } from '@storefront-x/core'
 
-export default class DynamicPages extends GeneratingConcept {
+export default class ShopwareDynamicPages extends GeneratingConcept {
   get directory() {
-    return 'dynamicPages'
+    return 'shopware/dynamicPages'
   }
 
   get template() {
-    return `//@ts-check
+    return `
 import { defineAsyncComponent } from 'vue'
+export default {
 <%_ for (const [ident, {path}] of Object.entries(records)) { _%>
-export const <%= ident %> = defineAsyncComponent(() => import('<%= path %>'))
+  '<%= ident %>': defineAsyncComponent(() => import('<%= path %>')),
 <%_ } _%>
+}
 `
   }
 }

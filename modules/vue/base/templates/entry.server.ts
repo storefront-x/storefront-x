@@ -2,7 +2,7 @@ import { createSSRApp } from 'vue'
 import { renderToString } from 'vue/server-renderer'
 import App from './App.vue'
 // @ts-ignore
-import * as plugins from './vue/plugins.server'
+import plugins from './vue/plugins.server'
 
 export default async (ctx: any) => {
   const app = createSSRApp(App)

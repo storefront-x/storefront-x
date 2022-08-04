@@ -8,7 +8,7 @@ import isNullish from '#ioc/utils/isNullish'
 import isString from '#ioc/utils/isString'
 import { defineComponent } from 'vue'
 
-import * as validators from '~/.sfx/validators'
+import validators from '~/.sfx/validators'
 
 export default defineComponent({
   inject: ['$Form'],
