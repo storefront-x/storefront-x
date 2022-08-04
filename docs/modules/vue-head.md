@@ -1,4 +1,6 @@
-# Vue Head - `@storefront-x/vue-head`
+# Vue Head
+
+> `@storefront-x/vue-head`
 
 Wrapper module around the [@vueuse/head](https://github.com/vueuse/head) library. It adds server side rendering and IoC integration.
 

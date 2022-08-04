@@ -1,6 +1,8 @@
-# Base - `@storefront-x/base`
+# Base
 
-`@storefront-x/base` is the base module for the whole application. It is framework and application agnostic so it provides only the general functionality and it should always be enabled.
+> `@storefront-x/base`
+
+This is the base module for the whole application. It is framework and application agnostic so it provides only the general functionality and it should always be enabled.
 
 ## `config/` concept
 

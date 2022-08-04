@@ -15,7 +15,7 @@ Thank you for investing your time in contributing to Storefront X!
 ### 2. Clone the repository
 
 ```sh
-git clone git@github.com:storefront-x/storefront.git storefront-x
+git clone git@github.com:storefront-x/storefront-x.git storefront-x
 cd storefront-x
 ```
 

@@ -1,6 +1,8 @@
-# Base Commerce - `@storefront-x/base-commerce`
+# Base Commerce
 
-The `@storefront-x/base-commerce` module contains general concepts, components, utilities, functionalities and best practices for e-commerce storefronts.
+> `@storefront-x/base-commerce`
+
+This module contains general concepts, components, utilities, functionalities and best practices for e-commerce storefronts.
 
 ### Data-flow
 
@@ -407,6 +409,87 @@ import injectProduct from '#ioc/composables/injectProduct'
 const product = injectProduct()
 </script>
 ```
+
+## `useBlockBodyFromScrolling` composable
+
+Blocks HTML body from scrolling when component in which this composable is used is mounted. When component is unmounted, body scroll is unblocked.
+
+:::tip
+Useful in modals, drawers and other pop-up style components.
+:::
+
+### Example
+
+```vue
+<!-- atoms/Drawer.vue -->
+
+<template>
+  <Teleport to="body">
+    <div class="fixed inset-0">
+      <slot />
+    </div>
+  </Teleport>
+</template>
+
+<script setup lang="ts">
+import useBlockBodyFromScrolling from '#ioc/composables/useBlockBodyFromScrolling'
+
+useBlockBodyFromScrolling()
+</script>
+```
+
+## `useNotifications` composables
+
+Returns list of all currently visible notifications. Should be used by component responsible for drawing list of notifications.
+
+## `useShowNotification` composable
+
+General purpose composable for showing notifications. There are also helper composables for displaying different notification types.
+
+### Example
+
+```vue
+<!-- molecules/AddToCart.vue -->
+
+<template>
+  <Button @click="onClick">Add to cart</Button>
+</template>
+
+<script setup lang="ts">
+import Button from '#ioc/atoms/Button'
+import injectProduct from '#ioc/composables/injectProduct'
+import useAddToCart from '#ioc/services/useAddToCart'
+import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+
+const product = injectProduct()
+const addToCart = useAddToCart()
+const showSuccessNotification = useShowSuccessNotification()
+const showErrorNotification = useShowErrorNotification()
+
+const onClick = async () => {
+  try {
+    await addToCart(product)
+
+    showSuccessNotification('Added to cart', `Product ${product.name} was added to cart`)
+  } catch (e) {
+    showErrorNotification(e)
+  }
+}
+</script>
+```
+
+## `useHideNotification` composable
+
+Composable for hiding notifications. Should be used by component responsible fro drawing single notification.
+
+## `useShowSuccessNotification` composable
+
+Helper composable for displaying success notifications.
+
+## `useShowErrorNotification` composable
+
+Helper composable for displaying caught errors.
 
 ## `CACHE_ID` config
 

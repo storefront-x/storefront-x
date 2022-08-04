@@ -10,7 +10,7 @@ export default defineConfig({
   themeConfig: {
     logo: '/icon.svg',
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/storefront-x/storefront' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/storefront-x/storefront-x' }],
 
     nav: [
       { text: 'Demo', link: 'https://demo.storefrontx.io' },
@@ -24,6 +24,7 @@ export default defineConfig({
           { text: 'Why Storefront X', link: '/guide/why-storefront-x' },
           { text: 'Getting Started', link: '/guide/getting-started' },
           { text: 'How it works', link: '/guide/how-it-works' },
+          { text: 'Cookbook', link: '/guide/cookbook' },
           { text: 'Contributing', link: '/contributing' },
         ],
       },
@@ -36,7 +37,7 @@ export default defineConfig({
           { text: 'Vue Head', link: '/modules/vue-head' },
           { text: 'Vue I18n', link: '/modules/vue-i18n' },
           { text: 'Vue Pinia', link: '/modules/vue-pinia' },
-          { text: 'Storefront', link: '/modules/storefront' },
+          { text: 'Base Commerce', link: '/modules/base-commerce' },
           { text: 'Shopware', link: '/modules/shopware' },
           { text: 'Atomic Design', link: '/modules/atomic-design' },
           { text: 'Multicurrency', link: '/modules/multicurrency' },
@@ -44,6 +45,7 @@ export default defineConfig({
           { text: 'Cart', link: '/modules/cart' },
           { text: 'Checkout', link: '/modules/checkout' },
           { text: 'Customer', link: '/modules/customer' },
+          { text: 'Customer Shopware', link: '/modules/customer-shopware' },
           { text: 'Wishlist', link: '/modules/wishlist' },
           { text: 'Theme Tailwind', link: '/modules/theme-tailwind' },
         ],

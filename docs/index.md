@@ -20,7 +20,7 @@ hero:
       link: /guide/why-storefront-x
     - theme: alt
       text: View on GitHub
-      link: https://github.com/storefront-x/storefront
+      link: https://github.com/storefront-x/storefront-x
 
 features:
   - title: Modular
