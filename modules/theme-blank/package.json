@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/theme-blank",
   "version": "0.1.3",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module"
 }
