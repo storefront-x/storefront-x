@@ -10,6 +10,14 @@ export default () => {
 
   const lastName = computed(() => customerStore.customer?.lastName)
 
+  const title = computed(() => customerStore.customer?.title)
+
+  const email = computed(() => customerStore.customer?.email)
+
+  const salutationId = computed(() => customerStore.customer?.salutationId)
+
+  const salutation = computed(() => customerStore.customer?.salutation)
+
   const fullName = computed(() => firstName.value + ' ' + lastName.value)
 
   return reactive({
@@ -17,5 +25,9 @@ export default () => {
     firstName,
     lastName,
     fullName,
+    title,
+    email,
+    salutationId,
+    salutation,
   })
 }

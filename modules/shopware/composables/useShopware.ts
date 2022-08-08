@@ -38,7 +38,7 @@ export default () => {
       if (json.errors?.length > 0) throw new ShopwareError(json.errors[0])
 
       return json
-    } else {
+    } else if (response.status !== 204) {
       throw new Error(response.statusText)
     }
   }
