@@ -1,13 +1,15 @@
 import useShopware from '#ioc/composables/useShopware'
+import useToCountries from '#ioc/mappers/useToCountries'
 
 export default () => {
   const shopware = useShopware()
+  const toCountries = useToCountries()
 
   return async () => {
     const { elements }: any = await shopware.get('/country')
 
     return {
-      countryId: elements[0].id as string,
+      countries: elements.map(toCountries),
     }
   }
 }

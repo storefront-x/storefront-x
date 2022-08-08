@@ -1,0 +1,65 @@
+<template>
+  <Teleport to="body">
+    <div class="fixed z-40 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:py-0">
+        <transition
+          appear
+          appear-active-class="transition duration-300 ease-out"
+          appear-from-class="opacity-0"
+          appear-class="opacity-100"
+          leave-active-class="transition duration-200 ease-in"
+          leave-from-class="opacity-100"
+          leave-to-class="opacity-0"
+        >
+          <div v-if="isOpen" class="fixed inset-0 bg-gray-500 bg-opacity-75" aria-hidden="true" @click="close" />
+        </transition>
+
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span class="hidden sm:inline-block sm:align-middle" aria-hidden="true">&#8203;</span>
+
+        <transition
+          appear
+          appear-active-class="transition duration-300 ease-out"
+          appear-from-class="transform translate-y-8 sm:translate-y-0 sm:scale-75"
+          appear-to-class="transform opacity-100 translate-y-0 sm:scale-100"
+          leave-active-class="transition duration-200 ease-in"
+          leave-from-class="transform opacity-100 translate-y-0 sm:scale-100"
+          leave-to-class="transform opacity-0 translate-y-8 sm:translate-y-0 sm:scale-75"
+          @after-leave="afterLeave"
+        >
+          <div
+            v-if="isOpen"
+            class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl sm:my-8 sm:align-middle w-full sm:w-96 h-full sm:p-6"
+          >
+            <slot />
+          </div>
+        </transition>
+      </div>
+    </div>
+  </Teleport>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const emit = defineEmits(['close'])
+
+const isOpen = ref(true)
+
+const close = () => {
+  isOpen.value = false
+}
+
+const afterLeave = () => {
+  emit('close')
+}
+
+defineProps({
+  hasCloseBtn: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+defineExpose({ close })
+</script>
