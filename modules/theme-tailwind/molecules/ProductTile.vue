@@ -48,7 +48,7 @@
         class="relative max-w-[50%] sm:w-full sm:max-w-none !mt-auto !ml-0 sm:mb-5 order-2 flex-1 sm:order-1 !h-8 sm:!h-16"
       />
     </div>
-    <AddToWishlist class="absolute top-3 right-4" :fill-on-hover="true" @click.stop />
+    <!-- <AddToWishlist class="absolute top-3 right-4" :fill-on-hover="true" @click.stop /> -->
   </div>
 </template>
 

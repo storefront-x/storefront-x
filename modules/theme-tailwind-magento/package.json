@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/catalog-shopware",
+  "name": "@storefront-x/theme-tailwind-magento",
   "version": "0.1.3",
   "license": "MIT",
   "type": "module"

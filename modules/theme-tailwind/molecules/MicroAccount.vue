@@ -35,7 +35,7 @@ import OutlineUser from '#ioc/icons/OutlineUser'
 import useI18n from '#ioc/composables/useI18n'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useCustomer from '#ioc/composables/useCustomer'
-import useLogoutCustomer from '#ioc/services/useLogoutCustomer'
+import useRevokeCustomerToken from '#ioc/services/useRevokeCustomerToken'
 
 defineProps({
   submenu: {
@@ -47,7 +47,7 @@ defineProps({
 const { t } = useI18n()
 const localePath = useLocalePath()
 const customer = useCustomer()
-const logout = useLogoutCustomer()
+const logout = useRevokeCustomerToken()
 
 const onLogout = async () => {
   await logout()
