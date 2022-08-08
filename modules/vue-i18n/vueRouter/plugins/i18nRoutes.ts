@@ -54,7 +54,9 @@ function getPath(path: string, prefix: string, name: string) {
   return prefix + '/' + path
 }
 
-function getName(name: string, localeName: string) {
+function getName(name: string | undefined, localeName: string) {
+  if (name === undefined) return undefined
+
   const isIndexPage = name === 'index'
   const isIndexInFolder = name.endsWith('index')
 
