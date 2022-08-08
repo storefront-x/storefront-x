@@ -24,7 +24,6 @@ jobs:
           node-version: 16
       - run: yarn install
       - run: yarn build --onlyBootstrap
-      - run: yarn tsc --noEmit
   unit:
     runs-on: ubuntu-latest
     name: Unit
