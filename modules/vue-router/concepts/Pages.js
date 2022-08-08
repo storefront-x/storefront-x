@@ -2,6 +2,7 @@
 
 import path from 'node:path'
 import { GeneratingConcept } from '@storefront-x/core'
+import { uniqueId } from 'lodash-es'
 
 export default class Pages extends GeneratingConcept {
   get directory() {
@@ -83,15 +84,16 @@ export default class Pages extends GeneratingConcept {
     for (const page of Object.values(pages)) {
       let containsIndex = false
       for (const item of page) {
-        if (item.name.includes('index')) {
+        if (item.name === 'index') {
           containsIndex = true
           break
         }
       }
+
       const errorPage = page[page.length - 1]
 
       if (!containsIndex) {
-        page.splice(page.length - 1, 0, { ...errorPage, name: ':undefined', path: '' })
+        page.splice(page.length - 1, 0, { ...errorPage, name: uniqueId('$404_'), path: '' })
       }
     }
 
