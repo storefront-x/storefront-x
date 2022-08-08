@@ -209,3 +209,29 @@ test('navigating to named nested route', async ({ page }) => {
     },
   )
 })
+
+test('show 404 if index is missing', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        [
+          'app',
+          {
+            pages: {
+              '$layout.vue': `<template><header>Header</Header><RouterView /></template>`,
+              '$404.vue': `<template><main>404</main></template>`,
+              'test.vue': `<template><main>test</main></template>`,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url, { waitUntil: 'networkidle' })
+      await expect(page.locator('body')).toContainText('Header404')
+    },
+  )
+})

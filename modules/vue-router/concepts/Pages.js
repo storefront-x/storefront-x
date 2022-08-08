@@ -1,8 +1,5 @@
-//@ts-check
-
 import path from 'node:path'
 import { GeneratingConcept } from '@storefront-x/core'
-import { uniqueId } from 'lodash-es'
 
 export default class Pages extends GeneratingConcept {
   get directory() {
@@ -17,100 +14,110 @@ export default class Pages extends GeneratingConcept {
    * @param {Record<string, {module: import('@storefront-x/core').Module, file: string}>} files
    */
   async execute(files) {
-    /** @type {any[][]} */
-    let pages = [[]]
-    /** @type {string[]} */
-    let paths = []
-    let index = 0
-
-    let pathBefore = ''
+    const pages = {}
 
     for (const { module, file } of Object.values(files)) {
       const parsed = path.parse(file)
       const parts = [...parsed.dir.replace(/\\/g, '/').split('/').filter(Boolean), parsed.name]
       const component = this.getPathForFile(module, file)
 
-      const isNewLayout = parts.includes('$layout') && parts.length > 1
-      const isNewFolder = parts[0] === pathBefore
-
-      if (isNewLayout) {
-        index++
-        if (!pages[index]) pages[index] = []
-      }
-
-      if (isNewLayout || isNewFolder) {
-        pathBefore = parts[0]
-
-        if (!paths.includes('/' + parts[0])) {
-          paths.push('/' + parts[0])
+      let _pages = pages
+      for (const [i, part] of parts.entries()) {
+        if (i === parts.length - 1) {
+          _pages[part] = {
+            component,
+            ident: this.getIdent(parts),
+            name: this.getName(parts),
+            path: this.getPath(parts),
+            priority: this.getPriority(parts),
+          }
+        } else {
+          _pages[part] = _pages[part] ?? {
+            children: {},
+          }
         }
 
-        pages[index].push({
-          ident: this.getIdent(parts),
-          name: this.getName(parts),
-          path: this.getPath(parts.slice(1)),
-          priority: this.getPriority(parts),
-          component,
-        })
+        _pages = _pages[part].children
+      }
+    }
+
+    await this.renderTemplate(this.compiledTemplate, { pages: this._transform(pages) })
+  }
+
+  _transform(pages) {
+    const transformed = []
+
+    const hoistLayouts = (node) => {
+      let wasHoisted = false
+
+      const [key, layout] = Object.entries(node).find(([ident]) => ident === '$layout') ?? []
+
+      if (layout) {
+        layout.children = node
+        delete node[key]
+
+        const _404 = Object.entries(node).find(([ident]) => ident === '$404')?.[1]
+        const _index = Object.entries(node).find(([ident]) => ident === 'index')?.[1]
+
+        if (!_index && _404) {
+          layout.children.index = {
+            ..._404,
+            path: _404.path.replace(':pathMatch*', ''),
+            priority: 0,
+          }
+        }
+
+        transformed.push(layout)
+
+        wasHoisted = true
       } else {
-        if (!paths.includes('/')) {
-          paths.push('/')
-        }
-
-        pages[0].push({
-          ident: this.getIdent(parts),
-          name: this.getName(parts),
-          path: this.getPath(parts),
-          priority: this.getPriority(parts),
-          component,
-        })
+        // Do nothing...
       }
-    }
 
-    for (const route of Object.values(pages)) {
-      route.sort((a, b) => a.priority - b.priority)
-    }
-
-    let layouts = []
-    for (const route of Object.values(pages)) {
-      for (const item of route) {
-        if (item.ident.includes('$layout')) {
-          layouts.push(item)
-          route.splice(route.indexOf(item), 1)
-        }
-      }
-    }
-
-    for (const page of Object.values(pages)) {
-      let containsIndex = false
-      for (const item of page) {
-        if (item.name === 'index') {
-          containsIndex = true
-          break
+      for (const [key, subnode] of Object.entries(node)) {
+        if (subnode.children) {
+          if (hoistLayouts(subnode.children)) {
+            delete node[key]
+          }
         }
       }
 
-      const errorPage = page[page.length - 1]
-
-      if (!containsIndex) {
-        page.splice(page.length - 1, 0, { ...errorPage, name: uniqueId('$404_'), path: '' })
-      }
+      return wasHoisted
     }
 
-    await this.renderTemplate(this.compiledTemplate, { pages, layouts, paths })
+    const flattenNested = (node) => {
+      return Object.values(node.children ?? {}).flatMap((child) => {
+        if (!child.component) {
+          return flattenNested(child)
+        } else {
+          return child
+        }
+      })
+    }
+
+    hoistLayouts(pages)
+
+    for (const layout of transformed) {
+      layout.children = flattenNested(layout)
+    }
+
+    return transformed
   }
 
   /**
    * @param {string[]} parts
    */
   getIdent(parts) {
-    return parts.join('_')
+    return parts.join('_').replace(/\/index$/, '')
   }
 
   /**
    * @param {string[]} parts
    */
   getName(parts) {
+    if (parts.includes('$layout')) return undefined
+    if (parts.includes('$404')) return undefined
+
     return parts.join('/')
   }
 
@@ -118,32 +125,36 @@ export default class Pages extends GeneratingConcept {
    * @param {string[]} parts
    */
   getPath(parts) {
-    if (parts[0] === 'index') return ''
-    if (parts[0] === '$404') return ':pathMatch(.*)*'
+    const path = []
 
-    for (let i = 0; i < parts.length; i++) {
-      if (parts[i] === 'index') {
-        parts[i] = ''
+    for (const part of parts) {
+      if (part === 'index') {
+        path.push('')
+      } else if (part === '$layout') {
+        path.push('')
+      } else if (part === '$404') {
+        path.push(':pathMatch*')
+      } else {
+        path.push(part.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}(.+)`))
       }
     }
 
-    const route = parts.map((part) => part.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}(.+)`)).join('/')
-
-    return route
+    return '/' + path.join('/').replace(/\/$/, '')
   }
 
   /**
    * @param {string[]} parts
    */
   getPriority(parts) {
-    if (parts[0] === 'index') return 1
-    if (parts[0] === '$404') return 9001
+    let priority = 0
 
-    let priority = 10
-
-    for (let part of parts) {
-      if (part[0] === '_') {
-        priority += 20
+    for (const part of parts) {
+      if (part === 'index') {
+        priority += 1
+      } else if (part === '$layout') {
+        priority += 0
+      } else if (part === '$404') {
+        priority += 9001
       } else {
         priority += 10
       }
@@ -157,16 +168,16 @@ export default class Pages extends GeneratingConcept {
 import plugins from './vueRouter/plugins'
 
 const _routes = [
-  <%_ for (var i = 0; i < pages.length; i++) { _%>
+  <%_ for (const page of pages) { _%>
   {
-    path: '<%= paths[i] %>',
-    component: () => import('<%= layouts[i].component %>'),
+    path: '<%= page.path %>',
+    component: () => import('<%= page.component %>'),
     children: [
-    <%_ for (const item of pages[i]) { _%>
+    <%_ for (const child of Object.values(page.children).sort((a, b) => a.priority - b.priority)) { _%>
       {
-        name: '<%= item.name %>',
-        path: '<%= item.path %>',
-        component: () => import('<%= item.component %>'),
+        name: <%- child.name ? "'" + child.name + "'" : 'undefined' %>,
+        path: '<%= child.path %>',
+        component: () => import('<%= child.component %>'),
       },
     <%_ } _%>
     ],
