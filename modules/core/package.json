@@ -18,11 +18,11 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "lodash-es": "^4.17.21",
-    "node-fetch": "^3.2.9",
+    "node-fetch": "^3.2.10",
     "open": "^8.4.0",
     "rollup": "^2.77.2",
     "rollup-plugin-visualizer": "^5.7.1",
-    "vite": "^3.0.3",
+    "vite": "^3.0.4",
     "yargs": "^17.5.1",
     "youch": "^3.2.0"
   },

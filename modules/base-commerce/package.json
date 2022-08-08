@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "lru-cache": "^7.13.1",
+    "lru-cache": "^7.13.2",
     "sharp": "^0.30.7"
   }
 }
