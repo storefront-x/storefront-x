@@ -1,8 +1,7 @@
 import VUE_ROUTER_SCROLL_BEHAVIOR from '#ioc/config/VUE_ROUTER_SCROLL_BEHAVIOR'
 import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-// @ts-ignore
-import { routes } from '/pages'
+import { routes } from '~/.sfx/pages'
 
 export default async (app: App, ctx: any) => {
   const router = createRouter({
