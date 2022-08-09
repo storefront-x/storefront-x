@@ -1,8 +1,8 @@
 <script>
 import { defineComponent, h, Suspense } from 'vue'
 import IS_SERVER from '#ioc/config/IS_SERVER'
-import clientProviders from '/vue/providers.client'
-import serverProviders from '/vue/providers.server'
+import clientProviders from '~/.sfx/vue/providers.client'
+import serverProviders from '~/.sfx/vue/providers.server'
 
 export default defineComponent({
   setup(props, { slots }) {

@@ -1,8 +1,7 @@
 import useContext from '#ioc/composables/useContext'
 import { createSSRApp } from 'vue'
-import App from './App.vue'
-// @ts-ignore
-import plugins from './vue/plugins.client'
+import App from '~/.sfx/App.vue'
+import plugins from '~/.sfx/vue/plugins.client'
 
 const main = async () => {
   const app = createSSRApp(App)

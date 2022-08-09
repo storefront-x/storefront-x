@@ -3,7 +3,7 @@ import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useCatalogStore from '#ioc/stores/useCatalogStore'
 import useGetNavigationMenu from '#ioc/services/useGetNavigationMenu'
 
-export default defineStore('catalog-shopware', {
+export default defineStore('catalogShopware', {
   actions: {
     serverInit: async () => {
       if (IS_CLIENT) return
