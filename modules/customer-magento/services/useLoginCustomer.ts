@@ -1,4 +1,4 @@
-import useGenerateCustomerTokenRepository from '#ioc/repositories/useGenerateCustomerTokenRepository'
+import useLoginCustomerRepository from '#ioc/repositories/useLoginCustomerRepository'
 import useCookies from '#ioc/composables/useCookies'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
@@ -10,10 +10,10 @@ interface Options {
 export default () => {
   const localePath = useLocalePath()
   const cookies = useCookies()
-  const generateCustomerTokenRepository = useGenerateCustomerTokenRepository()
+  const loginCustomerRepository = useLoginCustomerRepository()
 
   return async (email: string, password: string, { redirect = true }: Options = {}) => {
-    const { token } = await generateCustomerTokenRepository(email, password)
+    const { token } = await loginCustomerRepository(email, password)
 
     cookies.set(MAGENTO_CUSTOMER_COOKIE_NAME, token, { path: '/' })
 

@@ -15,12 +15,12 @@ export default () => {
     }
   }
 
-  const graphql = async (query: any) => {
-    const queryFetch = query.toString()
-    const variables = query._bindings
+  const graphql = async (gql: any) => {
+    const query = gql.toString()
+    const variables = gql._bindings
 
     const body = JSON.stringify({
-      query: queryFetch,
+      query,
       variables,
     })
 
@@ -30,7 +30,8 @@ export default () => {
       body,
     })
 
-    return await response.json().then((data: any) => data.data)
+    const responseJSON = await response.json()
+    return responseJSON.data
   }
 
   return {

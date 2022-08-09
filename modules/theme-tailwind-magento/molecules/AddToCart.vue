@@ -17,7 +17,6 @@
 import Button from '#ioc/atoms/Button'
 import Spinner from '#ioc/atoms/Spinner'
 import injectProduct from '#ioc/composables/injectProduct'
-// import useAddToCart from '#ioc/services/useAddToCart'
 import useI18n from '#ioc/composables/useI18n'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import { ref } from 'vue'

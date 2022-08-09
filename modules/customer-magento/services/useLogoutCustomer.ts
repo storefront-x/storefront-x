@@ -1,4 +1,4 @@
-import useRevokeCustomerTokenRepository from '#ioc/repositories/useRevokeCustomerTokenRepository'
+import useLogoutCustomerRepository from '#ioc/repositories/useLogoutCustomerRepository'
 import useCookies from '#ioc/composables/useCookies'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
@@ -6,10 +6,10 @@ import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NA
 export default () => {
   const localePath = useLocalePath()
   const cookies = useCookies()
-  const revokeCustomerTokenRepository = useRevokeCustomerTokenRepository()
+  const logoutCustomerRepository = useLogoutCustomerRepository()
 
   return async () => {
-    await revokeCustomerTokenRepository()
+    await logoutCustomerRepository()
 
     cookies.remove(MAGENTO_CUSTOMER_COOKIE_NAME, { path: '/' })
 

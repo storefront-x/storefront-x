@@ -1,15 +1,21 @@
-import CategoryList from '#ioc/graphql/queries/CategoryList'
 import useMagento from '#ioc/composables/useMagento'
 import useToCategory from '#ioc/mappers/useToCategory'
 import useToProduct from '#ioc/mappers/useToProduct'
-import buildAggregationFields from '#ioc/utils/buildAggregationFields'
-import fillAggregationsWithEmptySelectedOptions from '#ioc/utils/fillAggregationsWithEmptySelectedOptions'
-import fillAggregationsWithPossibleOptions from '#ioc/utils/fillAggregationsWithPossibleOptions'
-import transformFilterQuery from '#ioc/utils/transformFilterQuery'
-import transformSortQuery from '#ioc/utils/transformSortQuery'
+import buildAggregationFields from '#ioc/utils/magento/buildAggregationFields'
+import fillAggregationsWithEmptySelectedOptions from '#ioc/utils/magento/fillAggregationsWithEmptySelectedOptions'
+import fillAggregationsWithPossibleOptions from '#ioc/utils/magento/fillAggregationsWithPossibleOptions'
+import transformFilterQuery from '#ioc/utils/magento/transformFilterQuery'
+import transformSortQuery from '#ioc/utils/magento/transformSortQuery'
 import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 import CategoryDetail from '#ioc/graphql/queries/CategoryDetail'
 import useToAggregation from '#ioc/mappers/useToAggregation'
+
+interface CategoryOptions {
+  currentPage: number
+  pageSize: number
+  filter: any
+  sort: any
+}
 
 export default () => {
   const magento = useMagento()
@@ -17,16 +23,9 @@ export default () => {
   const toProduct = useToProduct()
   const toAggregation = useToAggregation()
 
-  interface Category {
-    currentPage: number
-    pageSize: number
-    filter: any
-    sort: any
-  }
-
   return async (
     id: number,
-    { currentPage = 1, pageSize, filter, sort }: Category,
+    { currentPage = 1, pageSize, filter, sort }: CategoryOptions,
   ): Promise<{
     category: ReturnType<typeof toCategory>
     products: ReturnType<typeof toProduct>[]

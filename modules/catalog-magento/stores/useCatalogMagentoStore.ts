@@ -1,19 +1,19 @@
 import { defineStore } from 'pinia'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useCatalogStore from '#ioc/stores/useCatalogStore'
-import useGetCategoryList from '#ioc/services/useGetCategoryList'
+import useGetNavigationMenu from '#ioc/services/useGetNavigationMenu'
 
-export default defineStore('catalog-magento', {
+export default defineStore('catalogMagento', {
   actions: {
     serverInit: async () => {
       if (IS_CLIENT) return
 
       const catalogStore = useCatalogStore()
-      const getCategoryList = useGetCategoryList()
+      const getNavigationMenu = useGetNavigationMenu()
 
-      const { categories } = await getCategoryList()
+      const { categories } = await getNavigationMenu()
 
-      catalogStore.menu = categories
+      catalogStore.$patch({ menu: categories })
     },
   },
 })

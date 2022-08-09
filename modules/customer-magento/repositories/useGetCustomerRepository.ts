@@ -9,18 +9,10 @@ export default () => {
   return async (): Promise<{
     customer: ReturnType<typeof toCustomer>
   }> => {
-    try {
-      const { customer: response } = await magento.graphql(Customer())
+    const { customer: response } = await magento.graphql(Customer())
 
-      return {
-        customer: response?.map(toCustomer) ?? [],
-      }
-    } catch (e) {
-      console.error(e)
-
-      return {
-        customer: toCustomer([]),
-      }
+    return {
+      customer: response?.map(toCustomer) ?? [],
     }
   }
 }

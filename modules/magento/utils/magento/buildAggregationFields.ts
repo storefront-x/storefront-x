@@ -1,4 +1,4 @@
-import CATALOG_FILTER_ATTRIBUTES_HIDDEN from '#ioc/config/CATALOG_FILTER_ATTRIBUTES_HIDDEN'
+import CATALOG_FILTER_ATTRIBUTES_HIDDEN from '#ioc/config/magento/CATALOG_FILTER_ATTRIBUTES_HIDDEN'
 import field from '#ioc/graphql/field'
 import Aggregation from '#ioc/graphql/fragments/Aggregation'
 

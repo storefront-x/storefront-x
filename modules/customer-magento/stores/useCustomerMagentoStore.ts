@@ -22,7 +22,7 @@ export default defineStore('customerMagento', {
 
       const { customer } = await getCustomer()
 
-      customerStore.$patch({ customer, token })
+      customerStore.$patch({ customer })
     },
   },
 })

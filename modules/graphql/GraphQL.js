@@ -3,13 +3,7 @@ import isArray from '#ioc/utils/isArray'
 import isNullish from '#ioc/utils/isNullish'
 import isObject from '#ioc/utils/isObject'
 import isString from '#ioc/utils/isString'
-import isNonEmptyArray from '#ioc/utils/isNonEmptyArray'
 import isFunction from '#ioc/utils/isFunction'
-import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
-import once from '#ioc/utils/once'
-import hashCode from '#ioc/utils/string/hashCode'
-import objectToQuery from '#ioc/utils/url/objectToQuery'
-import CACHE_ID from '#ioc/config/CACHE_ID'
 
 const logger = consola.withTag('graphql')
 
@@ -271,106 +265,6 @@ export class Request extends Gql {
     return this
   }
 
-  withEndpoint(endpoint) {
-    this._endpoint = endpoint
-
-    return this
-  }
-
-  withHeaders(headers) {
-    this._headers = headers
-
-    return this
-  }
-
-  withHash(hash) {
-    this._hash = hash
-
-    return this
-  }
-
-  async _fetch(ctx) {
-    const query = this.toString()
-    const variables = this._bindings
-
-    const endpoint = isFunction(this._endpoint) ? this._endpoint(ctx) : this._endpoint
-    const headers = isFunction(this._headers) ? this._headers(ctx) : this._headers
-    const hash = isFunction(this._hash) ? this._hash(ctx) : this._hash
-
-    const _get = async () => {
-      const body = objectToQuery({
-        query,
-        variables: isNonEmptyObject(variables) ? variables : undefined,
-        // Adding hash to request URL will prevent service
-        // worker from serving stale data from cache,
-        // for example when the store is changed.
-        h: hashCode(JSON.stringify(hash)),
-        c: CACHE_ID,
-      })
-
-      const response = await fetch(`${endpoint}?${body}`, {
-        method: 'GET',
-        headers,
-      })
-
-      return response
-    }
-
-    const _post = async () => {
-      const body = JSON.stringify({
-        query,
-        variables,
-      })
-
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers,
-        body,
-      })
-
-      return response
-    }
-
-    const response = await (this.isCacheable() ? _get() : _post())
-
-    const contentType = response.headers.get('Content-Type')
-
-    if (contentType.includes('application/json')) {
-      const { data, errors } = await response.json()
-
-      if (isNonEmptyArray(errors)) {
-        for (const error of errors) {
-          if (this._ignoredErrors.includes(error.message)) {
-            once(`Supressed error for "${error.message}"`, (msg) => logger.warn(msg))
-            continue
-          }
-
-          logger.error(
-            query,
-            JSON.stringify(variables),
-            JSON.stringify(headers),
-            error.message,
-            error.debugMessage ? `(${error.debugMessage})` : '',
-          )
-        }
-
-        for (const error of errors) {
-          if (this._ignoredErrors.includes(error.message)) continue
-
-          throw new GraphQLError(error)
-        }
-      }
-
-      return data
-    } else {
-      const text = await response.text()
-
-      logger.error(query, JSON.stringify(variables), text)
-
-      throw new Error(text)
-    }
-  }
-
   /**
    * Stringifies the current request
    *
@@ -448,27 +342,6 @@ export class Query extends Request {
  */
 export class Mutation extends Request {
   /**
-   * Executes and fetches the current mutation
-   * Returned objects has keys based on the names of top level fields
-   *
-   * Usage:
-   *
-   * const createEmptyCartMutation = mutation({
-   *   createEmptyCart: field(),
-   *  });
-   *
-   * const { createEmptyCart } = await createEmptyCartMutation.fetch(ctx);
-   *
-   * @param {any} ctx Nuxt.js context
-   * @returns {Promise.<Object.<string, any>>}
-   */
-  async fetch(ctx) {
-    const response = await this._fetch(ctx)
-
-    return response
-  }
-
-  /**
    * @returns {Mutation}
    */
   clone() {
@@ -524,22 +397,5 @@ export class GraphQLError extends Error {
 
     this.extensions = error.extensions
     this.locations = error.locations
-  }
-}
-
-export const addFields = (gql, ...args) => {
-  if (args.length === 1) {
-    const fields = args[0]
-
-    gql.fields(fields)
-  } else if (args.length === 2) {
-    const path = args[0].split('.')
-    const fields = args[1]
-
-    for (const part of path) {
-      gql = gql._fields[part]
-    }
-
-    gql.fields(fields)
   }
 }

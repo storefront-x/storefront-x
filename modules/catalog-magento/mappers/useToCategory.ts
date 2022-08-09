@@ -6,7 +6,7 @@ export default () => {
     id: data.id ?? 0,
     name: data.name ?? '',
     description: data.description ?? '',
-    urlPath: `/c/${data.id}`, // TODO: Make '.html' suffix configurable
+    urlPath: `/c/${data.id}`,
     breadcrumbs: data.breadcrumbs?.map(ToCategoryBreadcrumb) ?? [],
     metaTitle: data.meta_title ?? '',
     metaDescription: data.meta_description ?? '',
