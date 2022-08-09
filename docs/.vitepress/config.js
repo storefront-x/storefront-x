@@ -65,6 +65,7 @@ export default defineConfig({
         items: [
           { text: 'FAQ', link: '/in-depth/faq' },
           { text: 'Bootstrap', link: '/in-depth/bootstrap' },
+          { text: 'PWA', link: '/in-depth/pwa' },
           { text: 'GraphQL', link: '/in-depth/graphql' },
           { text: 'Functionalities', link: '/in-depth/functionalities' },
         ],

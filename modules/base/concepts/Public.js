@@ -1,20 +1,7 @@
 //@ts-check
 
-import { CopyingConcept } from '@storefront-x/core'
-/**
- * Serves public files
- *
- * a.txt will be served from theme module (overridden)
- * b.txt will be served from base mdoule (not overridden)
- *
- * /base
- *   /public
- *     /a.txt
- *     /b.txt
- * /theme
- *   /public
- *     /a.txt
- */
+import path from 'node:path'
+import { CopyingConcept, Build } from '@storefront-x/core'
 
 export default class Public extends CopyingConcept {
   get directory() {
@@ -23,5 +10,13 @@ export default class Public extends CopyingConcept {
 
   get recursive() {
     return true
+  }
+
+  dst() {
+    if (this.core instanceof Build) {
+      return path.join(this.core.distDir, 'client')
+    } else {
+      return path.join(this.core.buildDir, 'public')
+    }
   }
 }

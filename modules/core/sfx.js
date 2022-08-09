@@ -25,17 +25,23 @@ yargs(hideBin(process.argv))
         })
     },
     handler: async (argv) => {
-      const { href } = url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js'))
+      try {
+        const { href } = url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js'))
 
-      const { default: config } = await import(href)
+        const { default: config } = await import(href)
 
-      const dev = new Dev(config, argv)
-      await dev.bootstrap()
-      const server = await dev.createServer()
+        const dev = new Dev(config, argv)
+        await dev.bootstrap()
+        const server = await dev.createServer()
 
-      server.listen(argv.port, argv.host, () => {
-        consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`)
-      })
+        server.listen(argv.port, argv.host, () => {
+          consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`)
+        })
+      } catch (e) {
+        consola.error(e)
+
+        process.exit(1)
+      }
     },
   })
   .command({
@@ -93,18 +99,24 @@ yargs(hideBin(process.argv))
         })
     },
     handler: async (argv) => {
-      const start = Date.now()
+      try {
+        const start = Date.now()
 
-      consola.wrapAll()
-      consola.setReporters(new consola.BasicReporter())
+        consola.wrapAll()
+        consola.setReporters(new consola.BasicReporter())
 
-      const serve = new Serve({}, argv)
-      const server = await serve.createServer()
+        const serve = new Serve({}, argv)
+        const server = await serve.createServer()
 
-      server.listen(argv.port, argv.host, () => {
-        consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`)
-        consola.withTag('cli').log(`Server started in ${Date.now() - start}ms`)
-      })
+        server.listen(argv.port, argv.host, () => {
+          consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`)
+          consola.withTag('cli').log(`Server started in ${Date.now() - start}ms`)
+        })
+      } catch (e) {
+        consola.error(e)
+
+        process.exit(1)
+      }
     },
   })
   .demandCommand(1)
