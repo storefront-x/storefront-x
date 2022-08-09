@@ -29,8 +29,7 @@ export default class Serve extends Core {
       server.use(compression())
     }
 
-    server.use('/assets', express.static(path.join(this.distDir, 'client', 'assets')))
-    server.use(express.static(path.join(this.buildDir, 'public')))
+    server.use(express.static(path.join(this.distDir, 'client'), { index: false }))
 
     await this._loadServerMiddleware(server)
     await this._loadServerRoutes(server)
