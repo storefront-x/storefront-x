@@ -1,1 +1,1 @@
-export default '+420 725 562 510'
+export default '+420 123 456 789 lolicek'

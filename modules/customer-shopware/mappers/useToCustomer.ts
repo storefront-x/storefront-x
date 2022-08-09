@@ -1,7 +1,9 @@
 export default () => (data: any) => ({
-  id: data.id ?? '',
-  salutationId: data.salutationId ?? '',
-  email: data.email ?? '',
-  firstName: data.firstName ?? '',
-  lastName: data.lastName ?? '',
+  id: data.id as string,
+  salutationId: data.salutationId as string,
+  salutation: data.salutation.displayName as string,
+  email: data.email as string,
+  firstName: data.firstName as string,
+  lastName: data.lastName as string,
+  title: data.title as string,
 })

@@ -10,7 +10,13 @@ export default defineConfig({
   themeConfig: {
     logo: '/icon.svg',
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/storefront-x/storefront-x' }],
+    socialLinks: [
+      {
+        icon: 'slack',
+        link: 'https://join.slack.com/t/storefront-xworkspace/shared_invite/zt-1dwz7npyd-xjW5y02qUJvznFdnNtqN1Q',
+      },
+      { icon: 'github', link: 'https://github.com/storefront-x/storefront-x' },
+    ],
 
     nav: [
       { text: 'Demo', link: 'https://demo.storefrontx.io' },

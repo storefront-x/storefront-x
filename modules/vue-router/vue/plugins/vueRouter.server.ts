@@ -1,7 +1,6 @@
 import type { App } from 'vue'
 import { createRouter, createMemoryHistory } from 'vue-router'
-// @ts-ignore
-import { routes } from '/pages'
+import { routes } from '~/.sfx/pages'
 
 export default async (app: App, ctx: any) => {
   const router = createRouter({

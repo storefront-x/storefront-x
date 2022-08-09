@@ -1,6 +1,10 @@
 <template>
   <div v-if="!customer.isLoggedIn">
-    <Link to="/" class="flex items-center px-2 py-0.5 mr-3 text-gray-400 hover:text-gray-500" data-cy="micro-account">
+    <Link
+      :to="localePath('account')"
+      class="flex items-center px-2 py-0.5 mr-3 text-gray-400 hover:text-gray-500"
+      data-cy="micro-account"
+    >
       <span class="sr-only">{{ t('My account') }}</span>
       <div class="rounded-lg border-2 p-2 border-none border-gray-100 lg:border-solid hover:bg-gray-100">
         <OutlineUser class="text-primary-500" />
@@ -20,11 +24,11 @@
   <div v-else class="flex flex-col font-semibold text-gray-800" data-cy="micro-account">
     <span class="whitespace-nowrap font-bold">{{ t('Welcome {0}', [customer.fullName]) }}</span>
     <span class="flex items-center whitespace-nowrap gap-4">
-      <Link class="text-primary-500" :to="localePath('index')">{{ t('My account') }}</Link>
+      <Link class="text-primary-500" :to="localePath('account')">{{ t('My account') }}</Link>
       <span class="w-px border h-5 border-l-1 border-gray-300 text-bottom" />
-      <Link class="text-primary-500" data-cy="logout" href="javascript:void(0)" @click="onLogout">{{
-        t('Logout')
-      }}</Link>
+      <Link class="text-primary-500" data-cy="logout" href="javascript:void(0)" @click="onLogout">
+        {{ t('Logout') }}
+      </Link>
     </span>
   </div>
 </template>

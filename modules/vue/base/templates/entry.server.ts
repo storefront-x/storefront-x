@@ -1,11 +1,11 @@
 import { createSSRApp } from 'vue'
 import { renderToString } from 'vue/server-renderer'
-import App from './App.vue'
-// @ts-ignore
-import plugins from './vue/plugins.server'
+import App from '~/.sfx/App.vue'
+import plugins from '~/.sfx/vue/plugins.server'
 
 export default async (ctx: any) => {
   const app = createSSRApp(App)
+
   ctx.$app = app
 
   for (const plugin of Object.values(plugins) as any) {
@@ -16,7 +16,6 @@ export default async (ctx: any) => {
 
   const rendered = await renderToString(app, ctx)
 
-  // TODO: Ugh...
   ctx.out.html = (html: string) => html.replace('<div id="app"></div>', `<div id="app">${rendered}</div>`)
 
   for (const plugin of Object.values(plugins) as any) {
