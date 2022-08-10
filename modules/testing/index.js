@@ -56,7 +56,10 @@ export const makeProject = async (config, callback) => {
         await writeFile(path.join(dir, _path), _content)
         await new Promise((resolve) => setTimeout(resolve, 250)) // TODO: Remove timeout
       },
-      rm: (_path) => fs.rm(path.join(dir, _path), { recursive: true }),
+      rm: async (_path) => {
+        await fs.rm(path.join(dir, _path), { recursive: true, force: true })
+        await new Promise((resolve) => setTimeout(resolve, 250)) // TODO: Remove timeout
+      },
     })
 
     await server.close()
