@@ -12,7 +12,7 @@ import ensureArray from '#ioc/utils/array/ensureArray'
 const route = useRoute()
 const searchProducts = useGetProductsBySearch()
 
-const { data } = await useAsyncData('GetSearchProducts', () =>
+const { data } = await useAsyncData('searchProducts', () =>
   searchProducts(route.query.query as string, {
     page: Number(route.query.page ?? 1),
     sort: route.query.sort as string,

@@ -30,7 +30,7 @@ const route = useRoute()
 
 const getCategoryBdId = useGetCategoryById()
 
-const { data } = await useAsyncData('GetCategoryDetail', () =>
+const { data } = await useAsyncData('category', () =>
   getCategoryBdId(props.id as string, {
     page: Number(route.query.page ?? 1),
     sort: route.query.sort as string,

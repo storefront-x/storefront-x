@@ -11,7 +11,7 @@ import useAsyncData from '#ioc/composables/useAsyncData'
 import AccountAddresses from '#ioc/templates/AccountAddresses'
 
 const getCustomerAddresses = useGetCustomerAddresses()
-const { data, refresh } = await useAsyncData('GetCustomerAddresses', () => getCustomerAddresses())
+const { data, refresh } = await useAsyncData('customerAddresses', () => getCustomerAddresses())
 </script>
 
 <i18n lang="yaml">
