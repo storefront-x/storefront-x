@@ -10,7 +10,7 @@ export default () => {
   return async () => {
     const routePath = route.path === '/' ? 'home' : route.path.replace('/', '')
 
-    const { data } = await useAsyncData('UrlResolver', () => getSeoUrl(routePath))
+    const { data } = await useAsyncData('urlResolver', () => getSeoUrl(routePath))
 
     return {
       id: data.value?.foreignKey,
