@@ -10,4 +10,8 @@ export default class BaseTemplates extends CopyingConcept {
   dst() {
     return this.core.buildDir
   }
+
+  get removesDestinationDirectory() {
+    return false
+  }
 }
