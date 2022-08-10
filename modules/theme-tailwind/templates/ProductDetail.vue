@@ -1,8 +1,8 @@
 <template>
   <Container class="mt-2 mb-8 md:mt-3 md:mb-10">
     <Breadcrumbs :breadcrumbs="product.breadcrumbs" />
-
     <ProductOverview />
+    <ProductDetailTabs />
   </Container>
 </template>
 
@@ -10,6 +10,7 @@
 import Container from '#ioc/atoms/Container'
 import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import ProductOverview from '#ioc/organisms/ProductOverview'
+import ProductDetailTabs from '#ioc/organisms/ProductDetailTabs'
 import injectProduct from '#ioc/composables/injectProduct'
 import useHead from '#ioc/composables/useHead'
 

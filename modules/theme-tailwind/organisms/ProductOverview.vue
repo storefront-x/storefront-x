@@ -1,15 +1,18 @@
 <template>
   <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
-    <div class="w-full aspect-w-1 aspect-h-1 relative">
-      <SfxImage
-        :src="product.thumbnailUrl"
-        :alt="product.name"
-        :width="600"
-        :height="600"
-        fit="contain"
-        class-img="w-full max-h-96 object-center object-cover md:object-contain  rounded-lg hover:cursor-pointer"
-        preload
-      />
+    <div class="flex flex-col">
+      <div class="w-full aspect-w-1 aspect-h-1 relative">
+        <SfxImage
+          :src="product.thumbnailUrl"
+          :alt="product.name"
+          :width="600"
+          :height="600"
+          fit="contain"
+          class-img="w-full max-h-96 object-center object-cover md:object-contain  rounded-lg hover:cursor-pointer"
+          preload
+        />
+      </div>
+      <ProductGallery />
     </div>
 
     <div class="mt-10 sm:px-0 sm:mt-16 lg:mt-0">
@@ -17,8 +20,7 @@
 
       <div class="mt-4">
         <h3 class="sr-only">Description</h3>
-
-        <div class="links" v-html="product.shortDescriptionHtml" />
+        <div>{{ product.metaDescription }}</div>
       </div>
 
       <StockIndicators :stock-status="product.available" />
@@ -42,6 +44,10 @@
 
         <AddToCart :quantity="quantity" />
       </div>
+      <div class="flex pt-6 mt-6 border-t-2 border-gray-100">
+        <AddToWishlist :title="t('Add')" />
+        <FacebookShare />
+      </div>
       <div class="w-full flex mt-4 text-gray-400">
         <p class="mr-1">{{ t('Warranty: 24 months') }} |</p>
         <p>SKU: {{ product.sku }}</p>
@@ -57,7 +63,10 @@ import Heading from '#ioc/atoms/Heading'
 import SfxImage from '#ioc/components/SfxImage'
 import ProductQuantityConfigurator from '#ioc/molecules/ProductQuantityConfigurator'
 import AddToCart from '#ioc/molecules/AddToCart'
+import ProductGallery from '#ioc/molecules/ProductGallery'
 import StockIndicators from '#ioc/atoms/StockIndicators'
+import FacebookShare from '#ioc/atoms/FacebookShare'
+import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import injectProduct from '#ioc/composables/injectProduct'
 import { ref } from 'vue'
 
