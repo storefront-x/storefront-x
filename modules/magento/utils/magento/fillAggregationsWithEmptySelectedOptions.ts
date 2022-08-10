@@ -1,4 +1,4 @@
-import isArray from './isArray'
+import isArray from '#ioc/utils/isArray'
 
 export default (aggregations: any, rest: any, filters: any) => {
   for (const [key, filter] of Object.entries(filters) as any[]) {

@@ -12,7 +12,7 @@ export default () => {
     const { customer: response } = await magento.graphql(Customer())
 
     return {
-      customer: response?.map(toCustomer) ?? [],
+      customer: toCustomer(response) ?? [],
     }
   }
 }

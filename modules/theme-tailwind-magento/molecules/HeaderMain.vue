@@ -17,9 +17,7 @@
           </button>
         </div>
 
-        <span class="relative w-4/6 flex hidden lg:block">
-          <!-- <SearchBar /> -->
-        </span>
+        <span class="relative w-4/6 flex hidden lg:block"> </span>
       </div>
 
       <Link to="/" class="lg:hidden">
@@ -30,8 +28,6 @@
       <div class="flex items-center justify-end">
         <MicroWishlist class="hidden lg:flex mr-2" />
         <MicroAccount :submenu="true" class="hidden lg:flex mr-2" />
-        <!-- <MicroSearch class="lg:hidden mr-2" /> -->
-        <!-- <MicroCart /> -->
       </div>
     </div>
   </Container>
@@ -42,11 +38,8 @@ import { computed } from 'vue'
 import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
 import Container from '#ioc/atoms/Container'
 import Link from '#ioc/atoms/Link'
-import SearchBar from '#ioc/molecules/SearchBar'
 import MicroWishlist from '#ioc/molecules/MicroWishlist'
 import MicroAccount from '#ioc/molecules/MicroAccount'
-import MicroSearch from '#ioc/molecules/MicroSearch'
-import MicroCart from '#ioc/molecules/MicroCart'
 import OutlineMenu from '#ioc/icons/OutlineMenu'
 import OutlineX from '#ioc/icons/OutlineX'
 import logo from '#ioc/assets/logo'

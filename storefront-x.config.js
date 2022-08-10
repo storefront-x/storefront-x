@@ -22,6 +22,7 @@ export default {
     '@storefront-x/magento',
     '@storefront-x/catalog-magento',
     '@storefront-x/customer-magento',
+    '@storefront-x/multicurrency-magento',
 
     // '@storefront-x/shopware',
     // '@storefront-x/catalog-shopware',

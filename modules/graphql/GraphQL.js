@@ -1,11 +1,8 @@
-import consola from 'consola'
 import isArray from '#ioc/utils/isArray'
 import isNullish from '#ioc/utils/isNullish'
 import isObject from '#ioc/utils/isObject'
 import isString from '#ioc/utils/isString'
 import isFunction from '#ioc/utils/isFunction'
-
-const logger = consola.withTag('graphql')
 
 export class Gql {
   constructor() {
@@ -196,10 +193,6 @@ export class Request extends Gql {
     this._variables = {}
     this._bindings = {}
 
-    this._endpoint = ''
-    this._headers = {}
-    this._hash = null
-
     if (isObject(arg)) {
       this.fields(arg)
     }
@@ -263,6 +256,15 @@ export class Request extends Gql {
     }
 
     return this
+  }
+
+  /**
+   * Return this._bindings
+   *
+   * @returns {Object.<string, any>}
+   */
+  get bindings() {
+    return this._bindings
   }
 
   /**

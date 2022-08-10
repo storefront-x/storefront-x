@@ -1719,6 +1719,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/multicurrency-magento@workspace:modules/multicurrency-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/multicurrency-magento@workspace:modules/multicurrency-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/multicurrency-shopware@workspace:modules/multicurrency-shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/multicurrency-shopware@workspace:modules/multicurrency-shopware"
