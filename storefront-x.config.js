@@ -30,5 +30,7 @@ export default {
     '@storefront-x/theme-tailwind-shopware',
 
     '@storefront-x/demo-shopware',
+
+    '@storefront-x/ssr-cache',
   ],
 }

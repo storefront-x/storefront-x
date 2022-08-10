@@ -1,0 +1,6 @@
+{
+  "name": "@storefront-x/ssr-cache",
+  "version": "0.1.3",
+  "license": "MIT",
+  "type": "module"
+}

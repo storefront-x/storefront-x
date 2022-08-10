@@ -76,7 +76,7 @@ export default class Core {
       template = await out(template)
     }
 
-    return res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
+    return res.status(200).set({ 'Content-Type': 'text/html' }).send(template)
   }
 
   /**
