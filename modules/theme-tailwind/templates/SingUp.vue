@@ -7,13 +7,7 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-gray-50 py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <SfxForm class="space-y-6" @submit="onSubmit">
-          <FormSelect
-            :label="t('Salutation')"
-            name="salutationId"
-            autocomplete="address-level2"
-            class="mt-4"
-            validators="required"
-          >
+          <FormSelect :label="t('Salutation')" name="salutationId" class="mt-4" validators="required">
             <option v-for="salutation in salutationsData?.salutations" :key="salutation.id" :value="salutation.id">
               {{ salutation.displayName }}
             </option>
@@ -58,13 +52,7 @@
             validators="required"
           />
 
-          <FormSelect
-            :label="t('Country')"
-            name="countryId"
-            autocomplete="address-level2"
-            class="mt-4"
-            validators="required"
-          >
+          <FormSelect :label="t('Country')" name="countryId" class="mt-4" validators="required">
             <option value="">{{ t('Select a country') }}</option>
             <option v-for="country in countryData?.countries" :key="country.id" :value="country.id">
               {{ country.name }}

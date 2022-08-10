@@ -11,7 +11,7 @@ import AccountOrderDetail from '#ioc/templates/AccountOrderDetail'
 import SideAccountMenu from '#ioc/organisms/SideAccountMenu'
 
 const getCustomerOrders = useGetCustomerOrders()
-const { data } = await useAsyncData('GetCustomerOrders', () => getCustomerOrders())
+const { data } = await useAsyncData('customerOrders', () => getCustomerOrders())
 </script>
 
 <i18n lang="yaml">

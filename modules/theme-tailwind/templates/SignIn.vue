@@ -24,12 +24,12 @@
 
         <p class="mt-4">
           {{ t("Don't have an account?") }}
-          <Link :to="localePath('sign-up')">{{ t('Register here') }}</Link>
+          <Link :to="localePath('sign-up')" color="primary">{{ t('Register here') }}</Link>
         </p>
 
         <p class="mt-4">
           {{ t('Forgot password?') }}
-          <Link :to="localePath('index')">{{ t('Reset password') }}</Link>
+          <Link :to="localePath('/')" color="primary">{{ t('Reset password') }}</Link>
         </p>
       </div>
     </div>
