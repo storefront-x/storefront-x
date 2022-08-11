@@ -13,7 +13,7 @@ export default defineStore('catalogShopware', {
 
       const { categories } = await getNavigationMenu()
 
-      catalogStore.menu = categories
+      catalogStore.$patch({ menu: categories })
     },
   },
 })
