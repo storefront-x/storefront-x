@@ -7,9 +7,9 @@ import SHOPWARE_TOKEN_COOKIE_NAME from '#ioc/config/SHOPWARE_TOKEN_COOKIE_NAME'
 import SHOPWARE_API_PREFIX from '#ioc/config/SHOPWARE_API_PREFIX'
 import ShopwareError from '../ShopwareError'
 
-export default () => {
-  const URL = IS_SERVER ? SHOPWARE_URL : '/_shopware'
+const URL = IS_SERVER ? SHOPWARE_URL : '/_shopware'
 
+export default () => {
   const cookies = useCookies()
   const shopwareStore = useShopwareStore()
 

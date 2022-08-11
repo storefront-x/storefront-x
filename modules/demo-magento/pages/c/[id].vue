@@ -1,0 +1,35 @@
+<template>
+  <CategoryDetail
+    v-if="data"
+    :category="data.category"
+    :products="data.products"
+    :total-count="data.totalCount"
+    :aggregations="data.aggregations"
+  />
+  <NotFound v-else />
+</template>
+
+<script setup lang="ts">
+import CategoryDetail from '#ioc/templates/CategoryDetail'
+import useGetCategoryById from '#ioc/services/useGetCategoryById'
+import useRoute from '#ioc/composables/useRoute'
+import useAsyncData from '#ioc/composables/useAsyncData'
+import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
+import { defineAsyncComponent } from 'vue'
+import ensureArray from '#ioc/utils/array/ensureArray'
+
+const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
+
+const route = useRoute()
+
+const getCategoryById = useGetCategoryById()
+
+const { data } = await useAsyncData('GetCategoryDetail', () =>
+  getCategoryById(Number(route.params.id) as number, {
+    currentPage: Number(route.query.page ?? '1'),
+    pageSize: CATALOG_PAGE_SIZE * (Number(route.query.pages) || 1),
+    sort: route.query.sort as string,
+    filter: ensureArray(route.query.filter),
+  }),
+)
+</script>

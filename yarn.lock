@@ -2985,15 +2985,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/catalog-shopware@workspace:modules/catalog":
+"@storefront-x/catalog-magento@workspace:modules/catalog-magento":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/catalog-shopware@workspace:modules/catalog"
+  resolution: "@storefront-x/catalog-magento@workspace:modules/catalog-magento"
   languageName: unknown
   linkType: soft
 
-"@storefront-x/catalog@workspace:modules/catalog-shopware":
+"@storefront-x/catalog-shopware@workspace:modules/catalog-shopware":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/catalog@workspace:modules/catalog-shopware"
+  resolution: "@storefront-x/catalog-shopware@workspace:modules/catalog-shopware"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/catalog@workspace:modules/catalog":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/catalog@workspace:modules/catalog"
   languageName: unknown
   linkType: soft
 
@@ -3037,6 +3043,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/customer-magento@workspace:modules/customer-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/customer-magento@workspace:modules/customer-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/customer-shopware@workspace:modules/customer-shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/customer-shopware@workspace:modules/customer-shopware"
@@ -3049,11 +3061,37 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/demo-magento@workspace:modules/demo-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/demo-magento@workspace:modules/demo-magento"
+  dependencies:
+    vite-plugin-pwa: ^0.12.3
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/demo-shopware@workspace:modules/demo-shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/demo-shopware@workspace:modules/demo-shopware"
   dependencies:
     vite-plugin-pwa: ^0.12.3
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/graphql@workspace:modules/graphql":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/graphql@workspace:modules/graphql"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/magento@workspace:modules/magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/magento@workspace:modules/magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/multicurrency-magento@workspace:modules/multicurrency-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/multicurrency-magento@workspace:modules/multicurrency-magento"
   languageName: unknown
   linkType: soft
 
@@ -3088,6 +3126,12 @@ __metadata:
 "@storefront-x/theme-blank@workspace:modules/theme-blank":
   version: 0.0.0-use.local
   resolution: "@storefront-x/theme-blank@workspace:modules/theme-blank"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/theme-tailwind-magento@workspace:modules/theme-tailwind-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/theme-tailwind-magento@workspace:modules/theme-tailwind-magento"
   languageName: unknown
   linkType: soft
 

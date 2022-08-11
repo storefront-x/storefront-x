@@ -77,16 +77,9 @@ import FormInput from '#ioc/molecules/FormInput'
 import FormSelect from '#ioc/molecules/FormSelect'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useRegisterCustomer from '#ioc/services/useRegisterCustomer'
-import useAsyncData from '#ioc/composables/useAsyncData'
-import useGetCountries from '#ioc/services/useGetCountries'
-import useGetSalutations from '#ioc/services/useGetSalutations'
 import { ref } from 'vue'
 
 const { t } = useI18n()
-const getCountries = useGetCountries()
-const getSalutations = useGetSalutations()
-const { data: countryData } = useAsyncData('countries', () => getCountries())
-const { data: salutationsData } = useAsyncData('salutations', () => getSalutations())
 const showErrorNotification = useShowErrorNotification()
 const registerCustomer = useRegisterCustomer()
 

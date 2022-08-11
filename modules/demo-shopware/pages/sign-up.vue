@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import Signup from '#ioc/templates/SingUp'
+import Signup from '#ioc/templates/SignUp'
 
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useGetCountries from '#ioc/services/useGetCountries'

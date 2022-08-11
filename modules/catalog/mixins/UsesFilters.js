@@ -80,7 +80,7 @@ export default {
 
       const filters = { ...this.innerFilters }
 
-      filters[key] = [...filters[key], value]
+      filters[key] = [...(filters[key] ?? []), value]
 
       this.innerFilters = filters
     },

@@ -1,6 +1,10 @@
 name: Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   lint:
@@ -14,17 +18,7 @@ jobs:
       - run: yarn install
       - run: yarn build --onlyBootstrap
       - run: yarn lint
-  typescript:
-    runs-on: ubuntu-latest
-    name: TypeScript
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      - run: yarn install
-      - run: yarn build --onlyBootstrap
-      - run: yarn tsc --noEmit
+
   unit:
     runs-on: ubuntu-latest
     name: Unit
@@ -36,6 +30,7 @@ jobs:
       - run: yarn install
       - run: yarn build --onlyBootstrap
       - run: yarn test:unit
+
   playwright:
     runs-on: ubuntu-latest
     name: Playwright
