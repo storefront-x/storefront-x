@@ -9,6 +9,8 @@ import Dev from './src/Dev.js'
 import Build from './src/Build.js'
 import Serve from './src/Serve.js'
 
+const logger = consola.withTag('cli')
+
 yargs(hideBin(process.argv))
   .command({
     command: 'dev',
@@ -23,10 +25,17 @@ yargs(hideBin(process.argv))
           type: 'number',
           default: process.env.SERVER_PORT ?? '3000',
         })
+        .option('config', {
+          type: 'string',
+          default: 'storefront-x.config.js',
+          description: 'Path to the Storefront X configuration file',
+        })
     },
     handler: async (argv) => {
       try {
-        const { href } = url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js'))
+        logger.log('Loading', argv.config)
+
+        const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))
 
         const { default: config } = await import(href)
 
@@ -35,7 +44,7 @@ yargs(hideBin(process.argv))
         const server = await dev.createServer()
 
         server.listen(argv.port, argv.host, () => {
-          consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`)
+          logger.log(`Server listening on http://${argv.host}:${argv.port}`)
         })
       } catch (e) {
         consola.error(e)
@@ -49,6 +58,11 @@ yargs(hideBin(process.argv))
     description: 'Build the production bundle',
     builder: (yargs) => {
       yargs
+        .option('config', {
+          type: 'string',
+          default: 'storefront-x.config.js',
+          description: 'Path to the Storefront X configuration file',
+        })
         .option('analyze', {
           type: 'boolean',
           description: 'Shows visualization of built JS bundles for analysis.',
@@ -60,7 +74,9 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
-        const { href } = url.pathToFileURL(path.resolve(process.cwd(), 'storefront-x.config.js'))
+        logger.log('Loading', argv.config)
+
+        const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))
 
         const { default: config } = await import(href)
 
@@ -109,8 +125,8 @@ yargs(hideBin(process.argv))
         const server = await serve.createServer()
 
         server.listen(argv.port, argv.host, () => {
-          consola.withTag('cli').log(`Server listening on http://${argv.host}:${argv.port}`)
-          consola.withTag('cli').log(`Server started in ${Date.now() - start}ms`)
+          logger.log(`Server listening on http://${argv.host}:${argv.port}`)
+          logger.log(`Server started in ${Date.now() - start}ms`)
         })
       } catch (e) {
         consola.error(e)
