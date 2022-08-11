@@ -11,14 +11,16 @@ export default () => {
   ): Promise<{
     product: ReturnType<typeof toProduct>
   }> => {
-    const { products: response } = await magento.graphql(
+    const {
+      data: { products },
+    } = await magento.graphql(
       ProductList().with({
         skus: ids,
       }),
     )
 
     return {
-      product: response.items.map(toProduct) || [],
+      product: products.items.map(toProduct) || [],
     }
   }
 }

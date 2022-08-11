@@ -10,13 +10,12 @@ export default () => {
   ): Promise<{
     token: string
   }> => {
-    const { generateCustomerToken: response } = await magento.graphql(GenerateCustomerToken().with({ email, password }))
-    if (response.errors) {
-      throw new Error(response.errors[0].message)
-    }
+    const {
+      data: { generateCustomerToken },
+    } = await magento.graphql(GenerateCustomerToken().with({ email, password }))
 
     return {
-      token: response?.token ?? '',
+      token: generateCustomerToken?.token ?? '',
     }
   }
 }

@@ -37,7 +37,9 @@ export default () => {
         category_id: { eq: String(id) },
         ...transformFilterQuery(filter),
       }
-      const { categoryList, products, aggregations, ...rest } = await magento.graphql(
+      const {
+        data: { categoryList, products, aggregations, ...rest },
+      } = await magento.graphql(
         CategoryDetail()
           .fields(buildAggregationFields(filterWithCategoryId, ''))
           .with({

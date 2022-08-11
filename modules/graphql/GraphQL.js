@@ -259,11 +259,11 @@ export class Request extends Gql {
   }
 
   /**
-   * Return this._bindings
+   * Returns binded variables
    *
    * @returns {Object.<string, any>}
    */
-  get bindings() {
+  getVariables() {
     return this._bindings
   }
 

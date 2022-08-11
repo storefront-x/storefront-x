@@ -9,7 +9,9 @@ export default () => {
   return async (): Promise<{
     categories: ReturnType<typeof toCategory>[]
   }> => {
-    const { categoryList } = await magento.graphql(CategoryList())
+    const {
+      data: { categoryList },
+    } = await magento.graphql(CategoryList())
 
     return {
       categories: categoryList[0].children.map(toCategory),

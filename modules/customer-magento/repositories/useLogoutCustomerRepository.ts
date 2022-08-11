@@ -7,10 +7,12 @@ export default () => {
   return async (): Promise<{
     result: string
   }> => {
-    const { revokeCustomerToken: response } = await magento.graphql(RevokeCustomerToken())
+    const {
+      data: { revokeCustomerToken },
+    } = await magento.graphql(RevokeCustomerToken())
 
     return {
-      result: response?.result ?? '',
+      result: revokeCustomerToken?.result ?? '',
     }
   }
 }

@@ -1,9 +1,14 @@
-// @ts-check
-
 import { defineConfig } from 'vite'
+import tailwind from 'tailwindcss'
 import { VitePWA } from 'vite-plugin-pwa'
+import tailwindConfig from './tailwind.config.js'
 
 export default defineConfig({
+  css: {
+    postcss: {
+      plugins: [tailwind({ config: tailwindConfig })],
+    },
+  },
   plugins: [
     VitePWA({
       injectRegister: 'inline',

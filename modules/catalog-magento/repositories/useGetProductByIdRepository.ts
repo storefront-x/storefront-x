@@ -14,15 +14,17 @@ export default () => {
     product: ReturnType<typeof toProduct>
     aggregations: ReturnType<typeof toAggregation>[]
   }> => {
-    const { products: response } = await magento.graphql(
+    const {
+      data: { products },
+    } = await magento.graphql(
       ProductDetail().with({
         urlKey: id,
       }),
     )
 
     return {
-      product: toProduct(response.items.find((item: any) => item.url_key === id) ?? []),
-      aggregations: response.aggregations.map(toAggregation) || [],
+      product: toProduct(products.items.find((item: any) => item.url_key === id)),
+      aggregations: products.aggregations.map(toAggregation) || [],
     }
   }
 }

@@ -9,10 +9,12 @@ export default () => {
   ): Promise<{
     email: string
   }> => {
-    const { createCustomer: response } = await magento.graphql(CreateCustomer().with(data))
+    const {
+      data: { createCustomer },
+    } = await magento.graphql(CreateCustomer().with(data))
 
     return {
-      email: response?.customer?.email ?? '',
+      email: createCustomer?.customer?.email ?? '',
     }
   }
 }
