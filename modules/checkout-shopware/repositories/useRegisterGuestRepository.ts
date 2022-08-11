@@ -1,4 +1,5 @@
 import useShopware from '#ioc/composables/useShopware'
+import SHOPWARE_URL from '#ioc/config/SHOPWARE_URL'
 import useToContactInformation from '#ioc/mappers/useToContactInformation'
 
 interface Options {
@@ -15,18 +16,18 @@ export default () => {
       email: contactInformation.email,
       firstName: contactInformation.firstName,
       lastName: contactInformation.lastName,
-      countryId: 'ff87855aace845db9a76646f1c855edb',
-      salutationId: 'c6872ce3c6fe4b1cbecbc7e3543f68e1',
-      storefrontUrl: 'https://shopware-pwa-canary.storefrontcloud.io', // TODO
-      redirectTo: '/checkout', // TODO
+      countryId: contactInformation.country.id,
+      salutationId: contactInformation.salutation.id,
+      storefrontUrl: SHOPWARE_URL,
+      redirectTo: '/', // TODO
       billingAddress: {
         firstName: contactInformation.firstName,
         lastName: contactInformation.lastName,
         city: contactInformation.city,
         street: contactInformation.street,
         zipcode: contactInformation.zipcode,
-        countryId: 'ff87855aace845db9a76646f1c855edb',
-        salutationId: 'c6872ce3c6fe4b1cbecbc7e3543f68e1',
+        countryId: contactInformation.country.id,
+        salutationId: contactInformation.salutation.id,
       },
     })
   }

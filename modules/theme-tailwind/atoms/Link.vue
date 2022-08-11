@@ -1,17 +1,26 @@
 <template>
-  <Component :is="component">
+  <Component :is="component" :class="classes">
     <slot />
   </Component>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import RouterLink from '#ioc/components/RouterLink'
+import { computed, PropType, useAttrs } from 'vue'
 
-export default defineComponent({
-  computed: {
-    component() {
-      return this.$attrs.to ? 'RouterLink' : 'a'
-    },
+const props = defineProps({
+  color: {
+    type: String as PropType<'primary' | 'gray'>,
+    default: 'primary',
   },
 })
+
+const attrs = useAttrs()
+
+const component = computed(() => (attrs.to ? RouterLink : 'a'))
+
+const classes = computed(() => ({
+  'text-primary-500 hover:text-primary-500': props.color === 'primary',
+  'text-gray-600 hover:text-gray-800': props.color === 'gray',
+}))
 </script>

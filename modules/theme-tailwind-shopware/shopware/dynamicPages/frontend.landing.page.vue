@@ -19,5 +19,5 @@ const props = defineProps({
 
 const getLandingPage = useGetLandingPage()
 
-const { data } = await useAsyncData('GetLandingPage', () => getLandingPage(props.id))
+const { data } = await useAsyncData('landingPage', () => getLandingPage(props.id))
 </script>

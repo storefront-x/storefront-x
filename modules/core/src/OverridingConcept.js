@@ -100,14 +100,14 @@ export default class OverridingConcept extends Concept {
 
     watcher
       .on('add', async (path) => {
-        const file = this._normalizePath(path)
+        const file = this._normalizePath({ module, path })
 
         files.add(file)
 
         await this.execute(this._getFiles())
       })
       .on('unlink', async (path) => {
-        const file = this._normalizePath(path)
+        const file = this._normalizePath({ module, path })
 
         files.delete(file)
 
@@ -116,7 +116,7 @@ export default class OverridingConcept extends Concept {
 
     if (this.executesOnChanges) {
       watcher.on('change', async (path) => {
-        const file = this._normalizePath(path)
+        const file = this._normalizePath({ module, path })
 
         await this.execute({ [file]: { module, file } })
       })
@@ -128,11 +128,11 @@ export default class OverridingConcept extends Concept {
   }
 
   /**
-   * @param {string} _path
+   * @param {{module:Module,path:string}} options
    * @returns {string}
    */
-  _normalizePath(_path) {
-    return path.basename(_path)
+  _normalizePath(options) {
+    return path.relative(options.module.join(this.directory), options.path)
   }
 }
 

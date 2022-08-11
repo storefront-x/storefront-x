@@ -10,6 +10,7 @@ export default {
 
     '@storefront-x/base-commerce',
     '@storefront-x/atomic-design',
+    '@storefront-x/graphql',
 
     '@storefront-x/catalog',
     '@storefront-x/cart',
@@ -18,22 +19,14 @@ export default {
     '@storefront-x/checkout',
     '@storefront-x/multicurrency',
 
-    '@storefront-x/graphql',
     '@storefront-x/magento',
     '@storefront-x/catalog-magento',
     '@storefront-x/customer-magento',
     '@storefront-x/multicurrency-magento',
 
-    // '@storefront-x/shopware',
-    // '@storefront-x/catalog-shopware',
-    // '@storefront-x/customer-shopware',
-    // '@storefront-x/wishlist-shopware',
-    // '@storefront-x/cart-shopware',
-    // '@storefront-x/checkout-shopware',
-    // '@storefront-x/multicurrency-shopware',
-
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
-    // '@storefront-x/theme-tailwind-shopware',
+
+    '@storefront-x/demo-magento',
   ],
 }

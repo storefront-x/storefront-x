@@ -1,6 +1,7 @@
 export default {
   modules: [
     '@storefront-x/base',
+
     '@storefront-x/vue',
     '@storefront-x/vue-router',
     '@storefront-x/vue-head',
@@ -27,5 +28,7 @@ export default {
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-shopware',
+
+    '@storefront-x/demo-shopware',
   ],
 }

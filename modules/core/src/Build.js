@@ -14,7 +14,7 @@ export default class Build extends Core {
       build: {
         ssrManifest: true,
         outDir: path.join(this.distDir, 'client'),
-        emptyOutDir: true,
+        emptyOutDir: false,
         rollupOptions: {
           output: {
             entryFileNames: 'assets/[hash].js',

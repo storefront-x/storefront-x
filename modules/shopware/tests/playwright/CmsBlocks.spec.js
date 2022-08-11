@@ -63,6 +63,10 @@ test('cms block', async ({ page }) => {
                 },
               },
             },
+            config: {
+              'SHOPWARE_URL.ts': `export default 'https://shopware.url'`,
+              'SHOPWARE_ACCESS_KEY.ts': `export default 'xxx'`,
+            },
           },
         ],
       ],
@@ -163,6 +167,10 @@ test('cms block with slots', async ({ page }) => {
                         `,
                 },
               },
+            },
+            config: {
+              'SHOPWARE_URL.ts': `export default 'https://shopware.url'`,
+              'SHOPWARE_ACCESS_KEY.ts': `export default 'xxx'`,
             },
           },
         ],

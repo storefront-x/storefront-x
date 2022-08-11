@@ -23,5 +23,5 @@ const props = defineProps({
 
 const getProductById = useGetProductById()
 
-const { data } = await useAsyncData('GetProductById', () => getProductById(props.id as string))
+const { data } = await useAsyncData('product', () => getProductById(props.id as string))
 </script>

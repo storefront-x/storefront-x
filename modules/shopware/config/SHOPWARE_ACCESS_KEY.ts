@@ -1,1 +1,3 @@
-export default 'SWSCUENQR2LNZ1HKC09SNDZNWQ'
+export default null
+
+throw new Error('Override SHOPWARE_ACCESS_KEY config')
