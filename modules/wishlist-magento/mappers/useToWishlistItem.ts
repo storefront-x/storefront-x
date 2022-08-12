@@ -5,6 +5,6 @@ export default () => {
 
   return (data: any) => ({
     id: data.id,
-    product: toProduct(data),
+    product: toProduct(data.product),
   })
 }

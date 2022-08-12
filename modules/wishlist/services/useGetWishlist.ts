@@ -10,20 +10,14 @@ export default () => {
   const customer = useCustomer()
   const getWishlistRepository = useGetWishlistRepository()
   const getProductsByIdsRepository = useGetProductsByIdsRepository()
-  const toWishlistItem = useToWishlistItem()
 
   return async (): Promise<{
-    items: ReturnType<typeof toWishlistItem>[]
+    items: ReturnType<ReturnType<typeof useToWishlistItem>>[]
   }> => {
     if (customer.isLoggedIn) {
-      const { products } = await getWishlistRepository()
+      const wishlist = await getWishlistRepository()
 
-      return {
-        items: products.map((element) => ({
-          id: element.id,
-          product: element,
-        })),
-      }
+      return wishlist
     } else {
       const wishlistItems = cookies.get(WISHLIST_COOKIES_NAME) || []
 
@@ -31,10 +25,7 @@ export default () => {
         const { products } = await getProductsByIdsRepository(wishlistItems)
 
         return {
-          items: products.map((element) => ({
-            id: element.id,
-            product: element,
-          })),
+          items: products.map((product) => ({ id: product.id, product })),
         }
       }
 
