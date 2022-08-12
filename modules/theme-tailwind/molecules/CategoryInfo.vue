@@ -11,7 +11,7 @@
       class="float-left mr-4 w-1/2"
     />
 
-    <p v-if="category.description" :level="2" v-html="category.description" />
+    <div v-if="category.description" :level="2" v-html="category.description" />
 
     <div class="clear-both" />
   </div>

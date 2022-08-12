@@ -1,11 +1,10 @@
 import useToProduct from '#ioc/mappers/useToProduct'
 
-interface Data {
-  id: string
-  product: ReturnType<ReturnType<typeof useToProduct>>
-}
+export default () => {
+  const toProduct = useToProduct()
 
-export default () => (data: Data) => ({
-  id: data.id,
-  product: data.product,
-})
+  return (data: any) => ({
+    id: data.id,
+    product: toProduct(data),
+  })
+}
