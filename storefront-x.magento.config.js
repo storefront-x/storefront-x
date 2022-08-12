@@ -22,6 +22,7 @@ export default {
     '@storefront-x/magento',
     '@storefront-x/catalog-magento',
     '@storefront-x/customer-magento',
+    '@storefront-x/wishlist-magento',
     '@storefront-x/multicurrency-magento',
 
     '@storefront-x/theme-tailwind',

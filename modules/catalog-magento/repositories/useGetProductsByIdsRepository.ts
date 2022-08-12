@@ -9,7 +9,7 @@ export default () => {
   return async (
     ids: string,
   ): Promise<{
-    product: ReturnType<typeof toProduct>
+    products: ReturnType<typeof toProduct>[]
   }> => {
     const {
       data: { products },
@@ -20,7 +20,7 @@ export default () => {
     )
 
     return {
-      product: products.items.map(toProduct) || [],
+      products: products.items.map(toProduct) || [],
     }
   }
 }

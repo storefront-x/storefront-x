@@ -3201,6 +3201,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/wishlist-magento@workspace:modules/wishlist-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/wishlist-magento@workspace:modules/wishlist-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/wishlist-shopware@workspace:modules/wishlist-shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/wishlist-shopware@workspace:modules/wishlist-shopware"

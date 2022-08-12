@@ -5,7 +5,8 @@ export default () => {
   const wishlistStore = useWishlistStore()
 
   const items = computed(() => wishlistStore.items)
-  const wishlistQuantity = computed(() => (wishlistStore.items ? wishlistStore.items.length : 0))
+
+  const wishlistQuantity = computed(() => items.value.length)
 
   return reactive({
     items,
