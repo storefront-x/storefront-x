@@ -1,17 +1,6 @@
 <template>
   <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
     <div class="flex flex-col">
-      <div class="w-full aspect-w-1 aspect-h-1 relative">
-        <SfxImage
-          :src="product.thumbnailUrl"
-          :alt="product.name"
-          :width="600"
-          :height="600"
-          fit="contain"
-          class-img="w-full max-h-96 object-center object-cover md:object-contain  rounded-lg hover:cursor-pointer"
-          preload
-        />
-      </div>
       <ProductGallery />
     </div>
 

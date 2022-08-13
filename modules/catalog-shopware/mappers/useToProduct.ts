@@ -16,11 +16,8 @@ export default () => {
     finalPrice: toMoney({ value: data.calculatedPrice.unitPrice }),
     regularPrice: toMoney({ value: data.calculatedPrice.regulationPrice ?? data.calculatedPrice.unitPrice }),
     images: data.cover.media.thumbnails.map((item: any) => ({
-      width: item.width as number,
-      height: item.height as number,
       url: item.url as string,
       id: item.id as string,
-      createdAt: item.createdAt as string,
     })),
     metaDescription: data.metaDescription,
     breadcrumbs: getBreadcrumbs(data),
