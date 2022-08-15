@@ -11,6 +11,7 @@ export default (data: any) => {
     }
     return products
   })
+
   return reactive({
     products,
   })

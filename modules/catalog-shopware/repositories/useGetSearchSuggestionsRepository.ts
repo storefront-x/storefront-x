@@ -1,6 +1,6 @@
 import useShopware from '#ioc/composables/useShopware'
 import useToProduct from '#ioc/mappers/useToProduct'
-import SHOPWARE_SEARCH_LIMIT from '#ioc/config/SHOPWARE_SEARCH_LIMIT'
+import CATALOG_SEARCH_SUGGEST_LIMIT from '#ioc/config/CATALOG_SEARCH_SUGGEST_LIMIT'
 
 export default () => {
   const shopware = useShopware()
@@ -12,7 +12,7 @@ export default () => {
     products: ReturnType<typeof toProduct>[]
   }> => {
     const searchResult = await shopware.post(`/search-suggest`, {
-      limit: SHOPWARE_SEARCH_LIMIT,
+      limit: CATALOG_SEARCH_SUGGEST_LIMIT,
       search,
     })
 
