@@ -11,13 +11,17 @@ import useGetProductById from '#ioc/services/useGetProductById'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import { defineAsyncComponent } from 'vue'
-import useRoute from '#ioc/composables/useRoute'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
-const route = useRoute()
+const props = defineProps({
+  relativeUrl: {
+    type: String,
+    required: true,
+  },
+})
 
 const getProductById = useGetProductById()
 
-const { data } = await useAsyncData('GetProductById', () => getProductById(route.params.id as string))
+const { data } = await useAsyncData('product', () => getProductById(props.relativeUrl.replace(/\.html$/, '')))
 </script>

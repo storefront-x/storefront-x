@@ -1,1 +1,1 @@
-export default ['category_id', 'price']
+export default ['category_id', 'category_uid', 'price']
