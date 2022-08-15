@@ -19,7 +19,10 @@ export default () => {
       url: item.url as string,
       id: item.id as string,
     })),
-    metaDescription: data.metaDescription,
+    metaData: {
+      metaDescription: data.metaDescription as string,
+      metaTitle: data.metaTitle as string,
+    },
     breadcrumbs: getBreadcrumbs(data),
     available: true,
   })

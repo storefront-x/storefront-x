@@ -18,5 +18,6 @@ const product = injectProduct()
 
 useHead({
   title: product.name,
+  meta: Object.entries(product.metaData).map(([name, description]) => ({ name, description })),
 })
 </script>
