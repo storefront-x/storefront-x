@@ -14,7 +14,7 @@
 import ProductProvider from '#ioc/providers/ProductProvider'
 import ProductTile from '#ioc/molecules/ProductTile'
 import useShopwareCmsBlock from '#ioc/composables/useShopwareCmsBlock'
-import useShopwareProductThreeColumnCmsBlock from '#ioc/composables/useShopwareProductThreeColumnCmsBlock'
+import useShopwareCmsProductThreeColumnBlock from '#ioc/composables/useShopwareCmsProductThreeColumnBlock'
 
 const props = defineProps({
   data: {
@@ -24,5 +24,5 @@ const props = defineProps({
 })
 
 const shopwareCmsBlock = useShopwareCmsBlock(props)
-const shopwareProductThreeColumn = useShopwareProductThreeColumnCmsBlock(props.data)
+const shopwareProductThreeColumn = useShopwareCmsProductThreeColumnBlock(props.data)
 </script>

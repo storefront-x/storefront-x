@@ -16,7 +16,7 @@ export default defineComponent({
 <script setup lang="ts">
 import useShopwareCmsBlock from '#ioc/composables/useShopwareCmsBlock'
 import { defineComponent } from 'vue'
-import useShopwareTextCmsBlock from '#ioc/composables/useShopwareTextCmsBlock'
+import useShopwareCmsTextBlock from '#ioc/composables/useShopwareCmsTextBlock'
 
 const props = defineProps({
   data: {
@@ -26,7 +26,7 @@ const props = defineProps({
 })
 
 const shopwareCmsBlock = useShopwareCmsBlock(props)
-const shopwareTextCmsBlock = useShopwareTextCmsBlock(props)
+const shopwareTextCmsBlock = useShopwareCmsTextBlock(props)
 </script>
 
 <style scoped>

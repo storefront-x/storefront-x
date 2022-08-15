@@ -17,6 +17,7 @@ export default {
     '@storefront-x/wishlist',
     '@storefront-x/checkout',
     '@storefront-x/multicurrency',
+    '@storefront-x/cms',
 
     '@storefront-x/shopware',
     '@storefront-x/catalog-shopware',
@@ -25,6 +26,7 @@ export default {
     '@storefront-x/cart-shopware',
     '@storefront-x/checkout-shopware',
     '@storefront-x/multicurrency-shopware',
+    '@storefront-x/cms-shopware',
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-shopware',
