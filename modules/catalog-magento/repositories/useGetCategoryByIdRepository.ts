@@ -9,12 +9,13 @@ import transformSortQuery from '#ioc/utils/magento/transformSortQuery'
 import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 import CategoryDetail from '#ioc/graphql/queries/CategoryDetail'
 import useToAggregation from '#ioc/mappers/useToAggregation'
+import CATALOG_FILTER_ATTRIBUTES_HIDDEN from '../config/magento/CATALOG_FILTER_ATTRIBUTES_HIDDEN'
 
 interface CategoryOptions {
-  currentPage: number
-  pageSize: number
-  filter: any
-  sort: any
+  page?: number
+  pageSize?: number
+  filter?: any
+  sort?: any
 }
 
 export default () => {
@@ -24,8 +25,8 @@ export default () => {
   const toAggregation = useToAggregation()
 
   return async (
-    id: number,
-    { currentPage = 1, pageSize, filter, sort }: CategoryOptions,
+    id: string,
+    { page = 1, pageSize, filter, sort }: CategoryOptions = {},
   ): Promise<{
     category: ReturnType<typeof toCategory>
     products: ReturnType<typeof toProduct>[]
@@ -34,7 +35,7 @@ export default () => {
   }> => {
     try {
       const filterWithCategoryId = {
-        category_id: { eq: String(id) },
+        category_uid: { eq: id },
         ...transformFilterQuery(filter),
       }
       const {
@@ -45,7 +46,7 @@ export default () => {
           .with({
             id,
             pageSize: pageSize || CATALOG_PAGE_SIZE,
-            currentPage,
+            currentPage: page,
             sort: transformSortQuery(sort),
             filter: filterWithCategoryId,
           }),
@@ -57,7 +58,9 @@ export default () => {
       return {
         category: toCategory(categoryList[0]) ?? [],
         products: products.items.map(toProduct) ?? [],
-        aggregations: aggregations.aggregations.map(toAggregation),
+        aggregations: aggregations.aggregations
+          .map(toAggregation)
+          .filter((aggregation: any) => !CATALOG_FILTER_ATTRIBUTES_HIDDEN.includes(aggregation.attributeCode)),
         totalCount: products.total_count ?? 0,
       }
     } catch (e) {
