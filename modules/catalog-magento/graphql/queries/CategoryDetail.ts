@@ -14,7 +14,7 @@ export default () =>
     })
     .fields({
       categoryList: field()
-        .args({ filters: { ids: { eq: '$id' } } })
+        .args({ filters: { category_uid: { eq: '$id' } } })
         .fields({
           id: field(),
           name: field(),
