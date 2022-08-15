@@ -9,6 +9,8 @@ test('cms block', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         '@storefront-x/shopware',
+        '@storefront-x/cms',
+        '@storefront-x/cms-shopware',
         [
           'app',
           {
@@ -86,6 +88,8 @@ test('cms block with slots', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         '@storefront-x/shopware',
+        '@storefront-x/cms',
+        '@storefront-x/cms-shopware',
         [
           'app',
           {

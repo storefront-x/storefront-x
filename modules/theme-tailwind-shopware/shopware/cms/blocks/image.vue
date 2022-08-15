@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import SfxImage from '#ioc/components/SfxImage'
 import useShopwareCmsBlock from '#ioc/composables/useShopwareCmsBlock'
-import useShopwareImageCmsBlock from '#ioc/composables/useShopwareImageCmsBlock'
+import useShopwareCmsImageBlock from '#ioc/composables/useShopwareCmsImageBlock'
 
 const props = defineProps({
   data: {
@@ -32,5 +32,5 @@ const props = defineProps({
 })
 
 const shopwareCmsBlock = useShopwareCmsBlock(props)
-const shopwareImageCmsBlock = useShopwareImageCmsBlock(props)
+const shopwareImageCmsBlock = useShopwareCmsImageBlock(props)
 </script>

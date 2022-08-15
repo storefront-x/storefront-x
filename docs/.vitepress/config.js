@@ -56,6 +56,7 @@ export default defineConfig({
           { text: 'Checkout', link: '/modules/checkout' },
           { text: 'Customer', link: '/modules/customer' },
           { text: 'Customer Shopware', link: '/modules/customer-shopware' },
+          { text: 'CMS Shopware', link: '/modules/cms-shopware' },
           { text: 'Wishlist', link: '/modules/wishlist' },
           { text: 'Theme Tailwind', link: '/modules/theme-tailwind' },
         ],
