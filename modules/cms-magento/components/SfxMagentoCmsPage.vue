@@ -1,7 +1,6 @@
-<script lang="ts">
+<script>
 import IS_SERVER from '#ioc/config/IS_SERVER'
-import useToCmsPage from '#ioc/mappers/useToCmsPage'
-import { defineComponent, h, PropType, VNode } from 'vue'
+import { defineComponent, h } from 'vue'
 import magentoCmsBlocks from '~/.sfx/magento/cms/blocks'
 import isNullish from '#ioc/utils/isNullish'
 import once from '#ioc/utils/once'
@@ -9,7 +8,7 @@ import once from '#ioc/utils/once'
 export default defineComponent({
   props: {
     cmsPage: {
-      type: Object as PropType<ReturnType<ReturnType<typeof useToCmsPage>>>,
+      type: Object,
       default: () => ({}),
     },
   },
@@ -32,34 +31,41 @@ const SHOW_ELEMENT = 1
 // NodeFilter.SHOW_TEXT
 const SHOW_TEXT = 4
 
-const parse = async (source: string): Promise<Document> => {
-  let container: Document
+const PB_STYLE_ATTRIBUTE = 'data-pb-style'
+
+const BODY_ID = 'html-body'
+
+const parse = async (source) => {
+  let container
 
   if (IS_SERVER) {
     const { Window } = await import('happy-dom')
     const window = new Window()
     const domParser = new window.DOMParser()
-    container = domParser.parseFromString(source, 'text/html') as any
+    container = domParser.parseFromString(source, 'text/html')
   } else {
     const domParser = new DOMParser()
     container = domParser.parseFromString(source, 'text/html')
   }
 
+  container.body.id = BODY_ID
+  convertToInlineStyles(container)
+
   return container
 }
 
-const createTreeWalker = async (root: Node, whatToShow?: number): Promise<TreeWalker> => {
+const createTreeWalker = async (root, whatToShow) => {
   if (IS_SERVER) {
     const { Window } = await import('happy-dom')
-    const window = new Window() as unknown as Window
+    const window = new Window()
     return window.document.createTreeWalker(root, whatToShow)
   } else {
     return document.createTreeWalker(root, whatToShow)
   }
 }
 
-const walk = async (el: Node): Promise<VNode[]> => {
-  const resolved: VNode[] = []
+const walk = async (el) => {
+  const resolved = []
 
   const tree = await createTreeWalker(el, SHOW_ELEMENT | SHOW_TEXT)
 
@@ -97,5 +103,38 @@ const walk = async (el: Node): Promise<VNode[]> => {
   }
 
   return resolved
+}
+
+const convertToInlineStyles = (document) => {
+  const styleBlocks = document.getElementsByTagName('style')
+  const styles = {}
+
+  if (styleBlocks.length === 0) return
+
+  for (const styleBlock of Array.from(styleBlocks)) {
+    const cssRules = styleBlock.sheet?.cssRules ?? []
+
+    for (const rule of Array.from(cssRules)) {
+      const selectors = rule.selectorText.split(',').map((selector) => selector.trim())
+
+      for (const selector of selectors) {
+        if (!styles[selector]) styles[selector] = []
+
+        styles[selector].push(rule.style)
+      }
+    }
+  }
+
+  for (const selector of Object.keys(styles)) {
+    const element = document.querySelector(selector)
+
+    if (!element) continue
+
+    for (const style of styles[selector]) {
+      element.setAttribute('style', element.style.cssText + style.cssText)
+    }
+
+    element.removeAttribute(PB_STYLE_ATTRIBUTE)
+  }
 }
 </script>

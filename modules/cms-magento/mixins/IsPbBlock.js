@@ -1,3 +1,4 @@
+import IS_SERVER from '#ioc/config/IS_SERVER'
 import supportsWebp from '#ioc/utils/dom/supportsWebp'
 import resizeImage from '#ioc/utils/url/resizeImage'
 
@@ -45,7 +46,7 @@ export default {
       const images = node.getAttribute('data-background-images')
       if (images) {
         const imagesStructure = JSON.parse(images.replace(/\\"/g, '"'))
-        const format = process.server || supportsWebp() ? 'webp' : 'jpeg'
+        const format = IS_SERVER || supportsWebp() ? 'webp' : 'jpeg'
 
         // TODO: Support for mobile images
         if (imagesStructure.desktop_image) {

@@ -1,3 +1,5 @@
+import sanitizePageBuilderContent from '#ioc/utils/magento/sanitizePageBuilderContent'
+
 export default () => (data: any) => ({
-  content: data.content as string,
+  content: sanitizePageBuilderContent(data.content),
 })
