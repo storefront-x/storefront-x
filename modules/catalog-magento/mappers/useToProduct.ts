@@ -9,7 +9,6 @@ export default () => {
     sku: data.sku ?? '',
     name: data.name ?? '',
     urlKey: data.url_key ?? '',
-    urlPath: `/${data.url_key}`,
     thumbnailUrl: data.thumbnail?.url ?? '',
     description: data.description?.html ?? '',
     shortDescriptionHtml: data.short_description?.html ?? '',
