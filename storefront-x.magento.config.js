@@ -18,12 +18,14 @@ export default {
     '@storefront-x/wishlist',
     '@storefront-x/checkout',
     '@storefront-x/multicurrency',
+    '@storefront-x/cms',
 
     '@storefront-x/magento',
     '@storefront-x/catalog-magento',
     '@storefront-x/customer-magento',
     '@storefront-x/wishlist-magento',
     '@storefront-x/multicurrency-magento',
+    '@storefront-x/cms-magento',
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
