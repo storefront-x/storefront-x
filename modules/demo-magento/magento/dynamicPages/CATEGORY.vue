@@ -24,6 +24,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  relativeUrl: {
+    type: String,
+    required: true,
+  },
 })
 
 const route = useRoute()
