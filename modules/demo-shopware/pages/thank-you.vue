@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import ThankYou from '#ioc/templates/ContaineThankYour'
+import ThankYou from '#ioc/templates/ThankYou'
 </script>
