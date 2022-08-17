@@ -26,7 +26,8 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "@storefront-x/core": "*"
+    "@storefront-x/core": "*",
+    "keen-slider": "^5"
   },
   "devDependencies": {
     "@playwright/test": "^1.24.2",

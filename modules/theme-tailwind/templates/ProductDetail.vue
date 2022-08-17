@@ -3,6 +3,11 @@
     <Breadcrumbs :breadcrumbs="product.breadcrumbs" />
 
     <ProductOverview />
+    <section v-if="crossSellProducts?.products.length" class="pt-8 sm:px-0">
+      <Heading :level="2">{{ t('Related products') }}</Heading>
+
+      <ProductCarousel class="mt-8" :products="crossSellProducts?.products" />
+    </section>
   </Container>
 </template>
 
@@ -12,10 +17,23 @@ import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import ProductOverview from '#ioc/organisms/ProductOverview'
 import injectProduct from '#ioc/composables/injectProduct'
 import useHead from '#ioc/composables/useHead'
+import ProductCarousel from '#ioc/organisms/ProductCarousel'
+import Heading from '#ioc/atoms/Heading'
+import useI18n from '#ioc/composables/useI18n'
+import useGetCrossSelling from '#ioc/services/useGetCrossSellingProducts'
+import useAsyncData from '#ioc/composables/useAsyncData'
 
+const { t } = useI18n()
 const product = injectProduct()
+const getCrossSelling = useGetCrossSelling()
+const { data: crossSellProducts } = await useAsyncData('GetCrossSellProducts', () => getCrossSelling(product.id))
 
 useHead({
   title: product.name,
 })
 </script>
+
+<i18n lang="yaml">
+cs-CZ:
+  Related products: Příbuzné produkty
+</i18n>

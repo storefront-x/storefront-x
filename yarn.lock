@@ -7966,6 +7966,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"keen-slider@npm:^5":
+  version: 5.5.1
+  resolution: "keen-slider@npm:5.5.1"
+  checksum: 478838457739dca7cb238d1183552abe6c84ca36811a3a5d515fc2f57edacbe035557fc0a50b3e13a66257c8432b5bb769ff524511a5d643d83fb381ec90e82f
+  languageName: node
+  linkType: hard
+
 "kind-of@npm:^6.0.2, kind-of@npm:^6.0.3":
   version: 6.0.3
   resolution: "kind-of@npm:6.0.3"
@@ -10793,6 +10800,7 @@ __metadata:
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-vue: ^9.3.0
     husky: ^8.0.1
+    keen-slider: ^5
     lerna: ^5.3.0
     lint-staged: ^13.0.3
     prettier: ^2.7.1
