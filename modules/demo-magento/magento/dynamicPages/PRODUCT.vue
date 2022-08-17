@@ -15,6 +15,10 @@ import { defineAsyncComponent } from 'vue'
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
 const props = defineProps({
+  id: {
+    type: String,
+    required: true,
+  },
   relativeUrl: {
     type: String,
     required: true,
