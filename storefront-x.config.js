@@ -19,6 +19,7 @@ export default {
     '@storefront-x/checkout',
     '@storefront-x/multicurrency',
     '@storefront-x/cms',
+    '@storefront-x/blog',
 
     '@storefront-x/shopware',
     '@storefront-x/catalog-shopware',

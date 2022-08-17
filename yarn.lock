@@ -2973,6 +2973,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/blog-magento@workspace:modules/blog-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/blog-magento@workspace:modules/blog-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/blog@workspace:modules/blog":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/blog@workspace:modules/blog"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/cart-shopware@workspace:modules/cart-shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/cart-shopware@workspace:modules/cart-shopware"
