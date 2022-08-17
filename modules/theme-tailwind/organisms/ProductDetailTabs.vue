@@ -18,39 +18,20 @@
   </section>
 </template>
 
-<script>
+<script setup lang="ts">
 import MenuTab from '#ioc/atoms/MenuTab'
 import { defineComponent } from 'vue'
 import ProductDetail from '#ioc/molecules/ProductDetailDescription'
-import injectProduct from '#ioc/composables/injectProduct'
 import useI18n from '#ioc/composables/useI18n'
 
-export default defineComponent({
-  components: {
-    ProductDetail,
-    MenuTab,
+const { t } = useI18n()
+const selected = defineComponent(ProductDetail)
+const tabs = [
+  {
+    name: 'Detail',
+    component: defineComponent(ProductDetail),
   },
-
-  setup() {
-    const product = injectProduct()
-    const { t } = useI18n()
-
-    return {
-      t,
-      product,
-    }
-  },
-
-  data: () => ({
-    selected: 'ProductDetail',
-    tabs: [
-      {
-        name: 'Detail',
-        component: 'ProductDetail',
-      },
-    ],
-  }),
-})
+]
 </script>
 
 <i18n lang="yaml">

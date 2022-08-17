@@ -28,7 +28,7 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
 
   const images = computed(() => product.value.images)
 
-  const metaData = computed(() => product.value.metaData)
+  const meta = computed(() => product.value.meta)
 
   const isOnSale = computed(() => finalPrice.value < regularPrice.value)
 
@@ -47,6 +47,6 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
     available,
     isOnSale,
     images,
-    metaData,
+    meta,
   })
 }

@@ -13,11 +13,17 @@ import ProductOverview from '#ioc/organisms/ProductOverview'
 import ProductDetailTabs from '#ioc/organisms/ProductDetailTabs'
 import injectProduct from '#ioc/composables/injectProduct'
 import useHead from '#ioc/composables/useHead'
+import { computed } from 'vue'
 
 const product = injectProduct()
 
 useHead({
-  title: product.name,
-  meta: Object.entries(product.metaData).map(([name, description]) => ({ name, description })),
+  title: computed(() => product.name),
+  meta: [
+    {
+      name: 'description',
+      content: computed(() => product.meta.description),
+    },
+  ],
 })
 </script>

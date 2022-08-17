@@ -19,9 +19,9 @@ export default () => {
       url: item.url as string,
       id: item.id as string,
     })),
-    metaData: {
-      metaDescription: data.metaDescription as string,
-      metaTitle: data.metaTitle as string,
+    meta: {
+      description: data.metaDescription as string,
+      title: data.metaTitle as string,
     },
     breadcrumbs: getBreadcrumbs(data),
     available: true,

@@ -26,38 +26,20 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import injectProduct from '#ioc/composables/injectProduct'
 import SfxImage from '#ioc/components/SfxImage'
-import { defineComponent } from 'vue'
+import { computed, ref } from 'vue'
 
-export default defineComponent({
-  components: {
-    SfxImage,
-  },
+const selected = ref(0)
 
-  setup() {
-    const product = injectProduct()
+const product = injectProduct()
 
-    return {
-      product,
-    }
-  },
-
-  data: () => ({
-    selected: 0,
-  }),
-
-  computed: {
-    hasGallery() {
-      return this.product.images.length > 1
-    },
-  },
-
-  methods: {
-    select(index) {
-      this.selected = index
-    },
-  },
+const hasGallery = computed(() => {
+  return product.images.length > 1
 })
+
+const select = (index: number) => {
+  selected.value = index
+}
 </script>
