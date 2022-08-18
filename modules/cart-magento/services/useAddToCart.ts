@@ -15,8 +15,7 @@ export default () => {
   return async (product: ReturnType<typeof useProduct>, { quantity = 1 }: Options = {}) => {
     const { id } = await getOrCreateCartId()
 
-    const response = await addToCartRepository(id, {
-      sku: product.sku,
+    const response = await addToCartRepository(id, product, {
       quantity,
     })
 

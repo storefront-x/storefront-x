@@ -1,9 +1,9 @@
 import useMagento from '#ioc/composables/useMagento'
+import useProduct from '#ioc/composables/useProduct'
 import AddProductsToCart from '#ioc/graphql/mutations/AddProductsToCart'
 import useToCart from '#ioc/mappers/useToCart'
 
 interface Options {
-  sku: string
   quantity?: number
 }
 
@@ -13,7 +13,8 @@ export default () => {
 
   return async (
     cartId: string,
-    { sku, quantity = 1 }: Options,
+    product: ReturnType<typeof useProduct>,
+    { quantity = 1 }: Options = {},
   ): Promise<{
     cart: ReturnType<typeof toCart>
   }> => {
@@ -22,7 +23,7 @@ export default () => {
         cartId,
         cartItems: [
           {
-            sku,
+            sku: product.sku,
             quantity,
           },
         ],
