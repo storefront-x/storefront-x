@@ -22,7 +22,7 @@ export default () => {
     const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
 
     return {
-      'Content-Type': 'applicatarticle-1949ion/json',
+      'Content-Type': 'application/json',
       ...(store && { Store: store }),
       ...(token && { Authorization: `Bearer ${token}` }),
     }

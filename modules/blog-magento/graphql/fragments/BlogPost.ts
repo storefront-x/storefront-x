@@ -1,7 +1,6 @@
 import field from '#ioc/graphql/field'
 
 export default () => ({
-  __typename: field(),
   categories: field(),
   full_content: field(),
   meta_description: field(),

@@ -1,10 +1,7 @@
 <template>
-
-  AMASTY POST
-
-  <div v-if="data">
-    {{ data }}
-  </div>
+  <PostProvider v-if="data" :post="data.post">
+    <PostDetail />
+  </PostProvider>
 
   <NotFound v-else />
 </template>
@@ -13,7 +10,8 @@
 import useGetPostById from '#ioc/services/useGetPostById'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import { defineAsyncComponent } from 'vue'
-
+import PostProvider from '#ioc/providers/PostProvider'
+import PostDetail from '#ioc/templates/PostDetail'
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
 const props = defineProps({
@@ -29,5 +27,12 @@ const props = defineProps({
 
 const getPostById = useGetPostById()
 
-const { data } = await useAsyncData('post', () => getPostById(props.relativeUrl.replace(/\.html$/, '')))
+const { data } = await useAsyncData('blogPost', () =>
+  getPostById(
+    props.relativeUrl
+      .replace(/\.html$/, '')
+      .split('/')
+      .pop() ?? '',
+  ),
+)
 </script>

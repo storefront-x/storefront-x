@@ -12,7 +12,7 @@ export default () => {
     post: ReturnType<typeof toPost>
   }> => {
     const {
-      data: { posts },
+      data: { amBlogPost },
     } = await magento.graphql(
       BlogPost().with({
         urlKey: id,
@@ -20,7 +20,7 @@ export default () => {
     )
 
     return {
-      post: toPost(posts.items.find((item: any) => item.url_key === id)),
+      post: toPost(amBlogPost),
     }
   }
 }

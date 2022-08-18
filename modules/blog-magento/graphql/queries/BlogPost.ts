@@ -5,12 +5,12 @@ import BlogPost from '#ioc/graphql/fragments/BlogPost'
 export default () =>
   query()
     .variables({
-      $id: 'Int!',
+      $urlKey: 'String!',
     })
     .fields({
       amBlogPost: field()
         .args({
-          id: '$id',
+          urlKey: '$urlKey',
         })
         .fields({
           ...BlogPost(),
