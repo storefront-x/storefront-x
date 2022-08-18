@@ -10,7 +10,6 @@ export default {
 
     '@storefront-x/base-commerce',
     '@storefront-x/atomic-design',
-    '@storefront-x/graphql',
 
     '@storefront-x/catalog',
     '@storefront-x/cart',

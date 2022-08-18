@@ -25,6 +25,7 @@ export default {
     '@storefront-x/catalog-magento',
     '@storefront-x/customer-magento',
     '@storefront-x/wishlist-magento',
+    '@storefront-x/cart-magento',
     '@storefront-x/multicurrency-magento',
     '@storefront-x/blog-magento',
     '@storefront-x/cms-magento',

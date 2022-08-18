@@ -15,6 +15,14 @@ export default () => {
     shortDescriptionHtml: '',
     finalPrice: toMoney({ value: data.calculatedPrice.unitPrice }),
     regularPrice: toMoney({ value: data.calculatedPrice.regulationPrice ?? data.calculatedPrice.unitPrice }),
+    images: data.cover.media.thumbnails.map((item: any) => ({
+      url: item.url as string,
+      id: item.id as string,
+    })),
+    meta: {
+      description: data.metaDescription as string,
+      title: data.metaTitle as string,
+    },
     breadcrumbs: getBreadcrumbs(data),
     available: true,
   })
