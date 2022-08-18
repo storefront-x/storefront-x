@@ -5,6 +5,11 @@ import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NA
 import objectToQuery from '#ioc/utils/url/objectToQuery'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import IS_SERVER from '#ioc/config/IS_SERVER'
+import hashCode from '#ioc/utils/string/hashCode'
+
+interface Options {
+  errorHandler?: (err: any) => Promise<void>
+}
 
 const URL = IS_SERVER ? MAGENTO_URL : '/_magento'
 
@@ -23,9 +28,33 @@ export default () => {
     }
   }
 
-  const graphql = async (gql: any) => {
+  const graphql = async (gql: any, opts: Options = {}) => {
     const query = gql.toString()
     const variables = gql.getVariables()
+
+    const _fetch = async (input: RequestInfo, init: RequestInit) => {
+      const response = await fetch(input, init)
+
+      if (response.headers.get('content-type') !== 'application/json') {
+        console.timeEnd('' + hashCode(query))
+
+        throw new Error(await response.text())
+      }
+
+      const json = await response.json()
+
+      if (json.errors?.length) {
+        for (const error of json.errors) {
+          if (opts.errorHandler) {
+            await opts.errorHandler(error)
+          } else {
+            throw new Error(error.message)
+          }
+        }
+      }
+
+      return json
+    }
 
     if (gql.isCacheable()) {
       const body = objectToQuery({
@@ -33,29 +62,21 @@ export default () => {
         variables: isNonEmptyObject(variables) ? variables : undefined,
       })
 
-      const response = await fetch(`${URL + MAGENTO_GQL_ENDPOINT}?${body}`, {
+      return await _fetch(`${URL + MAGENTO_GQL_ENDPOINT}?${body}`, {
         method: 'GET',
         headers: headers(),
       })
-
-      const json = await response.json()
-
-      return json
     } else {
       const body = JSON.stringify({
         query,
         variables,
       })
 
-      const response = await fetch(URL + MAGENTO_GQL_ENDPOINT, {
+      return await _fetch(URL + MAGENTO_GQL_ENDPOINT, {
         method: 'POST',
         headers: headers(),
         body,
       })
-
-      const json = await response.json()
-
-      return json
     }
   }
 

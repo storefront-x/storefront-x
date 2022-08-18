@@ -1,21 +1,17 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToCartItem from '#ioc/mappers/useToCartItem'
-import useToCartPrices from '#ioc/mappers/useToCartPrices'
+import useToCart from '#ioc/mappers/useToCart'
 
 export default () => {
   const shopware = useShopware()
-  const toCartItem = useToCartItem()
-  const toCartPrices = useToCartPrices()
+  const toCart = useToCart()
 
   return async (): Promise<{
-    items: ReturnType<typeof toCartItem>[]
-    prices: ReturnType<typeof toCartPrices>
+    cart: ReturnType<typeof toCart>
   }> => {
     const response = await shopware.get('/checkout/cart')
 
     return {
-      items: response.lineItems.map(toCartItem),
-      prices: toCartPrices(response.price),
+      cart: toCart(response),
     }
   }
 }

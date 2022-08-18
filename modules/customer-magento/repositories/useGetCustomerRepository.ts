@@ -9,12 +9,10 @@ export default () => {
   return async (): Promise<{
     customer: ReturnType<typeof toCustomer> | null
   }> => {
-    const {
-      data: { customer },
-    } = await magento.graphql(Customer())
+    const { data } = await magento.graphql(Customer())
 
     return {
-      customer: customer ? toCustomer(customer) : null,
+      customer: data.customer ? toCustomer(data.customer) : null,
     }
   }
 }
