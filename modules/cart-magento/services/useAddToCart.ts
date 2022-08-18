@@ -1,23 +1,24 @@
-import useCartStore from '#ioc/stores/useCartStore'
+import useProduct from '#ioc/composables/useProduct'
 import useAddToCartRepository from '#ioc/repositories/useAddToCartRepository'
-import useProduct from '@storefront-x/catalog/composables/useProduct'
-import useCreateEmptyCartRepository from '../repositories/useCreateEmptyCartRepository'
+import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
+import useCartStore from '#ioc/stores/useCartStore'
+
+interface Options {
+  quantity?: number
+}
 
 export default () => {
   const cartStore = useCartStore()
+  const getOrCreateCartId = useGetOrCreateCartId()
   const addToCartRepository = useAddToCartRepository()
-  const createEmptyCartRepository = useCreateEmptyCartRepository()
 
-  return async (product: ReturnType<typeof useProduct>) => {
-    let response
+  return async (product: ReturnType<typeof useProduct>, { quantity = 1 }: Options = {}) => {
+    const { id } = await getOrCreateCartId()
 
-    if (cartStore.cart?.id) {
-      response = await addToCartRepository(cartStore.cart.id, product)
-    } else {
-      const { id } = await createEmptyCartRepository()
-
-      response = await addToCartRepository(id, product)
-    }
+    const response = await addToCartRepository(id, {
+      sku: product.sku,
+      quantity,
+    })
 
     cartStore.$patch(response)
   }

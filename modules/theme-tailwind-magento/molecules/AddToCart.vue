@@ -19,9 +19,10 @@ import Spinner from '#ioc/atoms/Spinner'
 import injectProduct from '#ioc/composables/injectProduct'
 import useI18n from '#ioc/composables/useI18n'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
+import useAddToCart from '#ioc/services/useAddToCart'
 import { ref } from 'vue'
 
-defineProps({
+const props = defineProps({
   quantity: {
     type: Number,
     default: 1,
@@ -30,6 +31,7 @@ defineProps({
 
 const { t } = useI18n()
 const product = injectProduct()
+const addToCart = useAddToCart()
 const showSuccessNotification = useShowSuccessNotification()
 
 const loading = ref(false)
@@ -37,6 +39,8 @@ const loading = ref(false)
 const onAddToCart = async () => {
   try {
     loading.value = true
+
+    await addToCart(product, { quantity: props.quantity })
   } finally {
     loading.value = false
   }

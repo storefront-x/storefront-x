@@ -16,7 +16,7 @@ export default () => {
     return itemsTotalQuantity
   })
 
-  const prices = computed(() => cartStore.prices)
+  const prices = computed(() => cartStore.cart?.prices)
 
   return reactive({
     items,

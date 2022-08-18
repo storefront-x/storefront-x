@@ -9,7 +9,14 @@ export default () =>
       $cartItems: '[CartItemInput!]!',
     })
     .fields({
-      cart: field({
-        ...Cart(),
-      }),
+      addProductsToCart: field()
+        .args({
+          cartId: '$cartId',
+          cartItems: '$cartItems',
+        })
+        .fields({
+          cart: field({
+            ...Cart(),
+          }),
+        }),
     })
