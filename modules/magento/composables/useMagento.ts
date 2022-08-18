@@ -13,11 +13,11 @@ export default () => {
 
   const headers = () => {
     // TODO: fetch store
-    const store = 'b2c_en'
+    const store = 'b2c_cz'
     const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
 
     return {
-      'Content-Type': 'application/json',
+      'Content-Type': 'applicatarticle-1949ion/json',
       ...(store && { Store: store }),
       ...(token && { Authorization: `Bearer ${token}` }),
     }
