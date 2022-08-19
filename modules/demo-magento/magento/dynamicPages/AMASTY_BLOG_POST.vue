@@ -1,7 +1,5 @@
 <template>
-  <PostProvider v-if="data" :post="data.post">
-    <PostDetail />
-  </PostProvider>
+  <PostDetail v-if="data" :post="data.post" />
 
   <NotFound v-else />
 </template>
@@ -10,14 +8,13 @@
 import useGetPostById from '#ioc/services/useGetPostById'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import { defineAsyncComponent } from 'vue'
-import PostProvider from '#ioc/providers/PostProvider'
 import PostDetail from '#ioc/templates/PostDetail'
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
 const props = defineProps({
   id: {
-    type: String,
-    required: true,
+    type: String as () => string | null,
+    default: '',
   },
   relativeUrl: {
     type: String,
