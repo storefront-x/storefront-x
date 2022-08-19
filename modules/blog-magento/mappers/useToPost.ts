@@ -1,7 +1,6 @@
 import toDate from '#ioc/utils/date/toDate'
 import sanitizePageBuilderContent from '#ioc/utils/magento/sanitizePageBuilderContent'
 
-
 export default () => {
   return (data: any) => ({
     id: data.post_id,

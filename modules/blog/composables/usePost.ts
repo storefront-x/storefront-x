@@ -19,7 +19,7 @@ export default (post: Ref<ReturnType<ReturnType<typeof useToPost>>>) => {
 
   const postThumbnail = computed(() => MAGENTO_URL + post.value.postThumbnail)
 
-  const listThumbnail = computed(() => post.value.listThumbnail)
+  const listThumbnail = computed(() => MAGENTO_URL + post.value.listThumbnail)
 
   const metaTitle = computed(() => post.value.metaTitle)
 
