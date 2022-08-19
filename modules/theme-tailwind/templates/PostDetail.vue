@@ -74,9 +74,11 @@
 
         <div v-html="post.shortContent" />
 
-        <SfxImage :src-m2="post.postThumbnail" :width="700" :height="450" class-img="mt-4 w-full rounded-lg" />
+        <SfxImage :src="post.postThumbnail" :width="700" :height="450" class-img="mt-4 rounded-lg" />
       </Prose>
     </Container>
+
+    <SfxMagentoCmsPage :cms-page="post.fullContent" />
   </div>
 </template>
 
@@ -89,6 +91,7 @@ import Heading from '#ioc/atoms/Heading'
 import usePost from '#ioc/composables/usePost'
 import { computed, PropType, toRef } from 'vue'
 import useToPost from '#ioc/mappers/useToPost'
+import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
 
 const props = defineProps({
   id: {

@@ -1,4 +1,6 @@
 import toDate from '#ioc/utils/date/toDate'
+import sanitizePageBuilderContent from '#ioc/utils/magento/sanitizePageBuilderContent'
+
 
 export default () => {
   return (data: any) => ({
@@ -7,7 +9,7 @@ export default () => {
     title: data.title ?? '',
     shortContent: data.short_content ?? '',
     status: data.status ?? '',
-    fullContent: 'MOCK DATA', // MOCK
+    fullContent: { content: sanitizePageBuilderContent(data.full_content) },
     publishedAt: toDate(data.published_at),
     postThumbnail: useOriginalImage(data.post_thumbnail ?? ''),
     listThumbnail: useOriginalImage(data.list_thumbnail ?? ''),

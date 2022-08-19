@@ -1,5 +1,6 @@
 import useToPost from '#ioc/mappers/useToPost'
 import { computed, reactive, Ref } from 'vue'
+import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
 
 export default (post: Ref<ReturnType<ReturnType<typeof useToPost>>>) => {
   const id = computed(() => post.value.id)
@@ -16,7 +17,7 @@ export default (post: Ref<ReturnType<ReturnType<typeof useToPost>>>) => {
 
   const publishedAt = computed(() => post.value.publishedAt)
 
-  const postThumbnail = computed(() => post.value.postThumbnail)
+  const postThumbnail = computed(() => MAGENTO_URL + post.value.postThumbnail)
 
   const listThumbnail = computed(() => post.value.listThumbnail)
 

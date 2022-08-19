@@ -3184,6 +3184,7 @@ __metadata:
   resolution: "@storefront-x/theme-tailwind@workspace:modules/theme-tailwind"
   dependencies:
     "@tailwindcss/forms": ^0.5.2
+    "@tailwindcss/typography": ^0.5.4
     postcss: ^8.4.16
     tailwindcss: ^3.1.8
   languageName: unknown
@@ -3277,6 +3278,19 @@ __metadata:
   peerDependencies:
     tailwindcss: ">=3.0.0 || >= 3.0.0-alpha.1"
   checksum: 3c4df23491d14b37d8cef88d0f3df80f92b684b801d59c23d600773a4ccac11353a555ca36bea68ae4a82134f9c030d1353c05890a5f0085c1c40c649f806640
+  languageName: node
+  linkType: hard
+
+"@tailwindcss/typography@npm:^0.5.4":
+  version: 0.5.4
+  resolution: "@tailwindcss/typography@npm:0.5.4"
+  dependencies:
+    lodash.castarray: ^4.4.0
+    lodash.isplainobject: ^4.0.6
+    lodash.merge: ^4.6.2
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 016f27266e07fd9966ab785c4182e5ad97c06a2198ff8df739cac90a544ee9c7ac2ac968a4fe9280a1378c3ac8943a315a9f09e70085f21f2839ebc080c88fd8
   languageName: node
   linkType: hard
 
@@ -8207,6 +8221,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.castarray@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "lodash.castarray@npm:4.4.0"
+  checksum: fca8c7047e0ae2738b0b2503fb00157ae0ff6d8a1b716f87ed715b22560e09de438c75b65e01a7e44ceb41c5b31dce2eb576e46db04beb9c699c498e03cbd00f
+  languageName: node
+  linkType: hard
+
 "lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
@@ -8218,6 +8239,13 @@ __metadata:
   version: 4.4.0
   resolution: "lodash.ismatch@npm:4.4.0"
   checksum: a393917578842705c7fc1a30fb80613d1ac42d20b67eb26a2a6004d6d61ee90b419f9eb320508ddcd608e328d91eeaa2651411727eaa9a12534ed6ccb02fc705
+  languageName: node
+  linkType: hard
+
+"lodash.isplainobject@npm:^4.0.6":
+  version: 4.0.6
+  resolution: "lodash.isplainobject@npm:4.0.6"
+  checksum: 29c6351f281e0d9a1d58f1a4c8f4400924b4c79f18dfc4613624d7d54784df07efaff97c1ff2659f3e085ecf4fff493300adc4837553104cef2634110b0d5337
   languageName: node
   linkType: hard
 
