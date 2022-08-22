@@ -22,49 +22,31 @@
   </Button>
 </template>
 
-<script>
+<script setup lang="ts">
 import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import useAddToCart from '#ioc/services/useAddToCart'
-import { defineComponent } from 'vue'
+import injectProduct from '#ioc/composables/injectProduct'
 
-export default defineComponent({
-  components: {
-    Button,
-  },
+import { ref, computed } from 'vue'
 
-  inject: ['$Cart', '$Product'],
+const product = injectProduct()
 
-  setup() {
-    const addToCart = useAddToCart()
-    const { t } = useI18n()
+const addToCart = useAddToCart()
+const { t } = useI18n()
+const isLoading = ref(false)
+const isProductAdded = ref(false)
 
-    return {
-      addToCart,
-      t,
-    }
-  },
-
-  data: () => ({
-    isLoading: false,
-    isProductAdded: false,
-  }),
-
-  computed: {
-    text() {
-      if (this.isLoading) return this.t('Adding...')
-      if (this.isProductAdded) return this.t('Added')
-      return this.t('Add to cart')
-    },
-  },
-
-  methods: {
-    async onAddToCart() {
-      await this.addToCart(this.$Product, { quantity: 1 })
-      this.isProductAdded = true
-    },
-  },
+const text = computed(() => {
+  if (isLoading.value) return t('Adding...')
+  if (isProductAdded.value) return t('Added')
+  return t('Add to cart')
 })
+
+const onAddToCart = async () => {
+  await addToCart(product, { quantity: 1 })
+  isProductAdded.value = true
+}
 </script>
 
 <i18n lang="yaml">

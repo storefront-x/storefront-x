@@ -8,10 +8,16 @@ export default () => {
   return async (): Promise<{
     items: ReturnType<typeof toWishlistItem>[]
   }> => {
-    const response = await shopware.post(`/customer/wishlist`)
+    try {
+      const response = await shopware.post(`/customer/wishlist`)
 
-    return {
-      items: response.products?.elements?.map(toWishlistItem) ?? [],
+      return {
+        items: response?.products?.elements?.map(toWishlistItem) ?? [],
+      }
+    } catch (error) {
+      return {
+        items: [],
+      }
     }
   }
 }
