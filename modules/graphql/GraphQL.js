@@ -188,23 +188,12 @@ export class Request extends Gql {
   constructor(arg) {
     super()
 
-    this._ignoredErrors = []
-
     this._variables = {}
     this._bindings = {}
 
     if (isObject(arg)) {
       this.fields(arg)
     }
-  }
-
-  /**
-   * @param {any[]} errors
-   */
-  ignoresErrors(errors) {
-    this._ignoredErrors = errors
-
-    return this
   }
 
   /**
