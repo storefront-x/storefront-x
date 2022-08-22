@@ -4,7 +4,7 @@ import { computed, reactive } from 'vue'
 export default () => {
   const cartStore = useCartStore()
 
-  const items = computed(() => cartStore.items)
+  const items = computed(() => cartStore.cart?.items ?? [])
 
   const itemsTotalQuantity = computed(() => {
     let itemsTotalQuantity = 0
@@ -16,7 +16,7 @@ export default () => {
     return itemsTotalQuantity
   })
 
-  const prices = computed(() => cartStore.prices)
+  const prices = computed(() => cartStore.cart?.prices)
 
   return reactive({
     items,

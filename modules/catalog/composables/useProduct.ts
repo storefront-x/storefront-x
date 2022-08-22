@@ -26,6 +26,10 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
 
   const available = computed(() => product.value.available)
 
+  const images = computed(() => product.value.images)
+
+  const meta = computed(() => product.value.meta)
+
   const isOnSale = computed(() => finalPrice.value < regularPrice.value)
 
   return reactive({
@@ -42,5 +46,7 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
     breadcrumbs,
     available,
     isOnSale,
+    images,
+    meta,
   })
 }
