@@ -4,7 +4,15 @@
       <h2 class="sr-only">{{ t('Checkout') }}</h2>
 
       <div v-if="cart.items.length" class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
-        <OrderSummary />
+        <OrderSummary class="lg:hidden mb-10" />
+
+        <div>
+          <ShippingMethodSelection />
+
+          <PaymentMethodSelection />
+        </div>
+
+        <OrderSummary bottom class="mt-10 lg:mt-0" />
       </div>
 
       <Heading v-else :level="3" class="text-center">
@@ -19,6 +27,8 @@ import Heading from '#ioc/atoms/Heading'
 import useCart from '#ioc/composables/useCart'
 import useI18n from '#ioc/composables/useI18n'
 import OrderSummary from '#ioc/organisms/OrderSummary'
+import ShippingMethodSelection from '#ioc/organisms/ShippingMethodSelection'
+import PaymentMethodSelection from '#ioc/organisms/PaymentMethodSelection'
 
 const { t } = useI18n()
 const cart = useCart()

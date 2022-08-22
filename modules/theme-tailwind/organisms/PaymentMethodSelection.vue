@@ -1,0 +1,78 @@
+<template>
+  <div class="mt-10 border-t border-gray-200 pt-10">
+    <fieldset>
+      <legend class="text-lg font-medium text-gray-900">
+        {{ t('Payment method') }}
+      </legend>
+
+      <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+        <label
+          v-for="paymentMethod in payment.paymentMethods"
+          :key="paymentMethod.code"
+          class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none"
+          :class="isSelected(paymentMethod) ? 'border-transparent' : 'border-gray-300'"
+          :data-payment-method="paymentMethod.code"
+          @click="onSelect(paymentMethod)"
+        >
+          <input
+            type="radio"
+            name="delivery-method"
+            value="Standard"
+            class="sr-only"
+            aria-labelledby="delivery-method-0-label"
+            aria-describedby="delivery-method-0-description-0 delivery-method-0-description-1"
+          />
+
+          <div class="flex flex-col flex-1">
+            <span id="delivery-method-0-label" class="block text-sm font-medium text-gray-900">
+              {{ paymentMethod.title }}
+            </span>
+          </div>
+
+          <img
+            :src="`/icons/payment/${paymentMethod.code}.svg`"
+            class="absolute right-0 mr-12 -mt-1"
+            alt="Payment icon"
+          />
+
+          <SolidCheckCircle v-if="isSelected(paymentMethod)" class="text-primary-600" />
+
+          <div
+            class="absolute -inset-px rounded-lg border-2 pointer-events-none"
+            :class="isSelected(paymentMethod) ? 'border-primary-500' : 'border-transparent'"
+            aria-hidden="true"
+          />
+        </label>
+      </div>
+    </fieldset>
+  </div>
+</template>
+
+<script setup lang="ts">
+import useI18n from '#ioc/composables/useI18n'
+import usePayment from '#ioc/composables/usePayment'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import SolidCheckCircle from '#ioc/icons/SolidCheckCircle'
+import useSelectPaymentMethod from '#ioc/services/useSelectPaymentMethod'
+
+defineProps({
+  isOpen: Boolean,
+})
+
+const { t } = useI18n()
+const payment = usePayment()
+const selectPaymentMethod = useSelectPaymentMethod()
+const showErrorNotification = useShowErrorNotification()
+
+const isSelected = (paymentMethod: any) => {
+  return payment.currentPaymentMethod?.id === paymentMethod.id
+}
+
+const onSelect = async (paymentMethod: any) => {
+  try {
+    await selectPaymentMethod(paymentMethod)
+  } catch (e) {
+    showErrorNotification(e)
+  }
+}
+</script>
