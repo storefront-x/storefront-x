@@ -150,25 +150,25 @@
                   <template #default>
                     <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
                       <li class="text-sm">
-                        <Link :to="t('sign-in')" color="gray">
+                        <Link :to="t('/sign-in')" color="gray">
                           {{ t('Sign in') }}
                         </Link>
                       </li>
 
                       <li class="text-sm">
-                        <Link :to="t('sign-up')" color="gray">
+                        <Link :to="t('/sign-up')" color="gray">
                           {{ t('Sign up') }}
                         </Link>
                       </li>
 
                       <li class="text-sm">
-                        <Link :to="t('account')" color="gray">
+                        <Link :to="t('/account')" color="gray">
                           {{ t('Settings') }}
                         </Link>
                       </li>
 
                       <li class="text-sm">
-                        <Link :to="t('account/orders')" color="gray">
+                        <Link :to="t('/account/orders')" color="gray">
                           {{ t('My orders') }}
                         </Link>
                       </li>
@@ -239,7 +239,7 @@ cs-CZ:
   privacy-policy: ochrana-osobnich-udaju
   cookies-policy: zasady-souboru-cookies
   sign-up: registrovat
-  sign-in: prihlasit
+  /sign-in: prihlasit
   account: account
   account/orders: ucet/objednavky
 </i18n>

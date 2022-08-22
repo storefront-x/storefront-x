@@ -9,9 +9,9 @@ export default () => {
     items: ReturnType<typeof toWishlistItem>[]
   }> => {
     const response = await shopware.post(`/customer/wishlist`)
-
+    console.log('wishlist repository', response)
     return {
-      items: response.products?.elements?.map(toWishlistItem) ?? [],
+      items: response?.products?.elements?.map(toWishlistItem) ?? [],
     }
   }
 }
