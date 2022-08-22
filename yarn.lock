@@ -2973,6 +2973,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/brands-magento@workspace:modules/brands-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/brands-magento@workspace:modules/brands-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/brands@workspace:modules/brands":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/brands@workspace:modules/brands"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/cart-magento@workspace:modules/cart-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/cart-magento@workspace:modules/cart-magento"

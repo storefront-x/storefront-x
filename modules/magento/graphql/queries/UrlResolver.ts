@@ -10,6 +10,7 @@ export default () =>
           url: '$url',
         })
         .fields({
+          id: field(),
           entity_uid: field(),
           type: field(),
           redirectCode: field(),
