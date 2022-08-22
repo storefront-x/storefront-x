@@ -27,11 +27,9 @@ import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import useAddToCart from '#ioc/services/useAddToCart'
 import injectProduct from '#ioc/composables/injectProduct'
-
 import { ref, computed } from 'vue'
 
 const product = injectProduct()
-
 const addToCart = useAddToCart()
 const { t } = useI18n()
 const isLoading = ref(false)
