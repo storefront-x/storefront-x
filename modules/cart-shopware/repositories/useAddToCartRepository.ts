@@ -1,8 +1,7 @@
 import useShopware from '#ioc/composables/useShopware'
 import useToProduct from '#ioc/mappers/useToProduct'
-import useToCartItem from '#ioc/mappers/useToCartItem'
+import useToCart from '#ioc/mappers/useToCart'
 import useCartStore from '#ioc/stores/useCartStore'
-import useToCartPrices from '#ioc/mappers/useToCartPrices'
 
 interface Options {
   quantity?: number
@@ -12,19 +11,17 @@ export default () => {
   const shopware = useShopware()
   const cartStore = useCartStore()
   const toProduct = useToProduct()
-  const toCartItem = useToCartItem()
-  const toCartPrices = useToCartPrices()
+  const toCart = useToCart()
 
   return async (
     product: ReturnType<typeof toProduct>,
     options: Options = {},
   ): Promise<{
-    items: ReturnType<typeof toCartItem>[]
-    prices: ReturnType<typeof toCartPrices>
+    cart: ReturnType<typeof toCart>
   }> => {
     const quantity = options.quantity ?? 1
 
-    for (const item of cartStore.items) {
+    for (const item of cartStore.cart?.items ?? []) {
       if (item.product.id === product.id) {
         const response = await shopware.patch('/checkout/cart/line-item', {
           items: [
@@ -36,8 +33,7 @@ export default () => {
         })
 
         return {
-          items: response.lineItems.map(toCartItem),
-          prices: toCartPrices(response.price),
+          cart: toCart(response),
         }
       }
     }
@@ -53,8 +49,7 @@ export default () => {
     })
 
     return {
-      items: response.lineItems.map(toCartItem),
-      prices: toCartPrices(response.price),
+      cart: toCart(response),
     }
   }
 }

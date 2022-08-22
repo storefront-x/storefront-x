@@ -1,8 +1,9 @@
 <template>
   <Container class="mt-2 mb-8 md:mt-3 md:mb-10">
     <Breadcrumbs :breadcrumbs="product.breadcrumbs" />
-
     <ProductOverview />
+    <ProductDetailTabs />
+
     <section v-if="crossSellProducts?.products.length" class="pt-8 sm:px-0">
       <Heading :level="2">{{ t('Related products') }}</Heading>
 
@@ -15,6 +16,7 @@
 import Container from '#ioc/atoms/Container'
 import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import ProductOverview from '#ioc/organisms/ProductOverview'
+import ProductDetailTabs from '#ioc/organisms/ProductDetailTabs'
 import injectProduct from '#ioc/composables/injectProduct'
 import useHead from '#ioc/composables/useHead'
 import ProductCarousel from '#ioc/organisms/ProductCarousel'
@@ -22,6 +24,7 @@ import Heading from '#ioc/atoms/Heading'
 import useI18n from '#ioc/composables/useI18n'
 import useGetCrossSelling from '#ioc/services/useGetCrossSellingProducts'
 import useAsyncData from '#ioc/composables/useAsyncData'
+import { computed } from 'vue'
 
 const { t } = useI18n()
 const product = injectProduct()
@@ -29,7 +32,13 @@ const getCrossSelling = useGetCrossSelling()
 const { data: crossSellProducts } = await useAsyncData('GetCrossSellProducts', () => getCrossSelling(product.id))
 
 useHead({
-  title: product.name,
+  title: computed(() => product.name),
+  meta: [
+    {
+      name: 'description',
+      content: computed(() => product.meta.description),
+    },
+  ],
 })
 </script>
 

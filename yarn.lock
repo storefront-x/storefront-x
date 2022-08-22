@@ -2974,6 +2974,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/cart-magento@workspace:modules/cart-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/cart-magento@workspace:modules/cart-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/cart-shopware@workspace:modules/cart-shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/cart-shopware@workspace:modules/cart-shopware"
