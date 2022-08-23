@@ -10,7 +10,7 @@ export default () => {
     const { data } = await magento.graphql(CustomerCart())
 
     return {
-      id: data?.customerCart,
+      id: data.customerCart.id,
     }
   }
 }
