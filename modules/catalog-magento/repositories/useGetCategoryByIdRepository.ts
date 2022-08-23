@@ -52,8 +52,8 @@ export default () => {
           }),
       )
 
-      fillAggregationsWithPossibleOptions(aggregations.aggregations, rest, filterWithCategoryId)
-      fillAggregationsWithEmptySelectedOptions(aggregations.aggregations, rest, filterWithCategoryId)
+      fillAggregationsWithPossibleOptions(aggregations, rest, filterWithCategoryId)
+      fillAggregationsWithEmptySelectedOptions(aggregations, rest, filterWithCategoryId)
 
       return {
         category: toCategory(categoryList[0]) ?? [],

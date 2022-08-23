@@ -45,7 +45,7 @@ export default () => {
         properties: getProperties(),
       }),
     ])
-
+    // console.log('these are aggregations', productListing, productListing.aggregations)
     return {
       category: toCategory(category),
       products: productListing.elements.map(toProduct) ?? [],

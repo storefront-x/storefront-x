@@ -20,21 +20,19 @@ export default defineStore('wishlist', {
 
       return new Promise<void>((resolve) => {
         customerStore.$subscribe(async (_, state) => {
+          if (state.customer === undefined) return
+
           try {
-            if (!state?.customer) return
-
-            await mergeWishlist()
-
-            const wishlist = await getWishlist()
-
-            if (!wishlist) return
-
-            this.$patch(wishlist)
-
-            resolve()
+            if (state.customer !== null) await mergeWishlist()
           } catch (e) {
             console.error(e)
           }
+
+          const wishlist = await getWishlist()
+
+          this.$patch(wishlist)
+
+          resolve()
         })
       })
     },
