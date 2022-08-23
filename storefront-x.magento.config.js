@@ -19,6 +19,7 @@ export default {
     '@storefront-x/checkout',
     '@storefront-x/multicurrency',
     '@storefront-x/cms',
+    '@storefront-x/brands',
 
     '@storefront-x/magento',
     '@storefront-x/catalog-magento',
@@ -27,6 +28,7 @@ export default {
     '@storefront-x/cart-magento',
     '@storefront-x/multicurrency-magento',
     '@storefront-x/cms-magento',
+    '@storefront-x/brands-magento',
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
