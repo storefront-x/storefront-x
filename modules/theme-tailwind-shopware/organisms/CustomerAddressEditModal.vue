@@ -97,7 +97,7 @@ const onSubmit = (data: any) => {
 }
 
 const onDelete = () => {
-  emit('delete', props.customerAddress.id)
+  emit('delete', props.customerAddress)
 }
 </script>
 

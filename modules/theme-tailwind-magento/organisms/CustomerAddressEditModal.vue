@@ -19,13 +19,13 @@
         validators="required"
       />
 
-      <FormInput :label="t('Telephone')" name="telephone" autocomplete="tel" class="mt-4" validators="required" />
+      <FormInput :label="t('Telephone')" name="phoneNumber" autocomplete="tel" class="mt-4" validators="required" />
 
       <FormInput :label="t('Street')" name="street" autocomplete="street-address" class="mt-4" validators="required" />
 
       <FormInput :label="t('City')" name="city" autocomplete="address-level2" class="mt-4" validators="required" />
 
-      <FormInput :label="t('Postcode')" name="postcode" autocomplete="postal-code" class="mt-4" validators="required" />
+      <FormInput :label="t('Postcode')" name="zipcode" autocomplete="postal-code" class="mt-4" validators="required" />
 
       <FormSelect
         v-model="selectedCountry"
@@ -100,9 +100,9 @@ const regionsForSelectedCountry = computed(() => {
 
 const onSubmit = (data: any) => {
   if (props.customerAddress) {
-    emit('update', { id: props.customerAddress.id, ...data })
+    emit('update', { id: props.customerAddress.id, postcode: data.zipcode, telephone: data.phoneNumber, ...data })
   } else {
-    emit('create', data)
+    emit('create', { postcode: data.zipcode, telephone: data.phoneNumber, ...data })
   }
 }
 

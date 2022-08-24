@@ -86,9 +86,9 @@ const onClose = () => {
   isCustomerEditModalOpen.value = false
 }
 
-const onUpdate = async (data: any) => {
+const onUpdate = async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
   try {
-    await updateCustomerAddress(data)
+    await updateCustomerAddress(customerAddress)
     emit('refresh')
     onClose()
   } catch (error) {
@@ -97,9 +97,9 @@ const onUpdate = async (data: any) => {
   }
 }
 
-const onCreate = async (data: any) => {
+const onCreate = async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
   try {
-    await createCustomerAddress(data)
+    await createCustomerAddress(customerAddress)
     emit('refresh')
     onClose()
   } catch (error) {
@@ -108,11 +108,10 @@ const onCreate = async (data: any) => {
   }
 }
 
-const onDelete = async (id: string) => {
+const onDelete = async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
   try {
-    await deleteCustomerAddress(id)
+    await deleteCustomerAddress(customerAddress)
     emit('refresh')
-    onClose()
     onClose()
   } catch (error) {
     emit('refresh')
