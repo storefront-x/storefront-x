@@ -27,14 +27,14 @@
         {{ t('Continue to checkout') }}
       </Button>
     </div>
-    <div v-if="crossSellProducts?.products?.length" class="mt-2">
+    <div v-if="product?.crossSell?.length" class="mt-2">
       <h5 class="w-100 font-medium text-lg text-gray-900 text-center my-4">
         {{ t('Other people also like to buy') }}:
       </h5>
 
       <ul class="divide-y divide-gray-200 text-sm font-medium text-gray-900">
         <ProductProvider
-          v-for="crossSellProduct in crossSellProducts?.products || []"
+          v-for="crossSellProduct in product?.crossSell || []"
           :key="crossSellProduct.sku"
           :product="crossSellProduct"
         >
@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import useGetCrossSelling from '#ioc/services/useGetCrossSellingProducts'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import Modal from '#ioc/atoms/Modal'
 import useI18n from '#ioc/composables/useI18n'
@@ -66,13 +65,11 @@ export default defineComponent({
   emits: ['close'],
 
   setup() {
-    const getCrossSelling = useGetCrossSelling()
     const { t } = useI18n()
     const product = inject('$Product')
     const localePath = useLocalePath()
-
+    console.log('the product', product)
     return {
-      getCrossSelling,
       t,
       localePath,
       product,

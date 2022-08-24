@@ -4,10 +4,10 @@
     <ProductOverview />
     <ProductDetailTabs />
 
-    <section v-if="product?.crossSelling?.length" class="pt-8 sm:px-0">
+    <section v-if="product?.crossSell?.length" class="pt-8 sm:px-0">
       <Heading :level="2">{{ t('Related products') }}</Heading>
 
-      <ProductCarousel class="mt-8" :products="product?.crossSelling" />
+      <ProductCarousel class="mt-8" :products="product?.crossSell" />
     </section>
   </Container>
 </template>
