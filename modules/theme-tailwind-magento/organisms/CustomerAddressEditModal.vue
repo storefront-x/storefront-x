@@ -3,18 +3,6 @@
     <Heading :level="3">{{ t(customerAddress ? 'Edit address' : 'New address') }}</Heading>
 
     <SfxForm :value="customerAddress" @submit="onSubmit">
-      <FormSelect
-        :label="t('Salutation')"
-        name="salutationId"
-        autocomplete="address-level2"
-        class="mt-4"
-        validators="required"
-      >
-        <option v-for="salutation in salutationData?.salutations" :key="salutation.id" :value="salutation.id">
-          {{ salutation.displayName }}
-        </option>
-      </FormSelect>
-
       <FormInput
         :label="t('First name')"
         name="firstName"
@@ -31,24 +19,39 @@
         validators="required"
       />
 
-      <FormInput :label="t('Telephone')" name="phoneNumber" autocomplete="tel" class="mt-4" validators="required" />
+      <FormInput :label="t('Telephone')" name="telephone" autocomplete="tel" class="mt-4" validators="required" />
 
       <FormInput :label="t('Street')" name="street" autocomplete="street-address" class="mt-4" validators="required" />
 
       <FormInput :label="t('City')" name="city" autocomplete="address-level2" class="mt-4" validators="required" />
 
-      <FormInput :label="t('Postcode')" name="zipcode" autocomplete="postal-code" class="mt-4" validators="required" />
+      <FormInput :label="t('Postcode')" name="postcode" autocomplete="postal-code" class="mt-4" validators="required" />
 
       <FormSelect
+        v-model="selectedCountry"
         :label="t('Country')"
-        name="countryId"
+        name="countryCode"
         autocomplete="address-level2"
         class="mt-4"
         validators="required"
       >
         <option value="">{{ t('Select a country') }}</option>
-        <option v-for="country in countryData?.countries" :key="country.id" :value="country.id">
-          {{ country.name }}
+        <option v-for="country in countries" :key="country.id" :value="country.id">
+          {{ country.fullNameEnglish }}
+        </option>
+      </FormSelect>
+
+      <FormSelect
+        v-if="regionsForSelectedCountry.length > 0"
+        :label="t('Region')"
+        name="regionId"
+        autocomplete="address-level2"
+        class="mt-4"
+        validators="required"
+      >
+        <option value="">{{ t('Select a region') }}</option>
+        <option v-for="region in regionsForSelectedCountry" :key="region.id" :value="region.id">
+          {{ region.name }}
         </option>
       </FormSelect>
 
@@ -60,66 +63,52 @@
   </Modal>
 </template>
 
-<script>
+<script setup lang="ts">
 import Modal from '#ioc/atoms/Modal'
 import Heading from '#ioc/atoms/Heading'
 import Button from '#ioc/atoms/Button'
 import FormInput from '#ioc/molecules/FormInput'
 import FormSelect from '#ioc/molecules/FormSelect'
 import useI18n from '#ioc/composables/useI18n'
-import useGetCountries from '#ioc/services/useGetCountries'
-import { defineComponent } from 'vue'
 import SfxForm from '#ioc/components/SfxForm'
-import useGetSalutations from '#ioc/services/useGetSalutations'
-import useAsyncData from '#ioc/composables/useAsyncData'
+import { computed, PropType, ref } from 'vue'
+import useToCustomerAddress from '#ioc/mappers/useToCustomerAddress'
+import useGetAvailableCountries from '#ioc/services/useGetAvailableCountries'
 
-export default defineComponent({
-  components: {
-    FormSelect,
-    Modal,
-    Heading,
-    Button,
-    FormInput,
-    SfxForm,
-  },
-  props: {
-    customerAddress: {
-      type: Object,
-      default: null,
-    },
-  },
-  emits: ['update', 'create', 'delete', 'close'],
-  setup() {
-    const getCountries = useGetCountries()
-    const { t } = useI18n()
-    const getSalutations = useGetSalutations()
+const { t } = useI18n()
+const getAvailableCountries = useGetAvailableCountries()
 
-    const { data: countryData } = useAsyncData('countries', () => getCountries())
-    const { data: salutationData } = useAsyncData('salutations', () => getSalutations())
-
-    return {
-      t,
-      getCountries,
-      getSalutations,
-      countryData,
-      salutationData,
-    }
-  },
-
-  methods: {
-    onSubmit(data) {
-      if (this.customerAddress) {
-        this.$emit('update', { id: this.customerAddress.id, ...data })
-      } else {
-        this.$emit('create', data)
-      }
-    },
-
-    onDelete() {
-      this.$emit('delete', this.customerAddress.id)
-    },
+const props = defineProps({
+  customerAddress: {
+    type: Object as PropType<ReturnType<ReturnType<typeof useToCustomerAddress>>>,
+    default: null,
   },
 })
+
+const emit = defineEmits(['update', 'create', 'delete', 'close'])
+
+const { countryList: countries } = await getAvailableCountries()
+const selectedCountry = ref(props.customerAddress?.countryCode ?? '')
+
+const regionsForSelectedCountry = computed(() => {
+  return (
+    countries?.find((country: any) => {
+      return country.id === selectedCountry.value
+    })?.availableRegions ?? []
+  )
+})
+
+const onSubmit = (data: any) => {
+  if (props.customerAddress) {
+    emit('update', { id: props.customerAddress.id, ...data })
+  } else {
+    emit('create', data)
+  }
+}
+
+const onDelete = () => {
+  emit('delete', props.customerAddress)
+}
 </script>
 
 <i18n lang="yaml">

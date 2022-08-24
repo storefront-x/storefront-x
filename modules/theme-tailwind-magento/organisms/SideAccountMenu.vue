@@ -68,21 +68,38 @@
           </span>
         </RouterLink>
 
-        <Link
+        <RouterLink
+          v-slot="{ isExactActive }"
+          :to="localePath('account/downloadable')"
           class="group border-l-4 px-3 py-2 flex items-center text-sm font-medium"
           exact-active-class="bg-primary-50 border-primary-500 text-primary-700 hover:bg-primary-50 hover:text-primary-700"
           exact-inactive-class="border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"
-          href="javascript:void(0)"
-          @click="onLogout"
         >
-          <OutlineLogoutIcon
-            aria-hidden="true"
+          <OutlineHomeIcon
             class="flex-shrink-0 -ml-1 mr-3 h-6 w-6"
             :class="
               isExactActive
                 ? 'text-primary-500 group-hover:text-primary-500'
                 : 'text-gray-400 group-hover:text-gray-500'
             "
+            aria-hidden="true"
+          />
+
+          <span class="truncate">
+            {{ t('Downloadable products') }}
+          </span>
+        </RouterLink>
+
+        <Link
+          class="group border-l-4 px-3 py-2 flex items-center text-sm font-medium"
+          exact-inactive-class="border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+          href="javascript:void(0)"
+          color="gray"
+          @click="onLogout"
+        >
+          <OutlineLogoutIcon
+            aria-hidden="true"
+            class="flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500"
           />
 
           <span class="truncate">
@@ -123,5 +140,6 @@ cs-CZ:
   Account: Účet
   Previous orders: Předchozí objednávky
   Addresses: Adresy
+  Downloadable products: Stahovatelné produkty
   Logout: Odhlásit se
 </i18n>

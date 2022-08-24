@@ -24,13 +24,15 @@ import Heading from '#ioc/atoms/Heading'
 import CustomerOrder from '#ioc/molecules/CustomerOrder'
 import useI18n from '#ioc/composables/useI18n'
 import CustomerOrderProvider from '#ioc/providers/CustomerOrderProvider'
+import { PropType } from 'vue'
+import useToOrder from '#ioc/mappers/useToOrder'
 
 const { t } = useI18n()
 
 defineProps({
   customerOrders: {
-    type: Array,
-    default: () => [],
+    type: Object as PropType<ReturnType<ReturnType<typeof useToOrder>>>,
+    default: () => ({}),
   },
 })
 </script>
