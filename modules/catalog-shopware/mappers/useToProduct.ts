@@ -2,15 +2,18 @@ import useToBreadcrumb from '#ioc/mappers/useToBreadcrumb'
 import useToMoney from '#ioc/mappers/useToMoney'
 
 export default () => {
+  const toProduct = _useToProduct()
+
   return (data: any) => ({
-    ...getProduct(data),
-    crossSelling: data?.crossSelling.map((item: any) => getProduct(item)),
+    ...toProduct(data),
+    crossSelling: ((data.crossSelling ?? []) as any[]).map(toProduct),
   })
 }
 
-const getProduct = (data: any) => {
+const _useToProduct = () => {
   const toMoney = useToMoney()
-  return {
+
+  return (data: any) => ({
     id: data?.id as string,
     sku: data?.productNumber as string,
     name: (data?.name ?? data?.productNumber) as string,
@@ -31,7 +34,7 @@ const getProduct = (data: any) => {
     },
     breadcrumbs: getBreadcrumbs(data),
     available: true,
-  }
+  })
 }
 
 const getBreadcrumbs = (data: any) => {
