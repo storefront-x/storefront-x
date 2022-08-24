@@ -10,10 +10,14 @@ export default () => {
   ): Promise<{
     product: ReturnType<typeof toProduct>
   }> => {
-    const response = await shopware.post(`/product/${id}`)
+    const [product, crossSelling] = await Promise.all([
+      shopware.post(`/product/${id}`),
+      shopware.post(`/product/${id}/cross-selling`),
+    ])
+    const productWithCrossSelling = { ...(product?.product ?? {}), crossSelling: crossSelling[0].products ?? {} }
 
     return {
-      product: toProduct(response.product),
+      product: toProduct(productWithCrossSelling),
     }
   }
 }

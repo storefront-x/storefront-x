@@ -4,10 +4,10 @@
     <ProductOverview />
     <ProductDetailTabs />
 
-    <section v-if="crossSellProducts?.products.length" class="pt-8 sm:px-0">
+    <section v-if="product?.crossSelling?.length" class="pt-8 sm:px-0">
       <Heading :level="2">{{ t('Related products') }}</Heading>
 
-      <ProductCarousel class="mt-8" :products="crossSellProducts?.products" />
+      <ProductCarousel class="mt-8" :products="product?.crossSelling" />
     </section>
   </Container>
 </template>
@@ -22,15 +22,12 @@ import useHead from '#ioc/composables/useHead'
 import ProductCarousel from '#ioc/organisms/ProductCarousel'
 import Heading from '#ioc/atoms/Heading'
 import useI18n from '#ioc/composables/useI18n'
-import useGetCrossSelling from '#ioc/services/useGetCrossSellingProducts'
-import useAsyncData from '#ioc/composables/useAsyncData'
 import { computed } from 'vue'
 
 const { t } = useI18n()
 const product = injectProduct()
-const getCrossSelling = useGetCrossSelling()
-const { data: crossSellProducts } = await useAsyncData('GetCrossSellProducts', () => getCrossSelling(product.id))
 
+console.log('this is my product', product)
 useHead({
   title: computed(() => product.name),
   meta: [
