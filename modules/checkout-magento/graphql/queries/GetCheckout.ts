@@ -1,4 +1,5 @@
 import field from '#ioc/graphql/field'
+import Checkout from '#ioc/graphql/fragments/Checkout'
 import query from '#ioc/graphql/query'
 
 export default () =>
@@ -13,9 +14,6 @@ export default () =>
           cart_id: '$cartId',
         })
         .fields({
-          selected_payment_method: field({
-            code: field(),
-            title: field(),
-          }),
+          ...Checkout(),
         }),
     })

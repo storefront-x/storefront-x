@@ -12,7 +12,7 @@
           class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none"
           :class="isSelected(paymentMethod) ? 'border-transparent' : 'border-gray-300'"
           :data-payment-method="paymentMethod.code"
-          @click="onSelect(paymentMethod)"
+          @click.prevent="onSelect(paymentMethod)"
         >
           <input
             type="radio"

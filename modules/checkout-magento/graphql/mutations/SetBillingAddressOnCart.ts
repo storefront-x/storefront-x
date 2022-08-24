@@ -6,14 +6,18 @@ export default () =>
   mutation()
     .variables({
       $cartId: 'String!',
-      $code: 'String!',
+      $address: 'CartAddressInput',
+      $sameAsShipping: 'Boolean',
     })
     .fields({
-      setPaymentMethodOnCart: field()
+      setBillingAddressOnCart: field()
         .args({
           input: {
             cart_id: '$cartId',
-            payment_method: { code: '$code' },
+            billing_address: {
+              address: '$address',
+              same_as_shipping: '$sameAsShipping',
+            },
           },
         })
         .fields({

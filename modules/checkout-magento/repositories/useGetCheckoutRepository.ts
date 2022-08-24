@@ -1,20 +1,14 @@
 import useMagento from '#ioc/composables/useMagento'
-import GetPaymentMethods from '#ioc/graphql/queries/GetPaymentMethods'
-import useToPaymentMethod from '#ioc/mappers/useToPaymentMethod'
+import GetCheckout from '#ioc/graphql/queries/GetCheckout'
+import useToCheckout from '#ioc/mappers/useToCheckout'
 
 export default () => {
   const magento = useMagento()
-  const toPaymentMethod = useToPaymentMethod()
+  const toCheckout = useToCheckout()
 
-  return async (
-    cartId: string,
-  ): Promise<{
-    paymentMethods: ReturnType<typeof toPaymentMethod>[]
-  }> => {
-    const { data } = await magento.graphql(GetPaymentMethods().with({ cartId }))
+  return async (cartId: string) => {
+    const { data } = await magento.graphql(GetCheckout().with({ cartId }))
 
-    return {
-      paymentMethods: ((data.cart.available_payment_methods as any[]) ?? []).map(toPaymentMethod),
-    }
+    return toCheckout(data)
   }
 }

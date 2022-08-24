@@ -29,9 +29,28 @@ import useI18n from '#ioc/composables/useI18n'
 import OrderSummary from '#ioc/organisms/OrderSummary'
 import ShippingMethodSelection from '#ioc/organisms/ShippingMethodSelection'
 import PaymentMethodSelection from '#ioc/organisms/PaymentMethodSelection'
+import useSetPaymentAddress from '#ioc/services/useSetPaymentAddress'
+import { onMounted } from 'vue'
+import usePayment from '#ioc/composables/usePayment'
 
 const { t } = useI18n()
 const cart = useCart()
+const payment = usePayment()
+const setPaymentAddress = useSetPaymentAddress()
+
+onMounted(async () => {
+  if (payment.currentPaymentMethod) return
+
+  await setPaymentAddress({
+    city: 'DUMMYDATA',
+    country_code: 'CZ',
+    postcode: 'DUMMYDATA',
+    firstname: 'DUMMYDATA',
+    lastname: 'DUMMYDATA',
+    street: 'DUMMYDATA',
+    telephone: 'DUMMYDATA',
+  })
+})
 </script>
 
 <i18n lang="yaml">
