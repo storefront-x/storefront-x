@@ -27,7 +27,6 @@ import { computed } from 'vue'
 const { t } = useI18n()
 const product = injectProduct()
 
-console.log('this is my product', product)
 useHead({
   title: computed(() => product.name),
   meta: [
