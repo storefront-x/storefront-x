@@ -14,26 +14,13 @@
           :data-payment-method="paymentMethod.code"
           @click.prevent="onSelect(paymentMethod)"
         >
-          <input
-            type="radio"
-            name="delivery-method"
-            value="Standard"
-            class="sr-only"
-            aria-labelledby="delivery-method-0-label"
-            aria-describedby="delivery-method-0-description-0 delivery-method-0-description-1"
-          />
-
           <div class="flex flex-col flex-1">
-            <span id="delivery-method-0-label" class="block text-sm font-medium text-gray-900">
+            <span class="block text-sm font-medium text-gray-900">
               {{ paymentMethod.title }}
             </span>
           </div>
 
-          <img
-            :src="`/icons/payment/${paymentMethod.code}.svg`"
-            class="absolute right-0 mr-12 -mt-1"
-            alt="Payment icon"
-          />
+          <img :src="`/icons/payment/${paymentMethod.code}.svg`" class="absolute right-0 mr-12" alt="Payment icon" />
 
           <SolidCheckCircle v-if="isSelected(paymentMethod)" class="text-primary-600" />
 

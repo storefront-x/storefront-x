@@ -12,6 +12,10 @@ export default class Public extends CopyingConcept {
     return true
   }
 
+  get removesDestinationDirectory() {
+    return false
+  }
+
   dst() {
     if (this.core instanceof Build) {
       return path.join(this.core.distDir, 'client')
