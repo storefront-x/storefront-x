@@ -53,7 +53,6 @@ import useI18n from '#ioc/composables/useI18n'
 import Button from '#ioc/atoms/Button'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import CrossSellProduct from '#ioc/molecules/CrossSellProduct'
-import useAsyncData from '#ioc/composables/useAsyncData'
 import { defineComponent, inject } from 'vue'
 
 export default defineComponent({
@@ -71,13 +70,12 @@ export default defineComponent({
     const { t } = useI18n()
     const product = inject('$Product')
     const localePath = useLocalePath()
-    const { data: crossSellProducts } = useAsyncData('GetCrossSellProducts', () => getCrossSelling(product.id))
 
     return {
       getCrossSelling,
-      crossSellProducts,
       t,
       localePath,
+      product,
     }
   },
 })

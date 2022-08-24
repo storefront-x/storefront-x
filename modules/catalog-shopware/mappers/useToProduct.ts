@@ -4,7 +4,7 @@ import useToMoney from '#ioc/mappers/useToMoney'
 export default () => {
   return (data: any) => ({
     ...getProduct(data),
-    crossSelling: data?.crossSelling.map((item: any) => getProduct(item)),
+    crossSell: data?.crossSelling.map((item: any) => getProduct(item)),
   })
 }
 
