@@ -4,6 +4,7 @@
       <div class="flex items-center h-5">
         <input
           :id="prefixedName"
+          v-model="innerValue"
           class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
           :name="name"
           :value="innerValue"

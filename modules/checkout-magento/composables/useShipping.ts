@@ -20,8 +20,11 @@ export default () => {
 
   const currentShippingMethod = computed(() => checkoutStore.currentShippingMethod)
 
+  const shippingAddress = computed(() => checkoutStore.shippingAddress)
+
   return reactive({
     shippingMethods,
     currentShippingMethod,
+    shippingAddress,
   })
 }

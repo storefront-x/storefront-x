@@ -44,6 +44,8 @@ import useRefreshCheckout from '#ioc/services/useRefreshCheckout'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import ContactInfoSelection from '#ioc/organisms/ContactInfoSelection'
 import { onMounted } from 'vue'
+import useAsyncData from '#ioc/composables/useAsyncData'
+import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreements'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -54,6 +56,9 @@ const refreshCheckout = useRefreshCheckout()
 const setContactInformation = useSetContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
+const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
+
+useAsyncData('checkoutAgreements', () => refreshCheckoutAgreements())
 
 if (IS_SERVER) {
   await refreshCheckout()

@@ -1,5 +1,4 @@
 export default () => (data: any) => ({
-  email: data.email as string,
   telephone: data.telephone as string,
   firstName: data.firstname as string,
   lastName: data.lastname as string,
@@ -7,4 +6,5 @@ export default () => (data: any) => ({
   city: data.city as string,
   countryCode: (data.country_code ?? data.country?.code) as string,
   postcode: data.postcode as string,
+  pickupLocationCode: data.pickup_location_code as string,
 })

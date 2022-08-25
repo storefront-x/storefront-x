@@ -31,6 +31,8 @@
           />
         </label>
       </div>
+
+      <SfxShippingMethod export="shipping" />
     </fieldset>
   </div>
 </template>
@@ -41,6 +43,7 @@ import useShipping from '#ioc/composables/useShipping'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useSelectShippingMethod from '#ioc/services/useSelectShippingMethod'
 import SolidCheckCircle from '#ioc/icons/SolidCheckCircle'
+import SfxShippingMethod from '#ioc/components/SfxShippingMethod'
 
 const { t } = useI18n()
 const shipping = useShipping()

@@ -2,6 +2,13 @@
   <div class="mt-10 border-t border-gray-200 pt-10" data-cy="checkout-agreements">
     <h2 class="text-lg font-medium text-gray-900">{{ t('Agreements') }}</h2>
     <Form @submit="onPlaceOrder">
+      <CheckoutAgreement
+        v-for="checkoutAgreement in checkout.agreements"
+        :key="checkoutAgreement.id"
+        :checkout-agreement="checkoutAgreement"
+        class="mt-2"
+      />
+
       <Button
         type="submit"
         color="primary"
@@ -21,10 +28,13 @@ import { ref } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
 import Form from '#ioc/atoms/Form'
 import Button from '#ioc/atoms/Button'
+import useCheckout from '#ioc/composables/useCheckout'
+import CheckoutAgreement from '#ioc/molecules/CheckoutAgreement'
 
 const emit = defineEmits(['place-order'])
 
 const { t } = useI18n()
+const checkout = useCheckout()
 
 const isLoading = ref(false)
 
