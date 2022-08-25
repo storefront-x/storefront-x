@@ -2962,6 +2962,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/base-commerce@workspace:modules/base-commerce"
   dependencies:
+    keen-slider: ^5
     lru-cache: ^7.13.2
     sharp: ^0.30.7
   languageName: unknown
@@ -7981,6 +7982,13 @@ __metadata:
   version: 5.0.3
   resolution: "just-diff@npm:5.0.3"
   checksum: 89e5c3deb0525e8d5f651a0775ca62807d8924e386c3ab58d81ac7392ac10f6c98c677ea6e5578618e483fc88139e7ebde1c4130296e83d802ac3103f7e210cd
+  languageName: node
+  linkType: hard
+
+"keen-slider@npm:^5":
+  version: 5.5.1
+  resolution: "keen-slider@npm:5.5.1"
+  checksum: 478838457739dca7cb238d1183552abe6c84ca36811a3a5d515fc2f57edacbe035557fc0a50b3e13a66257c8432b5bb769ff524511a5d643d83fb381ec90e82f
   languageName: node
   linkType: hard
 
