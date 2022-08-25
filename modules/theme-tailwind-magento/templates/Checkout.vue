@@ -32,36 +32,39 @@ import useI18n from '#ioc/composables/useI18n'
 import OrderSummary from '#ioc/organisms/OrderSummary'
 import ShippingMethodSelection from '#ioc/organisms/ShippingMethodSelection'
 import PaymentMethodSelection from '#ioc/organisms/PaymentMethodSelection'
-import useSetPaymentAddress from '#ioc/services/useSetPaymentAddress'
-import usePayment from '#ioc/composables/usePayment'
 import CheckoutAgreements from '#ioc/organisms/CheckoutAgreements'
 import usePlaceOrder from '#ioc/services/usePlaceOrder'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import useSetContactInformation from '#ioc/services/useSetContactInformation'
+import useLocalePath from '#ioc/composables/useLocalePath'
+import useRouter from '#ioc/composables/useRouter'
 
 const { t } = useI18n()
+const router = useRouter()
+const localePath = useLocalePath()
 const cart = useCart()
-const payment = usePayment()
-const setPaymentAddress = useSetPaymentAddress()
+const setContactInformation = useSetContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 
 onMounted(async () => {
-  if (payment.currentPaymentMethod) return
-
-  await setPaymentAddress({
-    city: 'DUMMYDATA',
-    country_code: 'CZ',
-    postcode: 'DUMMYDATA',
-    firstname: 'DUMMYDATA',
-    lastname: 'DUMMYDATA',
-    street: 'DUMMYDATA',
+  await setContactInformation({
+    email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
     telephone: 'DUMMYDATA',
+    firstName: 'DUMMYDATA',
+    lastName: 'DUMMYDATA',
+    street: 'DUMMYDATA',
+    city: 'DUMMYDATA',
+    postcode: 'DUMMYDATA',
+    countryCode: 'CZ',
   })
 })
 
 const onPlaceOrder = async ({ resolve }: any) => {
   try {
-    await placeOrder()
+    const { order } = await placeOrder()
+
+    router.push(localePath({ name: 'thank-you', query: { orderNumber: order.orderNumber } }))
   } catch (e) {
     resolve()
 
