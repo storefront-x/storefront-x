@@ -60,7 +60,7 @@ yargs(hideBin(process.argv))
       yargs
         .option('config', {
           type: 'string',
-          default: 'storefront-x.config.js',
+          default: 'storefront-x.magento.config.js',
           description: 'Path to the Storefront X configuration file',
         })
         .option('analyze', {
