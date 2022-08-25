@@ -10,6 +10,8 @@ export default () => {
   return async (cartId: string, shippingMethod: ReturnType<ReturnType<typeof useToShippingMethod>>) => {
     const { data } = await magento.graphql(SetShippingMethodOncart().with({ cartId, ...shippingMethod }))
 
-    return toCheckout(data.setShippingMethodOnCart)
+    return {
+      checkout: toCheckout(data.setShippingMethodOnCart.cart),
+    }
   }
 }

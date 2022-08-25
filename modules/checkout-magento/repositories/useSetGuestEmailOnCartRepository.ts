@@ -10,7 +10,7 @@ export default () => {
     const { data } = await magento.graphql(SetGuestEmailOnCart().with({ cartId, email }))
 
     return {
-      checkout: toCheckout(data.setGuestEmailOnCart),
+      checkout: toCheckout(data.setGuestEmailOnCart.cart),
     }
   }
 }

@@ -15,6 +15,8 @@ export default () => {
       }),
     )
 
-    return toCheckout(data.setBillingAddressOnCart)
+    return {
+      checkout: toCheckout(data.setBillingAddressOnCart.cart),
+    }
   }
 }

@@ -11,6 +11,8 @@
 
           <PaymentMethodSelection />
 
+          <ContactInfoSelection />
+
           <CheckoutAgreements @place-order="onPlaceOrder" />
         </div>
 
@@ -25,7 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import Heading from '#ioc/atoms/Heading'
 import useCart from '#ioc/composables/useCart'
 import useI18n from '#ioc/composables/useI18n'
@@ -40,6 +41,9 @@ import useLocalePath from '#ioc/composables/useLocalePath'
 import useRouter from '#ioc/composables/useRouter'
 import useCheckout from '#ioc/composables/useCheckout'
 import useRefreshCheckout from '#ioc/services/useRefreshCheckout'
+import IS_SERVER from '#ioc/config/IS_SERVER'
+import ContactInfoSelection from '#ioc/organisms/ContactInfoSelection'
+import { onMounted } from 'vue'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -51,22 +55,26 @@ const setContactInformation = useSetContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 
-onMounted(async () => {
-  if (checkout.contactInformation) {
-    await refreshCheckout()
-  } else {
-    await setContactInformation({
-      email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
-      telephone: 'DUMMYDATA',
-      firstName: 'DUMMYDATA',
-      lastName: 'DUMMYDATA',
-      street: 'DUMMYDATA',
-      city: 'DUMMYDATA',
-      postcode: 'DUMMYDATA',
-      countryCode: 'CZ',
-    })
-  }
-})
+if (IS_SERVER) {
+  await refreshCheckout()
+} else {
+  onMounted(async () => {
+    if (checkout.contactInformation) {
+      await refreshCheckout()
+    } else {
+      await setContactInformation({
+        email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
+        telephone: 'DUMMYDATA',
+        firstName: 'DUMMYDATA',
+        lastName: 'DUMMYDATA',
+        street: 'DUMMYDATA',
+        city: 'DUMMYDATA',
+        postcode: 'DUMMYDATA',
+        countryCode: 'CZ',
+      })
+    }
+  })
+}
 
 const onPlaceOrder = async ({ resolve }: any) => {
   try {

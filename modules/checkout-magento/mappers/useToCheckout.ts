@@ -8,18 +8,15 @@ export default () => {
   const toContactInformation = useToContactInformation()
 
   return (data: any) => ({
-    paymentMethods: ((data.cart.available_payment_methods ?? []) as any[]).map(toPaymentMethod),
-    currentPaymentMethod: data.cart.selected_payment_method?.code
-      ? toPaymentMethod(data.cart.selected_payment_method)
+    paymentMethods: ((data.available_payment_methods ?? []) as any[]).map(toPaymentMethod),
+    currentPaymentMethod: data.selected_payment_method?.code ? toPaymentMethod(data.selected_payment_method) : null,
+    shippingMethods: ((data.shipping_addresses[0]?.available_shipping_methods ?? []) as any[]).map(toShippingMethod),
+    currentShippingMethod: data.shipping_addresses[0]?.selected_shipping_method
+      ? toShippingMethod(data.shipping_addresses[0].selected_shipping_method)
       : null,
-    shippingMethods: ((data.cart.shipping_addresses[0]?.available_shipping_methods ?? []) as any[]).map(
-      toShippingMethod,
-    ),
-    currentShippingMethod: data.cart.shipping_addresses[0]?.selected_shipping_method
-      ? toShippingMethod(data.cart.shipping_addresses[0].selected_shipping_method)
-      : null,
-    contactInformation: data.cart.email
-      ? toContactInformation({ email: data.cart.email, ...data.cart.billing_address })
-      : null,
+    contactInformation:
+      data.email !== 'DUMMYDATA@DUMMYDATA.DUMMYDATA'
+        ? toContactInformation({ email: data.email, ...data.billing_address })
+        : null,
   })
 }

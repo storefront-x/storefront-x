@@ -10,7 +10,7 @@ export default () => {
     const { data } = await magento.graphql(GetCheckout().with({ cartId }))
 
     return {
-      checkout: toCheckout(data),
+      checkout: toCheckout(data.cart),
     }
   }
 }

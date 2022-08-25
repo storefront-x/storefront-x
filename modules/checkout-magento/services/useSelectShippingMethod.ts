@@ -11,7 +11,7 @@ export default () => {
   return async (shippingMethod: ReturnType<ReturnType<typeof useToShippingMethod>>) => {
     const { id } = await getOrCreateCartId()
 
-    const checkout = await setShippingMethodOncartRepository(id, shippingMethod)
+    const { checkout } = await setShippingMethodOncartRepository(id, shippingMethod)
 
     checkoutStore.$patch(checkout)
   }

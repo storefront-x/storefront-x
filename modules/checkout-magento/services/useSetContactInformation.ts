@@ -14,7 +14,7 @@ export default () => {
     const { id } = await getOrCreateCartId()
 
     await setGuestEmailOnCartRepository(id, contactInformation.email)
-    const checkout = await setBillingAddressOnCartRepository(id, {
+    const { checkout } = await setBillingAddressOnCartRepository(id, {
       telephone: contactInformation.telephone,
       firstname: contactInformation.firstName,
       lastname: contactInformation.lastName,

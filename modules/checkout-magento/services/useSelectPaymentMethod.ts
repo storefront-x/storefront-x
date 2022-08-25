@@ -11,7 +11,7 @@ export default () => {
   return async (paymentMethod: ReturnType<ReturnType<typeof useToPaymentMethod>>) => {
     const { id } = await getOrCreateCartId()
 
-    const checkout = await setPaymentMethodOnCartRepository(id, paymentMethod)
+    const { checkout } = await setPaymentMethodOnCartRepository(id, paymentMethod)
 
     checkoutStore.$patch(checkout)
   }
