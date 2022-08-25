@@ -60,7 +60,7 @@
   </Modal>
 </template>
 
-<script>
+<script setup lang="ts">
 import Modal from '#ioc/atoms/Modal'
 import Heading from '#ioc/atoms/Heading'
 import Button from '#ioc/atoms/Button'
@@ -68,58 +68,37 @@ import FormInput from '#ioc/molecules/FormInput'
 import FormSelect from '#ioc/molecules/FormSelect'
 import useI18n from '#ioc/composables/useI18n'
 import useGetCountries from '#ioc/services/useGetCountries'
-import { defineComponent } from 'vue'
 import SfxForm from '#ioc/components/SfxForm'
 import useGetSalutations from '#ioc/services/useGetSalutations'
 import useAsyncData from '#ioc/composables/useAsyncData'
 
-export default defineComponent({
-  components: {
-    FormSelect,
-    Modal,
-    Heading,
-    Button,
-    FormInput,
-    SfxForm,
-  },
-  props: {
-    customerAddress: {
-      type: Object,
-      default: null,
-    },
-  },
-  emits: ['update', 'create', 'delete', 'close'],
-  setup() {
-    const getCountries = useGetCountries()
-    const { t } = useI18n()
-    const getSalutations = useGetSalutations()
+const getCountries = useGetCountries()
+const { t } = useI18n()
+const getSalutations = useGetSalutations()
 
-    const { data: countryData } = useAsyncData('countries', () => getCountries())
-    const { data: salutationData } = useAsyncData('salutations', () => getSalutations())
+const { data: countryData } = useAsyncData('countries', () => getCountries())
+const { data: salutationData } = useAsyncData('salutations', () => getSalutations())
 
-    return {
-      t,
-      getCountries,
-      getSalutations,
-      countryData,
-      salutationData,
-    }
-  },
-
-  methods: {
-    onSubmit(data) {
-      if (this.customerAddress) {
-        this.$emit('update', { id: this.customerAddress.id, ...data })
-      } else {
-        this.$emit('create', data)
-      }
-    },
-
-    onDelete() {
-      this.$emit('delete', this.customerAddress.id)
-    },
+const props = defineProps({
+  customerAddress: {
+    type: Object,
+    default: null,
   },
 })
+
+const emit = defineEmits(['update', 'create', 'delete', 'close'])
+
+const onSubmit = (data: any) => {
+  if (props.customerAddress) {
+    emit('update', { id: props.customerAddress.id, ...data })
+  } else {
+    emit('create', data)
+  }
+}
+
+const onDelete = () => {
+  emit('delete', props.customerAddress)
+}
 </script>
 
 <i18n lang="yaml">
