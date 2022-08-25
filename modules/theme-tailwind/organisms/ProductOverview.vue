@@ -9,7 +9,7 @@
 
       <div class="mt-4">
         <h3 class="sr-only">Description</h3>
-        <div>{{ product.metaDescription }}</div>
+        <div>{{ product?.meta?.metaDescription || '' }}</div>
       </div>
 
       <StockIndicators :stock-status="product.available" />
