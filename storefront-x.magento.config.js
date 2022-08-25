@@ -16,9 +16,9 @@ export default {
     '@storefront-x/cart',
     '@storefront-x/catalog',
     '@storefront-x/checkout',
+    '@storefront-x/cms',
     '@storefront-x/customer',
     '@storefront-x/multicurrency',
-    '@storefront-x/wishlist',
     '@storefront-x/wishlist',
 
     '@storefront-x/magento',
