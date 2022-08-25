@@ -1,7 +1,7 @@
 <template>
   <div class="mt-10 border-t border-gray-200 pt-10" data-cy="checkout-agreements">
     <h2 class="text-lg font-medium text-gray-900">{{ t('Agreements') }}</h2>
-    <Form @submit="onPlaceOrder">
+    <SfxForm @submit="onPlaceOrder">
       <Button
         type="submit"
         color="primary"
@@ -12,13 +12,15 @@
       >
         {{ isLoading ? t('Confirming order...') : t('Confirm order') }}
       </Button>
-    </Form>
+    </SfxForm>
   </div>
 </template>
 
 <script setup lang="ts">
-import useI18n from '#ioc/composables/useI18n'
 import { ref } from 'vue'
+import useI18n from '#ioc/composables/useI18n'
+import SfxForm from '#ioc/components/SfxForm'
+import Button from '#ioc/atoms/Button'
 
 const emit = defineEmits(['place-order'])
 

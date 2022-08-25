@@ -10,6 +10,8 @@
           <ShippingMethodSelection />
 
           <PaymentMethodSelection />
+
+          <CheckoutAgreements @place-order="onPlaceOrder" />
         </div>
 
         <OrderSummary bottom class="mt-10 lg:mt-0" />
@@ -23,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import Heading from '#ioc/atoms/Heading'
 import useCart from '#ioc/composables/useCart'
 import useI18n from '#ioc/composables/useI18n'
@@ -30,13 +33,17 @@ import OrderSummary from '#ioc/organisms/OrderSummary'
 import ShippingMethodSelection from '#ioc/organisms/ShippingMethodSelection'
 import PaymentMethodSelection from '#ioc/organisms/PaymentMethodSelection'
 import useSetPaymentAddress from '#ioc/services/useSetPaymentAddress'
-import { onMounted } from 'vue'
 import usePayment from '#ioc/composables/usePayment'
+import CheckoutAgreements from '#ioc/organisms/CheckoutAgreements'
+import usePlaceOrder from '#ioc/services/usePlaceOrder'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 
 const { t } = useI18n()
 const cart = useCart()
 const payment = usePayment()
 const setPaymentAddress = useSetPaymentAddress()
+const placeOrder = usePlaceOrder()
+const showErrorNotification = useShowErrorNotification()
 
 onMounted(async () => {
   if (payment.currentPaymentMethod) return
@@ -51,6 +58,16 @@ onMounted(async () => {
     telephone: 'DUMMYDATA',
   })
 })
+
+const onPlaceOrder = async ({ resolve }: any) => {
+  try {
+    await placeOrder()
+  } catch (e) {
+    resolve()
+
+    showErrorNotification(e)
+  }
+}
 </script>
 
 <i18n lang="yaml">
