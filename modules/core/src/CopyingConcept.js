@@ -23,7 +23,7 @@ export default class CopyingConcept extends OverridingConcept {
   }
 
   get executesOnChanges() {
-    return true
+    return 'all'
   }
 
   get removesDestinationDirectory() {

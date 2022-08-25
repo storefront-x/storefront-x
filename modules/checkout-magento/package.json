@@ -1,0 +1,6 @@
+{
+  "name": "@storefront-x/checkout-magento",
+  "version": "0.1.4",
+  "license": "MIT",
+  "type": "module"
+}
