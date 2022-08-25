@@ -1,9 +1,9 @@
 import toDate from '#ioc/utils/date/toDate'
 import useToMoney from '#ioc/mappers/useToMoney'
-import useToOrderItem from '#ioc/mappers/useToOrderItem'
+import useToCustomerOrderItem from '#ioc/mappers/useToCustomerOrderItem'
 
 export default () => {
-  const toOrderItem = useToOrderItem()
+  const toOrderItem = useToCustomerOrderItem()
   return (data: any) => ({
     id: data.id ?? '',
     number: data.number ?? '',

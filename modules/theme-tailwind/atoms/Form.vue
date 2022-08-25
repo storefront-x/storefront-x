@@ -1,9 +1,5 @@
-<template>
-  <form>
-    <slot />
-  </form>
-</template>
+<script lang="ts">
+import SfxForm from '#ioc/components/SfxForm'
 
-<script setup lang="ts">
-// TODO: Implement
+export default SfxForm
 </script>

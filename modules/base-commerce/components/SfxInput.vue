@@ -25,7 +25,7 @@ export default defineComponent({
       required: true,
     },
     value: {
-      type: [String, Number, Boolean],
+      type: null,
       default: null,
     },
     validators: {

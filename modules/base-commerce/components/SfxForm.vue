@@ -154,8 +154,6 @@ export default defineComponent({
       }
 
       this.inputs[input.name] = input
-
-      this.onInput()
     },
 
     _unregisterInput(input) {
