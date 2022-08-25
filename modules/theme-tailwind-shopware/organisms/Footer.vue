@@ -11,39 +11,6 @@
             >
               <div>
                 <span class="border-gray-50 font-semibold text-gray-500 hidden sm:block">
-                  {{ t('Useful information') }}
-                </span>
-                <Accordion
-                  :icon-class="{ 'sm:hidden': true, 'display-block': true, 'ml-2': true, 'cursor-pointer': true }"
-                  :heading-class="[
-                    'border-gray-50',
-                    'sm:justify-start',
-                    'justify-center',
-                    'sm:hidden',
-                    'block',
-                    'font-semibold',
-                    'text-gray-500',
-                  ]"
-                  :content-class="['text-center', 'sm:text-left', 'mb-12', 'sm:mb-4']"
-                  :open="true"
-                >
-                  <template #heading>
-                    {{ t('Useful information') }}
-                  </template>
-                  <template #default>
-                    <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
-                      <li class="text-sm">
-                        <Link to="brands" color="gray">
-                          {{ t('Brands') }}
-                        </Link>
-                      </li>
-                    </ul>
-                  </template>
-                </Accordion>
-              </div>
-
-              <div>
-                <span class="border-gray-50 font-semibold text-gray-500 hidden sm:block">
                   {{ t('Account') }}
                 </span>
                 <Accordion
