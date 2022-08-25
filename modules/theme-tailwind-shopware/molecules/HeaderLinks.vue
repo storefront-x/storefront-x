@@ -1,0 +1,45 @@
+<template>
+  <Container class="hidden lg:flex items-center justify-between h-10">
+    <div class="flex items-center space-x-6">
+      <Link href="mailto:CONTACT_EMAIL" color="gray">{{ CONTACT_EMAIL }}</Link>
+    </div>
+
+    <div class="flex items-center space-x-6">
+      <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, setCurrency }">
+        <Dropdown
+          link-like
+          :title="currentCurrency?.code"
+          class="text-gray-600 hover:text-gray-800"
+          data-cy="currency-switcher"
+        >
+          <DropdownItem
+            v-for="currency in currencies"
+            :key="currency.code"
+            href="javascript:void(0)"
+            @click="setCurrency(currency)"
+          >
+            {{ currency.code }}
+          </DropdownItem>
+        </Dropdown>
+      </SfxCurrencySwitcher>
+    </div>
+  </Container>
+</template>
+
+<script setup lang="ts">
+import CONTACT_EMAIL from '#ioc/config/CONTACT_EMAIL'
+import SfxCurrencySwitcher from '#ioc/components/SfxCurrencySwitcher'
+import Container from '#ioc/atoms/Container'
+import Link from '#ioc/atoms/Link'
+import Dropdown from '#ioc/atoms/Dropdown'
+import DropdownItem from '#ioc/atoms/DropdownItem'
+import useI18n from '#ioc/composables/useI18n'
+
+const { t } = useI18n()
+</script>
+
+<i18n lang="yaml">
+cs-CZ:
+  Brands: Značky
+  Blog: Blog
+</i18n>
