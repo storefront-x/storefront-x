@@ -33,10 +33,6 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
 
   const images = computed(() => product.value.images ?? [])
 
-  const crossSellProducts = computed(() => product.value.crossSellProducts)
-
-  const upsellProducts = computed(() => product.value.upsellProducts)
-
   const meta = computed(() => product.value.meta)
 
   return reactive({
@@ -55,7 +51,5 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
     isOnSale,
     images,
     meta,
-    crossSellProducts,
-    upsellProducts,
   })
 }
