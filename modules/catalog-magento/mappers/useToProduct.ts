@@ -16,5 +16,9 @@ export default () => {
     regularPrice: toMoney(data.price_range?.minimum_price?.regular_price) ?? 0,
     breadcrumbs: [],
     available: data.stock_status === 'IN_STOCK' ?? false,
+    meta: {
+      description: data.description?.html ?? '',
+    },
+    images: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
   })
 }

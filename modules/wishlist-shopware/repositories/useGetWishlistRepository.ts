@@ -14,6 +14,7 @@ export default () => {
         items: response?.products?.elements?.map(toWishlistItem) ?? [],
       }
     } catch (error) {
+      console.warn(error)
       return {
         items: [],
       }

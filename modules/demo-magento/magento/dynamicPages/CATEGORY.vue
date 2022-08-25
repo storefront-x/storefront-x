@@ -32,10 +32,10 @@ const props = defineProps({
 
 const route = useRoute()
 
-const getCategoryBdId = useGetCategoryById()
+const getCategoryById = useGetCategoryById()
 
 const { data } = await useAsyncData('category', () =>
-  getCategoryBdId(props.id, {
+  getCategoryById(props.id, {
     page: Number(route.query.page ?? 1),
     sort: route.query.sort as string,
     filter: ensureArray(route.query.filter),

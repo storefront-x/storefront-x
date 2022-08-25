@@ -12,38 +12,25 @@
   </Tr>
 </template>
 
-<script>
+<script setup lang="ts">
 import Tr from '#ioc/atoms/Tr'
 import Td from '#ioc/atoms/Td'
 import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
-import { defineComponent } from 'vue'
 
-export default defineComponent({
-  components: {
-    Tr,
-    Td,
-    Button,
-  },
+const { t } = useI18n()
+const emit = defineEmits(['edit'])
 
-  props: {
-    customerAddress: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  emits: ['edit'],
-
-  setup() {
-    const { t } = useI18n()
-    return { t }
-  },
-  methods: {
-    onEdit() {
-      this.$emit('edit', this.customerAddress)
-    },
+const props = defineProps({
+  customerAddress: {
+    type: Object,
+    default: () => ({}),
   },
 })
+
+const onEdit = () => {
+  emit('edit', props.customerAddress)
+}
 </script>
 
 <i18n lang="yaml">

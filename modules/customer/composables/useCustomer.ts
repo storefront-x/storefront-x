@@ -20,6 +20,16 @@ export default () => {
 
   const fullName = computed(() => firstName.value + ' ' + lastName.value)
 
+  const middleName = computed(() => customerStore.customer?.middleName)
+
+  const suffix = computed(() => customerStore.customer?.suffix)
+
+  const prefix = computed(() => customerStore.customer?.prefix)
+
+  const isSubscribed = computed(() => customerStore.customer?.isSubscribed)
+
+  const gender = computed(() => customerStore.customer?.gender)
+
   return reactive({
     isLoggedIn,
     firstName,
@@ -29,5 +39,10 @@ export default () => {
     email,
     salutationId,
     salutation,
+    middleName,
+    suffix,
+    prefix,
+    isSubscribed,
+    gender,
   })
 }

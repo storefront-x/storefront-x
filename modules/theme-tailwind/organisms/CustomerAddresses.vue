@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import Button from '#ioc/atoms/Button'
 import Table from '#ioc/atoms/Table'
 import Thead from '#ioc/atoms/Thead'
@@ -45,108 +45,80 @@ import Tr from '#ioc/atoms/Tr'
 import Th from '#ioc/atoms/Th'
 import useI18n from '#ioc/composables/useI18n'
 import CustomerAddress from '#ioc/molecules/CustomerAddress'
-import { defineComponent } from 'vue'
+import { PropType, ref } from 'vue'
 import CustomerAddressEditModal from '#ioc/organisms/CustomerAddressEditModal'
 import useCreateCustomerAddress from '#ioc/services/useCreateCustomerAddress'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useUpdateCustomerAddress from '#ioc/services/useUpdateCustomerAddress'
 import useDeleteCustomerAddress from '#ioc/services/useDeleteCustomerAddress'
+import useToCustomerAddress from '#ioc/mappers/useToCustomerAddress'
 
-export default defineComponent({
-  components: {
-    Button,
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    CustomerAddress,
-    CustomerAddressEditModal,
-  },
+const emit = defineEmits(['refresh'])
 
-  props: {
-    customerAddresses: {
-      type: Array,
-      default: () => [],
-    },
-  },
+const { t } = useI18n()
+const createCustomerAddress = useCreateCustomerAddress()
+const deleteCustomerAddress = useDeleteCustomerAddress()
+const showErrorNotification = useShowErrorNotification()
+const updateCustomerAddress = useUpdateCustomerAddress()
 
-  emits: ['refresh'],
-
-  setup() {
-    const createCustomerAddress = useCreateCustomerAddress()
-    const deleteCustomerAddress = useDeleteCustomerAddress()
-    const showErrorNotification = useShowErrorNotification()
-    const updateCustomerAddress = useUpdateCustomerAddress()
-
-    const { t } = useI18n()
-
-    return {
-      t,
-      createCustomerAddress,
-      showErrorNotification,
-      updateCustomerAddress,
-      deleteCustomerAddress,
-    }
-  },
-
-  data: () => ({
-    customerAddressToEdit: null,
-    isCustomerEditModalOpen: false,
-  }),
-
-  methods: {
-    onNew() {
-      this.customerAddressToEdit = null
-      this.isCustomerEditModalOpen = true
-    },
-
-    onEdit(customerAddress) {
-      this.customerAddressToEdit = customerAddress
-      this.isCustomerEditModalOpen = true
-    },
-
-    onClose() {
-      this.customerAddressToEdit = null
-      this.isCustomerEditModalOpen = false
-    },
-
-    async onUpdate(data) {
-      try {
-        await this.updateCustomerAddress(data)
-        this.$emit('refresh')
-        this.onClose()
-      } catch (error) {
-        this.showErrorNotification(error)
-        this.onClose()
-      }
-    },
-
-    async onCreate(data) {
-      try {
-        await this.createCustomerAddress(data)
-        this.$emit('refresh')
-        this.onClose()
-      } catch (error) {
-        this.showErrorNotification(error)
-        this.onClose()
-      }
-    },
-
-    async onDelete(id) {
-      try {
-        await this.deleteCustomerAddress(id)
-        this.$emit('refresh')
-        this.onClose()
-        this.onClose()
-      } catch (error) {
-        this.$emit('refresh')
-        this.showErrorNotification(error)
-        this.onClose()
-      }
-    },
+defineProps({
+  customerAddresses: {
+    type: Array as PropType<ReturnType<ReturnType<typeof useToCustomerAddress>>[]>,
+    default: () => [],
   },
 })
+
+const customerAddressToEdit = ref<ReturnType<ReturnType<typeof useToCustomerAddress>>>()
+const isCustomerEditModalOpen = ref(false)
+
+const onNew = () => {
+  customerAddressToEdit.value = undefined
+  isCustomerEditModalOpen.value = true
+}
+
+const onEdit = (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
+  customerAddressToEdit.value = customerAddress
+  isCustomerEditModalOpen.value = true
+}
+
+const onClose = () => {
+  customerAddressToEdit.value = undefined
+  isCustomerEditModalOpen.value = false
+}
+
+const onUpdate = async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
+  try {
+    await updateCustomerAddress(customerAddress)
+    emit('refresh')
+    onClose()
+  } catch (error) {
+    showErrorNotification(error)
+    onClose()
+  }
+}
+
+const onCreate = async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
+  try {
+    await createCustomerAddress(customerAddress)
+    emit('refresh')
+    onClose()
+  } catch (error) {
+    showErrorNotification(error)
+    onClose()
+  }
+}
+
+const onDelete = async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
+  try {
+    await deleteCustomerAddress(customerAddress)
+    emit('refresh')
+    onClose()
+  } catch (error) {
+    emit('refresh')
+    showErrorNotification(error)
+    onClose()
+  }
+}
 </script>
 
 <i18n lang="yaml">

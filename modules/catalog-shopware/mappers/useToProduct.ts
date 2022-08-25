@@ -2,6 +2,15 @@ import useToBreadcrumb from '#ioc/mappers/useToBreadcrumb'
 import useToMoney from '#ioc/mappers/useToMoney'
 
 export default () => {
+  const toProduct = _useToProduct()
+
+  return (data: any) => ({
+    ...toProduct(data),
+    crossSell: ((data.crossSell ?? []) as any[]).map(toProduct),
+  })
+}
+
+const _useToProduct = () => {
   const toMoney = useToMoney()
 
   return (data: any) => ({
@@ -13,9 +22,9 @@ export default () => {
     thumbnailUrl: data?.cover.media.url as string,
     description: data?.description as string,
     shortDescriptionHtml: '',
-    finalPrice: toMoney({ value: data?.calculatedPrice.unitPrice }),
-    regularPrice: toMoney({ value: data?.calculatedPrice.regulationPrice ?? data?.calculatedPrice.unitPrice }),
-    images: data?.cover?.media?.thumbnails.map((item: any) => ({
+    finalPrice: toMoney({ value: data?.calculatedPrice?.unitPrice }),
+    regularPrice: toMoney({ value: data?.calculatedPrice?.regulationPrice ?? data?.calculatedPrice?.unitPrice }),
+    images: data?.cover.media.thumbnails.map((item: any) => ({
       url: item.url as string,
       id: item.id as string,
     })),
@@ -31,7 +40,7 @@ export default () => {
 const getBreadcrumbs = (data: any) => {
   const breadcrumbs: ReturnType<ReturnType<typeof useToBreadcrumb>>[] = []
 
-  const breadcrumb = data?.seoCategory?.breadcrumb.slice(2, data.seoCategory?.breadcrumb.length) ?? []
+  const breadcrumb = data?.seoCategory?.breadcrumb.slice(2, data?.seoCategory?.breadcrumb.length) ?? []
   const paths = data?.seoCategory?.seoUrls[0].seoPathInfo.split('/') ?? []
 
   for (const [i] of breadcrumb.entries()) {

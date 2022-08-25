@@ -64,7 +64,7 @@ export default class OverridingConcept extends Concept {
   }
 
   /**
-   * @returns {boolean}
+   * @returns {false|string}
    */
   get executesOnChanges() {
     return false
@@ -118,7 +118,13 @@ export default class OverridingConcept extends Concept {
       watcher.on('change', async (path) => {
         const file = this._normalizePath({ module, path })
 
-        await this.execute({ [file]: { module, file } })
+        if (this.executesOnChanges === 'change') {
+          await this.execute({ [file]: { module, file } })
+        } else if (this.executesOnChanges === 'all') {
+          await this.execute(this._getFiles())
+        } else {
+          throw new Error(`Unknown option for ${this.directory}.executesOnChanges. Can be "change" or "all"`)
+        }
       })
     }
 
