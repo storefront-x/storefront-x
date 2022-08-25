@@ -12,15 +12,17 @@ export default {
     '@storefront-x/atomic-design',
     '@storefront-x/graphql',
 
+    '@storefront-x/brands',
     '@storefront-x/cart',
     '@storefront-x/catalog',
     '@storefront-x/checkout',
-    '@storefront-x/cms',
     '@storefront-x/customer',
     '@storefront-x/multicurrency',
     '@storefront-x/wishlist',
+    '@storefront-x/wishlist',
 
     '@storefront-x/magento',
+    '@storefront-x/brands-magento',
     '@storefront-x/cart-magento',
     '@storefront-x/catalog-magento',
     '@storefront-x/checkout-magento',

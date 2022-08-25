@@ -11,6 +11,7 @@
       :autocomplete="autocomplete"
       :disabled="disabled"
       @blur="onBlur"
+      @change="change"
     >
       <slot />
     </select>
@@ -54,7 +55,12 @@ export default defineComponent({
       type: String,
       default: 'primary',
     },
+    modelValue: {
+      type: String,
+      default: '',
+    },
   },
+  emits: ['update:modelValue'],
 
   computed: {
     colors() {
@@ -62,6 +68,12 @@ export default defineComponent({
         'rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 w-full border border-gray-300':
           this.color === 'primary',
       }
+    },
+  },
+
+  methods: {
+    change(event) {
+      this.$emit('update:modelValue', event.target.value)
     },
   },
 })
