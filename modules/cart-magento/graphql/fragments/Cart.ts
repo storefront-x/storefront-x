@@ -11,9 +11,6 @@ export default (name = 'cart') =>
       items: field({
         ...CartItem(),
       }),
-      applied_coupons: field({
-        code: field(),
-      }),
       prices: field({
         grand_total: field({
           ...Money(),

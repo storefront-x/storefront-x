@@ -5,6 +5,6 @@ export default () => (data: any) => ({
   lastName: data.lastname as string,
   street: data.street as string,
   city: data.city as string,
-  countryCode: data.country_code as string,
+  countryCode: (data.country_code ?? data.country?.code) as string,
   postcode: data.postcode as string,
 })

@@ -8,7 +8,28 @@ export default (name = 'checkout') =>
     .cantBeCached()
     .fields({
       ...Cart(),
+      email: field(),
+      billing_address: field({
+        city: field(),
+        country: field({
+          code: field(),
+        }),
+        firstname: field(),
+        lastname: field(),
+        postcode: field(),
+        street: field(),
+        telephone: field(),
+      }),
       shipping_addresses: field({
+        city: field(),
+        country: field({
+          code: field(),
+        }),
+        firstname: field(),
+        lastname: field(),
+        postcode: field(),
+        street: field(),
+        telephone: field(),
         selected_shipping_method: field({
           carrier_code: field(),
           carrier_title: field(),

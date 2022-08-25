@@ -38,26 +38,34 @@ import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useSetContactInformation from '#ioc/services/useSetContactInformation'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useRouter from '#ioc/composables/useRouter'
+import useCheckout from '#ioc/composables/useCheckout'
+import useRefreshCheckout from '#ioc/services/useRefreshCheckout'
 
 const { t } = useI18n()
 const router = useRouter()
 const localePath = useLocalePath()
 const cart = useCart()
+const checkout = useCheckout()
+const refreshCheckout = useRefreshCheckout()
 const setContactInformation = useSetContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 
 onMounted(async () => {
-  await setContactInformation({
-    email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
-    telephone: 'DUMMYDATA',
-    firstName: 'DUMMYDATA',
-    lastName: 'DUMMYDATA',
-    street: 'DUMMYDATA',
-    city: 'DUMMYDATA',
-    postcode: 'DUMMYDATA',
-    countryCode: 'CZ',
-  })
+  if (checkout.contactInformation) {
+    await refreshCheckout()
+  } else {
+    await setContactInformation({
+      email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
+      telephone: 'DUMMYDATA',
+      firstName: 'DUMMYDATA',
+      lastName: 'DUMMYDATA',
+      street: 'DUMMYDATA',
+      city: 'DUMMYDATA',
+      postcode: 'DUMMYDATA',
+      countryCode: 'CZ',
+    })
+  }
 })
 
 const onPlaceOrder = async ({ resolve }: any) => {
