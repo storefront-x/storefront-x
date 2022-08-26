@@ -3022,6 +3022,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/checkout-magento@workspace:modules/checkout-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/checkout-magento@workspace:modules/checkout-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/checkout-shopware@workspace:modules/checkout-shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/checkout-shopware@workspace:modules/checkout-shopware"

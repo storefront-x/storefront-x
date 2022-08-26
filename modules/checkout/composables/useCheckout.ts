@@ -6,7 +6,10 @@ export default () => {
 
   const contactInformation = computed(() => checkoutStore.contactInformation)
 
+  const agreements = computed(() => checkoutStore.agreements)
+
   return reactive({
     contactInformation,
+    agreements,
   })
 }
