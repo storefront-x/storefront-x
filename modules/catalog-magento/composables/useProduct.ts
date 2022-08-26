@@ -35,6 +35,16 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
 
   const meta = computed(() => product.value.meta)
 
+  const ratingSummary = computed(() => product.value.ratingSummary)
+
+  const reviewCount = computed(() => product.value.reviewCount)
+
+  const reviews = computed(() => product.value.reviews ?? [])
+
+  const isConfigurableProduct = computed(() => product.value.__typename === 'ConfigurableProduct')
+
+  const mediaGallery = computed(() => product.value.mediaGallery || [])
+
   return reactive({
     id,
     sku,
@@ -51,5 +61,10 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
     isOnSale,
     images,
     meta,
+    ratingSummary,
+    reviewCount,
+    reviews,
+    isConfigurableProduct,
+    mediaGallery,
   })
 }

@@ -113,4 +113,6 @@ const resizeImageFunction = ({ format = 'jpeg', multiple = 1, ...rest } = {}) =>
     ...rest,
   })
 }
+
+defineExpose({ resizeImageFunction })
 </script>

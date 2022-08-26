@@ -20,6 +20,8 @@ export default {
     '@storefront-x/multicurrency',
     '@storefront-x/cms',
     '@storefront-x/brands',
+    '@storefront-x/product-reviews',
+    '@storefront-x/free-shipping',
 
     '@storefront-x/magento',
     '@storefront-x/catalog-magento',
@@ -29,6 +31,8 @@ export default {
     '@storefront-x/multicurrency-magento',
     '@storefront-x/cms-magento',
     '@storefront-x/brands-magento',
+    '@storefront-x/product-reviews-magento',
+    '@storefront-x/free-shipping-magento',
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
