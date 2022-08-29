@@ -3122,6 +3122,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/free-shipping@workspace:modules/free-shipping":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/free-shipping@workspace:modules/free-shipping"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/graphql@workspace:modules/graphql":
   version: 0.0.0-use.local
   resolution: "@storefront-x/graphql@workspace:modules/graphql"
@@ -3149,6 +3161,18 @@ __metadata:
 "@storefront-x/multicurrency@workspace:modules/multicurrency":
   version: 0.0.0-use.local
   resolution: "@storefront-x/multicurrency@workspace:modules/multicurrency"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/product-reviews@workspace:modules/product-reviews":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/product-reviews@workspace:modules/product-reviews"
   languageName: unknown
   linkType: soft
 
@@ -9513,6 +9537,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"photoswipe@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "photoswipe@npm:5.3.0"
+  checksum: 3a55d797badc8ec0bdefef3a6dc29320108a9364fa34a87947c4760f18249cc6a880999ad5cd17cc8d027fc5d9400f1c4887fc53ba45515b404d0938259ed245
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
@@ -10827,6 +10858,7 @@ __metadata:
     husky: ^8.0.1
     lerna: ^5.3.0
     lint-staged: ^13.0.3
+    photoswipe: ^5.3.0
     prettier: ^2.7.1
     typescript: ^4.7.4
     vitepress: ^1.0.0-alpha.4
