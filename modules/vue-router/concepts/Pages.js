@@ -15,7 +15,9 @@ export default class Pages extends GeneratingConcept {
    */
   async execute(files) {
     const pages = {}
-
+    // const names = await this.getFiles(this.src('pages'))
+    // console.log('test names', names)
+    console.log('all files', files)
     for (const { module, file } of Object.values(files)) {
       const parsed = path.parse(file)
       // parsed format in node js parse
@@ -26,9 +28,10 @@ export default class Pages extends GeneratingConcept {
       //   ext: '.html',
       //   name: 'index'
       // }
-      // console.log('all files', files)
+
       const parts = [...parsed.dir.replace(/\\/g, '/').split('/').filter(Boolean), parsed.name]
       const component = this.getPathForFile(module, file)
+      // console.log('modules', file, parsed.dir)
       // console.log('parts entries', parts)
       let _pages = pages
       for (const [i, part] of parts.entries()) {
@@ -49,7 +52,7 @@ export default class Pages extends GeneratingConcept {
         _pages = _pages[part].children
       }
     }
-    // console.log('pages before transform', pages)
+    console.log('pages before transform', pages)
     await this.renderTemplate(this.compiledTemplate, { pages: this._transform(pages) })
   }
 
