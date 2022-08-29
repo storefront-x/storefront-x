@@ -14,26 +14,26 @@
     <span class="pb-2 border-b-2 grow" />
   </div>
   <section class="px-0">
-    <component :is="selected" v-bind="currentProperties" class="sm:px-0 links" />
+    <component :is="selected" class="sm:px-0 links" />
   </section>
 </template>
 
 <script setup lang="ts">
 import MenuTab from '#ioc/atoms/MenuTab'
-import { computed, shallowRef, toRaw } from 'vue'
+import { shallowRef, toRaw } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
-import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
-import injectProduct from '#ioc/composables/injectProduct'
+import ProductDescription from '#ioc/molecules/ProductDescription'
 import ProductParameters from '#ioc/molecules/ProductParameters'
 import ProductReviews from '#ioc/organisms/ProductReviews'
 
 const { t } = useI18n()
-const product = injectProduct()
-const selected = shallowRef(SfxMagentoCmsPage)
+
+const selected = shallowRef(ProductDescription)
+
 const tabs = [
   {
     name: 'Detail',
-    component: SfxMagentoCmsPage,
+    component: ProductDescription,
   },
   {
     name: 'Parameters',
@@ -44,17 +44,6 @@ const tabs = [
     component: ProductReviews,
   },
 ]
-
-const currentProperties = computed(() => {
-  if (toRaw(selected.value) === SfxMagentoCmsPage) {
-    return {
-      cmsPage: {
-        content: product.description,
-      },
-    }
-  }
-  return {}
-})
 </script>
 
 <i18n lang="yaml">

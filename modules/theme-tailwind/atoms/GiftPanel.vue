@@ -1,7 +1,7 @@
 <template>
   <div class="border-t border-b divide-y divide-gray-100 mt-8 mb-2">
     <div class="flex row py-4">
-      <img src="/images/gift_image.svg" alt="Gift" class="h-16 w-auto mr-3" />
+      <img :src="src" alt="Gift" class="h-16 w-auto mr-3" />
       <div class="block">
         <h6 class="font-medium text-gray-500 text-xl">{{ t('free_gift') }}</h6>
         <div>
@@ -18,6 +18,8 @@
 import SfxMoney from '#ioc/components/SfxMoney'
 import useI18n from '#ioc/composables/useI18n'
 import useFreeShippingConfig from '#ioc/composables/useFreeShippingConfig'
+
+const src = '/images/gift_image.svg'
 
 const { t } = useI18n()
 const freeShippingConfig = useFreeShippingConfig()

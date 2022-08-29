@@ -2,6 +2,16 @@ import useToMoney from '#ioc/mappers/useToMoney'
 import useToProductReview from '#ioc/mappers/useToProductReview'
 
 export default () => {
+  const toProduct = _useToProduct()
+
+  return (data: any) => ({
+    ...toProduct(data),
+    crossSellProducts: ((data?.related_products ?? []) as any[]).map(toProduct),
+    upsellProducts: ((data?.upsell_products ?? []) as any[]).map(toProduct),
+  })
+}
+
+const _useToProduct = () => {
   const toMoney = useToMoney()
   const toProductReview = useToProductReview()
 
@@ -12,7 +22,7 @@ export default () => {
     name: data.name ?? '',
     urlKey: data.url_key ?? '',
     thumbnailUrl: data.thumbnail?.url ?? '',
-    description: data.description?.html ?? '',
+    descriptionHtml: data.description?.html ?? '',
     shortDescriptionHtml: data.short_description?.html ?? '',
     finalPrice: toMoney(data.price_range?.minimum_price?.final_price) ?? 0,
     regularPrice: toMoney(data.price_range?.minimum_price?.regular_price) ?? 0,
