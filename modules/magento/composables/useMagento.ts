@@ -6,6 +6,9 @@ import objectToQuery from '#ioc/utils/url/objectToQuery'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import hashCode from '#ioc/utils/string/hashCode'
+import useMulticurrencyMagentoStore from '#ioc/stores/useMulticurrencyMagentoStore'
+import useI18n from '#ioc/composables/useI18n'
+import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 
 interface Options {
   errorHandler?: (err: any) => Promise<void>
@@ -15,16 +18,20 @@ const URL = IS_SERVER ? MAGENTO_URL : '/_magento'
 
 export default () => {
   const cookie = useCookies()
+  const multicurrencyMagentoStore = useMulticurrencyMagentoStore()
+  const { locale } = useI18n()
 
   const headers = () => {
-    // TODO: fetch store
-    const store = 'b2c_en'
+    const store = VUE_I18N_LOCALES.find((item) => {
+      return item.locale === locale.value
+    })?.magentoStore
     const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
-
+    const selectedCurrencyCode = multicurrencyMagentoStore.selectedCurrencyCode.code ?? ''
     return {
       'Content-Type': 'application/json',
       ...(store && { Store: store }),
       ...(token && { Authorization: `Bearer ${token}` }),
+      ...(selectedCurrencyCode && { 'Content-Currency': selectedCurrencyCode }),
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <Link :to="category.urlPath" color="primary" class="py-4 text-primary-500 font-semibold">
+  <Link :to="localePath(category.urlPath)" color="primary" class="py-4 text-primary-500 font-semibold">
     {{ category.name }}
   </Link>
 </template>
@@ -9,6 +9,9 @@ import Link from '#ioc/atoms/Link'
 import useCategory from '#ioc/composables/useCategory'
 import useToCategory from '#ioc/mappers/useToCategory'
 import { computed, PropType } from 'vue'
+import useLocalePath from '#ioc/composables/useLocalePath'
+
+const localePath = useLocalePath()
 
 const props = defineProps({
   category: {

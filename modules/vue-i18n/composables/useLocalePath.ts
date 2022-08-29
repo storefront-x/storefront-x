@@ -8,13 +8,16 @@ export default () => {
   const i18n = useI18n()
 
   const currentLocale = VUE_I18N_LOCALES.find((locale) => locale.locale === i18n.locale.value)?.name
+  const currentPrefix = VUE_I18N_LOCALES.find((locale) => locale.locale === i18n.locale.value)?.prefix
 
-  return (target: RouteLocationRaw, locale: string | undefined = currentLocale): RouteLocation => {
+  return (target: RouteLocationRaw, locale: string | undefined = currentLocale): RouteLocation | string => {
     if (!locale) throw new Error('Undefined locale')
 
     if (typeof target === 'string') {
       if (target.startsWith('/')) {
-        return router.resolve(target)
+        if (currentPrefix === '/') return router.resolve(target)
+
+        return `${currentPrefix}${target}`
       } else {
         return router.resolve({ name: `${target}__${locale}` })
       }
