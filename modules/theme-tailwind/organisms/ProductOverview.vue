@@ -9,7 +9,7 @@
 
       <div class="mt-4">
         <h3 class="sr-only">Description</h3>
-        <div>{{ product.metaDescription }}</div>
+        <div>{{ product?.meta?.metaDescription || '' }}</div>
       </div>
 
       <StockIndicators :stock-status="product.available" />
@@ -49,7 +49,6 @@
 import useI18n from '#ioc/composables/useI18n'
 import SfxMoney from '#ioc/components/SfxMoney'
 import Heading from '#ioc/atoms/Heading'
-import SfxImage from '#ioc/components/SfxImage'
 import ProductQuantityConfigurator from '#ioc/molecules/ProductQuantityConfigurator'
 import AddToCart from '#ioc/molecules/AddToCart'
 import ProductGallery from '#ioc/molecules/ProductGallery'

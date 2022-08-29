@@ -2962,6 +2962,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/base-commerce@workspace:modules/base-commerce"
   dependencies:
+    keen-slider: ^5
     lru-cache: ^7.13.2
     sharp: ^0.30.7
   languageName: unknown
@@ -2973,15 +2974,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/blog-magento@workspace:modules/blog-magento":
+"@storefront-x/brands-magento@workspace:modules/brands-magento":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/blog-magento@workspace:modules/blog-magento"
+  resolution: "@storefront-x/brands-magento@workspace:modules/brands-magento"
   languageName: unknown
   linkType: soft
 
-"@storefront-x/blog@workspace:modules/blog":
+"@storefront-x/brands@workspace:modules/brands":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/blog@workspace:modules/blog"
+  resolution: "@storefront-x/brands@workspace:modules/brands"
   languageName: unknown
   linkType: soft
 
@@ -3018,6 +3019,12 @@ __metadata:
 "@storefront-x/catalog@workspace:modules/catalog":
   version: 0.0.0-use.local
   resolution: "@storefront-x/catalog@workspace:modules/catalog"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/checkout-magento@workspace:modules/checkout-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/checkout-magento@workspace:modules/checkout-magento"
   languageName: unknown
   linkType: soft
 
@@ -3115,6 +3122,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/free-shipping@workspace:modules/free-shipping":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/free-shipping@workspace:modules/free-shipping"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/graphql@workspace:modules/graphql":
   version: 0.0.0-use.local
   resolution: "@storefront-x/graphql@workspace:modules/graphql"
@@ -3124,6 +3143,8 @@ __metadata:
 "@storefront-x/magento@workspace:modules/magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/magento@workspace:modules/magento"
+  dependencies:
+    http-proxy-middleware: ^2.0.6
   languageName: unknown
   linkType: soft
 
@@ -3142,6 +3163,18 @@ __metadata:
 "@storefront-x/multicurrency@workspace:modules/multicurrency":
   version: 0.0.0-use.local
   resolution: "@storefront-x/multicurrency@workspace:modules/multicurrency"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/product-reviews@workspace:modules/product-reviews":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/product-reviews@workspace:modules/product-reviews"
   languageName: unknown
   linkType: soft
 
@@ -3184,7 +3217,6 @@ __metadata:
   resolution: "@storefront-x/theme-tailwind@workspace:modules/theme-tailwind"
   dependencies:
     "@tailwindcss/forms": ^0.5.2
-    "@tailwindcss/typography": ^0.5.4
     postcss: ^8.4.16
     tailwindcss: ^3.1.8
   languageName: unknown
@@ -3278,19 +3310,6 @@ __metadata:
   peerDependencies:
     tailwindcss: ">=3.0.0 || >= 3.0.0-alpha.1"
   checksum: 3c4df23491d14b37d8cef88d0f3df80f92b684b801d59c23d600773a4ccac11353a555ca36bea68ae4a82134f9c030d1353c05890a5f0085c1c40c649f806640
-  languageName: node
-  linkType: hard
-
-"@tailwindcss/typography@npm:^0.5.4":
-  version: 0.5.4
-  resolution: "@tailwindcss/typography@npm:0.5.4"
-  dependencies:
-    lodash.castarray: ^4.4.0
-    lodash.isplainobject: ^4.0.6
-    lodash.merge: ^4.6.2
-  peerDependencies:
-    tailwindcss: "*"
-  checksum: 016f27266e07fd9966ab785c4182e5ad97c06a2198ff8df739cac90a544ee9c7ac2ac968a4fe9280a1378c3ac8943a315a9f09e70085f21f2839ebc080c88fd8
   languageName: node
   linkType: hard
 
@@ -5317,7 +5336,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
+"cross-env@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "cross-env@npm:7.0.3"
+  dependencies:
+    cross-spawn: ^7.0.1
+  bin:
+    cross-env: src/bin/cross-env.js
+    cross-env-shell: src/bin/cross-env-shell.js
+  checksum: 26f2f3ea2ab32617f57effb70d329c2070d2f5630adc800985d8b30b56e8bf7f5f439dd3a0358b79cee6f930afc23cf8e23515f17ccfb30092c6b62c6b630a79
+  languageName: node
+  linkType: hard
+
+"cross-spawn@npm:^7.0.1, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
   dependencies:
@@ -5523,6 +5554,22 @@ __metadata:
   checksum: a51744d9b53c164ba9c0492471a1a2ffa0b6727451bdc89e31627fdf4adda9d51277cfcbfb20f0a6f08ccb3c436f341df3e92631a3440226d93a8971724771fd
   languageName: node
   linkType: hard
+
+"demo-magento@workspace:modules/create-storefront-x/template/magento/modules/demo-magento":
+  version: 0.0.0-use.local
+  resolution: "demo-magento@workspace:modules/create-storefront-x/template/magento/modules/demo-magento"
+  dependencies:
+    vite-plugin-pwa: ^0.12.3
+  languageName: unknown
+  linkType: soft
+
+"demo-shopware@workspace:modules/create-storefront-x/template/shopware/modules/demo-shopware":
+  version: 0.0.0-use.local
+  resolution: "demo-shopware@workspace:modules/create-storefront-x/template/shopware/modules/demo-shopware"
+  dependencies:
+    vite-plugin-pwa: ^0.12.3
+  languageName: unknown
+  linkType: soft
 
 "depd@npm:2.0.0":
   version: 2.0.0
@@ -7998,6 +8045,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"keen-slider@npm:^5":
+  version: 5.5.1
+  resolution: "keen-slider@npm:5.5.1"
+  checksum: 478838457739dca7cb238d1183552abe6c84ca36811a3a5d515fc2f57edacbe035557fc0a50b3e13a66257c8432b5bb769ff524511a5d643d83fb381ec90e82f
+  languageName: node
+  linkType: hard
+
 "kind-of@npm:^6.0.2, kind-of@npm:^6.0.3":
   version: 6.0.3
   resolution: "kind-of@npm:6.0.3"
@@ -8221,13 +8275,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.castarray@npm:^4.4.0":
-  version: 4.4.0
-  resolution: "lodash.castarray@npm:4.4.0"
-  checksum: fca8c7047e0ae2738b0b2503fb00157ae0ff6d8a1b716f87ed715b22560e09de438c75b65e01a7e44ceb41c5b31dce2eb576e46db04beb9c699c498e03cbd00f
-  languageName: node
-  linkType: hard
-
 "lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
@@ -8239,13 +8286,6 @@ __metadata:
   version: 4.4.0
   resolution: "lodash.ismatch@npm:4.4.0"
   checksum: a393917578842705c7fc1a30fb80613d1ac42d20b67eb26a2a6004d6d61ee90b419f9eb320508ddcd608e328d91eeaa2651411727eaa9a12534ed6ccb02fc705
-  languageName: node
-  linkType: hard
-
-"lodash.isplainobject@npm:^4.0.6":
-  version: 4.0.6
-  resolution: "lodash.isplainobject@npm:4.0.6"
-  checksum: 29c6351f281e0d9a1d58f1a4c8f4400924b4c79f18dfc4613624d7d54784df07efaff97c1ff2659f3e085ecf4fff493300adc4837553104cef2634110b0d5337
   languageName: node
   linkType: hard
 
@@ -9524,6 +9564,13 @@ __metadata:
   version: 1.1.1
   resolution: "pathval@npm:1.1.1"
   checksum: 090e3147716647fb7fb5b4b8c8e5b55e5d0a6086d085b6cd23f3d3c01fcf0ff56fd3cc22f2f4a033bd2e46ed55d61ed8379e123b42afe7d531a2a5fc8bb556d6
+  languageName: node
+  linkType: hard
+
+"photoswipe@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "photoswipe@npm:5.3.0"
+  checksum: 3a55d797badc8ec0bdefef3a6dc29320108a9364fa34a87947c4760f18249cc6a880999ad5cd17cc8d027fc5d9400f1c4887fc53ba45515b404d0938259ed245
   languageName: node
   linkType: hard
 
@@ -10834,6 +10881,7 @@ __metadata:
     "@types/yargs": ^17.0.11
     "@typescript-eslint/eslint-plugin": ^5.32.0
     "@typescript-eslint/parser": ^5.32.0
+    cross-env: ^7.0.3
     eslint: ^8.21.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.2.1
@@ -10841,6 +10889,7 @@ __metadata:
     husky: ^8.0.1
     lerna: ^5.3.0
     lint-staged: ^13.0.3
+    photoswipe: ^5.3.0
     prettier: ^2.7.1
     typescript: ^4.7.4
     vitepress: ^1.0.0-alpha.4

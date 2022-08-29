@@ -12,9 +12,11 @@ export default () => {
     const id = cookies.get(MAGENTO_CART_COOKIE_NAME)
     if (id) return { id }
 
-    const cart = await createEmptyCartRepository()
-    cookies.set(MAGENTO_CART_COOKIE_NAME, cart.id)
+    {
+      const { id } = await createEmptyCartRepository()
+      cookies.set(MAGENTO_CART_COOKIE_NAME, id)
 
-    return { id: cart.id }
+      return { id }
+    }
   }
 }

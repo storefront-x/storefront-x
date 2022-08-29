@@ -3,6 +3,18 @@
     <Breadcrumbs :breadcrumbs="product.breadcrumbs" />
     <ProductOverview />
     <ProductDetailTabs />
+
+    <section v-if="product?.upsellProducts?.length" class="pt-8 sm:px-0">
+      <Heading :level="2">{{ $t('Customers also bought') }}</Heading>
+
+      <ProductCarousel class="mt-8" :products="product?.upsellProducts" />
+    </section>
+
+    <section v-if="product?.crossSellProducts?.length" class="pt-8 sm:px-0">
+      <Heading :level="2">{{ t('Related products') }}</Heading>
+
+      <ProductCarousel class="mt-8" :products="product?.crossSellProducts" />
+    </section>
   </Container>
 </template>
 
@@ -13,8 +25,12 @@ import ProductOverview from '#ioc/organisms/ProductOverview'
 import ProductDetailTabs from '#ioc/organisms/ProductDetailTabs'
 import injectProduct from '#ioc/composables/injectProduct'
 import useHead from '#ioc/composables/useHead'
+import ProductCarousel from '#ioc/organisms/ProductCarousel'
+import Heading from '#ioc/atoms/Heading'
+import useI18n from '#ioc/composables/useI18n'
 import { computed } from 'vue'
 
+const { t } = useI18n()
 const product = injectProduct()
 
 useHead({
@@ -27,3 +43,8 @@ useHead({
   ],
 })
 </script>
+
+<i18n lang="yaml">
+cs-CZ:
+  Related products: Příbuzné produkty
+</i18n>

@@ -21,13 +21,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SfxInput from '#ioc/components/SfxInput'
 import Input from '#ioc/atoms/Input'
 import Label from '#ioc/atoms/Label'
 import Error from '#ioc/atoms/Error'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   components: {
     Input,
     Label,
@@ -66,5 +67,5 @@ export default {
       return 'light'
     },
   },
-}
+})
 </script>

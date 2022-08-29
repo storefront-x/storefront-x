@@ -8,8 +8,10 @@
   >
     <slot>
       <span v-if="!loading">{{ t('Add to cart') }}</span>
-      <Spinner v-else />
+      <Spinner v-if="loading" />
     </slot>
+
+    <CrossSellModal v-if="isCrossSellModalOpen" @close="onClose" />
   </Button>
 </template>
 
@@ -17,9 +19,9 @@
 import Button from '#ioc/atoms/Button'
 import Spinner from '#ioc/atoms/Spinner'
 import injectProduct from '#ioc/composables/injectProduct'
-import useI18n from '#ioc/composables/useI18n'
-import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import useAddToCart from '#ioc/services/useAddToCart'
+import CrossSellModal from '#ioc/organisms/CrossSellModal'
+import useI18n from '#ioc/composables/useI18n'
 import { ref } from 'vue'
 
 const props = defineProps({
@@ -32,20 +34,22 @@ const props = defineProps({
 const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
-const showSuccessNotification = useShowSuccessNotification()
 
 const loading = ref(false)
+const isCrossSellModalOpen = ref(false)
+
+const onClose = () => {
+  isCrossSellModalOpen.value = false
+}
 
 const onAddToCart = async () => {
+  loading.value = true
   try {
-    loading.value = true
-
     await addToCart(product, { quantity: props.quantity })
+    isCrossSellModalOpen.value = true
   } finally {
     loading.value = false
   }
-
-  showSuccessNotification(t('Added to cart'), t('{0} was added to cart', [product.name]))
 }
 </script>
 

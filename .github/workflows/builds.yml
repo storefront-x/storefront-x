@@ -1,0 +1,30 @@
+name: Builds
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  shopware:
+    runs-on: ubuntu-latest
+    name: Shopware
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build --config storefront-x.shopware.config.js
+
+  magento:
+    runs-on: ubuntu-latest
+    name: Magento
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build --config storefront-x.magento.config.js

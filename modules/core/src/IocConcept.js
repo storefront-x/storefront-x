@@ -13,6 +13,8 @@ export default class IocConcept extends OverridingConcept {
     const loaders = []
 
     for (const { module, file, extensions } of Object.values(files)) {
+      if (!file) continue
+
       const fileWithoutExt = file.replace(/\.\w+$/, '')
       const filePath = this.getPathForFile(module, file)
 
