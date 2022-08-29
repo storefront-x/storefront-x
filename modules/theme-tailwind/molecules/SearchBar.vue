@@ -68,7 +68,7 @@ const results = ref<ReturnType<ReturnType<typeof useToProduct>>[]>([])
 
 const search = async () => {
   if (!query.value || query.value.length < 2) return
-  const { products } = await getSearchSuggestions(query.value)
+  const { products } = await getSearchSuggestions({ search: query.value })
   results.value = products
 }
 
