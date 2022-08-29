@@ -3143,6 +3143,8 @@ __metadata:
 "@storefront-x/magento@workspace:modules/magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/magento@workspace:modules/magento"
+  dependencies:
+    http-proxy-middleware: ^2.0.6
   languageName: unknown
   linkType: soft
 
@@ -5552,6 +5554,22 @@ __metadata:
   checksum: a51744d9b53c164ba9c0492471a1a2ffa0b6727451bdc89e31627fdf4adda9d51277cfcbfb20f0a6f08ccb3c436f341df3e92631a3440226d93a8971724771fd
   languageName: node
   linkType: hard
+
+"demo-magento@workspace:modules/create-storefront-x/template/magento/modules/demo-magento":
+  version: 0.0.0-use.local
+  resolution: "demo-magento@workspace:modules/create-storefront-x/template/magento/modules/demo-magento"
+  dependencies:
+    vite-plugin-pwa: ^0.12.3
+  languageName: unknown
+  linkType: soft
+
+"demo-shopware@workspace:modules/create-storefront-x/template/shopware/modules/demo-shopware":
+  version: 0.0.0-use.local
+  resolution: "demo-shopware@workspace:modules/create-storefront-x/template/shopware/modules/demo-shopware"
+  dependencies:
+    vite-plugin-pwa: ^0.12.3
+  languageName: unknown
+  linkType: soft
 
 "depd@npm:2.0.0":
   version: 2.0.0

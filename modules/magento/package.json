@@ -2,5 +2,8 @@
   "name": "@storefront-x/magento",
   "version": "0.2.0",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "http-proxy-middleware": "^2.0.6"
+  }
 }

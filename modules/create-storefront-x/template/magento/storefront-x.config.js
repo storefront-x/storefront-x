@@ -36,8 +36,8 @@ export default {
     '@storefront-x/free-shipping-magento',
 
     '@storefront-x/theme-tailwind',
-    '@storefront-x/theme-tailwind-shopware',
+    '@storefront-x/theme-tailwind-magento',
 
-    'demo',
+    'demo-magento',
   ],
 }
