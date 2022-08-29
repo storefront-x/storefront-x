@@ -18,14 +18,6 @@ export default class Pages extends GeneratingConcept {
 
     for (const { module, file } of Object.values(files)) {
       const parsed = path.parse(file)
-      // parsed format in node js parse
-      // {
-      //   root: '/',
-      //   dir: '/users/admin/website',
-      //   base: 'index.html',
-      //   ext: '.html',
-      //   name: 'index'
-      // }
       const parts = [...parsed.dir.replace(/\\/g, '/').split('/').filter(Boolean), parsed.name]
       const component = this.getPathForFile(module, file)
 
