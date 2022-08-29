@@ -1,26 +1,26 @@
 import BlogPost from '#ioc/graphql/queries/BlogPost'
 import useMagento from '#ioc/composables/useMagento'
-import useToPost from '#ioc/mappers/useToPost'
+import useToBlogPost from '#ioc/mappers/useToBlogPost'
 
 export default () => {
   const magento = useMagento()
-  const toPost = useToPost()
+  const toBlogPost = useToBlogPost()
 
   return async (
-    id: string,
+    urlKey: string,
   ): Promise<{
-    post: ReturnType<typeof toPost>
+    blogPost: ReturnType<typeof toBlogPost>
   }> => {
     const {
       data: { amBlogPost },
     } = await magento.graphql(
       BlogPost().with({
-        urlKey: id,
+        urlKey,
       }),
     )
 
     return {
-      post: toPost(amBlogPost),
+      blogPost: toBlogPost(amBlogPost),
     }
   }
 }

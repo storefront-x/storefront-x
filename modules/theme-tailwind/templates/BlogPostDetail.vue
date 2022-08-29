@@ -70,15 +70,15 @@
 
     <Container class="relative">
       <Prose>
-        <Heading>{{ post.title }}</Heading>
+        <Heading>{{ blogPost.title }}</Heading>
 
-        <div v-html="post.shortContent" />
+        <div v-html="blogPost.shortContent" />
 
-        <SfxImage :src="post.postThumbnail" :width="700" :height="450" class-img="mt-4 rounded-lg" />
+        <SfxImage :src="blogPost.postThumbnail" :width="700" :height="450" class-img="mt-4 rounded-lg" />
       </Prose>
     </Container>
 
-    <SfxMagentoCmsPage :cms-page="post.fullContent" />
+    <SfxMagentoCmsPage :cms-page="blogPost.fullContent" />
   </div>
 </template>
 
@@ -88,9 +88,9 @@ import useHead from '#ioc/composables/useHead'
 import SfxImage from '#ioc/components/SfxImage'
 import Prose from '#ioc/atoms/Prose'
 import Heading from '#ioc/atoms/Heading'
-import usePost from '#ioc/composables/usePost'
+import useBlogPost from '#ioc/composables/useBlogPost'
 import { computed, PropType, toRef } from 'vue'
-import useToPost from '#ioc/mappers/useToPost'
+import useToBlogPost from '#ioc/mappers/useToBlogPost'
 import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
 
 const props = defineProps({
@@ -98,20 +98,20 @@ const props = defineProps({
     type: String as () => string | null,
     default: '',
   },
-  post: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToPost>>>,
+  blogPost: {
+    type: Object as PropType<ReturnType<ReturnType<typeof useToBlogPost>>>,
     required: true,
   },
 })
 
-const post = usePost(toRef(props, 'post'))
+const blogPost = useBlogPost(toRef(props, 'blogPost'))
 
 useHead({
-  title: computed(() => post.metaTitle),
+  title: computed(() => blogPost.metaTitle),
   meta: [
     {
       name: 'description',
-      content: computed(() => post.metaDescription),
+      content: computed(() => blogPost.metaDescription),
     },
   ],
 })

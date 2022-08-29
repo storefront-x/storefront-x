@@ -45,7 +45,7 @@ import { computed, PropType, toRef } from 'vue'
 import useToPost from '#ioc/mappers/useToPost'
 import SfxImage from '#ioc/components/SfxImage'
 import useI18n from '~/modules/vue-i18n/composables/useI18n'
-import usePost from '~/modules/blog/composables/usePost'
+import usePost from '~/modules/blog/composables/useBlogPost'
 import stripHtml from '#ioc/utils/string/stripHtml'
 import readingTime from '#ioc/utils/string/readingTime'
 

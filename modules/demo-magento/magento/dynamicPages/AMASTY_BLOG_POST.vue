@@ -1,14 +1,14 @@
 <template>
-  <PostDetail v-if="data" :post="data.post" />
+  <BlogPostDetail v-if="data" :blog-post="data.blogPost" />
 
   <NotFound v-else />
 </template>
 
 <script setup lang="ts">
-import useGetPostById from '#ioc/services/useGetPostById'
+import useGetBlogPostByUrl from '#ioc/services/useGetBlogPostByUrl'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import { defineAsyncComponent } from 'vue'
-import PostDetail from '#ioc/templates/PostDetail'
+import BlogPostDetail from '#ioc/templates/BlogPostDetail'
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
 const props = defineProps({
@@ -22,10 +22,10 @@ const props = defineProps({
   },
 })
 
-const getPostById = useGetPostById()
+const getBlogPostByUrl = useGetBlogPostByUrl()
 
 const { data } = await useAsyncData('blogPost', () =>
-  getPostById(
+  getBlogPostByUrl(
     props.relativeUrl
       .replace(/\.html$/, '')
       .split('/')
