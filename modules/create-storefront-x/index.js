@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
+
 import path from 'node:path'
 import url from 'node:url'
 import fs from 'fs-extra'

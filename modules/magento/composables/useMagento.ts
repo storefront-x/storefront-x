@@ -5,7 +5,6 @@ import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NA
 import objectToQuery from '#ioc/utils/url/objectToQuery'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import IS_SERVER from '#ioc/config/IS_SERVER'
-import hashCode from '#ioc/utils/string/hashCode'
 
 interface Options {
   errorHandler?: (err: any) => Promise<void>
@@ -36,8 +35,6 @@ export default () => {
       const response = await fetch(input, init)
 
       if (response.headers.get('content-type') !== 'application/json') {
-        console.timeEnd('' + hashCode(query))
-
         throw new Error(await response.text())
       }
 
