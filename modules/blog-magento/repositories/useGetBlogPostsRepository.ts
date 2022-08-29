@@ -25,6 +25,7 @@ export default () => {
 
     return {
       blogPosts: amBlogPosts.items.map(toBlogPost),
+      blogPostsSize: amBlogPosts.all_post_size,
     }
   }
 }

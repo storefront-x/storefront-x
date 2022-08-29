@@ -14,7 +14,7 @@
         <p class="text-sm font-medium text-indigo-600">
           <Link :href="blogPost.urlKey" class="relative"> Article </Link>
         </p>
-        <Link :to="post.urlKey" class="relative group block mt-2">
+        <Link :to="blogPost.urlKey" class="relative group block mt-2">
           <p class="text-xl font-semibold text-gray-900 group-hover:underline">
             {{ blogPost.title }}
           </p>
