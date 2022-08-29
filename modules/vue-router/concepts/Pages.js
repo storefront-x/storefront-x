@@ -18,9 +18,18 @@ export default class Pages extends GeneratingConcept {
 
     for (const { module, file } of Object.values(files)) {
       const parsed = path.parse(file)
+      // parsed format in node js parse
+      // {
+      //   root: '/',
+      //   dir: '/users/admin/website',
+      //   base: 'index.html',
+      //   ext: '.html',
+      //   name: 'index'
+      // }
+      // console.log('all files', files)
       const parts = [...parsed.dir.replace(/\\/g, '/').split('/').filter(Boolean), parsed.name]
       const component = this.getPathForFile(module, file)
-
+      // console.log('parts entries', parts)
       let _pages = pages
       for (const [i, part] of parts.entries()) {
         if (i === parts.length - 1) {
@@ -40,8 +49,20 @@ export default class Pages extends GeneratingConcept {
         _pages = _pages[part].children
       }
     }
-
+    // console.log('pages before transform', pages)
     await this.renderTemplate(this.compiledTemplate, { pages: this._transform(pages) })
+  }
+
+  addGuards(pages = {}, guards = []) {
+    let pagesWithGuards = []
+    guards.forEach((guard) => {
+      const guardName = guard.split('.')[1]
+      return pages.map((page) => {
+        if (page.name.includes(guardName)) {
+          page.beforeEnter = guardName
+        }
+      })
+    })
   }
 
   _transform(pages) {
@@ -100,7 +121,7 @@ export default class Pages extends GeneratingConcept {
     for (const layout of transformed) {
       layout.children = flattenNested(layout)
     }
-
+    console.log('transformed pages', transformed[0].children)
     return transformed
   }
 
