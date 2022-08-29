@@ -6,6 +6,7 @@
   "dependencies": {
     "keen-slider": "^5",
     "lru-cache": "^7.13.2",
+    "photoswipe": "^5.3.0",
     "sharp": "^0.30.7"
   }
 }
