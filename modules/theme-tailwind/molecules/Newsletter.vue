@@ -62,7 +62,7 @@ const onSubmitNewsletter = async ({ newsletter }: { newsletter: string }) => {
     if (_error) {
       showErrorNotification(_error)
     } else {
-      showSuccessNotification(t(`${status}`), t('Thank you.'))
+      showSuccessNotification(status ? t(`${status}`) : t(`Subscribed`), t('Thank you.'))
 
       subscribed.value = true
     }
