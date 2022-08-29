@@ -20,6 +20,9 @@ export default {
     '@storefront-x/customer',
     '@storefront-x/multicurrency',
     '@storefront-x/wishlist',
+    '@storefront-x/brands',
+    '@storefront-x/product-reviews',
+    '@storefront-x/free-shipping',
 
     '@storefront-x/magento',
     '@storefront-x/brands-magento',
@@ -30,6 +33,9 @@ export default {
     '@storefront-x/customer-magento',
     '@storefront-x/multicurrency-magento',
     '@storefront-x/wishlist-magento',
+    '@storefront-x/brands-magento',
+    '@storefront-x/product-reviews-magento',
+    '@storefront-x/free-shipping-magento',
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',

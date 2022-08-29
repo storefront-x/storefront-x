@@ -1,7 +1,9 @@
 import useToMoney from '#ioc/mappers/useToMoney'
+import useToProductReview from '#ioc/mappers/useToProductReview'
 
 export default () => {
   const toMoney = useToMoney()
+  const toProductReview = useToProductReview()
 
   return (data: any) => ({
     __typename: data.__typename ?? '',
@@ -20,5 +22,9 @@ export default () => {
       description: data.description?.html ?? '',
     },
     images: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
+    ratingSummary: data.rating_summary ?? 0,
+    reviewCount: data.review_count ?? 0,
+    reviews: data.reviews?.items.map(toProductReview) ?? [],
+    mediaGallery: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
   })
 }

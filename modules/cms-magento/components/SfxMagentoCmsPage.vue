@@ -6,6 +6,7 @@ import isNullish from '#ioc/utils/isNullish'
 import once from '#ioc/utils/once'
 
 export default defineComponent({
+  inheritAttrs: false,
   props: {
     cmsPage: {
       type: Object,
