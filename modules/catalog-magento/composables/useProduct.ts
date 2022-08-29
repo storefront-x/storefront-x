@@ -15,7 +15,7 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
 
   const urlPath = computed(() => '/' + urlKey.value + catalogMagentoStore.productUrlSuffix)
 
-  const description = computed(() => product.value.description)
+  const descriptionHtml = computed(() => product.value.descriptionHtml)
 
   const shortDescriptionHtml = computed(() => product.value.shortDescriptionHtml)
 
@@ -32,6 +32,10 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
   const isOnSale = computed(() => finalPrice.value < regularPrice.value)
 
   const images = computed(() => product.value.images ?? [])
+
+  const crossSellProducts = computed(() => product.value.crossSellProducts)
+
+  const upsellProducts = computed(() => product.value.upsellProducts)
 
   const meta = computed(() => product.value.meta)
 
@@ -51,7 +55,7 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
     name,
     urlKey,
     urlPath,
-    description,
+    descriptionHtml,
     shortDescriptionHtml,
     thumbnailUrl,
     regularPrice,
@@ -66,5 +70,7 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
     reviews,
     isConfigurableProduct,
     mediaGallery,
+    crossSellProducts,
+    upsellProducts,
   })
 }
