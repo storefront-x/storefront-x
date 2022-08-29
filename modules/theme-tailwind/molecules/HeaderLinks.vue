@@ -5,7 +5,6 @@
     </div>
 
     <div class="flex items-center space-x-6">
-      <!-- <Link :to="localePath('brands')" color="gray">{{ t('Brands') }}</Link> -->
       <Link to="/" color="gray">{{ t('Blog') }}</Link>
 
       <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, setCurrency }">
