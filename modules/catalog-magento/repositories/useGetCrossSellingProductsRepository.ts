@@ -1,7 +1,5 @@
 import useMagento from '#ioc/composables/useMagento'
-import useProduct from '#ioc/composables/useProduct'
 import ProductCrossSell from '#ioc/graphql/mutations/ProductCrossSell'
-import useToCart from '#ioc/mappers/useToCart'
 import useToProduct from '#ioc/mappers/useToProduct'
 
 export default () => {
