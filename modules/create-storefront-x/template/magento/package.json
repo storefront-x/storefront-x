@@ -1,0 +1,52 @@
+{
+  "name": "storefront-x-app",
+  "version": "0.1.0",
+  "description": "Storefront X",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "./modules/*"
+  ],
+  "scripts": {
+    "dev": "sfx dev",
+    "build": "sfx build",
+    "serve": "sfx serve"
+  },
+  "dependencies": {
+    "@storefront-x/core": "^0.1.4"
+  },
+  "devDependencies": {
+    "@storefront-x/base": "^0.1.4",
+    "@storefront-x/vue": "^0.1.4",
+    "@storefront-x/vue-router": "^0.1.4",
+    "@storefront-x/vue-head": "^0.1.4",
+    "@storefront-x/vue-i18n": "^0.1.4",
+    "@storefront-x/vue-pinia": "^0.1.4",
+    "@storefront-x/base-commerce": "^0.1.4",
+    "@storefront-x/atomic-design": "^0.1.4",
+    "@storefront-x/graphql": "^0.1.4",
+    "@storefront-x/brands": "^0.1.4",
+    "@storefront-x/cart": "^0.1.4",
+    "@storefront-x/catalog": "^0.1.4",
+    "@storefront-x/checkout": "^0.1.4",
+    "@storefront-x/cms": "^0.1.4",
+    "@storefront-x/customer": "^0.1.4",
+    "@storefront-x/multicurrency": "^0.1.4",
+    "@storefront-x/wishlist": "^0.1.4",
+    "@storefront-x/product-reviews": "^0.1.4",
+    "@storefront-x/free-shipping": "^0.1.4",
+    "@storefront-x/magento": "^0.1.4",
+    "@storefront-x/cart-magento": "^0.1.4",
+    "@storefront-x/catalog-magento": "^0.1.4",
+    "@storefront-x/checkout-magento": "^0.1.4",
+    "@storefront-x/cms-magento": "^0.1.4",
+    "@storefront-x/customer-magento": "^0.1.4",
+    "@storefront-x/multicurrency-magento": "^0.1.4",
+    "@storefront-x/wishlist-magento": "^0.1.4",
+    "@storefront-x/brands-magento": "^0.1.4",
+    "@storefront-x/product-reviews-magento": "^0.1.4",
+    "@storefront-x/free-shipping-magento": "^0.1.4",
+    "@storefront-x/theme-tailwind": "^0.1.4",
+    "@storefront-x/theme-tailwind-shopware": "^0.1.4"
+  }
+}
