@@ -1,4 +1,4 @@
-import useGetBlogPosts from '#ioc/repositories/useGetPostsRepository'
+import useGetBlogPosts from '#ioc/repositories/useGetBlogPostsRepository'
 
 export default () => {
   const getBlogPosts = useGetBlogPosts()

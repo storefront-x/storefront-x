@@ -1,6 +1,5 @@
 import colors from 'tailwindcss/colors.js'
 import forms from '@tailwindcss/forms'
-import typography from '@tailwindcss/typography'
 
 export default {
   content: [
@@ -8,7 +7,7 @@ export default {
     './node_modules/@storefront-x/theme-tailwind-magento/**/*.vue',
     './node_modules/@storefront-x/demo-magento/**/*.vue',
   ],
-  plugins: [forms, typography],
+  plugins: [forms],
   theme: {
     extend: {
       colors: {

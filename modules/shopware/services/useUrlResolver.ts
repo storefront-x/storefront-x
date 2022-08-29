@@ -12,8 +12,6 @@ export default () => {
 
     const { data } = await useAsyncData('urlResolver', () => getSeoUrlRepository(routePath))
 
-    console.log(1, data)
-
     return {
       id: data.value?.foreignKey,
       component: dynamicPages[data.value?.ident as keyof typeof dynamicPages],

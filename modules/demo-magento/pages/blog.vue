@@ -10,7 +10,7 @@
     </div>
 
     <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      <BlogPostTile v-for="post in data.posts" :key="post.id" :post="post" />
+      <BlogPostTile v-for="post in data.blogPosts" :key="post.id" :blog-post="post" />
     </div>
   </Container>
 </template>
@@ -18,15 +18,14 @@
 <script setup lang="ts">
 import Container from '#ioc/atoms/Container'
 import useI18n from '#ioc/composables/useI18n'
-import useGetPosts from '#ioc/services/useGetPosts'
+import useGetBlogPosts from '#ioc/services/useGetBlogPosts'
 import BlogPostTile from '#ioc/molecules/BlogPostTile'
 import useAsyncData from '#ioc/composables/useAsyncData'
 
-
 const { t } = useI18n()
 
-const getPosts = useGetPosts()
-const { data } = await useAsyncData('posts', () => getPosts())
+const getBlogPosts = useGetBlogPosts()
+const { data } = await useAsyncData('blogPosts', () => getBlogPosts())
 </script>
 
 <i18n lang="yaml">

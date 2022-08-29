@@ -1,7 +1,5 @@
 <template>
-  <Prose>
-    <div :style="styles" v-html="innerHtml" />
-  </Prose>
+  <div :style="styles" v-html="innerHtml" />
 </template>
 
 <script>

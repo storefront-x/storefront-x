@@ -2964,6 +2964,7 @@ __metadata:
   dependencies:
     keen-slider: ^5
     lru-cache: ^7.13.2
+    photoswipe: ^5.3.0
     sharp: ^0.30.7
   languageName: unknown
   linkType: soft
@@ -2971,6 +2972,18 @@ __metadata:
 "@storefront-x/base@workspace:modules/base":
   version: 0.0.0-use.local
   resolution: "@storefront-x/base@workspace:modules/base"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/blog-magento@workspace:modules/blog-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/blog-magento@workspace:modules/blog-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/blog@workspace:modules/blog":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/blog@workspace:modules/blog"
   languageName: unknown
   linkType: soft
 
@@ -10889,7 +10902,6 @@ __metadata:
     husky: ^8.0.1
     lerna: ^5.3.0
     lint-staged: ^13.0.3
-    photoswipe: ^5.3.0
     prettier: ^2.7.1
     typescript: ^4.7.4
     vitepress: ^1.0.0-alpha.4
