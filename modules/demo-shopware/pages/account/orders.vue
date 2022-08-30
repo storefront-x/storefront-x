@@ -1,6 +1,6 @@
 <template>
   <SideAccountMenu>
-    <AccountOrderDetail :customer-orders="data?.customerOrders || []" />
+    <AccountOrderDetail :customer-orders="data?.customerOrders" />
   </SideAccountMenu>
 </template>
 
