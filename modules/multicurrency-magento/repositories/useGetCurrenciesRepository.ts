@@ -7,14 +7,14 @@ export default () => {
   const toCurrency = useToCurrency()
 
   return async (): Promise<{
-    currencies: ReturnType<typeof toCurrency>
+    currency: ReturnType<typeof toCurrency>
   }> => {
     const {
       data: { currencyConfig },
     } = await magento.graphql(CurrencyConfig())
 
     return {
-      currencies: toCurrency(currencyConfig),
+      currency: toCurrency(currencyConfig),
     }
   }
 }

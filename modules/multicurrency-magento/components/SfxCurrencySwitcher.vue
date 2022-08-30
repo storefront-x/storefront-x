@@ -1,24 +1,22 @@
 <template>
-  <slot v-bind="{ currencies, currentCurrency, setCurrency }" />
+  <div v-bind="$attrs">
+    <slot v-bind="{ currencies, currentCurrency, setCurrency }" />
+  </div>
 </template>
 
 <script setup lang="ts">
-import useMulticurrencyMagentoStore from '#ioc/stores/useMulticurrencyMagentoStore'
-import useMagentoStore from '#ioc/stores/useMagentoStore'
+import useMulticurrencyStore from '#ioc/stores/useMulticurrencyStore'
 import useSetCurrency from '#ioc/services/useSetCurrency'
 import { computed } from 'vue'
+import useStoreStore from '#ioc/stores/useStoreStore'
 
-const magentoStore = useMagentoStore()
-const multicurrencyMagentoStore = useMulticurrencyMagentoStore()
+const storeStore = useStoreStore()
+const multicurrencyStore = useMulticurrencyStore()
 const setCurrency = useSetCurrency()
 
-const currencies = computed(() => multicurrencyMagentoStore.currencies.availableCurrencyCodes)
+const currencies = computed(() => multicurrencyStore.currencies[0].availableCurrencyCodes)
 
-const currentCurrency = computed(() => {
-  if (multicurrencyMagentoStore.selectedCurrencyCode.code) {
-    return multicurrencyMagentoStore.selectedCurrencyCode
-  }
-
-  return magentoStore.storeConfig.baseCurrencyCode
-})
+const currentCurrency = computed(() =>
+  storeStore.selectedCurrencyCode ? storeStore.selectedCurrencyCode : storeStore.storeConfig.baseCurrencyCode,
+)
 </script>

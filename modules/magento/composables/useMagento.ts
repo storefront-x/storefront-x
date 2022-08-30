@@ -5,7 +5,7 @@ import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NA
 import objectToQuery from '#ioc/utils/url/objectToQuery'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import IS_SERVER from '#ioc/config/IS_SERVER'
-import useMulticurrencyMagentoStore from '#ioc/stores/useMulticurrencyMagentoStore'
+import useStoreStore from '#ioc/stores/useStoreStore'
 import useI18n from '#ioc/composables/useI18n'
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 
@@ -17,7 +17,7 @@ const URL = IS_SERVER ? MAGENTO_URL : '/_magento'
 
 export default () => {
   const cookie = useCookies()
-  const multicurrencyMagentoStore = useMulticurrencyMagentoStore()
+  const storeStore = useStoreStore()
   const { locale } = useI18n()
 
   const headers = () => {
@@ -25,7 +25,7 @@ export default () => {
       return item.locale === locale.value
     })?.magentoStore
     const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
-    const selectedCurrencyCode = multicurrencyMagentoStore.selectedCurrencyCode.code ?? ''
+    const selectedCurrencyCode = storeStore.selectedCurrencyCode ?? ''
     return {
       'Content-Type': 'application/json',
       ...(store && { Store: store }),

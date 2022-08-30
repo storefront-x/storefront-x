@@ -5,23 +5,23 @@
     </div>
 
     <div class="flex items-center space-x-6">
-      <Link :to="localePath('/brands')" color="gray">{{ t('Brands') }}</Link>
+      <Link :to="localePath('brands')" color="gray">{{ t('Brands') }}</Link>
       <Link to="/" color="gray">{{ t('Blog') }}</Link>
 
       <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, setCurrency }">
         <Dropdown
           link-like
-          :title="currentCurrency?.code"
+          :title="currentCurrency"
           class="text-gray-600 hover:text-gray-800"
           data-cy="currency-switcher"
         >
           <DropdownItem
             v-for="currency in currencies"
-            :key="currency.code"
+            :key="currency"
             href="javascript:void(0)"
             @click="setCurrency(currency)"
           >
-            {{ currency.code }}
+            {{ currency }}
           </DropdownItem>
         </Dropdown>
       </SfxCurrencySwitcher>

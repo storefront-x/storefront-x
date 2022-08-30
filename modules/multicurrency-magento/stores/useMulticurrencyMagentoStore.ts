@@ -1,31 +1,30 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import useToCurrency from '#ioc/mappers/useToCurrency'
 import useGetCurrencies from '#ioc/services/useGetCurrencies'
 import { defineStore } from 'pinia'
 import useCookies from '#ioc/composables/useCookies'
 import MULTICURRENCY_COOKIE_NAME from '#ioc/config/MULTICURRENCY_COOKIE_NAME'
+import useMulticurrencyStore from '#ioc/stores/useMulticurrencyStore'
+import useStoreStore from '#ioc/stores/useStoreStore'
 
 export default defineStore('multicurrencyMagento', {
-  state: () => ({
-    currencies: {} as ReturnType<ReturnType<typeof useToCurrency>>,
-    selectedCurrencyCode: {
-      code: '',
-    },
-  }),
   actions: {
     async serverInit() {
       if (IS_CLIENT) return
 
+      const storeStore = useStoreStore()
+      const multicurrencyStore = useMulticurrencyStore()
       const getCurrencies = useGetCurrencies()
       const cookies = useCookies()
 
-      const { currencies } = await getCurrencies()
+      const { currency } = await getCurrencies()
+      const currenciesArray = []
+      currenciesArray.push(currency)
 
-      this.$patch({ currencies: currencies })
+      multicurrencyStore.$patch({ currencies: currenciesArray })
 
       const selectedCurrencyCode = cookies.get(MULTICURRENCY_COOKIE_NAME)
       if (selectedCurrencyCode) {
-        this.$patch({ selectedCurrencyCode: { code: selectedCurrencyCode } })
+        storeStore.$patch({ selectedCurrencyCode })
       }
     },
   },
