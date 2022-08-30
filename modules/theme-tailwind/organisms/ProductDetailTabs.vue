@@ -5,8 +5,8 @@
       :key="tab.name"
       :name="tab.name"
       :classes="{
-        'text-primary-500 border-primary-500 bg-slate-50': selected == tab.component,
-        'text-inherit': selected != tab.component,
+        'text-primary-500 border-primary-500 bg-slate-50': toRaw(selected) == tab.component,
+        'text-inherit': toRaw(selected) != tab.component,
       }"
       @click="selected = tab.component"
       >{{ t(tab.name) }}
@@ -20,16 +20,28 @@
 
 <script setup lang="ts">
 import MenuTab from '#ioc/atoms/MenuTab'
-import { defineComponent } from 'vue'
-import ProductDetail from '#ioc/molecules/ProductDetailDescription'
+import { shallowRef, toRaw } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
+import ProductDescription from '#ioc/molecules/ProductDescription'
+import ProductParameters from '#ioc/molecules/ProductParameters'
+import ProductReviews from '#ioc/organisms/ProductReviews'
 
 const { t } = useI18n()
-const selected = defineComponent(ProductDetail)
+
+const selected = shallowRef(ProductDescription)
+
 const tabs = [
   {
     name: 'Detail',
-    component: defineComponent(ProductDetail),
+    component: ProductDescription,
+  },
+  {
+    name: 'Parameters',
+    component: ProductParameters,
+  },
+  {
+    name: 'Reviews',
+    component: ProductReviews,
   },
 ]
 </script>
