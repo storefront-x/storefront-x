@@ -26,8 +26,8 @@ import loadScript from '#ioc/utils/dom/loadScript'
 import once from '#ioc/utils/once'
 import { computed, onMounted } from 'vue'
 import useShipping from '#ioc/composables/useShipping'
-import useSetShippingAddress from '#ioc/services/useSetShippingAddress'
-import useSelectShippingMethod from '#ioc/services/useSelectShippingMethod'
+import useConfirmShippingAddress from '#ioc/services/useConfirmShippingAddress'
+import useConfirmShippingMethod from '#ioc/services/useConfirmShippingMethod'
 import useCheckout from '#ioc/composables/useCheckout'
 
 const emit = defineEmits(['select', 'confirm'])
@@ -35,8 +35,8 @@ const emit = defineEmits(['select', 'confirm'])
 const { t } = useI18n()
 const checkout = useCheckout()
 const shipping = useShipping()
-const setShippingAddress = useSetShippingAddress()
-const selectShippingMethod = useSelectShippingMethod()
+const confirmShippingAddress = useConfirmShippingAddress()
+const confirmShippingMethod = useConfirmShippingMethod()
 
 const picked = computed(() => shipping.shippingAddress)
 
@@ -62,7 +62,7 @@ const pick = () => {
       if (!location) return
 
       shipping.setShippingHandler(async () => {
-        await setShippingAddress({
+        await confirmShippingAddress({
           ...checkout.contactInformation!,
           city: location.city,
           street: location.street,
@@ -71,7 +71,7 @@ const pick = () => {
           pickupLocationCode: null,
         })
 
-        await selectShippingMethod(shipping.shippingMethod!)
+        await confirmShippingMethod(shipping.shippingMethod!)
       })
 
       emit('confirm')

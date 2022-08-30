@@ -43,8 +43,8 @@ import useI18n from '#ioc/composables/useI18n'
 import useShipping from '#ioc/composables/useShipping'
 import useToPickupLocation from '#ioc/mappers/useToPickupLocation'
 import useGetPickupLocationsRepository from '#ioc/repositories/useGetPickupLocationsRepository'
-import useSelectShippingMethod from '#ioc/services/useSelectShippingMethod'
-import useSetShippingAddress from '#ioc/services/useSetShippingAddress'
+import useConfirmShippingMethod from '#ioc/services/useConfirmShippingMethod'
+import useConfirmShippingAddress from '#ioc/services/useConfirmShippingAddress'
 import { computed, onMounted } from 'vue'
 
 const emit = defineEmits(['select', 'confirm'])
@@ -54,8 +54,8 @@ const cart = useCart()
 const checkout = useCheckout()
 const shipping = useShipping()
 const getPickupLocations = useGetPickupLocationsRepository()
-const setShippingAddress = useSetShippingAddress()
-const selectShippingMethod = useSelectShippingMethod()
+const confirmShippingAddress = useConfirmShippingAddress()
+const confirmShippingMethod = useConfirmShippingMethod()
 
 const { data } = await useAsyncData('pickupLocations', () => getPickupLocations(cart.items))
 
@@ -73,7 +73,7 @@ onMounted(() => {
 
 const select = async (pickupLocation: ReturnType<ReturnType<typeof useToPickupLocation>>) => {
   shipping.setShippingHandler(async () => {
-    await setShippingAddress({
+    await confirmShippingAddress({
       ...checkout.contactInformation!,
       street: pickupLocation.street,
       city: pickupLocation.city,
@@ -83,7 +83,7 @@ const select = async (pickupLocation: ReturnType<ReturnType<typeof useToPickupLo
       customerNotes: null,
     })
 
-    await selectShippingMethod(shipping.shippingMethod)
+    await confirmShippingMethod(shipping.shippingMethod!)
   })
 
   emit('confirm')

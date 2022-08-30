@@ -40,7 +40,7 @@ import PaymentMethodSelection from '#ioc/organisms/PaymentMethodSelection'
 import CheckoutAgreements from '#ioc/organisms/CheckoutAgreements'
 import usePlaceOrder from '#ioc/services/usePlaceOrder'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
-import useSetContactInformation from '#ioc/services/useSetContactInformation'
+import useConfirmContactInformation from '#ioc/services/useConfirmContactInformation'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useRouter from '#ioc/composables/useRouter'
 import ContactInfoSelection from '#ioc/organisms/ContactInfoSelection'
@@ -55,7 +55,7 @@ const localePath = useLocalePath()
 const cart = useCart()
 const shipping = useShipping()
 const payment = usePayment()
-const setContactInformation = useSetContactInformation()
+const confirmContactInformation = useConfirmContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
@@ -95,7 +95,7 @@ const onConfirmContactInfo = () => {
 }
 
 onMounted(async () => {
-  await setContactInformation({
+  await confirmContactInformation({
     email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
     telephone: 'DUMMYDATA',
     firstName: 'DUMMYDATA',
