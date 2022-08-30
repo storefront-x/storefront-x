@@ -25,12 +25,6 @@ const stars = computed(() => {
   return Math.round((5 * props.rating) / 100)
 })
 
-const starRating = computed(() => {
-  const rating = (Math.round((5 * props.rating) / 10) / 10).toString()
-
-  return rating.length === 1 ? rating + '.0' : rating
-})
-
 const greyStars = computed(() => {
   return 5 - stars.value
 })

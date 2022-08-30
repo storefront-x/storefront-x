@@ -1,5 +1,5 @@
 export default () => {
-  return async (ids: string[]) => {
+  return async () => {
     throw new Error('Not implemented')
   }
 }
