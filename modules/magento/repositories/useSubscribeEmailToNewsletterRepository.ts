@@ -11,13 +11,13 @@ export default () => {
     statusText: string
   }> => {
     try {
-      const { subscribeEmailToNewsletter: response } = await magento.graphql(
-        SubscribeEmailToNewsletter().with({ email }),
-      )
+      const {
+        data: { subscribeEmailToNewsletter: response },
+      } = await magento.graphql(SubscribeEmailToNewsletter().with({ email }))
 
       return {
         ok: true,
-        statusText: response.statusText,
+        statusText: response.status,
       }
     } catch (e: any) {
       return {
