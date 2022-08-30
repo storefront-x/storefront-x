@@ -7,22 +7,19 @@
 <script setup lang="ts">
 import VUE_I18N_DIFFERENT_DOMAINS from '#ioc/config/VUE_I18N_DIFFERENT_DOMAINS'
 import { computed } from 'vue'
-import useI18n from '#ioc/composables/useI18n'
-import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 import useRoute from '#ioc/composables/useRoute'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useSwitchLocalePath from '#ioc/composables/useSwitchLocalePath'
+import useCurrentStoreProperties from '#ioc/composables/useCurrentStoreProperties'
 
-const { locale } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
+const currentStoreProperties = useCurrentStoreProperties()
 
-const stores = computed(() => {
-  return VUE_I18N_LOCALES
-})
+const stores = computed(() => currentStoreProperties.stores)
 
-const currentStore = computed(() => stores.value.find((item) => item.locale === locale.value))
+const currentStore = computed(() => currentStoreProperties.currentStore)
 
 const getUrlFor = (store: any) => {
   if (_isCurrent(store)) return route.fullPath
