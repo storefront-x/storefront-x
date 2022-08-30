@@ -7,10 +7,12 @@
           <template #default>
             <div class="" role="tabpanel" tabindex="0">
               <ul role="list" class="list-none">
-                <li v-for="category in menu" :key="category.id" class="px-6 py-2 border-t-2 border-gray-50">
-                  <Link :to="category.urlPath" class="no-underline -m-2 p-2 block text-gray-500">
-                    {{ category.name }}
-                  </Link>
+                <li
+                  v-for="category in catalogStore.menu"
+                  :key="category.id"
+                  class="px-6 py-2 border-t-2 border-gray-50"
+                >
+                  <CategoryLink :category="category" classes="no-underline -m-2 p-2 block text-gray-500" color="gray" />
                 </li>
               </ul>
             </div>
@@ -147,6 +149,7 @@ import SfxStoreSwitcher from '#ioc/components/SfxStoreSwitcher'
 import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
 import SfxCurrencySwitcher from '#ioc/components/SfxCurrencySwitcher'
+import CategoryLink from '#ioc/molecules/HeaderMenu/CategoryLink'
 
 export default defineComponent({
   components: {
@@ -159,12 +162,15 @@ export default defineComponent({
     Dropdown,
     DropdownItem,
     SfxCurrencySwitcher,
+    CategoryLink,
   },
   emits: { close: null },
 
   setup() {
     const { t } = useI18n()
     const localePath = useLocalePath()
+    const catalogStore = useCatalogStore()
+
     const isLoggedIn = ref(false)
 
     const drawer = ref<InstanceType<typeof Drawer>>()
@@ -179,6 +185,7 @@ export default defineComponent({
       runDrawerClose,
       isLoggedIn,
       localePath,
+      catalogStore,
     }
   },
 
@@ -189,7 +196,6 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapState(useCatalogStore, ['menu']),
     ...mapState(useThemeTailwindStore, ['isHamburgerOpened']),
   },
 

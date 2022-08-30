@@ -1,5 +1,5 @@
 <template>
-  <Link :to="localePath(category.urlPath)" color="primary" class="py-4 text-primary-500 font-semibold">
+  <Link :to="localePath(category.urlPath)" :color="color" :class="classes">
     {{ category.name }}
   </Link>
 </template>
@@ -17,6 +17,14 @@ const props = defineProps({
   category: {
     type: Object as PropType<ReturnType<ReturnType<typeof useToCategory>>>,
     required: true,
+  },
+  classes: {
+    type: String,
+    default: '',
+  },
+  color: {
+    type: String as PropType<'primary' | 'gray'>,
+    default: undefined,
   },
 })
 
