@@ -1445,6 +1445,71 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@braintree/asset-loader@npm:0.4.4":
+  version: 0.4.4
+  resolution: "@braintree/asset-loader@npm:0.4.4"
+  dependencies:
+    promise-polyfill: ^8.1.3
+  checksum: ce9b61e3ff54fdba92369b014a3d2e5f1b078be4c61839698645c9a3cd019c44134c01e6d57b11855fda7bca1575d7b3de595e83d618a952f1ff101599093c39
+  languageName: node
+  linkType: hard
+
+"@braintree/browser-detection@npm:1.14.0, @braintree/browser-detection@npm:^1.12.1":
+  version: 1.14.0
+  resolution: "@braintree/browser-detection@npm:1.14.0"
+  checksum: f737df107cb6f8e37e679a928629bd157a56500426dcbb0a634e5dcc4fa66051bc537cb0bb039dadfdccea17fc0b31f9ddac9ee8043938f3ed62fdbac2915372
+  languageName: node
+  linkType: hard
+
+"@braintree/class-list@npm:0.2.0":
+  version: 0.2.0
+  resolution: "@braintree/class-list@npm:0.2.0"
+  checksum: 1cfa95630a28b0c18367c4ba2e2081c2b59911475f96f15b7ee570a9ab28ac6f88630cc677f07534252fe075edc0abfffe68b1df947c99d55908cce0be3b71da
+  languageName: node
+  linkType: hard
+
+"@braintree/event-emitter@npm:0.4.1":
+  version: 0.4.1
+  resolution: "@braintree/event-emitter@npm:0.4.1"
+  checksum: be3ddee8c28e11f094e8d137e6673c8b80265c30a0adf1244fca5a2aeea094583c387750bd027fe27221f4ff5b75a196b0d105fe565dea2c815650828ac177db
+  languageName: node
+  linkType: hard
+
+"@braintree/extended-promise@npm:0.4.1":
+  version: 0.4.1
+  resolution: "@braintree/extended-promise@npm:0.4.1"
+  checksum: 32b26b99b6d2f60e157fb513dee62245bf58e55095d1e164a302082ec85906cfb84ad94819a9157ef6570e27ee3e9287fa2cd2c65f1c7abf45d33e1ef6c67609
+  languageName: node
+  linkType: hard
+
+"@braintree/iframer@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@braintree/iframer@npm:1.1.0"
+  checksum: 1ab261cd79025fd5153f4cf4715bc8715f0bd8ef4f5ae318b91723cd1bc59fae4048352bf9cc9201048765f22caae9ab9272cf5f5f3d1bbb4b47fba3593b7fcf
+  languageName: node
+  linkType: hard
+
+"@braintree/sanitize-url@npm:6.0.0":
+  version: 6.0.0
+  resolution: "@braintree/sanitize-url@npm:6.0.0"
+  checksum: 409ce7709dc1a0c67bc887d20af1becd4145d5c62cc5124b1c4c1f3ea2a8d69b0ee9f582d446469c6f5294b56442b99048cbbba6861dd5c834d4e019b95e1f40
+  languageName: node
+  linkType: hard
+
+"@braintree/uuid@npm:0.1.0, @braintree/uuid@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@braintree/uuid@npm:0.1.0"
+  checksum: 642599471ccbafa6190c485d5a9cc8b89a2632b8c79c2c4c2c36237370bd866057484f2e8fe8d270437a42902ebffb3f338b712145a0afa898077e166335de50
+  languageName: node
+  linkType: hard
+
+"@braintree/wrap-promise@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@braintree/wrap-promise@npm:2.1.0"
+  checksum: 52b6ed2d8cbbf2ab265d7c2fc834fb3ce394323b0c645e1f0c7333a2d630b76849b27188948e6026cdd5e25c6fcd76f8cfa00470012cfd0ffdc3bfd6405c353f
+  languageName: node
+  linkType: hard
+
 "@docsearch/css@npm:3.1.1, @docsearch/css@npm:^3.0.0":
   version: 3.1.1
   resolution: "@docsearch/css@npm:3.1.1"
@@ -2975,6 +3040,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/braintree-magento@workspace:modules/braintree-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/braintree-magento@workspace:modules/braintree-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/braintree@workspace:modules/braintree":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/braintree@workspace:modules/braintree"
+  dependencies:
+    "@types/braintree-web": ^3.75.20
+    "@types/braintree-web-drop-in": ^1.28.0
+    braintree-web: ^3.87.0
+    braintree-web-drop-in: ^1.33.4
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/brands-magento@workspace:modules/brands-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/brands-magento@workspace:modules/brands-magento"
@@ -3321,6 +3403,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/applepayjs@npm:*":
+  version: 3.0.4
+  resolution: "@types/applepayjs@npm:3.0.4"
+  checksum: cce6b3d70f445c485f648e367e069ec38e019d6c2ac215975978d76ed5c123ff8d53b98758e076fe9cc35decd7b9a3e1d3178aa3cf9d80e1a79fe55ecf78529a
+  languageName: node
+  linkType: hard
+
 "@types/body-parser@npm:*":
   version: 1.19.2
   resolution: "@types/body-parser@npm:1.19.2"
@@ -3328,6 +3417,28 @@ __metadata:
     "@types/connect": "*"
     "@types/node": "*"
   checksum: e17840c7d747a549f00aebe72c89313d09fbc4b632b949b2470c5cb3b1cb73863901ae84d9335b567a79ec5efcfb8a28ff8e3f36bc8748a9686756b6d5681f40
+  languageName: node
+  linkType: hard
+
+"@types/braintree-web-drop-in@npm:^1.28.0":
+  version: 1.28.0
+  resolution: "@types/braintree-web-drop-in@npm:1.28.0"
+  dependencies:
+    "@types/applepayjs": "*"
+    "@types/braintree-web": "*"
+    "@types/googlepay": "*"
+    "@types/paypal-checkout-components": "*"
+  checksum: 4341f234aa7f6d5564b9e10649ce7672bbe3e27b76bfee91ce05901003e168eb81c84c4131d1ef3bf380267efa089665975278d8e16086819356d6b0d78c5212
+  languageName: node
+  linkType: hard
+
+"@types/braintree-web@npm:*, @types/braintree-web@npm:^3.75.20":
+  version: 3.75.20
+  resolution: "@types/braintree-web@npm:3.75.20"
+  dependencies:
+    "@types/googlepay": "*"
+    "@types/paypal-checkout-components": "*"
+  checksum: 5d9b2f4110bed9ec7430d498ed6c54b2d2fff9ff850360f18e8d3c8b67cb621291ce3aa0e8214e93bbe12134aaff472b231f5e591b12a1f22f68bfe4b846c483
   languageName: node
   linkType: hard
 
@@ -3427,6 +3538,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/googlepay@npm:*":
+  version: 0.6.4
+  resolution: "@types/googlepay@npm:0.6.4"
+  checksum: 50dfafa4316febebecfbed80a2722803c590d6859e5a3fd997af5061d865a51464c00b3e21a3335f3605461de802fcfd3a430486c23fe4bec3146412764cc1c6
+  languageName: node
+  linkType: hard
+
 "@types/http-proxy@npm:^1.17.8":
   version: 1.17.9
   resolution: "@types/http-proxy@npm:1.17.9"
@@ -3519,6 +3637,13 @@ __metadata:
   version: 4.0.0
   resolution: "@types/parse-json@npm:4.0.0"
   checksum: fd6bce2b674b6efc3db4c7c3d336bd70c90838e8439de639b909ce22f3720d21344f52427f1d9e57b265fcb7f6c018699b99e5e0c208a1a4823014269a6bf35b
+  languageName: node
+  linkType: hard
+
+"@types/paypal-checkout-components@npm:*":
+  version: 4.0.3
+  resolution: "@types/paypal-checkout-components@npm:4.0.3"
+  checksum: fdd21e44185c953e5b2771c1540505248e76cc876fef1cc08641bb5fce7a61066e93681afc27e209313d258be1b5e29c35f2d82fbe8ff460b4358d17fc02bc71
   languageName: node
   linkType: hard
 
@@ -4590,6 +4715,68 @@ __metadata:
   languageName: node
   linkType: hard
 
+"braintree-web-drop-in@npm:^1.33.4":
+  version: 1.33.4
+  resolution: "braintree-web-drop-in@npm:1.33.4"
+  dependencies:
+    "@braintree/asset-loader": 0.4.4
+    "@braintree/browser-detection": 1.14.0
+    "@braintree/class-list": 0.2.0
+    "@braintree/event-emitter": 0.4.1
+    "@braintree/uuid": 0.1.0
+    "@braintree/wrap-promise": 2.1.0
+    braintree-web: 3.86.0
+    promise-polyfill: 8.2.3
+  checksum: 6aa3ff56c94fbfa83ac6d902752dc88aec1356860b2b915a728fb50459e8d1dfb3219f95908302cdbc772085573f50af10ffcbe44f011cc0cf7169575ad14a97
+  languageName: node
+  linkType: hard
+
+"braintree-web@npm:3.86.0":
+  version: 3.86.0
+  resolution: "braintree-web@npm:3.86.0"
+  dependencies:
+    "@braintree/asset-loader": 0.4.4
+    "@braintree/browser-detection": 1.14.0
+    "@braintree/class-list": 0.2.0
+    "@braintree/event-emitter": 0.4.1
+    "@braintree/extended-promise": 0.4.1
+    "@braintree/iframer": 1.1.0
+    "@braintree/sanitize-url": 6.0.0
+    "@braintree/uuid": 0.1.0
+    "@braintree/wrap-promise": 2.1.0
+    card-validator: 8.1.1
+    credit-card-type: 9.1.0
+    framebus: 5.1.2
+    inject-stylesheet: 5.0.0
+    promise-polyfill: 8.2.3
+    restricted-input: 3.0.5
+  checksum: 6528875e6b646cb9283297ba4c69d433d721bdf4ae6f16268b439d7a63dfa3a8bf50354f1686915ba4f4fe410a9427520d324ac3964091f42cf32754c233bad5
+  languageName: node
+  linkType: hard
+
+"braintree-web@npm:^3.87.0":
+  version: 3.87.0
+  resolution: "braintree-web@npm:3.87.0"
+  dependencies:
+    "@braintree/asset-loader": 0.4.4
+    "@braintree/browser-detection": 1.14.0
+    "@braintree/class-list": 0.2.0
+    "@braintree/event-emitter": 0.4.1
+    "@braintree/extended-promise": 0.4.1
+    "@braintree/iframer": 1.1.0
+    "@braintree/sanitize-url": 6.0.0
+    "@braintree/uuid": 0.1.0
+    "@braintree/wrap-promise": 2.1.0
+    card-validator: 8.1.1
+    credit-card-type: 9.1.0
+    framebus: 5.1.2
+    inject-stylesheet: 5.0.0
+    promise-polyfill: 8.2.3
+    restricted-input: 3.0.5
+  checksum: 84ed8f6b5920ee8383e15f87027a4117b58bd818ecf74ed8bfa945a17e15b66c7810e9a231358d2f2c6c90c9bc5ee0c83a796f49ef2eb6f6235be286b57fe9b0
+  languageName: node
+  linkType: hard
+
 "browserslist@npm:^4.20.2, browserslist@npm:^4.21.3":
   version: 4.21.3
   resolution: "browserslist@npm:4.21.3"
@@ -4737,6 +4924,15 @@ __metadata:
   version: 1.0.30001374
   resolution: "caniuse-lite@npm:1.0.30001374"
   checksum: a75656e971d7ef2af4d2f3529a4620ae1a45d09460601fbc34b26f6867f31bbca006f71d8840291c471a2f01fc1994044f319a5660241ffaf35a2d84535af442
+  languageName: node
+  linkType: hard
+
+"card-validator@npm:8.1.1":
+  version: 8.1.1
+  resolution: "card-validator@npm:8.1.1"
+  dependencies:
+    credit-card-type: ^9.1.0
+  checksum: 8bb1c8f00821028fa29703f39d2c39791cfa409358282db84a9a479f34c1c8867fb914761a5fe529b25de626692de53935a39a5bd912a45d31a910bf8f3549f1
   languageName: node
   linkType: hard
 
@@ -5336,6 +5532,13 @@ __metadata:
     create-storefront-x: index.js
   languageName: unknown
   linkType: soft
+
+"credit-card-type@npm:9.1.0, credit-card-type@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "credit-card-type@npm:9.1.0"
+  checksum: 2bdadf3a0b93cd740447020fea8d397c633ee2b292fcc498971c540e7ca97473c4decf23604f93a1aedd59bb8d9249da8cf0b8fbfb1a464bd63610ae814c77aa
+  languageName: node
+  linkType: hard
 
 "cross-env@npm:^7.0.3":
   version: 7.0.3
@@ -6657,6 +6860,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"framebus@npm:5.1.2":
+  version: 5.1.2
+  resolution: "framebus@npm:5.1.2"
+  dependencies:
+    "@braintree/uuid": ^0.1.0
+  checksum: 38c3e3965140bc88e25af42a1da5f0caa14d9458fb6327f0eaa509384a62a20e5c010d1b8b2cf697258004b00cda00e26ad34c5b8d6d125285991aec7b1443dd
+  languageName: node
+  linkType: hard
+
 "fresh@npm:0.5.2":
   version: 0.5.2
   resolution: "fresh@npm:0.5.2"
@@ -7449,6 +7661,13 @@ __metadata:
     validate-npm-package-license: ^3.0.4
     validate-npm-package-name: ^4.0.0
   checksum: e027f60e4a1564809eee790d5a842341c784888fd7c7ace5f9a34ea76224c0adb6f3ab3bf205cf1c9c877a6e1a76c68b00847a984139f60813125d7b42a23a13
+  languageName: node
+  linkType: hard
+
+"inject-stylesheet@npm:5.0.0":
+  version: 5.0.0
+  resolution: "inject-stylesheet@npm:5.0.0"
+  checksum: 7a4ec0636b1b1acfb204f0186652386b80d757579b5504636b5ad9ff986ff3d882f734697373fb282de4637b2219ed50ade500517376cec45e63778e197bd1c0
   languageName: node
   linkType: hard
 
@@ -9854,6 +10073,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"promise-polyfill@npm:8.2.3, promise-polyfill@npm:^8.1.3":
+  version: 8.2.3
+  resolution: "promise-polyfill@npm:8.2.3"
+  checksum: f320278bab8b8ce32f0e2f377d75aabe35c90a79f92b3e001db084d635da1fb8740ba8a26b5c1c2b4cdca5a4c988f9b6b3eb30f0b151d0362d3d9c1675024a8f
+  languageName: node
+  linkType: hard
+
 "promise-retry@npm:^2.0.1":
   version: 2.0.1
   resolution: "promise-retry@npm:2.0.1"
@@ -10328,6 +10554,15 @@ __metadata:
     onetime: ^5.1.0
     signal-exit: ^3.0.2
   checksum: f877dd8741796b909f2a82454ec111afb84eb45890eb49ac947d87991379406b3b83ff9673a46012fca0d7844bb989f45cc5b788254cf1a39b6b5a9659de0630
+  languageName: node
+  linkType: hard
+
+"restricted-input@npm:3.0.5":
+  version: 3.0.5
+  resolution: "restricted-input@npm:3.0.5"
+  dependencies:
+    "@braintree/browser-detection": ^1.12.1
+  checksum: a2445a40995381762ca2da0a73c020deaa3e88ce46197e341d31f16c717382b90e70456315a286f2bdff5068493d72780a8990297a1fb0588084c5c7d994fea0
   languageName: node
   linkType: hard
 
