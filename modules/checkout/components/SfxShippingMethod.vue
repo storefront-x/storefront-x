@@ -19,7 +19,7 @@ const shipping = useShipping()
 const selectedShippingMethod = shallowRef<any>(null)
 
 watch(
-  () => shipping.selectedShippingMethod,
+  () => shipping.shippingMethod,
   (value) => {
     if (!value) return
 

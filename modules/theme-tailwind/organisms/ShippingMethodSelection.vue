@@ -40,7 +40,6 @@
 <script setup lang="ts">
 import useI18n from '#ioc/composables/useI18n'
 import useShipping from '#ioc/composables/useShipping'
-import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import SolidCheckCircle from '#ioc/icons/SolidCheckCircle'
 import SfxShippingMethod from '#ioc/components/SfxShippingMethod'
 
@@ -52,18 +51,13 @@ const emit = defineEmits(['select', 'confirm'])
 
 const { t } = useI18n()
 const shipping = useShipping()
-const showErrorNotification = useShowErrorNotification()
 
 const isSelected = (shippingMethod: any) => {
-  return shipping.selectedShippingMethod?.code === shippingMethod.code
+  return shipping.shippingMethod?.code === shippingMethod.code
 }
 
 const onSelect = async (shippingMethod: any) => {
-  try {
-    shipping.selectShippingMethod(shippingMethod)
-  } catch (e) {
-    showErrorNotification(e)
-  }
+  shipping.setShippingMethod(shippingMethod)
 }
 </script>
 

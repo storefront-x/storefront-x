@@ -6,6 +6,4 @@ export default () => (data: any) => ({
   city: data.city as string,
   countryCode: (data.country_code ?? data.country?.code) as string,
   postcode: data.postcode as string,
-  pickupLocationCode: data.pickup_location_code as string | null,
-  customerNotes: data.customer_notes as string | null,
 })
