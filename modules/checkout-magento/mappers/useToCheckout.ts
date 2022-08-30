@@ -20,6 +20,6 @@ export default () => {
     contactInformation:
       data.email !== 'DUMMYDATA@DUMMYDATA.DUMMYDATA'
         ? toContactInformation({ email: data.email, ...data.billing_address })
-        : null,
+        : toContactInformation({ email: '' }),
   })
 }

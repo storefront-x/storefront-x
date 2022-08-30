@@ -7,9 +7,9 @@
         <OrderSummary class="lg:hidden mb-10" />
 
         <div>
-          <ShippingMethodSelection />
+          <ShippingMethodSelection :is-open="isShippingOpen" @select="onSelectShipping" @confirm="onConfirmShipping" />
 
-          <PaymentMethodSelection />
+          <PaymentMethodSelection :is-open="isPaymentOpen" @select="onSelectPayment" @confirm="onConfirmPayment" />
 
           <ContactInfoSelection />
 
@@ -43,9 +43,9 @@ import useCheckout from '#ioc/composables/useCheckout'
 import useRefreshCheckout from '#ioc/services/useRefreshCheckout'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import ContactInfoSelection from '#ioc/organisms/ContactInfoSelection'
-import { onMounted } from 'vue'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreements'
+import { computed, onMounted, ref } from 'vue'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -57,6 +57,28 @@ const setContactInformation = useSetContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
+
+const step = ref(0)
+
+const isShippingOpen = computed(() => step.value >= 1)
+
+const isPaymentOpen = computed(() => isShippingOpen.value && step.value >= 2)
+
+const onSelectShipping = () => {
+  step.value = 1
+}
+
+const onConfirmShipping = () => {
+  step.value = 2
+}
+
+const onSelectPayment = () => {
+  step.value = 2
+}
+
+const onConfirmPayment = () => {
+  step.value = 3
+}
 
 useAsyncData('checkoutAgreements', () => refreshCheckoutAgreements())
 
@@ -78,6 +100,8 @@ if (IS_SERVER) {
         countryCode: 'CZ',
       })
     }
+
+    step.value = 1
   })
 }
 

@@ -19,11 +19,11 @@ const shipping = useShipping()
 const selectedShippingMethod = shallowRef<any>(null)
 
 watch(
-  () => shipping.currentShippingMethod,
-  (currentShippingMethod) => {
-    if (!currentShippingMethod) return
+  () => shipping.selectedShippingMethod,
+  (value) => {
+    if (!value) return
 
-    const component = shippingMethods[currentShippingMethod.code as keyof typeof shippingMethods]
+    const component = shippingMethods[value.code as keyof typeof shippingMethods]
 
     selectedShippingMethod.value = component[props.export as keyof typeof component]
   },

@@ -42,14 +42,18 @@ import useI18n from '#ioc/composables/useI18n'
 import useShipping from '#ioc/composables/useShipping'
 import useToPickupLocation from '#ioc/mappers/useToPickupLocation'
 import useGetPickupLocationsRepository from '#ioc/repositories/useGetPickupLocationsRepository'
+import useSelectShippingMethod from '#ioc/services/useSelectShippingMethod'
 import useSetShippingAddress from '#ioc/services/useSetShippingAddress'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
+
+const emit = defineEmits(['select', 'confirm'])
 
 const { t } = useI18n()
 const cart = useCart()
 const shipping = useShipping()
 const getPickupLocations = useGetPickupLocationsRepository()
 const setShippingAddress = useSetShippingAddress()
+const selectShippingMethod = useSelectShippingMethod()
 
 const { data } = await useAsyncData('pickupLocations', () => getPickupLocations(cart.items))
 
@@ -61,6 +65,14 @@ const picked = computed(() =>
   ),
 )
 
+onMounted(() => {
+  if (shipping.currentShippingMethod?.code === 'instore_pickup') {
+    emit('confirm')
+  } else {
+    emit('select')
+  }
+})
+
 const select = async (pickupLocation: ReturnType<ReturnType<typeof useToPickupLocation>>) => {
   await setShippingAddress({
     ...shipping.shippingAddress!,
@@ -70,6 +82,10 @@ const select = async (pickupLocation: ReturnType<ReturnType<typeof useToPickupLo
     countryCode: pickupLocation.countryCode,
     pickupLocationCode: pickupLocation.pickupLocationCode,
   })
+
+  await selectShippingMethod(shipping.selectedShippingMethod!)
+
+  emit('confirm')
 }
 </script>
 

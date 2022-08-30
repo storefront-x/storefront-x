@@ -5,7 +5,7 @@
         {{ t('Payment method') }}
       </legend>
 
-      <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+      <div v-if="isOpen" class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
         <label
           v-for="paymentMethod in payment.paymentMethods"
           :key="paymentMethod.code"

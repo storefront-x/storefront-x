@@ -21,6 +21,7 @@ export default () => {
         country_code: shippingAddress.countryCode,
         postcode: shippingAddress.postcode,
       },
+      customerNotes: shippingAddress.customerNotes,
       pickupLocationCode: shippingAddress.pickupLocationCode,
     })
 

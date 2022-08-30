@@ -1,3 +1,4 @@
+import useToShippingMethod from '#ioc/mappers/useToShippingMethod'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 import once from '#ioc/utils/once'
 import { computed, reactive } from 'vue'
@@ -20,11 +21,19 @@ export default () => {
 
   const currentShippingMethod = computed(() => checkoutStore.currentShippingMethod)
 
+  const selectedShippingMethod = computed(() => checkoutStore.selectedShippingMethod)
+
   const shippingAddress = computed(() => checkoutStore.shippingAddress)
+
+  const selectShippingMethod = (shippingMethod: ReturnType<ReturnType<typeof useToShippingMethod>>) => {
+    checkoutStore.$patch({ selectedShippingMethod: shippingMethod })
+  }
 
   return reactive({
     shippingMethods,
     currentShippingMethod,
+    selectedShippingMethod,
     shippingAddress,
+    selectShippingMethod,
   })
 }
