@@ -38,6 +38,7 @@
 <script setup lang="ts">
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useCart from '#ioc/composables/useCart'
+import useCheckout from '#ioc/composables/useCheckout'
 import useI18n from '#ioc/composables/useI18n'
 import useShipping from '#ioc/composables/useShipping'
 import useToPickupLocation from '#ioc/mappers/useToPickupLocation'
@@ -50,6 +51,7 @@ const emit = defineEmits(['select', 'confirm'])
 
 const { t } = useI18n()
 const cart = useCart()
+const checkout = useCheckout()
 const shipping = useShipping()
 const getPickupLocations = useGetPickupLocationsRepository()
 const setShippingAddress = useSetShippingAddress()
@@ -66,24 +68,23 @@ const picked = computed(() =>
 )
 
 onMounted(() => {
-  if (shipping.currentShippingMethod?.code === 'instore_pickup') {
-    emit('confirm')
-  } else {
-    emit('select')
-  }
+  emit('select')
 })
 
 const select = async (pickupLocation: ReturnType<ReturnType<typeof useToPickupLocation>>) => {
-  await setShippingAddress({
-    ...shipping.shippingAddress!,
-    street: pickupLocation.street,
-    city: pickupLocation.city,
-    postcode: pickupLocation.postcode,
-    countryCode: pickupLocation.countryCode,
-    pickupLocationCode: pickupLocation.pickupLocationCode,
-  })
+  shipping.setShippingHandler(async () => {
+    await setShippingAddress({
+      ...checkout.contactInformation!,
+      street: pickupLocation.street,
+      city: pickupLocation.city,
+      postcode: pickupLocation.postcode,
+      countryCode: pickupLocation.countryCode,
+      pickupLocationCode: pickupLocation.pickupLocationCode,
+      customerNotes: null,
+    })
 
-  await selectShippingMethod(shipping.selectedShippingMethod!)
+    await selectShippingMethod(shipping.shippingMethod)
+  })
 
   emit('confirm')
 }
