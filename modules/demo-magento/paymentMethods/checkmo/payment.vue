@@ -9,14 +9,16 @@ import useConfirmPaymentMethod from '#ioc/services/useConfirmPaymentMethod'
 import useConfirmPaymentAddress from '#ioc/services/useConfirmPaymentAddress'
 import { onMounted } from 'vue'
 
-const emit = defineEmits(['confirm'])
+const emit = defineEmits(['select', 'confirm'])
 
 const checkout = useCheckout()
 const payment = usePayment()
 const confirmPaymentAddress = useConfirmPaymentAddress()
 const confirmPaymetMethod = useConfirmPaymentMethod()
 
-onMounted(() => {
+onMounted(async () => {
+  emit('select')
+
   payment.setPaymentHandler(async () => {
     await confirmPaymentAddress({
       ...checkout.contactInformation!,

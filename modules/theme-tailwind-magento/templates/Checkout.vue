@@ -45,7 +45,7 @@ import useLocalePath from '#ioc/composables/useLocalePath'
 import useRouter from '#ioc/composables/useRouter'
 import ContactInfoSelection from '#ioc/organisms/ContactInfoSelection'
 import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreements'
-import { computed, onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import useShipping from '#ioc/composables/useShipping'
 import usePayment from '#ioc/composables/usePayment'
 
@@ -74,7 +74,8 @@ const onSelectShipping = () => {
   step.value = 1
 }
 
-const onConfirmShipping = () => {
+const onConfirmShipping = async () => {
+  await nextTick()
   step.value = 2
 }
 
@@ -82,7 +83,8 @@ const onSelectPayment = () => {
   step.value = 2
 }
 
-const onConfirmPayment = () => {
+const onConfirmPayment = async () => {
+  await nextTick()
   step.value = 3
 }
 
@@ -90,7 +92,8 @@ const onSelectContactInfo = () => {
   step.value = 3
 }
 
-const onConfirmContactInfo = () => {
+const onConfirmContactInfo = async () => {
+  await nextTick()
   step.value = 4
 }
 

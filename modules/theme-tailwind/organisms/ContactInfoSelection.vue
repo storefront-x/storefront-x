@@ -2,7 +2,7 @@
   <div class="mt-10 border-t border-gray-200 pt-10">
     <h2 class="text-lg font-medium text-gray-900">{{ t('Contact information') }}</h2>
 
-    <Form v-if="isOpen" ref="form" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4" @input="onInput">
+    <Form v-show="isOpen" ref="form" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4" @input="onInput">
       <FormInput
         :label="t('Email')"
         :inputmode="'email'"
@@ -37,19 +37,22 @@
         class="mt-4"
         validators="required"
       />
+
+      <SfxShippingMethod export="contact" />
     </Form>
   </div>
 </template>
 
 <script setup lang="ts">
+import SfxShippingMethod from '#ioc/components/SfxShippingMethod'
 import Form from '#ioc/atoms/Form'
 import useCheckout from '#ioc/composables/useCheckout'
 import useI18n from '#ioc/composables/useI18n'
 import FormInput from '#ioc/molecules/FormInput'
 import debounce from '#ioc/utils/debounce'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
-defineProps({
+const props = defineProps({
   isOpen: Boolean,
 })
 
@@ -73,6 +76,15 @@ const onInput = debounce(async (data: any) => {
 
   emit('confirm')
 }, 500)
+
+watch(
+  () => props.isOpen,
+  (isOpen) => {
+    if (isOpen) {
+      onInput(form.value?.getData())
+    }
+  },
+)
 </script>
 
 <i18n lang="yaml">

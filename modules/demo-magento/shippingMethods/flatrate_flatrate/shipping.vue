@@ -9,7 +9,7 @@ import useConfirmShippingMethod from '#ioc/services/useConfirmShippingMethod'
 import useConfirmShippingAddress from '#ioc/services/useConfirmShippingAddress'
 import { onMounted } from 'vue'
 
-const emit = defineEmits(['confirm'])
+const emit = defineEmits(['select', 'confirm'])
 
 const checkout = useCheckout()
 const shipping = useShipping()
@@ -17,6 +17,8 @@ const confirmShippingAddress = useConfirmShippingAddress()
 const confirmShippingMethod = useConfirmShippingMethod()
 
 onMounted(async () => {
+  emit('select')
+
   shipping.setShippingHandler(async () => {
     await confirmShippingAddress({
       ...checkout.contactInformation!,
