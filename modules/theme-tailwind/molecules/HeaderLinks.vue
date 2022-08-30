@@ -11,17 +11,17 @@
       <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, setCurrency }">
         <Dropdown
           link-like
-          :title="currentCurrency"
+          :title="currentCurrency?.code"
           class="text-gray-600 hover:text-gray-800"
           data-cy="currency-switcher"
         >
           <DropdownItem
             v-for="currency in currencies"
-            :key="currency"
+            :key="currency.code"
             href="javascript:void(0)"
             @click="setCurrency(currency)"
           >
-            {{ currency }}
+            {{ currency.code }}
           </DropdownItem>
         </Dropdown>
       </SfxCurrencySwitcher>

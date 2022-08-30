@@ -1,20 +1,17 @@
 import useMagento from '#ioc/composables/useMagento'
-import CurrencyConfig from '#ioc/graphql/queries/CurrencyConfig'
+import GetAvailableCurrencies from '#ioc/graphql/queries/GetAvailableCurrencies'
 import useToCurrency from '#ioc/mappers/useToCurrency'
 
 export default () => {
   const magento = useMagento()
-  const toCurrency = useToCurrency()
 
   return async (): Promise<{
-    currency: ReturnType<typeof toCurrency>
+    currencies: ReturnType<ReturnType<typeof useToCurrency>>[]
   }> => {
-    const {
-      data: { currencyConfig },
-    } = await magento.graphql(CurrencyConfig())
+    const { data } = await magento.graphql(GetAvailableCurrencies())
 
     return {
-      currency: toCurrency(currencyConfig),
+      currencies: data.availableCurrencies.available_currency_codes.map((code: any) => ({ code })),
     }
   }
 }

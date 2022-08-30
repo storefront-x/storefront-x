@@ -25,7 +25,8 @@ export default () => {
       return item.locale === locale.value
     })?.magentoStore
     const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
-    const selectedCurrencyCode = storeStore.selectedCurrencyCode ?? ''
+    const selectedCurrencyCode = storeStore.currency?.code ?? ''
+
     return {
       'Content-Type': 'application/json',
       ...(store && { Store: store }),

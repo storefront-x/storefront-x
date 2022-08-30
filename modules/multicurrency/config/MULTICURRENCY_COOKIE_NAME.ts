@@ -1,1 +1,1 @@
-export default ':multicurrency:code'
+export default 'multicurrency:code'

@@ -1,20 +1,17 @@
 import useMagento from '#ioc/composables/useMagento'
 import StoreConfig from '#ioc/graphql/queries/StoreConfig'
-import useToStoreConfig from '#ioc/mappers/useToStoreConfig'
+import useToCurrency from '#ioc/mappers/useToCurrency'
 
 export default () => {
   const magento = useMagento()
-  const toStoreConfig = useToStoreConfig()
 
   return async (): Promise<{
-    storeConfig: ReturnType<typeof toStoreConfig>
+    currency: ReturnType<ReturnType<typeof useToCurrency>>
   }> => {
-    const {
-      data: { storeConfig },
-    } = await magento.graphql(StoreConfig())
+    const { data } = await magento.graphql(StoreConfig())
 
     return {
-      storeConfig: toStoreConfig(storeConfig),
+      currency: { code: data.storeConfig.base_currency_code },
     }
   }
 }

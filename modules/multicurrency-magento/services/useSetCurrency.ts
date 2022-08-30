@@ -1,17 +1,13 @@
-import useStoreStore from '#ioc/stores/useStoreStore'
 import useCookies from '#ioc/composables/useCookies'
 import MULTICURRENCY_COOKIE_NAME from '#ioc/config/MULTICURRENCY_COOKIE_NAME'
+import useToCurrency from '#ioc/mappers/useToCurrency'
 
 export default () => {
-  const storeStore = useStoreStore()
   const cookies = useCookies()
 
-  return async (currencyCode: string) => {
-    if (currencyCode === storeStore.storeConfig.baseCurrencyCode.code) {
-      cookies.remove(MULTICURRENCY_COOKIE_NAME)
-    } else {
-      cookies.set(MULTICURRENCY_COOKIE_NAME, currencyCode)
-    }
+  return async (currency: ReturnType<ReturnType<typeof useToCurrency>>) => {
+    cookies.set(MULTICURRENCY_COOKIE_NAME, currency.code)
+
     window.location.reload()
   }
 }
