@@ -10,14 +10,18 @@ First, create new directory for the module in the modules directory and add `pac
 
 ```json
 {
-  "name": "@vendor/my-module",
+  "name": "my-module",
   "version": "1.0.0",
   "license": "UNLICENSED",
   "type": "module"
 }
 ```
 
-And second, enable the module in `storefront-x.config.js`.
+:::tip
+Why inside `modules` directory? Storefront X have to be valid NPM packages and are resolved the same way as installed NPM packages. In `package.json`, there is a `workspaces` field setting which directories NPM/Yarn searches for NPM packages (in addition to `node_modules`).
+:::
+
+Next enable the module in `storefront-x.config.js`.
 
 > `storefront-x.config.js`
 
@@ -30,10 +34,12 @@ export default {
     '@storefront-x/vue-router',
     // other modules
 
-    '@vendor/my-module',
+    'my-module',
   ],
 }
 ```
+
+And finally, you need to run `npm install`/`yarn install` so that the package manager can discover this newly added NPM package and resolve it. After each modification of `storefront-x.config.js` you need to restart the development server (`yarn dev`) or build the application for production use (`yarn build`).
 
 To test that everything works, we can for example add test page to our module.
 
@@ -45,7 +51,7 @@ To test that everything works, we can for example add test page to our module.
 </template>
 ```
 
-After restarting the dev server (`yarn dev`), this page should now be visible under the `/test` URL.
+This page should now be visible under the `/test` URL.
 
 ## How to display data from backend
 
