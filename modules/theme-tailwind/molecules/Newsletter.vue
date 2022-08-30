@@ -14,13 +14,14 @@
         validators="required|email"
       />
       <div class="flex-shrink-0">
-        <button
+        <Button
           class="px-2 pt-2.5 pb-1.5 border-primary-600 border rounded-md bg-white border-transparent bg-primary-600 hover:bg-primary-600 text-white"
           type="submit"
           :disabled="subscribed"
+          :loading="loading"
         >
           <OutlineNewsletter />
-        </button>
+        </Button>
       </div>
     </SfxForm>
     <div class="col-start-9 mt-6 row-start-1.5 col-span-4 flex h-20 w-100">
@@ -40,6 +41,7 @@ import SolidFacebook from '#ioc/icons/SolidFacebook'
 import SolidInstagram from '#ioc/icons/SolidInstagram'
 import SolidLinkedin from '#ioc/icons/SolidLinkedin'
 import SolidTwitter from '#ioc/icons/SolidTwitter'
+import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import useSubscribeEmailToNewsletter from '#ioc/services/useSubscribeToNewsletter'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
