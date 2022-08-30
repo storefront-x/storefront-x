@@ -1,7 +1,6 @@
 import query from '#ioc/graphql/query'
 import field from '#ioc/graphql/field'
 import Product from '#ioc/graphql/fragments/Product'
-
 export default () =>
   query()
     .variables({
