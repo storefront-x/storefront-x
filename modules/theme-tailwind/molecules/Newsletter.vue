@@ -41,7 +41,7 @@ import SolidInstagram from '#ioc/icons/SolidInstagram'
 import SolidLinkedin from '#ioc/icons/SolidLinkedin'
 import SolidTwitter from '#ioc/icons/SolidTwitter'
 import useI18n from '#ioc/composables/useI18n'
-import useSubscribeEmailToNewsletter from '#ioc/services/useSubscribeEmailToNewsletter'
+import useSubscribeEmailToNewsletter from '#ioc/services/useSubscribeToNewsletter'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import { ref } from 'vue'
@@ -58,6 +58,8 @@ const onSubmitNewsletter = async ({ newsletter }: { newsletter: string }) => {
     loading.value = true
 
     const { statusText, ok } = await subscribeToNewsletter(newsletter)
+
+    loading.value = false
 
     if (!ok) {
       showErrorNotification(statusText)

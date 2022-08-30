@@ -1,7 +1,7 @@
-import useUrlResolverRepository from '#ioc/repositories/useSubscribeEmailToNewsletter.'
+import useSubscribeEmailToNewsletterRepository from '#ioc/repositories/useSubscribeEmailToNewsletterRepository'
 
 export default () => {
-  const useSubscribe = useUrlResolverRepository()
+  const subscribeEmailToNewsletterRepository = useSubscribeEmailToNewsletterRepository()
 
   return async (
     email: string,
@@ -9,7 +9,7 @@ export default () => {
     statusText: string
     ok: boolean
   }> => {
-    const { statusText, ok } = await useSubscribe(email)
+    const { statusText, ok } = await subscribeEmailToNewsletterRepository(email)
     return {
       statusText,
       ok,
