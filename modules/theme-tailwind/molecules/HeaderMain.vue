@@ -3,7 +3,7 @@
     <div class="h-16 flex realtive items-center justify-between">
       <div class="flex justify-around lg:w-4/6">
         <div class="hidden mr-2 lg:flex-1 lg:flex lg:items-center">
-          <Link to="/">
+          <Link :to="localePath('/')">
             <span class="sr-only">Logo</span>
             <img class="h-8 w-auto" :src="logo" alt="Logo" />
           </Link>
@@ -22,7 +22,7 @@
         </span>
       </div>
 
-      <Link to="/" class="lg:hidden">
+      <Link :to="localePath('/')" class="lg:hidden">
         <span class="sr-only">Logo</span>
         <img :src="logo" alt="Logo" class="h-8 w-auto px-4" />
       </Link>
@@ -50,6 +50,9 @@ import MicroCart from '#ioc/molecules/MicroCart'
 import OutlineMenu from '#ioc/icons/OutlineMenu'
 import OutlineX from '#ioc/icons/OutlineX'
 import logo from '#ioc/assets/logo'
+import useLocalePath from '#ioc/composables/useLocalePath'
+
+const localePath = useLocalePath()
 
 const themeTailwindStore = useThemeTailwindStore()
 

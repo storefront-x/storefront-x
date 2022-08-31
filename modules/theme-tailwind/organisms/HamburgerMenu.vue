@@ -7,10 +7,12 @@
           <template #default>
             <div class="" role="tabpanel" tabindex="0">
               <ul role="list" class="list-none">
-                <li v-for="category in menu" :key="category.id" class="px-6 py-2 border-t-2 border-gray-50">
-                  <Link :to="category.urlPath" class="no-underline -m-2 p-2 block text-gray-500">
-                    {{ category.name }}
-                  </Link>
+                <li
+                  v-for="category in catalogStore.menu"
+                  :key="category.id"
+                  class="px-6 py-2 border-t-2 border-gray-50"
+                >
+                  <CategoryLink :category="category" classes="no-underline -m-2 p-2 block text-gray-500" color="gray" />
                 </li>
               </ul>
             </div>
@@ -22,7 +24,14 @@
           {{ t('Blog') }}
         </Link>
       </li>
-      <li class="">
+      <li v-if="!isLoggedIn" class="border-t-2 py-4 border-gray-50 px-4">
+        <div class="flow-root">
+          <SfxLink :to="localePath('sign-in')" class="no-underline text-inherit -m-2 p-2 block">
+            {{ t('Sign in') }}
+          </SfxLink>
+        </div>
+      </li>
+      <li>
         <Accordion :heading-class="['border-t-2', 'py-4', 'border-gray-50', 'px-4', 'justify-between']">
           <template #heading>
             {{ t('Useful information') }}
@@ -69,6 +78,53 @@
       </li>
     </ul>
 
+    <SfxStoreSwitcher v-slot="{ stores, getUrlFor, currentStore }" class="px-4 py-4 my-3 border-y-2 border-gray-50">
+      <div class="flex items-center">
+        <Dropdown data-cy="store-switcher-mobile" variant="link-like">
+          <template #title>
+            <div class="mr-2 self-center">
+              <img :src="currentStore?.flag" class="w-5 h-5 rounded-full block" loading="lazy" />
+            </div>
+            {{ currentStore?.fullName }}
+          </template>
+          <DropdownItem v-for="store in stores" :key="store.name" :href="String(getUrlFor(store))">
+            {{ store.fullName }}
+          </DropdownItem>
+        </Dropdown>
+
+        <div class="mr-2 ml-auto">
+          {{ t('Language') }}
+        </div>
+      </div>
+    </SfxStoreSwitcher>
+
+    <SfxCurrencySwitcher
+      v-slot="{ currentCurrency, currencies, setCurrency }"
+      class="px-4 pb-4 mb-3 border-b-2 border-gray-50"
+    >
+      <div class="flex items-center">
+        <Dropdown
+          link-like
+          :title="currentCurrency"
+          class="text-gray-600 hover:text-gray-800"
+          data-cy="currency-switcher"
+        >
+          <DropdownItem
+            v-for="currency in currencies"
+            :key="currency"
+            href="javascript:void(0)"
+            @click="setCurrency(currency)"
+          >
+            {{ currency }}
+          </DropdownItem>
+        </Dropdown>
+
+        <div class="mr-2 ml-auto">
+          {{ t('Currency') }}
+        </div>
+      </div>
+    </SfxCurrencySwitcher>
+
     <div class="flex items-center justify-end px-4">
       <MicroAccount class="lg:flex" />
       <MicroWishlist class="lg:flex" />
@@ -88,6 +144,12 @@ import CONTACT_EMAIL from '#ioc/config/CONTACT_EMAIL'
 import useCatalogStore from '#ioc/stores/useCatalogStore'
 import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
 import useI18n from '#ioc/composables/useI18n'
+import useLocalePath from '#ioc/composables/useLocalePath'
+import SfxStoreSwitcher from '#ioc/components/SfxStoreSwitcher'
+import Dropdown from '#ioc/atoms/Dropdown'
+import DropdownItem from '#ioc/atoms/DropdownItem'
+import SfxCurrencySwitcher from '#ioc/components/SfxCurrencySwitcher'
+import CategoryLink from '#ioc/molecules/HeaderMenu/CategoryLink'
 
 export default defineComponent({
   components: {
@@ -96,11 +158,20 @@ export default defineComponent({
     MicroAccount,
     MicroWishlist,
     Link,
+    SfxStoreSwitcher,
+    Dropdown,
+    DropdownItem,
+    SfxCurrencySwitcher,
+    CategoryLink,
   },
   emits: { close: null },
 
   setup() {
     const { t } = useI18n()
+    const localePath = useLocalePath()
+    const catalogStore = useCatalogStore()
+
+    const isLoggedIn = ref(false)
 
     const drawer = ref<InstanceType<typeof Drawer>>()
 
@@ -112,6 +183,9 @@ export default defineComponent({
       t,
       drawer,
       runDrawerClose,
+      isLoggedIn,
+      localePath,
+      catalogStore,
     }
   },
 
@@ -122,7 +196,6 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapState(useCatalogStore, ['menu']),
     ...mapState(useThemeTailwindStore, ['isHamburgerOpened']),
   },
 

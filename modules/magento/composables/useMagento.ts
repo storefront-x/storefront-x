@@ -5,6 +5,8 @@ import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NA
 import objectToQuery from '#ioc/utils/url/objectToQuery'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import IS_SERVER from '#ioc/config/IS_SERVER'
+import useStoreStore from '#ioc/stores/useStoreStore'
+import useCurrentStoreProperties from '#ioc/composables/useCurrentStoreProperties'
 
 interface Options {
   errorHandler?: (err: any) => Promise<void>
@@ -14,16 +16,19 @@ const URL = IS_SERVER ? MAGENTO_URL : '/_magento'
 
 export default () => {
   const cookie = useCookies()
+  const storeStore = useStoreStore()
+  const currentStoreProperties = useCurrentStoreProperties()
 
   const headers = () => {
-    // TODO: fetch store
-    const store = 'b2c_cz'
+    const store = currentStoreProperties.currentStore?.magentoStore
     const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
+    const selectedCurrencyCode = storeStore.currency?.code ?? ''
 
     return {
       'Content-Type': 'application/json',
       ...(store && { Store: store }),
       ...(token && { Authorization: `Bearer ${token}` }),
+      ...(selectedCurrencyCode && { 'Content-Currency': selectedCurrencyCode }),
     }
   }
 
