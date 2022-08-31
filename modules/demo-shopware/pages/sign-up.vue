@@ -1,9 +1,9 @@
 <template>
-  <Signup :country-data="countryData" :salutations-data="salutationsData" />
+  <SignUp :country-data="countryData" :salutations-data="salutationsData" />
 </template>
 
 <script setup lang="ts">
-import Signup from '#ioc/templates/SignUp'
+import SignUp from '#ioc/templates/SignUp'
 
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useGetCountries from '#ioc/services/useGetCountries'
