@@ -51,8 +51,8 @@ import Link from '#ioc/atoms/Link'
 import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
 import useI18n from '#ioc/composables/useI18n'
-import SfxStoreSwitcher from '#ioc/components/SfxStoreSwitcher'
 import useLocalePath from '#ioc/composables/useLocalePath'
+import SfxStoreSwitcher from '#ioc/components/SfxStoreSwitcher'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
