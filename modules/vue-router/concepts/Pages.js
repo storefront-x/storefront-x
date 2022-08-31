@@ -1,4 +1,4 @@
-import path, { parse } from 'node:path'
+import path from 'node:path'
 import { GeneratingConcept } from '@storefront-x/core'
 
 export default class Pages extends GeneratingConcept {
@@ -23,13 +23,12 @@ export default class Pages extends GeneratingConcept {
       const component = this.getPathForFile(module, file)
 
       if (parsed.name.includes('beforeEnter')) {
-        const guardName = parsed.name.split('.')[0]
-        const guardIdent = guardName.replace(/-/g, '_')
         guards.push({
           type: 'guard',
-          ident: guardIdent,
-          key: this.getIdent(parts),
-          name: guardName,
+          ident: this.getIdent(parts).split('.')[0],
+          key: this.getName(parts),
+          path: this.getPath(parts),
+          name: parsed.name,
           component,
         })
       }
@@ -54,30 +53,19 @@ export default class Pages extends GeneratingConcept {
       }
     }
     await this.addGuardsToPages(pages, guards)
-
-    console.log('data parsed', pages)
-
     await this.renderTemplate(this.compiledTemplate, { pages: this._transform(pages), guards })
   }
 
   addGuardsToPages(pages, guards) {
     const filteredPages = ['$layout', '$404']
-    console.log('guards', guards)
     guards.forEach((guard) => {
       Object.entries(pages).forEach(([pageKey, node]) => {
         if ('children' in node) {
-          Object.entries(node.children).map(([key, page]) => {
-            if (!filteredPages.includes(key) && page.name.includes(guard.name)) {
-              page.beforeEnter = guard.ident
-              console.log('page', page)
-              delete pages[pageKey].children[guard.key]
-            }
-          })
+          this.addGuardsToPages(node.children, guards)
         } else {
-          if (!filteredPages.includes(pageKey) && node.name.includes(guard.name)) {
+          if (!filteredPages.includes(pageKey) && node.ident.includes(guard.ident) && !node?.beforeEnter) {
             node.beforeEnter = guard.ident
-            console.log('guard', node)
-            delete pages[guard.key]
+            delete pages[guard.name]
           }
         }
       })
@@ -140,7 +128,6 @@ export default class Pages extends GeneratingConcept {
     for (const layout of transformed) {
       layout.children = flattenNested(layout)
     }
-    // console.log('transformed pages', transformed[0].children)
     return transformed
   }
 
