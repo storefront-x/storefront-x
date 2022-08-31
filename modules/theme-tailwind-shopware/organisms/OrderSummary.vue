@@ -13,13 +13,13 @@
       <dl class="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
         <div class="flex items-center justify-between">
           <dt class="text-sm">{{ t('Subtotal') }}</dt>
-          <SfxMoney v-slot="{ html }" :money="cart.prices.subtotalIncludingTax">
+          <SfxMoney v-slot="{ html }" :money="cart.subtotalIncludingTax">
             <dd class="text-sm font-medium text-gray-900" v-html="html" />
           </SfxMoney>
         </div>
         <div class="flex items-center justify-between border-t border-gray-200 pt-6">
           <dt class="text-base font-medium">{{ t('Total') }}</dt>
-          <SfxMoney v-slot="{ html }" :money="cart.prices.subtotalIncludingTax">
+          <SfxMoney v-slot="{ html }" :money="cart.subtotalIncludingTax">
             <dd class="text-base font-medium text-gray-900" v-html="html" />
           </SfxMoney>
         </div>

@@ -12,9 +12,9 @@ export default () => {
 
   return async (paymentMethod: ReturnType<ReturnType<typeof useToPaymentMethod>>) => {
     await setCurrentPaymentMethodRepository(paymentMethod)
-    const { items } = await getCatCartRepository()
+    const { cart } = await getCatCartRepository()
 
-    cartStore.$patch({ items })
-    checkoutStore.$patch({ currentPaymentMethod: paymentMethod })
+    cartStore.$patch({ cart })
+    checkoutStore.$patch({ paymentMethod })
   }
 }

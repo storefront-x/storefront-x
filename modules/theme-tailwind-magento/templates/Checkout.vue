@@ -7,13 +7,17 @@
         <OrderSummary class="lg:hidden mb-10" />
 
         <div>
-          <ShippingMethodSelection />
+          <ShippingMethodSelection :is-open="isShippingOpen" @select="onSelectShipping" @confirm="onConfirmShipping" />
 
-          <PaymentMethodSelection />
+          <PaymentMethodSelection :is-open="isPaymentOpen" @select="onSelectPayment" @confirm="onConfirmPayment" />
 
-          <ContactInfoSelection />
+          <ContactInfoSelection
+            :is-open="isContactInfoOpen"
+            @select="onSelectContactInfo"
+            @confirm="onConfirmContactInfo"
+          />
 
-          <CheckoutAgreements @place-order="onPlaceOrder" />
+          <CheckoutAgreements :is-open="isAgreementsOpen" @place-order="onPlaceOrder" />
         </div>
 
         <OrderSummary bottom class="mt-10 lg:mt-0" />
@@ -36,56 +40,91 @@ import PaymentMethodSelection from '#ioc/organisms/PaymentMethodSelection'
 import CheckoutAgreements from '#ioc/organisms/CheckoutAgreements'
 import usePlaceOrder from '#ioc/services/usePlaceOrder'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
-import useSetContactInformation from '#ioc/services/useSetContactInformation'
+import useConfirmContactInformation from '#ioc/services/useConfirmContactInformation'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useRouter from '#ioc/composables/useRouter'
-import useCheckout from '#ioc/composables/useCheckout'
-import useRefreshCheckout from '#ioc/services/useRefreshCheckout'
-import IS_SERVER from '#ioc/config/IS_SERVER'
 import ContactInfoSelection from '#ioc/organisms/ContactInfoSelection'
-import { onMounted } from 'vue'
-import useAsyncData from '#ioc/composables/useAsyncData'
 import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreements'
+import { computed, nextTick, onMounted, ref } from 'vue'
+import useShipping from '#ioc/composables/useShipping'
+import usePayment from '#ioc/composables/usePayment'
 
 const { t } = useI18n()
 const router = useRouter()
 const localePath = useLocalePath()
 const cart = useCart()
-const checkout = useCheckout()
-const refreshCheckout = useRefreshCheckout()
-const setContactInformation = useSetContactInformation()
+const shipping = useShipping()
+const payment = usePayment()
+const confirmContactInformation = useConfirmContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
 
-useAsyncData('checkoutAgreements', () => refreshCheckoutAgreements())
+const step = ref(1)
 
-if (IS_SERVER) {
-  await refreshCheckout()
-} else {
-  onMounted(async () => {
-    if (checkout.contactInformation) {
-      await refreshCheckout()
-    } else {
-      await setContactInformation({
-        email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
-        telephone: 'DUMMYDATA',
-        firstName: 'DUMMYDATA',
-        lastName: 'DUMMYDATA',
-        street: 'DUMMYDATA',
-        city: 'DUMMYDATA',
-        postcode: 'DUMMYDATA',
-        countryCode: 'CZ',
-      })
-    }
-  })
+const isShippingOpen = computed(() => step.value >= 1)
+
+const isPaymentOpen = computed(() => isShippingOpen.value && step.value >= 2)
+
+const isContactInfoOpen = computed(() => isPaymentOpen.value && step.value >= 3)
+
+const isAgreementsOpen = computed(() => isContactInfoOpen.value && step.value >= 4)
+
+const onSelectShipping = () => {
+  step.value = 1
 }
+
+const onConfirmShipping = async () => {
+  await nextTick()
+  step.value = 2
+}
+
+const onSelectPayment = () => {
+  step.value = 2
+}
+
+const onConfirmPayment = async () => {
+  await nextTick()
+  step.value = 3
+}
+
+const onSelectContactInfo = () => {
+  step.value = 3
+}
+
+const onConfirmContactInfo = async () => {
+  await nextTick()
+  step.value = 4
+}
+
+onMounted(async () => {
+  await confirmContactInformation({
+    email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
+    telephone: 'DUMMYDATA',
+    firstName: 'DUMMYDATA',
+    lastName: 'DUMMYDATA',
+    street: 'DUMMYDATA',
+    city: 'DUMMYDATA',
+    postcode: 'DUMMYDATA',
+    countryCode: 'CZ',
+  })
+
+  await refreshCheckoutAgreements()
+})
 
 const onPlaceOrder = async ({ resolve }: any) => {
   try {
+    await shipping.shippingHandler!()
+
+    await payment.paymentHandler!()
+
     const { order } = await placeOrder()
 
-    router.push(localePath({ name: 'thank-you', query: { orderNumber: order.orderNumber } }))
+    if (order.redirectUrl) {
+      window.location.href = order.redirectUrl
+    } else {
+      router.push(localePath({ name: 'thank-you', query: { orderNumber: order.orderNumber } }))
+    }
   } catch (e) {
     resolve()
 
