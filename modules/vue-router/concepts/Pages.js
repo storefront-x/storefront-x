@@ -15,9 +15,10 @@ export default class Pages extends GeneratingConcept {
    */
   async execute(files) {
     const pages = {}
+    let guards = []
     // const names = await this.getFiles(this.src('pages'))
     // console.log('test names', names)
-    console.log('all files', files)
+    // console.log('all files', files)
     for (const { module, file } of Object.values(files)) {
       const parsed = path.parse(file)
       // parsed format in node js parse
@@ -31,8 +32,13 @@ export default class Pages extends GeneratingConcept {
 
       const parts = [...parsed.dir.replace(/\\/g, '/').split('/').filter(Boolean), parsed.name]
       const component = this.getPathForFile(module, file)
-      // console.log('modules', file, parsed.dir)
+      // console.log('modules', file, parsed.name)
       // console.log('parts entries', parts)
+
+      if (parsed.name.includes('beforeEnter')) {
+        const guardName = parsed.name.split('.')[0]
+        guards.push(guardName)
+      }
       let _pages = pages
       for (const [i, part] of parts.entries()) {
         if (i === parts.length - 1) {
@@ -52,19 +58,58 @@ export default class Pages extends GeneratingConcept {
         _pages = _pages[part].children
       }
     }
-    console.log('pages before transform', pages)
+    // Object.entries(pages).map(([key, node]) => {
+    //   const filteredPages = ['$layout', '$404']
+    //   if ('children' in node) {
+    //     Object.entries(node.children).map(([key, page]) => {
+    //       if (!filteredPages.includes(key)) {
+    //         console.log('page page', page)
+    //       }
+    //     })
+    //   } else {
+    //     if (!filteredPages.includes(key)) {
+    //       console.log('node node', node)
+    //     }
+    //   }
+    // })
+    // console.log('pages before transform xx', pages)
+    // console.log(guards)
+    console.log('guards test', guards)
+    await this.addGuards(pages, guards)
     await this.renderTemplate(this.compiledTemplate, { pages: this._transform(pages) })
   }
 
+  checkIf
+
   addGuards(pages = {}, guards = []) {
-    let pagesWithGuards = []
+    const filteredPages = ['$layout', '$404']
+    // let pagesWithGuards = []
     guards.forEach((guard) => {
-      const guardName = guard.split('.')[1]
-      return pages.map((page) => {
-        if (page.name.includes(guardName)) {
-          page.beforeEnter = guardName
+      let pagesWithGuards = Object.entries(pages).map(([key, node]) => {
+        if ('children' in node) {
+          return Object.entries(node.children).map(([key, page]) => {
+            if (!filteredPages.includes(key) && page.name.includes(guard)) {
+              console.log('page page', page, guard)
+              page.beforeEnter = guard
+              return page
+            }
+            return page
+          })
+        } else {
+          if (!filteredPages.includes(key) && node.name.includes(guard)) {
+            console.log('node node', node, guard)
+            node.beforeEnter = guard
+            return node
+          }
+          return node
         }
       })
+      console.log('pages with guards', pagesWithGuards)
+      // return pages.map((page) => {
+      //   if (page.name.includes(guardName)) {
+      //     page.beforeEnter = guardName
+      //   }
+      // })
     })
   }
 
@@ -124,7 +169,7 @@ export default class Pages extends GeneratingConcept {
     for (const layout of transformed) {
       layout.children = flattenNested(layout)
     }
-    console.log('transformed pages', transformed[0].children)
+    // console.log('transformed pages', transformed[0].children)
     return transformed
   }
 
