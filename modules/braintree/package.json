@@ -1,0 +1,14 @@
+{
+  "name": "@storefront-x/braintree",
+  "version": "0.2.1",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "braintree-web": "^3.87.0",
+    "braintree-web-drop-in": "^1.33.4"
+  },
+  "devDependencies": {
+    "@types/braintree-web": "^3.75.20",
+    "@types/braintree-web-drop-in": "^1.28.0"
+  }
+}

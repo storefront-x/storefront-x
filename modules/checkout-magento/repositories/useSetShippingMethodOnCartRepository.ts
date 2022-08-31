@@ -1,5 +1,5 @@
 import useMagento from '#ioc/composables/useMagento'
-import SetShippingMethodOncart from '#ioc/graphql/mutations/SetShippingMethodOncart'
+import SetShippingMethodOncart from '#ioc/graphql/mutations/SetShippingMethodOnCart'
 import useToCheckout from '#ioc/mappers/useToCheckout'
 import useToShippingMethod from '#ioc/mappers/useToShippingMethod'
 

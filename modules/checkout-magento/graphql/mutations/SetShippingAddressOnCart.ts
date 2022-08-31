@@ -7,6 +7,8 @@ export default () =>
     .variables({
       $cartId: 'String!',
       $address: 'CartAddressInput',
+      $customerAddressId: 'Int',
+      $customerNotes: 'String',
       $pickupLocationCode: 'String',
     })
     .fields({
@@ -17,6 +19,8 @@ export default () =>
             shipping_addresses: [
               {
                 address: '$address',
+                customer_address_id: '$customerAddressId',
+                customer_notes: '$customerNotes',
                 pickup_location_code: '$pickupLocationCode',
               },
             ],

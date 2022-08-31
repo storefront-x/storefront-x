@@ -22,10 +22,6 @@ export default () => {
     cartStore.$reset()
     checkoutStore.$reset()
 
-    if (order.redirectUrl) {
-      window.location.href = order.redirectUrl
-    }
-
     return {
       order,
     }

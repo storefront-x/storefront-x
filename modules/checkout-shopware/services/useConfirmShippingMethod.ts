@@ -12,9 +12,9 @@ export default () => {
 
   return async (shippingMethod: ReturnType<ReturnType<typeof useToShippingMethod>>) => {
     await setCurrentShippingMethodRepository(shippingMethod)
-    const { items } = await getCatCartRepository()
+    const { cart } = await getCatCartRepository()
 
-    checkoutStore.$patch({ currentShippingMethod: shippingMethod })
-    cartStore.$patch({ items })
+    checkoutStore.$patch({ shippingMethod: shippingMethod })
+    cartStore.$patch({ cart })
   }
 }

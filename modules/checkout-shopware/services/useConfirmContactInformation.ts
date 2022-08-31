@@ -1,10 +1,10 @@
-import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 import useToContactInformation from '#ioc/mappers/useToContactInformation'
+import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 
 export default () => {
   const checkoutStore = useCheckoutStore()
 
-  return async (contactInformation: ReturnType<ReturnType<typeof useToContactInformation>> | null) => {
+  return async (contactInformation: ReturnType<ReturnType<typeof useToContactInformation>>) => {
     checkoutStore.$patch({ contactInformation })
   }
 }

@@ -38,38 +38,55 @@
 <script setup lang="ts">
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useCart from '#ioc/composables/useCart'
+import useCheckout from '#ioc/composables/useCheckout'
 import useI18n from '#ioc/composables/useI18n'
 import useShipping from '#ioc/composables/useShipping'
 import useToPickupLocation from '#ioc/mappers/useToPickupLocation'
 import useGetPickupLocationsRepository from '#ioc/repositories/useGetPickupLocationsRepository'
-import useSetShippingAddress from '#ioc/services/useSetShippingAddress'
-import { computed } from 'vue'
+import useConfirmShippingMethod from '#ioc/services/useConfirmShippingMethod'
+import useConfirmShippingAddress from '#ioc/services/useConfirmShippingAddress'
+import { computed, onMounted, ref } from 'vue'
+
+const emit = defineEmits(['select', 'confirm'])
 
 const { t } = useI18n()
 const cart = useCart()
+const checkout = useCheckout()
 const shipping = useShipping()
 const getPickupLocations = useGetPickupLocationsRepository()
-const setShippingAddress = useSetShippingAddress()
+const confirmShippingAddress = useConfirmShippingAddress()
+const confirmShippingMethod = useConfirmShippingMethod()
 
 const { data } = await useAsyncData('pickupLocations', () => getPickupLocations(cart.items))
 
 const pickupLocations = computed(() => data.value.pickupLocations)
 
-const picked = computed(() =>
-  pickupLocations.value.find(
-    (pickupLocation) => pickupLocation.pickupLocationCode === shipping.shippingAddress?.pickupLocationCode,
-  ),
-)
+const picked = ref<ReturnType<ReturnType<typeof useToPickupLocation>> | null>(null)
+
+onMounted(() => {
+  emit('select')
+})
 
 const select = async (pickupLocation: ReturnType<ReturnType<typeof useToPickupLocation>>) => {
-  await setShippingAddress({
-    ...shipping.shippingAddress!,
-    street: pickupLocation.street,
-    city: pickupLocation.city,
-    postcode: pickupLocation.postcode,
-    countryCode: pickupLocation.countryCode,
-    pickupLocationCode: pickupLocation.pickupLocationCode,
+  emit('select')
+
+  picked.value = pickupLocation
+
+  shipping.setShippingHandler(async () => {
+    await confirmShippingAddress({
+      ...checkout.contactInformation!,
+      street: pickupLocation.street,
+      city: pickupLocation.city,
+      postcode: pickupLocation.postcode,
+      countryCode: pickupLocation.countryCode,
+      pickupLocationCode: pickupLocation.pickupLocationCode,
+      customerNotes: null,
+    })
+
+    await confirmShippingMethod(shipping.shippingMethod!)
   })
+
+  emit('confirm')
 }
 </script>
 
