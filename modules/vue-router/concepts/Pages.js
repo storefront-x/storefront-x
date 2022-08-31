@@ -202,6 +202,7 @@ const _routes = [
         name: <%- child.name ? "'" + child.name + "'" : 'undefined' %>,
         path: '<%= child.path %>',
         component: () => import('<%= child.component %>'),
+        beforeEnter: <%- child.beforeEnter ? "'" + child.beforeEnter + "'" : 'undefined' %>,
       },
     <%_ } _%>
     ],
