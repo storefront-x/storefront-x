@@ -33,13 +33,4 @@ import Container from '#ioc/atoms/Container'
 import Link from '#ioc/atoms/Link'
 import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
-import useI18n from '#ioc/composables/useI18n'
-
-const { t } = useI18n()
 </script>
-
-<i18n lang="yaml">
-cs-CZ:
-  Brands: Značky
-  Blog: Blog
-</i18n>

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
+
 import path from 'node:path'
 import url from 'node:url'
 import fs from 'fs-extra'
@@ -17,7 +19,7 @@ const main = async () => {
   const __filename = url.fileURLToPath(import.meta.url)
   const __dirname = path.dirname(__filename)
 
-  const src = path.join(__dirname, 'template')
+  const src = path.join(__dirname, 'template', responses.integration)
   const dst = path.join(cwd, responses.directory)
 
   console.log(`\nScaffolding project in ${dst}...`)
@@ -35,6 +37,7 @@ const main = async () => {
   if (dst != cwd) {
     console.log(`  cd ${path.relative(cwd, dst)}`)
   }
+
   switch (pkgManager) {
     case 'yarn':
       console.log('  yarn install')
@@ -75,6 +78,15 @@ async function getResponses() {
             return null
           },
           name: 'overwriteChecker',
+        },
+        {
+          type: 'select',
+          name: 'integration',
+          message: 'Pick a backend integration',
+          choices: [
+            { title: 'Magento', value: 'magento' },
+            { title: 'Shopware', value: 'shopware' },
+          ],
         },
         {
           type: 'text',

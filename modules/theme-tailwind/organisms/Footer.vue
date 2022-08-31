@@ -186,7 +186,7 @@
         class="flex items-center lg:items-baseline text-gray-500 font-moderate flex-col lg:flex-row space-y-12 justify-between border-t-2 py-10 lg:py-20"
       >
         <div>
-          <RouterLink to="/">
+          <RouterLink :to="localePath('/')">
             <span class="sr-only">Logo</span>
             <img class="h-6 w-auto" :src="logo" alt="Logo" loading="lazy" />
           </RouterLink>
@@ -208,7 +208,9 @@ import BackToTop from '#ioc/molecules/BackToTop'
 import Newsletter from '#ioc/molecules/Newsletter'
 import useI18n from '#ioc/composables/useI18n'
 import logo from '#ioc/assets/logo'
+import useLocalePath from '#ioc/composables/useLocalePath'
 
+const localePath = useLocalePath()
 const { t } = useI18n()
 </script>
 

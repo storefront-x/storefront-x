@@ -1,6 +1,12 @@
 <template>
   <Container class="hidden lg:flex space-x-8">
-    <CategoryLink v-for="category in catalogStore.menu" :key="category.id" :category="category" />
+    <CategoryLink
+      v-for="category in catalogStore.menu"
+      :key="category.id"
+      :category="category"
+      classes="py-4 text-primary-500 font-semibold"
+      color="primary"
+    />
   </Container>
 </template>
 

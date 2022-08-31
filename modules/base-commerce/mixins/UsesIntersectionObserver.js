@@ -41,10 +41,8 @@ export default {
      * to handle the event.
      *
      * The element stops being observed after this method is called.
-     *
-     * @param entry
      */
-    onIntersectionObserved(entry) {
+    onIntersectionObserved() {
       console.warn('UserIntersectionObserver mixin is used but method `onIntersectionObserved` is not implemented.')
     },
   },

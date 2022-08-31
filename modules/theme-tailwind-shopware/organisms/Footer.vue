@@ -87,7 +87,6 @@ import Container from '#ioc/atoms/Container'
 import Link from '#ioc/atoms/Link'
 import Accordion from '#ioc/atoms/Accordion'
 import BackToTop from '#ioc/molecules/BackToTop'
-import Newsletter from '#ioc/molecules/Newsletter'
 import useI18n from '#ioc/composables/useI18n'
 import logo from '#ioc/assets/logo'
 
