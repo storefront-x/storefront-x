@@ -27,5 +27,6 @@ jobs:
         with:
           node-version: 16
       - run: yarn install
+      - run: yarn build --onlyBootstrap
       - run: ls .sfx/ioc/graphql/mutations
       - run: yarn build --config storefront-x.magento.config.js
