@@ -4,10 +4,10 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@vitejs/plugin-vue": "^3.0.1",
-    "@vueuse/integrations": "^9.1.0",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "@vueuse/integrations": "^9.1.1",
     "universal-cookie": "^4.0.4",
-    "vite": "^3.0.4",
-    "vue": "^3.2.37"
+    "vite": "^3.0.9",
+    "vue": "^3.2.38"
   }
 }

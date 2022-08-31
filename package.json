@@ -31,21 +31,21 @@
     "@storefront-x/core": "*"
   },
   "devDependencies": {
-    "@playwright/test": "^1.24.2",
-    "@types/yargs": "^17.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
+    "@playwright/test": "^1.25.1",
+    "@types/yargs": "^17.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
     "cross-env": "^7.0.3",
-    "eslint": "^8.21.0",
+    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.3.0",
+    "eslint-plugin-vue": "^9.4.0",
     "husky": "^8.0.1",
-    "lerna": "^5.3.0",
+    "lerna": "^5.4.3",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "typescript": "^4.7.4",
-    "vitepress": "^1.0.0-alpha.4",
-    "vitest": "^0.21.0"
+    "typescript": "^4.8.2",
+    "vitepress": "^1.0.0-draft.8",
+    "vitest": "^0.22.1"
   }
 }
