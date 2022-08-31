@@ -34,9 +34,3 @@ import Link from '#ioc/atoms/Link'
 import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
 </script>
-
-<i18n lang="yaml">
-cs-CZ:
-  Brands: Značky
-  Blog: Blog
-</i18n>

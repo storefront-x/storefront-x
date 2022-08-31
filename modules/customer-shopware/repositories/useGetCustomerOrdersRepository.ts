@@ -11,7 +11,7 @@ export default () => {
     const response = await shopware.post(`/order`)
 
     return {
-      customerOrders: response.orders.elements.map(toOrder) ?? [],
+      customerOrders: response?.orders?.elements?.map(toOrder) ?? [],
     }
   }
 }

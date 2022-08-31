@@ -46,7 +46,7 @@ export default () => {
       brand: toBrand(data.amBrandById),
       products: data.products.items.map(toProduct),
       aggregations: data.aggregations.aggregations.map(toAggregation) || [],
-      totalCount: data.products.totalCount ?? 0,
+      totalCount: data.products.total_count ?? 0,
     }
   }
 }
