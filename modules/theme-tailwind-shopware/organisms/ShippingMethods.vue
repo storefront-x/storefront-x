@@ -5,8 +5,8 @@
       v-for="shippingMethod in shipping.shippingMethods"
       :key="shippingMethod.id"
       :shipping-method="shippingMethod"
-      :is-selected="shipping.currentShippingMethod?.id === shippingMethod.id"
-      @select="selectShippingMethod"
+      :is-selected="shipping.shippingMethod?.id === shippingMethod.id"
+      @select="confirmShippingMethod"
     />
   </div>
 </template>
@@ -15,12 +15,12 @@
 import Heading from '#ioc/atoms/Heading'
 import ShippingMethod from '#ioc/molecules/ShippingMethod'
 import useShipping from '#ioc/composables/useShipping'
-import useSelectShippingMethod from '#ioc/services/useSelectShippingMethod'
+import useConfirmShippingMethod from '#ioc/services/useConfirmShippingMethod'
 import useI18n from '#ioc/composables/useI18n'
 
 const { t } = useI18n()
 const shipping = useShipping()
-const selectShippingMethod = useSelectShippingMethod()
+const confirmShippingMethod = useConfirmShippingMethod()
 </script>
 
 <i18n lang="yaml">
