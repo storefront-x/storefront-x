@@ -120,7 +120,11 @@ const onPlaceOrder = async ({ resolve }: any) => {
 
     const { order } = await placeOrder()
 
-    router.push(localePath({ name: 'thank-you', query: { orderNumber: order.orderNumber } }))
+    if (order.redirectUrl) {
+      window.location.href = order.redirectUrl
+    } else {
+      router.push(localePath({ name: 'thank-you', query: { orderNumber: order.orderNumber } }))
+    }
   } catch (e) {
     resolve()
 
