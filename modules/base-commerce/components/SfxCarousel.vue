@@ -78,7 +78,7 @@ export default defineComponent({
 
   computed: {
     x_options() {
-      return this.slider?.options()
+      return this.slider?.options
     },
 
     x_slidesPerView() {
@@ -108,21 +108,23 @@ export default defineComponent({
 
   watch: {
     x_slides() {
-      if (this.slider) this.$nextTick(() => this.slider.refresh())
+      if (this.slider) this.$nextTick(() => this.slider.update())
     },
   },
 
   mounted() {
     this.slider = new KeenSlider(this.$el, {
-      slidesPerView: this.slidesPerView,
+      slides: {
+        perView: this.slidesPerView,
+      },
       initial: this.currentPage,
       loop: this.loop,
       breakpoints: this.breakpoints,
-      dragStart: () => this.onDragStart(),
-      dragEnd: () => this.onDragEnd(),
-      move: () => this.onMove(),
+      dragStarted: () => this.onDragStart(),
+      dragEnded: () => this.onDragEnd(),
+      dragged: () => this.onMove(),
       slideChanged: (slider) => {
-        this.currentPage = Math.floor(slider.details().relativeSlide / this.x_slidesPerView)
+        this.currentPage = Math.floor(slider.track.details.rel / this.x_slidesPerView)
       },
     })
 
@@ -170,7 +172,7 @@ export default defineComponent({
     showPage(pageId) {
       const slideId = pageId * this.x_slidesPerView
 
-      this.slider.moveToSlideRelative(slideId)
+      this.slider.moveToIdx(slideId, true)
     },
 
     showPrevSlide() {
@@ -188,9 +190,9 @@ export default defineComponent({
 
       this.x_interval = setInterval(() => {
         if (!this.x_pause) {
-          const { absoluteSlide } = this.slider.details()
-          const { slidesPerView } = this.slider.options()
-          this.slider.moveToSlideRelative(absoluteSlide + slidesPerView)
+          const { abs } = this.slider.track.details
+          const { slidesPerView } = this.slider.options
+          this.slider.moveToIdx(abs + slidesPerView, true)
         }
       }, this.interval)
     },
