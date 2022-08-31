@@ -1,7 +1,7 @@
 import useCookies from '#ioc/composables/useCookies'
 import useCustomer from '#ioc/composables/useCustomer'
 import WISHLIST_COOKIES_NAME from '#ioc/config/WISHLIST_COOKIES_NAME'
-import useAddToWishlistRepository from '#ioc/repositories/useAddToWishlistRepository'
+import useMergeWishlistRepository from '#ioc/repositories/useMergeWishlistRepository'
 import useGetProductsByIdsRepository from '#ioc/repositories/useGetProductsByIdsRepository'
 import useGetWishlist from '#ioc/services/useGetWishlist'
 
@@ -9,7 +9,7 @@ export default () => {
   const cookies = useCookies()
   const customer = useCustomer()
   const getWishlist = useGetWishlist()
-  const addToWishlistRepository = useAddToWishlistRepository()
+  const mergeWishlistRepository = useMergeWishlistRepository()
   const getProductsByIdsRepository = useGetProductsByIdsRepository()
 
   return async () => {
@@ -27,7 +27,7 @@ export default () => {
       })
 
       // @ts-ignore
-      await addToWishlistRepository(null, items, wishlist.id)
+      await mergeWishlistRepository(items, wishlist.id)
     }
 
     cookies.remove(WISHLIST_COOKIES_NAME)
