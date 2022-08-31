@@ -6,7 +6,7 @@ export default () => {
 
   return (data: any) => ({
     ...toProduct(data),
-    crossSell: ((data.crossSell ?? []) as any[]).map(toProduct),
+    crossSell: ((data?.crossSell ?? []) as any[]).map(toProduct),
   })
 }
 
