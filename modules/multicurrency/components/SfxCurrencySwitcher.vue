@@ -1,7 +1,5 @@
 <template>
-  <div v-bind="$attrs">
-    <slot v-bind="{ currencies, currentCurrency, setCurrency }" />
-  </div>
+  <slot v-bind="{ currencies, currentCurrency, setCurrency }" />
 </template>
 
 <script setup lang="ts">
