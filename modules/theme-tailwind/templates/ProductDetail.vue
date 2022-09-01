@@ -5,7 +5,7 @@
     <ProductDetailTabs />
 
     <section v-if="product?.upsellProducts?.length" class="pt-8 sm:px-0">
-      <Heading :level="2">{{ $t('Customers also bought') }}</Heading>
+      <Heading :level="2">{{ t('Customers also bought') }}</Heading>
 
       <ProductCarousel class="mt-8" :products="product?.upsellProducts" />
     </section>
