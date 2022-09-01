@@ -235,38 +235,3 @@ test('show 404 if index is missing', async ({ page }) => {
     },
   )
 })
-
-//check redirect to signing
-test('test a guard route', async ({ page }) => {
-  await makeProject(
-    {
-      modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        [
-          'app',
-          {
-            pages: {
-              'account': {
-                'index.vue': `<template><h1>Index</h1></template>`,
-                'index.beforeEnter.ts': `
-                export default (to: any, from: any, next: any) => {
-                  console.log("before logged in")
-                    next('/sign-in')
-                }
-                `,
-              },
-              'sign-in': `<template><h1>Sign in</h1></template>`,
-            },
-          },
-        ],
-      ],
-    },
-    async ({ url }) => {
-      console.log('tests', url)
-      await page.goto(url + '/account', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Sign in')
-    },
-  )
-})
