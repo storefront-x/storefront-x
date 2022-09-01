@@ -52,7 +52,7 @@ export default class Pages extends GeneratingConcept {
         _pages = _pages[part].children
       }
     }
-    await this.addGuardsToPages(pages, guards)
+    this.addGuardsToPages(pages, guards)
     await this.renderTemplate(this.compiledTemplate, { pages: this._transform(pages), guards })
   }
 
@@ -209,7 +209,7 @@ export default class Pages extends GeneratingConcept {
           name: <%- child.name ? "'" + child.name + "'" : 'undefined' %>,
           path: '<%= child.path %>',
           component: () => import('<%= child.component %>'),
-          <%- child.beforeEnter ?  "beforeEnter(to:any,from:any,next:any) {"  + child.beforeEnter +"(to, from, next)" + "}," : '' %>
+          <%- child.beforeEnter ?  "beforeEnter :"  + child.beforeEnter + "," : '' %>
         },
       <%_ } _%>
       ],
