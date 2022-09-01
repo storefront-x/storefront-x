@@ -48,15 +48,14 @@ import { ref } from 'vue'
 
 const { t } = useI18n()
 
-const props = defineProps({
+defineProps({
   category: {
     type: Object,
-    default: () => {},
+    default: () => ({}),
   },
 })
 
 const isMobileCategoryOpen = ref(false)
-
 </script>
 
 <i18n lang="yaml">
