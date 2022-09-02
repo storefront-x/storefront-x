@@ -8,6 +8,8 @@ import useGetProductsByIds from '#ioc/services/useGetProductsByIds'
 import IsPbBlock from '#ioc/mixins/IsPbBlock'
 import IsPbProducts from '#ioc/mixins/IsPbProducts'
 import ProductCarousel from '#ioc/organisms/ProductCarousel'
+import usePbProducts from '#ioc/composables/usePbProducts'
+import useAsyncData from '#ioc/composables/useAsyncData'
 
 export default defineComponent({
   components: {
@@ -16,14 +18,14 @@ export default defineComponent({
 
   mixins: [IsPbBlock, IsPbProducts],
 
-  data: () => ({
-    products: [],
-  }),
-
-  async mounted() {
+  async setup(props) {
+    const pbProducts = usePbProducts(props.el)
     const getProductsByIds = useGetProductsByIds()
-    const { products } = await getProductsByIds(this.skus)
-    this.products = products
+    const { data } = await useAsyncData('carouselProduct', () => getProductsByIds(pbProducts.skus))
+
+    return {
+      products: data.value.products,
+    }
   },
 })
 </script>
