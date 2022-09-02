@@ -8,14 +8,15 @@ export default () => {
   const currentStoreProperties = useCurrentStoreProperties()
 
   const currentLocale = computed(() => currentStoreProperties.currentStore?.name)
-  const currentPrefix = computed(() => currentStoreProperties.currentStore?.prefix)
 
   return (target: RouteLocationRaw, locale: string | undefined = currentLocale.value): RouteLocation | string => {
     if (!locale) throw new Error('Undefined locale')
 
+    const currentPrefix = computed(() => currentStoreProperties.findStore(locale)?.prefix)
+
     if (typeof target === 'string') {
       if (target.startsWith('/')) {
-        if (currentPrefix.value === '/') return router.resolve(target)
+        if (currentPrefix.value === '/') return router.resolve({ name: `__${locale}` })
 
         return `${currentPrefix.value}${target}`
       } else {

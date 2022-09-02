@@ -22,6 +22,20 @@
           </DropdownItem>
         </Dropdown>
       </SfxCurrencySwitcher>
+
+      <SfxStoreSwitcher v-slot="{ stores, currentStore, setLanguage }">
+        <Dropdown
+          link-like
+          :title="currentStore?.fullName"
+          :to-left="true"
+          class="text-gray-600 hover:text-gray-800"
+          data-cy="store-switcher"
+        >
+          <DropdownItem v-for="store in stores" :key="store.name" href="javascript:void(0)" @click="setLanguage(store)">
+            {{ store.fullName }}
+          </DropdownItem>
+        </Dropdown>
+      </SfxStoreSwitcher>
     </div>
   </Container>
 </template>
@@ -33,6 +47,7 @@ import Container from '#ioc/atoms/Container'
 import Link from '#ioc/atoms/Link'
 import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
+import SfxStoreSwitcher from '#ioc/components/SfxStoreSwitcher'
 </script>
 
 <i18n lang="yaml">

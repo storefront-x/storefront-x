@@ -7,10 +7,15 @@ export default () => {
 
   const currentStore = computed(() => VUE_I18N_LOCALES.find((item) => item.locale === locale.value))
 
+  const findStore = (locale: string) => {
+    return VUE_I18N_LOCALES.find((item) => item.name === locale)
+  }
+
   const stores = VUE_I18N_LOCALES
 
   return reactive({
     currentStore,
     stores,
+    findStore,
   })
 }

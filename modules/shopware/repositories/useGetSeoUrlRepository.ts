@@ -7,7 +7,7 @@ export default () => {
     const { elements }: any = await shopware.post('/seo-url', {
       filter: [
         {
-          type: 'prefix',
+          type: 'equals',
           field: 'seoPathInfo',
           value: path,
         },
