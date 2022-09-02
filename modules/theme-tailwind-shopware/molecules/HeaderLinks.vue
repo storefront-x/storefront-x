@@ -23,7 +23,7 @@
         </Dropdown>
       </SfxCurrencySwitcher>
 
-      <SfxStoreSwitcher v-slot="{ stores, currentStore, setLanguage }">
+      <SfxStoreSwitcher v-slot="{ stores, currentStore }">
         <Dropdown
           link-like
           :title="currentStore?.fullName"
@@ -48,4 +48,7 @@ import Link from '#ioc/atoms/Link'
 import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
 import SfxStoreSwitcher from '#ioc/components/SfxStoreSwitcher'
+import useSetLanguage from '#ioc/services/useSetLanguage'
+
+const setLanguage = useSetLanguage()
 </script>

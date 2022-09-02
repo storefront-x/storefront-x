@@ -1,6 +1,6 @@
 <template>
   <div v-bind="$attrs">
-    <slot v-bind="{ getUrlFor, currentStore, stores, setLanguage }" />
+    <slot v-bind="{ getUrlFor, currentStore, stores }" />
   </div>
 </template>
 
@@ -11,13 +11,11 @@ import useRoute from '#ioc/composables/useRoute'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useSwitchLocalePath from '#ioc/composables/useSwitchLocalePath'
 import useCurrentStoreProperties from '#ioc/composables/useCurrentStoreProperties'
-import useSetLanguage from '#ioc/services/useSetLanguage'
 
 const route = useRoute()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const currentStoreProperties = useCurrentStoreProperties()
-const setLanguage = useSetLanguage()
 
 const stores = computed(() => currentStoreProperties.stores)
 
