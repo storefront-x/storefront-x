@@ -78,8 +78,8 @@
       </li>
     </ul>
 
-    <SfxStoreSwitcher v-slot="{ stores, getUrlFor, currentStore }" class="px-4 py-4 my-3 border-y-2 border-gray-50">
-      <div class="flex items-center">
+    <SfxStoreSwitcher v-slot="{ stores, getUrlFor, currentStore }">
+      <div class="flex items-center px-4 py-4 my-3 border-y-2 border-gray-50">
         <Dropdown data-cy="store-switcher-mobile" variant="link-like">
           <template #title>
             <div class="mr-2 self-center">
@@ -98,24 +98,21 @@
       </div>
     </SfxStoreSwitcher>
 
-    <SfxCurrencySwitcher
-      v-slot="{ currentCurrency, currencies, setCurrency }"
-      class="px-4 pb-4 mb-3 border-b-2 border-gray-50"
-    >
-      <div class="flex items-center">
+    <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, setCurrency }">
+      <div class="flex items-center px-4 pb-4 mb-3 border-b-2 border-gray-50">
         <Dropdown
           link-like
-          :title="currentCurrency"
+          :title="currentCurrency?.code"
           class="text-gray-600 hover:text-gray-800"
           data-cy="currency-switcher"
         >
           <DropdownItem
             v-for="currency in currencies"
-            :key="currency"
+            :key="currency.code"
             href="javascript:void(0)"
             @click="setCurrency(currency)"
           >
-            {{ currency }}
+            {{ currency.code }}
           </DropdownItem>
         </Dropdown>
 

@@ -32,7 +32,7 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
 
   const crossSellProducts = computed(() => product.value.crossSellProducts)
 
-  const isOnSale = computed(() => finalPrice.value < regularPrice.value)
+  const isOnSale = computed(() => finalPrice.value.value < regularPrice.value.value)
 
   return reactive({
     id,

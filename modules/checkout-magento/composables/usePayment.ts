@@ -1,3 +1,4 @@
+import useToPaymentMethod from '#ioc/mappers/useToPaymentMethod'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 import once from '#ioc/utils/once'
 import { computed, reactive } from 'vue'
@@ -18,10 +19,23 @@ export default () => {
     })
   })
 
-  const currentPaymentMethod = computed(() => checkoutStore.currentPaymentMethod)
+  const paymentMethod = computed(() => checkoutStore.paymentMethod)
+
+  const paymentHandler = computed(() => checkoutStore.paymentHandler)
+
+  const setPaymentMethod = (paymentMethod: ReturnType<ReturnType<typeof useToPaymentMethod>>) => {
+    checkoutStore.$patch({ paymentMethod })
+  }
+
+  const setPaymentHandler = (paymentHandler: () => Promise<void>) => {
+    checkoutStore.$patch({ paymentHandler })
+  }
 
   return reactive({
     paymentMethods,
-    currentPaymentMethod,
+    paymentMethod,
+    setPaymentMethod,
+    setPaymentHandler,
+    paymentHandler,
   })
 }

@@ -6,10 +6,10 @@ export default () => {
 
   const shippingMethods = computed(() => checkoutStore.shippingMethods)
 
-  const currentShippingMethod = computed(() => checkoutStore.currentShippingMethod)
+  const shippingMethod = computed(() => checkoutStore.shippingMethod)
 
   return reactive({
     shippingMethods,
-    currentShippingMethod,
+    shippingMethod,
   })
 }

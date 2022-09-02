@@ -6,10 +6,10 @@ export default () => {
 
   const paymentMethods = computed(() => checkoutStore.paymentMethods)
 
-  const currentPaymentMethod = computed(() => checkoutStore.currentPaymentMethod)
+  const paymentMethod = computed(() => checkoutStore.paymentMethod)
 
   return reactive({
     paymentMethods,
-    currentPaymentMethod,
+    paymentMethod,
   })
 }

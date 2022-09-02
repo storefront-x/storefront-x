@@ -10,7 +10,6 @@ export default () => {
   }> => {
     try {
       const response = await shopware.post(`/customer/wishlist`)
-
       return {
         items: response?.products?.elements?.map(toWishlistItem) ?? [],
       }
