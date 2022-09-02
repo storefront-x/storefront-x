@@ -7,7 +7,7 @@ export default () => {
   const toProduct = useToProduct()
 
   return async (
-    ids: string,
+    ids: string[],
   ): Promise<{
     products: ReturnType<typeof toProduct>[]
   }> => {
