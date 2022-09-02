@@ -11,6 +11,8 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
 
   const name = computed(() => product.value.name)
 
+  const categories = computed(() => product.value.categories)
+
   const urlKey = computed(() => product.value.urlKey)
 
   const urlPath = computed(() => '/' + urlKey.value + catalogMagentoStore.productUrlSuffix)
@@ -25,7 +27,14 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
 
   const finalPrice = computed(() => product.value.finalPrice)
 
-  const breadcrumbs = computed(() => product.value.breadcrumbs)
+  // const breadcrumbs = computed(() => product.value.breadcrumbs)
+
+  const breadcrumbs = computed(() => [
+      ...product.value.categories.map((category: any) => ({
+        title: category.name,
+        link: category.url_path,
+      }))
+    ])
 
   const available = computed(() => product.value.available)
 
@@ -53,6 +62,7 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
     id,
     sku,
     name,
+    categories,
     urlKey,
     urlPath,
     descriptionHtml,

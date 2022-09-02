@@ -11,6 +11,10 @@ export default (name = 'product') =>
     url_key: field(),
     stock_status: field(),
     only_x_left_in_stock: field(),
+    categories: field({
+      name: field(),
+      url_path: field(),
+    }),
     price_range: field({
       minimum_price: field({
         final_price: field({
