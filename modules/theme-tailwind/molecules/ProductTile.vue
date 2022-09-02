@@ -24,7 +24,7 @@
           :level="3"
           class="flex items-center sm:justify-center sm:text-center p-0 mt-4 sm:mt-0 mb-5 sm:h-20 text-neutral-600 text-base font-medium"
         >
-          <RouterLink :to="product.urlPath" data-cy="product-title">
+          <RouterLink :to="localePath(product.urlPath)" data-cy="product-title">
             <span aria-hidden="true" class="absolute inset-0"></span>
             {{ product.name }}
           </RouterLink>
@@ -60,6 +60,9 @@ import injectProduct from '#ioc/composables/injectProduct'
 import AddToCart from '#ioc/molecules/AddToCart'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import { computed } from 'vue'
+import useLocalePath from '#ioc/composables/useLocalePath'
+
+const localePath = useLocalePath()
 
 const props = defineProps({
   preloadImage: {
