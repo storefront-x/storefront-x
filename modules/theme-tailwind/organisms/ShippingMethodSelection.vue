@@ -21,7 +21,7 @@
             <span class="block text-sm font-medium text-gray-900">
               {{ shippingMethod.carrierTitle }}
             </span>
-            <SfxMoney :money="money" class="mt-6 text-sm font-medium text-gray-900" />
+            <SfxMoney :money="shippingMethod.priceInclTax" class="mt-6 text-sm font-medium text-gray-900" />
           </div>
 
           <img :src="`/icons/shipping/${shippingMethod.code}.svg`" class="pb-8 h-full absolute right-0 mr-12" alt="Shipping icon" />
@@ -51,9 +51,6 @@ import SfxMoney from '#ioc/components/SfxMoney'
 defineProps({
   isOpen: Boolean,
 })
-
-// TODO: temporary solution
-const money = {currency: "EUR", value: 0}
 
 const emit = defineEmits(['select', 'confirm'])
 
