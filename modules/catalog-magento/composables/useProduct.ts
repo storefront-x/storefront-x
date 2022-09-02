@@ -32,7 +32,7 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
   const breadcrumbs = computed(() => [
       ...product.value.categories.map((category: any) => ({
         title: category.name,
-        link: category.url_path,
+        link: category.url_path + '.html',
       }))
     ])
 
