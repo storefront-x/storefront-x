@@ -6,6 +6,7 @@ import isNullish from '#ioc/utils/isNullish'
 import once from '#ioc/utils/once'
 
 export default defineComponent({
+  inheritAttrs: false,
   props: {
     cmsPage: {
       type: Object,
@@ -115,6 +116,8 @@ const convertToInlineStyles = (document) => {
     const cssRules = styleBlock.sheet?.cssRules ?? []
 
     for (const rule of Array.from(cssRules)) {
+      if (!rule.selectorText) continue
+
       const selectors = rule.selectorText.split(',').map((selector) => selector.trim())
 
       for (const selector of selectors) {

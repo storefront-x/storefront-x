@@ -5,8 +5,8 @@
     </div>
 
     <div class="flex items-center space-x-6">
-      <!-- <Link :to="localePath('brands')" color="gray">{{ t('Brands') }}</Link> -->
-      <Link to="/" color="gray">{{ t('Blog') }}</Link>
+      <Link :to="localePath('brands')" color="gray">{{ t('Brands') }}</Link>
+      <Link :to="localePath('blog')" color="gray">{{ t('Blog') }}</Link>
 
       <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, setCurrency }">
         <Dropdown
@@ -25,6 +25,20 @@
           </DropdownItem>
         </Dropdown>
       </SfxCurrencySwitcher>
+
+      <SfxStoreSwitcher v-slot="{ stores, getUrlFor, currentStore }">
+        <Dropdown
+          link-like
+          :title="currentStore?.fullName"
+          :to-left="true"
+          class="text-gray-600 hover:text-gray-800"
+          data-cy="store-switcher"
+        >
+          <DropdownItem v-for="store in stores" :key="store.name" :href="String(getUrlFor(store))">
+            {{ store.fullName }}
+          </DropdownItem>
+        </Dropdown>
+      </SfxStoreSwitcher>
     </div>
   </Container>
 </template>
@@ -38,6 +52,7 @@ import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
 import useI18n from '#ioc/composables/useI18n'
 import useLocalePath from '#ioc/composables/useLocalePath'
+import SfxStoreSwitcher from '#ioc/components/SfxStoreSwitcher'
 
 const { t } = useI18n()
 const localePath = useLocalePath()

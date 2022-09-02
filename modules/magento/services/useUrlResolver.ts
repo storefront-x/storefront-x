@@ -8,7 +8,8 @@ export default () => {
   const urlResolverRepository = useUrlResolverRepository()
 
   return async (): Promise<{ id: string; component: any; relativeUrl: string }> => {
-    const { data } = await useAsyncData('urlResolver', () => urlResolverRepository(route.path))
+    const path = route.params?.pathMatch?.toString().replace(',', '/') || '/'
+    const { data } = await useAsyncData('urlResolver', () => urlResolverRepository(path))
 
     return {
       id: data.value.id,

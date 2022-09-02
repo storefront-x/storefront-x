@@ -44,12 +44,12 @@ import Heading from '#ioc/atoms/Heading'
 import Button from '#ioc/atoms/Button'
 import FormInput from '#ioc/molecules/FormInput'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
-import useCreateCustomer from '#ioc/services/useCreateCustomer'
+import useRegisterCustomer from '#ioc/services/useRegisterCustomer'
 import { ref } from 'vue'
 
 const { t } = useI18n()
 const showErrorNotification = useShowErrorNotification()
-const registerCustomer = useCreateCustomer()
+const registerCustomer = useRegisterCustomer()
 
 const isLoading = ref(false)
 

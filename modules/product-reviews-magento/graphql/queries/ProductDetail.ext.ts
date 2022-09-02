@@ -1,0 +1,22 @@
+import field from '#ioc/graphql/field'
+import Review from '#ioc/graphql/fragments/Review'
+import CATALOG_REVIEWS_PER_PAGE from '#ioc/config/CATALOG_REVIEWS_PER_PAGE'
+import addFields from '#ioc/utils/magento/addFields'
+
+export default (self: any) => {
+  return () => {
+    const query = self()
+    addFields(query, 'products.items', {
+      reviews: field()
+        .args({
+          pageSize: CATALOG_REVIEWS_PER_PAGE,
+        })
+        .fields({
+          items: field({
+            ...Review(),
+          }),
+        }),
+    })
+    return query
+  }
+}

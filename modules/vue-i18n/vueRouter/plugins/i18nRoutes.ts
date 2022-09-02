@@ -12,7 +12,6 @@ export default (routes: any) => {
       })
     }
   }
-
   return newRoutes
 }
 
@@ -22,7 +21,7 @@ function copyChildren(children: any, name: string, prefix: string): any {
   for (const child of children) {
     newChildren.push({
       ...child,
-      name: getName(child.name, name),
+      name: getName(child.name, name, child.path),
       path: getPath(child.path, prefix, name),
       children: child.children ? copyChildren(child.children, name, prefix) : [],
     })
@@ -54,8 +53,9 @@ function getPath(path: string, prefix: string, name: string) {
   return prefix + '/' + path
 }
 
-function getName(name: string | undefined, localeName: string) {
-  if (name === undefined) return undefined
+function getName(name: string | undefined, localeName: string, path: string) {
+  if (name === undefined && path === '/') return `__${localeName}`
+  else if (name === undefined) return `all__${localeName}`
 
   const isIndexPage = name === 'index'
   const isIndexInFolder = name.endsWith('index')

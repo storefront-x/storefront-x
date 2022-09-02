@@ -9,6 +9,12 @@ const main = async () => {
 
   ctx.$app = app
 
+  app.mixin({
+    mounted() {
+      this.$el.__vue__ = this
+    },
+  })
+
   for (const plugin of Object.values(plugins) as any) {
     if (plugin.default) {
       await plugin.default(app, ctx)

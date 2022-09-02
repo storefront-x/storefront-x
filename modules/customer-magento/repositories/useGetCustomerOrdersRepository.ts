@@ -12,7 +12,7 @@ export default () => {
     const { data } = await magento.graphql(CustomerOrders())
 
     return {
-      customerOrders: data?.customer?.orders?.items.map(toCustomerOrder) ?? [],
+      customerOrders: data?.customer?.orders?.items?.map(toCustomerOrder) ?? [],
     }
   }
 }

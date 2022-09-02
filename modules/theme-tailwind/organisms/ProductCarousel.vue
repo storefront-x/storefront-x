@@ -74,14 +74,14 @@ export default defineComponent({
   overflow: hidden;
 }
 
-::v-deep .keen-slider:before {
+:v-deep(.keen-slider:before) {
   content: '';
   width: 1px;
   height: calc(100% - 2.5rem);
   @apply absolute top-0 left-0 bg-gray-200 z-10;
 }
 
-::v-deep .keen-slider:after {
+:v-deep(.keen-slider:after) {
   content: '';
   width: 1px;
   height: calc(100% - 2.5rem);

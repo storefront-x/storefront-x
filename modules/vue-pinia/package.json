@@ -1,10 +1,10 @@
 {
   "name": "@storefront-x/vue-pinia",
-  "version": "0.1.4",
+  "version": "0.2.1",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "pinia": "^2.0.17",
-    "vue": "^3.2.37"
+    "pinia": "^2.0.21",
+    "vue": "^3.2.38"
   }
 }

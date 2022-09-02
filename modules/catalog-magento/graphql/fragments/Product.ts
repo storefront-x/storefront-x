@@ -30,4 +30,11 @@ export default (name = 'product') =>
     thumbnail: field({
       url: field(),
     }),
+    media_gallery: field({
+      url: field(),
+      label: field(),
+      disabled: field(),
+    }),
+    rating_summary: field(),
+    review_count: field(),
   })

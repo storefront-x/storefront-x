@@ -12,7 +12,7 @@ export default () => {
     const id = wishlistStore.id
 
     const { data } = await magento.graphql(
-      AddProductsToWishlist().with({ id, items: [{ sku: product.sku, quantity: 1 }] }),
+      AddProductsToWishlist().with({ id, items: [{ sku: product?.sku, quantity: 1 }] }),
     )
 
     if (!data) throw new Error()

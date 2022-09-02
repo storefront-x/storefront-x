@@ -10,7 +10,7 @@ import { computed, PropType, useAttrs } from 'vue'
 
 const props = defineProps({
   color: {
-    type: String as PropType<'primary' | 'gray'>,
+    type: String as PropType<'primary' | 'gray' | 'black'>,
     default: 'primary',
   },
 })
@@ -22,5 +22,6 @@ const component = computed(() => (attrs.to ? RouterLink : 'a'))
 const classes = computed(() => ({
   'text-primary-500 hover:text-primary-500': props.color === 'primary',
   'text-gray-600 hover:text-gray-800': props.color === 'gray',
+  'text-gray-900': props.color === 'black',
 }))
 </script>
