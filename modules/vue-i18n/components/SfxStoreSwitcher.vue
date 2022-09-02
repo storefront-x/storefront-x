@@ -1,7 +1,5 @@
 <template>
-  <div v-bind="$attrs">
-    <slot v-bind="{ getUrlFor, currentStore, stores }" />
-  </div>
+  <slot v-bind="{ getUrlFor, currentStore, stores }" />
 </template>
 
 <script setup lang="ts">
