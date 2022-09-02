@@ -1,8 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-//check redirect to signing
-test('test a guard route', async ({ page }) => {
+test('simple beforeEnter guard', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -16,11 +15,8 @@ test('test a guard route', async ({ page }) => {
               'account': {
                 'index.vue': `<template><h1>Index</h1></template>`,
                 'index.beforeEnter.ts': `
-                const isLoggedIn = false
                 export default (to: any, from: any, next: any) => {
-                  if (!isLoggedIn && to.name !== '/sign-in') {
-                    next('/sign-in')
-                  }
+                  next('/sign-in')
                 }
                 `,
               },
