@@ -12,5 +12,5 @@ export default function max(value: any, n: number) {
   if (special.test(value)) classes++
 
   // return classes >= n || this.$t('Minimum {0} classes', [n])
-  return classes >= n || 'Minimum classes'
+  return classes >= n || 'Password should contain at least one digit, capital letter and one special character.'
 }
