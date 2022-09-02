@@ -1,7 +1,8 @@
 <script>
 import IsPbBlock from '#ioc/mixins/IsPbBlock'
 import IsPbImage from '#ioc/mixins/IsPbImage'
-import { defineComponent } from 'vue'
+import SfxImage from '#ioc/components/SfxImage'
+import { defineComponent, h } from 'vue'
 
 export default defineComponent({
   mixins: [IsPbBlock, IsPbImage],
@@ -21,12 +22,14 @@ export default defineComponent({
   },
 
   methods: {
-    imageFragment(h) {
-      const img = h('SfxLazyImage', {
+    imageFragment() {
+      const img = h(SfxImage, {
+        src: this.src,
+        alt: this.alt,
+        lazy: true,
+        title: this.title,
         class: '',
         style: this.styles,
-        props: { src: this.src, alt: this.alt },
-        attrs: { title: this.title },
       })
 
       if (this.caption) {

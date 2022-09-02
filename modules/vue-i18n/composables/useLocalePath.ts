@@ -16,7 +16,7 @@ export default () => {
 
     if (typeof target === 'string') {
       if (target.startsWith('/')) {
-        if (currentPrefix.value === '/') return router.resolve({ name: `__${locale}` })
+        if (currentPrefix.value === '/') return router.resolve(target).fullPath
 
         return `${currentPrefix.value}${target}`
       } else {

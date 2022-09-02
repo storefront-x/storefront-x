@@ -49,9 +49,3 @@ import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
 import SfxStoreSwitcher from '#ioc/components/SfxStoreSwitcher'
 </script>
-
-<i18n lang="yaml">
-cs-CZ:
-  Brands: Značky
-  Blog: Blog
-</i18n>

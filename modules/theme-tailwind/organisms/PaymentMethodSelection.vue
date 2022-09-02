@@ -5,7 +5,7 @@
         {{ t('Payment method') }}
       </legend>
 
-      <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+      <div v-if="isOpen" class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
         <label
           v-for="paymentMethod in payment.paymentMethods"
           :key="paymentMethod.code"
@@ -31,35 +31,32 @@
           />
         </label>
       </div>
+
+      <SfxPaymentMethod v-if="isOpen" export="payment" @select="emit('select')" @confirm="emit('confirm')" />
     </fieldset>
   </div>
 </template>
 
 <script setup lang="ts">
+import SfxPaymentMethod from '#ioc/components/SfxPaymentMethod'
 import useI18n from '#ioc/composables/useI18n'
 import usePayment from '#ioc/composables/usePayment'
-import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import SolidCheckCircle from '#ioc/icons/SolidCheckCircle'
-import useSelectPaymentMethod from '#ioc/services/useSelectPaymentMethod'
 
 defineProps({
   isOpen: Boolean,
 })
 
+const emit = defineEmits(['select', 'confirm'])
+
 const { t } = useI18n()
 const payment = usePayment()
-const selectPaymentMethod = useSelectPaymentMethod()
-const showErrorNotification = useShowErrorNotification()
 
 const isSelected = (paymentMethod: any) => {
-  return payment.currentPaymentMethod?.id === paymentMethod.id
+  return payment.paymentMethod?.id === paymentMethod.id
 }
 
 const onSelect = async (paymentMethod: any) => {
-  try {
-    await selectPaymentMethod(paymentMethod)
-  } catch (e) {
-    showErrorNotification(e)
-  }
+  payment.setPaymentMethod(paymentMethod)
 }
 </script>

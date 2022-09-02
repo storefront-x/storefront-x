@@ -7,6 +7,7 @@ export default () => (data: any) => ({
   description: data.translated.description as string | undefined,
   thumbnailUrl: data.media?.url as string | undefined,
   breadcrumbs: getBreadcrumbs(data),
+  children: [],
 })
 
 const getBreadcrumbs = (data: any) => {

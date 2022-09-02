@@ -13,7 +13,7 @@ export default () => {
     const { data } = await magento.graphql(Wishlists())
 
     return {
-      id: data.customer.wishlists[0].id,
+      id: data.customer?.wishlists[0]?.id ?? 0,
       items: data.customer.wishlists.flatMap((wishlist: any) =>
         wishlist.items.map((wishlistItem: any) => toWishlistItem(wishlistItem)),
       ),

@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "pinia": "^2.0.17",
-    "vue": "^3.2.37"
+    "pinia": "^2.0.21",
+    "vue": "^3.2.38"
   }
 }

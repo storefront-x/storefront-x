@@ -43,14 +43,14 @@ import Heading from '#ioc/atoms/Heading'
 import FormInput from '#ioc/molecules/FormInput'
 import FormSelect from '#ioc/molecules/FormSelect'
 import useI18n from '#ioc/composables/useI18n'
-import useSetContactInformation from '#ioc/services/useSetContactInformation'
+import useConfirmContactInformation from '#ioc/services/useConfirmContactInformation'
 import useGetCountries from '#ioc/services/useGetCountries'
 import useGetSalutations from '#ioc/services/useGetSalutations'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import { ref } from 'vue'
 
 const { t } = useI18n()
-const setContactInformation = useSetContactInformation()
+const confirmContactInformation = useConfirmContactInformation()
 const getSalutations = useGetSalutations()
 const getCountries = useGetCountries()
 
@@ -61,9 +61,9 @@ const form = ref()
 
 const onInput = async (data: any) => {
   if (!form.value.isValid) {
-    await setContactInformation(null)
+    await confirmContactInformation(null)
   } else {
-    await setContactInformation(data)
+    await confirmContactInformation(data)
   }
 }
 </script>

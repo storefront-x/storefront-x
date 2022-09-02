@@ -5,8 +5,8 @@
       v-for="paymentMethod in payment.paymentMethods"
       :key="paymentMethod.id"
       :payment-method="paymentMethod"
-      :is-selected="payment.currentPaymentMethod?.id === paymentMethod.id"
-      @select="selectPaymentMethod"
+      :is-selected="payment.paymentMethod?.id === paymentMethod.id"
+      @select="confirmPaymentMethod"
     />
   </div>
 </template>
@@ -16,11 +16,11 @@ import Heading from '#ioc/atoms/Heading'
 import PaymentMethod from '#ioc/molecules/PaymentMethod'
 import usePayment from '#ioc/composables/usePayment'
 import useI18n from '#ioc/composables/useI18n'
-import useSelectPaymentMethod from '#ioc/services/useSelectPaymentMethod'
+import useConfirmPaymentMethod from '#ioc/services/useConfirmPaymentMethod'
 
 const { t } = useI18n()
 const payment = usePayment()
-const selectPaymentMethod = useSelectPaymentMethod()
+const confirmPaymentMethod = useConfirmPaymentMethod()
 </script>
 
 <i18n lang="yaml">

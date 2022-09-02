@@ -1,7 +1,8 @@
 <template>
   <div class="mt-10 border-t border-gray-200 pt-10" data-cy="checkout-agreements">
     <h2 class="text-lg font-medium text-gray-900">{{ t('Agreements') }}</h2>
-    <Form @submit="onPlaceOrder">
+
+    <Form v-if="isOpen" @submit="onPlaceOrder">
       <CheckoutAgreement
         v-for="checkoutAgreement in checkout.agreements"
         :key="checkoutAgreement.id"
@@ -30,6 +31,10 @@ import Form from '#ioc/atoms/Form'
 import Button from '#ioc/atoms/Button'
 import useCheckout from '#ioc/composables/useCheckout'
 import CheckoutAgreement from '#ioc/molecules/CheckoutAgreement'
+
+defineProps({
+  isOpen: Boolean,
+})
 
 const emit = defineEmits(['place-order'])
 

@@ -1,6 +1,7 @@
 <template>
   <Link :to="localePath(category.urlPath)" :color="color" :class="classes">
     {{ category.name }}
+    <slot />
   </Link>
 </template>
 

@@ -2,7 +2,6 @@ import useSetLanguageRepository from '#ioc/repositories/useSetLanguageRepository
 import useCookies from '#ioc/composables/useCookies'
 import SHOPWARE_TOKEN_COOKIE_NAME from '#ioc/config/SHOPWARE_TOKEN_COOKIE_NAME'
 import useLocalePath from '#ioc/composables/useLocalePath'
-import { RouteLocation } from 'vue-router'
 
 export default () => {
   const setLanguageRepository = useSetLanguageRepository()
@@ -14,6 +13,6 @@ export default () => {
 
     cookies.set(SHOPWARE_TOKEN_COOKIE_NAME, token, { path: '/' })
 
-    window.location.href = (localePath('/', store.name) as RouteLocation).fullPath
+    window.location.href = localePath('/', store.name) as string
   }
 }

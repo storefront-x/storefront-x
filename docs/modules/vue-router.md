@@ -43,6 +43,24 @@ pages/
     orders.vue # will use layout A
 ```
 
+### Global component
+
+The `$app.vue` component which can be found in the root of the `pages/` directory is global component wrapping around the whole application. It can be used to apply global styles, or add elements that should be visible on every page and every layout (e.g. global banners).
+
+By default this component is empty and looks like this:
+
+```vue
+<!-- pages/$app.vue -->
+
+<template>
+  <SfxAppOutlet />
+</template>
+
+<script setup lang="ts">
+import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
+</script>
+```
+
 ## `vueRouter/plugins/` concept
 
 :::warning
@@ -69,7 +87,7 @@ import RouterLink from '#ioc/components/RouterLink'
 </script>
 ```
 
-## `SfxRouterOutlet` component
+## `SfxLayoutOutlet` component
 
 Used in layouts to define where the page should be rendered.
 
@@ -80,14 +98,34 @@ Used in layouts to define where the page should be rendered.
 
 <template>
   <Header />
-  <SfxRouterOutlet />
+  <SfxLayoutOutlet />
   <Footer />
 </template>
 
 <script setup lang="ts">
-import SfxRouterOutlet from '#ioc/components/SfxRouterOutlet'
+import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 import Header from '#ioc/components/Header'
 import Footer from '#ioc/components/Footer'
+</script>
+```
+
+## `SfxAppOutlet` component
+
+Used in special `$app.vue` page to define where the rest of the app should be rendered.
+
+### Example
+
+```vue
+<!-- pages/$app.vue -->
+
+<template>
+  <div>Global banner!</div>
+  <SfxAppOutlet />
+</template>
+
+<script setup lang="ts">
+import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
+import '#ioc/assets/style' // global style
 </script>
 ```
 

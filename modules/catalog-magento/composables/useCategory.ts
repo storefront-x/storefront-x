@@ -11,9 +11,15 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToCategory>>>) => {
 
   const urlPath = computed(() => product.value.urlPath + catalogMagentoStore.categoryUrlSuffix)
 
+  const children = computed(() => product.value.children ?? [])
+
+  const thumbnailUrl = computed(() => product.value.thumbnailUrl)
+
   return reactive({
     id,
     name,
     urlPath,
+    children,
+    thumbnailUrl,
   })
 }

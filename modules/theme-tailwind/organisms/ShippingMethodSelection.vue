@@ -5,7 +5,7 @@
         {{ t('Shipping method') }}
       </legend>
 
-      <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+      <div v-if="isOpen" class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
         <label
           v-for="shippingMethod in shipping.shippingMethods"
           :key="shippingMethod.code"
@@ -16,7 +16,7 @@
         >
           <div class="flex flex-col flex-1">
             <span class="block text-sm font-medium text-gray-900">
-              {{ shippingMethod.methodTitle }}
+              {{ shippingMethod.carrierTitle }}
             </span>
           </div>
 
@@ -32,7 +32,7 @@
         </label>
       </div>
 
-      <SfxShippingMethod export="shipping" />
+      <SfxShippingMethod v-if="isOpen" export="shipping" @select="emit('select')" @confirm="emit('confirm')" />
     </fieldset>
   </div>
 </template>
@@ -40,26 +40,24 @@
 <script setup lang="ts">
 import useI18n from '#ioc/composables/useI18n'
 import useShipping from '#ioc/composables/useShipping'
-import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
-import useSelectShippingMethod from '#ioc/services/useSelectShippingMethod'
 import SolidCheckCircle from '#ioc/icons/SolidCheckCircle'
 import SfxShippingMethod from '#ioc/components/SfxShippingMethod'
 
+defineProps({
+  isOpen: Boolean,
+})
+
+const emit = defineEmits(['select', 'confirm'])
+
 const { t } = useI18n()
 const shipping = useShipping()
-const selectShippingMethod = useSelectShippingMethod()
-const showErrorNotification = useShowErrorNotification()
 
 const isSelected = (shippingMethod: any) => {
-  return shipping.currentShippingMethod?.code === shippingMethod.code
+  return shipping.shippingMethod?.code === shippingMethod.code
 }
 
 const onSelect = async (shippingMethod: any) => {
-  try {
-    await selectShippingMethod(shippingMethod)
-  } catch (e) {
-    showErrorNotification(e)
-  }
+  shipping.setShippingMethod(shippingMethod)
 }
 </script>
 
