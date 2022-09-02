@@ -18,7 +18,7 @@
       </span>
     </span>
 
-    <SolidCheckCircle v-if="isSelected" class="text-primary-600" />
+    <SolidCheckCircle v-if="isSelected" class="absolute top-4 right-4 text-primary-600" />
 
     <span
       class="absolute -inset-px rounded-lg border-2 active:border pointer-events-none"
