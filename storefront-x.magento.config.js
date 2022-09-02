@@ -12,6 +12,7 @@ export default {
     '@storefront-x/atomic-design',
     '@storefront-x/graphql',
 
+    '@storefront-x/blog',
     '@storefront-x/braintree',
     '@storefront-x/brands',
     '@storefront-x/cart',
@@ -25,6 +26,7 @@ export default {
     '@storefront-x/wishlist',
 
     '@storefront-x/magento',
+    '@storefront-x/blog-magento',
     '@storefront-x/braintree-magento',
     '@storefront-x/brands-magento',
     '@storefront-x/cart-magento',
