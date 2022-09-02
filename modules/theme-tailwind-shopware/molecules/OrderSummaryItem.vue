@@ -77,7 +77,9 @@ watch(
   }, 250),
 )
 
-const onInput = () => undefined
+const onInput = (e: any) => {
+  tmpQuantity.value = parseInt(e.target.value)
+}
 
 const onInc = () => {
   tmpQuantity.value++
