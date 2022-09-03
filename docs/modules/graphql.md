@@ -1,6 +1,10 @@
 # GraphQL
 
-Storefront X contains powerful builder for GraphQL queries, mutations $ fragments. Its syntax is similar to GraphQL text files but has few additions/changes due to limitations of JavaScript.
+> `@storefront-x/graphql`
+
+Storefront X contains powerful builder for GraphQL queries, mutations & fragments. Its syntax is similar to GraphQL text files but has few additions/changes due to limitations of JavaScript.
+
+All graphql files are in the `graphql/` directory. Queries, mutations and fragments should be in `graphql/queries/`, `graphql/mutations/` and `graphql/fragments/` subdirectories.
 
 ## Fields
 
@@ -21,13 +25,17 @@ query {
 In Storefront X GraphQL builder it is written like this:
 
 ```javascript
-query({
-  products: field({
-    id: field(),
-    sku: field(),
-    name: field(),
-  }),
-})
+import query from '#ioc/graphql/query'
+import field from '#ioc/graphql/field'
+
+export default () =>
+  query({
+    products: field({
+      id: field(),
+      sku: field(),
+      name: field(),
+    }),
+  })
 ```
 
 Because some backend instances might not support all of the fields, GraphQL builder supports optional fields.
@@ -35,15 +43,18 @@ Because some backend instances might not support all of the fields, GraphQL buil
 > Falsy fields are filtered out.
 
 ```javascript
+import query from '#ioc/graphql/query'
+import field from '#ioc/graphql/field'
 // IS_FEATURE_ENABLED is true or false
 import IS_FEATURE_ENABLED from '#ioc/config/IS_FEATURE_ENABLED'
 
-query({
-  products: field({
-    id: field(),
-    feature: IS_FEATURE_ENABLED && field(),
-  }),
-})
+export default () =>
+  query({
+    products: field({
+      id: field(),
+      feature: IS_FEATURE_ENABLED && field(),
+    }),
+  })
 ```
 
 ## Arguments
@@ -65,19 +76,23 @@ query {
 Equivalent query in Storefront X GraphQL builder looks like this:
 
 ```javascript
-query({
-  products: field()
-    .args({
-      category_id: 1,
-      sort: 'price',
-      order: 'asc',
-    })
-    .fields({
-      id: field(),
-      sku: field(),
-      name: field(),
-    }),
-})
+import query from '#ioc/graphql/query'
+import field from '#ioc/graphql/field'
+
+export default () =>
+  query({
+    products: field()
+      .args({
+        category_id: 1,
+        sort: 'price',
+        order: 'asc',
+      })
+      .fields({
+        id: field(),
+        sku: field(),
+        name: field(),
+      }),
+  })
 ```
 
 ## Variables
@@ -101,25 +116,29 @@ query($categoryId: Int!, $sort: String, order: String) {
 And here is equivalent Storefront X GraphQL builder query:
 
 ```javascript
-query()
-  .variables({
-    $categoryId: 'Int!',
-    $sort: 'String',
-    $order: 'String',
-  })
-  .fields({
-    products: field()
-      .args({
-        category_id: '$categoryId',
-        sort: '$sort',
-        order: '$order',
-      })
-      .fields({
-        id: field(),
-        sku: field(),
-        name: field(),
-      }),
-  })
+import query from '#ioc/graphql/query'
+import field from '#ioc/graphql/field'
+
+export default () =>
+  query()
+    .variables({
+      $categoryId: 'Int!',
+      $sort: 'String',
+      $order: 'String',
+    })
+    .fields({
+      products: field()
+        .args({
+          category_id: '$categoryId',
+          sort: '$sort',
+          order: '$order',
+        })
+        .fields({
+          id: field(),
+          sku: field(),
+          name: field(),
+        }),
+    })
 ```
 
 Variables have to start with the dollar sign because they are directly translated to GraphQL query.
@@ -127,7 +146,7 @@ Variables have to start with the dollar sign because they are directly translate
 Later, when we know concrete values we want to assign to variables, we use `.with()` method to bind them.
 
 ```javascript
-productsQuery.with({
+ProductsQuery.with({
   categoryId: 2,
   sort: 'price',
   order: 'DESC',
@@ -158,18 +177,22 @@ query {
 To add alias in Storefront X GraphQL builder, add string parameter to `field()` function call like this:
 
 ```javascript
-query({
-  myProductA: field('products', {
-    id: field(),
-    sku: field(),
-    name: field(),
-  }),
-  myProductB: field('products', {
-    id: field(),
-    sku: field(),
-    name: field(),
-  }),
-})
+import query from '#ioc/graphql/query'
+import field from '#ioc/graphql/field'
+
+export default () =>
+  query({
+    myProductA: field('products', {
+      id: field(),
+      sku: field(),
+      name: field(),
+    }),
+    myProductB: field('products', {
+      id: field(),
+      sku: field(),
+      name: field(),
+    }),
+  })
 ```
 
 Second parameter to `field()` function call now becomes an object of subfields, or it can be omited and subfields are set with `.fields()` method call.
@@ -200,66 +223,28 @@ query {
 Example in Storefront X GraphQL builder using `on()` helper:
 
 ```javascript
-query({
-  products: field({
-    id: field(),
-    name: field(),
-    ...on('ConfigurableProduct', {
-      configurable_options: field({
-        id: field(),
-        name: field(),
+import query from '#ioc/graphql/query'
+import field from '#ioc/graphql/field'
+import on from '#ioc/graphql/on'
+
+export default () =>
+  query({
+    products: field({
+      id: field(),
+      name: field(),
+      ...on('ConfigurableProduct', {
+        configurable_options: field({
+          id: field(),
+          name: field(),
+        }),
       }),
     }),
-  }),
-})
+  })
 ```
 
 ## Fragments
 
 Multiple GraphQL actions might want to return same result. Adding/removing/updating item in cart will always return full cart content. To not duplicate code we use fragments.
-
-Because in SFX, GraphQL queries are pure JS, it's easy to combine them with other JS objects. We leverage this mechanism for GraphQL gragments.
-
-```javascript
-// fragments/cartItems.js
-import { field } from '@storefront-x/base-commerce/adapters/GraphQL'
-
-export const cartItemsFragment = {
-  items: field({
-    id: field(),
-    quantity: field(),
-    product: field({
-      sku: field(),
-      name: field(),
-    }),
-  }),
-}
-```
-
-```javascript
-// queries/cartItems.js
-import { query, field } from '@storefront-x/base-commerce/adapters/GraphQL'
-import { cartItemsFragment } from '../fragments/cartItems'
-
-export const cartItemsQuery = query()
-  .variables({
-    $cartId: 'String!',
-  })
-  .fields({
-    cartItems: field('cart')
-      .args({
-        cart_id: '$cartId',
-      })
-      .fields({
-        // We can spread fragments to reuse code
-        ...cartItemsFragment,
-      }),
-  })
-```
-
-### Hoisting
-
-While basic fragments are certainly useful, having the same fragment multiple times in one query will cause the query to inflate really quickly. GraphQL standard supports declaring fragments outside the query and then referencing them later.
 
 ```graphql
 fragment product on ProductInterface {
@@ -285,67 +270,89 @@ query {
 To achieve this in Storefront X GraphQL build we just need to wrap the fragment in a `fragment` function call. First argument is fragment identifier and second in type upon which it operates.
 
 ```javascript
-const product = fragment('product', 'ProductInterface', {
-  sku: field(),
-  name: field(),
-})
+import query from '#ioc/graphql/query'
+import field from '#ioc/graphql/field'
+import fragment from '#ioc/graphql/field'
 
-const productQuery = query({
-  items: field({
-    ...product,
-    related_products: field({
-      ...product,
+const Product = (name = 'product') =>
+  fragment('name', 'ProductInterface', {
+    sku: field(),
+    name: field(),
+  })
+
+const Products = () =>
+  query({
+    products: field({
+      items: field({
+        ...Product(),
+        related_products: field({
+          ...Product(),
+        }),
+        upsell_products: field({
+          ...Product(),
+        }),
+      }),
     }),
-    upsell_products: field({
-      ...product,
-    }),
-  }),
-})
+  })
 ```
-
-This technique results in shorted generated queries (no duplication of fragments).
 
 ## Mutations
 
 Storefront X GraphQL builder also supports mutations. They have exactly the same syntax as queries, except we start mutation with `mutation()` function helper.
 
 ```javascript
-import { mutation, field } from '@storefront-x/base-commerce/adapters/GraphQL'
+import mutation from '#ioc/graphql/mutation'
+import field from '#ioc/graphql/field'
 
-export const generateCustomerTokenMutation = mutation()
-  .variables({
-    $email: 'String!',
-    $password: 'String!',
-  })
-  .fields({
-    generateCustomerToken: field()
-      .args({
-        email: '$email',
-        password: '$password',
-      })
-      .fields({
-        token: field(),
-      }),
-  })
+export default () =>
+  mutation()
+    .variables({
+      $email: 'String!',
+      $password: 'String!',
+    })
+    .fields({
+      generateCustomerToken: field()
+        .args({
+          email: '$email',
+          password: '$password',
+        })
+        .fields({
+          token: field(),
+        }),
+    })
 ```
 
 ## Executing queries/mutations
 
-After query/mutation is built, variables assigned, we fetch the results using `.fetch()` method. This method takes one argument - the context.
+The GraphQL builder contains few methods that can help us build the final GraphQL request.
 
-The fetch method returns a promise which resolves to object containing all resolved top level fields.
+```typescript
+import objectToQuery from '#ioc/utils/url/objectToQuery'
+import query from '#ioc/graphql/query'
+import field from '#ioc/graphql/field'
 
-```javascript
-const myQuery = query({
-  products: field({
-    name: field(),
-  }),
-  categories: field({
-    name: field(),
-  }),
-})
+const Products = () =>
+  query()
+    .variables({
+      $categoryId: 'Int!',
+    })
+    .fields({
+      products: field()
+        .args({
+          category_id: '$categoryId',
+        })
+        .fields({
+          id: field(),
+          sku: field(),
+          name: field(),
+        }),
+    })
 
-const { products, categories } = await myQuery.fetch(ctx)
+const products = Products().with({ categoryId })
+
+const query = products.toString()
+const variables = products.getVariables()
+const isCacheable = products.isCacheable()
 ```
 
 ## Caching
@@ -353,13 +360,17 @@ const { products, categories } = await myQuery.fetch(ctx)
 By default, GQL queries are cached. Mutations are never cached. This should be OK for 80% of the cases. But sometimes we want to sacrifice speed for having query results to be 100% up to date. We can do this using the `.cantBeCached()` method which will make the query use POST HTTP method which is not cached.
 
 ```javascript
-const sensitiveQuery = query()
-  .cantBeCached()
-  .fields({
-    cart: field({
-      items: field({
-        sku: field(),
+import query from '#ioc/graphql/query'
+import field from '#ioc/graphql/field'
+
+export default () =>
+  query()
+    .cantBeCached()
+    .fields({
+      cart: field({
+        items: field({
+          sku: field(),
+        }),
       }),
-    }),
-  })
+    })
 ```

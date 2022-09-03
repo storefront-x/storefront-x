@@ -10,8 +10,7 @@
   "type": "module",
   "packageManager": "yarn@3.2.1",
   "workspaces": [
-    "./modules/*",
-    "./modules/create-storefront-x/template/**/modules/*"
+    "./modules/*"
   ],
   "scripts": {
     "test:unit": "vitest run",

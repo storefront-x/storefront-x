@@ -42,6 +42,18 @@ export default defineConfig({
         ],
       },
       {
+        text: 'General',
+        items: [
+          { text: 'CLI', link: '/general/cli' },
+          { text: 'Bootstrap', link: '/general/bootstrap' },
+          { text: 'The .sfx directory', link: '/general/sfx' },
+          { text: 'PWA', link: '/general/pwa' },
+          { text: 'Dotenv', link: '/general/dotenv' },
+          { text: 'Functionalities', link: '/general/functionalities' },
+          { text: 'FAQ', link: '/general/faq' },
+        ],
+      },
+      {
         text: 'Modules',
         items: [
           { text: 'Base', link: '/modules/base' },
@@ -53,6 +65,7 @@ export default defineConfig({
           { text: 'Base Commerce', link: '/modules/base-commerce' },
           { text: 'Shopware', link: '/modules/shopware' },
           { text: 'Atomic Design', link: '/modules/atomic-design' },
+          { text: 'GraphQL', link: '/modules/graphql' },
           { text: 'Multicurrency', link: '/modules/multicurrency' },
           { text: 'Catalog', link: '/modules/catalog' },
           { text: 'Cart', link: '/modules/cart' },
@@ -62,17 +75,6 @@ export default defineConfig({
           { text: 'CMS Shopware', link: '/modules/cms-shopware' },
           { text: 'Wishlist', link: '/modules/wishlist' },
           { text: 'Theme Tailwind', link: '/modules/theme-tailwind' },
-        ],
-      },
-      {
-        text: 'In-depth',
-        items: [
-          { text: 'FAQ', link: '/in-depth/faq' },
-          { text: 'Bootstrap', link: '/in-depth/bootstrap' },
-          { text: 'PWA', link: '/in-depth/pwa' },
-          { text: 'Dotenv', link: '/in-depth/dotenv' },
-          { text: 'GraphQL', link: '/in-depth/graphql' },
-          { text: 'Functionalities', link: '/in-depth/functionalities' },
         ],
       },
     ],
