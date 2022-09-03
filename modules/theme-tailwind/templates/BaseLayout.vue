@@ -1,7 +1,7 @@
 <template>
   <Header />
   <HamburgerMenu v-if="hamburgerStatus" @close="closeHamburger" />
-  <SfxRouterOutlet />
+  <SfxLayoutOutlet />
   <Footer />
   <Notifications />
 </template>
@@ -9,14 +9,12 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import useRoute from '#ioc/composables/useRoute'
-import SfxRouterOutlet from '#ioc/components/SfxRouterOutlet'
+import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 import Header from '#ioc/organisms/Header'
 import Footer from '#ioc/organisms/Footer'
 import HamburgerMenu from '#ioc/organisms/HamburgerMenu'
 import Notifications from '#ioc/organisms/Notifications'
 import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
-import '#ioc/assets/style'
-import '#ioc/assets/typography'
 
 const route = useRoute()
 const themeTailwindStore = useThemeTailwindStore()

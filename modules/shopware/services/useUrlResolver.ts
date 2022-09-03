@@ -8,7 +8,7 @@ export default () => {
   const getSeoUrlRepository = useGetSeoUrlRepository()
 
   return async () => {
-    const routePath = route.path === '/' ? 'home' : route.path.replace('/', '')
+    const routePath = route.params?.pathMatch ? (route.params?.pathMatch as string[]).join('/') : 'home'
 
     const { data } = await useAsyncData('urlResolver', () => getSeoUrlRepository(routePath))
 

@@ -41,16 +41,16 @@ test('render store properties', async ({ page }) => {
                   </template>
                   <script setup>
                   import { computed } from 'vue'
-                  import useCurrentStoreProperties from '#ioc/composables/useCurrentStoreProperties'
+                  import useCurrentLocale from '#ioc/composables/useCurrentLocale'
                   import useSwitchLocalePath from '#ioc/composables/useSwitchLocalePath'
 
-                  const currentStoreProperties = useCurrentStoreProperties()
-                  const switchLocalePath = useSwitchLocalePath()       
+                  const currentLocale = useCurrentLocale()
+                  const switchLocalePath = useSwitchLocalePath()
 
                   function change() {
                     window.location.href = switchLocalePath('cz')
                   }
-                  const fullName = computed(() => currentStoreProperties.currentStore.fullName)
+                  const fullName = computed(() => currentLocale.value.fullName)
                   </script>
                 `,
             },
