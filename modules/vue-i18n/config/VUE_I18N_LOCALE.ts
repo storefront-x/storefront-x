@@ -1,1 +1,0 @@
-export default 'cs-CZ'

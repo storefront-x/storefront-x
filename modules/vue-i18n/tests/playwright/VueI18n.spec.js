@@ -12,6 +12,17 @@ test('en translation', async ({ page }) => {
         [
           'app',
           {
+            config: {
+              'VUE_I18N_LOCALES.ts': `
+                export default [
+                  {
+                    name: 'en',
+                    locale: 'en-US',
+                    prefix: '/',
+                  },
+                ]
+              `,
+            },
             pages: {
               'index.vue': `
                 <template>
@@ -50,6 +61,17 @@ test('navigation loads translations', async ({ page }) => {
         [
           'app',
           {
+            config: {
+              'VUE_I18N_LOCALES.ts': `
+                export default [
+                  {
+                    name: 'en',
+                    locale: 'en-US',
+                    prefix: '/',
+                  },
+                ]
+              `,
+            },
             pages: {
               'index.vue': `
                 <template>
