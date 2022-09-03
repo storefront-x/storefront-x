@@ -1,8 +1,8 @@
-import useToCategory from '#ioc/mappers/useToCategory'
+import ToCategory from '#ioc/mappers/ToCategory'
 import { defineStore } from 'pinia'
 
 export default defineStore('catalog', {
   state: () => ({
-    menu: [] as ReturnType<ReturnType<typeof useToCategory>>[],
+    menu: [] as ReturnType<typeof ToCategory>[],
   }),
 })

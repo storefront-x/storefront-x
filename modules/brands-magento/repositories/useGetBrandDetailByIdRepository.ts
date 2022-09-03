@@ -1,11 +1,11 @@
 import useMagento from '#ioc/composables/useMagento'
 import BrandDetail from '#ioc/graphql/queries/BrandDetail'
-import useToBrand from '#ioc/mappers/useToBrand'
+import ToBrand from '#ioc/mappers/ToBrand'
 import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 import transformSortQuery from '#ioc/utils/magento/transformSortQuery'
 import transformFilterQuery from '#ioc/utils/magento/transformFilterQuery'
-import useToProduct from '#ioc/mappers/useToProduct'
-import useToAggregation from '#ioc/mappers/useToAggregation'
+import ToProduct from '#ioc/mappers/ToProduct'
+import ToAggregation from '#ioc/mappers/ToAggregation'
 
 interface BrandOptions {
   page?: number
@@ -15,17 +15,14 @@ interface BrandOptions {
 
 export default () => {
   const magento = useMagento()
-  const toBrand = useToBrand()
-  const toProduct = useToProduct()
-  const toAggregation = useToAggregation()
 
   return async (
     id: string,
     { page = 1, sort, filter }: BrandOptions = {},
   ): Promise<{
-    brand: ReturnType<typeof toBrand>
-    products: ReturnType<typeof toProduct>[]
-    aggregations: ReturnType<typeof toAggregation>[]
+    brand: ReturnType<typeof ToBrand>
+    products: ReturnType<typeof ToProduct>[]
+    aggregations: ReturnType<typeof ToAggregation>[]
     totalCount: number
   }> => {
     const { data } = await magento.graphql(
@@ -43,9 +40,9 @@ export default () => {
     )
 
     return {
-      brand: toBrand(data.amBrandById),
-      products: data.products.items.map(toProduct),
-      aggregations: data.aggregations.aggregations.map(toAggregation) || [],
+      brand: ToBrand(data.amBrandById),
+      products: data.products.items.map(ToProduct),
+      aggregations: data.aggregations.aggregations.map(ToAggregation) || [],
       totalCount: data.products.total_count ?? 0,
     }
   }

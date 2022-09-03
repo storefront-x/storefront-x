@@ -1,10 +1,10 @@
 import useUpdateCustomerAddressRepository from '#ioc/repositories/useUpdateCustomerAddressRepository'
-import useToCustomerAddress from '#ioc/mappers/useToCustomerAddress'
+import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
 
 export default () => {
   const updateCustomerAddressRepository = useUpdateCustomerAddressRepository()
 
-  return async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
+  return async (customerAddress: ReturnType<typeof ToCustomerAddress>) => {
     return await updateCustomerAddressRepository({
       ...customerAddress,
       region: { region_id: customerAddress.regionId },

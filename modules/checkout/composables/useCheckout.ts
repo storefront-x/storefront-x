@@ -1,6 +1,6 @@
 import { computed, reactive } from 'vue'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
-import useToContactInformation from '#ioc/mappers/useToContactInformation'
+import ToContactInformation from '#ioc/mappers/ToContactInformation'
 
 export default () => {
   const checkoutStore = useCheckoutStore()
@@ -13,7 +13,7 @@ export default () => {
 
   const shippingHandler = computed(() => checkoutStore.shippingHandler)
 
-  const setContactInformation = (contactInformation: ReturnType<ReturnType<typeof useToContactInformation>>) => {
+  const setContactInformation = (contactInformation: ReturnType<typeof ToContactInformation>) => {
     checkoutStore.$patch({ contactInformation })
   }
 

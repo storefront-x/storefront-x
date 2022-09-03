@@ -68,7 +68,7 @@
 import SfxMoney from '#ioc/components/SfxMoney'
 import useCartItem from '#ioc/composables/useCartItem'
 import useI18n from '#ioc/composables/useI18n'
-import useToCartItem from '#ioc/mappers/useToCartItem'
+import ToCartItem from '#ioc/mappers/ToCartItem'
 import resizeImage from '#ioc/utils/url/resizeImage'
 import debounce from '#ioc/utils/debounce'
 import SolidTrash from '#ioc/icons/SolidTrash'
@@ -83,7 +83,7 @@ const ConfirmProductRemovalModal = defineAsyncComponent(() => import('#ioc/organ
 
 const props = defineProps({
   cartItem: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToCartItem>>>,
+    type: Object as PropType<ReturnType<typeof ToCartItem>>,
     required: true,
   },
 })

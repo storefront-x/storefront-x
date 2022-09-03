@@ -1,18 +1,17 @@
 import ProductReviewMeta from '#ioc/graphql/queries/ProductReviewMeta'
 import useMagento from '#ioc/composables/useMagento'
-import useToProductReviewMeta from '#ioc/mappers/useToProductReviewMeta'
+import ToProductReviewMeta from '#ioc/mappers/ToProductReviewMeta'
 
 export default () => {
   const magento = useMagento()
-  const toProductReviewMeta = useToProductReviewMeta()
 
   return async (): Promise<{
-    productReviewMeta: ReturnType<typeof toProductReviewMeta>[]
+    productReviewMeta: ReturnType<typeof ToProductReviewMeta>[]
   }> => {
     const { data } = await magento.graphql(ProductReviewMeta())
 
     return {
-      productReviewMeta: data?.productReviewRatingsMetadata?.items?.map(toProductReviewMeta) ?? [],
+      productReviewMeta: data?.productReviewRatingsMetadata?.items?.map(ToProductReviewMeta) ?? [],
     }
   }
 }

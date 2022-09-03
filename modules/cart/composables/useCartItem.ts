@@ -1,8 +1,8 @@
 import useProduct from '#ioc/composables/useProduct'
-import useToCartItem from '#ioc/mappers/useToCartItem'
+import ToCartItem from '#ioc/mappers/ToCartItem'
 import { computed, reactive, Ref } from 'vue'
 
-export default (cartItem: Ref<ReturnType<ReturnType<typeof useToCartItem>>>) => {
+export default (cartItem: Ref<ReturnType<typeof ToCartItem>>) => {
   const id = computed(() => cartItem.value.id)
 
   const quantity = computed(() => cartItem.value.quantity)

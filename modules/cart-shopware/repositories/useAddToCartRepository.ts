@@ -1,6 +1,6 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToProduct from '#ioc/mappers/useToProduct'
-import useToCart from '#ioc/mappers/useToCart'
+import ToProduct from '#ioc/mappers/ToProduct'
+import ToCart from '#ioc/mappers/ToCart'
 import useCartStore from '#ioc/stores/useCartStore'
 
 interface Options {
@@ -10,14 +10,12 @@ interface Options {
 export default () => {
   const shopware = useShopware()
   const cartStore = useCartStore()
-  const toProduct = useToProduct()
-  const toCart = useToCart()
 
   return async (
-    product: ReturnType<typeof toProduct>,
+    product: ReturnType<typeof ToProduct>,
     options: Options = {},
   ): Promise<{
-    cart: ReturnType<typeof toCart>
+    cart: ReturnType<typeof ToCart>
   }> => {
     const quantity = options.quantity ?? 1
 
@@ -33,7 +31,7 @@ export default () => {
         })
 
         return {
-          cart: toCart(response),
+          cart: ToCart(response),
         }
       }
     }
@@ -49,7 +47,7 @@ export default () => {
     })
 
     return {
-      cart: toCart(response),
+      cart: ToCart(response),
     }
   }
 }

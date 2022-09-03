@@ -1,7 +1,7 @@
-import useToOrderItem from '#ioc/mappers/useToOrderItem'
+import ToOrderItem from '#ioc/mappers/ToOrderItem'
 import { computed, reactive } from 'vue'
 
-export default (orderItem: ReturnType<ReturnType<typeof useToOrderItem>>) => {
+export default (orderItem: ReturnType<typeof ToOrderItem>) => {
   const productSku = computed(() => orderItem.productSku ?? '')
 
   const productUrlPath = computed(() => orderItem.productUrlPath ?? '')

@@ -72,7 +72,7 @@ import FormSelect from '#ioc/molecules/FormSelect'
 import useI18n from '#ioc/composables/useI18n'
 import SfxForm from '#ioc/components/SfxForm'
 import { computed, PropType, ref } from 'vue'
-import useToCustomerAddress from '#ioc/mappers/useToCustomerAddress'
+import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
 import useGetAvailableCountries from '#ioc/services/useGetAvailableCountries'
 
 const { t } = useI18n()
@@ -80,7 +80,7 @@ const getAvailableCountries = useGetAvailableCountries()
 
 const props = defineProps({
   customerAddress: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToCustomerAddress>>>,
+    type: Object as PropType<ReturnType<typeof ToCustomerAddress>>,
     default: null,
   },
 })

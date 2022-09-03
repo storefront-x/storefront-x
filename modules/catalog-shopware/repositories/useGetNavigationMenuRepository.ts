@@ -1,17 +1,16 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToCategory from '#ioc/mappers/useToCategory'
+import ToCategory from '#ioc/mappers/ToCategory'
 
 export default () => {
   const shopware = useShopware()
-  const toCategory = useToCategory()
 
   return async (): Promise<{
-    categories: ReturnType<typeof toCategory>[]
+    categories: ReturnType<typeof ToCategory>[]
   }> => {
     const response = await shopware.post('/navigation/main-navigation/main-navigation')
 
     return {
-      categories: response.map(toCategory),
+      categories: response.map(ToCategory),
     }
   }
 }

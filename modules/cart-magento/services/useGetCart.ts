@@ -1,4 +1,4 @@
-import useToCart from '#ioc/mappers/useToCart'
+import ToCart from '#ioc/mappers/ToCart'
 import useGetCartByIdRepository from '#ioc/repositories/useGetCartByIdRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 
@@ -7,7 +7,7 @@ export default () => {
   const getCartByIdRepository = useGetCartByIdRepository()
 
   return async (): Promise<{
-    cart: ReturnType<ReturnType<typeof useToCart>>
+    cart: ReturnType<typeof ToCart>
   }> => {
     const { id } = await getOrCreateCartId()
 

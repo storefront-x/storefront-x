@@ -1,17 +1,16 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToCurrency from '#ioc/mappers/useToCurrency'
+import ToCurrency from '#ioc/mappers/ToCurrency'
 
 export default () => {
   const shopware = useShopware()
-  const toCurrency = useToCurrency()
 
   return async (): Promise<{
-    currencies: ReturnType<typeof toCurrency>[]
+    currencies: ReturnType<typeof ToCurrency>[]
   }> => {
     const response: any = await shopware.get('/currency')
 
     return {
-      currencies: response.map(toCurrency),
+      currencies: response.map(ToCurrency),
     }
   }
 }

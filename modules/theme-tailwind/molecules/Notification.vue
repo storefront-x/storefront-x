@@ -36,7 +36,7 @@ import OutlineX from '#ioc/icons/OutlineX'
 import SolidX from '#ioc/icons/SolidX'
 import useI18n from '#ioc/composables/useI18n'
 import useHideNotification from '#ioc/composables/useHideNotification'
-import useToNotification from '#ioc/mappers/useToNotification'
+import ToNotification from '#ioc/mappers/ToNotification'
 import { PropType } from 'vue'
 
 const { t } = useI18n()
@@ -44,7 +44,7 @@ const hideNotification = useHideNotification()
 
 const props = defineProps({
   notification: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToNotification>>>,
+    type: Object as PropType<ReturnType<typeof ToNotification>>,
     required: true,
   },
 })

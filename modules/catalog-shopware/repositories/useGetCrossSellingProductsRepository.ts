@@ -1,19 +1,18 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 
 export default () => {
   const shopware = useShopware()
-  const toProduct = useToProduct()
 
   return async (
     productId: string,
   ): Promise<{
-    products: ReturnType<typeof toProduct>[]
+    products: ReturnType<typeof ToProduct>[]
   }> => {
     const response = await shopware.post(`/product/${productId}/cross-selling`)
 
     return {
-      products: response.length ? response[0].products.map(toProduct) : [],
+      products: response.length ? response[0].products.map(ToProduct) : [],
     }
   }
 }

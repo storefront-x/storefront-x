@@ -25,13 +25,13 @@ import CustomerOrder from '#ioc/molecules/CustomerOrder'
 import useI18n from '#ioc/composables/useI18n'
 import CustomerOrderProvider from '#ioc/providers/CustomerOrderProvider'
 import { PropType } from 'vue'
-import useToOrder from '#ioc/mappers/useToOrder'
+import ToOrder from '#ioc/mappers/ToOrder'
 
 const { t } = useI18n()
 
 defineProps({
   customerOrders: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToOrder>>>,
+    type: Object as PropType<ReturnType<typeof ToOrder>>,
     default: () => ({}),
   },
 })

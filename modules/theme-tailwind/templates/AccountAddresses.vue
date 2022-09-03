@@ -11,7 +11,7 @@ import CustomerAddresses from '#ioc/organisms/CustomerAddresses'
 import useI18n from '#ioc/composables/useI18n'
 import Heading from '#ioc/atoms/Heading'
 import { PropType } from 'vue'
-import useToCustomerAddress from '#ioc/mappers/useToCustomerAddress'
+import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
 
 const { t } = useI18n()
 
@@ -23,7 +23,7 @@ const refresh = () => {
 
 defineProps({
   addresses: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToCustomerAddress>>[]>,
+    type: Array as PropType<ReturnType<typeof ToCustomerAddress>[]>,
     default: () => [],
   },
 })

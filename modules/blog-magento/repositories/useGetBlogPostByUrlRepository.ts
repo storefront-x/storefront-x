@@ -1,15 +1,13 @@
 import BlogPost from '#ioc/graphql/queries/BlogPost'
 import useMagento from '#ioc/composables/useMagento'
-import useToBlogPost from '#ioc/mappers/useToBlogPost'
+import ToBlogPost from '#ioc/mappers/ToBlogPost'
 
 export default () => {
   const magento = useMagento()
-  const toBlogPost = useToBlogPost()
-
   return async (
     urlKey: string,
   ): Promise<{
-    blogPost: ReturnType<typeof toBlogPost>
+    blogPost: ReturnType<typeof ToBlogPost>
   }> => {
     const {
       data: { amBlogPost },
@@ -20,7 +18,7 @@ export default () => {
     )
 
     return {
-      blogPost: toBlogPost(amBlogPost),
+      blogPost: ToBlogPost(amBlogPost),
     }
   }
 }

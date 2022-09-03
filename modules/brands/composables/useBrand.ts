@@ -1,8 +1,8 @@
 import { computed, reactive, Ref } from 'vue'
-import useToBrand from '#ioc/mappers/useToBrand'
+import ToBrand from '#ioc/mappers/ToBrand'
 import useLocalePath from '#ioc/composables/useLocalePath'
 
-export default (brand: Ref<ReturnType<ReturnType<typeof useToBrand>>>) => {
+export default (brand: Ref<ReturnType<typeof ToBrand>>) => {
   const localePath = useLocalePath()
 
   const id = computed(() => brand.value.id)

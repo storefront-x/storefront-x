@@ -1,20 +1,19 @@
 import CategoryList from '#ioc/graphql/queries/CategoryList'
 import useMagento from '#ioc/composables/useMagento'
-import useToCategory from '#ioc/mappers/useToCategory'
+import ToCategory from '#ioc/mappers/ToCategory'
 
 export default () => {
   const magento = useMagento()
-  const toCategory = useToCategory()
 
   return async (): Promise<{
-    categories: ReturnType<typeof toCategory>[]
+    categories: ReturnType<typeof ToCategory>[]
   }> => {
     const {
       data: { categoryList },
     } = await magento.graphql(CategoryList())
 
     return {
-      categories: categoryList[0].children.map(toCategory),
+      categories: categoryList[0].children.map(ToCategory),
     }
   }
 }

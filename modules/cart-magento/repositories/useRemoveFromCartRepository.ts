@@ -1,17 +1,16 @@
 import useCartItem from '#ioc/composables/useCartItem'
 import useMagento from '#ioc/composables/useMagento'
 import RemoveItemFromCart from '#ioc/graphql/mutations/RemoveItemFromCart'
-import useToCart from '#ioc/mappers/useToCart'
+import ToCart from '#ioc/mappers/ToCart'
 
 export default () => {
   const magento = useMagento()
-  const toCart = useToCart()
 
   return async (
     cartId: string,
     cartItem: ReturnType<typeof useCartItem>,
   ): Promise<{
-    cart: ReturnType<typeof toCart>
+    cart: ReturnType<typeof ToCart>
   }> => {
     const { data } = await magento.graphql(
       RemoveItemFromCart().with({
@@ -21,7 +20,7 @@ export default () => {
     )
 
     return {
-      cart: toCart(data.removeItemFromCart.cart),
+      cart: ToCart(data.removeItemFromCart.cart),
     }
   }
 }

@@ -32,12 +32,12 @@ import { PropType } from 'vue'
 import SolidHome from '#ioc/icons/SolidHome'
 import SolidChevronRight from '#ioc/icons/SolidChevronRight'
 import useI18n from '#ioc/composables/useI18n'
-import useToBreadcrumb from '#ioc/mappers/useToBreadcrumb'
+import ToBreadcrumb from '#ioc/mappers/ToBreadcrumb'
 import useLocalePath from '#ioc/composables/useLocalePath'
 
 defineProps({
   breadcrumbs: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToBreadcrumb>>[]>,
+    type: Array as PropType<ReturnType<typeof ToBreadcrumb>[]>,
     required: true,
     default: () => [],
   },

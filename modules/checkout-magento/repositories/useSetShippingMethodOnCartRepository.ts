@@ -1,17 +1,16 @@
 import useMagento from '#ioc/composables/useMagento'
 import SetShippingMethodOncart from '#ioc/graphql/mutations/SetShippingMethodOnCart'
-import useToCheckout from '#ioc/mappers/useToCheckout'
-import useToShippingMethod from '#ioc/mappers/useToShippingMethod'
+import ToCheckout from '#ioc/mappers/ToCheckout'
+import ToShippingMethod from '#ioc/mappers/ToShippingMethod'
 
 export default () => {
   const magento = useMagento()
-  const toCheckout = useToCheckout()
 
-  return async (cartId: string, shippingMethod: ReturnType<ReturnType<typeof useToShippingMethod>>) => {
+  return async (cartId: string, shippingMethod: ReturnType<typeof ToShippingMethod>) => {
     const { data } = await magento.graphql(SetShippingMethodOncart().with({ cartId, ...shippingMethod }))
 
     return {
-      checkout: toCheckout(data.setShippingMethodOnCart.cart),
+      checkout: ToCheckout(data.setShippingMethodOnCart.cart),
     }
   }
 }

@@ -1,11 +1,10 @@
 import useNotificationStore from '#ioc/stores/useNotificationStore'
-import useToNotification from '#ioc/mappers/useToNotification'
+import ToNotification from '#ioc/mappers/ToNotification'
 
 export default () => {
   const notificationStore = useNotificationStore()
-  const toNotification = useToNotification()
 
-  return (notification: ReturnType<typeof toNotification>) => {
+  return (notification: ReturnType<typeof ToNotification>) => {
     notificationStore.$patch({
       notifications: notificationStore.notifications.filter((n) => n.id !== notification.id),
     })

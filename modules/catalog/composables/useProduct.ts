@@ -1,7 +1,7 @@
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 import { computed, reactive, Ref } from 'vue'
 
-export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
+export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   const id = computed(() => product.value.id)
 
   const sku = computed(() => product.value.sku)

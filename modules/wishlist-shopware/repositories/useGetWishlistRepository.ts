@@ -1,17 +1,16 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToWishlistItem from '#ioc/mappers/useToWishlistItem'
+import ToWishlistItem from '#ioc/mappers/ToWishlistItem'
 
 export default () => {
   const shopware = useShopware()
-  const toWishlistItem = useToWishlistItem()
 
   return async (): Promise<{
-    items: ReturnType<typeof toWishlistItem>[]
+    items: ReturnType<typeof ToWishlistItem>[]
   }> => {
     try {
       const response = await shopware.post(`/customer/wishlist`)
       return {
-        items: response?.products?.elements?.map(toWishlistItem) ?? [],
+        items: response?.products?.elements?.map(ToWishlistItem) ?? [],
       }
     } catch (error) {
       console.warn(error)

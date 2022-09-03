@@ -112,13 +112,13 @@ Providers are used when sharing non-global data/logic between multiple component
 </template>
 
 <script setup lang="ts">
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 import provideProduct from '#ioc/composables/provideProduct'
 import { computed, PropType } from 'vue'
 
 const props = defineProps({
   product: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToProduct>>>,
+    type: Object as PropType<ReturnType<typeof ToProduct>>,
     required: true,
   },
 })
@@ -173,23 +173,22 @@ It is a good idea to return object from the asynchronous function to allow for a
 // repositories/useGetProductsByIds.ts
 
 import useShopware from '#ioc/composables/useShopware'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 
 export default () => {
   const shopware = useShopware()
-  const toProduct = useToProduct()
 
   return async (
     ids: string[],
   ): Promise<{
-    products: ReturnType<typeof toProduct>[]
+    products: ReturnType<typeof ToProduct>[]
   }> => {
     const response = await shopware.post(`/product`, {
       ids: ids,
     })
 
     return {
-      products: response.elements.map(toProduct),
+      products: response.elements.map(ToProduct),
     }
   }
 }

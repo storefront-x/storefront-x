@@ -46,7 +46,7 @@ import useI18n from '#ioc/composables/useI18n'
 import SearchBarResult from '#ioc/molecules/SearchBarResult'
 import useRouter from '#ioc/composables/useRouter'
 import useGetSearchSuggestions from '#ioc/services/useGetSearchSuggestions'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 import vClickOutside from '#ioc/directives/vClickOutside'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import debounce from '#ioc/utils/debounce'
@@ -64,7 +64,7 @@ const localePath = useLocalePath()
 const getSearchSuggestions = useGetSearchSuggestions()
 
 const query = ref('')
-const results = ref<ReturnType<ReturnType<typeof useToProduct>>[]>([])
+const results = ref<ReturnType<typeof ToProduct>[]>([])
 
 const search = async () => {
   if (!query.value || query.value.length < 2) return
@@ -86,7 +86,7 @@ const close = () => {
 }
 
 const onInput = (e: Event) => {
-  query.value = (<HTMLInputElement>e.target).value
+  query.value = e.target.value
 }
 
 const onSubmit = () => {

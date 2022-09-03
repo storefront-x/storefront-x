@@ -1,21 +1,20 @@
 import useMagento from '#ioc/composables/useMagento'
 import Wishlists from '#ioc/graphql/queries/Wishlists'
-import useToWishlistItem from '#ioc/mappers/useToWishlistItem'
+import ToWishlistItem from '#ioc/mappers/ToWishlistItem'
 
 export default () => {
   const magento = useMagento()
-  const toWishlistItem = useToWishlistItem()
 
   return async (): Promise<{
     id: string
-    items: ReturnType<typeof toWishlistItem>[]
+    items: ReturnType<typeof ToWishlistItem>[]
   }> => {
     const { data } = await magento.graphql(Wishlists())
 
     return {
       id: data.customer?.wishlists[0]?.id ?? 0,
       items: data.customer.wishlists.flatMap((wishlist: any) =>
-        wishlist.items.map((wishlistItem: any) => toWishlistItem(wishlistItem)),
+        wishlist.items.map((wishlistItem: any) => ToWishlistItem(wishlistItem)),
       ),
     }
   }

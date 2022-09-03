@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
-import useToFreeShippingConfig from '#ioc/mappers/useToFreeShippingConfig'
+import ToFreeShippingConfig from '#ioc/mappers/ToFreeShippingConfig'
 
 export default defineStore('freeShipping', {
   state: () => ({
-    freeShippingConfig: null as ReturnType<ReturnType<typeof useToFreeShippingConfig>> | null,
+    freeShippingConfig: null as ReturnType<typeof ToFreeShippingConfig> | null,
   }),
 })

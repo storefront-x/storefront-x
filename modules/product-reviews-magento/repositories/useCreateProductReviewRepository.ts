@@ -1,17 +1,16 @@
 import CreateProductReview from '#ioc/graphql/mutations/CreateProductReview'
 import useMagento from '#ioc/composables/useMagento'
-import useToProductReview from '#ioc/mappers/useToProductReview'
+import ToProductReview from '#ioc/mappers/ToProductReview'
 import useProduct from '#ioc/composables/useProduct'
 
 export default () => {
   const magento = useMagento()
-  const toProductReview = useToProductReview()
 
   return async (
     product: ReturnType<typeof useProduct>,
     inputData: any,
   ): Promise<{
-    review: ReturnType<typeof toProductReview>
+    review: ReturnType<typeof ToProductReview>
   }> => {
     const temp = ['nickname', 'summary', 'text']
     const ratings = []
@@ -35,7 +34,7 @@ export default () => {
     }
 
     return {
-      review: toProductReview(data?.createProductReview?.review) ?? [],
+      review: ToProductReview(data?.createProductReview?.review) ?? [],
     }
   }
 }

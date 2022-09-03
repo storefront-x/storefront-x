@@ -59,10 +59,10 @@ This page should now be visible under the `/test` URL.
 
 We need mapper to sanitize data returned from backend. We also use mappers to provide use with type information.
 
-> `mappers/useToTodo.ts`
+> `mappers/ToTodo.ts`
 
 ```ts
-export default () => (data: any) => ({
+export default (data: any) => ({
   id: data.id as number,
   title: data.title as string,
   done: (data.completed ?? false) as boolean,
@@ -80,15 +80,13 @@ We need repository for communication with backend. In this repository we can use
 > `repositories/useGetTodoRepository.ts`
 
 ```ts
-import useToTodo from '#ioc/mappers/useToTodo'
+import ToTodo from '#ioc/mappers/ToTodo'
 
 export default () => {
-  const toTodo = useToTodo()
-
   return async (id: string) => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
     const json = await response.json()
-    return toTodo(json)
+    return ToTodo(json)
   }
 }
 ```

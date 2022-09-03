@@ -1,8 +1,8 @@
-import useToCategory from '#ioc/mappers/useToCategory'
+import ToCategory from '#ioc/mappers/ToCategory'
 import useCatalogMagentoStore from '#ioc/stores/useCatalogMagentoStore'
 import { computed, reactive, Ref } from 'vue'
 
-export default (product: Ref<ReturnType<ReturnType<typeof useToCategory>>>) => {
+export default (product: Ref<ReturnType<typeof ToCategory>>) => {
   const catalogMagentoStore = useCatalogMagentoStore()
 
   const id = computed(() => product.value.id)

@@ -1,4 +1,4 @@
-import useToContactInformation from '#ioc/mappers/useToContactInformation'
+import ToContactInformation from '#ioc/mappers/ToContactInformation'
 import useSetBillingAddressOnCartRepository from '#ioc/repositories/useSetBillingAddressOnCartRepository'
 import useSetGuestEmailOnCartRepository from '#ioc/repositories/useSetGuestEmailOnCartRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
@@ -10,7 +10,7 @@ export default () => {
   const setGuestEmailOnCartRepository = useSetGuestEmailOnCartRepository()
   const setBillingAddressOnCartRepository = useSetBillingAddressOnCartRepository()
 
-  return async (contactInformation: ReturnType<ReturnType<typeof useToContactInformation>>) => {
+  return async (contactInformation: ReturnType<typeof ToContactInformation>) => {
     const { id } = await getOrCreateCartId()
 
     await setGuestEmailOnCartRepository(id, contactInformation.email)

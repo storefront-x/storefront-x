@@ -1,17 +1,16 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToCart from '#ioc/mappers/useToCart'
+import ToCart from '#ioc/mappers/ToCart'
 
 export default () => {
   const shopware = useShopware()
-  const toCart = useToCart()
 
   return async (): Promise<{
-    cart: ReturnType<typeof toCart>
+    cart: ReturnType<typeof ToCart>
   }> => {
     const response = await shopware.get('/checkout/cart')
 
     return {
-      cart: toCart(response),
+      cart: ToCart(response),
     }
   }
 }
