@@ -28,7 +28,7 @@
             </div>
           </div>
 
-          <ProductQuantityConfigurator :value="quantity" @input="onQuantityChange" />
+          <ProductQuantityConfigurator @input="onQuantityChange" />
         </div>
 
         <AddToCart :quantity="quantity" />

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="categories.length"
+    v-if="categories?.length"
     class="absolute bg-white inset-x-0 text-gray-500 z-20 border-b-2 border-primary-400 shadow-md"
   >
     <Container class="relative flex py-8">
