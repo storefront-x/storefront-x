@@ -9,7 +9,7 @@
       <OutlineHeart class="text-primary-500" />
     </div>
     <span
-      v-if="true"
+      v-if="wishlist.wishlistQuantity"
       class="absolute top-0 right-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800"
       data-cy="micro-wishlist-quantity"
     >
