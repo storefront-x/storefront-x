@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-50 pb-16">
     <Container class="max-w-6xl pt-4">
-      <Heading v-if="cart.itemsTotalQuantity === 0">{{ t('Your cart is empty') }}</Heading>
+      <Heading v-if="cart.itemsTotalQuantity === 0" class="text-center">{{ t('Your cart is empty') }}</Heading>
       <div v-else class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
         <div>
           <ShippingMethods />
