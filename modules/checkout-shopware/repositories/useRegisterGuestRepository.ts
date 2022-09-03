@@ -1,9 +1,9 @@
 import useShopware from '#ioc/composables/useShopware'
 import SHOPWARE_URL from '#ioc/config/SHOPWARE_URL'
-import useToContactInformation from '#ioc/mappers/useToContactInformation'
+import ToContactInformation from '#ioc/mappers/ToContactInformation'
 
 interface Options {
-  contactInformation: ReturnType<ReturnType<typeof useToContactInformation>>
+  contactInformation: ReturnType<typeof ToContactInformation>
 }
 
 export default () => {

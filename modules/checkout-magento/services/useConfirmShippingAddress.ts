@@ -1,4 +1,4 @@
-import useToShippingAddress from '#ioc/mappers/useToShippingAddress'
+import ToShippingAddress from '#ioc/mappers/ToShippingAddress'
 import useSetShippingAddressOnCartRepository from '#ioc/repositories/useSetShippingAddressOnCartRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
@@ -8,7 +8,7 @@ export default () => {
   const getOrCreateCartId = useGetOrCreateCartId()
   const setShippingAddressOnCartRepository = useSetShippingAddressOnCartRepository()
 
-  return async (shippingAddress: ReturnType<ReturnType<typeof useToShippingAddress>>) => {
+  return async (shippingAddress: ReturnType<typeof ToShippingAddress>) => {
     const { id } = await getOrCreateCartId()
 
     const { checkout } = await setShippingAddressOnCartRepository(id, {

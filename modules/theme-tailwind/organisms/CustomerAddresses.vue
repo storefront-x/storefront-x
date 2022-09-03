@@ -51,7 +51,7 @@ import useCreateCustomerAddress from '#ioc/services/useCreateCustomerAddress'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useUpdateCustomerAddress from '#ioc/services/useUpdateCustomerAddress'
 import useDeleteCustomerAddress from '#ioc/services/useDeleteCustomerAddress'
-import useToCustomerAddress from '#ioc/mappers/useToCustomerAddress'
+import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
 
 const emit = defineEmits(['refresh'])
 
@@ -63,12 +63,12 @@ const updateCustomerAddress = useUpdateCustomerAddress()
 
 defineProps({
   customerAddresses: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToCustomerAddress>>[]>,
+    type: Array as PropType<ReturnType<typeof ToCustomerAddress>[]>,
     default: () => [],
   },
 })
 
-const customerAddressToEdit = ref<ReturnType<ReturnType<typeof useToCustomerAddress>>>()
+const customerAddressToEdit = ref<ReturnType<typeof ToCustomerAddress>>()
 const isCustomerEditModalOpen = ref(false)
 
 const onNew = () => {
@@ -76,7 +76,7 @@ const onNew = () => {
   isCustomerEditModalOpen.value = true
 }
 
-const onEdit = (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
+const onEdit = (customerAddress: ReturnType<typeof ToCustomerAddress>) => {
   customerAddressToEdit.value = customerAddress
   isCustomerEditModalOpen.value = true
 }
@@ -86,7 +86,7 @@ const onClose = () => {
   isCustomerEditModalOpen.value = false
 }
 
-const onUpdate = async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
+const onUpdate = async (customerAddress: ReturnType<typeof ToCustomerAddress>) => {
   try {
     await updateCustomerAddress(customerAddress)
     emit('refresh')
@@ -97,7 +97,7 @@ const onUpdate = async (customerAddress: ReturnType<ReturnType<typeof useToCusto
   }
 }
 
-const onCreate = async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
+const onCreate = async (customerAddress: ReturnType<typeof ToCustomerAddress>) => {
   try {
     await createCustomerAddress(customerAddress)
     emit('refresh')
@@ -108,7 +108,7 @@ const onCreate = async (customerAddress: ReturnType<ReturnType<typeof useToCusto
   }
 }
 
-const onDelete = async (customerAddress: ReturnType<ReturnType<typeof useToCustomerAddress>>) => {
+const onDelete = async (customerAddress: ReturnType<typeof ToCustomerAddress>) => {
   try {
     await deleteCustomerAddress(customerAddress)
     emit('refresh')

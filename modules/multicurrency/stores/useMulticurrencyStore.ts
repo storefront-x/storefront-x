@@ -1,8 +1,8 @@
-import useToCurrency from '#ioc/mappers/useToCurrency'
+import ToCurrency from '#ioc/mappers/ToCurrency'
 import { defineStore } from 'pinia'
 
 export default defineStore('multicurrency', {
   state: () => ({
-    currencies: [] as ReturnType<ReturnType<typeof useToCurrency>>[],
+    currencies: [] as ReturnType<typeof ToCurrency>[],
   }),
 })

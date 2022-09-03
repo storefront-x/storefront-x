@@ -40,7 +40,7 @@ import useAsyncData from '#ioc/composables/useAsyncData'
 import useCart from '#ioc/composables/useCart'
 import useI18n from '#ioc/composables/useI18n'
 import useShipping from '#ioc/composables/useShipping'
-import useToPickupLocation from '#ioc/mappers/useToPickupLocation'
+import ToPickupLocation from '#ioc/mappers/ToPickupLocation'
 import useGetPickupLocationsRepository from '#ioc/repositories/useGetPickupLocationsRepository'
 import useSetShippingAddress from '#ioc/services/useSetShippingAddress'
 import { computed } from 'vue'
@@ -61,7 +61,7 @@ const picked = computed(() =>
   ),
 )
 
-const select = async (pickupLocation: ReturnType<ReturnType<typeof useToPickupLocation>>) => {
+const select = async (pickupLocation: ReturnType<typeof ToPickupLocation>) => {
   await setShippingAddress({
     ...shipping.shippingAddress!,
     street: pickupLocation.street,

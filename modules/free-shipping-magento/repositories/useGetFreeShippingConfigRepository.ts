@@ -1,18 +1,17 @@
 import FreeShippingConfig from '#ioc/graphql/queries/FreeShippingConfig'
 import useMagento from '#ioc/composables/useMagento'
-import useToFreeShippingConfig from '#ioc/mappers/useToFreeShippingConfig'
+import ToFreeShippingConfig from '#ioc/mappers/ToFreeShippingConfig'
 
 export default () => {
   const magento = useMagento()
-  const toFreeShippingConfig = useToFreeShippingConfig()
 
   return async (): Promise<{
-    freeShippingConfig: ReturnType<typeof toFreeShippingConfig> | null
+    freeShippingConfig: ReturnType<typeof ToFreeShippingConfig> | null
   }> => {
     const { data } = await magento.graphql(FreeShippingConfig())
 
     return {
-      freeShippingConfig: toFreeShippingConfig(data?.storeConfig),
+      freeShippingConfig: ToFreeShippingConfig(data?.storeConfig),
     }
   }
 }

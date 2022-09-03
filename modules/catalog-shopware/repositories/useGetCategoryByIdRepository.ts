@@ -1,26 +1,22 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToCategory from '#ioc/mappers/useToCategory'
-import useToProduct from '#ioc/mappers/useToProduct'
-import useToCategorySorting from '#ioc/mappers/useToCategorySorting'
-import useToAggregation from '#ioc/mappers/useToAggregation'
+import ToCategory from '#ioc/mappers/ToCategory'
+import ToProduct from '#ioc/mappers/ToProduct'
+import ToCategorySorting from '#ioc/mappers/ToCategorySorting'
+import ToAggregation from '#ioc/mappers/ToAggregation'
 import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 
 export default () => {
   const shopware = useShopware()
-  const toCategory = useToCategory()
-  const toProduct = useToProduct()
-  const toCategorySorting = useToCategorySorting()
-  const toAggregation = useToAggregation()
 
   return async (
     id: string,
     opts: { page: number; sort?: string; filter?: string[] },
   ): Promise<{
-    category: ReturnType<typeof toCategory>
-    products: ReturnType<typeof toProduct>[]
+    category: ReturnType<typeof ToCategory>
+    products: ReturnType<typeof ToProduct>[]
     totalCount: number
-    sortings: ReturnType<typeof toCategorySorting>[]
-    aggregations: ReturnType<typeof toAggregation>[]
+    sortings: ReturnType<typeof ToCategorySorting>[]
+    aggregations: ReturnType<typeof ToAggregation>[]
   }> => {
     const getOrder = () => {
       if (opts.sort) {
@@ -47,11 +43,11 @@ export default () => {
     ])
 
     return {
-      category: toCategory(category),
-      products: productListing.elements.map(toProduct) ?? [],
+      category: ToCategory(category),
+      products: productListing.elements.map(ToProduct) ?? [],
       totalCount: productListing.total ?? 0,
-      sortings: productListing.availableSortings.map(toCategorySorting) ?? [],
-      aggregations: productListing.aggregations?.properties?.entities?.map(toAggregation) ?? [],
+      sortings: productListing.availableSortings.map(ToCategorySorting) ?? [],
+      aggregations: productListing.aggregations?.properties?.entities?.map(ToAggregation) ?? [],
     }
   }
 }

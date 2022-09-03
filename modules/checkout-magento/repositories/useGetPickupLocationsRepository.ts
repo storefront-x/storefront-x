@@ -1,19 +1,18 @@
 import useMagento from '#ioc/composables/useMagento'
 import GetPickupLocations from '#ioc/graphql/queries/GetPickupLocations'
-import useToCartItem from '#ioc/mappers/useToCartItem'
-import useToPickupLocation from '#ioc/mappers/useToPickupLocation'
+import ToCartItem from '#ioc/mappers/ToCartItem'
+import ToPickupLocation from '#ioc/mappers/ToPickupLocation'
 
 export default () => {
   const magento = useMagento()
-  const toPickupLocation = useToPickupLocation()
 
-  return async (cartItems: ReturnType<ReturnType<typeof useToCartItem>>[]) => {
+  return async (cartItems: ReturnType<typeof ToCartItem>[]) => {
     const productsInfo = cartItems.map((cartItem) => ({ sku: cartItem.product.sku }))
 
     const { data } = await magento.graphql(GetPickupLocations().with({ productsInfo }))
 
     return {
-      pickupLocations: (data.pickupLocations.items as any[]).map(toPickupLocation),
+      pickupLocations: (data.pickupLocations.items as any[]).map(ToPickupLocation),
     }
   }
 }

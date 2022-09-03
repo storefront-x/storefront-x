@@ -6,7 +6,7 @@ Module for e-commerce catalog (products and categories). Requires corresponding 
 
 ## `useProduct` composable
 
-Wraps data returned by the `useToProduct` mapper with business logic for displaying products. Is used by [`ProductProvider`](#productprovider-provider).
+Wraps data returned by the `ToProduct` mapper with business logic for displaying products. Is used by [`ProductProvider`](#productprovider-provider).
 
 :::tip
 Override/extend this composable to add functionality to products.
@@ -38,12 +38,12 @@ Provides result of [`useProduct`](#useproduct-composable) composable to be injec
 <script setup lang="ts">
 import ProductProvider from '#ioc/providers/ProductProvider'
 import ProductTile from '#ioc/molecules/ProductTile'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 import { PropType } from 'vue'
 
 defineProps({
   products: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToProduct>>[]>,
+    type: Array as PropType<ReturnType<typeof ToProduct>[]>,
     required: true,
   },
 })

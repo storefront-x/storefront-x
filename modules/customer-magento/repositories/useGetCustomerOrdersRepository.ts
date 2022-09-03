@@ -1,18 +1,17 @@
 import CustomerOrders from '#ioc/graphql/queries/CustomerOrders'
 import useMagento from '#ioc/composables/useMagento'
-import useToCustomerOrder from '#ioc/mappers/useToCustomerOrder'
+import ToCustomerOrder from '#ioc/mappers/ToCustomerOrder'
 
 export default () => {
   const magento = useMagento()
-  const toCustomerOrder = useToCustomerOrder()
 
   return async (): Promise<{
-    customerOrders: ReturnType<typeof toCustomerOrder>
+    customerOrders: ReturnType<typeof ToCustomerOrder>
   }> => {
     const { data } = await magento.graphql(CustomerOrders())
 
     return {
-      customerOrders: data?.customer?.orders?.items?.map(toCustomerOrder) ?? [],
+      customerOrders: data?.customer?.orders?.items?.map(ToCustomerOrder) ?? [],
     }
   }
 }

@@ -1,13 +1,12 @@
 import Countries from '#ioc/graphql/queries/Countries'
 import useMagento from '#ioc/composables/useMagento'
-import useToCountry from '#ioc/mappers/useToCountry'
+import ToCountry from '#ioc/mappers/ToCountry'
 
 export default () => {
   const magento = useMagento()
-  const toCountry = useToCountry()
 
   return async (): Promise<{
-    countryList: ReturnType<typeof toCountry>[]
+    countryList: ReturnType<typeof ToCountry>[]
   }> => {
     const { data, _error } = await magento.graphql(Countries())
 
@@ -16,7 +15,7 @@ export default () => {
     }
 
     return {
-      countryList: data?.countries?.map(toCountry) ?? [],
+      countryList: data?.countries?.map(ToCountry) ?? [],
     }
   }
 }

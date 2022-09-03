@@ -1,22 +1,22 @@
-import useToCheckoutAgreement from '#ioc/mappers/useToCheckoutAgreement'
-import useToContactInformation from '#ioc/mappers/useToContactInformation'
-import useToPaymentAddress from '#ioc/mappers/useToPaymentAddress'
-import useToPaymentMethod from '#ioc/mappers/useToPaymentMethod'
-import useToShippingAddress from '#ioc/mappers/useToShippingAddress'
-import useToShippingMethod from '#ioc/mappers/useToShippingMethod'
+import ToCheckoutAgreement from '#ioc/mappers/ToCheckoutAgreement'
+import ToContactInformation from '#ioc/mappers/ToContactInformation'
+import ToPaymentAddress from '#ioc/mappers/ToPaymentAddress'
+import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
+import ToShippingAddress from '#ioc/mappers/ToShippingAddress'
+import ToShippingMethod from '#ioc/mappers/ToShippingMethod'
 import { defineStore } from 'pinia'
 
 export default defineStore('checkout', {
   state: () => ({
-    contactInformation: null as ReturnType<ReturnType<typeof useToContactInformation>> | null,
-    paymentMethods: [] as ReturnType<ReturnType<typeof useToPaymentMethod>>[],
-    shippingMethods: [] as ReturnType<ReturnType<typeof useToShippingMethod>>[],
-    paymentMethod: null as ReturnType<ReturnType<typeof useToPaymentMethod>> | null,
-    shippingMethod: null as ReturnType<ReturnType<typeof useToShippingMethod>> | null,
-    paymentAddress: null as ReturnType<ReturnType<typeof useToPaymentAddress>> | null,
-    shippingAddress: null as ReturnType<ReturnType<typeof useToShippingAddress>> | null,
+    contactInformation: null as ReturnType<typeof ToContactInformation> | null,
+    paymentMethods: [] as ReturnType<typeof ToPaymentMethod>[],
+    shippingMethods: [] as ReturnType<typeof ToShippingMethod>[],
+    paymentMethod: null as ReturnType<typeof ToPaymentMethod> | null,
+    shippingMethod: null as ReturnType<typeof ToShippingMethod> | null,
+    paymentAddress: null as ReturnType<typeof ToPaymentAddress> | null,
+    shippingAddress: null as ReturnType<typeof ToShippingAddress> | null,
     paymentHandler: null as (() => Promise<void>) | null,
     shippingHandler: null as (() => Promise<void>) | null,
-    agreements: [] as ReturnType<ReturnType<typeof useToCheckoutAgreement>>[],
+    agreements: [] as ReturnType<typeof ToCheckoutAgreement>[],
   }),
 })

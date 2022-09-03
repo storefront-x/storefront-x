@@ -9,12 +9,12 @@
 
 <script setup lang="ts">
 import FormCheckbox from '#ioc/molecules/FormCheckbox'
-import useToCheckoutAgreement from '#ioc/mappers/useToCheckoutAgreement'
+import ToCheckoutAgreement from '#ioc/mappers/ToCheckoutAgreement'
 import { PropType } from 'vue'
 
 defineProps({
   checkoutAgreement: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToCheckoutAgreement>>>,
+    type: Object as PropType<ReturnType<typeof ToCheckoutAgreement>>,
     required: true,
   },
 })

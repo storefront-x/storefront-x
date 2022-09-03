@@ -1,17 +1,16 @@
 import useMagento from '#ioc/composables/useMagento'
 import SetPaymentMethodOnCart from '#ioc/graphql/mutations/SetPaymentMethodOnCart'
-import useToCheckout from '#ioc/mappers/useToCheckout'
-import useToPaymentMethod from '#ioc/mappers/useToPaymentMethod'
+import ToCheckout from '#ioc/mappers/ToCheckout'
+import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
 
 export default () => {
   const magento = useMagento()
-  const toCheckout = useToCheckout()
 
-  return async (cartId: string, paymentMethod: ReturnType<ReturnType<typeof useToPaymentMethod>>) => {
+  return async (cartId: string, paymentMethod: ReturnType<typeof ToPaymentMethod>) => {
     const { data } = await magento.graphql(SetPaymentMethodOnCart().with({ cartId, ...paymentMethod }))
 
     return {
-      checkout: toCheckout(data.setPaymentMethodOnCart.cart),
+      checkout: ToCheckout(data.setPaymentMethodOnCart.cart),
     }
   }
 }

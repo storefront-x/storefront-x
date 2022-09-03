@@ -1,4 +1,4 @@
-import useToPaymentAddress from '#ioc/mappers/useToPaymentAddress'
+import ToPaymentAddress from '#ioc/mappers/ToPaymentAddress'
 import useSetBillingAddressOnCartRepository from '#ioc/repositories/useSetBillingAddressOnCartRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
@@ -8,7 +8,7 @@ export default () => {
   const getOrCreateCartId = useGetOrCreateCartId()
   const setBillingAddressOnCartRepository = useSetBillingAddressOnCartRepository()
 
-  return async (billingAddress: ReturnType<ReturnType<typeof useToPaymentAddress>>) => {
+  return async (billingAddress: ReturnType<typeof ToPaymentAddress>) => {
     const { id } = await getOrCreateCartId()
 
     const { checkout } = await setBillingAddressOnCartRepository(id, {

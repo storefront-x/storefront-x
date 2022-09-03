@@ -33,15 +33,15 @@
 
 <script setup lang="ts">
 import SolidCheckCircle from '#ioc/icons/SolidCheckCircle'
-import useToShippingMethod from '#ioc/mappers/useToShippingMethod'
+import ToShippingMethod from '#ioc/mappers/ToShippingMethod'
 
 const props = defineProps<{
-  shippingMethod: ReturnType<ReturnType<typeof useToShippingMethod>>
+  shippingMethod: ReturnType<typeof ToShippingMethod>
   isSelected: boolean
 }>()
 
 const emit = defineEmits<{
-  (e: 'select', shippingMethod: ReturnType<ReturnType<typeof useToShippingMethod>>): void
+  (e: 'select', shippingMethod: ReturnType<typeof ToShippingMethod>): void
 }>()
 
 const onSelect = () => {

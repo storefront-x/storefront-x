@@ -12,7 +12,7 @@
 import Container from '#ioc/atoms/Container'
 import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import Heading from '#ioc/atoms/Heading'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 import ProductListing from '#ioc/organisms/ProductListing'
 import useI18n from '#ioc/composables/useI18n'
 import useRoute from '#ioc/composables/useRoute'
@@ -20,7 +20,7 @@ import { PropType } from 'vue'
 
 defineProps({
   products: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToProduct>>[]>,
+    type: Array as PropType<ReturnType<typeof ToProduct>[]>,
     required: true,
   },
   aggregations: {

@@ -1,11 +1,11 @@
 import useCookies from '#ioc/composables/useCookies'
 import MULTICURRENCY_COOKIE_NAME from '#ioc/config/MULTICURRENCY_COOKIE_NAME'
-import useToCurrency from '#ioc/mappers/useToCurrency'
+import ToCurrency from '#ioc/mappers/ToCurrency'
 
 export default () => {
   const cookies = useCookies()
 
-  return async (currency: ReturnType<ReturnType<typeof useToCurrency>>) => {
+  return async (currency: ReturnType<typeof ToCurrency>) => {
     cookies.set(MULTICURRENCY_COOKIE_NAME, currency.code)
 
     window.location.reload()

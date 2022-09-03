@@ -12,19 +12,19 @@
 import Container from '#ioc/atoms/Container'
 import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import CategoryInfo from '#ioc/molecules/CategoryInfo'
-import useToCategory from '#ioc/mappers/useToCategory'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToCategory from '#ioc/mappers/ToCategory'
+import ToProduct from '#ioc/mappers/ToProduct'
 import ProductListing from '#ioc/organisms/ProductListing'
 import useHead from '#ioc/composables/useHead'
 import { PropType } from 'vue'
 
 const props = defineProps({
   category: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToCategory>>>,
+    type: Object as PropType<ReturnType<typeof ToCategory>>,
     required: true,
   },
   products: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToProduct>>[]>,
+    type: Array as PropType<ReturnType<typeof ToProduct>[]>,
     required: true,
   },
   aggregations: {

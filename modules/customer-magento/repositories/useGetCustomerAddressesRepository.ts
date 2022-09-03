@@ -1,18 +1,17 @@
 import CustomerAddresses from '#ioc/graphql/queries/CustomerAddresses'
 import useMagento from '#ioc/composables/useMagento'
-import useToCustomerAddress from '#ioc/mappers/useToCustomerAddress'
+import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
 
 export default () => {
   const magento = useMagento()
-  const toCustomerAddress = useToCustomerAddress()
 
   return async (): Promise<{
-    addresses: ReturnType<typeof toCustomerAddress>[]
+    addresses: ReturnType<typeof ToCustomerAddress>[]
   }> => {
     const { data } = await magento.graphql(CustomerAddresses())
 
     return {
-      addresses: data?.customer?.addresses?.map(toCustomerAddress) ?? [],
+      addresses: data?.customer?.addresses?.map(ToCustomerAddress) ?? [],
     }
   }
 }

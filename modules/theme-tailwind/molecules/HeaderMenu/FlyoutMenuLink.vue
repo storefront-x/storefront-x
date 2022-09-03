@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import Link from '#ioc/atoms/Link'
 import useCategory from '#ioc/composables/useCategory'
-import useToCategory from '#ioc/mappers/useToCategory'
+import ToCategory from '#ioc/mappers/ToCategory'
 import SfxImage from '#ioc/components/SfxImage'
 import { PropType, computed } from 'vue'
 import useLocalePath from '#ioc/composables/useLocalePath'
@@ -33,7 +33,7 @@ const localePath = useLocalePath()
 
 const props = defineProps({
   category: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToCategory>>>,
+    type: Object as PropType<ReturnType<typeof ToCategory>>,
     required: true,
   },
 })

@@ -33,15 +33,15 @@
 
 <script setup lang="ts">
 import SolidCheckCircle from '#ioc/icons/SolidCheckCircle'
-import useToPaymentMethod from '#ioc/mappers/useToPaymentMethod'
+import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
 
 const props = defineProps<{
-  paymentMethod: ReturnType<ReturnType<typeof useToPaymentMethod>>
+  paymentMethod: ReturnType<typeof ToPaymentMethod>
   isSelected: boolean
 }>()
 
 const emit = defineEmits<{
-  (e: 'select', paymentMethod: ReturnType<ReturnType<typeof useToPaymentMethod>>): void
+  (e: 'select', paymentMethod: ReturnType<typeof ToPaymentMethod>): void
 }>()
 
 const onSelect = () => {

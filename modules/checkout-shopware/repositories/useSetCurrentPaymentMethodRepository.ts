@@ -1,12 +1,11 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToPaymentMethod from '#ioc/mappers/useToPaymentMethod'
+import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
 
 export default () => {
   const shopware = useShopware()
-  const toPaymentMethod = useToPaymentMethod()
 
   return async (
-    paymentMethod: ReturnType<typeof toPaymentMethod>,
+    paymentMethod: ReturnType<typeof ToPaymentMethod>,
   ): Promise<{
     token: string
   }> => {

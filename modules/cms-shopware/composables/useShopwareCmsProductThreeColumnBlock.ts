@@ -1,13 +1,11 @@
 import { computed, reactive } from 'vue'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 
 export default (data: any) => {
-  const toProduct = useToProduct()
-
   const products = computed(() => {
     const products = []
     for (const slot of data.slots) {
-      products.push(toProduct(slot.data.product))
+      products.push(ToProduct(slot.data.product))
     }
     return products
   })

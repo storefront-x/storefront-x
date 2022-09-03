@@ -1,8 +1,8 @@
-import useToNotification from '#ioc/mappers/useToNotification'
+import ToNotification from '#ioc/mappers/ToNotification'
 import { defineStore } from 'pinia'
 
 export default defineStore('notification', {
   state: () => ({
-    notifications: [] as ReturnType<ReturnType<typeof useToNotification>>[],
+    notifications: [] as ReturnType<typeof ToNotification>[],
   }),
 })

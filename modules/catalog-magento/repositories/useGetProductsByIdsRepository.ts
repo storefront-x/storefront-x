@@ -1,15 +1,14 @@
 import ProductList from '#ioc/graphql/queries/ProductList'
 import useMagento from '#ioc/composables/useMagento'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 
 export default () => {
   const magento = useMagento()
-  const toProduct = useToProduct()
 
   return async (
     ids: string[],
   ): Promise<{
-    products: ReturnType<typeof toProduct>[]
+    products: ReturnType<typeof ToProduct>[]
   }> => {
     const {
       data: { products },
@@ -20,7 +19,7 @@ export default () => {
     )
 
     return {
-      products: products.items.map(toProduct) || [],
+      products: products.items.map(ToProduct) || [],
     }
   }
 }
