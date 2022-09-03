@@ -27,14 +27,12 @@ export default (product: Ref<ReturnType<ReturnType<typeof useToProduct>>>) => {
 
   const finalPrice = computed(() => product.value.finalPrice)
 
-  // const breadcrumbs = computed(() => product.value.breadcrumbs)
-
   const breadcrumbs = computed(() => [
-      ...product.value.categories.map((category: any) => ({
-        title: category.name,
-        link: category.url_path + '.html',
-      }))
-    ])
+    ...product.value.categories.map((category: any) => ({
+      title: category.name,
+      link: category.url_path + '.html',
+    })),
+  ])
 
   const available = computed(() => product.value.available)
 
