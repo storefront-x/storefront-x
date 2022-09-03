@@ -23,7 +23,7 @@ export default class Pages extends GeneratingConcept {
       const parts = [...parsed.dir.replace(/\\/g, '/').split('/').filter(Boolean), parsed.name]
       const component = this.getPathForFile(module, file)
 
-      if (file === '$app.vue') {
+      if (file.includes('$app.vue')) {
         app = component
       } else if (parsed.name.includes('beforeEnter')) {
         guards.push({

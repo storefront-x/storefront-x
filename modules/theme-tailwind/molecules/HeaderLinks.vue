@@ -26,7 +26,7 @@
         </Dropdown>
       </SfxCurrencySwitcher>
 
-      <SfxStoreSwitcher v-slot="{ stores, getUrlFor, currentStore }">
+      <SfxStoreSwitcher v-slot="{ stores, currentStore, switchToStore }">
         <Dropdown
           link-like
           :title="currentStore?.fullName"
@@ -34,7 +34,7 @@
           class="text-gray-600 hover:text-gray-800"
           data-cy="store-switcher"
         >
-          <DropdownItem v-for="store in stores" :key="store.name" :href="String(getUrlFor(store))">
+          <DropdownItem v-for="store in stores" :key="store.name" @click="switchToStore(store)">
             {{ store.fullName }}
           </DropdownItem>
         </Dropdown>

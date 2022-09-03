@@ -1,23 +1,24 @@
 import useRouter from '#ioc/composables/useRouter'
-import useCurrentStoreProperties from '#ioc/composables/useCurrentStoreProperties'
+import useCurrentLocale from '#ioc/composables/useCurrentLocale'
+import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 import type { RouteLocation, RouteLocationRaw, RouteLocationNamedRaw } from 'vue-router'
-import { computed } from 'vue'
 
 export default () => {
   const router = useRouter()
-  const currentStoreProperties = useCurrentStoreProperties()
+  const currentLocale = useCurrentLocale()
 
-  const currentLocale = computed(() => currentStoreProperties.currentStore?.name)
-  const currentPrefix = computed(() => currentStoreProperties.currentStore?.prefix)
-
-  return (target: RouteLocationRaw, locale: string | undefined = currentLocale.value): RouteLocation | string => {
+  return (target: RouteLocationRaw, locale: string = currentLocale.value.name): RouteLocation => {
     if (!locale) throw new Error('Undefined locale')
+
+    const currentPrefix = VUE_I18N_LOCALES.find((l) => l.name === locale)?.prefix
 
     if (typeof target === 'string') {
       if (target.startsWith('/')) {
-        if (currentPrefix.value === '/') return router.resolve(target)
-
-        return `${currentPrefix.value}${target}`
+        if (currentPrefix === '/') {
+          return router.resolve(target)
+        } else {
+          return router.resolve(`${currentPrefix}${target}`)
+        }
       } else {
         return router.resolve({ name: `${target}__${locale}` })
       }
