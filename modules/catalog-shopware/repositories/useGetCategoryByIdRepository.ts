@@ -37,7 +37,7 @@ export default () => {
     }
 
     const [category, productListing] = await Promise.all([
-      shopware.post(`/category/${id}`, {}),
+      shopware.post(`/category/${id}`),
       shopware.post(`/product-listing/${id}`, {
         p: opts.page,
         limit: CATALOG_PAGE_SIZE,

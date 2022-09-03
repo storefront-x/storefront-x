@@ -10,7 +10,7 @@ const main = async () => {
   ctx.$app = app
 
   app.mixin({
-    mounted() {
+    updated() {
       this.$el.__vue__ = this
     },
   })

@@ -20,6 +20,7 @@ const _useToProduct = () => {
     id: data.id ?? 0,
     sku: data.sku ?? '',
     name: data.name ?? '',
+    categories: data.categories ?? [],
     urlKey: data.url_key ?? '',
     thumbnailUrl: data.thumbnail?.url ?? '',
     descriptionHtml: data.description?.html ?? '',
