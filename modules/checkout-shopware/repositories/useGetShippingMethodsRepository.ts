@@ -1,17 +1,16 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToShippingMethod from '#ioc/mappers/useToShippingMethod'
+import ToShippingMethod from '#ioc/mappers/ToShippingMethod'
 
 export default () => {
   const shopware = useShopware()
-  const toShippingMethod = useToShippingMethod()
 
   return async (): Promise<{
-    shippingMethods: ReturnType<typeof toShippingMethod>[]
+    shippingMethods: ReturnType<typeof ToShippingMethod>[]
   }> => {
     const response: any = await shopware.get('/shipping-method')
 
     return {
-      shippingMethods: response.elements.map(toShippingMethod),
+      shippingMethods: response.elements.map(ToShippingMethod),
     }
   }
 }

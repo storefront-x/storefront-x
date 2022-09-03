@@ -1,15 +1,14 @@
 import useMagento from '#ioc/composables/useMagento'
 import ProductCrossSell from '#ioc/graphql/mutations/ProductCrossSell'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 
 export default () => {
   const magento = useMagento()
-  const toProduct = useToProduct()
 
   return async (
     sku: string,
   ): Promise<{
-    crossSellProducts: ReturnType<typeof toProduct>
+    crossSellProducts: ReturnType<typeof ToProduct>
   }> => {
     const { data: response } = await magento.graphql(
       ProductCrossSell().with({
@@ -18,7 +17,7 @@ export default () => {
     )
 
     return {
-      crossSellProducts: response?.products?.items[0]?.crosssell_products.map(toProduct) || [],
+      crossSellProducts: response?.products?.items[0]?.crosssell_products.map(ToProduct) || [],
     }
   }
 }

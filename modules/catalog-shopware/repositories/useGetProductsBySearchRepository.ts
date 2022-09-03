@@ -1,23 +1,20 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToProduct from '#ioc/mappers/useToProduct'
-import useToCategorySorting from '#ioc/mappers/useToCategorySorting'
-import useToAggregation from '#ioc/mappers/useToAggregation'
+import ToProduct from '#ioc/mappers/ToProduct'
+import ToCategorySorting from '#ioc/mappers/ToCategorySorting'
+import ToAggregation from '#ioc/mappers/ToAggregation'
 import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 
 export default () => {
   const shopware = useShopware()
-  const toProduct = useToProduct()
-  const toCategorySorting = useToCategorySorting()
-  const toAggregation = useToAggregation()
 
   return async (
     query: string,
     opts: { page: number; sort?: string; filter?: string[] },
   ): Promise<{
-    products: ReturnType<typeof toProduct>[]
+    products: ReturnType<typeof ToProduct>[]
     totalCount: number
-    sortings: ReturnType<typeof toCategorySorting>[]
-    aggregations: ReturnType<typeof toAggregation>[]
+    sortings: ReturnType<typeof ToCategorySorting>[]
+    aggregations: ReturnType<typeof ToAggregation>[]
   }> => {
     const getOrder = () => {
       if (opts.sort) {
@@ -41,10 +38,10 @@ export default () => {
     })
 
     return {
-      products: searchResult.elements.map(toProduct) ?? [],
+      products: searchResult.elements.map(ToProduct) ?? [],
       totalCount: searchResult.total ?? 0,
-      sortings: searchResult.availableSortings.map(toCategorySorting) ?? [],
-      aggregations: searchResult.aggregations?.properties?.entities?.map(toAggregation) ?? [],
+      sortings: searchResult.availableSortings.map(ToCategorySorting) ?? [],
+      aggregations: searchResult.aggregations?.properties?.entities?.map(ToAggregation) ?? [],
     }
   }
 }

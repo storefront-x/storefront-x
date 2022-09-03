@@ -20,12 +20,12 @@
 <script setup lang="ts">
 import SfxImage from '#ioc/components/SfxImage'
 import Heading from '#ioc/atoms/Heading'
-import useToCategory from '#ioc/mappers/useToCategory'
+import ToCategory from '#ioc/mappers/ToCategory'
 import { PropType } from 'vue'
 
 defineProps({
   category: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToCategory>>>,
+    type: Object as PropType<ReturnType<typeof ToCategory>>,
     default: () => ({}),
   },
 })

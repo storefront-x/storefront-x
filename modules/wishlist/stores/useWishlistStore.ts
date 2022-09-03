@@ -3,11 +3,11 @@ import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useCustomerStore from '#ioc/stores/useCustomerStore'
 import useGetWishlist from '#ioc/services/useGetWishlist'
 import useMergeWishlist from '#ioc/services/useMergeWishlist'
-import useToWishlistItem from '#ioc/mappers/useToWishlistItem'
+import ToWishlistItem from '#ioc/mappers/ToWishlistItem'
 
 export default defineStore('wishlist', {
   state: () => ({
-    items: [] as ReturnType<ReturnType<typeof useToWishlistItem>>[],
+    items: [] as ReturnType<typeof ToWishlistItem>[],
   }),
 
   actions: {

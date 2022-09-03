@@ -1,9 +1,8 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 
 export default () => {
   const shopware = useShopware()
-  const toProduct = useToProduct()
 
   return async (
     id: string,
@@ -18,7 +17,7 @@ export default () => {
     const productWithCrossSelling = { ...(product?.product ?? {}), crossSell: crossSelling[0]?.products ?? [] }
 
     return {
-      product: toProduct(productWithCrossSelling),
+      product: ToProduct(productWithCrossSelling),
     }
   }
 }

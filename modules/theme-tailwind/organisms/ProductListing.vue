@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import useI18n from '#ioc/composables/useI18n'
 import useRoute from '#ioc/composables/useRoute'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 import ProductFilters from '#ioc/molecules/ProductFilters'
 import ProductSort from '#ioc/molecules/ProductSort'
 import ProductTile from '#ioc/molecules/ProductTile'
@@ -48,7 +48,7 @@ const route = useRoute()
 
 defineProps({
   products: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToProduct>>[]>,
+    type: Array as PropType<ReturnType<typeof ToProduct>[]>,
     required: true,
   },
   aggregations: {

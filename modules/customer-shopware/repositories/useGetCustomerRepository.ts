@@ -1,17 +1,16 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToCustomer from '#ioc/mappers/useToCustomer'
+import ToCustomer from '#ioc/mappers/ToCustomer'
 
 export default () => {
   const shopware = useShopware()
-  const toCustomer = useToCustomer()
 
   return async (): Promise<{
-    customer: ReturnType<typeof toCustomer> | null
+    customer: ReturnType<typeof ToCustomer> | null
   }> => {
     const response: any = await shopware.get('/context')
 
     return {
-      customer: response.customer?.guest === false ? toCustomer(response.customer) : null,
+      customer: response.customer?.guest === false ? ToCustomer(response.customer) : null,
     }
   }
 }

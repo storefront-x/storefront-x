@@ -1,4 +1,4 @@
-import useToShippingMethod from '#ioc/mappers/useToShippingMethod'
+import ToShippingMethod from '#ioc/mappers/ToShippingMethod'
 import useGetCartRepository from '#ioc/repositories/useGetCartRepository'
 import useSetCurrentShippingMethodRepository from '#ioc/repositories/useSetCurrentShippingMethodRepository'
 import useCartStore from '#ioc/stores/useCartStore'
@@ -10,7 +10,7 @@ export default () => {
   const setCurrentShippingMethodRepository = useSetCurrentShippingMethodRepository()
   const getCatCartRepository = useGetCartRepository()
 
-  return async (shippingMethod: ReturnType<ReturnType<typeof useToShippingMethod>>) => {
+  return async (shippingMethod: ReturnType<typeof ToShippingMethod>) => {
     await setCurrentShippingMethodRepository(shippingMethod)
     const { cart } = await getCatCartRepository()
 

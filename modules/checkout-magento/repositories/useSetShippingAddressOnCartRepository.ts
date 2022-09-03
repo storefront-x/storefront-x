@@ -1,10 +1,9 @@
 import useMagento from '#ioc/composables/useMagento'
 import SetShippingAddressOnCart from '#ioc/graphql/mutations/SetShippingAddressOnCart'
-import useToCheckout from '#ioc/mappers/useToCheckout'
+import ToCheckout from '#ioc/mappers/ToCheckout'
 
 export default () => {
   const magento = useMagento()
-  const toCheckout = useToCheckout()
 
   return async (cartId: string, { address, customerAddressId, customerNotes, pickupLocationCode }: any) => {
     const { data } = await magento.graphql(
@@ -18,7 +17,7 @@ export default () => {
     )
 
     return {
-      checkout: toCheckout(data.setShippingAddressOnCart.cart),
+      checkout: ToCheckout(data.setShippingAddressOnCart.cart),
     }
   }
 }

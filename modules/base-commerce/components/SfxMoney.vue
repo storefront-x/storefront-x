@@ -1,14 +1,14 @@
 <script lang="ts">
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 import useStoreStore from '#ioc/stores/useStoreStore'
-import useToMoney from '#ioc/mappers/useToMoney'
+import ToMoney from '#ioc/mappers/ToMoney'
 import { computed, defineComponent, h, PropType } from 'vue'
 import formatters from '~/.sfx/formatters/money'
 
 export default defineComponent({
   props: {
     money: {
-      type: Object as PropType<ReturnType<ReturnType<typeof useToMoney>>>,
+      type: Object as PropType<ReturnType<typeof ToMoney>>,
       default: null,
     },
     el: {

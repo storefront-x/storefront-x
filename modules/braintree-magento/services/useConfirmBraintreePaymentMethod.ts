@@ -1,4 +1,4 @@
-import useToPaymentMethod from '#ioc/mappers/useToPaymentMethod'
+import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
 import useSetBraintreePaymentMethodOnCartRepository from '#ioc/repositories/useSetBraintreePaymentMethodOnCartRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
@@ -12,7 +12,7 @@ export default () => {
   const getOrCreateCartId = useGetOrCreateCartId()
   const setPaymentMethodOnCartRepository = useSetBraintreePaymentMethodOnCartRepository()
 
-  return async (paymentMethod: ReturnType<ReturnType<typeof useToPaymentMethod>>, options: Options) => {
+  return async (paymentMethod: ReturnType<typeof ToPaymentMethod>, options: Options) => {
     const { id } = await getOrCreateCartId()
 
     const { checkout } = await setPaymentMethodOnCartRepository(id, paymentMethod, options)

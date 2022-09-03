@@ -1,8 +1,8 @@
-import useToBlogPost from '#ioc/mappers/useToBlogPost'
+import ToBlogPost from '#ioc/mappers/ToBlogPost'
 import { computed, reactive, Ref } from 'vue'
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
 
-export default (post: Ref<ReturnType<ReturnType<typeof useToBlogPost>>>) => {
+export default (post: Ref<ReturnType<typeof ToBlogPost>>) => {
   const id = computed(() => post.value.id)
 
   const title = computed(() => post.value.title)

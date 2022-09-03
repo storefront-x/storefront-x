@@ -1,8 +1,8 @@
-import useToCart from '#ioc/mappers/useToCart'
+import ToCart from '#ioc/mappers/ToCart'
 import { defineStore } from 'pinia'
 
 export default defineStore('cart', {
   state: () => ({
-    cart: undefined as ReturnType<ReturnType<typeof useToCart>> | undefined | null,
+    cart: undefined as ReturnType<typeof ToCart> | undefined | null,
   }),
 })

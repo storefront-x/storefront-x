@@ -19,13 +19,13 @@
 
 <script setup lang="ts">
 import Container from '#ioc/atoms/Container'
-import useToCategory from '#ioc/mappers/useToCategory'
+import ToCategory from '#ioc/mappers/ToCategory'
 import FlyoutMenuLink from '#ioc/molecules/HeaderMenu/FlyoutMenuLink'
 import { PropType } from 'vue'
 
 defineProps({
   categories: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToCategory>>[]>,
+    type: Array as PropType<ReturnType<typeof ToCategory>[]>,
     required: true,
   },
 })

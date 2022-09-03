@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
-import useToCurrency from '#ioc/mappers/useToCurrency'
+import ToCurrency from '#ioc/mappers/ToCurrency'
 
 export default defineStore('store', {
   state: () => ({
-    currency: null as ReturnType<ReturnType<typeof useToCurrency>> | null,
+    currency: null as ReturnType<typeof ToCurrency> | null,
   }),
 })

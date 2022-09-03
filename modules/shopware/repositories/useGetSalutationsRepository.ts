@@ -1,17 +1,16 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToSalutation from '#ioc/mappers/useToSalutation'
+import ToSalutation from '#ioc/mappers/ToSalutation'
 
 export default () => {
   const shopware = useShopware()
-  const toSalutation = useToSalutation()
 
   return async (): Promise<{
-    salutations: ReturnType<typeof toSalutation>[]
+    salutations: ReturnType<typeof ToSalutation>[]
   }> => {
     const { elements }: any = await shopware.get('/salutation')
 
     return {
-      salutations: elements.map(toSalutation),
+      salutations: elements.map(ToSalutation),
     }
   }
 }

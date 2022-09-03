@@ -1,6 +1,6 @@
 import useMagento from '#ioc/composables/useMagento'
 import SetBillingAddressOnCart from '#ioc/graphql/mutations/SetBillingAddressOnCart'
-import useToCheckout from '#ioc/mappers/useToCheckout'
+import ToCheckout from '#ioc/mappers/ToCheckout'
 
 interface Options {
   sameAsShipping?: boolean
@@ -8,7 +8,6 @@ interface Options {
 
 export default () => {
   const magento = useMagento()
-  const toCheckout = useToCheckout()
 
   return async (cartId: string, address: any, options: Options = {}) => {
     const { data } = await magento.graphql(
@@ -20,7 +19,7 @@ export default () => {
     )
 
     return {
-      checkout: toCheckout(data.setBillingAddressOnCart.cart),
+      checkout: ToCheckout(data.setBillingAddressOnCart.cart),
     }
   }
 }

@@ -55,14 +55,14 @@ import Tbody from '#ioc/atoms/Tbody'
 import Tr from '#ioc/atoms/Tr'
 import Th from '#ioc/atoms/Th'
 import Td from '#ioc/atoms/Td'
-import useToCustomerDownloadableProduct from '#ioc/mappers/useToCustomerDownloadableProduct'
+import ToCustomerDownloadableProduct from '#ioc/mappers/ToCustomerDownloadableProduct'
 import { PropType } from 'vue'
 
 const { t, d } = useI18n()
 
 defineProps({
   customerDownloadableProducts: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToCustomerDownloadableProduct>>[]>,
+    type: Array as PropType<ReturnType<typeof ToCustomerDownloadableProduct>[]>,
     default: () => [],
   },
 })

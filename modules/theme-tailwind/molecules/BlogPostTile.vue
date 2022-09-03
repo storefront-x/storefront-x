@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import Link from '#ioc/atoms/Link'
 import { computed, PropType, toRef } from 'vue'
-import useToBlogPost from '#ioc/mappers/useToBlogPost'
+import ToBlogPost from '#ioc/mappers/ToBlogPost'
 import SfxImage from '#ioc/components/SfxImage'
 import useI18n from '#ioc/composables/useI18n'
 import usePost from '#ioc/composables/useBlogPost'
@@ -57,7 +57,7 @@ const props = defineProps({
     default: '',
   },
   blogPost: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToBlogPost>>>,
+    type: Object as PropType<ReturnType<typeof ToBlogPost>>,
     required: true,
   },
 })

@@ -50,12 +50,12 @@ Provides result of [`useCartItem`](#usecartitem-composable) composable to be inj
 <script setup lang="ts">
 import CartItemProvider from '#ioc/providers/CartItemProvider'
 import OrderSummaryItem from '#ioc/molecules/OrderSummaryItem'
-import useToCartItem from '#ioc/mappers/useToCartItem'
+import ToCartItem from '#ioc/mappers/ToCartItem'
 import { PropType } from 'vue'
 
 defineProps({
   cartItems: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToCartItem>>[]>,
+    type: Array as PropType<ReturnType<typeof ToCartItem>[]>,
     required: true,
   },
 })

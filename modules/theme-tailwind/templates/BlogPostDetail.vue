@@ -25,7 +25,7 @@ import BackgroundTiles from '#ioc/atoms/BackgroundTiles'
 import Heading from '#ioc/atoms/Heading'
 import useBlogPost from '#ioc/composables/useBlogPost'
 import { computed, PropType, toRef } from 'vue'
-import useToBlogPost from '#ioc/mappers/useToBlogPost'
+import ToBlogPost from '#ioc/mappers/ToBlogPost'
 import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
 
 const props = defineProps({
@@ -34,7 +34,7 @@ const props = defineProps({
     default: '',
   },
   blogPost: {
-    type: Object as PropType<ReturnType<ReturnType<typeof useToBlogPost>>>,
+    type: Object as PropType<ReturnType<typeof ToBlogPost>>,
     required: true,
   },
 })

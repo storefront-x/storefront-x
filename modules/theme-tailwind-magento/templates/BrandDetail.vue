@@ -18,7 +18,7 @@ import BrandInfo from '#ioc/organisms/BrandInfo'
 import ProductListing from '#ioc/organisms/ProductListing'
 import Container from '#ioc/atoms/Container'
 import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 import Prose from '#ioc/atoms/Prose'
 import SfxImage from '#ioc/components/SfxImage'
 import { PropType } from 'vue'
@@ -30,7 +30,7 @@ defineProps({
     required: true,
   },
   products: {
-    type: Array as PropType<ReturnType<ReturnType<typeof useToProduct>>[]>,
+    type: Array as PropType<ReturnType<typeof ToProduct>[]>,
     default: () => [],
   },
   aggregations: {

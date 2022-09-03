@@ -1,17 +1,16 @@
 import useShopware from '#ioc/composables/useShopware'
-import useToOrder from '#ioc/mappers/useToOrder'
+import ToOrder from '#ioc/mappers/ToOrder'
 
 export default () => {
   const shopware = useShopware()
-  const toOrder = useToOrder()
 
   return async (): Promise<{
-    order: ReturnType<typeof toOrder>
+    order: ReturnType<typeof ToOrder>
   }> => {
     const response: any = await shopware.post('/checkout/order')
 
     return {
-      order: toOrder(response),
+      order: ToOrder(response),
     }
   }
 }

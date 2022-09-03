@@ -8,7 +8,7 @@ Module enabling switching between currencies. It uses `SfxCurrencySwitcher` comp
 
 For the multicurrency module to work, it needs to have few things supplied from the integration module.
 
-- `useToCurrency` mapper
+- `ToCurrency` mapper
 - `useSetCurrency` service
 - `useSetCurrencyRepository` repository
 - `serverInit` store action which sets the initial state of the `useMulticurrencyStore` store

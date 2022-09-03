@@ -1,17 +1,15 @@
 import Products from '#ioc/graphql/queries/Products'
 import useMagento from '#ioc/composables/useMagento'
-import useToProduct from '#ioc/mappers/useToProduct'
+import ToProduct from '#ioc/mappers/ToProduct'
 import transformFilterQuery from '#ioc/utils/magento/transformFilterQuery'
 import transformSortQuery from '#ioc/utils/magento/transformSortQuery'
 import buildAggregationFields from '#ioc/utils/magento/buildAggregationFields'
 import fillAggregationsWithEmptySelectedOptions from '#ioc/utils/magento/fillAggregationsWithEmptySelectedOptions'
 import fillAggregationsWithPossibleOptions from '#ioc/utils/magento/fillAggregationsWithPossibleOptions'
-import useToAggregation from '#ioc/mappers/useToAggregation'
+import ToAggregation from '#ioc/mappers/ToAggregation'
 
 export default () => {
   const magento = useMagento()
-  const toProduct = useToProduct()
-  const toAggregation = useToAggregation()
 
   return async (
     { search, filter, currentPage = 1, pageSize = 5, sort } = {} as {
@@ -22,8 +20,8 @@ export default () => {
       sort?: string
     },
   ): Promise<{
-    products: ReturnType<typeof toProduct>[]
-    aggregations: ReturnType<typeof toAggregation>[]
+    products: ReturnType<typeof ToProduct>[]
+    aggregations: ReturnType<typeof ToAggregation>[]
     totalCount: number
   }> => {
     const _filter = transformFilterQuery(filter)
@@ -45,8 +43,8 @@ export default () => {
     fillAggregationsWithEmptySelectedOptions(products.aggregations, rest, _filter)
 
     return {
-      products: products.items.map(toProduct) ?? [],
-      aggregations: products.aggregations.map(toAggregation) ?? [],
+      products: products.items.map(ToProduct) ?? [],
+      aggregations: products.aggregations.map(ToAggregation) ?? [],
       totalCount: products.total_count ?? 0,
     }
   }

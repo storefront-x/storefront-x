@@ -3,7 +3,7 @@ import useCustomer from '#ioc/composables/useCustomer'
 import useGetWishlistRepository from '#ioc/repositories/useGetWishlistRepository'
 import WISHLIST_COOKIES_NAME from '#ioc/config/WISHLIST_COOKIES_NAME'
 import useGetProductsByIdsRepository from '#ioc/repositories/useGetProductsByIdsRepository'
-import useToWishlistItem from '#ioc/mappers/useToWishlistItem'
+import ToWishlistItem from '#ioc/mappers/ToWishlistItem'
 
 export default () => {
   const cookies = useCookies()
@@ -12,7 +12,7 @@ export default () => {
   const getProductsByIdsRepository = useGetProductsByIdsRepository()
 
   return async (): Promise<{
-    items: ReturnType<ReturnType<typeof useToWishlistItem>>[]
+    items: ReturnType<typeof ToWishlistItem>[]
   }> => {
     if (customer.isLoggedIn) {
       const wishlist = await getWishlistRepository()

@@ -1,4 +1,4 @@
-import useToPaymentMethod from '#ioc/mappers/useToPaymentMethod'
+import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
 import useGetCartRepository from '#ioc/repositories/useGetCartRepository'
 import useSetCurrentPaymentMethodRepository from '#ioc/repositories/useSetCurrentPaymentMethodRepository'
 import useCartStore from '#ioc/stores/useCartStore'
@@ -10,7 +10,7 @@ export default () => {
   const setCurrentPaymentMethodRepository = useSetCurrentPaymentMethodRepository()
   const getCatCartRepository = useGetCartRepository()
 
-  return async (paymentMethod: ReturnType<ReturnType<typeof useToPaymentMethod>>) => {
+  return async (paymentMethod: ReturnType<typeof ToPaymentMethod>) => {
     await setCurrentPaymentMethodRepository(paymentMethod)
     const { cart } = await getCatCartRepository()
 

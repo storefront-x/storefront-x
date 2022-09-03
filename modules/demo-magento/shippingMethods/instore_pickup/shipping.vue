@@ -41,7 +41,7 @@ import useCart from '#ioc/composables/useCart'
 import useCheckout from '#ioc/composables/useCheckout'
 import useI18n from '#ioc/composables/useI18n'
 import useShipping from '#ioc/composables/useShipping'
-import useToPickupLocation from '#ioc/mappers/useToPickupLocation'
+import ToPickupLocation from '#ioc/mappers/ToPickupLocation'
 import useGetPickupLocationsRepository from '#ioc/repositories/useGetPickupLocationsRepository'
 import useConfirmShippingMethod from '#ioc/services/useConfirmShippingMethod'
 import useConfirmShippingAddress from '#ioc/services/useConfirmShippingAddress'
@@ -61,13 +61,13 @@ const { data } = await useAsyncData('pickupLocations', () => getPickupLocations(
 
 const pickupLocations = computed(() => data.value.pickupLocations)
 
-const picked = ref<ReturnType<ReturnType<typeof useToPickupLocation>> | null>(null)
+const picked = ref<ReturnType<typeof ToPickupLocation> | null>(null)
 
 onMounted(() => {
   emit('select')
 })
 
-const select = async (pickupLocation: ReturnType<ReturnType<typeof useToPickupLocation>>) => {
+const select = async (pickupLocation: ReturnType<typeof ToPickupLocation>) => {
   emit('select')
 
   picked.value = pickupLocation

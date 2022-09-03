@@ -1,7 +1,7 @@
-import useToOrder from '#ioc/mappers/useToOrder'
+import ToOrder from '#ioc/mappers/ToOrder'
 import { computed, reactive, Ref } from 'vue'
 
-export default (customerOrder: Ref<ReturnType<ReturnType<typeof useToOrder>>>) => {
+export default (customerOrder: Ref<ReturnType<typeof ToOrder>>) => {
   const orderNumber = computed(() => customerOrder.value.orderNumber ?? customerOrder.value.number)
 
   const grandTotal = computed(() => customerOrder.value.amountTotal ?? customerOrder.value.total?.grandTotal)
