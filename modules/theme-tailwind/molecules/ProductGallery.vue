@@ -40,10 +40,10 @@ const gallery = ref(null)
 const product = injectProduct()
 
 const hasGallery = computed(() => {
-  return images.value.length > 1
+  return images?.value?.length > 1
 })
 
-const images = computed(() => product.mediaGallery.filter((e: any) => e.url !== product.thumbnailUrl))
+const images = computed(() => product?.mediaGallery?.filter((e: any) => e.url !== product.thumbnailUrl))
 
 const select = (index: number) => {
   selected.value = index
