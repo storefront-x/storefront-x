@@ -1,6 +1,7 @@
+import { NavigationGuard } from 'vue-router'
 import useCustomer from '#ioc/composables/useCustomer'
 
-export default (to: any, from: any, next: any) => {
+const navigationGuard: NavigationGuard = (to, from, next) => {
   const customer = useCustomer()
 
   if (!customer?.isLoggedIn) {
@@ -9,3 +10,5 @@ export default (to: any, from: any, next: any) => {
     next()
   }
 }
+
+export default navigationGuard

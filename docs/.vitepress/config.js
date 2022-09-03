@@ -63,6 +63,7 @@ export default defineConfig({
           { text: 'Vue I18n', link: '/modules/vue-i18n' },
           { text: 'Vue Pinia', link: '/modules/vue-pinia' },
           { text: 'Base Commerce', link: '/modules/base-commerce' },
+          { text: 'Magento', link: '/modules/magento' },
           { text: 'Shopware', link: '/modules/shopware' },
           { text: 'Atomic Design', link: '/modules/atomic-design' },
           { text: 'GraphQL', link: '/modules/graphql' },

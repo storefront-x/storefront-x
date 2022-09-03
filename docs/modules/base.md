@@ -85,6 +85,10 @@ GET  /bar  # index.html
 POST /bar  # index.html
 ```
 
+:::tip
+Use server routes as proxies to decrease number of DNS requests and improve caching.
+:::
+
 ## `utils/` IoC concept
 
 Concept containing utility functions

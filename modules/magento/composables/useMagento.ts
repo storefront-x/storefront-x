@@ -1,5 +1,5 @@
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
-import MAGENTO_GQL_ENDPOINT from '#ioc/config/MAGENTO_GQL_ENDPOINT'
+import MAGENTO_GRAPHQL_ENDPOINT from '#ioc/config/MAGENTO_GRAPHQL_ENDPOINT'
 import useCookies from '#ioc/composables/useCookies'
 import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
 import objectToQuery from '#ioc/utils/url/objectToQuery'
@@ -64,7 +64,7 @@ export default () => {
         variables: isNonEmptyObject(variables) ? variables : undefined,
       })
 
-      return await _fetch(`${URL + MAGENTO_GQL_ENDPOINT}?${body}`, {
+      return await _fetch(`${URL + MAGENTO_GRAPHQL_ENDPOINT}?${body}`, {
         method: 'GET',
         headers: headers(),
       })
@@ -74,7 +74,7 @@ export default () => {
         variables,
       })
 
-      return await _fetch(URL + MAGENTO_GQL_ENDPOINT, {
+      return await _fetch(URL + MAGENTO_GRAPHQL_ENDPOINT, {
         method: 'POST',
         headers: headers(),
         body,

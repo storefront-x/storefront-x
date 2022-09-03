@@ -5760,28 +5760,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"demo-blank@workspace:modules/create-storefront-x/template/blank/modules/demo-blank":
-  version: 0.0.0-use.local
-  resolution: "demo-blank@workspace:modules/create-storefront-x/template/blank/modules/demo-blank"
-  languageName: unknown
-  linkType: soft
-
-"demo-magento@workspace:modules/create-storefront-x/template/magento/modules/demo-magento":
-  version: 0.0.0-use.local
-  resolution: "demo-magento@workspace:modules/create-storefront-x/template/magento/modules/demo-magento"
-  dependencies:
-    vite-plugin-pwa: ^0.12.4
-  languageName: unknown
-  linkType: soft
-
-"demo-shopware@workspace:modules/create-storefront-x/template/shopware/modules/demo-shopware":
-  version: 0.0.0-use.local
-  resolution: "demo-shopware@workspace:modules/create-storefront-x/template/shopware/modules/demo-shopware"
-  dependencies:
-    vite-plugin-pwa: ^0.12.4
-  languageName: unknown
-  linkType: soft
-
 "depd@npm:2.0.0":
   version: 2.0.0
   resolution: "depd@npm:2.0.0"
