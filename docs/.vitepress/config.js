@@ -36,7 +36,10 @@ export default defineConfig({
       },
       {
         text: 'Integrations',
-        items: [{ text: 'Shopware', link: '/integrations/shopware' }],
+        items: [
+          { text: 'Magento', link: '/integrations/magento' },
+          { text: 'Shopware', link: '/integrations/shopware' },
+        ],
       },
       {
         text: 'Modules',
@@ -67,6 +70,7 @@ export default defineConfig({
           { text: 'FAQ', link: '/in-depth/faq' },
           { text: 'Bootstrap', link: '/in-depth/bootstrap' },
           { text: 'PWA', link: '/in-depth/pwa' },
+          { text: 'Dotenv', link: '/in-depth/dotenv' },
           { text: 'GraphQL', link: '/in-depth/graphql' },
           { text: 'Functionalities', link: '/in-depth/functionalities' },
         ],

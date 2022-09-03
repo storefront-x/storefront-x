@@ -28,6 +28,15 @@ import APP_NAME from '#ioc/config/APP_NAME'
 </script>
 ```
 
+### Different configs for different environments
+
+There are two approaches how to handle configuration files for different environments.
+
+1. Create different modules for different environments with configs for said environment.
+2. Use `.env` file and load config values from there.
+
+The first approach si generally recommended because Storefront X relies heavily on modules and overriding between them, so we just leverage that functionality. Sometimes, env variables need to be used (you don't want to commit keys to the repository). Read more [here](/in-depth/dotenv).
+
 ## `public/` concept
 
 Serves static files. Their path determines URL under which they are accessible. So file `some-module/public/icon.svg` will be accessible under the `https://my.site/icon.svg` URL and file `some-module/public/nested/dir/pic.png` will be accessible under the `https://my.site/nested/dir/pic.png` URL.

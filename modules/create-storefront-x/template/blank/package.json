@@ -1,0 +1,25 @@
+{
+  "name": "storefront-x-app",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "description": "My Storefront X Application",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "./modules/*"
+  ],
+  "scripts": {
+    "dev": "sfx dev",
+    "build": "sfx build",
+    "serve": "sfx serve"
+  },
+  "dependencies": {
+    "@storefront-x/core": "^0.2.0"
+  },
+  "devDependencies": {
+    "@storefront-x/base": "^0.2.0",
+    "@storefront-x/vue": "^0.2.0",
+    "@storefront-x/vue-router": "^0.2.0",
+    "@storefront-x/vue-head": "^0.2.0"
+  }
+}

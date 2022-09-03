@@ -5760,6 +5760,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"demo-blank@workspace:modules/create-storefront-x/template/blank/modules/demo-blank":
+  version: 0.0.0-use.local
+  resolution: "demo-blank@workspace:modules/create-storefront-x/template/blank/modules/demo-blank"
+  languageName: unknown
+  linkType: soft
+
 "demo-magento@workspace:modules/create-storefront-x/template/magento/modules/demo-magento":
   version: 0.0.0-use.local
   resolution: "demo-magento@workspace:modules/create-storefront-x/template/magento/modules/demo-magento"
