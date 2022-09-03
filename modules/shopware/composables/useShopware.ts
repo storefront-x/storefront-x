@@ -6,14 +6,14 @@ import useCookies from '#ioc/composables/useCookies'
 import SHOPWARE_TOKEN_COOKIE_NAME from '#ioc/config/SHOPWARE_TOKEN_COOKIE_NAME'
 import SHOPWARE_API_PREFIX from '#ioc/config/SHOPWARE_API_PREFIX'
 import ShopwareError from '../ShopwareError'
-import useCurrentStoreProperties from '#ioc/composables/useCurrentStoreProperties'
+import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 
 const URL = IS_SERVER ? SHOPWARE_URL : '/_shopware'
 
 export default () => {
   const cookies = useCookies()
   const shopwareStore = useShopwareStore()
-  const currentStoreProperties = useCurrentStoreProperties()
+  const currentLocale = useCurrentLocale()
 
   const _fetch = async (url: string, init?: RequestInit) => {
     const response = await fetch(URL + SHOPWARE_API_PREFIX + url, {
@@ -22,7 +22,7 @@ export default () => {
         'accept': 'application/json',
         'content-type': 'application/json',
         'sw-include-seo-urls': 'true',
-        'sw-language-id': currentStoreProperties.currentStore?.languageId ?? '',
+        'sw-language-id': currentLocale.value.languageId,
         ...(IS_SERVER && { 'sw-access-key': SHOPWARE_ACCESS_KEY }),
         ...(shopwareStore.token && { 'sw-context-token': shopwareStore.token }),
         ...init?.headers,

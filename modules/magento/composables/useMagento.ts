@@ -6,7 +6,7 @@ import objectToQuery from '#ioc/utils/url/objectToQuery'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import useStoreStore from '#ioc/stores/useStoreStore'
-import useCurrentStoreProperties from '#ioc/composables/useCurrentStoreProperties'
+import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 
 interface Options {
   errorHandler?: (err: any) => Promise<void>
@@ -17,10 +17,10 @@ const URL = IS_SERVER ? MAGENTO_URL : '/_magento'
 export default () => {
   const cookie = useCookies()
   const storeStore = useStoreStore()
-  const currentStoreProperties = useCurrentStoreProperties()
+  const currentLocale = useCurrentLocale()
 
   const headers = () => {
-    const store = currentStoreProperties.currentStore?.magentoStore
+    const store = currentLocale.value.magentoStore
     const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
     const selectedCurrencyCode = storeStore.currency?.code ?? ''
 

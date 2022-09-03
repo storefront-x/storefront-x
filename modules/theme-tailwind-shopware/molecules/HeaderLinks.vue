@@ -12,18 +12,13 @@
           class="text-gray-600 hover:text-gray-800"
           data-cy="currency-switcher"
         >
-          <DropdownItem
-            v-for="currency in currencies"
-            :key="currency.code"
-            href="javascript:void(0)"
-            @click="setCurrency(currency)"
-          >
+          <DropdownItem v-for="currency in currencies" :key="currency.code" @click="setCurrency(currency)">
             {{ currency.code }}
           </DropdownItem>
         </Dropdown>
       </SfxCurrencySwitcher>
 
-      <SfxStoreSwitcher v-slot="{ stores, currentStore }">
+      <SfxStoreSwitcher v-slot="{ stores, currentStore, switchToStore }">
         <Dropdown
           link-like
           :title="currentStore?.fullName"
@@ -31,7 +26,7 @@
           class="text-gray-600 hover:text-gray-800"
           data-cy="store-switcher"
         >
-          <DropdownItem v-for="store in stores" :key="store.name" href="javascript:void(0)" @click="setLanguage(store)">
+          <DropdownItem v-for="store in stores" :key="store.name" @click="switchToStore(store)">
             {{ store.fullName }}
           </DropdownItem>
         </Dropdown>
@@ -48,7 +43,4 @@ import Link from '#ioc/atoms/Link'
 import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
 import SfxStoreSwitcher from '#ioc/components/SfxStoreSwitcher'
-import useSetLanguage from '#ioc/services/useSetLanguage'
-
-const setLanguage = useSetLanguage()
 </script>
