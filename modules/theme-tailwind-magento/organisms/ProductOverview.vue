@@ -1,7 +1,11 @@
 <template>
-  <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
+  <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start relative">
     <div class="flex flex-col">
       <ProductGallery />
+    </div>
+
+    <div class="absolute top-2 left-0 pointer-events-none gap-2 p-3 space-y-1">
+      <ProductLabel v-for="(label, i) in product.labels" :key="i" :label="label" />
     </div>
 
     <div class="mt-10 sm:px-0 sm:mt-16 lg:mt-0">
@@ -68,6 +72,7 @@ import injectProduct from '#ioc/composables/injectProduct'
 import { computed, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
+import ProductLabel from '#ioc/atoms/ProductLabel'
 
 const { t } = useI18n()
 const product = injectProduct()
