@@ -9,7 +9,7 @@ export default (product: Ref<ReturnType<typeof ToCategory>>) => {
 
   const name = computed(() => product.value.name)
 
-  const urlPath = computed(() => product.value.urlPath + catalogMagentoStore.categoryUrlSuffix)
+  const urlPath = computed(() => '/' + product.value.urlKey + catalogMagentoStore.categoryUrlSuffix)
 
   const children = computed(() => product.value.children ?? [])
 
