@@ -1,1 +1,3 @@
-export default 'https://be-sfx.demo.magexo.cloud'
+export default null
+
+throw new Error('Override MAGENTO_URL config')
