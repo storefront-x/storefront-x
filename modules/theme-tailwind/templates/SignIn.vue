@@ -29,7 +29,7 @@
 
         <p class="mt-4">
           {{ t('Forgot password?') }}
-          <Link :to="localePath('/reset-password')" color="primary">{{ t('Reset password') }}</Link>
+          <Link :to="localePath('reset-password')" color="primary">{{ t('Reset password') }}</Link>
         </p>
       </div>
     </div>
