@@ -12,7 +12,7 @@ export default () => {
     const response = await shopware.post(`/product/${productId}/cross-selling`)
 
     return {
-      products: response.length ? response[0].products.map(ToProduct) : [],
+      products: response.flatMap(({ products }: any) => products.map(ToProduct)),
     }
   }
 }

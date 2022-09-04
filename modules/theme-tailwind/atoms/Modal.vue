@@ -29,7 +29,8 @@
         >
           <div
             v-if="isOpen"
-            class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl sm:my-8 sm:align-middle w-full sm:w-96 h-full sm:p-6"
+            class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl sm:my-8 sm:align-middle h-full sm:p-6"
+            :class="classes"
           >
             <slot />
           </div>
@@ -40,11 +41,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, PropType, ref } from 'vue'
+
+const props = defineProps({
+  hasCloseBtn: {
+    type: Boolean,
+    default: false,
+  },
+  size: {
+    type: String as PropType<'sm' | 'md' | 'lg' | 'xl' | '2xl' | '4xl'>,
+    default: 'lg',
+  },
+})
 
 const emit = defineEmits(['close'])
 
 const isOpen = ref(true)
+
+const classes = computed(() => {
+  switch (props.size) {
+    case 'sm':
+      return 'max-w-sm'
+    case 'md':
+      return 'max-w-md'
+    case 'lg':
+      return 'max-w-lg'
+    case '2xl':
+      return 'max-w-2xl'
+    case '4xl':
+      return 'max-w-4xl'
+    default:
+      return 'max-w-lg'
+  }
+})
 
 const close = () => {
   isOpen.value = false
@@ -53,13 +82,6 @@ const close = () => {
 const afterLeave = () => {
   emit('close')
 }
-
-defineProps({
-  hasCloseBtn: {
-    type: Boolean,
-    default: false,
-  },
-})
 
 defineExpose({ close })
 </script>

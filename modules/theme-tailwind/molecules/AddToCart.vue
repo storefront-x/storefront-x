@@ -3,7 +3,7 @@
     color="primary"
     :disabled="loading"
     data-cy="add-to-cart"
-    class="w-full sm:w-auto h-16 sm:h-auto mt-4 sm:mt-0 sm:ml-3 text-bold"
+    class="relative w-full sm:w-auto sm:h-auto mt-4 sm:mt-0 sm:ml-3 text-bold"
     @click="onAddToCart"
   >
     <slot>
