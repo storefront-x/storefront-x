@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/demo-venia",
+  "version": "0.2.1",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "vite-plugin-pwa": "^0.12.4"
+  }
+}

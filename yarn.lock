@@ -3254,6 +3254,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/demo-venia@workspace:modules/demo-venia":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/demo-venia@workspace:modules/demo-venia"
+  dependencies:
+    vite-plugin-pwa: ^0.12.4
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento"

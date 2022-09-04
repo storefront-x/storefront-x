@@ -33,18 +33,6 @@
                   <template #default>
                     <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
                       <li class="text-sm">
-                        <Link :to="localePath('brands')" color="gray">
-                          {{ t('Brands') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="localePath('blog')" color="gray">
-                          {{ t('Blog') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
                         <Link :to="t('about-company')" color="gray">
                           {{ t('About us') }}
                         </Link>

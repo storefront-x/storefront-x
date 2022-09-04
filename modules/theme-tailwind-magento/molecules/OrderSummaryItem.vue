@@ -45,13 +45,8 @@
 
         <br />
 
-        <SfxMoney
-          v-if="cartItem.product.isOnSale"
-          v-slot="{ html }"
-          class="line-through text-red-600"
-          :money="cartItem.product.regularPrice"
-        >
-          <span>{{ t('{0} / qty', [html]) }}</span>
+        <SfxMoney v-if="cartItem.product.isOnSale" v-slot="{ html }" :money="cartItem.product.regularPrice">
+          <span class="line-through text-red-600">{{ t('{0} / qty', [html]) }}</span>
         </SfxMoney>
 
         <br v-if="cartItem.product.isOnSale" />

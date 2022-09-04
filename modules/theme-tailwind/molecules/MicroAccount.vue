@@ -1,18 +1,7 @@
 <template>
   <div v-if="!customer.isLoggedIn">
-    <Link
-      :to="localePath('account')"
-      class="flex items-center px-2 py-0.5 mr-3 text-gray-400 hover:text-gray-500"
-      data-cy="micro-account"
-    >
-      <span class="sr-only">{{ t('My account') }}</span>
-      <div class="rounded-lg border-2 p-2 border-none border-gray-100 lg:border-solid hover:bg-gray-100">
-        <OutlineUser class="text-primary-500" />
-      </div>
-    </Link>
-
     <div v-if="submenu" class="flex flex-col font-semibold text-gray-800" data-cy="micro-account">
-      <span>{{ t('Welcome') }}</span>
+      <span>{{ t('My account') }}</span>
       <span class="flex items-center whitespace-nowrap lg:justify-end gap-4">
         <Link class="text-primary-500" :to="localePath('sign-in')">{{ t('Sign in') }}</Link>
         <span class="w-px border h-5 border-l-1 border-gray-300 text-bottom" />
@@ -35,7 +24,6 @@
 
 <script setup lang="ts">
 import Link from '#ioc/atoms/Link'
-import OutlineUser from '#ioc/icons/OutlineUser'
 import useI18n from '#ioc/composables/useI18n'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useCustomer from '#ioc/composables/useCustomer'
@@ -62,7 +50,6 @@ const onLogout = async () => {
 cs-CZ:
   My account: Můj účet
   Logout: Odhlásit se
-  Welcome: Vítejte
   Welcome {0}: Vítejte, {0}
   Sign in: Přihlásit
   Sign up: Registrovat
