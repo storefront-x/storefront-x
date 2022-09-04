@@ -1,5 +1,5 @@
 <template>
-  <Drawer ref="drawer" class="mt-[66px]" :disable-title-slot="true">
+  <Drawer ref="drawer" class="mt-[66px]" :disable-title-slot="true" @close="$emit('close')">
     <ul class="list-none">
       <li class="border-gray-50">
         <Accordion :heading-class="['px-4', 'py-4', 'justify-between']">
@@ -155,7 +155,8 @@ export default defineComponent({
     SfxCurrencySwitcher,
     HamburgerMenuLink,
   },
-  emits: { close: null },
+
+  emits: ['close'],
 
   setup() {
     const { t } = useI18n()

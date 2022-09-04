@@ -1,5 +1,5 @@
 <template>
-  <Drawer from="right" :title="t('Filters')">
+  <Drawer from="right" :title="t('Filters')" @close="$emit('close')">
     <form class="mt-4">
       <div
         v-for="aggregation in filteredAggregations"
@@ -87,6 +87,8 @@ export default defineComponent({
       default: () => [],
     },
   },
+
+  emits: ['close'],
 
   setup() {
     const { t } = useI18n()

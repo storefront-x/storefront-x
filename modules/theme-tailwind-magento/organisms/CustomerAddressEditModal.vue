@@ -1,5 +1,5 @@
 <template>
-  <Modal>
+  <Modal @close="emit('close')">
     <Heading :level="3">{{ t(customerAddress ? 'Edit address' : 'New address') }}</Heading>
 
     <SfxForm :value="customerAddress" @submit="onSubmit">
@@ -85,7 +85,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update', 'create', 'delete'])
+const emit = defineEmits(['update', 'create', 'delete', 'close'])
 
 const { countryList: countries } = await getAvailableCountries()
 const selectedCountry = ref(props.customerAddress?.countryCode ?? '')

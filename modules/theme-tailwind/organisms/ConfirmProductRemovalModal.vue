@@ -1,5 +1,5 @@
 <template>
-  <Modal>
+  <Modal @close="emit('close')">
     <Heading class="mb-4" :level="1">{{ t('Do you really wish to remove product?') }}</Heading>
     <h4 class="text-sm">
       {{ name }}
@@ -28,7 +28,7 @@ defineProps({
   },
 })
 
-const emit = defineEmits(['keep-product', 'remove-product'])
+const emit = defineEmits(['keep-product', 'remove-product', 'close'])
 
 const { t } = useI18n()
 

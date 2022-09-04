@@ -1,5 +1,5 @@
 <template>
-  <Modal>
+  <Modal @close="emit('close')">
     <div>
       <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
         <svg
@@ -51,6 +51,8 @@ import useLocalePath from '#ioc/composables/useLocalePath'
 import CrossSellProduct from '#ioc/molecules/CrossSellProduct'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import injectProduct from '#ioc/composables/injectProduct'
+
+const emit = defineEmits(['close'])
 
 const { t } = useI18n()
 const localePath = useLocalePath()
