@@ -28,6 +28,7 @@ export default {
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',
+    '@storefront-x/braintree-magento',
     '@storefront-x/brands-magento',
     '@storefront-x/cart-magento',
     '@storefront-x/catalog-magento',
