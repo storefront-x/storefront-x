@@ -3130,6 +3130,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/catalog-magento-px@workspace:modules/catalog-magento-px":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/catalog-magento-px@workspace:modules/catalog-magento-px"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/catalog-magento@workspace:modules/catalog-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/catalog-magento@workspace:modules/catalog-magento"

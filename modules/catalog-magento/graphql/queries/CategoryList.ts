@@ -7,17 +7,19 @@ export default () =>
       id: field(),
       children: field({
         id: field(),
-        image: field(),
         name: field(),
         url_path: field(),
+        image: field(),
         children: field({
           id: field(),
           name: field(),
           url_path: field(),
+          image: field(),
           children: field({
             id: field(),
             name: field(),
             url_path: field(),
+            image: field(),
           }),
         }),
       }),
