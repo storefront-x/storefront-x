@@ -1,14 +1,21 @@
 <template>
   <Link
-    :to="to"
+    :to="category.urlPath"
     class="bg-white border border-gray-400 p-2 rounded-md transition ease-in-out delay-75 hover:no-underline"
   >
     <div class="flex flex-row my-1 items-center">
-      <SfxImage v-if="hasImage" class="mr-2" :src="thumbnail" class-img="h-6 w-6 rounded-full border-1" fit="contain" />
+      <SfxImage
+        v-if="hasImage"
+        class="mr-2"
+        :src="category.thumbnailUrl"
+        class-img="h-6 w-6 rounded-full border-1"
+        fit="contain"
+      />
       <div class="leading-5 sm truncate whitespace-nowrap overflow-hidden">
-        <slot class="text-xl font-semibold text-black" />
+        <span>{{ category.name }}</span>
       </div>
-      <span v-if="hasCount" class="text-gray-400 pl-1 ml-auto">({{ count }})</span>
+
+      <span v-if="hasCount" class="text-gray-400 pl-1 ml-auto">({{ props.category.productsTotalCount }})</span>
     </div>
   </Link>
 </template>
@@ -16,28 +23,24 @@
 <script setup lang="ts">
 import Link from '#ioc/atoms/Link'
 import SfxImage from '#ioc/components/SfxImage'
-import { computed } from 'vue'
+import useCategory from '#ioc/composables/useCategory'
+import ToCategory from '#ioc/mappers/ToCategory'
+import { computed, PropType, toRef } from 'vue'
 
 const props = defineProps({
-  thumbnail: {
-    type: String,
-    default: '',
-  },
-  to: {
-    type: String,
-    default: '#',
+  category: {
+    type: Object as PropType<ReturnType<typeof ToCategory>>,
     required: true,
-  },
-  count: {
-    type: Number,
-    default: null,
   },
 })
 
+const category = useCategory(toRef(props, 'category'))
+
 const hasImage = computed(() => {
-  return props.thumbnail !== null && props.thumbnail !== ''
+  return !!category.thumbnailUrl
 })
+
 const hasCount = computed(() => {
-  return props.count !== null && props.count !== 0
+  return props.category.productsTotalCount > 0
 })
 </script>

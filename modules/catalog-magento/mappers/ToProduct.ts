@@ -1,7 +1,8 @@
+import ToProduct from '#ioc/mappers/ToProduct'
 import ToMoney from '#ioc/mappers/ToMoney'
 import ToProductReview from '#ioc/mappers/ToProductReview'
 
-const ToProduct = (data: any) => ({
+export default (data: any) => ({
   __typename: data.__typename ?? '',
   id: (data.id ?? 0) as number,
   sku: (data.sku ?? '') as string,
@@ -23,10 +24,6 @@ const ToProduct = (data: any) => ({
   reviewCount: data.review_count ?? 0,
   reviews: data.reviews?.items.map(ToProductReview) ?? [],
   mediaGallery: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
-})
-
-export default (data: any) => ({
-  ...ToProduct(data),
-  crossSellProducts: ((data.related_products ?? []) as any[]).map(ToProduct),
-  upsellProducts: ((data.upsell_products ?? []) as any[]).map(ToProduct),
+  crossSellProducts: (data.related_products ?? []).map(ToProduct),
+  upsellProducts: (data.upsell_products ?? []).map(ToProduct),
 })
