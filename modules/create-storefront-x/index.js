@@ -49,6 +49,7 @@ const main = async () => {
   console.log('')
 
   switch (responses.integration) {
+    case 'venia':
     case 'magento':
       console.log('To learn more, visit the documentation: https://docs.storefrontx.io/integrations/magento.html')
       console.log('')
@@ -100,8 +101,9 @@ async function getResponses() {
           message: 'Pick a demo application',
           choices: [
             { title: 'Blank application', value: 'blank' },
-            { title: 'Magento integration', value: 'magento' },
             { title: 'Shopware integration', value: 'shopware' },
+            { title: 'Magento integration with additional modules (blog, brands, ...)', value: 'magento' },
+            { title: 'Magento Venia integration (experimental)', value: 'venia' },
           ],
         },
       ],

@@ -25,6 +25,7 @@
     "@storefront-x/vue-pinia": "^0.2.0",
     "@storefront-x/base-commerce": "^0.2.0",
     "@storefront-x/atomic-design": "^0.2.0",
+    "@storefront-x/cypress": "^0.2.0",
     "@storefront-x/catalog": "^0.2.0",
     "@storefront-x/cart": "^0.2.0",
     "@storefront-x/customer": "^0.2.0",

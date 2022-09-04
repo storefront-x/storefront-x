@@ -253,7 +253,15 @@ export class Request extends Gql {
    * @returns {Object.<string, any>}
    */
   getVariables() {
-    return this._bindings
+    const variables = {}
+
+    for (const variable of Object.keys(this._variables)) {
+      const name = variable.replace(/^\$/, '')
+
+      variables[name] = this._bindings[name]
+    }
+
+    return variables
   }
 
   /**

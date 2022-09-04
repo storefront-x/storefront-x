@@ -5,17 +5,13 @@
       <CategoryButton
         v-for="(item, index) in category.children"
         :key="index"
-        :to="item.urlPath"
+        :category="item"
         class="text-black"
-        :count="item.productsTotalCount"
         :class="{
           'hidden md:block': index >= 4 && isMobileCategoryOpen === false,
           'block': index < 4 || isMobileCategoryOpen === true,
         }"
-        :thumbnail="item.thumbnailUrl"
-      >
-        {{ item.name }}
-      </CategoryButton>
+      />
     </div>
     <div v-if="category.children.length >= 4" class="my-5 md:hidden">
       <button
@@ -44,14 +40,15 @@ import CategoryButton from '#ioc/molecules/CategoryButton'
 import SolidArrowDownIcon from '#ioc/icons/SolidArrowDown'
 import SolidArrowUpIcon from '#ioc/icons/SolidArrowUp'
 import useI18n from '#ioc/composables/useI18n'
-import { ref } from 'vue'
+import { PropType, ref } from 'vue'
+import ToCategory from '#ioc/mappers/ToCategory'
 
 const { t } = useI18n()
 
 defineProps({
   category: {
-    type: Object,
-    default: () => ({}),
+    type: Object as PropType<ReturnType<typeof ToCategory>>,
+    required: true,
   },
 })
 

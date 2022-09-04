@@ -32,6 +32,7 @@ export default {
     '@storefront-x/brands-magento',
     '@storefront-x/cart-magento',
     '@storefront-x/catalog-magento',
+    '@storefront-x/catalog-magento-px',
     '@storefront-x/checkout-magento',
     '@storefront-x/cms-magento',
     '@storefront-x/customer-magento',

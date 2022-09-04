@@ -39,6 +39,4 @@ export default (name = 'product') =>
       label: field(),
       disabled: field(),
     }),
-    rating_summary: field(),
-    review_count: field(),
   })
