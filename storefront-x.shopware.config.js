@@ -10,6 +10,7 @@ export default {
 
     '@storefront-x/base-commerce',
     '@storefront-x/atomic-design',
+    '@storefront-x/cypress',
 
     '@storefront-x/catalog',
     '@storefront-x/cart',

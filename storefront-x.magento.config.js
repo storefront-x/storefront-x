@@ -11,6 +11,7 @@ export default {
     '@storefront-x/base-commerce',
     '@storefront-x/atomic-design',
     '@storefront-x/graphql',
+    '@storefront-x/cypress',
 
     '@storefront-x/blog',
     '@storefront-x/braintree',
