@@ -36,7 +36,22 @@ export default defineConfig({
       },
       {
         text: 'Integrations',
-        items: [{ text: 'Shopware', link: '/integrations/shopware' }],
+        items: [
+          { text: 'Magento', link: '/integrations/magento' },
+          { text: 'Shopware', link: '/integrations/shopware' },
+        ],
+      },
+      {
+        text: 'General',
+        items: [
+          { text: 'CLI', link: '/general/cli' },
+          { text: 'Bootstrap', link: '/general/bootstrap' },
+          { text: 'The .sfx directory', link: '/general/sfx' },
+          { text: 'PWA', link: '/general/pwa' },
+          { text: 'Dotenv', link: '/general/dotenv' },
+          { text: 'Functionalities', link: '/general/functionalities' },
+          { text: 'FAQ', link: '/general/faq' },
+        ],
       },
       {
         text: 'Modules',
@@ -48,8 +63,10 @@ export default defineConfig({
           { text: 'Vue I18n', link: '/modules/vue-i18n' },
           { text: 'Vue Pinia', link: '/modules/vue-pinia' },
           { text: 'Base Commerce', link: '/modules/base-commerce' },
+          { text: 'Magento', link: '/modules/magento' },
           { text: 'Shopware', link: '/modules/shopware' },
           { text: 'Atomic Design', link: '/modules/atomic-design' },
+          { text: 'GraphQL', link: '/modules/graphql' },
           { text: 'Multicurrency', link: '/modules/multicurrency' },
           { text: 'Catalog', link: '/modules/catalog' },
           { text: 'Cart', link: '/modules/cart' },
@@ -59,16 +76,6 @@ export default defineConfig({
           { text: 'CMS Shopware', link: '/modules/cms-shopware' },
           { text: 'Wishlist', link: '/modules/wishlist' },
           { text: 'Theme Tailwind', link: '/modules/theme-tailwind' },
-        ],
-      },
-      {
-        text: 'In-depth',
-        items: [
-          { text: 'FAQ', link: '/in-depth/faq' },
-          { text: 'Bootstrap', link: '/in-depth/bootstrap' },
-          { text: 'PWA', link: '/in-depth/pwa' },
-          { text: 'GraphQL', link: '/in-depth/graphql' },
-          { text: 'Functionalities', link: '/in-depth/functionalities' },
         ],
       },
     ],

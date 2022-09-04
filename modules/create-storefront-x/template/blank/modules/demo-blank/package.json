@@ -1,0 +1,7 @@
+{
+  "name": "demo-blank",
+  "version": "0.2.2",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module"
+}
