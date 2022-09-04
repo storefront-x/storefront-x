@@ -12,6 +12,7 @@ module.exports = exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
     'plugin:prettier/recommended',
+    'plugin:cypress/recommended',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
