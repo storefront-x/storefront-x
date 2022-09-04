@@ -50,6 +50,7 @@ export default defineConfig({
           { text: 'PWA', link: '/general/pwa' },
           { text: 'Dotenv', link: '/general/dotenv' },
           { text: 'Functionalities', link: '/general/functionalities' },
+          { text: 'Best practices', link: '/general/best-practices' },
           { text: 'FAQ', link: '/general/faq' },
         ],
       },

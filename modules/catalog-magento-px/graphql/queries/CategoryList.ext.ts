@@ -1,8 +1,13 @@
 import field from '#ioc/graphql/field'
 import addFields from '#ioc/utils/magento/addFields'
 
-export default <T extends (...args: any[]) => any>(CategoryList: T) =>
-  (...args: any[]): ReturnType<T> => {
+interface Extension<Ext = Record<string, never>> {
+  <T extends (...arg: any) => any>(useProduct: T): (...arg: any) => ReturnType<T> & Ext
+}
+
+const CategoryList: Extension =
+  (CategoryList) =>
+  (...args: any[]) => {
     const self = CategoryList(...args)
 
     addFields(self, 'categoryList.children', {
@@ -19,3 +24,5 @@ export default <T extends (...args: any[]) => any>(CategoryList: T) =>
 
     return self
   }
+
+export default CategoryList
