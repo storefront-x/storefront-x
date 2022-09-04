@@ -61,6 +61,30 @@ import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
 </script>
 ```
 
+### Navigation guard
+
+Pages can have correspond file representing the [before enter navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#per-route-guard).
+
+```
+modules/
+  my-modules/
+    pages/
+      account.vue
+      account.beforeEnter.ts
+```
+
+```typescript
+// pages/account.beforeEnter.ts
+
+import { NavigationGuard } from 'vue-router'
+
+const navigationGuard: NavigationGuard = (to, from, next) => {
+  // TODO: Implement logic
+}
+
+export default navigationGuard
+```
+
 ## `vueRouter/plugins/` concept
 
 :::warning
