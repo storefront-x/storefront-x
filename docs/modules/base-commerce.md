@@ -14,6 +14,10 @@ This module contains multiple concepts establishing general data-flow in Storefr
 
 **Services** wrap repositories with business and application logic. For example when logging-in the user, log-in user only does the network request retrieving customer token. Log-in service will use this token, store it in cookies and reload the application.
 
+:::tip
+Use server routes as proxies to decrease number of DNS requests and improve caching.
+:::
+
 ## `formatters/money/` concept
 
 Money formatters are responsible for rendering money. Their file name matches the currency they are formatting (`EUR.ts`, `USD.ts`, `CZK.ts`) and they export function which accepts numerical value that needs to be formatted.

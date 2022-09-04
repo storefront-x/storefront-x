@@ -53,6 +53,31 @@ const localePath = useLocalePath()
 </script>
 ```
 
+## Static vs dynamic pages
+
+When targeting the static pages (components found in the `pages/` directory), as a parameter, you can use either the route object like in the example above or string containing the name of the route like this.
+
+```typescript
+import useLocalePath from '#ioc/composables/useLocalePath'
+
+const localePath = useLocalePath()
+
+localePath('index') // pages/index.vue
+localePath('blog') // pages/blog.vue
+localePath('account/addresses') // account/addresses.vue
+```
+
+But if the pages is dynamic (resolved from the backend and handled by the `$404.vue` fallback page), use leading slash to indicate that it is an dynamic page.
+
+```typescript
+import useLocalePath from '#ioc/composables/useLocalePath'
+
+const localePath = useLocalePath()
+
+localePath('/about-us')
+localePath('/blog/welcome.html')
+```
+
 ## `useSwitchLocalePath` composable
 
 Used for switching between the locales while staying on the current page.

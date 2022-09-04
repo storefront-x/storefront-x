@@ -1,4 +1,5 @@
 import ToContactInformation from '#ioc/mappers/ToContactInformation'
+import useSetShippingAddressOnCartRepository from '#ioc/repositories/useSetShippingAddressOnCartRepository'
 import useSetBillingAddressOnCartRepository from '#ioc/repositories/useSetBillingAddressOnCartRepository'
 import useSetGuestEmailOnCartRepository from '#ioc/repositories/useSetGuestEmailOnCartRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
@@ -8,6 +9,7 @@ export default () => {
   const checkoutStore = useCheckoutStore()
   const getOrCreateCartId = useGetOrCreateCartId()
   const setGuestEmailOnCartRepository = useSetGuestEmailOnCartRepository()
+  const setShippingAddressOnCartRepository = useSetShippingAddressOnCartRepository()
   const setBillingAddressOnCartRepository = useSetBillingAddressOnCartRepository()
 
   return async (contactInformation: ReturnType<typeof ToContactInformation>) => {
@@ -15,9 +17,24 @@ export default () => {
 
     await setGuestEmailOnCartRepository(id, contactInformation.email)
 
-    const { checkout } = await setBillingAddressOnCartRepository(
-      id,
-      {
+    {
+      const { checkout } = await setShippingAddressOnCartRepository(id, {
+        address: {
+          telephone: contactInformation.telephone,
+          firstname: contactInformation.firstName,
+          lastname: contactInformation.lastName,
+          street: contactInformation.street,
+          city: contactInformation.city,
+          country_code: contactInformation.countryCode,
+          postcode: contactInformation.postcode,
+        },
+      })
+
+      checkoutStore.$patch(checkout)
+    }
+
+    {
+      const { checkout } = await setBillingAddressOnCartRepository(id, {
         telephone: contactInformation.telephone,
         firstname: contactInformation.firstName,
         lastname: contactInformation.lastName,
@@ -25,12 +42,9 @@ export default () => {
         city: contactInformation.city,
         country_code: contactInformation.countryCode,
         postcode: contactInformation.postcode,
-      },
-      {
-        sameAsShipping: true,
-      },
-    )
+      })
 
-    checkoutStore.$patch(checkout)
+      checkoutStore.$patch(checkout)
+    }
   }
 }

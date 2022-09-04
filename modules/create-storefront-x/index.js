@@ -28,8 +28,6 @@ const main = async () => {
 
   await fs.copy(src, dst)
 
-  await fs.writeFile(path.join(dst, '.npmrc'), `//registry.npmjs.org/:_authToken=${responses.npmToken}`)
-
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
 
@@ -49,6 +47,24 @@ const main = async () => {
       break
   }
   console.log('')
+
+  switch (responses.integration) {
+    case 'venia':
+    case 'magento':
+      console.log('To learn more, visit the documentation: https://docs.storefrontx.io/integrations/magento.html')
+      console.log('')
+      break
+
+    case 'shopware':
+      console.log('To learn more, visit the documentation: https://docs.storefrontx.io/integrations/shopware.html')
+      console.log('')
+      break
+
+    case 'blank':
+      console.log('To learn more, visit the documentation: https://docs.storefrontx.io')
+      console.log('')
+      break
+  }
 }
 
 async function getResponses() {
@@ -82,16 +98,13 @@ async function getResponses() {
         {
           type: 'select',
           name: 'integration',
-          message: 'Pick a backend integration',
+          message: 'Pick a demo application',
           choices: [
-            { title: 'Magento', value: 'magento' },
-            { title: 'Shopware', value: 'shopware' },
+            { title: 'Blank application', value: 'blank' },
+            { title: 'Shopware integration', value: 'shopware' },
+            { title: 'Magento integration with additional modules (blog, brands, ...)', value: 'magento' },
+            { title: 'Magento Venia integration (experimental)', value: 'venia' },
           ],
-        },
-        {
-          type: 'text',
-          name: 'npmToken',
-          message: 'NPM token',
         },
       ],
       {

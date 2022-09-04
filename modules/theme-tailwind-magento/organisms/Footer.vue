@@ -39,7 +39,7 @@
                       </li>
 
                       <li class="text-sm">
-                        <Link :to="localePath('/')" color="gray">
+                        <Link :to="localePath('blog')" color="gray">
                           {{ t('Blog') }}
                         </Link>
                       </li>

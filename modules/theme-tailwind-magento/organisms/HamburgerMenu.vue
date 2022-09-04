@@ -20,9 +20,9 @@
       </li>
       <li v-if="!isLoggedIn" class="border-t-2 py-4 border-gray-50 px-4">
         <div class="flow-root">
-          <SfxLink :to="localePath('sign-in')" class="no-underline text-inherit -m-2 p-2 block">
+          <RouterLink :to="localePath('sign-in')" class="no-underline text-inherit -m-2 p-2 block">
             {{ t('Sign in') }}
-          </SfxLink>
+          </RouterLink>
         </div>
       </li>
       <li>
@@ -72,7 +72,7 @@
       </li>
     </ul>
 
-    <SfxStoreSwitcher v-slot="{ stores, getUrlFor, currentStore }">
+    <SfxStoreSwitcher v-slot="{ stores, currentStore, switchToStore }">
       <div class="flex items-center px-4 py-4 my-3 border-y-2 border-gray-50">
         <Dropdown data-cy="store-switcher-mobile" variant="link-like">
           <template #title>
@@ -81,7 +81,7 @@
             </div>
             {{ currentStore?.fullName }}
           </template>
-          <DropdownItem v-for="store in stores" :key="store.name" :href="String(getUrlFor(store))">
+          <DropdownItem v-for="store in stores" :key="store.name" @click="switchToStore(store)">
             {{ store.fullName }}
           </DropdownItem>
         </Dropdown>
@@ -155,7 +155,8 @@ export default defineComponent({
     SfxCurrencySwitcher,
     HamburgerMenuLink,
   },
-  emits: { close: null },
+
+  emits: ['close'],
 
   setup() {
     const { t } = useI18n()

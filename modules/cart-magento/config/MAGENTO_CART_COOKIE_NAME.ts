@@ -1,1 +1,1 @@
-export default ':cart:id'
+export default 'cart:id'

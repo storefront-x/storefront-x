@@ -10,8 +10,7 @@
   "type": "module",
   "packageManager": "yarn@3.2.1",
   "workspaces": [
-    "./modules/*",
-    "./modules/create-storefront-x/template/**/modules/*"
+    "./modules/*"
   ],
   "scripts": {
     "test:unit": "vitest run",
@@ -36,8 +35,10 @@
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "cross-env": "^7.0.3",
+    "cypress": "^9.7.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.4.0",
     "husky": "^8.0.1",

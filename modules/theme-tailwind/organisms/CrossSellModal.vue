@@ -1,5 +1,5 @@
 <template>
-  <Modal @close="$emit('close')">
+  <Modal @close="emit('close')">
     <div>
       <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
         <svg
@@ -20,24 +20,20 @@
       </div>
     </div>
     <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-      <Button class="w-full" @click="$emit('close')">
+      <Button class="w-full" @click="emit('close')">
         {{ t('Continue shopping') }}
       </Button>
       <Button :to="localePath('checkout')" color="primary" class="mt-3 sm:mt-0" data-cy="continue-to-checkout">
         {{ t('Continue to checkout') }}
       </Button>
     </div>
-    <div v-if="crossSellProducts?.products?.length" class="mt-2">
+    <div v-if="data?.products.length" class="mt-2">
       <h5 class="w-100 font-medium text-lg text-gray-900 text-center my-4">
         {{ t('Other people also like to buy') }}:
       </h5>
 
       <ul class="divide-y divide-gray-200 text-sm font-medium text-gray-900">
-        <ProductProvider
-          v-for="crossSellProduct in crossSellProducts?.products || []"
-          :key="crossSellProduct.sku"
-          :product="crossSellProduct"
-        >
+        <ProductProvider v-for="crossSell in data.products" :key="crossSell.sku" :product="crossSell">
           <CrossSellProduct />
         </ProductProvider>
       </ul>
@@ -45,8 +41,8 @@
   </Modal>
 </template>
 
-<script>
-import useGetCrossSelling from '#ioc/services/useGetCrossSellingProducts'
+<script setup lang="ts">
+import useGetCrossSellForProduct from '#ioc/services/useGetCrossSellForProduct'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import Modal from '#ioc/atoms/Modal'
 import useI18n from '#ioc/composables/useI18n'
@@ -54,33 +50,16 @@ import Button from '#ioc/atoms/Button'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import CrossSellProduct from '#ioc/molecules/CrossSellProduct'
 import useAsyncData from '#ioc/composables/useAsyncData'
-import { defineComponent, inject } from 'vue'
+import injectProduct from '#ioc/composables/injectProduct'
 
-export default defineComponent({
-  components: {
-    Modal,
-    Button,
-    ProductProvider,
-    CrossSellProduct,
-  },
+const emit = defineEmits(['close'])
 
-  emits: ['close'],
+const { t } = useI18n()
+const localePath = useLocalePath()
+const product = injectProduct()
+const getCrossSellForProduct = useGetCrossSellForProduct()
 
-  setup() {
-    const getCrossSelling = useGetCrossSelling()
-    const { t } = useI18n()
-    const product = inject('$Product')
-    const localePath = useLocalePath()
-    const { data: crossSellProducts } = useAsyncData('GetCrossSellProducts', () => getCrossSelling(product.id))
-
-    return {
-      getCrossSelling,
-      crossSellProducts,
-      t,
-      localePath,
-    }
-  },
-})
+const { data } = useAsyncData('GetCrossSellProducts', () => getCrossSellForProduct(product))
 </script>
 
 <i18n lang="yaml">
