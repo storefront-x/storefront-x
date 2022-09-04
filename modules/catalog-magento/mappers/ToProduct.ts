@@ -1,6 +1,5 @@
 import ToProduct from '#ioc/mappers/ToProduct'
 import ToMoney from '#ioc/mappers/ToMoney'
-import ToProductReview from '#ioc/mappers/ToProductReview'
 
 export default (data: any) => ({
   __typename: data.__typename ?? '',
@@ -20,9 +19,6 @@ export default (data: any) => ({
     description: data.description?.html ?? '',
   },
   images: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
-  ratingSummary: data.rating_summary ?? 0,
-  reviewCount: data.review_count ?? 0,
-  reviews: data.reviews?.items.map(ToProductReview) ?? [],
   mediaGallery: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
   crossSellProducts: (data.related_products ?? []).map(ToProduct),
   upsellProducts: (data.upsell_products ?? []).map(ToProduct),
