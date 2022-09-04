@@ -3130,6 +3130,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/catalog-magento-px@workspace:modules/catalog-magento-px":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/catalog-magento-px@workspace:modules/catalog-magento-px"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/catalog-magento@workspace:modules/catalog-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/catalog-magento@workspace:modules/catalog-magento"
@@ -3249,6 +3255,14 @@ __metadata:
 "@storefront-x/demo-shopware@workspace:modules/demo-shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/demo-shopware@workspace:modules/demo-shopware"
+  dependencies:
+    vite-plugin-pwa: ^0.12.4
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/demo-venia@workspace:modules/demo-venia":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/demo-venia@workspace:modules/demo-venia"
   dependencies:
     vite-plugin-pwa: ^0.12.4
   languageName: unknown

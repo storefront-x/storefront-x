@@ -5,7 +5,7 @@ export default {
   content: [
     './node_modules/@storefront-x/theme-tailwind/**/*.vue',
     './node_modules/@storefront-x/theme-tailwind-shopware/**/*.vue',
-    './node_modules/@storefront-x/demo/**/*.vue',
+    './modules/demo-shopware/**/*.vue',
   ],
   plugins: [forms],
   theme: {

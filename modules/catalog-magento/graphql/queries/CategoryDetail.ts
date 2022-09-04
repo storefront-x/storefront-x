@@ -29,7 +29,6 @@ export default () =>
             id: field(),
             name: field(),
             url_path: field(),
-            thumbnail: field(),
             products: field({
               total_count: field(),
             }),
