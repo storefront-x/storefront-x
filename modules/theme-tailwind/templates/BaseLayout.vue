@@ -1,7 +1,9 @@
 <template>
   <Header />
   <HamburgerMenu v-if="hamburgerStatus" @close="closeHamburger" />
-  <SfxLayoutOutlet class="mt-[75px]" />
+  <main class="mt-[75px] md:mt-0">
+    <SfxLayoutOutlet />
+  </main>
   <Footer />
   <Notifications />
 </template>

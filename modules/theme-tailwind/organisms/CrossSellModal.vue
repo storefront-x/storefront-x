@@ -27,7 +27,7 @@
         {{ t('Continue to checkout') }}
       </Button>
     </div>
-    <div v-if="data.products.length" class="mt-2">
+    <div v-if="data?.products.length" class="mt-2">
       <h5 class="w-100 font-medium text-lg text-gray-900 text-center my-4">
         {{ t('Other people also like to buy') }}:
       </h5>
@@ -59,7 +59,7 @@ const localePath = useLocalePath()
 const product = injectProduct()
 const getCrossSellForProduct = useGetCrossSellForProduct()
 
-const { data } = await useAsyncData('GetCrossSellProducts', () => getCrossSellForProduct(product))
+const { data } = useAsyncData('GetCrossSellProducts', () => getCrossSellForProduct(product))
 </script>
 
 <i18n lang="yaml">

@@ -7,7 +7,7 @@ export default () => {
   return async (
     id: string,
   ): Promise<{
-    product: any
+    product: ReturnType<typeof ToProduct>
   }> => {
     const [product, crossSelling] = await Promise.all([
       shopware.post(`/product/${id}`),
