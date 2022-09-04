@@ -8,7 +8,7 @@
       </Heading>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <Link v-for="brand in group" :key="brand.id" :to="brand.urlPath">
+        <Link v-for="brand in group" :key="brand.id" :to="localePath(brand.urlPath)">
           {{ brand.name }}
         </Link>
       </div>
@@ -25,7 +25,9 @@ import Heading from '#ioc/atoms/Heading'
 import Link from '#ioc/atoms/Link'
 import useBrand from '#ioc/composables/useBrand'
 import { computed } from 'vue'
+import useLocalePath from '#ioc/composables/useLocalePath'
 
+const localePath = useLocalePath()
 const { t } = useI18n()
 const getBrands = useGetBrands()
 

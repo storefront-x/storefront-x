@@ -1,0 +1,10 @@
+{
+  "name": "demo-venia",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "vite-plugin-pwa": "^0.12.4"
+  }
+}
