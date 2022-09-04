@@ -1,5 +1,5 @@
 <template>
-  <Modal @close="$emit('close')">
+  <Modal @close="emit('close')">
     <Heading :level="3">{{ t(customerAddress ? 'Edit address' : 'New address') }}</Heading>
 
     <SfxForm :value="customerAddress" @submit="onSubmit">
