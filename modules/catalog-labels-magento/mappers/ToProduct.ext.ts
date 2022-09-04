@@ -1,11 +1,11 @@
 import ToProductLabel from '#ioc/mappers/ToProductLabel'
 
-export default (self: any) => {
-  return (data: any) => {
-    const _self = self(data)
+export default <T extends (...args: any[]) => any>(toProduct: T) => {
+  return (data: any): ReturnType<T> => {
+    const _toProduct = toProduct(data)
 
-    _self.productLabels = data.product_labels?.items.map(ToProductLabel) ?? []
+    _toProduct.productLabels = data.product_labels?.items.map(ToProductLabel) ?? []
 
-    return _self
+    return _toProduct
   }
 }
