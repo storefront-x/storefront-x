@@ -21,7 +21,7 @@ export default defineComponent({
       default: 'light',
     },
     to: {
-      type: String,
+      type: null,
       default: null,
     },
     href: {
