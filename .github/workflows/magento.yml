@@ -1,0 +1,45 @@
+name: Magento
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Linter
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build --config storefront-x.magento.config.js --onlyBootstrap
+      - run: yarn lint:prod
+
+  unit:
+    runs-on: ubuntu-latest
+    name: Unit tests
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build --config storefront-x.magento.config.js --onlyBootstrap
+      - run: yarn test:unit
+
+  cypress:
+    runs-on: ubuntu-latest
+    name: Cypress tests
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build --config storefront-x.magento.config.js
+      - run: yarn serve &
+      - run: yarn cypress run

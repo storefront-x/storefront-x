@@ -6,6 +6,10 @@ export default class Cypress extends CopyingConcept {
     return 'cypress'
   }
 
+  get recursive() {
+    return true
+  }
+
   dst() {
     return path.join(this.core.rootDir, this.directory)
   }

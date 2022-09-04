@@ -1,4 +1,4 @@
-name: Tests
+name: Shopware
 
 on:
   push:
@@ -9,36 +9,37 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Lint
+    name: Linter
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
       - run: yarn install
-      - run: yarn build --onlyBootstrap
+      - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
       - run: yarn lint:prod
 
   unit:
     runs-on: ubuntu-latest
-    name: Unit
+    name: Unit tests
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
       - run: yarn install
-      - run: yarn build --onlyBootstrap
+      - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
       - run: yarn test:unit
 
-  playwright:
+  cypress:
     runs-on: ubuntu-latest
-    name: Playwright
+    name: Cypress tests
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
       - run: yarn install
-      - run: yarn playwright install chromium
-      - run: yarn test:playwright
+      - run: yarn build --config storefront-x.shopware.config.js
+      - run: yarn serve &
+      - run: yarn cypress run
