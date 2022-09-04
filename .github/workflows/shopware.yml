@@ -9,7 +9,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Linter
+    name: Lint
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -21,7 +21,7 @@ jobs:
 
   unit:
     runs-on: ubuntu-latest
-    name: Unit tests
+    name: Unit
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -33,7 +33,7 @@ jobs:
 
   cypress:
     runs-on: ubuntu-latest
-    name: Cypress tests
+    name: Cypress
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
