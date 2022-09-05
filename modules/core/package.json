@@ -32,5 +32,8 @@
     "@types/express": "^4.17.13",
     "@types/lodash-es": "^4.17.6",
     "@types/minimist": "^1.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

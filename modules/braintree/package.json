@@ -10,5 +10,8 @@
   "devDependencies": {
     "@types/braintree-web": "^3.75.20",
     "@types/braintree-web-drop-in": "^1.28.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
