@@ -19,6 +19,8 @@ export default defineStore('cartMagento', {
 
         cartStore.$patch(cart)
       } catch (e) {
+        console.error(e)
+
         cookies.remove(MAGENTO_CART_COOKIE_NAME, { path: '/' })
       }
     },

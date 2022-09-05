@@ -12,10 +12,6 @@ export default () => {
   }> => {
     const { data } = await magento.graphql(GetCart().with({ cartId: id }))
 
-    if (!data.cart) {
-      throw new Error('No cart with ID ' + id)
-    }
-
     return {
       cart: ToCart(data.cart),
     }
