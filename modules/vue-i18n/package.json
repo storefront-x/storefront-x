@@ -5,7 +5,7 @@
   "type": "module",
   "dependencies": {
     "@intlify/vite-plugin-vue-i18n": "^6.0.1",
-    "vite": "^3.0.9",
+    "vite": "^3.1.0",
     "vue": "^3.2.38",
     "vue-i18n": "^9.2.2"
   },
