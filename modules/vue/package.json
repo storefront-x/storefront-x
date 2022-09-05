@@ -9,5 +9,8 @@
     "universal-cookie": "^4.0.4",
     "vite": "^3.0.9",
     "vue": "^3.2.38"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

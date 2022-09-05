@@ -2,5 +2,8 @@
   "name": "@storefront-x/theme-tailwind-shopware",
   "version": "0.2.5",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
 }

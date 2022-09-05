@@ -5,5 +5,8 @@
   "type": "module",
   "dependencies": {
     "vite-plugin-pwa": "^0.12.4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

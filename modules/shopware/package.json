@@ -5,5 +5,8 @@
   "type": "module",
   "dependencies": {
     "http-proxy-middleware": "^2.0.6"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
