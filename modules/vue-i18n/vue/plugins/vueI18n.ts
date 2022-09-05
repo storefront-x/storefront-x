@@ -1,6 +1,5 @@
 import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
-import VUE_I18N_FALLBACK_LOCALE from '#ioc/config/VUE_I18N_FALLBACK_LOCALE'
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 import VUE_I18N_LEGACY from '#ioc/config/VUE_I18N_LEGACY'
 import VUE_I18N_FALLBACK_FORMAT from '#ioc/config/VUE_I18N_FALLBACK_FORMAT'
@@ -16,7 +15,7 @@ export default async (app: App, ctx: any) => {
 
   const i18n = createI18n({
     locale: locale,
-    fallbackLocale: VUE_I18N_FALLBACK_LOCALE,
+    fallbackLocale: VUE_I18N_LOCALES[0].locale,
     messages: messages,
     legacy: VUE_I18N_LEGACY,
     fallbackFormat: VUE_I18N_FALLBACK_FORMAT,
@@ -29,9 +28,10 @@ export default async (app: App, ctx: any) => {
   app.use(i18n)
 }
 
-function getLocale(ctx: any) {
+function getLocale(ctx: any): string {
   let path = ''
   let localeName = ''
+
   if (IS_SERVER) {
     path = ctx.req.url.split('/').slice(1)[0]
   } else if (IS_CLIENT) {
@@ -61,7 +61,8 @@ function getLocale(ctx: any) {
       return VUE_I18N_LOCALES[i].locale
     }
   }
-  return VUE_I18N_FALLBACK_LOCALE
+
+  return VUE_I18N_LOCALES[0].locale
 }
 
 function getMessages() {

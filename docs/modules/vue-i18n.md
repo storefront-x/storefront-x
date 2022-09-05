@@ -39,7 +39,7 @@ cs-CZ:
 
 Used to map route identifiers to concrete routes of the current locale. When the `@storefront-x/i18n` module is enabled, each route now contains locale identifier in it's name so the old route names no longer work.
 
-## Example
+### Example
 
 ```vue
 <template>
@@ -82,7 +82,7 @@ localePath('/blog/welcome.html')
 
 Used for switching between the locales while staying on the current page.
 
-## Example
+### Example
 
 ```vue
 <template>
@@ -108,7 +108,7 @@ Contains array of locales. Each locale has to contain these fields:
 - `locale` Language. Used in `<i18n />` blocks.
 - `prefix` URL prefix that is added to every page.
 
-## Example
+### Example
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
@@ -126,3 +126,41 @@ export default [
   },
 ]
 ```
+
+## `VUE_I18N_ROUTE_PATHS` config
+
+With this config, you can paths of pages.
+
+Keys of the exported object correspond with original page URLs you want to remap to different URLs. Keys in those object correspond with locales `name` field in the `VUE_I18N_LOCALES` and values with the new URL.
+
+### Example
+
+```ts
+// config/VUE_I18N_LOCALES.ts
+
+export default [
+  {
+    name: 'en',
+    locale: 'en-US',
+    prefix: '/',
+  },
+  {
+    name: 'cz',
+    locale: 'cs-CZ',
+    prefix: '/cz',
+  },
+]
+```
+
+```ts
+// config/VUE_I18N_ROUTE_PATHS.ts
+
+export default {
+  '/cart': {
+    en: '/cart',
+    cz: '/kosik',
+  },
+}
+```
+
+With this setup, the `pages/cart.vue` component will be available on the `/cart` URL in english, or on the `/cz/kosik` URL in czech.
