@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/demo-shopware",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "license": "MIT",
   "type": "module",
   "dependencies": {
