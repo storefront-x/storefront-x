@@ -16,7 +16,8 @@ import ToCategory from '#ioc/mappers/ToCategory'
 import ToProduct from '#ioc/mappers/ToProduct'
 import ProductListing from '#ioc/organisms/ProductListing'
 import useHead from '#ioc/composables/useHead'
-import { PropType } from 'vue'
+import { computed, PropType } from 'vue'
+import useCategory from '#ioc/composables/useCategory'
 
 const props = defineProps({
   category: {
@@ -40,4 +41,6 @@ const props = defineProps({
 useHead({
   title: props.category.name,
 })
+
+const category = useCategory(computed(() => props.category))
 </script>

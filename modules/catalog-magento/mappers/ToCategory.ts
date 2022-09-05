@@ -13,5 +13,5 @@ export default (data: any) => ({
 
 const toBreadcrumbs = (data: any) => ({
   title: data.category_name ?? '',
-  link: data.category_url_path ?? '',
+  link: '/' + data.category_url_path ?? '',
 })

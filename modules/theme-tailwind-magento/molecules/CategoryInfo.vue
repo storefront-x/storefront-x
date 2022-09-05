@@ -41,13 +41,13 @@ import SolidArrowDownIcon from '#ioc/icons/SolidArrowDown'
 import SolidArrowUpIcon from '#ioc/icons/SolidArrowUp'
 import useI18n from '#ioc/composables/useI18n'
 import { PropType, ref } from 'vue'
-import ToCategory from '#ioc/mappers/ToCategory'
+import useCategory from '#ioc/composables/useCategory'
 
 const { t } = useI18n()
 
 defineProps({
   category: {
-    type: Object as PropType<ReturnType<typeof ToCategory>>,
+    type: Object as PropType<ReturnType<typeof useCategory>>,
     required: true,
   },
 })
