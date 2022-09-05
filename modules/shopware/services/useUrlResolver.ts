@@ -1,6 +1,7 @@
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useRoute from '#ioc/composables/useRoute'
 import useGetSeoUrlRepository from '#ioc/repositories/useGetSeoUrlRepository'
+import ensureArray from '#ioc/utils/array/ensureArray'
 import dynamicPages from '~/.sfx/shopware/dynamicPages'
 
 export default () => {
@@ -8,7 +9,8 @@ export default () => {
   const getSeoUrlRepository = useGetSeoUrlRepository()
 
   return async () => {
-    const routePath = route.params?.pathMatch ? (route.params?.pathMatch as string[]).join('/') : 'home'
+    const path = ensureArray(route.params?.pathMatch)
+    const routePath = path.length ? path.join('/') : 'home'
 
     const { data } = await useAsyncData('urlResolver', () => getSeoUrlRepository(routePath))
 
