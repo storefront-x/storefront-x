@@ -1,8 +1,8 @@
 <template>
   <div class="relative bg-center" :style="shopwareCmsBlock.styles">
-    <SfxCarousel :slides="shopwareCmsBlockImageSlider.slides" :interval="6000" :loop="true">
+    <SfxCarousel :slides="shopwareCmsImageSliderBlock.slides" :interval="6000" :loop="true">
       <template #default="{ slide, index }">
-        <ImageSliderItem :slider-item="slide" :index="index" :height="shopwareCmsBlockImageSlider.height" />
+        <ImageSliderItem :slider-item="slide" :index="index" :height="shopwareCmsImageSliderBlock.height" />
       </template>
 
       <template #pagination="{ pageIds, currentPage, showPage }">
@@ -25,7 +25,7 @@
 import useShopwareCmsBlock from '#ioc/composables/useShopwareCmsBlock'
 import SfxCarousel from '#ioc/components/SfxCarousel'
 import ImageSliderItem from './image-slider-item.vue'
-import useShopwareCmsImageSlider from '#ioc/composables/useShopwareCmsImageSlider'
+import useShopwareCmsImageSliderBlock from '#ioc/composables/useShopwareCmsImageSliderBlock'
 
 const props = defineProps({
   data: {
@@ -35,5 +35,5 @@ const props = defineProps({
 })
 
 const shopwareCmsBlock = useShopwareCmsBlock(props)
-const shopwareCmsBlockImageSlider = useShopwareCmsImageSlider(props)
+const shopwareCmsImageSliderBlock = useShopwareCmsImageSliderBlock(props)
 </script>
