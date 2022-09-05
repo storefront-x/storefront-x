@@ -8,6 +8,7 @@
 import useGetProductsByIds from '#ioc/services/useGetProductsByIds'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import ProductCarousel from '#ioc/organisms/ProductCarousel'
+import useShopwareCmsBlockProductSlider from '#ioc/composables/useShopwareCmsBlockProductSlider'
 
 const props = defineProps({
   data: {
@@ -17,10 +18,11 @@ const props = defineProps({
 })
 
 const getProductsByIds = useGetProductsByIds()
-const ids = props.data.slots[0].data.products.map((item: any) => item.id)
+const shopwareCmsBlockProductSlider = useShopwareCmsBlockProductSlider(props)
+
 const {
   data: {
     value: { products },
   },
-} = await useAsyncData('carouselProduct', () => getProductsByIds(ids))
+} = await useAsyncData('carouselProduct', () => getProductsByIds(shopwareCmsBlockProductSlider.ids))
 </script>

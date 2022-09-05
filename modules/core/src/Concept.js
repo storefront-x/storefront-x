@@ -76,7 +76,7 @@ export default class Concept {
       }),
     )
 
-    return files.flat().map((file) => file.replace(directory, '').replace(/^\//, '').replace('\\', ''))
+    return files.flat().map((file) => file.replace(directory, '').replace(/\\/g, '/').replace(/^\//, ''))
   }
 
   /**
