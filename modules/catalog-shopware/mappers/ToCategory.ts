@@ -1,4 +1,5 @@
 import ToBreadcrumb from '#ioc/mappers/ToBreadcrumb'
+import ToCategory from '#ioc/mappers/ToCategory'
 
 export default (data: any) => ({
   id: data.id as string,
@@ -7,7 +8,7 @@ export default (data: any) => ({
   description: data.translated.description as string | undefined,
   thumbnailUrl: data.media?.url as string | undefined,
   breadcrumbs: getBreadcrumbs(data),
-  children: [],
+  children: (data.children ?? []).map(ToCategory),
 })
 
 const getBreadcrumbs = (data: any) => {
@@ -20,7 +21,7 @@ const getBreadcrumbs = (data: any) => {
   for (const [i] of path.entries()) {
     breadcrumbs.push({
       title: breadcrumb[i],
-      link: '/' + seoPath.slice(i, i + 1).join('/'),
+      link: '/' + seoPath.slice(0, i + 1).join('/'),
     })
   }
 

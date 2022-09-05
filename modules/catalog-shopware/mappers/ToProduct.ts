@@ -33,12 +33,12 @@ const getBreadcrumbs = (data: any) => {
   const breadcrumbs: ReturnType<typeof ToBreadcrumb>[] = []
 
   const breadcrumb = data?.seoCategory?.breadcrumb.slice(2, data?.seoCategory?.breadcrumb.length) ?? []
-  const paths = data?.seoCategory?.seoUrls[0].seoPathInfo.split('/') ?? []
+  const seoPath = data?.seoCategory?.seoUrls[0].seoPathInfo.split('/')
 
   for (const [i] of breadcrumb.entries()) {
     breadcrumbs.push({
       title: breadcrumb[i],
-      link: '/' + paths[i],
+      link: '/' + seoPath.slice(0, i + 1).join('/'),
     })
   }
 
