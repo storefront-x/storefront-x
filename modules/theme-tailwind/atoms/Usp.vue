@@ -16,18 +16,24 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import RocketIcon from '#ioc/icons/RocketIcon.vue'
-import GearsIcon from '#ioc/icons/GearsIcon.vue'
-import GlassIcon from '#ioc/icons/GlassIcon.vue'
-import { computed, defineProps, defineComponent } from 'vue'
+<script>
+import RocketIcon from '#ioc/icons/custom/RocketIcon'
+import GearsIcon from '#ioc/icons/custom/GearsIcon'
+import GlassIcon from '#ioc/icons/custom/GlassIcon'
+import { defineComponent } from 'vue'
 
-const determineIconComponent = computed(() => props.usp.icons + 'Icon')
-
-const props = defineProps({
-  usp: {
-    required: true,
-    type: Object,
+export default defineComponent({
+  components: { RocketIcon, GearsIcon, GlassIcon },
+  props: {
+    usp: {
+      required: true,
+      type: Object,
+    },
+  },
+  computed: {
+    determineIconComponent() {
+      return this.usp.icon + 'Icon'
+    },
   },
 })
 </script>

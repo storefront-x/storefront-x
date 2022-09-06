@@ -36,6 +36,7 @@ import CategoryPreviews from '#ioc/molecules/CategoryPreviews'
 import ReviewShowreel from '#ioc/molecules/ReviewShowreel'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useRoute from '#ioc/composables/useRoute'
+import useI18n from '#ioc/composables/useI18n'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -44,12 +45,13 @@ export default defineComponent({
   setup() {
     const getBlogPosts = useGetBlogPosts()
     const route = useRoute()
-    const {
-      data: { blogPosts },
-    } = useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
-    console.log('blogposts from index', blogPosts)
+    const { t } = useI18n()
+
+    const { data } = useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
+
     return {
-      blogPosts,
+      blogPosts: data.value.blogPosts,
+      t,
     }
   },
   // async asyncData(ctx) {
@@ -81,18 +83,18 @@ export default defineComponent({
       containersSpacingClass: { 'mb-12': true },
       usps: [
         {
-          title: this.$t('customizable'),
-          description: this.$t('cust_desc'),
+          title: this.t('customizable'),
+          description: this.t('cust_desc'),
           icon: 'gears',
         },
         {
-          title: this.$t('scalable'),
-          description: this.$t('scalable_desc'),
+          title: this.t('scalable'),
+          description: this.t('scalable_desc'),
           icon: 'rocket',
         },
         {
-          title: this.$t('improves_seo'),
-          description: this.$t('seo_desc'),
+          title: this.t('improves_seo'),
+          description: this.t('seo_desc'),
           icon: 'glass',
         },
       ],
@@ -116,26 +118,6 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-::v-deep .main-slider h2 {
-  text-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
-  @apply text-5xl md:text-9xl leading-none text-white mb-5;
-}
-
-::v-deep .main-slider h2 strong {
-  @apply text-primary-600;
-}
-
-::v-deep .main-slider p {
-  text-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
-  @apply mb-1.5 text-white text-xl md:text-2xl leading-normal;
-}
-
-::v-deep .main-slider .btn {
-  @apply mx-auto border rounded-md shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 max-w-xs flex-1 relative w-full focus:ring-primary-500 border-transparent bg-primary-600 text-white hover:bg-primary-700;
-}
-</style>
 
 <i18n lang="yaml">
 en-US:
