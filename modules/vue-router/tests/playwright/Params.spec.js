@@ -9,7 +9,7 @@ test('basic params', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               hello: {
@@ -35,7 +35,7 @@ test('navigating to named route with params', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `<template><button @click="$router.push({name: 'hello/[name]', params: { name: 'Params' }})">Click me</button></template>`,

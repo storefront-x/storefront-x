@@ -10,7 +10,7 @@ test('server-side rendering of title', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-head',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `
@@ -46,7 +46,7 @@ test('title changes between pages', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-head',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `
@@ -97,7 +97,7 @@ test('html attributes', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-head',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `
@@ -135,7 +135,7 @@ test('body attributes', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-head',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `

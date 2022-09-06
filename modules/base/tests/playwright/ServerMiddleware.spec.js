@@ -8,7 +8,7 @@ test('basic server middleware', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             server: {
               middleware: {
@@ -33,7 +33,7 @@ test('hot module reloading', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             server: {
               middleware: {
@@ -45,7 +45,7 @@ test('hot module reloading', async ({ page }) => {
       ],
     },
     async ({ url, writeFile }) => {
-      await writeFile('app/server/middleware/hello.js', `export default (req, res) => res.send('Hello, HMR!')`)
+      await writeFile('my-module/server/middleware/hello.js', `export default (req, res) => res.send('Hello, HMR!')`)
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('Hello, HMR!')
     },
@@ -94,7 +94,7 @@ test('typescript support', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             server: {
               middleware: {
@@ -122,7 +122,7 @@ test('transient hmr', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             config: {
               'GREET.ts': `export default 'Hello, World!'`,
@@ -142,7 +142,7 @@ test('transient hmr', async ({ page }) => {
     async ({ url, writeFile }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('Hello, World!')
-      await writeFile('app/config/GREET.ts', `export default 'HMR'`)
+      await writeFile('my-module/config/GREET.ts', `export default 'HMR'`)
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('HMR')
     },

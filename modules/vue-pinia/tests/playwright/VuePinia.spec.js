@@ -10,7 +10,7 @@ test('server-side global state management', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-pinia',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `
@@ -64,7 +64,7 @@ test('transfer state', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-pinia',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `

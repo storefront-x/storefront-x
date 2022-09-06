@@ -12,7 +12,7 @@ test('cms block', async ({ page }) => {
         '@storefront-x/cms',
         '@storefront-x/cms-shopware',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `
@@ -91,7 +91,7 @@ test('cms block with slots', async ({ page }) => {
         '@storefront-x/cms',
         '@storefront-x/cms-shopware',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `

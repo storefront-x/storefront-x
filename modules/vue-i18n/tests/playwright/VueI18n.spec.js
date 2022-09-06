@@ -10,7 +10,7 @@ test('en translation', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `
@@ -59,7 +59,7 @@ test('navigation loads translations', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `
@@ -114,7 +114,7 @@ test('navigating to different locale', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
@@ -169,7 +169,7 @@ test('navigating to different locale of non-index page', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [

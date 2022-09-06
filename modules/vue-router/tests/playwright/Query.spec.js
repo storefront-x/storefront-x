@@ -9,7 +9,7 @@ test('query stays after reload', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'hello.vue': `<template><h1>Hello, {{ $route.query.name }}!</h1></template>`,

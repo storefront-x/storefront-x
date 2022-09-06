@@ -9,7 +9,7 @@ test('$app component', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               '$app.vue': `<template>hello from app</template>`,
@@ -33,7 +33,7 @@ test('$app component with outlet', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               '$app.vue': `
