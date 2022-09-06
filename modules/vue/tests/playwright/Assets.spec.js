@@ -30,7 +30,7 @@ test('import of assets via ioc', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(page.locator('img')).toHaveAttribute('src', /app\/assets\/logo.svg/)
+      await expect(page.locator('img')).toHaveAttribute('src', /my-module\/assets\/logo.svg/)
     },
   )
 })

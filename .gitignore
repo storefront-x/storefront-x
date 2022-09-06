@@ -44,3 +44,6 @@ sw.*
 docs/.vitepress/dist
 
 .npmrc
+
+storefront-x.local.config.js
+modules/local

@@ -123,7 +123,7 @@ test('HMR of components via ioc', async ({ page }) => {
     async ({ url, writeFile }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('Hello, World!')
-      await writeFile('app/components/Hello.vue', '<template><h1>HMR</h1></template>')
+      await writeFile('my-module/components/Hello.vue', '<template><h1>HMR</h1></template>')
       await expect(page.locator('h1')).toContainText('HMR')
     },
   )

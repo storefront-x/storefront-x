@@ -93,7 +93,7 @@ test('hot module reloading of App.vue', async ({ page }) => {
     },
     async ({ url, writeFile }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await writeFile('app/base/templates/App.vue', '<template><h1>HMR</h1></template>')
+      await writeFile('my-module/base/templates/App.vue', '<template><h1>HMR</h1></template>')
       await expect(page.locator('h1')).toContainText('HMR')
     },
   )

@@ -26,7 +26,7 @@ test('basic server middleware', async ({ page }) => {
   )
 })
 
-test.only('hot module reloading', async ({ page }) => {
+test('hot module reloading', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -45,7 +45,7 @@ test.only('hot module reloading', async ({ page }) => {
       ],
     },
     async ({ url, writeFile }) => {
-      await writeFile('app/server/middleware/hello.js', `export default (req, res) => res.send('Hello, HMR!')`)
+      await writeFile('my-module/server/middleware/hello.js', `export default (req, res) => res.send('Hello, HMR!')`)
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('Hello, HMR!')
     },
@@ -142,7 +142,7 @@ test('transient hmr', async ({ page }) => {
     async ({ url, writeFile }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('Hello, World!')
-      await writeFile('app/config/GREET.ts', `export default 'HMR'`)
+      await writeFile('my-module/config/GREET.ts', `export default 'HMR'`)
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('HMR')
     },

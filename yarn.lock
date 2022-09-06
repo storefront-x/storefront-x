@@ -3305,6 +3305,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/local@workspace:modules/local":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/local@workspace:modules/local"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/magento@workspace:modules/magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/magento@workspace:modules/magento"
