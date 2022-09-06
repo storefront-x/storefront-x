@@ -1,24 +1,24 @@
 <template>
   <div class="pb-8">
-    <SfxMagentoCmsBlock identifier="slider_hp" :class="containersSpacingClass" class="main-slider"></SfxMagentoCmsBlock>
+    <div class="main-slider"><SfxMagentoCmsBlock identifier="slider_hp" :class="containersSpacingClass" /></div>
 
     <Container :class="containersSpacingClass">
       <Usps :usps="usps" />
     </Container>
 
-    <!-- <Container :class="containersSpacingClass">
+    <Container :class="containersSpacingClass">
       <CategoryPreviews />
-    </Container> -->
+    </Container>
 
-    <!-- <Container :class="containersSpacingClass">
+    <Container :class="containersSpacingClass">
       <SfxMagentoCmsBlock identifier="top_sell_hp" class="pb-8" />
-    </Container> -->
+    </Container>
 
-    <!-- <div class="bg-gray-50">
+    <div class="bg-gray-50">
       <Container :class="containersSpacingClass">
         <ReviewShowreel :reviews="reviews" />
       </Container>
-    </div> -->
+    </div>
 
     <Container :class="containersSpacingClass">
       <BlogGrid :blog-posts="blogPosts" />
@@ -54,29 +54,6 @@ export default defineComponent({
       t,
     }
   },
-  // async asyncData(ctx) {
-  //   const getBlogPosts = GetBlogPosts(ctx)({
-  //     type: BLOG_POSTS_TYPE_ALL,
-  //     page: ctx.route.query?.page ?? 1,
-  //   })
-
-  //   const getBlogCategories = GetBlogCategories(ctx)()
-
-  //   const getProductCategories = GetCategoryList(ctx)()
-
-  //   const [blogCategories, { blogPosts, allPostSize }, productCategories] = await Promise.all([
-  //     getBlogCategories,
-  //     getBlogPosts,
-  //     getProductCategories,
-  //   ])
-
-  //   return {
-  //     blogCategories,
-  //     blogPosts,
-  //     allPostSize,
-  //     productCategories,
-  //   }
-  // },
 
   data() {
     return {
@@ -98,43 +75,43 @@ export default defineComponent({
           icon: 'glass',
         },
       ],
-      // reviews: [
-      //   {
-      //     logo: '/icons/logos/logo_sporting.png',
-      //     description: this.$t('review_desc_1'),
-      //     authorName: 'Libor Nejedlý',
-      //     authorRole: 'CEO Sporting.cz',
-      //     authorImage: '/images/portrait_2.jpg',
-      //   },
-      //   {
-      //     logo: '/icons/logos/logo_weplay.png',
-      //     description: this.$t('review_desc_2'),
-      //     authorName: 'Roman Solnař',
-      //     authorRole: 'E-Commerce Manager Weplay.cz',
-      //     authorImage: '/images/portrait_3.jpg',
-      //   },
-      // ],
+      reviews: [
+        {
+          logo: '/logos/logo_sporting.png',
+          description: this.t('review_desc_1'),
+          authorName: 'Libor Nejedlý',
+          authorRole: 'CEO Sporting.cz',
+          authorImage: '/images/portrait_2.jpg',
+        },
+        {
+          logo: '/logos/logo_weplay.png',
+          description: this.t('review_desc_2'),
+          authorName: 'Roman Solnař',
+          authorRole: 'E-Commerce Manager Weplay.cz',
+          authorImage: '/images/portrait_3.jpg',
+        },
+      ],
     }
   },
 })
 </script>
 
 <style scoped>
-:deep(.main-slider h2) {
+.main-slider :deep(h2) {
   text-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
   @apply text-5xl md:text-9xl leading-none text-white mb-5;
 }
 
-:deep(.main-slider h2 strong) {
+.main-slider :deep(strong) {
   @apply text-primary-600;
 }
 
-:deep(.main-slider p) {
+.main-slider :deep(p) {
   text-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
   @apply mb-1.5 text-white text-xl md:text-2xl leading-normal;
 }
 
-:deep(.main-slider .btn) {
+.main-slider :deep(.btn) {
   @apply mx-auto border rounded-md shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 max-w-xs flex-1 relative w-full focus:ring-primary-500 border-transparent bg-primary-600 text-white hover:bg-primary-700;
 }
 </style>

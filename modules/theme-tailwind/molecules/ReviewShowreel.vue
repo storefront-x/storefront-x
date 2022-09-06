@@ -16,7 +16,7 @@
             <SolidQuotesIcon
               view-box="0 0 32 32"
               class="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 !h-8 !w-8 text-gray-200"
-            ></SolidQuotesIcon>
+            />
             <p class="relative mb-6">
               {{ review.description }}
             </p>

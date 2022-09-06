@@ -1,6 +1,5 @@
 <template>
   <SfxMagentoCmsPage :cms-page="data.cmsBlock" />
-  <span></span>
 </template>
 
 <script setup lang="ts">
@@ -11,10 +10,6 @@ import { defineProps } from 'vue'
 
 const getCmsBlock = useGetCmsBlock()
 
-const { data } = await useAsyncData('getCMSBlock', () => getCmsBlock(props.identifier))
-
-console.log('sfxblock', data.value.cmsBlock)
-
 const props = defineProps({
   identifier: {
     type: String,
@@ -22,30 +17,5 @@ const props = defineProps({
   },
 })
 
-// export default {
-//   name: 'SfxCmsBlock',
-
-//   components: {
-//     SfxPageBuilder,
-//   },
-
-//   props: {
-//     identifier: {
-//       type: String,
-//       default: '',
-//     },
-//   },
-
-//   data() {
-//     return {
-//       content: '',
-//     }
-//   },
-
-//   async fetch() {
-//     const { cmsBlock } = await GetCmsBlockByIdentifier(toCtx(this))(this.identifier)
-
-//     this.content = cmsBlock.content
-//   },
-// }
+const { data } = await useAsyncData(`getCMSBlock_${props?.identifier}`, () => getCmsBlock(props.identifier))
 </script>

@@ -1,13 +1,13 @@
 <template>
   <div class="mx-auto">
     <div class="sm:flex sm:items-baseline sm:justify-between">
-      <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">{{ $t('shopby') }}</h2>
-      <SfxLink
+      <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">{{ t('shopby') }}</h2>
+      <RouterLink
         :to="localePath('brands')"
         class="hidden text-sm font-semibold text-primary-600 hover:text-primary-700 sm:block"
       >
         {{ t('browse') }}
-        <span aria-hidden="true"> &rarr;</span></SfxLink
+        <span aria-hidden="true"> &rarr;</span></RouterLink
       >
     </div>
 
@@ -16,8 +16,8 @@
         v-if="categories.length > 0"
         class="group aspect-[2/1] rounded-lg overflow-hidden relative sm:aspect-auto sm:row-span-2"
       >
-        <SfxLazyImage
-          :src="categories[0].image"
+        <SfxImage
+          :src="categories[0].thumbnailUrl"
           class-img="object-center object-cover group-hover:opacity-75 w-full h-full"
           :width="736"
           :height="736"
@@ -48,8 +48,8 @@
         v-if="categories.length > 1"
         class="group aspect-[2/1] rounded-lg overflow-hidden relative sm:aspect-none sm:h-full"
       >
-        <SfxLazyImage
-          :src="categories[1].image"
+        <SfxImage
+          :src="categories[1].thumbnailUrl"
           class-img="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
           :width="736"
           :height="352"
@@ -77,8 +77,8 @@
         v-if="categories.length > 2"
         class="group aspect-[2/1] rounded-lg overflow-hidden relative sm:aspect-none sm:h-full"
       >
-        <SfxLazyImage
-          :src="categories[2].image"
+        <SfxImage
+          :src="categories[2].thumbnailUrl"
           class-img="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
           :width="736"
           :height="352"
@@ -104,9 +104,12 @@
     </div>
 
     <div class="mt-6 sm:hidden">
-      <SfxLink :to="localePath('brands')" class="block text-sm font-semibold text-primary-600 hover:text-primary-500">
+      <RouterLink
+        :to="localePath('brands')"
+        class="block text-sm font-semibold text-primary-600 hover:text-primary-500"
+      >
         {{ t('browse') }}
-        <span aria-hidden="true"> &rarr;</span></SfxLink
+        <span aria-hidden="true"> &rarr;</span></RouterLink
       >
     </div>
   </div>
@@ -115,14 +118,17 @@
 <script setup lang="ts">
 import useI18n from '#ioc/composables/useI18n'
 import useGetNavigationMenu from '#ioc/services/useGetNavigationMenu'
+import SfxImage from '#ioc/components/SfxImage'
 import useAsyncData from '#ioc/composables/useAsyncData'
+import useLocalePath from '#ioc/composables/useLocalePath'
 import { computed } from 'vue'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 const getNavigationMenu = useGetNavigationMenu()
 const { data } = await useAsyncData('categories', () => getNavigationMenu())
+
 const categories = computed(() => {
-  console.log(data)
   return data.value.categories.slice(0, 3)
 })
 </script>
