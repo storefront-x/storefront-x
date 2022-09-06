@@ -6,6 +6,63 @@ Wrapper module around the [vue-i18n](https://www.npmjs.com/package/vue-i18n) lib
 
 It also uses the [@intlify/vite-plugin-vue-i18n](https://www.npmjs.com/package/@intlify/vite-plugin-vue-i18n) library for the `<i18n />` blocks in Vue SFCs.
 
+## `i18n/messages/` concept
+
+The `i18n/messages` concept allows us to add global translation messages. It contains files with names corresponding to the desired locale (`locale` field in `VUE_I18N_LOCALES`). These files default export object with translations.
+
+This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means that multiple `i18n/messages/en-US.ts` files are merged together, instead of overridden.
+
+### Example
+
+```ts
+// config/VUE_I18N_LOCALES.ts
+
+export default [
+  {
+    name: 'en',
+    locale: 'en-US',
+    prefix: '/',
+  },
+  {
+    name: 'cz',
+    locale: 'cs-CZ',
+    prefix: '/cz',
+  },
+]
+```
+
+```ts
+// i18n/messages/en-US.ts
+
+export default [
+  hello: "Hello world!"
+]
+```
+
+```ts
+// i18n/messages/cs-CZ.ts
+
+export default [
+  hello: "Ahoj světe!"
+]
+```
+
+```vue
+<template>
+  <h1>{{ t('hello') }}</h1>
+</template>
+
+<script setup lang="ts">
+import useI18n from '#ioc/composables/useI18n'
+
+const { t } = useI18n()
+</script>
+```
+
+:::tip
+Try to avoid using global messages and instead use `<i18n>` blocks in Vue components.
+:::
+
 ## `useI18n` composable
 
 Wrapper around the `useI18n` composable.

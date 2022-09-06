@@ -9,7 +9,7 @@ test('no index page', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               '$layout.vue': `<template>Layout<RouterView /></template>`,

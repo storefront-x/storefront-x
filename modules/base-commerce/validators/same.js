@@ -1,4 +1,4 @@
-export default function same(this: any, value: any, field: any) {
+export default function same(value, field) {
   const data = this.$Form.getData()
 
   const label = this.$Form.inputs[field].label ?? field

@@ -10,7 +10,7 @@ test('import of stores over ioc', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-pinia',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `

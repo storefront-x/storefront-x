@@ -9,7 +9,7 @@ test('setting of cookies on the server side', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `

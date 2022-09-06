@@ -11,7 +11,7 @@ test('config can be used from Vue components', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             config: {
               'GREET.ts': `export default import.meta.env.SFX_GREET`,

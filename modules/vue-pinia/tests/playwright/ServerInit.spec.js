@@ -10,7 +10,7 @@ test('serverInit action', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-pinia',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `
@@ -61,7 +61,7 @@ test('async serverInit action', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-pinia',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `
