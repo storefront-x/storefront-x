@@ -1,24 +1,24 @@
 <template>
   <div class="pb-8">
-    <SfxCmsBlock identifier="slider_hp" :class="containersSpacingClass" class="main-slider"></SfxCmsBlock>
+    <!-- <SfxCmsBlock identifier="slider_hp" :class="containersSpacingClass" class="main-slider"></SfxCmsBlock> -->
 
     <Container :class="containersSpacingClass">
       <Usps :usps="usps" />
     </Container>
 
-    <Container :class="containersSpacingClass">
+    <!-- <Container :class="containersSpacingClass">
       <CategoryPreviews />
-    </Container>
+    </Container> -->
 
-    <Container :class="containersSpacingClass">
+    <!-- <Container :class="containersSpacingClass">
       <SfxCmsBlock identifier="top_sell_hp" class="pb-8" />
-    </Container>
+    </Container> -->
 
-    <div class="bg-gray-50">
+    <!-- <div class="bg-gray-50">
       <Container :class="containersSpacingClass">
         <ReviewShowreel :reviews="reviews" />
       </Container>
-    </div>
+    </div> -->
 
     <Container :class="containersSpacingClass">
       <BlogGrid :blog-posts="blogPosts" />
@@ -27,48 +27,57 @@
 </template>
 
 <script>
-import { GetBlogCategories, GetBlogPosts, GetCategoryList } from '@ioc/repositories'
-import { BLOG_POSTS_TYPE_ALL } from '@ioc/config'
-import SfxCmsBlock from '@sfx/cms-magento/components/SfxCmsBlock'
-import Container from '@components/atoms/Container'
-import BlogGrid from '@components/molecules/BlogGrid'
-import Usps from '@components/molecules/Usps'
-import CategoryPreviews from '@components/molecules/CategoryPreviews'
-import ReviewShowreel from '@components/molecules/ReviewShowreel'
+import useGetBlogPosts from '#ioc/services/useGetBlogPosts'
+import SfxCmsBlock from '#ioc/components/SfxCmsBlock'
+import Container from '#ioc/atoms/Container'
+import BlogGrid from '#ioc/molecules/BlogGrid'
+import Usps from '#ioc/molecules/Usps'
+import CategoryPreviews from '#ioc/molecules/CategoryPreviews'
+import ReviewShowreel from '#ioc/molecules/ReviewShowreel'
+import useAsyncData from '#ioc/composables/useAsyncData'
+import useRoute from '#ioc/composables/useRoute'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   components: { ReviewShowreel, CategoryPreviews, BlogGrid, Container, Usps, SfxCmsBlock },
 
-  async asyncData(ctx) {
-    const getBlogPosts = GetBlogPosts(ctx)({
-      type: BLOG_POSTS_TYPE_ALL,
-      page: ctx.route.query?.page ?? 1,
-    })
-
-    const getBlogCategories = GetBlogCategories(ctx)()
-
-    const getProductCategories = GetCategoryList(ctx)()
-
-    const [blogCategories, { blogPosts, allPostSize }, productCategories] = await Promise.all([
-      getBlogCategories,
-      getBlogPosts,
-      getProductCategories,
-    ])
-
+  setup() {
+    const getBlogPosts = useGetBlogPosts()
+    const route = useRoute()
+    const {
+      data: { blogPosts },
+    } = useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
+    console.log('blogposts from index', blogPosts)
     return {
-      blogCategories,
       blogPosts,
-      allPostSize,
-      productCategories,
     }
   },
+  // async asyncData(ctx) {
+  //   const getBlogPosts = GetBlogPosts(ctx)({
+  //     type: BLOG_POSTS_TYPE_ALL,
+  //     page: ctx.route.query?.page ?? 1,
+  //   })
+
+  //   const getBlogCategories = GetBlogCategories(ctx)()
+
+  //   const getProductCategories = GetCategoryList(ctx)()
+
+  //   const [blogCategories, { blogPosts, allPostSize }, productCategories] = await Promise.all([
+  //     getBlogCategories,
+  //     getBlogPosts,
+  //     getProductCategories,
+  //   ])
+
+  //   return {
+  //     blogCategories,
+  //     blogPosts,
+  //     allPostSize,
+  //     productCategories,
+  //   }
+  // },
 
   data() {
     return {
-      blogCategories: [],
-      blogPosts: [],
-      allPostSize: 0,
-      productCategories: [],
       containersSpacingClass: { 'mb-12': true },
       usps: [
         {
@@ -87,25 +96,25 @@ export default {
           icon: 'glass',
         },
       ],
-      reviews: [
-        {
-          logo: '/icons/logos/logo_sporting.png',
-          description: this.$t('review_desc_1'),
-          authorName: 'Libor Nejedlý',
-          authorRole: 'CEO Sporting.cz',
-          authorImage: '/images/portrait_2.jpg',
-        },
-        {
-          logo: '/icons/logos/logo_weplay.png',
-          description: this.$t('review_desc_2'),
-          authorName: 'Roman Solnař',
-          authorRole: 'E-Commerce Manager Weplay.cz',
-          authorImage: '/images/portrait_3.jpg',
-        },
-      ],
+      // reviews: [
+      //   {
+      //     logo: '/icons/logos/logo_sporting.png',
+      //     description: this.$t('review_desc_1'),
+      //     authorName: 'Libor Nejedlý',
+      //     authorRole: 'CEO Sporting.cz',
+      //     authorImage: '/images/portrait_2.jpg',
+      //   },
+      //   {
+      //     logo: '/icons/logos/logo_weplay.png',
+      //     description: this.$t('review_desc_2'),
+      //     authorName: 'Roman Solnař',
+      //     authorRole: 'E-Commerce Manager Weplay.cz',
+      //     authorImage: '/images/portrait_3.jpg',
+      //   },
+      // ],
     }
   },
-}
+})
 </script>
 
 <style scoped>

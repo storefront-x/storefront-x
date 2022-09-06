@@ -20,7 +20,7 @@
 import RocketIcon from '#ioc/icons/RocketIcon.vue'
 import GearsIcon from '#ioc/icons/GearsIcon.vue'
 import GlassIcon from '#ioc/icons/GlassIcon.vue'
-import { computed, defineProps } from 'vue'
+import { computed, defineProps, defineComponent } from 'vue'
 
 const determineIconComponent = computed(() => props.usp.icons + 'Icon')
 

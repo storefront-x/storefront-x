@@ -5,9 +5,9 @@
         <div class="max-w-xl mx-auto lg:max-w-none">
           <div class="text-center">
             <Heading :level="2" class="mb-2">
-              {{ $t('title') }}
+              {{ t('title') }}
             </Heading>
-            <p>{{ $t('subtitle') }}</p>
+            <p>{{ t('subtitle') }}</p>
           </div>
           <div class="mt-12 max-w-sm mx-auto grid grid-cols-1 gap-y-10 gap-x-8 sm:max-w-none lg:grid-cols-3">
             <Usp v-for="usp in usps" :key="usp.id" :usp="usp"></Usp>
@@ -20,8 +20,12 @@
 
 <script setup lang="ts">
 import Heading from '#ioc/atoms/Heading'
-import Usp from './Usp'
+import useI18n from '#ioc/composables/useI18n'
+import Usp from '#ioc/atoms//Usp'
 import { defineProps } from 'vue'
+
+const { t } = useI18n()
+
 defineProps({
   usps: {
     required: true,
