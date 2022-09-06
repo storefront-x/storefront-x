@@ -1,6 +1,6 @@
 <template>
   <div class="pb-8">
-    <!-- <SfxCmsBlock identifier="slider_hp" :class="containersSpacingClass" class="main-slider"></SfxCmsBlock> -->
+    <SfxMagentoCmsBlock identifier="slider_hp" :class="containersSpacingClass" class="main-slider"></SfxMagentoCmsBlock>
 
     <Container :class="containersSpacingClass">
       <Usps :usps="usps" />
@@ -11,7 +11,7 @@
     </Container> -->
 
     <!-- <Container :class="containersSpacingClass">
-      <SfxCmsBlock identifier="top_sell_hp" class="pb-8" />
+      <SfxMagentoCmsBlock identifier="top_sell_hp" class="pb-8" />
     </Container> -->
 
     <!-- <div class="bg-gray-50">
@@ -28,7 +28,7 @@
 
 <script>
 import useGetBlogPosts from '#ioc/services/useGetBlogPosts'
-import SfxCmsBlock from '#ioc/components/SfxCmsBlock'
+import SfxMagentoCmsBlock from '#ioc/components/SfxMagentoCmsBlock'
 import Container from '#ioc/atoms/Container'
 import BlogGrid from '#ioc/molecules/BlogGrid'
 import Usps from '#ioc/molecules/Usps'
@@ -40,7 +40,7 @@ import useI18n from '#ioc/composables/useI18n'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  components: { ReviewShowreel, CategoryPreviews, BlogGrid, Container, Usps, SfxCmsBlock },
+  components: { ReviewShowreel, CategoryPreviews, BlogGrid, Container, Usps, SfxMagentoCmsBlock },
 
   setup() {
     const getBlogPosts = useGetBlogPosts()
@@ -50,7 +50,7 @@ export default defineComponent({
     const { data } = useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
 
     return {
-      blogPosts: data.value.blogPosts,
+      blogPosts: data?.value?.blogPosts,
       t,
     }
   },
@@ -118,6 +118,26 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped>
+:deep(.main-slider h2) {
+  text-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+  @apply text-5xl md:text-9xl leading-none text-white mb-5;
+}
+
+:deep(.main-slider h2 strong) {
+  @apply text-primary-600;
+}
+
+:deep(.main-slider p) {
+  text-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
+  @apply mb-1.5 text-white text-xl md:text-2xl leading-normal;
+}
+
+:deep(.main-slider .btn) {
+  @apply mx-auto border rounded-md shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 max-w-xs flex-1 relative w-full focus:ring-primary-500 border-transparent bg-primary-600 text-white hover:bg-primary-700;
+}
+</style>
 
 <i18n lang="yaml">
 en-US:

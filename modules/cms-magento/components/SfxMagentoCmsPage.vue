@@ -43,6 +43,7 @@ const parse = async (source) => {
     const { Window } = await import('happy-dom')
     const window = new Window()
     const domParser = new window.DOMParser()
+    console.log('this is the source before parsing', source)
     container = domParser.parseFromString(source, 'text/html')
   } else {
     const domParser = new DOMParser()

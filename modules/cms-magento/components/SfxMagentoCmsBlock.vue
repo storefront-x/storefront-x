@@ -1,10 +1,26 @@
 <template>
-  <SfxMagentoCmsPage :content="content" />
+  <SfxMagentoCmsPage :cms-page="data.cmsBlock" />
+  <span></span>
 </template>
 
 <script setup lang="ts">
 import useGetCmsBlock from '#ioc/services/useGetCmsBlock'
 import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
+import useAsyncData from '#ioc/composables/useAsyncData'
+import { defineProps } from 'vue'
+
+const getCmsBlock = useGetCmsBlock()
+
+const { data } = await useAsyncData('getCMSBlock', () => getCmsBlock(props.identifier))
+
+console.log('sfxblock', data.value.cmsBlock)
+
+const props = defineProps({
+  identifier: {
+    type: String,
+    default: '',
+  },
+})
 
 // export default {
 //   name: 'SfxCmsBlock',
