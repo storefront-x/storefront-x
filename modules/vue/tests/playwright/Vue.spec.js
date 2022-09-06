@@ -20,7 +20,7 @@ test('basic interactivity', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             base: {
               templates: {
@@ -55,7 +55,7 @@ test('overriding of App.vue', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             base: {
               templates: {
@@ -80,7 +80,7 @@ test('hot module reloading of App.vue', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             base: {
               templates: {

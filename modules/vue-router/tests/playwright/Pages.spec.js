@@ -9,7 +9,7 @@ test('basic router', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `<template><h1>Hello from home!</h1></template>`,
@@ -33,7 +33,7 @@ test('SSR non-index page', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `<template><h1>Hello from home!</h1></template>`,
@@ -58,7 +58,7 @@ test('navigating between pages', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `<template><h1>Page index</h1><RouterLink id='a' to='/a'>A</RouterLink></template>`,
@@ -85,7 +85,7 @@ test('layout', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'a.vue': `<template><h2>Page A</h2></template>`,
@@ -111,7 +111,7 @@ test('404', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `<template><h1>Hello from home!</h1></template>`,
@@ -136,7 +136,7 @@ test('nested routes', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               hello: {
@@ -162,7 +162,7 @@ test('navigating to named route', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `<template><button @click="$router.push({name: 'a'})">Click me</button></template>`,
@@ -188,7 +188,7 @@ test('navigating to named nested route', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `<template><button @click="$router.push({name: 'a/b/c'})">Click me</button></template>`,
@@ -218,7 +218,7 @@ test('show 404 if index is missing', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               '$layout.vue': `<template><header>Header</Header><RouterView /></template>`,

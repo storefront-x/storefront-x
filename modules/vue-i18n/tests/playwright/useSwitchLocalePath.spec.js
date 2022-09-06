@@ -10,7 +10,7 @@ test('switch locale path', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
@@ -74,7 +74,7 @@ test('switch locale to nested page', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
@@ -142,7 +142,7 @@ test('switch locale path to default language', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [

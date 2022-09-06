@@ -9,7 +9,7 @@ test('import of components via ioc', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             components: {
               'Hello.vue': `
@@ -97,7 +97,7 @@ test('HMR of components via ioc', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             components: {
               'Hello.vue': `

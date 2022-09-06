@@ -9,7 +9,7 @@ test('layout in directory', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               '$layout.vue': `<template><h1>root</h1><RouterView /></template>`,

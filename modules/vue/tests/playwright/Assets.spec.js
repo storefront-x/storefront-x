@@ -9,7 +9,7 @@ test('import of assets via ioc', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             assets: {
               'logo.svg': `<svg></svg>`,
@@ -43,7 +43,7 @@ test('overriding of assets via ioc', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             assets: {
               'logo.svg': `<svg></svg>`,

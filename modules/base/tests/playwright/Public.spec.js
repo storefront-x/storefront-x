@@ -7,7 +7,7 @@ test('basic public file', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         [
-          'app',
+          'my-module',
           {
             public: {
               'hello.txt': `Hello, public file!`,
@@ -29,7 +29,7 @@ test('basic public file in nested directory', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         [
-          'app',
+          'my-module',
           {
             public: {
               a: {

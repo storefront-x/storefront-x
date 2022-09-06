@@ -8,7 +8,7 @@ test('handle syntax error', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             base: {
               templates: {
@@ -38,7 +38,7 @@ test('handle syntax error after click', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `<template><h1>Page index</h1><RouterLink id='a' to='/a'>A</RouterLink></template>`,

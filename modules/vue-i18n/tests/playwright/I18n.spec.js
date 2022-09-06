@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test('route paths', async ({ page }) => {
+test('global messages', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -27,31 +27,25 @@ test('route paths', async ({ page }) => {
                   },
                 ]
               `,
-              'VUE_I18N_ROUTE_PATHS.ts': `
+            },
+            i18n: {
+              'cs-CZ.ts': `
                 export default {
-                  '/cart': {
-                    en: '/cart',
-                    cz: '/kosik',
-                  }
+                  message1: 'A',
+                  message2: 'B',
                 }
               `,
             },
             pages: {
               'cart.vue': `
                 <template>
-                  <h1>{{ t('message') }}</h1>
+                  <h1>{{ t('message1') + t('message2') }}</h1>
                 </template>
                 <script setup>
                 import useI18n from '#ioc/composables/useI18n'
 
                 const { t } = useI18n()
                 </script>
-                <i18n lang="yaml">
-                en-US:
-                  message: Hello, Cart!
-                cs-CZ:
-                  message: Hello, Košíku!
-                </i18n>
               `,
             },
           },
@@ -59,13 +53,13 @@ test('route paths', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/cz/kosik', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('<h1>Hello, Košíku!</h1>')
+      await page.goto(url + '/cz/cart', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('AB')
     },
   )
 })
 
-test('change of locale', async ({ page }) => {
+test('merging of global messages', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -91,34 +85,41 @@ test('change of locale', async ({ page }) => {
                   },
                 ]
               `,
-              'VUE_I18N_ROUTE_PATHS.ts': `
-                export default {
-                  '/cart': {
-                    en: '/cart',
-                    cz: '/kosik',
-                  }
-                }
-              `,
             },
             pages: {
               'cart.vue': `
                 <template>
-                  <h1>{{ t('message') }}</h1>
-                  <a :href="switchLocalePath('cz').fullPath">click</a>
+                  <h1>{{ t('message1') + t('message2') }}</h1>
                 </template>
                 <script setup>
                 import useI18n from '#ioc/composables/useI18n'
-                import useSwitchLocalePath from '#ioc/composables/useSwitchLocalePath'
 
-                const switchLocalePath = useSwitchLocalePath()
                 const { t } = useI18n()
                 </script>
-                <i18n lang="yaml">
-                en-US:
-                  message: Hello, Cart!
-                cs-CZ:
-                  message: Hello, Košíku!
-                </i18n>
+              `,
+            },
+          },
+        ],
+        [
+          'translations-1',
+          {
+            i18n: {
+              'cs-CZ.ts': `
+                export default {
+                  message1: 'A',
+                }
+              `,
+            },
+          },
+        ],
+        [
+          'translations-2',
+          {
+            i18n: {
+              'cs-CZ.ts': `
+                export default {
+                  message2: 'B',
+                }
               `,
             },
           },
@@ -126,14 +127,13 @@ test('change of locale', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/cart', { waitUntil: 'networkidle' })
-      await page.locator('a').click()
-      await expect(page.locator('h1')).toContainText('Hello, Košíku!')
+      await page.goto(url + '/cz/cart', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('AB')
     },
   )
 })
 
-test('change of page', async ({ page }) => {
+test('overriding of global messages', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -159,41 +159,42 @@ test('change of page', async ({ page }) => {
                   },
                 ]
               `,
-              'VUE_I18N_ROUTE_PATHS.ts': `
-                export default {
-                  '/cart': {
-                    en: '/cart',
-                    cz: '/kosik',
-                  }
-                }
-              `,
             },
             pages: {
-              'index.vue': `
-              <template>
-                <RouterLink :to="localePath('cart')">click</RouterLink>
-              </template>
-              <script setup>
-              import useLocalePath from '#ioc/composables/useLocalePath'
-
-              const localePath = useLocalePath()
-              </script>
-              `,
               'cart.vue': `
                 <template>
-                  <h1>{{ t('message') }}</h1>
+                  <h1>{{ t('message1') + t('message2') }}</h1>
                 </template>
                 <script setup>
                 import useI18n from '#ioc/composables/useI18n'
 
                 const { t } = useI18n()
                 </script>
-                <i18n lang="yaml">
-                en-US:
-                  message: Hello, Cart!
-                cs-CZ:
-                  message: Hello, Košíku!
-                </i18n>
+              `,
+            },
+          },
+        ],
+        [
+          'translations-1',
+          {
+            i18n: {
+              'cs-CZ.ts': `
+                export default {
+                  message1: 'A',
+                  message2: 'B',
+                }
+              `,
+            },
+          },
+        ],
+        [
+          'translations-2',
+          {
+            i18n: {
+              'cs-CZ.ts': `
+                export default {
+                  message1: 'C',
+                }
               `,
             },
           },
@@ -201,9 +202,8 @@ test('change of page', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/cz', { waitUntil: 'networkidle' })
-      await page.locator('a').click()
-      await expect(page.locator('h1')).toContainText('Hello, Košíku!')
+      await page.goto(url + '/cz/cart', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('CB')
     },
   )
 })

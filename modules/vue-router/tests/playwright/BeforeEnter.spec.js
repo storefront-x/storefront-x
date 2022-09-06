@@ -9,7 +9,7 @@ test('simple beforeEnter guard', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'account': {

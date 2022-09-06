@@ -8,7 +8,7 @@ test('nested directories', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             concepts: {
               'NestedConcept.js': `
@@ -53,7 +53,7 @@ test('files with space in name', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             concepts: {
               'SomeConcept.js': `
@@ -96,7 +96,7 @@ test('extensions', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             concepts: {
               'SomeConcept.js': `
@@ -140,7 +140,7 @@ test('multiple extensions', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             concepts: {
               'SomeConcept.js': `

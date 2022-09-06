@@ -10,7 +10,7 @@ test('locale path with string param', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
@@ -68,7 +68,7 @@ test('locale path with object param', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [

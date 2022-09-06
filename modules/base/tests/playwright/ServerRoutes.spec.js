@@ -8,7 +8,7 @@ test('basic server route', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             server: {
               routes: {
@@ -33,7 +33,7 @@ test('request on different path doesnt invoke server route', async ({ page }) =>
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             server: {
               routes: {

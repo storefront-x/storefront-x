@@ -8,7 +8,7 @@ test('basic server middleware', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             server: {
               middleware: {
@@ -26,14 +26,14 @@ test('basic server middleware', async ({ page }) => {
   )
 })
 
-test('hot module reloading', async ({ page }) => {
+test.only('hot module reloading', async ({ page }) => {
   await makeProject(
     {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             server: {
               middleware: {
@@ -94,7 +94,7 @@ test('typescript support', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             server: {
               middleware: {
@@ -122,7 +122,7 @@ test('transient hmr', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             config: {
               'GREET.ts': `export default 'Hello, World!'`,

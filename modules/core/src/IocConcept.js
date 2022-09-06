@@ -1,11 +1,11 @@
 import path from 'node:path'
-import OverridingConcept from './OverridingConcept.js'
+import WatchingConcept from './WatchingConcept.js'
 
 /**
  * @typedef {import('@storefront-x/core').Module} Module
  */
 
-export default class IocConcept extends OverridingConcept {
+export default class IocConcept extends WatchingConcept {
   /**
    * @param {Record<string, {module: Module, file: string}>} files
    */
@@ -53,7 +53,7 @@ export default class IocConcept extends OverridingConcept {
     return true
   }
 
-  _getFiles() {
+  processFiles() {
     const files = {}
 
     for (const mod of this._mods) {

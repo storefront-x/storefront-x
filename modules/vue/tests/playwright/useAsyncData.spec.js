@@ -9,7 +9,7 @@ test('transfer of state', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `
@@ -43,7 +43,7 @@ test('navigation to page with async data', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `
@@ -91,7 +91,7 @@ test('refetch async data', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             pages: {
               'index.vue': `

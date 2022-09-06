@@ -3,7 +3,6 @@
 import path from 'path'
 import fs from 'node:fs/promises'
 import ejs from 'ejs'
-import Dev from './Dev.js'
 import OverridingConcept from './OverridingConcept.js'
 
 /**
@@ -43,12 +42,6 @@ export default class GeneratingConcept extends OverridingConcept {
         ident: filewithoutExt,
         importName: filewithoutExt.replace(/[^A-Za-z0-9]/g, ''),
         path: this.getPathForFile(module, file),
-      }
-
-      if (this.core instanceof Dev && this.addsHashToImports) {
-        const hash = await this.getHashForFile(module, file)
-
-        record.path += `?hash=${hash}`
       }
 
       if (this.supportsClientServer) {
@@ -123,10 +116,6 @@ export default {
   }
 
   get supportsClientServer() {
-    return false
-  }
-
-  get addsHashToImports() {
     return false
   }
 
