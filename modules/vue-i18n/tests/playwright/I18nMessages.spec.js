@@ -29,12 +29,14 @@ test('global messages', async ({ page }) => {
               `,
             },
             i18n: {
-              'cs-CZ.ts': `
-                export default {
-                  message1: 'A',
-                  message2: 'B',
-                }
-              `,
+              messages: {
+                'cs-CZ.ts': `
+                  export default {
+                    message1: 'A',
+                    message2: 'B',
+                  }
+                `,
+              },
             },
             pages: {
               'cart.vue': `
@@ -104,11 +106,13 @@ test('merging of global messages', async ({ page }) => {
           'translations-1',
           {
             i18n: {
-              'cs-CZ.ts': `
-                export default {
-                  message1: 'A',
-                }
-              `,
+              messages: {
+                'cs-CZ.ts': `
+                  export default {
+                    message1: 'A',
+                  }
+                `,
+              },
             },
           },
         ],
@@ -116,11 +120,13 @@ test('merging of global messages', async ({ page }) => {
           'translations-2',
           {
             i18n: {
-              'cs-CZ.ts': `
-                export default {
-                  message2: 'B',
-                }
-              `,
+              messages: {
+                'cs-CZ.ts': `
+                  export default {
+                    message2: 'B',
+                  }
+                `,
+              },
             },
           },
         ],
@@ -178,12 +184,14 @@ test('overriding of global messages', async ({ page }) => {
           'translations-1',
           {
             i18n: {
-              'cs-CZ.ts': `
-                export default {
-                  message1: 'A',
-                  message2: 'B',
-                }
-              `,
+              messages: {
+                'cs-CZ.ts': `
+                  export default {
+                    message1: 'A',
+                    message2: 'B',
+                  }
+                `,
+              },
             },
           },
         ],
@@ -191,11 +199,13 @@ test('overriding of global messages', async ({ page }) => {
           'translations-2',
           {
             i18n: {
-              'cs-CZ.ts': `
-                export default {
-                  message1: 'C',
-                }
-              `,
+              messages: {
+                'cs-CZ.ts': `
+                  export default {
+                    message1: 'C',
+                  }
+                `,
+              },
             },
           },
         ],

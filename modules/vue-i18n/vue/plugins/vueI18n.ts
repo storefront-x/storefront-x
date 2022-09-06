@@ -8,7 +8,7 @@ import VUE_I18N_FALLBACK_WARN from '#ioc/config/VUE_I18N_FALLBACK_WARN'
 import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import i18n from '~/.sfx/i18n'
+import i18nMessages from '~/.sfx/i18n/messages'
 
 export default async (app: App, ctx: any) => {
   const locale = getLocale(ctx)
@@ -70,7 +70,7 @@ function getMessages() {
   const messages: any = {}
 
   for (const locale of VUE_I18N_LOCALES) {
-    messages[locale.locale] = i18n[locale.locale] ?? {}
+    messages[locale.locale] = i18nMessages[locale.locale] ?? {}
   }
 
   return messages
