@@ -12,8 +12,8 @@ export default class ShopwareDynamicPages extends GeneratingConcept {
 import { defineAsyncComponent } from 'vue'
 
 export default {
-<%_ for (const [ident, {path}] of Object.entries(records)) { _%>
-  '<%= ident %>': defineAsyncComponent(() => import('<%= path %>')),
+<%_ for (const [ident, record] of Object.entries(records)) { _%>
+  '<%= ident %>': defineAsyncComponent(() => import('<%= record.path %>')),
 <%_ } _%>
 }
 `
