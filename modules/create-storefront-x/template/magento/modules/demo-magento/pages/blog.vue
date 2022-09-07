@@ -45,11 +45,11 @@ const { data } = await useAsyncData('blogPosts', () => getBlogPosts('ALL', undef
 
 <i18n lang="yaml">
 en-US:
-  title: MageXo blog
+  title: Storefront-x blog
   subtitle: News from the Magento family.
   no posts: No blog posts found
 cs-CZ:
-  title: MageXo blog
-  subtitle: Novinky a články ze světa Magento, stejně tak jako poslední novinky ze světa MageXo rodiny.
+  title: Storefront-x blog
+  subtitle: Novinky a články ze světa Magento, stejně tak jako poslední novinky ze světa Storefront-x rodiny.
   no posts: Žádné články nenalezeny
 </i18n>

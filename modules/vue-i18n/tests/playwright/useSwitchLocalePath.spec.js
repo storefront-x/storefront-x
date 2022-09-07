@@ -10,7 +10,7 @@ test('switch locale path', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
@@ -41,7 +41,7 @@ test('switch locale path', async ({ page }) => {
                   const switchLocalePath = useSwitchLocalePath()
 
                   function change() {
-                    window.location.href = switchLocalePath('cz')
+                    window.location.href = switchLocalePath('cz').fullPath
                   }
                   </script>
                   <i18n lang="yaml">
@@ -74,7 +74,7 @@ test('switch locale to nested page', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
@@ -107,7 +107,7 @@ test('switch locale to nested page', async ({ page }) => {
                     const switchLocalePath = useSwitchLocalePath()
 
                     function change() {
-                      window.location.href = switchLocalePath('cz')
+                      window.location.href = switchLocalePath('cz').fullPath
                     }
                     </script>
                     <i18n lang="yaml">
@@ -142,7 +142,7 @@ test('switch locale path to default language', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
@@ -173,7 +173,7 @@ test('switch locale path to default language', async ({ page }) => {
                       const switchLocalePath = useSwitchLocalePath()
 
                       function change() {
-                        window.location.href = switchLocalePath('en')
+                        window.location.href = switchLocalePath('en').fullPath
                       }
                       </script>
                       <i18n lang="yaml">

@@ -10,7 +10,7 @@ test('render store properties', async ({ page }) => {
         '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         [
-          'app',
+          'my-module',
           {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
@@ -48,7 +48,7 @@ test('render store properties', async ({ page }) => {
                   const switchLocalePath = useSwitchLocalePath()
 
                   function change() {
-                    window.location.href = switchLocalePath('cz')
+                    window.location.href = switchLocalePath('cz').fullPath
                   }
                   const fullName = computed(() => currentLocale.value.fullName)
                   </script>

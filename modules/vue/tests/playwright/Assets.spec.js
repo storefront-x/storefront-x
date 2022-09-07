@@ -9,7 +9,7 @@ test('import of assets via ioc', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             assets: {
               'logo.svg': `<svg></svg>`,
@@ -30,7 +30,7 @@ test('import of assets via ioc', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(page.locator('img')).toHaveAttribute('src', /app\/assets\/logo.svg/)
+      await expect(page.locator('img')).toHaveAttribute('src', /my-module\/assets\/logo.svg/)
     },
   )
 })
@@ -43,7 +43,7 @@ test('overriding of assets via ioc', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             assets: {
               'logo.svg': `<svg></svg>`,

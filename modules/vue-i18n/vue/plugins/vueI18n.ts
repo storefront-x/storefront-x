@@ -1,6 +1,5 @@
 import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
-import VUE_I18N_FALLBACK_LOCALE from '#ioc/config/VUE_I18N_FALLBACK_LOCALE'
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 import VUE_I18N_LEGACY from '#ioc/config/VUE_I18N_LEGACY'
 import VUE_I18N_FALLBACK_FORMAT from '#ioc/config/VUE_I18N_FALLBACK_FORMAT'
@@ -9,6 +8,7 @@ import VUE_I18N_FALLBACK_WARN from '#ioc/config/VUE_I18N_FALLBACK_WARN'
 import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
+import i18nMessages from '~/.sfx/i18n/messages'
 
 export default async (app: App, ctx: any) => {
   const locale = getLocale(ctx)
@@ -16,7 +16,7 @@ export default async (app: App, ctx: any) => {
 
   const i18n = createI18n({
     locale: locale,
-    fallbackLocale: VUE_I18N_FALLBACK_LOCALE,
+    fallbackLocale: VUE_I18N_LOCALES[0].locale,
     messages: messages,
     legacy: VUE_I18N_LEGACY,
     fallbackFormat: VUE_I18N_FALLBACK_FORMAT,
@@ -29,9 +29,10 @@ export default async (app: App, ctx: any) => {
   app.use(i18n)
 }
 
-function getLocale(ctx: any) {
+function getLocale(ctx: any): string {
   let path = ''
   let localeName = ''
+
   if (IS_SERVER) {
     path = ctx.req.url.split('/').slice(1)[0]
   } else if (IS_CLIENT) {
@@ -61,13 +62,15 @@ function getLocale(ctx: any) {
       return VUE_I18N_LOCALES[i].locale
     }
   }
-  return VUE_I18N_FALLBACK_LOCALE
+
+  return VUE_I18N_LOCALES[0].locale
 }
 
 function getMessages() {
   const messages: any = {}
+
   for (const locale of VUE_I18N_LOCALES) {
-    messages[locale.locale] = {}
+    messages[locale.locale] = i18nMessages[locale.locale] ?? {}
   }
 
   return messages

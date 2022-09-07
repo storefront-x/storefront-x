@@ -35,6 +35,12 @@ yarn dev
 
 You can now view Storefront X on localhost. Development server has hot-module-reloading, so you don't have to reload the browser for changes in source code to take effect.
 
+#### Choosing an integration
+
+Storefront X uses different sets of modules for different integrations. They are specified in different `storefront-x.xxx.config.js` config files. To use different config file other than the default `storefront-x.config.js`, use the `--config` flag like this:
+
+`yarn dev --config storefront-x.magento.config.js`
+
 ## Running tests
 
 For most of the tests to work, Storefront X has to be bootstrapped. This is done automatically when starting the development server or you can run the bootstrap manually using this command:
@@ -43,9 +49,9 @@ For most of the tests to work, Storefront X has to be bootstrapped. This is done
 yarn build --onlyBootstrap
 ```
 
-### Integration tests
+### COre tests
 
-Storefront X uses [Playwright](https://playwright.dev) for its integration tests. These tests can be found inside `tests/playwright` directories inside Storefront X modules.
+Storefront X uses [Playwright](https://playwright.dev) for its core functionalities. These tests can be found inside `tests/playwright` directories inside Storefront X modules.
 
 You can run integrations tests using this command:
 
@@ -61,6 +67,18 @@ You can run unit tests using this command:
 
 ```
 yarn test:unit
+```
+
+### Cypress tests
+
+Storefront X uses [Cypress](https://www.cypress.io) for its E2E integration tests. These tests can be found inside `cypress` directories inside Storefront X modules.
+
+Before you running Cypress tests, you need to either run the development server (`yarn dev`) or build the application (`yarn build`) so that the cypress directory in the root of the project is generated.
+
+To open the Cypress GUI, run this command:
+
+```
+yarn cypress open
 ```
 
 ## Pull request guidelines

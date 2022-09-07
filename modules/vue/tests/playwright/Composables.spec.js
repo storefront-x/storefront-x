@@ -9,7 +9,7 @@ test('import of composables via ioc', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router',
         [
-          'app',
+          'my-module',
           {
             composables: {
               'useGreet.ts': `

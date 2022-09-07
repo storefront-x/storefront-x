@@ -8,7 +8,7 @@ test('transfer of state', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             base: {
               templates: {
@@ -48,7 +48,7 @@ test('state remains reactive', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         [
-          'app',
+          'my-module',
           {
             base: {
               templates: {
