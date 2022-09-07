@@ -1,7 +1,7 @@
 <template>
   <p v-if="stockStatus" class="text-sm flex items-center mt-4" :class="classes">
-    <InStockIcon v-if="stockStatus" class="h-4 w-auto mr-3" />
-    <OutOfStockIcon v-if="!stockStatus" class="h-4 w-auto mr-3" />
+    <InStock v-if="stockStatus" class="h-4 w-auto mr-3" />
+    <OutOfStock v-if="!stockStatus" class="h-4 w-auto mr-3" />
     {{ t(stockStatus ? 'IN_STOCK' : 'OUT_OF_STOCK') }}
   </p>
 </template>
@@ -9,8 +9,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
-import InStockIcon from '#ioc/icons/custom/InStockIcon'
-import OutOfStockIcon from '#ioc/icons/custom/OutOfStockIcon'
+import InStock from '#ioc/icons/custom/InStock'
+import OutOfStock from '#ioc/icons/custom/OutOfStock'
 
 const { t } = useI18n()
 
