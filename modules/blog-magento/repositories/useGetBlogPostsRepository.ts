@@ -24,7 +24,7 @@ export default () => {
     )
 
     return {
-      blogPosts: amBlogPosts.items.map(ToBlogPost),
+      blogPosts: amBlogPosts?.items?.map(ToBlogPost) || [],
       blogPostsSize: amBlogPosts.all_post_size,
     }
   }

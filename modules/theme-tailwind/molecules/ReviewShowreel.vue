@@ -40,7 +40,6 @@
 
 <script setup lang="ts">
 import SolidQuotesIcon from '#ioc/icons/SolidQuotesIcon'
-import { defineProps } from 'vue'
 
 defineProps({
   reviews: {

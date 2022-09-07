@@ -6,7 +6,6 @@
 import useGetCmsBlock from '#ioc/services/useGetCmsBlock'
 import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
 import useAsyncData from '#ioc/composables/useAsyncData'
-import { defineProps } from 'vue'
 
 const getCmsBlock = useGetCmsBlock()
 

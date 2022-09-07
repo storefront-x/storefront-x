@@ -22,7 +22,6 @@
 import Heading from '#ioc/atoms/Heading'
 import useI18n from '#ioc/composables/useI18n'
 import Usp from '#ioc/atoms//Usp'
-import { defineProps } from 'vue'
 
 const { t } = useI18n()
 
