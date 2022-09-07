@@ -6,7 +6,7 @@ export default () => {
   const magento = useMagento()
 
   return async (
-    identifiers: string | string[],
+    identifiers: string[],
   ): Promise<{
     cmsBlock: ReturnType<typeof ToCmsPage>
   }> => {

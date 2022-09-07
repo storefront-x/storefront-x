@@ -13,7 +13,7 @@
         </div>
         <blockquote class="mt-6 md:flex-grow md:flex md:flex-col">
           <div class="relative text-lg font-medium md:flex-grow">
-            <SolidQuotesIcon
+            <SolidQuotes
               view-box="0 0 32 32"
               class="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 !h-8 !w-8 text-gray-200"
             />
@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import SolidQuotesIcon from '#ioc/icons/SolidQuotesIcon'
+import SolidQuotes from '#ioc/icons/SolidQuotes'
 
 defineProps({
   reviews: {

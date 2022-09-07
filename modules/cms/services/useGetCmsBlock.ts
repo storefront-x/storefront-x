@@ -1,9 +1,9 @@
-import useGetCmsBlockByIdentifier from '#ioc/repositories/useGetCmsBlockByIdentifier'
+import useGetCmsBlockByIdentifiers from '#ioc/repositories/useGetCmsBlockByIdentifiers'
 
 export default () => {
-  const getCmsBlockByIdentifier = useGetCmsBlockByIdentifier()
+  const getCmsBlockByIdentifiers = useGetCmsBlockByIdentifiers()
 
-  return async (...args: Parameters<typeof getCmsBlockByIdentifier>) => {
-    return await getCmsBlockByIdentifier(...args)
+  return async (...args: Parameters<typeof getCmsBlockByIdentifiers>) => {
+    return await getCmsBlockByIdentifiers(...args)
   }
 }
