@@ -7,8 +7,8 @@
         class="hidden text-sm font-semibold text-primary-600 hover:text-primary-700 sm:block"
       >
         {{ t('browse') }}
-        <span aria-hidden="true"> &rarr;</span></RouterLink
-      >
+        <span aria-hidden="true"> &rarr;</span>
+      </RouterLink>
     </div>
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8">
@@ -17,7 +17,7 @@
         class="group aspect-[2/1] rounded-lg overflow-hidden relative sm:aspect-auto sm:row-span-2"
       >
         <SfxImage
-          :src="categories[0].thumbnailUrl"
+          :src="categories[0].imageUrl"
           class-img="object-center object-cover group-hover:opacity-75 w-full h-full"
           :width="736"
           :height="736"
@@ -49,7 +49,7 @@
         class="group aspect-[2/1] rounded-lg overflow-hidden relative sm:aspect-none sm:h-full"
       >
         <SfxImage
-          :src="categories[1].thumbnailUrl"
+          :src="categories[1].imageUrl"
           class-img="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
           :width="736"
           :height="352"
@@ -78,7 +78,7 @@
         class="group aspect-[2/1] rounded-lg overflow-hidden relative sm:aspect-none sm:h-full"
       >
         <SfxImage
-          :src="categories[2].thumbnailUrl"
+          :src="categories[2].imageUrl"
           class-img="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
           :width="736"
           :height="352"
@@ -126,7 +126,7 @@ import { computed } from 'vue'
 const { t } = useI18n()
 const localePath = useLocalePath()
 const getNavigationMenu = useGetNavigationMenu()
-const { data } = await useAsyncData('categories', () => getNavigationMenu())
+const { data } = await useAsyncData('previews', () => getNavigationMenu())
 
 const categories = computed(() => {
   return data.value.categories.slice(0, 3)

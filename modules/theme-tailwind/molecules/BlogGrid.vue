@@ -23,7 +23,7 @@ const { t } = useI18n()
 
 defineProps({
   blogPosts: {
-    required: false,
+    required: true,
     type: Array,
   },
 })

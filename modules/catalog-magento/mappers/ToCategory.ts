@@ -5,7 +5,7 @@ export default (data: any) => ({
   urlKey: data.url_path,
   name: data.name ?? '',
   description: data.description ?? '',
-  thumbnailUrl: data.image,
+  imageUrl: data.image,
   breadcrumbs: data.breadcrumbs?.map(toBreadcrumbs) || [],
   productsTotalCount: data.products?.total_count ?? 0,
   children: (data.children ?? []).map(ToCategory),
