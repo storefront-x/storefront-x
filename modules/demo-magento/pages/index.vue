@@ -21,12 +21,12 @@
     </div>
 
     <Container :class="containersSpacingClass">
-      <BlogGrid :blog-posts="blogPosts" />
+      <BlogGrid :blog-posts="data.blogPosts" />
     </Container>
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import useGetBlogPosts from '#ioc/services/useGetBlogPosts'
 import SfxMagentoCmsBlock from '#ioc/components/SfxMagentoCmsBlock'
 import Container from '#ioc/atoms/Container'
@@ -37,63 +37,50 @@ import ReviewShowreel from '#ioc/molecules/ReviewShowreel'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useRoute from '#ioc/composables/useRoute'
 import useI18n from '#ioc/composables/useI18n'
-import { defineComponent } from 'vue'
+import Rocket from '#ioc/icons/custom/Rocket'
+import Gears from '#ioc/icons/custom/Gears'
+import Glass from '#ioc/icons/custom/Glass'
 
-export default defineComponent({
-  components: { ReviewShowreel, CategoryPreviews, BlogGrid, Container, Usps, SfxMagentoCmsBlock },
+const getBlogPosts = useGetBlogPosts()
+const route = useRoute()
+const { t } = useI18n()
 
-  setup() {
-    const getBlogPosts = useGetBlogPosts()
-    const route = useRoute()
-    const { t } = useI18n()
+const { data } = useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
 
-    const { data } = useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
-
-    return {
-      blogPosts: data?.value?.blogPosts,
-      t,
-    }
+const containersSpacingClass = { 'mb-12': true }
+const usps = [
+  {
+    title: t('customizable'),
+    description: t('cust_desc'),
+    component: Rocket,
   },
-
-  data() {
-    return {
-      containersSpacingClass: { 'mb-12': true },
-      usps: [
-        {
-          title: this.t('customizable'),
-          description: this.t('cust_desc'),
-          icon: 'gears',
-        },
-        {
-          title: this.t('scalable'),
-          description: this.t('scalable_desc'),
-          icon: 'rocket',
-        },
-        {
-          title: this.t('improves_seo'),
-          description: this.t('seo_desc'),
-          icon: 'glass',
-        },
-      ],
-      reviews: [
-        {
-          logo: '/logos/logo_demo.png',
-          description: this.t('review_desc_1'),
-          authorName: 'Libor Test',
-          authorRole: 'CEO Demo.cz',
-          authorImage: '/images/portrait_2.jpg',
-        },
-        {
-          logo: '/logos/logo_demo2.png',
-          description: this.t('review_desc_2'),
-          authorName: 'Roman Test',
-          authorRole: 'E-Commerce at Another Demo Enterprises',
-          authorImage: '/images/portrait_3.jpg',
-        },
-      ],
-    }
+  {
+    title: t('scalable'),
+    description: t('scalable_desc'),
+    component: Gears,
   },
-})
+  {
+    title: t('improves_seo'),
+    description: t('seo_desc'),
+    component: Glass,
+  },
+]
+const reviews = [
+  {
+    logo: '/logos/logo_demo.png',
+    description: t('review_desc_1'),
+    authorName: 'Libor Test',
+    authorRole: 'CEO Demo.cz',
+    authorImage: '/images/portrait_2.jpg',
+  },
+  {
+    logo: '/logos/logo_demo2.png',
+    description: t('review_desc_2'),
+    authorName: 'Roman Test',
+    authorRole: 'E-Commerce at Another Demo Enterprises',
+    authorImage: '/images/portrait_3.jpg',
+  },
+]
 </script>
 
 <style scoped>
