@@ -77,17 +77,17 @@ export default defineComponent({
       ],
       reviews: [
         {
-          logo: '/logos/logo_sporting.png',
+          logo: '/logos/logo_demo.png',
           description: this.t('review_desc_1'),
-          authorName: 'Libor Nejedlý',
-          authorRole: 'CEO Sporting.cz',
+          authorName: 'Libor Test',
+          authorRole: 'CEO Demo.cz',
           authorImage: '/images/portrait_2.jpg',
         },
         {
-          logo: '/logos/logo_weplay.png',
+          logo: '/logos/logo_demo2.png',
           description: this.t('review_desc_2'),
-          authorName: 'Roman Solnař',
-          authorRole: 'E-Commerce Manager Weplay.cz',
+          authorName: 'Roman Test',
+          authorRole: 'E-Commerce at Another Demo Enterprises',
           authorImage: '/images/portrait_3.jpg',
         },
       ],
