@@ -22,13 +22,15 @@
 import Container from '#ioc/atoms/Container'
 import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import ProductOverview from '#ioc/organisms/ProductOverview'
-import ProductDetailTabs from '#ioc/organisms/ProductDetailTabs'
 import injectProduct from '#ioc/composables/injectProduct'
 import useHead from '#ioc/composables/useHead'
-import ProductCarousel from '#ioc/organisms/ProductCarousel'
 import Heading from '#ioc/atoms/Heading'
 import useI18n from '#ioc/composables/useI18n'
 import { computed } from 'vue'
+import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+
+const ProductDetailTabs = hydrateWhenVisible(() => import('#ioc/organisms/ProductDetailTabs'))
+const ProductCarousel = hydrateWhenVisible(() => import('#ioc/organisms/ProductCarousel'))
 
 const { t } = useI18n()
 const product = injectProduct()
