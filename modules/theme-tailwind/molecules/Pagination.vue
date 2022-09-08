@@ -100,7 +100,6 @@ import SolidArrowLeft from '#ioc/icons/SolidArrowLeft'
 import SolidArrowRight from '#ioc/icons/SolidArrowRight'
 import SolidChevronRight from '#ioc/icons/SolidChevronRight'
 import useI18n from '#ioc/composables/useI18n'
-import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -114,13 +113,6 @@ export default defineComponent({
   },
 
   mixins: [IsPagination],
-
-  props: {
-    perPage: {
-      type: Number,
-      default: CATALOG_PAGE_SIZE,
-    },
-  },
 
   setup() {
     const { t } = useI18n()

@@ -1,4 +1,5 @@
 import UsesRouter from '#ioc/mixins/UsesRouter'
+import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 
 export default {
   mixins: [UsesRouter],
@@ -12,6 +13,7 @@ export default {
     perPage: {
       type: Number,
       required: false,
+      default: CATALOG_PAGE_SIZE,
     },
   },
 
