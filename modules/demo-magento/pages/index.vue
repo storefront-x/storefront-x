@@ -45,7 +45,7 @@ const getBlogPosts = useGetBlogPosts()
 const route = useRoute()
 const { t } = useI18n()
 
-const { data } = useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
+const { data } = await useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
 
 const containersSpacingClass = { 'mb-12': true }
 const usps = [
