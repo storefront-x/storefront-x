@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-// @ts-ignore
-import PhotoSwipeLightbox from 'photoswipe/lightbox'
 import 'photoswipe/style.css'
 import { onMounted, onUnmounted, ref } from 'vue'
 
@@ -26,7 +24,10 @@ defineProps({
 const lightbox = ref<any>(null)
 
 onMounted(() => {
-  if (!lightbox.value) {
+  requestIdleCallback(async () => {
+    // @ts-ignore
+    const { default: PhotoSwipeLightbox } = await import('photoswipe/lightbox')
+
     lightbox.value = new PhotoSwipeLightbox({
       gallery: root.value,
       children: 'picture',
@@ -36,7 +37,7 @@ onMounted(() => {
     // TODO: Implement lightbox
 
     lightbox.value?.init()
-  }
+  })
 })
 
 onUnmounted(() => {

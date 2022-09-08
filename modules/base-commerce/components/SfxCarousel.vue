@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import KeenSlider from 'keen-slider'
 import 'keen-slider/keen-slider.min.css'
 import { defineComponent } from 'vue'
 import throttle from '#ioc/utils/throttle'
@@ -113,7 +112,9 @@ export default defineComponent({
   },
 
   mounted() {
-    requestIdleCallback(() => {
+    requestIdleCallback(async () => {
+      const { default: KeenSlider } = await import('keen-slider')
+
       this.slider = new KeenSlider(this.$el, {
         slides: {
           perView: this.slidesPerView,

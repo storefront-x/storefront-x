@@ -1,8 +1,7 @@
 import sharp from 'sharp'
 import LRU from 'lru-cache'
-import IS_PRODUCTION from '#ioc/config/IS_PRODUCTION'
 
-const IMAGE_RESIZER_CACHE_ENABLED = !IS_PRODUCTION
+const IMAGE_RESIZER_CACHE_ENABLED = true
 
 const SERVER_HOST = process.env.SERVER_HOST || 'localhost'
 const SERVER_PORT = process.env.SERVER_PORT || 3000
