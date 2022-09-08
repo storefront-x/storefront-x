@@ -1,6 +1,6 @@
 <template>
   <div class="pb-8">
-    <div class="main-slider"><SfxMagentoCmsBlock identifier="slider_hp" :class="containersSpacingClass" /></div>
+    <div class="main-slider mb-12"><SfxMagentoCmsBlock identifier="slider_hp" :class="containersSpacingClass" /></div>
 
     <Container :class="containersSpacingClass">
       <Usps :usps="usps" />
@@ -52,12 +52,12 @@ const usps = [
   {
     title: t('customizable'),
     description: t('cust_desc'),
-    component: Rocket,
+    component: Gears,
   },
   {
     title: t('scalable'),
     description: t('scalable_desc'),
-    component: Gears,
+    component: Rocket,
   },
   {
     title: t('improves_seo'),
