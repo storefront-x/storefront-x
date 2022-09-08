@@ -16,9 +16,8 @@ export default (source: () => Promise<{ default: any }>): any => {
         const intersectionObserver = new IntersectionObserver(([entry]) => {
           if (entry.isIntersecting) {
             intersectionObserver.disconnect()
-            Promise.resolve(source())
-              .then((c) => () => h(c.default))
-              .then(resolve)
+
+            requestIdleCallback(() => source().then((c) => resolve(() => h(c.default))))
           }
         })
 
