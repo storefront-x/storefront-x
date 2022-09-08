@@ -3,7 +3,7 @@
     <ol role="list" class="flex items-center space-x-4 list-none p-0">
       <li>
         <div>
-          <RouterLink :to="localePath('/')" class="flex items-center text-gray-400 hover:text-gray-500">
+          <RouterLink :to="localePath('/')" class="p-4 flex items-center text-gray-500 hover:text-gray-500">
             <SolidHome />
             <span v-if="breadcrumbs.length === 0" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
               {{ t('Home') }}
