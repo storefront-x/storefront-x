@@ -15,7 +15,7 @@ const main = async () => {
     }
   }
 
-  app.mount('#app', true)
+  requestIdleCallback(() => app.mount('#app', true))
 }
 
 main().catch((err) => {

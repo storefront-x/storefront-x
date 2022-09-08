@@ -108,29 +108,31 @@ export default defineComponent({
 
   watch: {
     x_slides() {
-      if (this.slider) this.$nextTick(() => this.slider.update())
+      if (this.slider) this.$nextTick(() => requestIdleCallback(() => this.slider.update()))
     },
   },
 
   mounted() {
-    this.slider = new KeenSlider(this.$el, {
-      slides: {
-        perView: this.slidesPerView,
-      },
-      initial: this.currentPage,
-      loop: this.loop,
-      breakpoints: this.breakpoints,
-      dragStarted: () => this.onDragStart(),
-      dragEnded: () => this.onDragEnd(),
-      dragged: () => this.onMove(),
-      slideChanged: (slider) => {
-        this.currentPage = Math.floor(slider.track.details.rel / this.x_slidesPerView)
-      },
+    requestIdleCallback(() => {
+      this.slider = new KeenSlider(this.$el, {
+        slides: {
+          perView: this.slidesPerView,
+        },
+        initial: this.currentPage,
+        loop: this.loop,
+        breakpoints: this.breakpoints,
+        dragStarted: () => this.onDragStart(),
+        dragEnded: () => this.onDragEnd(),
+        dragged: () => this.onMove(),
+        slideChanged: (slider) => {
+          this.currentPage = Math.floor(slider.track.details.rel / this.x_slidesPerView)
+        },
+      })
+
+      this.x_isMounted = true
+
+      this.setInterval()
     })
-
-    this.x_isMounted = true
-
-    this.setInterval()
   },
 
   unmounted() {
