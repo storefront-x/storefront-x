@@ -9,14 +9,22 @@ export default () => {
   const getSeoUrlRepository = useGetSeoUrlRepository()
 
   return async () => {
+    const arr = ['detail', 'navigation']
     const path = ensureArray(route.params?.pathMatch)
-    const routePath = path.length ? path.join('/') : 'home'
+    const contains = arr.some((element) => {
+      if (path.includes(element)) {
+        return true
+      }
+      return false
+    })
+    const routePath = path.length ? (contains ? path.slice(1, path.length).join('/') : path.join('/')) : 'home'
 
-    const { data } = await useAsyncData('urlResolver', () => getSeoUrlRepository(routePath))
+    const { data } = await useAsyncData('urlResolver', () => getSeoUrlRepository(routePath.replace('#', '')))
 
     return {
       id: data.value?.foreignKey,
       component: dynamicPages[data.value?.ident as keyof typeof dynamicPages],
+      seoPath: data.value?.seoPath,
     }
   }
 }
