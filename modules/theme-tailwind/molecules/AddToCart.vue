@@ -23,6 +23,9 @@ import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
 import { ref } from 'vue'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+
+const showErrorNotification = useShowErrorNotification()
 
 const props = defineProps({
   quantity: {
@@ -45,8 +48,10 @@ const onClose = () => {
 const onAddToCart = async () => {
   loading.value = true
   try {
-    await addToCart(product, { quantity: props.quantity })
+    await addToCart(product, { quantity: props.quantity, bundle: product.bundle.value })
     isCrossSellModalOpen.value = true
+  } catch (e: any) {
+    showErrorNotification(e)
   } finally {
     loading.value = false
   }

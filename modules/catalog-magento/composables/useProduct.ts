@@ -1,9 +1,13 @@
 import ToProduct from '#ioc/mappers/ToProduct'
 import useCatalogMagentoStore from '#ioc/stores/useCatalogMagentoStore'
-import { computed, reactive, Ref } from 'vue'
+import { computed, reactive, Ref, ref } from 'vue'
 
 export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   const catalogMagentoStore = useCatalogMagentoStore()
+
+  const bundle = ref({} as any)
+
+  const configurations = ref({} as any)
 
   const id = computed(() => product.value.id)
 
@@ -26,6 +30,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   const regularPrice = computed(() => product.value.regularPrice)
 
   const finalPrice = computed(() => product.value.finalPrice)
+
+  const minimumPrice = computed(() => product.value.minimumPrice)
 
   const breadcrumbs = computed(() => [
     ...product.value.categories.map((category: any) => ({
@@ -52,9 +58,19 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const reviews = computed(() => product.value.reviews ?? [])
 
+  const isSimpleProduct = computed(() => product.value.__typename === 'SimpleProduct')
+
   const isConfigurableProduct = computed(() => product.value.__typename === 'ConfigurableProduct')
 
+  const isBundleProduct = computed(() => product.value.__typename === 'BundleProduct')
+
   const mediaGallery = computed(() => product.value.mediaGallery || [])
+
+  const bundleItems = computed(() => product.value.bundleItems || [])
+
+  const configurableOptions = computed(() => {
+    return configurations.value.configurableOptions ?? product.value.configurableOptions ?? []
+  })
 
   return reactive({
     id,
@@ -76,9 +92,15 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     ratingSummary,
     reviewCount,
     reviews,
+    isSimpleProduct,
     isConfigurableProduct,
+    isBundleProduct,
     mediaGallery,
     crossSellProducts,
     upsellProducts,
+    bundleItems,
+    minimumPrice,
+    bundle,
+    configurableOptions,
   })
 }

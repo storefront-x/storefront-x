@@ -12,6 +12,12 @@
       <Heading :level="1" data-cy="title">{{ product.name }}</Heading>
       <ReviewStars class="mt-2" :rating="product.ratingSummary" :count="product.reviewCount" />
 
+      <div v-if="product.isBundleProduct" class="mt-3">
+        <h2 class="sr-only">Product bundles</h2>
+
+        <ProductBundleOptions />
+      </div>
+
       <div class="mt-4">
         <h3 class="sr-only">Description</h3>
         <div class="links" v-html="product.shortDescriptionHtml" />
@@ -73,6 +79,7 @@ import { computed, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
+import ProductBundleOptions from '#ioc/molecules/ProductBundleOptions'
 
 const { t } = useI18n()
 const product = injectProduct()
