@@ -1,6 +1,6 @@
 <template>
   <div class="pb-8">
-    <div class="main-slider"><SfxMagentoCmsBlock identifier="slider_hp" :class="containersSpacingClass" /></div>
+    <div class="main-slider mb-12"><SfxMagentoCmsBlock identifier="slider_hp" :class="containersSpacingClass" /></div>
 
     <Container :class="containersSpacingClass">
       <Usps :usps="usps" />
@@ -45,19 +45,19 @@ const getBlogPosts = useGetBlogPosts()
 const route = useRoute()
 const { t } = useI18n()
 
-const { data } = useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
+const { data } = await useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
 
 const containersSpacingClass = { 'mb-12': true }
 const usps = [
   {
     title: t('customizable'),
     description: t('cust_desc'),
-    component: Rocket,
+    component: Gears,
   },
   {
     title: t('scalable'),
     description: t('scalable_desc'),
-    component: Gears,
+    component: Rocket,
   },
   {
     title: t('improves_seo'),
