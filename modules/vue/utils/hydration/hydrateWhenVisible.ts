@@ -1,53 +1,72 @@
+/* eslint-disable vue/one-component-per-file */
 import IS_SERVER from '#ioc/config/IS_SERVER'
-import { h, defineComponent, defineAsyncComponent, getCurrentInstance, onUnmounted } from 'vue'
+import { h, defineComponent, defineAsyncComponent, getCurrentInstance, onMounted, onUnmounted } from 'vue'
+
+const name = 'HydrateWhenVisible'
 
 export default (source: () => Promise<{ default: any }>): any => {
+  const EagerComponent = defineAsyncComponent(source)
+
+  let resolve: any
+
+  const promise = new Promise<any>((_resolve) => {
+    resolve = _resolve
+  })
+
+  const LazyComponent = defineAsyncComponent({
+    loader: () => promise,
+    suspensible: false,
+  })
+
   if (IS_SERVER) {
-    return defineAsyncComponent(source)
+    return defineComponent({
+      name,
+      setup() {
+        return () => h(EagerComponent)
+      },
+    })
   } else {
     return defineComponent({
-      name: 'HydrateWhenVisible',
+      name,
       setup() {
         const currentInstance = getCurrentInstance()
 
-        let resolve: (val: any) => void
-        const promise = new Promise((r) => (resolve = r))
-
-        const intersectionObserver = new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            intersectionObserver.disconnect()
-
-            requestIdleCallback(() => source().then((c) => resolve(() => h(c.default))))
-          }
-        })
-
+        // el is directly present in the setup function only during hydration
+        // this might be a case of abusing implementation details but it kinda makes sense?
         let el = currentInstance!.vnode.el as Element | null
 
-        // eslint-disable-next-line no-constant-condition
-        while (true) {
-          if (!el) {
-            break
-          }
+        const isHydration = !!el
 
-          if (el.nodeName === '#comment') {
-            el = el.nextElementSibling
-            continue
-          }
+        if (isHydration) {
+          const intersectionObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+              intersectionObserver.disconnect()
+              source().then(resolve)
+            }
+          })
 
-          intersectionObserver.observe(el)
-          break
-        }
+          onMounted(() => {
+            // eslint-disable-next-line no-constant-condition
+            while (true) {
+              if (!el) return
 
-        if (el) {
+              if (el.nodeName === '#comment') {
+                el = el.nextElementSibling
+                continue
+              }
+
+              intersectionObserver.observe(el)
+              return
+            }
+          })
+
           onUnmounted(() => {
             intersectionObserver.disconnect()
           })
 
-          return promise
+          return () => h(LazyComponent)
         } else {
-          intersectionObserver.disconnect()
-
-          return source().then((c) => () => h(c.default))
+          return () => h(EagerComponent)
         }
       },
     })
