@@ -50,7 +50,7 @@
             </div>
           </div>
 
-          <ProductQuantityConfigurator :value="quantity" @input="onQuantityChange" />
+          <ProductQuantityConfigurator @input="onQuantityChange" />
         </div>
 
         <AddToCart :quantity="quantity" />
@@ -101,6 +101,7 @@ const discounted = computed(() => {
 })
 
 const onQuantityChange = (q: number) => {
+  console.log('quantity changed', q)
   quantity.value = q
 }
 </script>
