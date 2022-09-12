@@ -14,7 +14,6 @@
 
 <script setup lang="ts">
 import Container from '#ioc/atoms/Container'
-import Description from '#ioc/atoms/Description'
 import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import CategoryInfo from '#ioc/molecules/CategoryInfo'
 import ToCategory from '#ioc/mappers/ToCategory'
@@ -23,6 +22,9 @@ import ProductListing from '#ioc/organisms/ProductListing'
 import useHead from '#ioc/composables/useHead'
 import { computed, PropType } from 'vue'
 import useCategory from '#ioc/composables/useCategory'
+import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+
+const Description = hydrateWhenVisible(() => import('#ioc/atoms/Description'))
 
 const props = defineProps({
   category: {
