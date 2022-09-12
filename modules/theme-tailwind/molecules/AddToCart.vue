@@ -48,7 +48,7 @@ const onClose = () => {
 const onAddToCart = async () => {
   loading.value = true
   try {
-    await addToCart(product, { quantity: props.quantity, bundle: product.bundle.value })
+    await addToCart(product, { quantity: props.quantity, bundle: product.bundle, variantSku: product.variant?.sku })
     isCrossSellModalOpen.value = true
   } catch (e: any) {
     showErrorNotification(e)

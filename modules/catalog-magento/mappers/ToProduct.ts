@@ -2,6 +2,7 @@ import ToProduct from '#ioc/mappers/ToProduct'
 import ToMoney from '#ioc/mappers/ToMoney'
 import ToBundleItem from '#ioc/mappers/ToBundleItem'
 import ToConfigurableOption from '#ioc/mappers/ToConfigurableOption'
+import ToVariant from '#ioc/mappers/ToVariant'
 
 export default (data: any) => ({
   __typename: data.__typename ?? '',
@@ -28,4 +29,5 @@ export default (data: any) => ({
   bundleItems: (data.items ?? []).map(ToBundleItem(data.price_range?.minimum_price?.final_price?.currency)),
   configurableOptions: (data.configurable_options ?? []).map(ToConfigurableOption),
   configurableOptionsCount: data.configurable_options?.length,
+  variants: (data.variants ?? []).map(ToVariant),
 })

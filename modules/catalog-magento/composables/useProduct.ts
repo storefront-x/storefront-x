@@ -7,11 +7,11 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const bundle = ref({} as any)
 
-  const configurations = ref({} as any)
+  const configuration = ref({} as any)
 
   const id = computed(() => product.value.id)
 
-  const sku = computed(() => product.value.sku)
+  const sku = computed(() => variant.value.sku ?? product.value.sku)
 
   const name = computed(() => product.value.name)
 
@@ -25,7 +25,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const shortDescriptionHtml = computed(() => product.value.shortDescriptionHtml)
 
-  const thumbnailUrl = computed(() => product.value.thumbnailUrl)
+  const thumbnailUrl = computed(() => variant.value.thumbnaulUrl ?? product.value.thumbnailUrl)
 
   const regularPrice = computed(() => product.value.regularPrice)
 
@@ -64,12 +64,32 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isBundleProduct = computed(() => product.value.__typename === 'BundleProduct')
 
-  const mediaGallery = computed(() => product.value.mediaGallery || [])
+  const mediaGallery = computed(() => {
+    if (variant.value?.mediaGallery?.length > 0) {
+      return variant.value?.mediaGallery
+    }
+    return product.value.mediaGallery || []
+  })
 
   const bundleItems = computed(() => product.value.bundleItems || [])
 
-  const configurableOptions = computed(() => {
-    return configurations.value.configurableOptions ?? product.value.configurableOptions ?? []
+  const configurableOptions = computed(() => product.value.configurableOptions ?? [])
+
+  const variants = computed(() => product.value.variants ?? [])
+
+  const variant = computed(() => {
+    if (!Object.keys(configuration.value).length) return {}
+
+    out: for (const { attributes, product } of variants.value) {
+      for (const [key, value] of Object.entries(attributes)) {
+        if (configuration.value[key] !== value) {
+          continue out
+        }
+      }
+      return product
+    }
+
+    return {}
   })
 
   return reactive({
@@ -102,5 +122,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     minimumPrice,
     bundle,
     configurableOptions,
+    configuration,
+    variant,
   })
 }
