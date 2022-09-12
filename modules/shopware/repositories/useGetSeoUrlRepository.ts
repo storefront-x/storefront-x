@@ -11,9 +11,14 @@ export default () => {
           operator: 'or',
           queries: [
             {
-              type: 'prefix',
+              type: 'equals',
               field: 'seoPathInfo',
               value: path,
+            },
+            {
+              type: 'equals',
+              field: 'seoPathInfo',
+              value: path + '/',
             },
             {
               type: 'suffix',
