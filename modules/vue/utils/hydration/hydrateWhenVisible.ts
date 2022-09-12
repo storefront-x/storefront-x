@@ -1,5 +1,6 @@
 /* eslint-disable vue/one-component-per-file */
 import IS_SERVER from '#ioc/config/IS_SERVER'
+import schedule from '#ioc/utils/schedule'
 import { h, defineComponent, defineAsyncComponent, getCurrentInstance, onMounted, onUnmounted } from 'vue'
 
 const name = 'HydrateWhenVisible'
@@ -41,7 +42,8 @@ export default (source: () => Promise<{ default: any }>): any => {
           const intersectionObserver = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
               intersectionObserver.disconnect()
-              source().then(resolve)
+
+              schedule(() => source().then(resolve))
             }
           })
 
