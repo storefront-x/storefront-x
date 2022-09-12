@@ -1,6 +1,6 @@
 <template>
-  <Component :is="component" v-if="component && !redirectTo" :id="id" />
-  <NotFound v-else-if="!component && !redirectTo" />
+  <Component :is="component" v-if="component" :id="id" />
+  <NotFound v-else />
 </template>
 
 <script setup lang="ts">
