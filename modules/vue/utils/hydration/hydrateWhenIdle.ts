@@ -1,5 +1,6 @@
 /* eslint-disable vue/one-component-per-file */
 import IS_SERVER from '#ioc/config/IS_SERVER'
+import schedule from '#ioc/utils/schedule'
 import { h, defineComponent, defineAsyncComponent } from 'vue'
 
 const name = 'HydrateWhenIdle'
@@ -29,7 +30,7 @@ export default (source: () => Promise<{ default: any }>): any => {
     return defineComponent({
       name,
       setup() {
-        requestIdleCallback(() => {
+        schedule(() => {
           source().then(resolve)
         })
 

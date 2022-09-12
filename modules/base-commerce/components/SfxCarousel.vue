@@ -30,6 +30,7 @@
 import 'keen-slider/keen-slider.min.css'
 import { defineComponent } from 'vue'
 import throttle from '#ioc/utils/throttle'
+import schedule from '#ioc/utils/schedule'
 
 export default defineComponent({
   props: {
@@ -107,12 +108,12 @@ export default defineComponent({
 
   watch: {
     x_slides() {
-      if (this.slider) this.$nextTick(() => requestIdleCallback(() => this.slider.update()))
+      if (this.slider) this.$nextTick(() => schedule(() => this.slider.update()))
     },
   },
 
   mounted() {
-    requestIdleCallback(async () => {
+    schedule(async () => {
       const { default: KeenSlider } = await import('keen-slider')
 
       this.slider = new KeenSlider(this.$el, {

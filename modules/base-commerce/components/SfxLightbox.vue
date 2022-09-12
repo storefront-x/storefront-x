@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import schedule from '#ioc/utils/schedule'
 import 'photoswipe/style.css'
 import { onMounted, onUnmounted, ref } from 'vue'
 
@@ -24,7 +25,7 @@ const props = defineProps({
 const lightbox = ref<any>(null)
 
 onMounted(() => {
-  requestIdleCallback(async () => {
+  schedule(async () => {
     // @ts-ignore
     const { default: PhotoSwipeLightbox } = await import('photoswipe/lightbox')
 

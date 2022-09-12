@@ -1,4 +1,5 @@
 import useContext from '#ioc/composables/useContext'
+import schedule from '#ioc/utils/schedule'
 import { createSSRApp } from 'vue'
 import App from '~/.sfx/App.vue'
 import plugins from '~/.sfx/vue/plugins.client'
@@ -15,7 +16,7 @@ const main = async () => {
     }
   }
 
-  requestIdleCallback(() => app.mount('#app', true))
+  schedule(() => app.mount('#app', true))
 }
 
 main().catch((err) => {
