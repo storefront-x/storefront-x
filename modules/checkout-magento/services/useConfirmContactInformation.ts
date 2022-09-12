@@ -4,6 +4,7 @@ import useSetBillingAddressOnCartRepository from '#ioc/repositories/useSetBillin
 import useSetGuestEmailOnCartRepository from '#ioc/repositories/useSetGuestEmailOnCartRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
+import useCustomer from '#ioc/composables/useCustomer'
 
 export default () => {
   const checkoutStore = useCheckoutStore()
@@ -11,11 +12,14 @@ export default () => {
   const setGuestEmailOnCartRepository = useSetGuestEmailOnCartRepository()
   const setShippingAddressOnCartRepository = useSetShippingAddressOnCartRepository()
   const setBillingAddressOnCartRepository = useSetBillingAddressOnCartRepository()
+  const customer = useCustomer()
 
   return async (contactInformation: ReturnType<typeof ToContactInformation>) => {
     const { id } = await getOrCreateCartId()
 
-    await setGuestEmailOnCartRepository(id, contactInformation.email)
+    if (!customer.isLoggedIn) {
+      await setGuestEmailOnCartRepository(id, contactInformation.email)
+    }
 
     {
       const { checkout } = await setShippingAddressOnCartRepository(id, {
