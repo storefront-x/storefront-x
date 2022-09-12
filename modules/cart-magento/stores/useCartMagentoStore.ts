@@ -10,19 +10,18 @@ export default defineStore('cartMagento', {
     async serverInit() {
       if (IS_CLIENT) return
 
-      const cartStore = useCartStore()
-      const getCart = useGetCart()
       const cookies = useCookies()
+      const cartStore = useCartStore()
 
-      try {
-        const cart = await getCart()
+      const id = cookies.get(MAGENTO_CART_COOKIE_NAME)
 
-        cartStore.$patch(cart)
-      } catch (e) {
-        console.error(e)
+      cartStore.$patch({ cartId: id })
 
-        cookies.remove(MAGENTO_CART_COOKIE_NAME, { path: '/' })
-      }
+      const getCart = useGetCart()
+
+      const cart = await getCart()
+
+      cartStore.$patch(cart)
     },
   },
 })

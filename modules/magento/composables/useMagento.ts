@@ -7,6 +7,7 @@ import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import useStoreStore from '#ioc/stores/useStoreStore'
 import useCurrentLocale from '#ioc/composables/useCurrentLocale'
+import GraphQLError from '#ioc/errors/GraphQLError'
 
 interface Options {
   errorHandler?: (err: any) => Promise<void>
@@ -50,7 +51,7 @@ export default () => {
           if (opts.errorHandler) {
             await opts.errorHandler(error)
           } else {
-            throw new Error(error.message)
+            throw new GraphQLError(error)
           }
         }
       }
