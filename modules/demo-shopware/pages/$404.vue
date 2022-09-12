@@ -1,6 +1,6 @@
 <template>
-  <Component :is="component" v-if="component" :id="id" />
-  <NotFound v-else />
+  <Component :is="component" v-if="component && !redirectTo" :id="id" />
+  <NotFound v-else-if="!component && !redirectTo" />
 </template>
 
 <script setup lang="ts">
@@ -14,9 +14,10 @@ const localePath = useLocalePath()
 
 const urlResover = useUrlResolver()
 
-const { id, component, seoPath } = await urlResover()
+const { id, component, redirectTo } = await urlResover()
 
-const path = localePath(seoPath ? seoPath : '/')
-
-router.push({ path: path.fullPath, replace: true })
+if (redirectTo) {
+  const path = localePath(redirectTo)
+  router.replace({ path: path.fullPath })
+}
 </script>
