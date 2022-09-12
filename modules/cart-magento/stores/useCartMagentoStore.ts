@@ -6,6 +6,10 @@ import useCookies from '#ioc/composables/useCookies'
 import MAGENTO_CART_COOKIE_NAME from '#ioc/config/MAGENTO_CART_COOKIE_NAME'
 
 export default defineStore('cartMagento', {
+  state: () => ({
+    cartId: '',
+  }),
+
   actions: {
     async serverInit() {
       if (IS_CLIENT) return
@@ -15,7 +19,7 @@ export default defineStore('cartMagento', {
 
       const id = cookies.get(MAGENTO_CART_COOKIE_NAME)
 
-      cartStore.$patch({ cartId: id })
+      this.$patch({ cartId: id })
 
       const getCart = useGetCart()
 
