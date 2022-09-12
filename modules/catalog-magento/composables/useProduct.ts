@@ -1,13 +1,17 @@
 import ToProduct from '#ioc/mappers/ToProduct'
 import useCatalogMagentoStore from '#ioc/stores/useCatalogMagentoStore'
-import { computed, reactive, Ref } from 'vue'
+import { computed, reactive, Ref, ref } from 'vue'
 
 export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   const catalogMagentoStore = useCatalogMagentoStore()
 
+  const bundle = ref({} as any)
+
+  const configuration = ref({} as any)
+
   const id = computed(() => product.value.id)
 
-  const sku = computed(() => product.value.sku)
+  const sku = computed(() => variant.value.sku ?? product.value.sku)
 
   const name = computed(() => product.value.name)
 
@@ -21,11 +25,13 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const shortDescriptionHtml = computed(() => product.value.shortDescriptionHtml)
 
-  const thumbnailUrl = computed(() => product.value.thumbnailUrl)
+  const thumbnailUrl = computed(() => variant.value.thumbnaulUrl ?? product.value.thumbnailUrl)
 
   const regularPrice = computed(() => product.value.regularPrice)
 
   const finalPrice = computed(() => product.value.finalPrice)
+
+  const minimumPrice = computed(() => product.value.minimumPrice)
 
   const breadcrumbs = computed(() => [
     ...product.value.categories.map((category: any) => ({
@@ -52,9 +58,39 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const reviews = computed(() => product.value.reviews ?? [])
 
+  const isSimpleProduct = computed(() => product.value.__typename === 'SimpleProduct')
+
   const isConfigurableProduct = computed(() => product.value.__typename === 'ConfigurableProduct')
 
-  const mediaGallery = computed(() => product.value.mediaGallery || [])
+  const isBundleProduct = computed(() => product.value.__typename === 'BundleProduct')
+
+  const mediaGallery = computed(() => {
+    if (variant.value?.mediaGallery?.length > 0) {
+      return variant.value?.mediaGallery
+    }
+    return product.value.mediaGallery || []
+  })
+
+  const bundleItems = computed(() => product.value.bundleItems || [])
+
+  const configurableOptions = computed(() => product.value.configurableOptions ?? [])
+
+  const variants = computed(() => product.value.variants ?? [])
+
+  const variant = computed(() => {
+    if (!Object.keys(configuration.value).length) return {}
+
+    out: for (const { attributes, product } of variants.value) {
+      for (const [key, value] of Object.entries(attributes)) {
+        if (configuration.value[key] !== value) {
+          continue out
+        }
+      }
+      return product
+    }
+
+    return {}
+  })
 
   return reactive({
     id,
@@ -76,9 +112,17 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     ratingSummary,
     reviewCount,
     reviews,
+    isSimpleProduct,
     isConfigurableProduct,
+    isBundleProduct,
     mediaGallery,
     crossSellProducts,
     upsellProducts,
+    bundleItems,
+    minimumPrice,
+    bundle,
+    configurableOptions,
+    configuration,
+    variant,
   })
 }
