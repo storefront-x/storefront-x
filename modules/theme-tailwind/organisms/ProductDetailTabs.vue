@@ -9,7 +9,8 @@
         'text-inherit': toRaw(selected) != tab.component,
       }"
       @click="selected = tab.component"
-      >{{ t(tab.name) }}
+    >
+      {{ tab.name }}
     </MenuTab>
     <span class="pb-2 border-b-2 grow" />
   </div>
@@ -33,15 +34,15 @@ const selected = shallowRef(ProductDescription)
 
 const tabs = [
   {
-    name: 'Detail',
+    name: t('Detail'),
     component: ProductDescription,
   },
   {
-    name: 'Parameters',
+    name: t('Parameters'),
     component: ProductParameters,
   },
   {
-    name: 'Reviews',
+    name: t('Reviews'),
     component: ProductReviews,
   },
 ]
