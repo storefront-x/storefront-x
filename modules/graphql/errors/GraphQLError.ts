@@ -1,8 +1,9 @@
 export default class GraphQLError extends Error {
   data: any
 
-  constructor(message: string, data: any) {
-    super(message)
-    this.data = data
+  constructor(err: any) {
+    super(err)
+    this.message = err.message
+    this.data = err.extensions
   }
 }
