@@ -10,7 +10,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 const root = ref(null)
 
-defineProps({
+const props = defineProps({
   width: {
     type: Number,
     required: true,
@@ -34,7 +34,15 @@ onMounted(() => {
       pswpModule: () => import('photoswipe'),
     })
 
-    // TODO: Implement lightbox
+    lightbox.value.addFilter('itemData', (itemData: any) => {
+      const vm = itemData.element.__vue__
+
+      return {
+        src: vm.resizeImage({ w: props.width, h: props.height }),
+        width: props.width,
+        height: props.height,
+      }
+    })
 
     lightbox.value?.init()
   })
