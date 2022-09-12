@@ -1,68 +1,73 @@
-import useContext from '#ioc/composables/useContext'
-import IS_PRODUCTION from '#ioc/config/IS_PRODUCTION'
+/* eslint-disable vue/one-component-per-file */
 import IS_SERVER from '#ioc/config/IS_SERVER'
-import { h, defineComponent, defineAsyncComponent, getCurrentInstance, onUnmounted } from 'vue'
+import { h, defineComponent, defineAsyncComponent, getCurrentInstance, onMounted, onUnmounted } from 'vue'
+
+const name = 'HydrateWhenVisible'
 
 export default (source: () => Promise<{ default: any }>): any => {
+  const EagerComponent = defineAsyncComponent(source)
+
+  let resolve: any
+
+  const promise = new Promise<any>((_resolve) => {
+    resolve = _resolve
+  })
+
+  const LazyComponent = defineAsyncComponent({
+    loader: () => promise,
+    suspensible: false,
+  })
+
   if (IS_SERVER) {
-    if (IS_PRODUCTION) {
-      return defineAsyncComponent({
-        loader: async () => {
-          const component = await source()
-
-          const setup = component.default.setup
-
-          component.default.setup = function (...args: any[]) {
-            const ctx = useContext()
-
-            ctx.modulesAsync = ctx.modulesAsync ?? new Set<string>()
-
-            const add = ctx.modules.add
-            ctx.modules.add = function (module: string) {
-              ctx.modulesAsync.add(module)
-              add.call(this, module)
-              return this
-            }
-
-            const response = setup.call(this, ...args)
-
-            ctx.modules.add = add.bind(ctx.modules)
-
-            return response
-          }
-
-          return component
-        },
-      })
-    } else {
-      return defineAsyncComponent(source)
-    }
+    return defineComponent({
+      name,
+      setup() {
+        return () => h(EagerComponent)
+      },
+    })
   } else {
     return defineComponent({
-      name: 'HydrateWhenVisible',
+      name,
       setup() {
         const currentInstance = getCurrentInstance()
 
-        let resolve: (val: any) => void
-        const promise = new Promise((r) => (resolve = r))
+        // el is directly present in the setup function only during hydration
+        // this might be a case of abusing implementation details but it kinda makes sense?
+        let el = currentInstance!.vnode.el as Element | null
 
-        const intersectionObserver = new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
+        const isHydration = !!el
+
+        if (isHydration) {
+          const intersectionObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+              intersectionObserver.disconnect()
+              source().then(resolve)
+            }
+          })
+
+          onMounted(() => {
+            // eslint-disable-next-line no-constant-condition
+            while (true) {
+              if (!el) return
+
+              if (el.nodeName === '#comment') {
+                el = el.nextElementSibling
+                continue
+              }
+
+              intersectionObserver.observe(el)
+              return
+            }
+          })
+
+          onUnmounted(() => {
             intersectionObserver.disconnect()
-            Promise.resolve(source())
-              .then((c) => () => h(c.default))
-              .then(resolve)
-          }
-        })
+          })
 
-        const el = currentInstance?.vnode.el as any
-        if (el) intersectionObserver.observe(el)
-
-        onUnmounted(() => {
-          intersectionObserver.disconnect()
-        })
-
-        return promise
+          return () => h(LazyComponent)
+        } else {
+          return () => h(EagerComponent)
+        }
       },
     })
   }

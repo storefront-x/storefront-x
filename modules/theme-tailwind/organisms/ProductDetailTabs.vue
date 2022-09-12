@@ -9,7 +9,8 @@
         'text-inherit': toRaw(selected) != tab.component,
       }"
       @click="selected = tab.component"
-      >{{ t(tab.name) }}
+    >
+      {{ tab.name }}
     </MenuTab>
     <span class="pb-2 border-b-2 grow" />
   </div>
@@ -20,11 +21,12 @@
 
 <script setup lang="ts">
 import MenuTab from '#ioc/atoms/MenuTab'
-import { shallowRef, toRaw } from 'vue'
+import { defineAsyncComponent, shallowRef, toRaw } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
-import ProductDescription from '#ioc/molecules/ProductDescription'
-import ProductParameters from '#ioc/molecules/ProductParameters'
-import ProductReviews from '#ioc/organisms/ProductReviews'
+
+const ProductDescription = defineAsyncComponent(() => import('#ioc/molecules/ProductDescription'))
+const ProductParameters = defineAsyncComponent(() => import('#ioc/molecules/ProductParameters'))
+const ProductReviews = defineAsyncComponent(() => import('#ioc/organisms/ProductReviews'))
 
 const { t } = useI18n()
 
@@ -32,15 +34,15 @@ const selected = shallowRef(ProductDescription)
 
 const tabs = [
   {
-    name: 'Detail',
+    name: t('Detail'),
     component: ProductDescription,
   },
   {
-    name: 'Parameters',
+    name: t('Parameters'),
     component: ProductParameters,
   },
   {
-    name: 'Reviews',
+    name: t('Reviews'),
     component: ProductReviews,
   },
 ]

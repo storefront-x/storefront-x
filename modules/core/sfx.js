@@ -71,6 +71,11 @@ yargs(hideBin(process.argv))
           type: 'boolean',
           description: 'Run only SFX bootstrap instead of full build.',
         })
+        .option('minify', {
+          type: 'string',
+          default: 'esbuild',
+          description: 'Algorithm used for minification.',
+        })
     },
     handler: async (argv) => {
       try {

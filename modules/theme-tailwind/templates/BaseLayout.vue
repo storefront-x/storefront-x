@@ -13,10 +13,12 @@ import { computed, ref, watch } from 'vue'
 import useRoute from '#ioc/composables/useRoute'
 import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 import Header from '#ioc/organisms/Header'
-import Footer from '#ioc/organisms/Footer'
 import HamburgerMenu from '#ioc/organisms/HamburgerMenu'
 import Notifications from '#ioc/organisms/Notifications'
 import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
+import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+
+const Footer = hydrateWhenVisible(() => import('#ioc/organisms/Footer'))
 
 const route = useRoute()
 const themeTailwindStore = useThemeTailwindStore()

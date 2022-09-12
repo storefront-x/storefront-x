@@ -6,12 +6,13 @@ import Core from './Core.js'
 
 export default class Build extends Core {
   async build() {
-    const analyze = this.argv.analyze
+    const { analyze, minify } = this.argv
 
     const clientConfig = this.buildConfig({
       clearScreen: false,
       root: this.buildDir,
       build: {
+        minify,
         ssrManifest: true,
         outDir: path.join(this.distDir, 'client'),
         emptyOutDir: false,
