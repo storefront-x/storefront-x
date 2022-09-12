@@ -2,6 +2,15 @@ import { computed, reactive } from 'vue'
 
 export default (props: any) => {
   const url = computed(() => {
+    const linksOptions = ['detail', 'navigation']
+    const urlParts = props.data.config?.url?.value?.split('/')
+
+    if (!urlParts) return props.data.config?.url?.value ?? ''
+
+    if (linksOptions.includes(urlParts[1])) {
+      return '/' + urlParts.slice(1).join('/').replace('#', '')
+    }
+
     return props.data.config?.url?.value ?? ''
   })
 

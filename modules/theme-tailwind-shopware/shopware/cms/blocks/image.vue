@@ -4,9 +4,9 @@
       <slot name="default" />
     </div>
   </div>
-  <a
+  <RouterLink
     v-else
-    :href="shopwareImageCmsBlock.url"
+    :to="shopwareImageCmsBlock.url"
     :target="shopwareImageCmsBlock.newTab"
     class="inline-block relative w-full"
     :style="shopwareImageCmsBlock.minHeight"
@@ -16,7 +16,7 @@
       class="absolute inset-0 w-full h-full mx-auto"
       :style="shopwareImageCmsBlock.objectMode"
     />
-  </a>
+  </RouterLink>
 </template>
 
 <script setup lang="ts">

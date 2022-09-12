@@ -5,12 +5,13 @@
 </template>
 
 <script setup lang="ts">
+import schedule from '#ioc/utils/schedule'
 import 'photoswipe/style.css'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const root = ref(null)
 
-defineProps({
+const props = defineProps({
   width: {
     type: Number,
     required: true,
@@ -24,7 +25,7 @@ defineProps({
 const lightbox = ref<any>(null)
 
 onMounted(() => {
-  requestIdleCallback(async () => {
+  schedule(async () => {
     // @ts-ignore
     const { default: PhotoSwipeLightbox } = await import('photoswipe/lightbox')
 
@@ -34,7 +35,15 @@ onMounted(() => {
       pswpModule: () => import('photoswipe'),
     })
 
-    // TODO: Implement lightbox
+    lightbox.value.addFilter('itemData', (itemData: any) => {
+      const vm = itemData.element.__vue__
+
+      return {
+        src: vm.resizeImage({ w: props.width, h: props.height }),
+        width: props.width,
+        height: props.height,
+      }
+    })
 
     lightbox.value?.init()
   })
