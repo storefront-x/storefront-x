@@ -4,9 +4,9 @@
       <slot name="default" />
     </div>
   </div>
-  <Link
+  <a
     v-else
-    :to="shopwareImageCmsBlock.url"
+    :href="shopwareImageCmsBlock.url"
     :target="shopwareImageCmsBlock.newTab"
     class="inline-block relative w-full"
     :style="shopwareImageCmsBlock.minHeight"
@@ -16,14 +16,13 @@
       class="absolute inset-0 w-full h-full mx-auto"
       :style="shopwareImageCmsBlock.objectMode"
     />
-  </Link>
+  </a>
 </template>
 
 <script setup lang="ts">
 import SfxImage from '#ioc/components/SfxImage'
 import useShopwareCmsBlock from '#ioc/composables/useShopwareCmsBlock'
 import useShopwareCmsImageBlock from '#ioc/composables/useShopwareCmsImageBlock'
-import Link from '#ioc/atoms/Link'
 
 const props = defineProps({
   data: {
