@@ -10,7 +10,6 @@
         <SfxImage
           :src="product.thumbnailUrl"
           :width="300"
-          :height="200"
           :alt="product.name"
           fit="contain"
           class-img="w-full h-full object-center object-contain sm:w-full sm:h-full pr-4 sm:pr-0"

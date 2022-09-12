@@ -4,12 +4,17 @@
 
     <CategoryInfo :category="category" />
 
-    <ProductListing :products="products" :aggregations="aggregations" :total-count="totalCount" />
+    <ProductListing :products="products" :aggregations="aggregations" :total-count="totalCount">
+      <template #bellow-products>
+        <Description v-if="category.description" :description="category.description" />
+      </template>
+    </ProductListing>
   </Container>
 </template>
 
 <script setup lang="ts">
 import Container from '#ioc/atoms/Container'
+import Description from '#ioc/atoms/Description'
 import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import CategoryInfo from '#ioc/molecules/CategoryInfo'
 import ToCategory from '#ioc/mappers/ToCategory'

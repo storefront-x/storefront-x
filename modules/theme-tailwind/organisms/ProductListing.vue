@@ -27,6 +27,7 @@
         <div class="flex justify-between items-center mt-8">
           <Pagination :total="totalCount" class="my-8" />
         </div>
+        <slot name="bellow-products" />
       </div>
     </div>
   </div>

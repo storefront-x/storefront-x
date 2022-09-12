@@ -9,6 +9,8 @@ export default (category: Ref<ReturnType<typeof ToCategory>>) => {
 
   const name = computed(() => category.value.name)
 
+  const description = computed(() => category.value.description)
+
   const urlPath = computed(() => '/' + category.value.urlKey + catalogMagentoStore.categoryUrlSuffix)
 
   const children = computed(() => category.value.children ?? [])
@@ -31,5 +33,6 @@ export default (category: Ref<ReturnType<typeof ToCategory>>) => {
     children,
     thumbnailUrl,
     breadcrumbs,
+    description,
   })
 }
