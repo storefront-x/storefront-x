@@ -72,6 +72,8 @@ const select = async (pickupLocation: ReturnType<typeof ToPickupLocation>) => {
 
   picked.value = pickupLocation
 
+  console.log('pickup location selected')
+
   shipping.setShippingHandler(async () => {
     await confirmShippingAddress({
       ...checkout.contactInformation!,
