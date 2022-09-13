@@ -7,10 +7,16 @@
         :class="{ 'rotate-90': isOpened, 'transition-all': true, 'text-gray-500': true, ...iconClass }"
       />
     </div>
-
-    <div v-show="isOpened" class="content" :class="contentClass">
-      <slot></slot>
-    </div>
+    <Transition
+      appear
+      enter-active-class="transition-height duration-300"
+      enter-from-class="h-0"
+      enter-to-class="h-100"
+    >
+      <div v-show="isOpened" class="content" :class="contentClass">
+        <slot></slot>
+      </div>
+    </Transition>
   </div>
 </template>
 
