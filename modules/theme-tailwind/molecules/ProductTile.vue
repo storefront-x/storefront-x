@@ -26,7 +26,7 @@
         >
           <RouterLink :to="localePath(product.urlPath)" data-cy="product-title">
             <span aria-hidden="true" class="absolute inset-0"></span>
-            {{ product.name }}
+            {{ shrinkedTitle }}
           </RouterLink>
         </Heading>
 
@@ -58,6 +58,7 @@ import injectProduct from '#ioc/composables/injectProduct'
 import AddToCart from '#ioc/molecules/AddToCart'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import { computed } from 'vue'
+import truncate from '#ioc/utils/string/truncate'
 import useLocalePath from '#ioc/composables/useLocalePath'
 
 const localePath = useLocalePath()
@@ -74,6 +75,10 @@ const props = defineProps({
 })
 
 const product = injectProduct()
+
+const shrinkedTitle = computed(() => {
+  return truncate(product.name, 65)
+})
 
 const classesBorders = computed(() => {
   let myClasses = ''

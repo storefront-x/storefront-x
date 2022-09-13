@@ -1,5 +1,15 @@
 <template>
   <div v-if="!customer.isLoggedIn">
+    <Link
+      :to="localePath('account')"
+      class="flex items-center px-2 py-0.5 mr-3 text-gray-400 hover:text-gray-500"
+      data-cy="micro-account"
+    >
+      <span class="sr-only">{{ $t('My account') }}</span>
+      <BorderFrame>
+        <OutlineUser class="text-primary-500" />
+      </BorderFrame>
+    </Link>
     <div v-if="submenu" class="flex flex-col font-semibold text-gray-800" data-cy="micro-account">
       <span>{{ t('My account') }}</span>
       <span class="flex items-center whitespace-nowrap lg:justify-end gap-4">
@@ -28,6 +38,8 @@ import useI18n from '#ioc/composables/useI18n'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useCustomer from '#ioc/composables/useCustomer'
 import useLogoutCustomer from '#ioc/services/useLogoutCustomer'
+import BorderFrame from '#ioc/atoms/BorderFrame'
+import OutlineUser from '#ioc/icons/OutlineUser'
 
 defineProps({
   submenu: {

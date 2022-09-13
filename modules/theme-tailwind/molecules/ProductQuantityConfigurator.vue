@@ -1,5 +1,5 @@
 <template>
-  <div class="flex border-grey-400 border-2 font-bold rounded-md" data-cy="product-quantity-configurator">
+  <div class="flex border-grey-400 border-2 rounded-md" data-cy="product-quantity-configurator">
     <button
       class="bg-white font-bold py-2 px-4 whitespace-nowrap border-transparent shadow-transparent font-bold text-orange-600 hover:bg-gray-50 focus:ring-primary-500"
       :disabled="innerValue === minimum"
