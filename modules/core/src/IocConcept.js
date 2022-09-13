@@ -29,11 +29,11 @@ export default class IocConcept extends WatchingConcept {
           content += `import ext${i} from '${filePath}'\n`
         }
         content += `export default `
-        for (let i = 0; i < extensions.length; i++) {
+        for (let i = extensions.length - 1; i >= 0; i--) {
           content += `ext${i}(`
         }
         content += 'self'
-        for (let i = 0; i < extensions.length; i++) {
+        for (let i = extensions.length - 1; i >= 0; i--) {
           content += `)`
         }
         content += `\n`
