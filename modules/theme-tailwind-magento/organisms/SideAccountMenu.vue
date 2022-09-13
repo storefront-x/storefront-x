@@ -75,7 +75,7 @@
           exact-active-class="bg-primary-50 border-primary-500 text-primary-700 hover:bg-primary-50 hover:text-primary-700"
           exact-inactive-class="border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"
         >
-          <OutlineHomeIcon
+          <OutlineDocumentDownloadIcon
             class="flex-shrink-0 -ml-1 mr-3 h-6 w-6"
             :class="
               isExactActive
@@ -119,6 +119,7 @@
 import Container from '#ioc/atoms/Container'
 import OutlineLogoutIcon from '#ioc/icons/OutlineLogoutIcon'
 import OutlineHomeIcon from '#ioc/icons/OutlineHomeIcon'
+import OutlineDocumentDownloadIcon from '#ioc/icons/OutlineDocumentDownloadIcon'
 import OutlineShoppingBag from '#ioc/icons/OutlineShoppingBag'
 import OutlineUser from '#ioc/icons/OutlineUser'
 import useLocalePath from '#ioc/composables/useLocalePath'
