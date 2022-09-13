@@ -100,18 +100,17 @@ const onConfirmContactInfo = async () => {
 }
 
 onMounted(async () => {
-  if (!customer.isLoggedIn) {
-    await confirmContactInformation({
-      email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
-      telephone: 'DUMMYDATA',
-      firstName: 'DUMMYDATA',
-      lastName: 'DUMMYDATA',
-      street: 'DUMMYDATA',
-      city: 'DUMMYDATA',
-      postcode: 'DUMMYDATA',
-      countryCode: 'CZ',
-    })
-  }
+  await confirmContactInformation({
+    email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
+    telephone: 'DUMMYDATA',
+    firstName: 'DUMMYDATA',
+    lastName: 'DUMMYDATA',
+    street: 'DUMMYDATA',
+    city: 'DUMMYDATA',
+    postcode: 'DUMMYDATA',
+    countryCode: 'CZ',
+  })
+
   await refreshCheckoutAgreements()
 })
 
