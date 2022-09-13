@@ -4,13 +4,13 @@
     <ProductOverview />
     <ProductDetailTabs />
 
-    <section v-if="product?.upsellProducts?.length" class="pt-8 sm:px-0">
+    <section v-if="product?.upsellProducts?.length" class="mt-8 border-t border-gray-200 pt-8 sm:px-0">
       <Heading :level="2">{{ t('Customers also bought') }}</Heading>
 
       <ProductCarousel class="mt-8" :products="product?.upsellProducts" />
     </section>
 
-    <section v-if="product?.crossSellProducts?.length" class="pt-8 sm:px-0">
+    <section v-if="product?.crossSellProducts?.length" class="mt-8 border-t border-gray-200 pt-8 sm:px-0">
       <Heading :level="2">{{ t('Related products') }}</Heading>
 
       <ProductCarousel class="mt-8" :products="product?.crossSellProducts" />

@@ -4,7 +4,11 @@
 
     <CategoryInfo :category="category" />
 
-    <ProductListing :products="products" :aggregations="aggregations" :total-count="totalCount" />
+    <ProductListing :products="products" :aggregations="aggregations" :total-count="totalCount">
+      <template #bellow-products>
+        <Description v-if="category.description" :description="category.description" />
+      </template>
+    </ProductListing>
   </Container>
 </template>
 
@@ -18,6 +22,9 @@ import ProductListing from '#ioc/organisms/ProductListing'
 import useHead from '#ioc/composables/useHead'
 import { computed, PropType } from 'vue'
 import useCategory from '#ioc/composables/useCategory'
+import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+
+const Description = hydrateWhenVisible(() => import('#ioc/atoms/Description'))
 
 const props = defineProps({
   category: {
