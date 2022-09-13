@@ -29,6 +29,8 @@
           </RouterLink>
         </Heading>
 
+        <ReviewStars class="sm:justify-center" :rating="product.ratingSummary" />
+
         <SfxMoney
           :money="product.finalPrice"
           class="text-xl font-semibold text-neutral-600 mt-2 sm:mt-4 sm:text-center"
@@ -46,6 +48,10 @@
       <AddToCart
         class="relative max-w-[50%] sm:w-full sm:max-w-none !mt-auto !ml-0 sm:mb-5 order-2 flex-1 sm:order-1 !h-8 sm:!h-16"
       />
+      <StockIndicator
+        :stock-status="product.available"
+        class="!m-0 justify-center order-1 flex-1 w-1/2 sm:w-full sm:order-2"
+      />
     </div>
     <AddToWishlist class="absolute top-3 right-4" :fill-on-hover="true" @click.stop />
     <div class="absolute top-2 left-0 pointer-events-none gap-2 p-3 space-y-1">
@@ -60,6 +66,8 @@ import SfxImage from '#ioc/components/SfxImage'
 import SfxMoney from '#ioc/components/SfxMoney'
 import injectProduct from '#ioc/composables/injectProduct'
 import AddToCart from '#ioc/molecules/AddToCart'
+import StockIndicator from '#ioc/atoms/StockIndicator'
+import ReviewStars from '#ioc/atoms/ReviewStars'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import { computed } from 'vue'
 import useLocalePath from '#ioc/composables/useLocalePath'
