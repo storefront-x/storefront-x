@@ -91,6 +91,13 @@ const onInput = (bundleItem: any, bundleOption: any, isChecked: any) => {
 }
 
 const onInputSelect = (bundleItem: any, id: any) => {
+  if (!id) {
+    delete selectedOptions.value[bundleItem.id]
+    updateFinalPrice()
+
+    return
+  }
+
   if (!selectedOptions.value[bundleItem.id]) {
     selectedOptions.value[bundleItem.id] = {}
   } else {
@@ -119,7 +126,7 @@ const updateFinalPrice = () => {
     }
   }
   product.finalPrice.value = finalPriceValue || product.minimumPrice.value
-  product.bundle.value = selectedOptions.value
+  product.bundle = selectedOptions.value
 }
 </script>
 

@@ -2,6 +2,7 @@ import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
 import BundleItem from '#ioc/graphql/fragments/BundleItem'
 import ConfigurableProduct from '#ioc/graphql/fragments/ConfigurableProduct'
+import CustomizableOptionInterface from '#ioc/graphql/fragments/CustomizableOptionInterface'
 import Money from '#ioc/graphql/fragments/Money'
 import on from '#ioc/graphql/on'
 
@@ -27,6 +28,14 @@ export default (name = 'product') =>
           ...Money(),
         }),
       }),
+      maximum_price: field({
+        final_price: field({
+          ...Money(),
+        }),
+        regular_price: field({
+          ...Money(),
+        }),
+      }),
     }),
     description: field({
       html: field(),
@@ -41,6 +50,11 @@ export default (name = 'product') =>
       url: field(),
       label: field(),
       disabled: field(),
+    }),
+    ...on('SimpleProduct', {
+      options: field({
+        ...CustomizableOptionInterface(),
+      }),
     }),
     ...on('ConfigurableProduct', {
       ...ConfigurableProduct(),
