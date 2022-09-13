@@ -101,7 +101,6 @@ const discounted = computed(() => {
 })
 
 const onQuantityChange = (q: number) => {
-  console.log('quantity changed', q)
   quantity.value = q
 }
 </script>

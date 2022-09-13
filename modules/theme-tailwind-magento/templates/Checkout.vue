@@ -48,7 +48,6 @@ import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreem
 import { computed, nextTick, onMounted, ref } from 'vue'
 import useShipping from '#ioc/composables/useShipping'
 import usePayment from '#ioc/composables/usePayment'
-import useCustomer from '#ioc/composables/useCustomer'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -60,7 +59,6 @@ const confirmContactInformation = useConfirmContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
-const customer = useCustomer()
 
 const step = ref(1)
 
