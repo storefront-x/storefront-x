@@ -1,6 +1,8 @@
 <template>
   <div class="pb-8">
-    <div class="main-slider mb-12"><SfxMagentoCmsBlock identifier="slider_hp" :class="containersSpacingClass" /></div>
+    <div class="main-slider mb-12">
+      <SfxMagentoCmsBlock identifier="slider_hp" :class="containersSpacingClass" />
+    </div>
 
     <Container :class="containersSpacingClass">
       <Usps :usps="usps" />
@@ -28,18 +30,21 @@
 
 <script setup lang="ts">
 import useGetBlogPosts from '#ioc/services/useGetBlogPosts'
-import SfxMagentoCmsBlock from '#ioc/components/SfxMagentoCmsBlock'
 import Container from '#ioc/atoms/Container'
-import BlogGrid from '#ioc/molecules/BlogGrid'
-import Usps from '#ioc/molecules/Usps'
-import CategoryPreviews from '#ioc/molecules/CategoryPreviews'
-import ReviewShowreel from '#ioc/molecules/ReviewShowreel'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useRoute from '#ioc/composables/useRoute'
 import useI18n from '#ioc/composables/useI18n'
 import Rocket from '#ioc/icons/custom/Rocket'
 import Gears from '#ioc/icons/custom/Gears'
 import Glass from '#ioc/icons/custom/Glass'
+import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
+
+const SfxMagentoCmsBlock = hydrateWhenIdle(() => import('#ioc/components/SfxMagentoCmsBlock'))
+const Usps = hydrateWhenVisible(() => import('#ioc/molecules/Usps'))
+const CategoryPreviews = hydrateWhenVisible(() => import('#ioc/molecules/CategoryPreviews'))
+const ReviewShowreel = hydrateWhenVisible(() => import('#ioc/molecules/ReviewShowreel'))
+const BlogGrid = hydrateWhenVisible(() => import('#ioc/molecules/BlogGrid'))
 
 const getBlogPosts = useGetBlogPosts()
 const route = useRoute()
