@@ -1,4 +1,4 @@
-import { onServerPrefetch, ref, Ref } from 'vue'
+import { onServerPrefetch, ref, Ref, watch, WatchSource } from 'vue'
 import useState from '#ioc/composables/useState'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import IS_SERVER from '#ioc/config/IS_SERVER'
@@ -10,11 +10,15 @@ type Response<T> = {
   refresh: () => Promise<void>
 }
 
+interface Options {
+  watch?: WatchSource<unknown>[]
+}
+
 type AsyncResponse<T> = Response<T> & Promise<Response<T>>
 
 const wasHydrated = new Set<string>()
 
-export default <T>(key: string, handler: () => Promise<T>): AsyncResponse<T> => {
+export default <T>(key: string, handler: () => Promise<T>, options: Options = {}): AsyncResponse<T> => {
   if (typeof key !== 'string') {
     throw new TypeError('asyncData key must be a string')
   }
@@ -58,6 +62,10 @@ export default <T>(key: string, handler: () => Promise<T>): AsyncResponse<T> => 
   if (IS_CLIENT) {
     if (!(data.value && !wasHydrated.has(key))) {
       response.refresh()
+    }
+
+    if (options.watch) {
+      watch(options.watch, () => response.refresh())
     }
 
     wasHydrated.add(key)
