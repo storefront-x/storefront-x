@@ -12,6 +12,12 @@
       <Heading :level="1" data-cy="title">{{ product.name }}</Heading>
       <ReviewStars class="mt-2" :rating="product.ratingSummary" :count="product.reviewCount" />
 
+      <div v-if="product.productOptions.length" class="mt-3">
+        <h2 class="sr-only">Product options</h2>
+
+        <ProductOptions />
+      </div>
+
       <div v-if="product.isConfigurableProduct" class="mt-3">
         <h2 class="sr-only">Product configurations</h2>
 
@@ -87,6 +93,7 @@ import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
 import ProductBundleOptions from '#ioc/molecules/ProductBundleOptions'
 import ProductConfigurableOptions from '#ioc/molecules/ProductConfigurableOptions'
+import ProductOptions from '#ioc/molecules/ProductOptions'
 
 const { t } = useI18n()
 const product = injectProduct()

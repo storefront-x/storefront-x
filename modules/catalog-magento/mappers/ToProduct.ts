@@ -3,6 +3,7 @@ import ToMoney from '#ioc/mappers/ToMoney'
 import ToBundleItem from '#ioc/mappers/ToBundleItem'
 import ToConfigurableOption from '#ioc/mappers/ToConfigurableOption'
 import ToVariant from '#ioc/mappers/ToVariant'
+import ToOptions from '#ioc/mappers/ToOptions'
 
 export default (data: any) => ({
   __typename: data.__typename ?? '',
@@ -30,4 +31,5 @@ export default (data: any) => ({
   configurableOptions: (data.configurable_options ?? []).map(ToConfigurableOption),
   configurableOptionsCount: data.configurable_options?.length,
   variants: (data.variants ?? []).map(ToVariant),
+  options: data.options?.map(ToOptions),
 })
