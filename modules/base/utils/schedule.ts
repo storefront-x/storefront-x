@@ -1,1 +1,1 @@
-export default (callback: () => void) => setTimeout(callback)
+export default (callback: () => void) => callback()
