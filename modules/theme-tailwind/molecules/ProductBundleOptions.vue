@@ -12,7 +12,7 @@
           :name="`${bundleItem.id}-${bundleOption.id}`"
           :label="bundleOption.label"
           class="mt-2"
-          @input="onInput(bundleItem, bundleOption, $event)"
+          @input="onInput(bundleItem, bundleOption, $event, 'checkbox')"
         />
       </div>
       <div v-else>
@@ -41,7 +41,7 @@
               :name="`${bundleItem.id}-${bundleOption.id}`"
               :value="`${bundleOption.id}`"
               :label="bundleOption.label"
-              @input="onInput(bundleItem, bundleOption, true)"
+              @input="onInput(bundleItem, bundleOption, true, 'radio')"
             />
           </FormRadioGroup>
         </div>
@@ -67,10 +67,12 @@ const product = injectProduct()
 const selectedOptions = ref({} as any)
 const selectedLabel = ref({} as any)
 
-const onInput = (bundleItem: any, bundleOption: any, isChecked: any) => {
+const onInput = (bundleItem: any, bundleOption: any, isChecked: any, type: string) => {
   if (!selectedOptions.value[bundleItem.id]) {
     selectedOptions.value[bundleItem.id] = {}
-  } else {
+  }
+
+  if (type === 'radio') {
     delete selectedOptions.value[bundleItem.id]
     selectedOptions.value[bundleItem.id] = {}
     updateFinalPrice()
@@ -85,7 +87,7 @@ const onInput = (bundleItem: any, bundleOption: any, isChecked: any) => {
     }
     updateFinalPrice()
   } else {
-    delete selectedOptions.value[bundleItem.id]
+    delete selectedOptions.value[bundleItem.id][bundleOption.id]
     updateFinalPrice()
   }
 }
@@ -125,7 +127,7 @@ const updateFinalPrice = () => {
       finalPriceValue += optionValue.finalPrice.value
     }
   }
-  product.finalPrice.value = finalPriceValue || product.minimumPrice.value
+  product.finalPrice.value = finalPriceValue + product.minimumPrice.value || product.minimumPrice.value
   product.bundle = selectedOptions.value
 }
 </script>

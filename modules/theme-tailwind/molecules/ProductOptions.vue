@@ -16,7 +16,7 @@
           :name="`${optionItem.id}-${option.id}`"
           :label="option.title"
           class="mt-2"
-          @input="onInput(optionItem, option, $event)"
+          @input="onInput(optionItem, option, $event, 'checkbox')"
         />
       </div>
       <div v-else>
@@ -45,7 +45,7 @@
               :name="`${optionItem.id}-${option.id}`"
               :value="`${option.id}`"
               :label="option.title"
-              @input="onInput(optionItem, option, true)"
+              @input="onInput(optionItem, option, true, 'radio')"
             />
           </FormRadioGroup>
         </div>
@@ -71,17 +71,19 @@ const product = injectProduct()
 const selectedOptions = ref({} as any)
 const selectedLabel = ref({} as any)
 
-const onInput = (optionItem: any, option: any, isChecked: any) => {
+const onInput = (optionItem: any, option: any, isChecked: any, type: string) => {
   if (!selectedOptions.value[optionItem.id]) {
     selectedOptions.value[optionItem.id] = {}
-  } else {
+  }
+
+  if (type === 'radio') {
     delete selectedOptions.value[optionItem.id]
     selectedOptions.value[optionItem.id] = {}
     updateFinalPrice()
   }
 
   if (isChecked) {
-    selectedOptions.value[optionItem.id][option.id] = {
+    selectedOptions.value[optionItem.id][option.optionId] = {
       id: option.id,
       quantity: 1,
       finalPrice: option.finalPrice,
@@ -89,7 +91,7 @@ const onInput = (optionItem: any, option: any, isChecked: any) => {
     }
     updateFinalPrice()
   } else {
-    delete selectedOptions.value[optionItem.id]
+    delete selectedOptions.value[optionItem.id][option.optionId]
     updateFinalPrice()
   }
 }
@@ -131,7 +133,7 @@ const updateFinalPrice = () => {
       product.options.push(optionValue.id)
     }
   }
-  product.finalPrice.value = finalPriceValue || product.minimumPrice.value
+  product.finalPrice.value = finalPriceValue + product.minimumPrice.value || product.minimumPrice.value
 }
 </script>
 
