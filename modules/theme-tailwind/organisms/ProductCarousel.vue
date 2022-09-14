@@ -1,7 +1,6 @@
 <template>
   <SfxCarousel
     :slides="products"
-    :slides-per-view="slidesPerView"
     :interval="6000"
     :breakpoints="breakpoints"
     loop
@@ -53,16 +52,16 @@ export default defineComponent({
     slidesPerView: 4,
     breakpoints: {
       '(max-width: 519.98px)': {
-        slidesPerView: 1,
+        slides: { perView: 1 },
       },
       '(min-width:520px) and (max-width: 767.98px)': {
-        slidesPerView: 2,
+        slides: { perView: 2 },
       },
       '(min-width:768px) and (max-width: 1199.98px)': {
-        slidesPerView: 3,
+        slides: { perView: 3 },
       },
       '(min-width: 1200px)': {
-        slidesPerView: 4,
+        slides: { perView: 4 },
       },
     },
   }),
