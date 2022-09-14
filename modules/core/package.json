@@ -24,12 +24,12 @@
     "rollup-plugin-visualizer": "^5.8.1",
     "vite": "^3.1.0",
     "yargs": "^17.5.1",
-    "youch": "^3.2.1"
+    "youch": "^3.2.2"
   },
   "devDependencies": {
     "@types/compression": "^1.7.2",
     "@types/ejs": "^3.1.1",
-    "@types/express": "^4.17.13",
+    "@types/express": "^4.17.14",
     "@types/lodash-es": "^4.17.6",
     "@types/minimist": "^1.2.2"
   },

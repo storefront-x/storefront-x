@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "braintree-web": "^3.87.0",
+    "braintree-web": "^3.88.1",
     "braintree-web-drop-in": "^1.33.4"
   },
   "devDependencies": {
