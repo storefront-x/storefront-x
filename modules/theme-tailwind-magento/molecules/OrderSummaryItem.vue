@@ -32,6 +32,21 @@
       @keep-product="keepItem"
       @remove-product="removeItem"
     />
+    <div class="mx-5 flex flex-col items-left">
+      <div
+        v-for="({ optionLabel, valueLabel }, i) in cartItem.configurableOptions"
+        :key="i"
+        class="mt-1 text-sm text-gray-500"
+      >
+        {{ optionLabel }}: {{ valueLabel }}
+      </div>
+      <div v-for="bundleOption in cartItem.bundleOptions" :key="bundleOption.id" class="mt-1 text-sm text-gray-500">
+        {{ bundleOption.label }}
+        <ul class="list-disc">
+          <li v-for="value in bundleOption.values" :key="value.id" class="text-sm">{{ value.label }}</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="mt-2 flex items-center justify-between">
       <div class="flex gap-2">
