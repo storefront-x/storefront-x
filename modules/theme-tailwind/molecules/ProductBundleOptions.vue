@@ -60,6 +60,7 @@ import FormRadioBox from '#ioc/molecules/FormRadioBox'
 import FormRadioGroup from '#ioc/molecules/FormRadioGroup'
 import injectProduct from '#ioc/composables/injectProduct'
 import { ref } from 'vue'
+import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 
 const { t } = useI18n()
 const product = injectProduct()
@@ -88,6 +89,9 @@ const onInput = (bundleItem: any, bundleOption: any, isChecked: any, type: strin
     updateFinalPrice()
   } else {
     delete selectedOptions.value[bundleItem.id][bundleOption.id]
+    if (!isNonEmptyObject(selectedOptions.value[bundleItem.id])) {
+      delete selectedOptions.value[bundleItem.id]
+    }
     updateFinalPrice()
   }
 }
@@ -127,7 +131,7 @@ const updateFinalPrice = () => {
       finalPriceValue += optionValue.finalPrice.value
     }
   }
-  product.finalPrice.value = finalPriceValue + product.minimumPrice.value || product.minimumPrice.value
+  product.finalPrice.value = finalPriceValue || product.minimumPrice.value
   product.bundle = selectedOptions.value
 }
 </script>

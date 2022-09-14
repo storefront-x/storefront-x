@@ -37,7 +37,7 @@ export default (name = 'cartItem') =>
         bundle_options: field({
           type: field(),
           label: field(),
-          id: field(),
+          uid: field(),
           values: field({
             price: field(),
             quantity: field(),

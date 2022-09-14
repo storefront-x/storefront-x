@@ -11,6 +11,14 @@
       <Spinner v-if="loading" />
     </slot>
 
+    <ConfigurableOptionsModal
+      v-if="isConfigurationModalOpen"
+      @close="isConfigurationModalOpen = false"
+      @add-to-cart="onAddToCart"
+    />
+
+    <BundleOptionsModal v-if="isBundleModalOpen" @close="isBundleModalOpen = false" @add-to-cart="onAddToCart" />
+
     <CrossSellModal v-if="isCrossSellModalOpen" @close="onClose" />
   </Button>
 </template>
@@ -24,6 +32,8 @@ import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
 import { ref } from 'vue'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import ConfigurableOptionsModal from '#ioc/organisms/ConfigurableOptionsModal'
+import BundleOptionsModal from '#ioc/organisms/BundleOptionsModal'
 
 const showErrorNotification = useShowErrorNotification()
 
@@ -40,22 +50,39 @@ const addToCart = useAddToCart()
 
 const loading = ref(false)
 const isCrossSellModalOpen = ref(false)
+const isConfigurationModalOpen = ref(false)
+const isBundleModalOpen = ref(false)
 
 const onClose = () => {
   isCrossSellModalOpen.value = false
 }
 
 const onAddToCart = async () => {
+  if (product.isConfigurableProduct && !product.isConfigured) {
+    isConfigurationModalOpen.value = true
+    return
+  }
+
+  if (product.isBundleProduct && !product.isBundleConfigured) {
+    isBundleModalOpen.value = true
+    return
+  }
+
   loading.value = true
   try {
     await addToCart(product, {
       quantity: props.quantity,
+      bundle: product.bundle,
+      variantSku: product.variant?.sku,
+      options: product.options,
     })
     isCrossSellModalOpen.value = true
   } catch (e: any) {
     showErrorNotification(e)
   } finally {
     loading.value = false
+    isConfigurationModalOpen.value = false
+    isBundleModalOpen.value = false
   }
 }
 </script>
