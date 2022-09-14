@@ -28,9 +28,7 @@
             {{ product.name }}
           </RouterLink>
         </Heading>
-
         <ReviewStars class="sm:justify-center" :rating="product.ratingSummary" />
-
         <SfxMoney
           :money="product.finalPrice"
           class="text-xl font-semibold text-neutral-600 mt-2 sm:mt-4 sm:text-center"
@@ -62,12 +60,12 @@
 
 <script setup lang="ts">
 import Heading from '#ioc/atoms/Heading'
+import ReviewStars from '#ioc/atoms/ReviewStars'
 import SfxImage from '#ioc/components/SfxImage'
 import SfxMoney from '#ioc/components/SfxMoney'
 import injectProduct from '#ioc/composables/injectProduct'
 import AddToCart from '#ioc/molecules/AddToCart'
 import StockIndicator from '#ioc/atoms/StockIndicator'
-import ReviewStars from '#ioc/atoms/ReviewStars'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import { computed } from 'vue'
 import useLocalePath from '#ioc/composables/useLocalePath'

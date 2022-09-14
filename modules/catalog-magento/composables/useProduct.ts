@@ -9,6 +9,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const configuration = ref({} as any)
 
+  const options = ref([] as string[])
+
   const id = computed(() => product.value.id)
 
   const sku = computed(() => variant.value.sku ?? product.value.sku)
@@ -92,6 +94,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     return {}
   })
 
+  const productOptions = computed(() => product.value.options ?? [])
+
   return reactive({
     id,
     sku,
@@ -124,5 +128,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     configurableOptions,
     configuration,
     variant,
+    productOptions,
+    options,
   })
 }

@@ -38,10 +38,6 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
-    slidesPerView: {
-      type: Number,
-      default: 1,
-    },
     interval: {
       type: Number,
       default: 0,
@@ -70,6 +66,7 @@ export default defineComponent({
       x_isMounted: false,
       x_pause: false,
       x_interval: null,
+      x_options: null,
       currentPage: 0,
       isStartingToDrag: false,
       isDragging: false,
@@ -77,12 +74,8 @@ export default defineComponent({
   },
 
   computed: {
-    x_options() {
-      return this.slider?.options
-    },
-
     x_slidesPerView() {
-      return this.x_options?.slidesPerView ?? this.slidesPerView
+      return this.x_options?.slides?.perView ?? 1
     },
 
     x_slides() {
@@ -117,9 +110,6 @@ export default defineComponent({
       const { default: KeenSlider } = await import('keen-slider')
 
       this.slider = new KeenSlider(this.$el, {
-        slides: {
-          perView: this.slidesPerView,
-        },
         initial: this.currentPage,
         loop: this.loop,
         breakpoints: this.breakpoints,
@@ -130,7 +120,7 @@ export default defineComponent({
           this.currentPage = Math.floor(slider.track.details.rel / this.x_slidesPerView)
         },
       })
-
+      this.slider.on('optionsChanged', () => ((this.x_options = this.slider.options), (this.currentPage = 0)), false)
       this.x_isMounted = true
 
       this.setInterval()
@@ -195,8 +185,7 @@ export default defineComponent({
       this.x_interval = setInterval(() => {
         if (!this.x_pause) {
           const { abs } = this.slider.track.details
-          const { slidesPerView } = this.slider.options
-          this.slider.moveToIdx(abs + slidesPerView, true)
+          this.slider.moveToIdx(abs + this.x_slidesPerView, true)
         }
       }, this.interval)
     },

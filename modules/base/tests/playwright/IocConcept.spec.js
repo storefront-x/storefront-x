@@ -191,3 +191,62 @@ test('multiple extensions', async ({ page }) => {
     },
   )
 })
+
+test('order of multiple extensions', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            concepts: {
+              'SomeConcept.js': `
+                import { IocConcept } from '@storefront-x/core'
+
+                export default class SomeConcept extends IocConcept {
+                  get directory() {
+                    return 'some'
+                  }
+                }
+              `,
+            },
+            some: {
+              'foo.js': `export default {}`,
+            },
+            server: {
+              middleware: {
+                'test.js': `
+                  import foo from '#ioc/some/foo'
+
+                  export default (req, res) => res.send(foo.bar + foo.baz)
+                `,
+              },
+            },
+          },
+        ],
+        [
+          'appA',
+          {
+            some: {
+              'foo.ext.js': `export default (self) => ({ ...self, bar: 'bar' })`,
+            },
+          },
+        ],
+        [
+          'appB',
+          {
+            some: {
+              'foo.ext.js': `export default (self) => ({ ...self, bar: 'baz' })`,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url, { waitUntil: 'networkidle' })
+      await expect(await page.content()).toContain('baz')
+    },
+  )
+})
