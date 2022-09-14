@@ -40,21 +40,12 @@
         <Button @click="onInc">+</Button>
       </div>
 
-      <p class="mt-1 text-sm font-medium text-gray-900 flex-end text-right">
+      <p class="flex flex-col mt-1 text-sm font-medium text-gray-900 flex-end text-right">
         <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-lg" />
 
-        <br />
-
-        <SfxMoney
-          v-if="cartItem.product.isOnSale"
-          v-slot="{ html }"
-          class="ml-1"
-          :money="cartItem.product.regularPrice"
-        >
+        <SfxMoney v-if="cartItem.product.isOnSale" v-slot="{ html }" :money="cartItem.product.regularPrice">
           <span class="line-through text-red-600 ml-1">{{ t('{0} / qty', [html]) }}</span>
         </SfxMoney>
-
-        <br v-if="cartItem.product.isOnSale" />
 
         <SfxMoney v-slot="{ html }" :money="cartItem.price">
           <span class="ml-1">{{ t('{0} / qty', [html]) }}</span>
