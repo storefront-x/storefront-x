@@ -1,5 +1,7 @@
 <template>
   <div class="relative flex flex-col sm:rounded-lg shadow-lg overflow-hidden" data-cy="blog-post-tile">
+    <Link :to="blogPost.urlKey" class="absolute inset-0" :aria-label="blogPost.title" />
+
     <div class="flex-shrink-0">
       <SfxImage
         class-img="h-48 w-full object-cover"
