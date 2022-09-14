@@ -1,6 +1,6 @@
 <template>
   <div class="slider">
-    <div class="keen-slider" :class="classSlider" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    <div ref="container" class="keen-slider" :class="classSlider">
       <div
         v-for="(slide, i) in x_slides"
         :key="i"
@@ -8,11 +8,11 @@
         :style="{ pointerEvents: isDragging ? 'none' : 'auto' }"
         :class="classSlide"
       >
-        <slot :slide="slide" :index="i" :is-dragging="isDragging" />
+        <slot :slide="slide" :index="i" />
       </div>
     </div>
 
-    <slot
+    <!-- <slot
       name="controls"
       v-bind="{
         isLastPage,
@@ -22,48 +22,76 @@
       }"
     />
 
-    <slot name="pagination" v-bind="{ pageIds, currentPage, pageCount, showPage }" />
+    <slot name="pagination" v-bind="{ pageIds, currentPage, pageCount, showPage }" /> -->
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import 'keen-slider/keen-slider.min.css'
+import schedule from '#ioc/utils/schedule'
+import { useKeenSlider } from 'keen-slider/vue'
+import { onMounted, onUnmounted, computed, reactive, ref } from 'vue'
+const props = defineProps({
+  slides: {
+    type: Array,
+    default: () => [],
+  },
+  slidesPerView: {
+    type: Number,
+    default: 1,
+  },
+  interval: {
+    type: Number,
+    default: 0,
+  },
+  loop: {
+    type: Boolean,
+    default: false,
+  },
+  breakpoints: {
+    type: Object,
+    default: () => ({}),
+  },
+  classSlider: {
+    type: String,
+    default: null,
+  },
+  classSlide: {
+    type: String,
+    default: null,
+  },
+})
+const currentPage = ref(0)
+const isDragging = ref(false)
+const x_slides = computed(() => {
+  // return x_isMounted.value ? props.slides : props.slides.slice(0, 1)
+  return props.slides
+})
+const [container, slider] = useKeenSlider({
+  slides: {
+    perView: props.slidesPerView,
+  },
+  initial: currentPage.value,
+  loop: props.loop,
+  breakpoints: props.breakpoints,
+  dragged: () => (isDragging.value = true),
+  dragEnded: () => (isDragging.value = false),
+  slideChanged: (slider) => {
+    currentPage.value = Math.floor(slider.track.details.rel / 4)
+  },
+})
+
+onUnmounted(() => {
+  // if (slider) slider.destroy()
+})
+</script>
+
+<!-- <script>
 import 'keen-slider/keen-slider.min.css'
 import { defineComponent } from 'vue'
 import throttle from '#ioc/utils/throttle'
-import schedule from '#ioc/utils/schedule'
 
 export default defineComponent({
-  props: {
-    slides: {
-      type: Array,
-      default: () => [],
-    },
-    slidesPerView: {
-      type: Number,
-      default: 1,
-    },
-    interval: {
-      type: Number,
-      default: 0,
-    },
-    loop: {
-      type: Boolean,
-      default: false,
-    },
-    breakpoints: {
-      type: Object,
-      default: () => ({}),
-    },
-    classSlider: {
-      type: String,
-      default: null,
-    },
-    classSlide: {
-      type: String,
-      default: null,
-    },
-  },
-
   data() {
     return {
       slider: null,
@@ -202,7 +230,7 @@ export default defineComponent({
     },
   },
 })
-</script>
+</script> -->
 
 <style scoped>
 .slider {
