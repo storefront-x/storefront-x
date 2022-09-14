@@ -1,9 +1,9 @@
 <template>
-  <RouterLink :to="link" :class="classes">
+  <a :href="link" :class="classes">
     <Button :color="color">
       {{ content }}
     </Button>
-  </RouterLink>
+  </a>
 </template>
 
 <script>
