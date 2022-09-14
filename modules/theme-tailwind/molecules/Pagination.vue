@@ -91,7 +91,6 @@
 <script lang="ts">
 import RouterLink from '#ioc/components/RouterLink'
 import BackToTop from '#ioc/molecules/BackToTop'
-import LoadNext from '#ioc/molecules/LoadNext'
 import IsPagination from '#ioc/mixins/IsPagination'
 import SolidArrowLeft from '#ioc/icons/SolidArrowLeft'
 import SolidArrowRight from '#ioc/icons/SolidArrowRight'
@@ -102,7 +101,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   components: {
     BackToTop,
-    LoadNext,
     RouterLink,
     SolidArrowLeft,
     SolidArrowRight,
