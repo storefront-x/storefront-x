@@ -10,6 +10,7 @@ interface Options {
   quantity?: number
   bundle?: object
   variantSku?: string
+  options?: string[]
 }
 
 export default () => {
@@ -19,7 +20,10 @@ export default () => {
   const addBundleProductToCartRepository = useAddBundleProductToCartRepository()
   const addConfigurableProductsToCartRepository = useAddConfigurableProductsToCartRepository()
 
-  return async (product: ReturnType<typeof useProduct>, { quantity = 1, bundle = {}, variantSku }: Options = {}) => {
+  return async (
+    product: ReturnType<typeof useProduct>,
+    { quantity = 1, bundle = {}, variantSku, options }: Options = {},
+  ) => {
     const { id } = await getOrCreateCartId()
 
     let response = null
@@ -31,6 +35,7 @@ export default () => {
     } else {
       response = await addToCartRepository(id, product, {
         quantity,
+        options,
       })
     }
 
