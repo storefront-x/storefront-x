@@ -4,8 +4,8 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@vueuse/head": "^0.7.9",
-    "vue": "^3.2.38"
+    "@vueuse/head": "^0.7.10",
+    "vue": "^3.2.39"
   },
   "publishConfig": {
     "access": "public"
