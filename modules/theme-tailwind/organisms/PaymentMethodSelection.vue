@@ -20,7 +20,11 @@
             </span>
           </div>
 
-          <img :src="`/icons/payment/${paymentMethod.code}.svg`" class="absolute right-0 mr-12" alt="Payment icon" />
+          <img
+            :src="`/icons/payment/${paymentMethod.code}.svg`"
+            class="absolute right-0 mr-12 top-3"
+            alt="Payment icon"
+          />
 
           <SolidCheckCircle v-if="isSelected(paymentMethod)" class="text-primary-600" />
 
