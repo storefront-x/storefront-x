@@ -26,9 +26,8 @@ import Heading from '#ioc/atoms/Heading'
 import useBlogPost from '#ioc/composables/useBlogPost'
 import { computed, PropType, toRef } from 'vue'
 import ToBlogPost from '#ioc/mappers/ToBlogPost'
-import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 
-const SfxMagentoCmsPage = hydrateWhenIdle(() => import('#ioc/components/SfxMagentoCmsPage'))
+import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
 
 const props = defineProps({
   id: {

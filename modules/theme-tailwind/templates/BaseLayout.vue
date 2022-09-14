@@ -15,11 +15,9 @@ import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 import HamburgerMenu from '#ioc/organisms/HamburgerMenu'
 import Notifications from '#ioc/organisms/Notifications'
 import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
-import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
-import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 
-const Header = hydrateWhenIdle(() => import('#ioc/organisms/Header'))
-const Footer = hydrateWhenVisible(() => import('#ioc/organisms/Footer'))
+import Header from '#ioc/organisms/Header'
+import Footer from '#ioc/organisms/Footer'
 
 const route = useRoute()
 const themeTailwindStore = useThemeTailwindStore()

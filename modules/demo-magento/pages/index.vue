@@ -37,14 +37,12 @@ import useI18n from '#ioc/composables/useI18n'
 import Rocket from '#ioc/icons/custom/Rocket'
 import Gears from '#ioc/icons/custom/Gears'
 import Glass from '#ioc/icons/custom/Glass'
-import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
-import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 
-const SfxMagentoCmsBlock = hydrateWhenIdle(() => import('#ioc/components/SfxMagentoCmsBlock'))
-const Usps = hydrateWhenVisible(() => import('#ioc/molecules/Usps'))
-const CategoryPreviews = hydrateWhenVisible(() => import('#ioc/molecules/CategoryPreviews'))
-const ReviewShowreel = hydrateWhenVisible(() => import('#ioc/molecules/ReviewShowreel'))
-const BlogGrid = hydrateWhenVisible(() => import('#ioc/molecules/BlogGrid'))
+import SfxMagentoCmsBlock from '#ioc/components/SfxMagentoCmsBlock'
+import Usps from '#ioc/molecules/Usps'
+import CategoryPreviews from '#ioc/molecules/CategoryPreviews'
+import ReviewShowreel from '#ioc/molecules/ReviewShowreel'
+import BlogGrid from '#ioc/molecules/BlogGrid'
 
 const getBlogPosts = useGetBlogPosts()
 const route = useRoute()

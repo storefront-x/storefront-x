@@ -41,11 +41,9 @@ import ProductSort from '#ioc/molecules/ProductSort'
 import ProductTile from '#ioc/molecules/ProductTile'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import { computed, PropType } from 'vue'
-import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
-import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 
-const ProductFilters = hydrateWhenIdle(() => import('#ioc/molecules/ProductFilters'))
-const Pagination = hydrateWhenVisible(() => import('#ioc/molecules/Pagination'))
+import ProductFilters from '#ioc/molecules/ProductFilters'
+import Pagination from '#ioc/molecules/Pagination'
 
 const { t } = useI18n()
 const route = useRoute()

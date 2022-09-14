@@ -22,9 +22,8 @@ import ProductListing from '#ioc/organisms/ProductListing'
 import useHead from '#ioc/composables/useHead'
 import { computed, PropType } from 'vue'
 import useCategory from '#ioc/composables/useCategory'
-import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 
-const Description = hydrateWhenVisible(() => import('#ioc/atoms/Description'))
+import Description from '#ioc/atoms/Description'
 
 const props = defineProps({
   category: {

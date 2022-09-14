@@ -31,12 +31,10 @@
 import Container from '#ioc/atoms/Container'
 import useI18n from '#ioc/composables/useI18n'
 import ToBlogPost from '#ioc/mappers/ToBlogPost'
-import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
-import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import { PropType } from 'vue'
 
-const BlogPostTile = hydrateWhenIdle(() => import('#ioc/molecules/BlogPostTile'))
-const Pagination = hydrateWhenVisible(() => import('#ioc/molecules/Pagination'))
+import BlogPostTile from '#ioc/molecules/BlogPostTile'
+import Pagination from '#ioc/molecules/Pagination'
 
 const { t } = useI18n()
 

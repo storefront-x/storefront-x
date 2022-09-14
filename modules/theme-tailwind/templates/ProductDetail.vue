@@ -27,10 +27,9 @@ import useHead from '#ioc/composables/useHead'
 import Heading from '#ioc/atoms/Heading'
 import useI18n from '#ioc/composables/useI18n'
 import { computed } from 'vue'
-import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 
-const ProductDetailTabs = hydrateWhenVisible(() => import('#ioc/organisms/ProductDetailTabs'))
-const ProductCarousel = hydrateWhenVisible(() => import('#ioc/organisms/ProductCarousel'))
+import ProductDetailTabs from '#ioc/organisms/ProductDetailTabs'
+import ProductCarousel from '#ioc/organisms/ProductCarousel'
 
 const { t } = useI18n()
 const product = injectProduct()
