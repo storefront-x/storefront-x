@@ -85,9 +85,6 @@
         </RouterLink>
       </div>
     </nav>
-    <div v-if="pages.length > 1" class="py-6 md:my-0 justify-center w-full order-last">
-      <LoadNext :total="total" />
-    </div>
   </div>
 </template>
 
