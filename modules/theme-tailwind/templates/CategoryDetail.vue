@@ -22,6 +22,7 @@ import useHead from '#ioc/composables/useHead'
 import { computed, PropType } from 'vue'
 import useCategory from '#ioc/composables/useCategory'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 
 const ProductListing = hydrateWhenIdle(() => import('#ioc/organisms/ProductListing'))

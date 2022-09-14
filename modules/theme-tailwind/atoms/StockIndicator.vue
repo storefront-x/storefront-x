@@ -1,16 +1,16 @@
 <template>
-  <p v-if="stockStatus" class="text-sm flex items-center mt-4" :class="classes">
-    <InStock v-if="stockStatus" class="h-4 w-auto mr-3" />
-    <OutOfStock v-if="!stockStatus" class="h-4 w-auto mr-3" />
+  <p v-if="stockStatus" class="text-sm text-green-600 flex items-center mt-4" :class="classes">
+    <InStockTile v-if="stockStatus" class="h-2 w-auto mr-1" />
+    <OutOfStockTile v-if="!stockStatus" class="h-4 w-auto mr-1" />
     {{ t(stockStatus ? 'IN_STOCK' : 'OUT_OF_STOCK') }}
   </p>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import InStockTile from '#ioc/icons/custom/InStockTile'
+import OutOfStockTile from '#ioc/icons/custom/OutOfStockTile'
 import useI18n from '#ioc/composables/useI18n'
-import InStock from '#ioc/icons/custom/InStock'
-import OutOfStock from '#ioc/icons/custom/OutOfStock'
+import { computed } from 'vue'
 
 const { t } = useI18n()
 
