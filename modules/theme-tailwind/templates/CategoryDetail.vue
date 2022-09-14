@@ -18,11 +18,11 @@ import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import CategoryInfo from '#ioc/molecules/CategoryInfo'
 import ToCategory from '#ioc/mappers/ToCategory'
 import ToProduct from '#ioc/mappers/ToProduct'
-import ProductListing from '#ioc/organisms/ProductListing'
 import useHead from '#ioc/composables/useHead'
 import { computed, PropType } from 'vue'
 import useCategory from '#ioc/composables/useCategory'
 
+import ProductListing from '#ioc/organisms/ProductListing'
 import Description from '#ioc/atoms/Description'
 
 const props = defineProps({

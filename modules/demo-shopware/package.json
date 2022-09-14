@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "vite-plugin-pwa": "^0.12.6"
+    "vite-plugin-pwa": "^0.12.7"
   },
   "publishConfig": {
     "access": "public"

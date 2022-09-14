@@ -63,12 +63,12 @@ defineProps({
   },
 })
 
-const sortedBy = computed(() => String(route.query.sort ?? 'best match'))
+const sortedBy = computed(() => String(route.query.sort ?? 'Best match'))
 </script>
 
 <i18n lang="yaml">
 cs-CZ:
-  best match: nejlepší shoda
+  Best match: nejlepší shoda
   'price,ASC': 'nejlevnějších'
   'price,DESC': 'nejdražších'
   'Products found: {0}': 'Nalezeno produktů: {0}'
