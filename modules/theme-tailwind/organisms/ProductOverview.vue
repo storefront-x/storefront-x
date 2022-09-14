@@ -12,7 +12,7 @@
         <div>{{ product?.meta?.metaDescription || '' }}</div>
       </div>
 
-      <StockIndicators :stock-status="product.available" />
+      <StockIndicator :stock-status="product.available" />
 
       <div class="sm:flex">
         <div class="flex">
@@ -52,7 +52,7 @@ import Heading from '#ioc/atoms/Heading'
 import ProductQuantityConfigurator from '#ioc/molecules/ProductQuantityConfigurator'
 import AddToCart from '#ioc/molecules/AddToCart'
 import ProductGallery from '#ioc/molecules/ProductGallery'
-import StockIndicators from '#ioc/atoms/StockIndicators'
+import StockIndicator from '#ioc/atoms/StockIndicator'
 import FacebookShare from '#ioc/atoms/FacebookShare'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import injectProduct from '#ioc/composables/injectProduct'
