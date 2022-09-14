@@ -1,5 +1,6 @@
 import ToProduct from '#ioc/mappers/ToProduct'
 import useCatalogMagentoStore from '#ioc/stores/useCatalogMagentoStore'
+import isNullish from '#ioc/utils/isNullish'
 import { computed, reactive, Ref, ref } from 'vue'
 
 export default (product: Ref<ReturnType<typeof ToProduct>>) => {
@@ -13,7 +14,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const id = computed(() => product.value.id)
 
-  const sku = computed(() => variant.value.sku ?? product.value.sku)
+  const sku = computed(() => product.value.sku)
 
   const name = computed(() => product.value.name)
 
@@ -66,6 +67,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isBundleProduct = computed(() => product.value.__typename === 'BundleProduct')
 
+  const isBundleConfigured = computed(() => Object.keys(bundle.value).length > 0)
+
   const mediaGallery = computed(() => {
     if (variant.value?.mediaGallery?.length > 0) {
       return variant.value?.mediaGallery
@@ -95,6 +98,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   })
 
   const productOptions = computed(() => product.value.options ?? [])
+
+  const isConfigured = computed(() => !isNullish(variant.value.sku))
 
   return reactive({
     id,
@@ -130,5 +135,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     variant,
     productOptions,
     options,
+    isConfigured,
+    isBundleConfigured,
   })
 }

@@ -64,6 +64,7 @@ import FormRadioBox from '#ioc/molecules/FormRadioBox'
 import FormRadioGroup from '#ioc/molecules/FormRadioGroup'
 import injectProduct from '#ioc/composables/injectProduct'
 import { ref } from 'vue'
+import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 
 const { t } = useI18n()
 const product = injectProduct()
@@ -92,6 +93,9 @@ const onInput = (optionItem: any, option: any, isChecked: any, type: string) => 
     updateFinalPrice()
   } else {
     delete selectedOptions.value[optionItem.id][option.optionId]
+    if (!isNonEmptyObject(selectedOptions.value[optionItem.id])) {
+      delete selectedOptions.value[optionItem.id]
+    }
     updateFinalPrice()
   }
 }
