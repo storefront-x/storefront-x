@@ -8,7 +8,7 @@
       v-for="value in configurableOption.values"
       :key="value.index"
       :label="value.label"
-      :value="value.index"
+      :value="`${value.index}-${inModal}`"
       :name="`${value.index}`"
       :is-circle="isColor"
       :background="value.swatchData.value"
@@ -28,6 +28,10 @@ const props = defineProps({
   configurableOption: {
     type: Object,
     required: true,
+  },
+  inModal: {
+    type: String,
+    default: 'outOfModal',
   },
 })
 

@@ -8,7 +8,7 @@ export default (name = 'customizableOptionInterface') =>
     required: field(),
     sort_order: field(),
     title: field(),
-    uid: field(),
+    option_id: field(),
     ...on('CustomizableRadioOption', {
       ...CustomizableOption(),
     }),

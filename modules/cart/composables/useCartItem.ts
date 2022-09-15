@@ -21,7 +21,9 @@ export default (cartItem: Ref<ReturnType<typeof ToCartItem>>) => {
 
   const isBundleProduct = computed(() => cartItem.value.product?.__typename === 'BundleProduct')
 
-  const bundleOptions = computed(() => cartItem.value.bundleOptions || [])
+  const bundleOptions = computed(() => cartItem.value.bundleOptions ?? [])
+
+  const options = computed(() => cartItem.value.options ?? [])
 
   return reactive({
     id,
@@ -34,5 +36,6 @@ export default (cartItem: Ref<ReturnType<typeof ToCartItem>>) => {
     isConfigurableProduct,
     isBundleProduct,
     bundleOptions,
+    options,
   })
 }
