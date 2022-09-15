@@ -6,6 +6,6 @@ export default (data: any) => ({
   carrierTitle: data.carrier_title as string,
   methodCode: data.method_code as string | null,
   methodTitle: data.method_title as string | null,
-  priceExclTax: data.price_excl_tax as ReturnType<typeof ToMoney> | null,
-  priceInclTax: data.price_incl_tax as ReturnType<typeof ToMoney> | null,
+  priceExclTax: ToMoney(data.price_excl_tax),
+  priceInclTax: ToMoney(data.price_incl_tax),
 })

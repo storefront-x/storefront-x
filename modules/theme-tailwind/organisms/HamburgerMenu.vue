@@ -14,7 +14,7 @@
         </Accordion>
       </li>
       <li class="border-t-2 border-gray-50">
-        <Link to="/" class="no-underline text-inherit py-4 px-4 block">
+        <Link :to="localePath('blog')" class="no-underline text-inherit py-4 px-4 block">
           {{ t('Blog') }}
         </Link>
       </li>

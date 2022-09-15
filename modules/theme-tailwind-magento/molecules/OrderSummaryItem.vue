@@ -32,6 +32,21 @@
       @keep-product="keepItem"
       @remove-product="removeItem"
     />
+    <div class="mx-5 flex flex-col items-left">
+      <div
+        v-for="({ optionLabel, valueLabel }, i) in cartItem.configurableOptions"
+        :key="i"
+        class="mt-1 text-sm text-gray-500"
+      >
+        {{ optionLabel }}: {{ valueLabel }}
+      </div>
+      <div v-for="bundleOption in cartItem.bundleOptions" :key="bundleOption.id" class="mt-1 text-sm text-gray-500">
+        {{ bundleOption.label }}
+        <ul class="list-disc">
+          <li v-for="value in bundleOption.values" :key="value.id" class="text-sm">{{ value.label }}</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="mt-2 flex items-center justify-between">
       <div class="flex gap-2">
@@ -40,19 +55,15 @@
         <Button @click="onInc">+</Button>
       </div>
 
-      <p class="mt-1 text-sm font-medium text-gray-900 flex-end text-right">
+      <p class="flex flex-col mt-1 text-sm font-medium text-gray-900 flex-end text-right">
         <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-lg" />
 
-        <br />
-
         <SfxMoney v-if="cartItem.product.isOnSale" v-slot="{ html }" :money="cartItem.product.regularPrice">
-          <span class="line-through text-red-600">{{ t('{0} / qty', [html]) }}</span>
+          <span class="line-through text-red-600 ml-1">{{ t('{0} / qty', [html]) }}</span>
         </SfxMoney>
 
-        <br v-if="cartItem.product.isOnSale" />
-
         <SfxMoney v-slot="{ html }" :money="cartItem.price">
-          <span>{{ t('{0} / qty', [html]) }}</span>
+          <span class="ml-1">{{ t('{0} / qty', [html]) }}</span>
         </SfxMoney>
       </p>
     </div>

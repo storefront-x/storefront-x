@@ -5,6 +5,7 @@ import ToCart from '#ioc/mappers/ToCart'
 
 interface Options {
   quantity?: number
+  options?: string[]
 }
 
 export default () => {
@@ -13,7 +14,7 @@ export default () => {
   return async (
     cartId: string,
     product: ReturnType<typeof useProduct>,
-    { quantity = 1 }: Options = {},
+    { quantity = 1, options }: Options = {},
   ): Promise<{
     cart: ReturnType<typeof ToCart>
   }> => {
@@ -24,6 +25,7 @@ export default () => {
           {
             sku: product.sku,
             quantity,
+            selected_options: options,
           },
         ],
       }),

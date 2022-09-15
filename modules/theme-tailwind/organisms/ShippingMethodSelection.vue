@@ -23,7 +23,7 @@
 
           <img
             :src="`/icons/shipping/${shippingMethod.code}.svg`"
-            class="pb-8 h-full absolute right-0 mr-12"
+            class="pb-8 h-full absolute right-0 mr-7"
             alt="Shipping icon"
           />
 

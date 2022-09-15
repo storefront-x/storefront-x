@@ -12,7 +12,7 @@
           :name="`${bundleItem.id}-${bundleOption.id}`"
           :label="bundleOption.label"
           class="mt-2"
-          @input="onInput(bundleItem, bundleOption, $event)"
+          @input="onInput(bundleItem, bundleOption, $event, 'checkbox')"
         />
       </div>
       <div v-else>
@@ -41,7 +41,7 @@
               :name="`${bundleItem.id}-${bundleOption.id}`"
               :value="`${bundleOption.id}`"
               :label="bundleOption.label"
-              @input="onInput(bundleItem, bundleOption, true)"
+              @input="onInput(bundleItem, bundleOption, true, 'radio')"
             />
           </FormRadioGroup>
         </div>
@@ -60,6 +60,7 @@ import FormRadioBox from '#ioc/molecules/FormRadioBox'
 import FormRadioGroup from '#ioc/molecules/FormRadioGroup'
 import injectProduct from '#ioc/composables/injectProduct'
 import { ref } from 'vue'
+import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 
 const { t } = useI18n()
 const product = injectProduct()
@@ -67,10 +68,12 @@ const product = injectProduct()
 const selectedOptions = ref({} as any)
 const selectedLabel = ref({} as any)
 
-const onInput = (bundleItem: any, bundleOption: any, isChecked: any) => {
+const onInput = (bundleItem: any, bundleOption: any, isChecked: any, type: string) => {
   if (!selectedOptions.value[bundleItem.id]) {
     selectedOptions.value[bundleItem.id] = {}
-  } else {
+  }
+
+  if (type === 'radio') {
     delete selectedOptions.value[bundleItem.id]
     selectedOptions.value[bundleItem.id] = {}
     updateFinalPrice()
@@ -85,12 +88,22 @@ const onInput = (bundleItem: any, bundleOption: any, isChecked: any) => {
     }
     updateFinalPrice()
   } else {
-    delete selectedOptions.value[bundleItem.id]
+    delete selectedOptions.value[bundleItem.id][bundleOption.id]
+    if (!isNonEmptyObject(selectedOptions.value[bundleItem.id])) {
+      delete selectedOptions.value[bundleItem.id]
+    }
     updateFinalPrice()
   }
 }
 
 const onInputSelect = (bundleItem: any, id: any) => {
+  if (!id) {
+    delete selectedOptions.value[bundleItem.id]
+    updateFinalPrice()
+
+    return
+  }
+
   if (!selectedOptions.value[bundleItem.id]) {
     selectedOptions.value[bundleItem.id] = {}
   } else {
@@ -119,7 +132,7 @@ const updateFinalPrice = () => {
     }
   }
   product.finalPrice.value = finalPriceValue || product.minimumPrice.value
-  product.bundle.value = selectedOptions.value
+  product.bundle = selectedOptions.value
 }
 </script>
 

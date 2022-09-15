@@ -23,6 +23,7 @@ export default () => {
         cartId,
         cartItems: [
           {
+            parent_sku: product.sku,
             data: {
               sku: variantSku,
               quantity,
