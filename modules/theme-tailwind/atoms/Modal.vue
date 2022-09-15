@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <div class="fixed z-40 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:py-0">
+      <div class="flex items-center justify-center pt-4 px-4 pb-20 text-center sm:py-0 min-h-screen">
         <transition
           appear
           appear-active-class="transition duration-300 ease-out"

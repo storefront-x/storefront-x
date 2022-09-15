@@ -1,8 +1,17 @@
 <template>
   <Form>
     <div v-for="bundleItem in product.bundleItems" :key="bundleItem.id" class="mb-4">
-      <Heading :level="2">
+      <Heading
+        :level="2"
+        class="relative inline-block"
+        :class="
+          bundleItem.required
+            ? `after:content-['*'] after:text-red-500 after:ml-1 after:absolute after:top-0 after:-right-4 mb-4`
+            : ''
+        "
+      >
         {{ bundleItem.title }}
+        <p v-if="bundleItem.required" class="text-xs text-gray-400 mt-0 absolute w-max">Please choose option</p>
       </Heading>
 
       <div v-if="bundleItem.type === 'checkbox' || bundleItem.type === 'multi'">
@@ -31,7 +40,7 @@
         </div>
         <div v-else>
           <FormRadioGroup
-            :name="`${bundleItem.id}`"
+            :name="`${bundleItem.id}-${inModal}`"
             :label="''"
             :classes="`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 space-y-0 align-start`"
           >
@@ -39,7 +48,7 @@
               v-for="bundleOption in bundleItem.options"
               :key="bundleOption.id"
               :name="`${bundleItem.id}-${bundleOption.id}`"
-              :value="`${bundleOption.id}`"
+              :value="`${bundleOption.id}-${inModal}`"
               :label="bundleOption.label"
               @input="onInput(bundleItem, bundleOption, true, 'radio')"
             />
@@ -64,6 +73,13 @@ import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 
 const { t } = useI18n()
 const product = injectProduct()
+
+defineProps({
+  inModal: {
+    type: String,
+    default: 'outOfModal',
+  },
+})
 
 const selectedOptions = ref({} as any)
 const selectedLabel = ref({} as any)
