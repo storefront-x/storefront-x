@@ -68,12 +68,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isBundleProduct = computed(() => product.value.__typename === 'BundleProduct')
 
-  const isBundleConfigured = computed(() => {
-    if (!isNonEmptyObject(bundle.value)) {
-      return false
-    }
-    return Object.keys(bundle.value).length > 0
-  })
+  const isBundleConfigured = computed(() => isNonEmptyObject(bundle.value))
 
   const mediaGallery = computed(() => {
     if (variant.value?.mediaGallery?.length > 0) {
@@ -105,12 +100,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const productOptions = computed(() => product.value.options ?? [])
 
-  const isOptionsConfigured = computed(() => {
-    if (!isNonEmptyObject(options.value)) {
-      return false
-    }
-    return Object.keys(options.value).length > 0
-  })
+  const isOptionsConfigured = computed(() => isNonEmptyObject(options.value))
 
   const isConfigured = computed(() => !isNullish(variant.value.sku))
 
