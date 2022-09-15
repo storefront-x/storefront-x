@@ -46,6 +46,12 @@
           <li v-for="value in bundleOption.values" :key="value.id" class="text-sm">{{ value.label }}</li>
         </ul>
       </div>
+      <div v-for="option in cartItem.options" :key="option.id" class="mt-1 text-sm text-gray-500">
+        {{ option.label }}
+        <ul class="list-disc">
+          <li v-for="value in option.values" :key="value.id" class="text-sm">{{ value.label }}</li>
+        </ul>
+      </div>
     </div>
 
     <div class="mt-2 flex items-center justify-between">

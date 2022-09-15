@@ -1,8 +1,17 @@
 <template>
   <Form>
     <div v-for="optionItem in product.productOptions" :key="optionItem.id" class="mb-4">
-      <Heading :level="2">
+      <Heading
+        :level="2"
+        class="relative inline-block"
+        :class="
+          optionItem.required
+            ? `after:content-['*'] after:text-red-500 after:ml-1 after:absolute after:top-0 after:-right-4 mb-4`
+            : ''
+        "
+      >
         {{ optionItem.title }}
+        <p v-if="optionItem.required" class="text-xs text-gray-400 mt-0 absolute w-max">Please choose option</p>
       </Heading>
 
       <div
@@ -35,7 +44,7 @@
         </div>
         <div v-else>
           <FormRadioGroup
-            :name="`${optionItem.id}`"
+            :name="`${optionItem.id}-${inModal}`"
             :label="''"
             :classes="`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 space-y-0 align-start`"
           >
@@ -43,7 +52,7 @@
               v-for="option in optionItem.value"
               :key="option.id"
               :name="`${optionItem.id}-${option.id}`"
-              :value="`${option.id}`"
+              :value="`${option.id}-${inModal}`"
               :label="option.title"
               @input="onInput(optionItem, option, true, 'radio')"
             />
@@ -69,6 +78,13 @@ import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 const { t } = useI18n()
 const product = injectProduct()
 
+defineProps({
+  inModal: {
+    type: String,
+    default: 'outOfModal',
+  },
+})
+
 const selectedOptions = ref({} as any)
 const selectedLabel = ref({} as any)
 
@@ -85,10 +101,11 @@ const onInput = (optionItem: any, option: any, isChecked: any, type: string) => 
 
   if (isChecked) {
     selectedOptions.value[optionItem.id][option.optionId] = {
-      id: option.id,
+      id: option.optionId,
       quantity: 1,
       finalPrice: option.finalPrice,
       value: [String(option.optionId)],
+      priceType: option.priceType,
     }
     updateFinalPrice()
   } else {
@@ -119,10 +136,11 @@ const onInputSelect = (optionItem: any, id: any) => {
   const option = optionItem.value.find((option: any) => option.optionId === id)
 
   selectedOptions.value[optionItem.id][id] = {
-    id: option.id,
+    id: option.optionId,
     quantity: 1,
     finalPrice: option.finalPrice,
     value: [String(option.optionId)],
+    priceType: option.priceType,
   }
 
   updateFinalPrice()
@@ -133,10 +151,14 @@ const updateFinalPrice = () => {
   product.options = []
   for (const option of Object.values(selectedOptions.value) as any) {
     for (const optionValue of Object.values(option) as any) {
-      finalPriceValue += optionValue.finalPrice.value
-      product.options.push(optionValue.id)
+      if (optionValue.priceType === 'PERCENT') {
+        finalPriceValue += product.minimumPrice.value * (optionValue.finalPrice.value / 100 / 100)
+      } else {
+        finalPriceValue += optionValue.finalPrice.value
+      }
     }
   }
+  product.options = selectedOptions.value
   product.finalPrice.value = finalPriceValue + product.minimumPrice.value || product.minimumPrice.value
 }
 </script>

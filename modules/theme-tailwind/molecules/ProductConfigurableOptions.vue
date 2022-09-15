@@ -4,6 +4,7 @@
       v-for="configurableOption in product.configurableOptions"
       :key="configurableOption.attributeCode"
       :configurable-option="configurableOption"
+      :in-modal="inModal"
       @input="onInput"
     />
   </SfxForm>
@@ -15,6 +16,13 @@ import ProductConfigurableOption from '#ioc/molecules//ProductConfigurableOption
 import injectProduct from '#ioc/composables/injectProduct'
 
 const product = injectProduct()
+
+defineProps({
+  inModal: {
+    type: String,
+    default: 'outOfModal',
+  },
+})
 
 const onInput = (configurableOption: any, id: any) => {
   product.configuration[configurableOption.attributeCode] = id

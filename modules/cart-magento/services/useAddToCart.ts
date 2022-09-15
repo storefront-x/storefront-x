@@ -4,13 +4,14 @@ import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCartStore from '#ioc/stores/useCartStore'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import useAddBundleProductToCartRepository from '#ioc/repositories/useAddBundleProductToCartRepository'
-import useAddConfigurableProductsToCartRepository from '../repositories/useAddConfigurableProductsToCartRepository'
+import useAddConfigurableProductsToCartRepository from '#ioc/repositories/useAddConfigurableProductsToCartRepository'
+import useAddSimpleProductsToCartRepository from '#ioc/repositories/useAddSimpleProductsToCartRepository'
 
 interface Options {
   quantity?: number
   bundle?: object
   variantSku?: string
-  options?: string[]
+  options?: object
 }
 
 export default () => {
@@ -19,6 +20,7 @@ export default () => {
   const addToCartRepository = useAddToCartRepository()
   const addBundleProductToCartRepository = useAddBundleProductToCartRepository()
   const addConfigurableProductsToCartRepository = useAddConfigurableProductsToCartRepository()
+  const addSimpleProducsToCartRepository = useAddSimpleProductsToCartRepository()
 
   return async (
     product: ReturnType<typeof useProduct>,
@@ -32,10 +34,11 @@ export default () => {
       response = await addBundleProductToCartRepository(id, product, { quantity, bundle })
     } else if (variantSku) {
       response = await addConfigurableProductsToCartRepository(id, product, { quantity, variantSku })
+    } else if (isNonEmptyObject(options)) {
+      response = await addSimpleProducsToCartRepository(id, product, { quantity, options })
     } else {
       response = await addToCartRepository(id, product, {
         quantity,
-        options,
       })
     }
 
