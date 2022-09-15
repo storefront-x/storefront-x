@@ -62,6 +62,8 @@
         <AddToCart :quantity="quantity" />
       </div>
 
+      <GroupedItems v-if="product.groupedItems.length" />
+
       <GiftPanel />
 
       <div class="flex">
@@ -94,6 +96,7 @@ import ProductLabel from '#ioc/atoms/ProductLabel'
 import ProductBundleOptions from '#ioc/molecules/ProductBundleOptions'
 import ProductConfigurableOptions from '#ioc/molecules/ProductConfigurableOptions'
 import ProductOptions from '#ioc/molecules/ProductOptions'
+import GroupedItems from '#ioc/molecules/GroupedItems'
 
 const { t } = useI18n()
 const product = injectProduct()

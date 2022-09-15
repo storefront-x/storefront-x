@@ -104,6 +104,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isConfigured = computed(() => !isNullish(variant.value.sku))
 
+  const groupedItems = computed(() => product.value.groupedItems ?? [])
+
   return reactive({
     id,
     sku,
@@ -141,5 +143,6 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isConfigured,
     isBundleConfigured,
     isOptionsConfigured,
+    groupedItems,
   })
 }
