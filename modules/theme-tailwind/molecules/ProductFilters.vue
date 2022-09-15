@@ -29,14 +29,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineAsyncComponent, defineComponent } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
-import ProductFiltersMobile from '#ioc/molecules/ProductFiltersMobile'
 import ProductFiltersDesktop from '#ioc/molecules/ProductFiltersDesktop'
 
 export default defineComponent({
   components: {
-    ProductFiltersMobile,
+    ProductFiltersMobile: defineAsyncComponent(() => import('#ioc/molecules/ProductFiltersMobile')),
     ProductFiltersDesktop,
   },
 

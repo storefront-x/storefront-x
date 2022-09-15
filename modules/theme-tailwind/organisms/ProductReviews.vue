@@ -6,7 +6,7 @@
       v-if="!isProductReviewFormVisible && product.reviews.length"
       class="mt-6 mb-7 pb-10 border-t border-b border-gray-200 divide-y divide-gray-200 space-y-10"
     >
-      <ProductReview v-for="review in product.reviews" :key="review.createdAt.getTime()" :product-review="review" />
+      <ProductReview v-for="(review, i) in product.reviews" :key="i" :product-review="review" />
     </div>
 
     <Button
@@ -24,9 +24,10 @@
 import useI18n from '#ioc/composables/useI18n'
 import Button from '#ioc/atoms/Button'
 import ProductReview from '#ioc/molecules/ProductReview'
-import ProductReviewForm from '#ioc/molecules/ProductReviewForm'
 import injectProduct from '#ioc/composables/injectProduct'
-import { ref } from 'vue'
+import { defineAsyncComponent, ref } from 'vue'
+
+const ProductReviewForm = defineAsyncComponent(() => import('#ioc/molecules/ProductReviewForm'))
 
 const { t } = useI18n()
 const product = injectProduct()
