@@ -2,14 +2,15 @@
   <SfxCarousel
     :slides="products"
     :interval="6000"
+    :init-slides-per-view="4"
     :breakpoints="breakpoints"
     loop
     class="relative -mx-4"
     class-slide="pb-10"
   >
-    <template #default="{ slide, isDragging }">
+    <template #default="{ slide }">
       <ProductProvider :product="slide">
-        <ProductTile :index="-1" :is-not-clickable="isDragging" />
+        <ProductTile :index="-1" />
       </ProductProvider>
     </template>
 
@@ -49,7 +50,6 @@ export default defineComponent({
   },
 
   data: () => ({
-    slidesPerView: 4,
     breakpoints: {
       '(max-width: 519.98px)': {
         slides: { perView: 1 },

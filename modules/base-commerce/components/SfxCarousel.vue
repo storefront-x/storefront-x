@@ -2,7 +2,7 @@
   <div class="slider">
     <div ref="container" class="keen-slider" :class="classSlider">
       <div
-        v-for="(slide, i) in x_slides"
+        v-for="(slide, i) in props.slides"
         :key="i"
         class="keen-slider__slide"
         :style="{ pointerEvents: isDragging ? 'none' : 'auto' }"
@@ -28,7 +28,6 @@
 
 <script setup lang="ts">
 import 'keen-slider/keen-slider.min.css'
-import schedule from '#ioc/utils/schedule'
 import { useKeenSlider } from 'keen-slider/vue'
 import { onMounted, onUnmounted, computed, reactive, ref } from 'vue'
 const props = defineProps({
@@ -36,7 +35,7 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-  slidesPerView: {
+  initSlidesPerView: {
     type: Number,
     default: 1,
   },
@@ -61,28 +60,40 @@ const props = defineProps({
     default: null,
   },
 })
+const isMounted = ref(false)
 const currentPage = ref(0)
 const isDragging = ref(false)
-const x_slides = computed(() => {
-  // return x_isMounted.value ? props.slides : props.slides.slice(0, 1)
-  return props.slides
+const sliderOptions = computed(() => {
+  return slider.value ? slider.value.options : {}
+})
+const visibleSlides = computed(() => {
+  return isMounted.value ? props.slides : props.slides.slice(0, props.initSlidesPerView)
+})
+const pageCount = computed(() => {
+  return Math.ceil(props.slides.length / props.initSlidesPerView)
+})
+const isLastPage = computed(() => {
+  return currentPage.value === pageCount.value - 1
 })
 const [container, slider] = useKeenSlider({
   slides: {
-    perView: props.slidesPerView,
+    perView: props.initSlidesPerView,
   },
   initial: currentPage.value,
   loop: props.loop,
   breakpoints: props.breakpoints,
   dragged: () => (isDragging.value = true),
   dragEnded: () => (isDragging.value = false),
-  slideChanged: (slider) => {
-    currentPage.value = Math.floor(slider.track.details.rel / 4)
+  slideChanged: (options) => {
+    currentPage.value = Math.floor(options.track.details.rel / 4)
   },
+})
+onMounted(() => {
+  isMounted.value = true
 })
 
 onUnmounted(() => {
-  // if (slider) slider.destroy()
+  if (slider.value) slider.value.destroy()
 })
 </script>
 
