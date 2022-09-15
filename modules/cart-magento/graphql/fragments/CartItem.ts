@@ -27,6 +27,16 @@ export default (name = 'cartItem') =>
       product: field({
         ...Product(),
       }),
+      ...on('SimpleCartItem', {
+        customizable_options: field({
+          label: field(),
+          customizable_option_uid: field(),
+          values: field({
+            customizable_option_value_uid: field(),
+            label: field(),
+          }),
+        }),
+      }),
       ...on('ConfigurableCartItem', {
         configurable_options: field({
           option_label: field(),

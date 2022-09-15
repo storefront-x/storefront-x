@@ -1,9 +1,10 @@
 <template>
   <Modal size="4xl">
     <Heading class="mb-4" :level="1">{{ t('Select bundles') }}</Heading>
-    <ProductBundleOptions />
+    <ProductBundleOptions in-modal="inModal" />
     <Button color="primary" :disabled="!product.isBundleConfigured" @click="onAddToCart">
-      {{ t('Add to cart') }}
+      <span v-if="!loading">{{ t('Add to cart') }}</span>
+      <Spinner v-if="loading" />
     </Button>
   </Modal>
 </template>
@@ -15,13 +16,18 @@ import Button from '#ioc/atoms/Button'
 import ProductBundleOptions from '#ioc/molecules/ProductBundleOptions'
 import injectProduct from '#ioc/composables/injectProduct'
 import useI18n from '#ioc/composables/useI18n'
+import { ref } from 'vue'
+import Spinner from '#ioc/atoms/Spinner'
 
 const emit = defineEmits(['add-to-cart'])
 
 const product = injectProduct()
 const { t } = useI18n()
 
+const loading = ref(false)
+
 const onAddToCart = () => {
+  loading.value = true
   emit('add-to-cart')
 }
 </script>

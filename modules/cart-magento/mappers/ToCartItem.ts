@@ -2,6 +2,7 @@ import ToBundleOption from '#ioc/mappers/ToBundleOption'
 import ToMoney from '#ioc/mappers/ToMoney'
 import ToProduct from '#ioc/mappers/ToProduct'
 import ToCartConfigurableOption from '#ioc/mappers/ToCartConfigurableOption'
+import ToCartOption from '#ioc/mappers/ToCartOption'
 
 export default (data: any) => ({
   id: data.id as string,
@@ -15,4 +16,5 @@ export default (data: any) => ({
   stackable: true,
   configurableOptions: (data.configurable_options ?? []).map(ToCartConfigurableOption),
   bundleOptions: (data.bundle_options ?? []).map(ToBundleOption(data.prices?.price?.currency)),
+  options: data.customizable_options?.map(ToCartOption),
 })

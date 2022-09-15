@@ -6,13 +6,15 @@ export default () =>
   mutation()
     .variables({
       $cartId: 'String!',
-      $cartItems: '[CartItemInput!]!',
+      $cartItems: '[SimpleProductCartItemInput!]!',
     })
     .fields({
-      addProductsToCart: field()
+      addSimpleProductsToCart: field('addSimpleProductsToCart')
         .args({
-          cartId: '$cartId',
-          cartItems: '$cartItems',
+          input: {
+            cart_id: '$cartId',
+            cart_items: '$cartItems',
+          },
         })
         .fields({
           cart: field({
