@@ -8,7 +8,13 @@
 
         <div v-html="blogPost.shortContent" />
 
-        <SfxImage :src="blogPost.postThumbnail" :width="700" :height="450" class-img="mt-4 rounded-lg" />
+        <SfxImage
+          :src="blogPost.postThumbnail"
+          :width="700"
+          :height="450"
+          :alt="blogPost.title"
+          class-img="mt-4 rounded-lg"
+        />
       </Container>
 
       <SfxMagentoCmsPage :cms-page="blogPost.fullContent" />
