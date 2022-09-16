@@ -89,15 +89,13 @@ import StockIndicator from '#ioc/atoms/StockIndicator'
 import FacebookShare from '#ioc/atoms/FacebookShare'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import injectProduct from '#ioc/composables/injectProduct'
-import { computed, defineAsyncComponent, ref } from 'vue'
+import { computed, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
-
-const ProductBundleOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductBundleOptions'))
-const ProductConfigurableOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductConfigurableOptions'))
-const ProductOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductOptions'))
-const GroupedItems = defineAsyncComponent(() => import('#ioc/molecules/GroupedItems'))
+import ProductBundleOptions from '#ioc/molecules/ProductBundleOptions'
+import ProductConfigurableOptions from '#ioc/molecules/ProductConfigurableOptions'
+import ProductOptions from '#ioc/molecules/ProductOptions'
 
 const { t } = useI18n()
 const product = injectProduct()

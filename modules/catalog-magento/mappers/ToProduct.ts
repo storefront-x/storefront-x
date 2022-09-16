@@ -4,7 +4,6 @@ import ToBundleItem from '#ioc/mappers/ToBundleItem'
 import ToConfigurableOption from '#ioc/mappers/ToConfigurableOption'
 import ToVariant from '#ioc/mappers/ToVariant'
 import ToOptions from '#ioc/mappers/ToOptions'
-import ToGroupedItem from '#ioc/mappers/ToGroupedItem'
 
 export default (data: any) => ({
   __typename: data.__typename ?? '',
@@ -33,5 +32,4 @@ export default (data: any) => ({
   configurableOptionsCount: data.configurable_options?.length,
   variants: (data.variants ?? []).map(ToVariant),
   options: data.options?.map(ToOptions),
-  groupedItems: data.items?.map(ToGroupedItem),
 })

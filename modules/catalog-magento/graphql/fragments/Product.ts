@@ -57,9 +57,4 @@ export default (name = 'product') =>
         ...BundleItem(),
       }),
     }),
-    ...on('GroupedProduct', {
-      items: field({
-        ...GroupedItem(),
-      }),
-    }),
   })
