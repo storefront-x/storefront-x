@@ -10,6 +10,7 @@
         :src="category.thumbnailUrl"
         class-img="h-6 w-6 rounded-full border-1"
         fit="contain"
+        :alt="category.name"
       />
       <div class="leading-5 sm truncate whitespace-nowrap overflow-hidden">
         <span>{{ category.name }}</span>

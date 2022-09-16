@@ -122,15 +122,18 @@ import SfxImage from '#ioc/components/SfxImage'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import { computed } from 'vue'
+import useCategory from '#ioc/composables/useCategory'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
 const getNavigationMenu = useGetNavigationMenu()
 const { data } = await useAsyncData('previews', () => getNavigationMenu())
 
-const categories = computed(() => {
-  return data.value.categories.slice(0, 3)
-})
+const categories: ReturnType<typeof useCategory>[] = []
+
+for (const category of data.value.categories.slice(0, 3)) {
+  categories.push(useCategory(computed(() => category)))
+}
 </script>
 
 <i18n lang="yaml">

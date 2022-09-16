@@ -17,6 +17,8 @@ export default (category: Ref<ReturnType<typeof ToCategory>>) => {
 
   const thumbnailUrl = computed(() => category.value.thumbnailUrl)
 
+  const imageUrl = computed(() => category.value.imageUrl ?? '')
+
   const breadcrumbs = computed(() =>
     category.value.breadcrumbs.map((breadcrumb: any) => {
       return {
@@ -34,5 +36,6 @@ export default (category: Ref<ReturnType<typeof ToCategory>>) => {
     thumbnailUrl,
     breadcrumbs,
     description,
+    imageUrl,
   })
 }

@@ -16,6 +16,7 @@
         <SfxImage
           :id="image.id"
           :src="image.url"
+          :alt="product.name"
           class-img="object-center object-cover rounded-lg border-2 transition hover:transition-all  hover:border-primary-600 hover:cursor-pointer"
           :class="index === selected && 'border-primary-600'"
           :lazy="true"

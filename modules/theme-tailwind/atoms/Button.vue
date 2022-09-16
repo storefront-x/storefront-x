@@ -6,6 +6,7 @@
     class="border whitespace-nowrap rounded-md shadow-sm py-2 px-4 flex items-center font-bold justify-center text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2"
     :class="classes"
     :disabled="disabled"
+    :title="title"
   >
     <slot />
   </Component>
@@ -27,6 +28,10 @@ export default defineComponent({
     href: {
       type: String,
       default: null,
+    },
+    title: {
+      type: String,
+      default: '',
     },
     disabled: Boolean,
     outline: Boolean,

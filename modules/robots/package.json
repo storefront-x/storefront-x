@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/robots",
+  "version": "0.2.8",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}

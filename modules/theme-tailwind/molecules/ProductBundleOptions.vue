@@ -40,7 +40,7 @@
         </div>
         <div v-else>
           <FormRadioGroup
-            :name="`${bundleItem.id}-${inModal}`"
+            :name="`${bundleItem.id}-${inModal}-group`"
             :label="''"
             :classes="`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 space-y-0 align-start`"
           >

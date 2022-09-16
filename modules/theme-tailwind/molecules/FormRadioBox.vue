@@ -2,12 +2,19 @@
   <div class="flex items-start h-full">
     <p class="sr-only">{{ label }}</p>
     <Label
-      :for="id"
+      :for="`${id}-input`"
       class="border flex items-center justify-center h-full text-sm font-medium uppercase sm:flex-1 cursor-pointer hover:ring-2"
       :style="isCircle ? { 'background-color': background, '--tw-ring-color': background } : ''"
       :class="classes"
     >
-      <input :id="id" type="radio" :name="$FormRadioGroup.name" class="sr-only" :value="innerValue" @input="onInput" />
+      <input
+        :id="`${id}-input`"
+        type="radio"
+        :name="$FormRadioGroup.name"
+        class="sr-only"
+        :value="innerValue"
+        @input="onInput"
+      />
       <span v-if="!isCircle" :id="id" :class="{ 'text-primary-500': $FormRadioGroup.innerValue === value }">{{
         label
       }}</span>
@@ -54,7 +61,7 @@ export default defineComponent({
 
   computed: {
     id() {
-      return `${this.value}`
+      return `${this.name}`
     },
     classes() {
       if (this.isCircle) {
