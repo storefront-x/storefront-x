@@ -16,7 +16,6 @@ import useRoute from '#ioc/composables/useRoute'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import ensureArray from '#ioc/utils/array/ensureArray'
 import { defineAsyncComponent } from 'vue'
-import useHead from '#ioc/composables/useHead'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
@@ -42,20 +41,4 @@ const { data } = await useAsyncData('category', () =>
     filter: ensureArray(route.query.filter),
   }),
 )
-
-useHead({
-  title: data.value.category.metaTitle,
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content: data.value.category.metaDescription,
-    },
-    {
-      hid: 'keywords',
-      name: 'keywords',
-      content: data.value.category.metaKeywords,
-    },
-  ],
-})
 </script>

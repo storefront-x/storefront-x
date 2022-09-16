@@ -23,8 +23,9 @@ import Prose from '#ioc/atoms/Prose'
 import SfxImage from '#ioc/components/SfxImage'
 import { PropType } from 'vue'
 import useBrand from '#ioc/composables/useBrand'
+import useHead from '#ioc/composables/useHead'
 
-defineProps({
+const props = defineProps({
   brand: {
     type: Object as PropType<ReturnType<typeof useBrand>>,
     required: true,
@@ -41,5 +42,9 @@ defineProps({
     type: Number,
     default: 0,
   },
+})
+
+useHead({
+  title: props.brand.name,
 })
 </script>

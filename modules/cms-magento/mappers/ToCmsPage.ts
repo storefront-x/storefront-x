@@ -3,7 +3,9 @@ import sanitizePageBuilderContent from '#ioc/utils/magento/sanitizePageBuilderCo
 export default (data: any) => ({
   content: sanitizePageBuilderContent(data.content),
   title: data.title ?? '',
-  metaTitle: data.meta_title ?? '',
-  metaDescription: data.meta_description ?? '',
-  metaKeywords: data.meta_keywords ?? '',
+  meta: {
+    title: data.meta_title ?? '',
+    description: data.meta_description ?? '',
+    keywords: data.meta_keywords ?? '',
+  },
 })

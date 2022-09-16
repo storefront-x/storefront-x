@@ -9,7 +9,6 @@ import useGetBlogPostByUrl from '#ioc/services/useGetBlogPostByUrl'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import { defineAsyncComponent } from 'vue'
 import BlogPostDetail from '#ioc/templates/BlogPostDetail'
-import useHead from '#ioc/composables/useHead'
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
 const props = defineProps({
@@ -33,15 +32,4 @@ const { data } = await useAsyncData('blogPost', () =>
       .pop() ?? '',
   ),
 )
-
-useHead({
-  title: data.value.blogPost.metaTitle,
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content: data.value.blogPost.metaDescription,
-    },
-  ],
-})
 </script>

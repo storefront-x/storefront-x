@@ -11,7 +11,6 @@ import useGetProductById from '#ioc/services/useGetProductById'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import { defineAsyncComponent } from 'vue'
-import useHead from '#ioc/composables/useHead'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
@@ -29,20 +28,4 @@ const props = defineProps({
 const getProductById = useGetProductById()
 
 const { data } = await useAsyncData('product', () => getProductById(props.relativeUrl.replace(/\.html$/, '')))
-
-useHead({
-  title: data.value.product.meta.metaTitle,
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content: data.value.product.meta.metaDescription,
-    },
-    {
-      hid: 'keywords',
-      name: 'keywords',
-      content: data.value.product.meta.metaKeywords,
-    },
-  ],
-})
 </script>
