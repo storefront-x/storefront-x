@@ -68,6 +68,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isBundleProduct = computed(() => product.value.__typename === 'BundleProduct')
 
+  const isGroupedProduct = computed(() => product.value.__typename === 'GroupedProduct')
+
   const isBundleConfigured = computed(() => isNonEmptyObject(bundle.value))
 
   const mediaGallery = computed(() => {
@@ -144,5 +146,6 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isBundleConfigured,
     isOptionsConfigured,
     groupedItems,
+    isGroupedProduct,
   })
 }
