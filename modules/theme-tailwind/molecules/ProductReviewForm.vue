@@ -45,7 +45,7 @@ import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import useCreateProductReview from '#ioc/services/useCreateProductReview'
 
-defineEmits(['close'])
+const emit = defineEmits(['close'])
 
 const { t } = useI18n()
 
@@ -64,10 +64,11 @@ const onSubmit = async (data: any) => {
     isLoading.value = true
     await createProductReview(product, data)
     isLoading.value = false
-
     showSuccessNotification('', t('Product review submitted to review'))
+    emit('close')
   } catch (e) {
     showErrorNotification(e)
+    emit('close')
   }
 }
 </script>
