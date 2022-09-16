@@ -9,6 +9,7 @@ import useGetCmsPageById from '#ioc/services/useGetCmsPageById'
 import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import Container from '#ioc/atoms/Container'
+import useHead from '#ioc/composables/useHead'
 
 const props = defineProps({
   id: {
@@ -20,6 +21,22 @@ const props = defineProps({
 const getCmsPageById = useGetCmsPageById()
 
 const { data } = await useAsyncData('cmsPage', () => getCmsPageById(props.id))
+
+useHead({
+  title: data.value.cmsPage.metaTitle,
+  meta: [
+    {
+      hid: 'description',
+      name: 'description',
+      content: data.value.cmsPage.metaDescription,
+    },
+    {
+      hid: 'keywords',
+      name: 'keywords',
+      content: data.value.cmsPage.metaKeywords,
+    },
+  ],
+})
 </script>
 <style scoped>
 .links :deep(a) {
