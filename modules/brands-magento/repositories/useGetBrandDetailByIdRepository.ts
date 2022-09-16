@@ -6,6 +6,7 @@ import transformSortQuery from '#ioc/utils/magento/transformSortQuery'
 import transformFilterQuery from '#ioc/utils/magento/transformFilterQuery'
 import ToProduct from '#ioc/mappers/ToProduct'
 import ToAggregation from '#ioc/mappers/ToAggregation'
+import CATALOG_FILTER_ATTRIBUTES_HIDDEN from '#ioc/config/magento/CATALOG_FILTER_ATTRIBUTES_HIDDEN'
 
 interface BrandOptions {
   page?: number
@@ -42,7 +43,9 @@ export default () => {
     return {
       brand: ToBrand(data.amBrandById),
       products: data.products.items.map(ToProduct),
-      aggregations: data.aggregations.aggregations.map(ToAggregation) || [],
+      aggregations: data.aggregations.aggregations
+        .map(ToAggregation)
+        .filter((aggregation: any) => !CATALOG_FILTER_ATTRIBUTES_HIDDEN.includes(aggregation.attributeCode)),
       totalCount: data.products.total_count ?? 0,
     }
   }
