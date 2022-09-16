@@ -62,8 +62,6 @@
         <AddToCart :quantity="quantity" />
       </div>
 
-      <GroupedItems v-if="product.groupedItems.length && product.isGroupedProduct" />
-
       <GiftPanel />
 
       <div class="flex">

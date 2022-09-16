@@ -7,7 +7,14 @@
     >
       -
     </button>
-    <Input :value="innerValue" class="w-10 text-center shadow-transparent border-0" @input="onInput" @blur="onBlur" />
+    <label for="quantity" class="sr-only">Quantity</label>
+    <Input
+      id="quantity"
+      :value="innerValue"
+      class="w-10 text-center shadow-transparent border-0"
+      @input="onInput"
+      @blur="onBlur"
+    />
     <button
       class="bg-white font-bold py-2 px-4 whitespace-nowrap border-transparent shadow-transparent font-bold text-orange-600 hover:bg-gray-50 focus:ring-primary-500"
       @click.prevent="increment"

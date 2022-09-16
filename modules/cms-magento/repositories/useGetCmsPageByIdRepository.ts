@@ -13,8 +13,6 @@ export default () => {
   }> => {
     const { data } = await magento.graphql(CmsPage().with({ id: fromBase64(id) }))
 
-    console.log(data)
-
     return {
       cmsPage: ToCmsPage(data.cmsPage),
     }

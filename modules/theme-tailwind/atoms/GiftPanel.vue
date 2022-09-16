@@ -3,7 +3,7 @@
     <div class="flex row py-4">
       <img :src="src" alt="Gift" class="h-16 w-auto mr-3" />
       <div class="block">
-        <h6 class="font-medium text-gray-500 text-xl">{{ t('free_gift') }}</h6>
+        <p class="font-medium text-gray-500 text-xl mt-3 mb-2">{{ t('free_gift') }}</p>
         <div>
           <SfxMoney v-slot="{ html }" :money="freeShippingConfig.limit">
             <span v-html="t('purchase_limit', [html])" />

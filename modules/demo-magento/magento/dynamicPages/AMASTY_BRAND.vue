@@ -15,6 +15,7 @@ import useAsyncData from '#ioc/composables/useAsyncData'
 import ensureArray from '#ioc/utils/array/ensureArray'
 import useBrand from '#ioc/composables/useBrand'
 import { computed } from 'vue'
+import useHead from '#ioc/composables/useHead'
 
 const route = useRoute()
 const getBrandDetailById = useGetBrandDetailById()
@@ -35,4 +36,8 @@ const { data } = await useAsyncData('brandDetail', () =>
 )
 
 const brand = useBrand(computed(() => data.value.brand))
+
+useHead({
+  title: data.value.brand.name,
+})
 </script>
