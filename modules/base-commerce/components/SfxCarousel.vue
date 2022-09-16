@@ -2,7 +2,7 @@
   <div class="slider">
     <div ref="container" class="keen-slider" :class="classSlider">
       <div
-        v-for="(slide, i) in props.slides"
+        v-for="(slide, i) in visibleSlides"
         :key="i"
         class="keen-slider__slide"
         :style="{ pointerEvents: isDragging ? 'none' : 'auto' }"
@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <!-- <slot
+    <slot
       name="controls"
       v-bind="{
         isLastPage,
@@ -22,14 +22,14 @@
       }"
     />
 
-    <slot name="pagination" v-bind="{ pageIds, currentPage, pageCount, showPage }" /> -->
+    <slot name="pagination" v-bind="{ pageIds, currentPage, pageCount, showPage }" />
   </div>
 </template>
 
 <script setup lang="ts">
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/vue'
-import { onMounted, onUnmounted, computed, reactive, ref } from 'vue'
+import { onMounted, onUnmounted, computed, ref, nextTick } from 'vue'
 const props = defineProps({
   slides: {
     type: Array,
@@ -60,17 +60,22 @@ const props = defineProps({
     default: null,
   },
 })
-const isMounted = ref(false)
+const visibleSlides = ref(props.slides.slice(0, props.initSlidesPerView))
+let sliderOptions = ref()
 const currentPage = ref(0)
 const isDragging = ref(false)
-const sliderOptions = computed(() => {
-  return slider.value ? slider.value.options : {}
-})
-const visibleSlides = computed(() => {
-  return isMounted.value ? props.slides : props.slides.slice(0, props.initSlidesPerView)
+
+const slidesPerView = computed(() => {
+  return sliderOptions.value?.slides?.perView ?? props.initSlidesPerView
 })
 const pageCount = computed(() => {
-  return Math.ceil(props.slides.length / props.initSlidesPerView)
+  return Math.ceil(props.slides.length / slidesPerView.value)
+})
+const pageIds = computed(() => {
+  return [...Array(pageCount.value).keys()]
+})
+const isFirstPage = computed(() => {
+  return currentPage.value === 0
 })
 const isLastPage = computed(() => {
   return currentPage.value === pageCount.value - 1
@@ -84,158 +89,35 @@ const [container, slider] = useKeenSlider({
   breakpoints: props.breakpoints,
   dragged: () => (isDragging.value = true),
   dragEnded: () => (isDragging.value = false),
-  slideChanged: (options) => {
-    currentPage.value = Math.floor(options.track.details.rel / 4)
+  created: async (sliderChanged) => {
+    sliderOptions.value = sliderChanged?.options
+    await nextTick()
+    slider.value?.update()
+  },
+  optionsChanged: (sliderChanged) => {
+    sliderOptions.value = sliderChanged?.options
+  },
+  slideChanged: (sliderChanged) => {
+    currentPage.value = Math.floor(sliderChanged.track.details.rel / slidesPerView.value)
   },
 })
+function showPrevSlide() {
+  if (slider.value) slider.value.prev()
+}
+function showNextSlide() {
+  if (slider.value) slider.value.next()
+}
+function showPage(pageId: number) {
+  const slideId = pageId * slidesPerView.value
+  if (slider.value) slider.value.moveToIdx(slideId, true)
+}
 onMounted(() => {
-  isMounted.value = true
+  visibleSlides.value = props.slides
 })
-
 onUnmounted(() => {
-  if (slider.value) slider.value.destroy()
+  slider.value?.destroy()
 })
 </script>
-
-<!-- <script>
-import 'keen-slider/keen-slider.min.css'
-import { defineComponent } from 'vue'
-import throttle from '#ioc/utils/throttle'
-
-export default defineComponent({
-  data() {
-    return {
-      slider: null,
-      x_isMounted: false,
-      x_pause: false,
-      x_interval: null,
-      x_options: null,
-      currentPage: 0,
-      isStartingToDrag: false,
-      isDragging: false,
-    }
-  },
-
-  computed: {
-    x_slidesPerView() {
-      return this.x_options?.slides?.perView ?? 1
-    },
-
-    x_slides() {
-      return this.x_isMounted ? this.slides : this.slides.slice(0, this.x_slidesPerView)
-    },
-
-    pageCount() {
-      return Math.ceil(this.slides.length / this.x_slidesPerView)
-    },
-
-    pageIds() {
-      return [...Array(this.pageCount).keys()]
-    },
-
-    isFirstPage() {
-      return this.currentPage === 0
-    },
-
-    isLastPage() {
-      return this.currentPage === this.pageCount - 1
-    },
-  },
-
-  watch: {
-    x_slides() {
-      if (this.slider) this.$nextTick(() => schedule(() => this.slider.update()))
-    },
-  },
-
-  mounted() {
-    schedule(async () => {
-      const { default: KeenSlider } = await import('keen-slider')
-
-      this.slider = new KeenSlider(this.$el, {
-        initial: this.currentPage,
-        loop: this.loop,
-        breakpoints: this.breakpoints,
-        dragStarted: () => this.onDragStart(),
-        dragEnded: () => this.onDragEnd(),
-        dragged: () => this.onMove(),
-        slideChanged: (slider) => {
-          this.currentPage = Math.floor(slider.track.details.rel / this.x_slidesPerView)
-        },
-      })
-      this.slider.on('optionsChanged', () => ((this.x_options = this.slider.options), (this.currentPage = 0)), false)
-      this.x_isMounted = true
-
-      this.setInterval()
-    })
-  },
-
-  unmounted() {
-    clearInterval(this.x_interval)
-    if (this.slider) this.slider.destroy()
-  },
-
-  methods: {
-    onDragStart() {
-      this.isStartingToDrag = true
-      this.setPause(true)
-    },
-
-    onDragEnd() {
-      this.isStartingToDrag = false
-      this.isDragging = false
-      this.setPause(false)
-    },
-
-    onMove: throttle(function () {
-      if (this.isStartingToDrag) {
-        this.isDragging = true
-      }
-    }, 100),
-
-    setPause(active) {
-      this.x_pause = active
-      this.setInterval()
-    },
-
-    onMouseEnter() {
-      this.setPause(true)
-    },
-
-    onMouseLeave() {
-      this.setPause(false)
-    },
-
-    showPage(pageId) {
-      const slideId = pageId * this.x_slidesPerView
-
-      this.slider.moveToIdx(slideId, true)
-    },
-
-    showPrevSlide() {
-      this.slider.prev()
-    },
-
-    showNextSlide() {
-      this.slider.next()
-    },
-
-    setInterval() {
-      if (!this.interval) return
-
-      clearInterval(this.x_interval)
-
-      this.x_interval = setInterval(() => {
-        if (!this.x_pause) {
-          const { abs } = this.slider.track.details
-          this.slider.moveToIdx(abs + this.x_slidesPerView, true)
-        }
-      }, this.interval)
-    },
-  },
-})
-</script> -->
-
 <style scoped>
 .slider {
   position: relative;

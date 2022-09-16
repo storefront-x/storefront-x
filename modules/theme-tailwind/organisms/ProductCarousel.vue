@@ -13,7 +13,6 @@
         <ProductTile :index="-1" />
       </ProductProvider>
     </template>
-
     <template #pagination="{ pageIds, currentPage, showPage }">
       <div class="absolute w-full flex justify-center gap-4 bottom-0">
         <button
