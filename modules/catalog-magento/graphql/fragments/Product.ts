@@ -3,6 +3,7 @@ import fragment from '#ioc/graphql/fragment'
 import BundleItem from '#ioc/graphql/fragments/BundleItem'
 import ConfigurableProduct from '#ioc/graphql/fragments/ConfigurableProduct'
 import CustomizableOptionInterface from '#ioc/graphql/fragments/CustomizableOptionInterface'
+import GroupedItem from '#ioc/graphql/fragments/GroupedItem'
 import Money from '#ioc/graphql/fragments/Money'
 import on from '#ioc/graphql/on'
 
@@ -54,6 +55,11 @@ export default (name = 'product') =>
     ...on('BundleProduct', {
       items: field({
         ...BundleItem(),
+      }),
+    }),
+    ...on('GroupedProduct', {
+      items: field({
+        ...GroupedItem(),
       }),
     }),
   })

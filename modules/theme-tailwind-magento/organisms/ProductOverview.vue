@@ -62,6 +62,8 @@
         <AddToCart :quantity="quantity" />
       </div>
 
+      <GroupedItems v-if="product.groupedItems.length && product.isGroupedProduct" />
+
       <GiftPanel />
 
       <div class="flex">
@@ -87,13 +89,15 @@ import StockIndicator from '#ioc/atoms/StockIndicator'
 import FacebookShare from '#ioc/atoms/FacebookShare'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import injectProduct from '#ioc/composables/injectProduct'
-import { computed, ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
-import ProductBundleOptions from '#ioc/molecules/ProductBundleOptions'
-import ProductConfigurableOptions from '#ioc/molecules/ProductConfigurableOptions'
-import ProductOptions from '#ioc/molecules/ProductOptions'
+
+const ProductBundleOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductBundleOptions'))
+const ProductConfigurableOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductConfigurableOptions'))
+const ProductOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductOptions'))
+const GroupedItems = defineAsyncComponent(() => import('#ioc/molecules/GroupedItems'))
 
 const { t } = useI18n()
 const product = injectProduct()
