@@ -21,9 +21,9 @@ export default (post: Ref<ReturnType<typeof ToBlogPost>>) => {
 
   const listThumbnail = computed(() => MAGENTO_URL + post.value.listThumbnail)
 
-  const metaTitle = computed(() => post.value.metaTitle)
+  const metaTitle = computed(() => post.value.meta.title)
 
-  const metaDescription = computed(() => post.value.metaDescription)
+  const metaDescription = computed(() => post.value.meta.description)
 
   return reactive({
     id,

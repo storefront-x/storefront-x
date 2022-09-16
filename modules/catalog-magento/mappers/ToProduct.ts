@@ -22,7 +22,9 @@ export default (data: any) => ({
   breadcrumbs: [],
   available: (data.stock_status === 'IN_STOCK' ?? false) as boolean,
   meta: {
-    description: data.description?.html ?? '',
+    title: data.meta_title ?? '',
+    description: data.meta_description ?? '',
+    keywords: data.meta_keyword ?? '',
   },
   images: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
   mediaGallery: (data.media_gallery ?? []).filter((item: any) => !item.disabled),

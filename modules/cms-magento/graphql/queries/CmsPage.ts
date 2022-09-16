@@ -13,5 +13,9 @@ export default () =>
         })
         .fields({
           content: field(),
+          title: field(),
+          meta_title: field(),
+          meta_description: field(),
+          meta_keywords: field(),
         }),
     })

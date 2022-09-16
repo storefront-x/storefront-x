@@ -49,6 +49,18 @@ const props = defineProps({
 
 useHead({
   title: props.category.name,
+  meta: [
+    {
+      hid: 'description',
+      name: 'description',
+      content: props.category.meta.description,
+    },
+    {
+      hid: 'keywords',
+      name: 'keywords',
+      content: props.category.meta.keywords,
+    },
+  ],
 })
 
 const category = useCategory(computed(() => props.category))

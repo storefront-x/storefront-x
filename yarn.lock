@@ -3343,6 +3343,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/robots-magento@workspace:modules/robots-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/robots-magento@workspace:modules/robots-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/robots@workspace:modules/robots":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/robots@workspace:modules/robots"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/shopware@workspace:modules/shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/shopware@workspace:modules/shopware"

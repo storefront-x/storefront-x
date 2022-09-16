@@ -9,6 +9,10 @@ export default (data: any) => ({
   thumbnailUrl: data.media?.url as string | undefined,
   breadcrumbs: getBreadcrumbs(data),
   children: (data.children ?? []).map(ToCategory),
+  meta: {
+    title: data.translated.name ?? '',
+    description: data.translated.description ?? '',
+  },
 })
 
 const getBreadcrumbs = (data: any) => {

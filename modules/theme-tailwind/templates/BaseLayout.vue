@@ -1,7 +1,7 @@
 <template>
   <Header />
   <HamburgerMenu v-if="hamburgerStatus" @close="closeHamburger" />
-  <main class="mt-[75px] md:mt-0">
+  <main class="mt-[66px] md:mt-0">
     <SfxLayoutOutlet />
   </main>
   <Footer />
@@ -15,6 +15,7 @@ import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
+import useHead from '#ioc/composables/useHead'
 
 const HamburgerMenu = defineAsyncComponent(() => import('#ioc/organisms/HamburgerMenu'))
 const Header = hydrateWhenIdle(() => import('#ioc/organisms/Header'))
@@ -46,4 +47,9 @@ const closeHamburger = () => {
     themeTailwindStore.isHamburgerOpened = false
   }
 }
+
+useHead({
+  title: 'Storefront X',
+  meta: [{ hid: 'description', name: 'description', content: 'SSR + PWA e-commerce solution' }],
+})
 </script>

@@ -16,7 +16,7 @@ import { computed } from 'vue'
 const product = injectProduct()
 
 useHead({
-  title: computed(() => product.name),
+  title: computed(() => product.meta.title),
   meta: [
     {
       name: 'description',

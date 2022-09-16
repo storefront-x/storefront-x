@@ -19,6 +19,7 @@
           type="submit"
           :disabled="subscribed"
           :loading="loading"
+          title="newsletter"
         >
           <OutlineNewsletter />
         </Button>

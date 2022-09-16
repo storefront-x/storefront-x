@@ -44,6 +44,9 @@ export default (name = 'product') =>
       label: field(),
       disabled: field(),
     }),
+    meta_title: field(),
+    meta_description: field(),
+    meta_keyword: field(),
     ...on('SimpleProduct', {
       options: field({
         ...CustomizableOptionInterface(),

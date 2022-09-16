@@ -30,6 +30,7 @@
 
     <button
       type="submit"
+      title="search"
       class="absolute bg-primary-500 flex items-center justify-center rounded-lg h-12 w-12 inset-y-0 left-3/4 ml-2 p-2 align-middle text-gray-400 hover:text-primary-400"
     >
       <SolidSearch class="text-white h-6 w-6" />

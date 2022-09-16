@@ -11,8 +11,10 @@ export default (data: any) => ({
   publishedAt: toDate(data.published_at),
   postThumbnail: useOriginalImage(data.post_thumbnail ?? ''),
   listThumbnail: useOriginalImage(data.list_thumbnail ?? ''),
-  metaTitle: data.meta_title ?? '',
-  metaDescription: data.meta_description ?? '',
+  meta: {
+    title: data.meta_title ?? '',
+    description: data.meta_description ?? '',
+  },
 })
 
 const useOriginalImage = (url: string) => {

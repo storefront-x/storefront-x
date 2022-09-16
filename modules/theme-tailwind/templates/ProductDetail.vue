@@ -26,7 +26,6 @@ import injectProduct from '#ioc/composables/injectProduct'
 import useHead from '#ioc/composables/useHead'
 import Heading from '#ioc/atoms/Heading'
 import useI18n from '#ioc/composables/useI18n'
-import { computed } from 'vue'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 
 const ProductDetailTabs = hydrateWhenVisible(() => import('#ioc/organisms/ProductDetailTabs'))
@@ -36,11 +35,17 @@ const { t } = useI18n()
 const product = injectProduct()
 
 useHead({
-  title: computed(() => product.name),
+  title: product.meta.title,
   meta: [
     {
+      hid: 'description',
       name: 'description',
-      content: computed(() => product.meta.description),
+      content: product.meta.description,
+    },
+    {
+      hid: 'keywords',
+      name: 'keywords',
+      content: product.meta.keywords,
     },
   ],
 })
