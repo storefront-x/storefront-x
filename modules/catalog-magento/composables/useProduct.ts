@@ -68,6 +68,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isBundleProduct = computed(() => product.value.__typename === 'BundleProduct')
 
+  const isGroupedProduct = computed(() => product.value.__typename === 'GroupedProduct')
+
   const isBundleConfigured = computed(() => isNonEmptyObject(bundle.value))
 
   const mediaGallery = computed(() => {
@@ -103,6 +105,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   const isOptionsConfigured = computed(() => isNonEmptyObject(options.value))
 
   const isConfigured = computed(() => !isNullish(variant.value.sku))
+
+  const groupedItems = computed(() => product.value.groupedItems ?? [])
 
   return reactive({
     id,
@@ -141,5 +145,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isConfigured,
     isBundleConfigured,
     isOptionsConfigured,
+    groupedItems,
+    isGroupedProduct,
   })
 }
