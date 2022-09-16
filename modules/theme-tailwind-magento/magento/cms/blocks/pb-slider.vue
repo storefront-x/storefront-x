@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SfxCarousel :slides="slides" :style="styles" :interval="6000" :loop="true">
+    <SfxCarousel :slides="slides" :style="styles" :loop="true">
       <template #default="{ slide, index }">
         <Slide :el="slide" :index="index" />
       </template>

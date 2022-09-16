@@ -1,6 +1,14 @@
 <template>
   <div class="slider">
-    <div ref="container" class="keen-slider" :class="classSlider">
+    <div
+      ref="container"
+      class="keen-slider"
+      :class="classSlider"
+      @mouseenter="setPause()"
+      @mouseleave="sliderAutoDragPlay()"
+      @pointerenter="setPause()"
+      @pointerleave="sliderAutoDragPlay()"
+    >
       <div
         v-for="(slide, i) in visibleSlides"
         :key="i"
@@ -41,7 +49,7 @@ const props = defineProps({
   },
   interval: {
     type: Number,
-    default: 0,
+    default: 6000,
   },
   loop: {
     type: Boolean,
@@ -60,26 +68,33 @@ const props = defineProps({
     default: null,
   },
 })
+
 const visibleSlides = ref(props.slides.slice(0, props.initSlidesPerView))
 let sliderOptions = ref()
 const currentPage = ref(0)
 const isDragging = ref(false)
+const sliderAutoDragInterval = ref()
 
 const slidesPerView = computed(() => {
   return sliderOptions.value?.slides?.perView ?? props.initSlidesPerView
 })
+
 const pageCount = computed(() => {
   return Math.ceil(props.slides.length / slidesPerView.value)
 })
+
 const pageIds = computed(() => {
   return [...Array(pageCount.value).keys()]
 })
+
 const isFirstPage = computed(() => {
   return currentPage.value === 0
 })
+
 const isLastPage = computed(() => {
   return currentPage.value === pageCount.value - 1
 })
+
 const [container, slider] = useKeenSlider({
   slides: {
     perView: props.initSlidesPerView,
@@ -91,7 +106,9 @@ const [container, slider] = useKeenSlider({
   dragEnded: () => (isDragging.value = false),
   created: async (sliderChanged) => {
     sliderOptions.value = sliderChanged?.options
+
     await nextTick()
+
     slider.value?.update()
   },
   optionsChanged: (sliderChanged) => {
@@ -101,19 +118,35 @@ const [container, slider] = useKeenSlider({
     currentPage.value = Math.floor(sliderChanged.track.details.rel / slidesPerView.value)
   },
 })
+
 function showPrevSlide() {
-  if (slider.value) slider.value.prev()
+  slider.value?.prev()
 }
+
 function showNextSlide() {
-  if (slider.value) slider.value.next()
+  slider.value?.next()
 }
+
 function showPage(pageId: number) {
   const slideId = pageId * slidesPerView.value
-  if (slider.value) slider.value.moveToIdx(slideId, true)
+  slider.value?.moveToIdx(slideId, true)
 }
+
+function sliderAutoDragPlay() {
+  sliderAutoDragInterval.value = setInterval(() => {
+    slider.value?.next()
+  }, props.interval)
+}
+
+function setPause() {
+  clearInterval(sliderAutoDragInterval.value)
+}
+
 onMounted(() => {
   visibleSlides.value = props.slides
+  sliderAutoDragPlay()
 })
+
 onUnmounted(() => {
   slider.value?.destroy()
 })

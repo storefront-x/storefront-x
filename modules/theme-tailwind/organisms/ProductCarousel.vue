@@ -1,7 +1,7 @@
 <template>
   <SfxCarousel
     :slides="products"
-    :interval="6000"
+    :interval="3000"
     :init-slides-per-view="4"
     :breakpoints="breakpoints"
     loop
