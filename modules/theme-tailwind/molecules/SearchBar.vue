@@ -1,24 +1,25 @@
 <template>
   <form class="relative flex-grow" @submit.prevent="onSubmit">
-    <Input
-      v-click-outside="close"
-      :value="query"
-      class="w-3/4 h-12 placeholder-truncate pr-12"
-      :placeholder="mobile ? t('Search') : t('Search for the name of produt, category or brand')"
-      autocomplete="off"
-      @input="onInput"
-      @click="search"
-      @keydown.esc="close"
-    />
-
-    <button
-      v-if="query"
-      type="button"
-      class="absolute inset-y-0 left-2/3 px-4 text-gray-400 hover:text-primary-400"
-      @click="clear"
-    >
-      <SolidX />
-    </button>
+    <div class="w-3/4 relative">
+      <Input
+        v-click-outside="close"
+        :value="query"
+        class="w-full h-12 min-w-0"
+        :placeholder="mobile ? t('Search') : t('Search for the name of product, category or brand')"
+        autocomplete="off"
+        @input="onInput"
+        @click="search"
+        @keydown.esc="close"
+      />
+      <button
+        v-if="query"
+        type="button"
+        class="absolute right-0 inset-y-0 pr-4 text-gray-400 hover:text-primary-400"
+        @click="clear"
+      >
+        <SolidX />
+      </button>
+    </div>
 
     <div v-if="results?.length" class="absolute py-2 my-2 bg-white shadow-md rounded-md w-full flex flex-col z-20">
       <div v-if="!results.length" class="p-2">{{ t('No results found') }}</div>
@@ -106,6 +107,6 @@ const onSubmit = () => {
 <i18n lang="yaml">
 cs-CZ:
   Search: Hledej
-  Search for the name of produt, category or brand: Zadejte název produktu, kategorii nebo značku
+  Search for the name of product, category or brand: Zadejte název produktu, kategorii nebo značku
   No results found: Žádné výsledky nenalezeny
 </i18n>

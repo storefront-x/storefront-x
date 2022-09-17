@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-input::placeholder {
-  overflow: visible;
+input:placeholder-shown {
+  text-overflow: ellipsis;
 }
 </style>
