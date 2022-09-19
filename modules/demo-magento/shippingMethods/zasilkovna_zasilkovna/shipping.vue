@@ -24,7 +24,7 @@ import useI18n from '#ioc/composables/useI18n'
 import ZASILKOVNA_API_KEY from '#ioc/config/ZASILKOVNA_API_KEY'
 import loadScript from '#ioc/utils/dom/loadScript'
 import once from '#ioc/utils/once'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import useShipping from '#ioc/composables/useShipping'
 import useConfirmShippingAddress from '#ioc/services/useConfirmShippingAddress'
 import useConfirmShippingMethod from '#ioc/services/useConfirmShippingMethod'
@@ -37,10 +37,10 @@ const checkout = useCheckout()
 const shipping = useShipping()
 const confirmShippingAddress = useConfirmShippingAddress()
 const confirmShippingMethod = useConfirmShippingMethod()
-
+const pickedAdressName = ref()
 const picked = computed(() => shipping.shippingAddress)
-
-const address = computed(() => picked.value?.street ?? '')
+// pickedAdressName need to be changed to maping from state when issue with handlers and dummy contact and init values is resolved
+const address = computed(() => pickedAdressName.value ?? '')
 
 onMounted(async () => {
   await once('https://widget.packeta.com/www/js/library.js', loadScript)
@@ -60,7 +60,7 @@ const pick = () => {
     ZASILKOVNA_API_KEY,
     async (location: any) => {
       if (!location) return
-
+      pickedAdressName.value = location.nameStreet
       shipping.setShippingHandler(async () => {
         await confirmShippingAddress({
           ...checkout.contactInformation!,

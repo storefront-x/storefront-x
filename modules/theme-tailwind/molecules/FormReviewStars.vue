@@ -5,7 +5,7 @@
         {{ label }}
       </Label>
 
-      <div class="flex flex-row" @mouseleave="onMouseLeave">
+      <div class="flex flex-row hover:cursor-pointer" @mouseleave="onMouseLeave">
         <svg
           v-for="index in tempValue"
           :key="'1' + index"

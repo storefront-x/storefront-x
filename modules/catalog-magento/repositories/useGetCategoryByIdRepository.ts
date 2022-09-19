@@ -51,8 +51,6 @@ export default () => {
 
       fillAggregationsWithPossibleOptions(aggregations.aggregations, rest, filterWithCategoryId)
       fillAggregationsWithEmptySelectedOptions(aggregations.aggregations, rest, filterWithCategoryId)
-console.log( aggregations.aggregations);
-console.log({products: products.items.map(ToProduct) ?? []});
       return {
         category: ToCategory(categoryList[0]) ?? [],
         products: products.items.map(ToProduct) ?? [],

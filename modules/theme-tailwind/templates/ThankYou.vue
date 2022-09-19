@@ -10,7 +10,7 @@
 
     <dl class="mt-12 text-sm font-medium">
       <dt class="text-gray-900">{{ t('Tracking number') }}</dt>
-      <dd class="text-primary-600 mt-2">{{ route.query.orderNumber }}</dd>
+      <dd class="text-4xl text-primary-600 mt-2">{{ route.query.orderNumber }}</dd>
     </dl>
   </Container>
 </template>

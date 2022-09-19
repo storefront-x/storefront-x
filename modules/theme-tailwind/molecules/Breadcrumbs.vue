@@ -22,9 +22,9 @@
 
           <RouterLink
             :to="breadcrumb.link"
-            class="md:ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 min-w-0"
+            class="md:ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 min-w-0 hover:underline"
           >
-            <p class="truncate text-clip whitespace-nowrap" style="min-width: 16px">{{ breadcrumb.title }}</p>
+            <p class="truncate whitespace-nowrap min-w-[16px]">{{ breadcrumb.title }}</p>
           </RouterLink>
         </div>
       </li>
