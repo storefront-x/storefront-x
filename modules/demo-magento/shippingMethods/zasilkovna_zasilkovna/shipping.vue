@@ -38,7 +38,7 @@ const shipping = useShipping()
 const confirmShippingAddress = useConfirmShippingAddress()
 const confirmShippingMethod = useConfirmShippingMethod()
 const pickedAdressName = ref()
-const picked = computed(() => shipping.shippingAddress)
+// const picked = computed(() => shipping.shippingAddress)
 // pickedAdressName need to be changed to maping from state when issue with handlers and dummy contact and init values is resolved
 const address = computed(() => pickedAdressName.value ?? '')
 
