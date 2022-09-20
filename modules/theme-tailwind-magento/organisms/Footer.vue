@@ -25,7 +25,7 @@
                   </template>
                   <template #default>
                     <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
-                      <li v-for="(pageLink, index) in pageLinkCategory.children" :key="index" class="text-sm">
+                      <li v-for="(pageLink, indexChild) in pageLinkCategory.children" :key="indexChild" class="text-sm">
                         <Link :to="localePath(t(pageLink.path))" color="gray">
                           {{ t(pageLink.label) }}
                         </Link>
@@ -44,7 +44,7 @@
                 </span>
 
                 <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
-                  <li v-for="(pageLink, index) in pageLinkCategory.children" :key="index" class="text-sm">
+                  <li v-for="(pageLink, indexChild) in pageLinkCategory.children" :key="indexChild" class="text-sm">
                     <Link :to="localePath(t(pageLink.path))" color="gray" class="hover:underline">
                       {{ t(pageLink.label) }}
                     </Link>
