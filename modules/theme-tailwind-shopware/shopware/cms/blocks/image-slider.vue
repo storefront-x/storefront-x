@@ -1,6 +1,6 @@
 <template>
   <div class="relative bg-center" :style="shopwareCmsBlock.styles">
-    <SfxCarousel :slides="shopwareCmsImageSliderBlock.slides" :interval="6000" :loop="true">
+    <SfxCarousel :slides="shopwareCmsImageSliderBlock.slides" :loop="true">
       <template #default="{ slide, index }">
         <ImageSliderItem :slider-item="slide" :index="index" :height="shopwareCmsImageSliderBlock.height" />
       </template>
