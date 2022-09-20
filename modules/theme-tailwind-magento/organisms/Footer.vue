@@ -6,172 +6,50 @@
           <div
             class="mt-10 col-span-6 grid grid-cols-1 lg:grid-cols-2 gap-4 md:mt-0 md:row-start-1 md:col-start-3 md:col-span-8 lg:col-start-2 lg:col-span-6"
           >
+            <div class="grid grid-cols-1 whitespace-nowrap space-y-4 md:hidden">
+              <div v-for="(pageLinkCategory, index) in pageLinksByCategory" :key="index">
+                <Accordion
+                  :icon-class="['ml-2', 'cursor-pointer']"
+                  :heading-class="[
+                    'border-gray-50',
+                    'justify-center',
+                    'font-semibold',
+                    'text-gray-500',
+                    'hover:cursor-pointer',
+                  ]"
+                  :content-class="['text-center', 'mb-12']"
+                  :open="false"
+                >
+                  <template #heading>
+                    {{ t(pageLinkCategory.name) }}
+                  </template>
+                  <template #default>
+                    <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
+                      <li v-for="(pageLink, indexChild) in pageLinkCategory.children" :key="indexChild" class="text-sm">
+                        <Link :to="localePath(t(pageLink.path))" color="gray">
+                          {{ t(pageLink.label) }}
+                        </Link>
+                      </li>
+                    </ul>
+                  </template>
+                </Accordion>
+              </div>
+            </div>
             <div
-              class="grid grid-cols-1 whitespace-nowrap space-y-4 sm:space-y-0 sm:col-span-3 sm:grid-cols-3 sm:gap-x-40"
+              class="grid whitespace-nowrap space-y-4 sm:space-y-0 sm:col-span-3 sm:grid-cols-3 sm:gap-x-40 hidden md:grid"
             >
-              <div>
-                <span class="border-gray-50 font-semibold text-gray-500 hidden sm:block">
-                  {{ t('Useful information') }}
+              <div v-for="(pageLinkCategory, index) in pageLinksByCategory" :key="index">
+                <span class="border-gray-50 font-semibold text-gray-500">
+                  {{ t(pageLinkCategory.name) }}
                 </span>
-                <Accordion
-                  :icon-class="{ 'sm:hidden': true, 'display-block': true, 'ml-2': true, 'cursor-pointer': true }"
-                  :heading-class="[
-                    'border-gray-50',
-                    'sm:justify-start',
-                    'justify-center',
-                    'sm:hidden',
-                    'block',
-                    'font-semibold',
-                    'text-gray-500',
-                  ]"
-                  :content-class="['text-center', 'sm:text-left', 'mb-12', 'sm:mb-4']"
-                  :open="true"
-                >
-                  <template #heading>
-                    {{ t('Useful information') }}
-                  </template>
-                  <template #default>
-                    <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
-                      <li class="text-sm">
-                        <Link :to="localePath('brands')" color="gray">
-                          {{ t('Brands') }}
-                        </Link>
-                      </li>
 
-                      <li class="text-sm">
-                        <Link :to="localePath('blog')" color="gray">
-                          {{ t('Blog') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="t('about-company')" color="gray">
-                          {{ t('About us') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="t('contact-us')" color="gray">
-                          {{ t('Contact') }}
-                        </Link>
-                      </li>
-                    </ul>
-                  </template>
-                </Accordion>
-              </div>
-
-              <div>
-                <span class="border-gray-50 font-semibold text-gray-500 hidden sm:block">
-                  {{ t('Customer service') }}
-                </span>
-                <Accordion
-                  :icon-class="{
-                    'sm:hidden': true,
-                    'display-block': true,
-                    'ml-2': true,
-                    'cursor-pointer': true,
-                  }"
-                  :heading-class="[
-                    'border-gray-50',
-                    'sm:justify-start',
-                    'justify-center',
-                    'sm:hidden',
-                    'block',
-                    'font-semibold',
-                    'text-gray-500',
-                  ]"
-                  :content-class="['text-center', 'sm:text-left', 'mb-12', 'sm:mb-4']"
-                  :open="true"
-                >
-                  <template #heading>
-                    {{ t('Customer service') }}
-                  </template>
-                  <template #default>
-                    <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
-                      <li class="text-sm">
-                        <Link :to="t('shipping-and-payment')" color="gray">
-                          {{ t('Shipping and payment') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="t('return-policy')" color="gray">
-                          {{ t('Return policy') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="t('terms-of-service')" color="gray">
-                          {{ t('Terms of service') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="t('privacy-policy')" color="gray">
-                          {{ t('Privacy policy') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="t('cookies-policy')" color="gray">
-                          {{ t('Cookies policy') }}
-                        </Link>
-                      </li>
-                    </ul>
-                  </template>
-                </Accordion>
-              </div>
-
-              <div>
-                <span class="border-gray-50 font-semibold text-gray-500 hidden sm:block">
-                  {{ t('Account') }}
-                </span>
-                <Accordion
-                  :icon-class="{ 'sm:hidden': true, 'display-block': true, 'ml-2': true, 'cursor-pointer': true }"
-                  :heading-class="[
-                    'border-gray-50',
-                    'sm:justify-start',
-                    'justify-center',
-                    'sm:hidden',
-                    'block',
-                    'font-semibold',
-                    'text-gray-500',
-                  ]"
-                  :content-class="['text-center', 'sm:text-left', 'mb-12', 'sm:mb-4']"
-                  :open="true"
-                >
-                  <template #heading>
-                    {{ t('Account') }}
-                  </template>
-
-                  <template #default>
-                    <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
-                      <li class="text-sm">
-                        <Link :to="t('sign-in')" color="gray">
-                          {{ t('Sign in') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="t('sign-up')" color="gray">
-                          {{ t('Sign up') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="t('account')" color="gray">
-                          {{ t('Settings') }}
-                        </Link>
-                      </li>
-
-                      <li class="text-sm">
-                        <Link :to="t('account/orders')" color="gray">
-                          {{ t('My orders') }}
-                        </Link>
-                      </li>
-                    </ul>
-                  </template>
-                </Accordion>
+                <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
+                  <li v-for="(pageLink, indexChild) in pageLinkCategory.children" :key="indexChild" class="text-sm">
+                    <Link :to="localePath(t(pageLink.path))" color="gray" class="hover:underline">
+                      {{ t(pageLink.label) }}
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -207,6 +85,36 @@ import useI18n from '#ioc/composables/useI18n'
 import logo from '#ioc/assets/logo'
 import useLocalePath from '#ioc/composables/useLocalePath'
 
+const pageLinksByCategory = [
+  {
+    name: 'Useful information',
+    children: [
+      { label: 'Brands', path: 'brands' },
+      { label: 'Blog', path: 'blog' },
+      { label: 'About us', path: '/about-company' },
+      { label: 'Contact', path: '/contact-us' },
+    ],
+  },
+  {
+    name: 'Customer service',
+    children: [
+      { label: 'Shipping and payment', path: '/shipping-and-payment' },
+      { label: 'Return policy', path: '/return-policy' },
+      { label: 'Terms of service', path: '/terms-of-service' },
+      { label: 'Privacy policy', path: '/privacy-policy' },
+      { label: 'Cookies policy', path: '/cookies-policy' },
+    ],
+  },
+  {
+    name: 'Account',
+    children: [
+      { label: 'Sign in', path: 'sign-in' },
+      { label: 'Sign up', path: 'sign-up' },
+      { label: 'Settings', path: 'account' },
+      { label: 'My orders', path: 'account/orders' },
+    ],
+  },
+]
 const localePath = useLocalePath()
 const { t } = useI18n()
 </script>
@@ -230,15 +138,11 @@ cs-CZ:
   My orders: Moje objednávky
   Account: Účet
 
-  terms-of-service: obchodni-podminky
-  about-company: o-spolecnosti
-  return-policy: vraceni-zbozi
-  contact-us: kontakt
-  shipping-and-payment: doprava-a-platba
-  privacy-policy: ochrana-osobnich-udaju
-  cookies-policy: zasady-souboru-cookies
-  sign-up: registrovat
-  /sign-in: prihlasit
-  account: account
-  account/orders: ucet/objednavky
+  /terms-of-service: /obchodni-podminky
+  /about-company: /o-spolecnosti
+  /return-policy: /vraceni-zbozi
+  /contact-us: /kontakt
+  /shipping-and-payment: /doprava-a-platba
+  /privacy-policy: /ochrana-osobnich-udaju
+  /cookies-policy: /zasady-souboru-cookies
 </i18n>

@@ -5,7 +5,7 @@
   >
     <Container class="relative flex py-8">
       <div class="w-full grid grid-cols-4 gap-y-10 gap-x-8">
-        <FlyoutMenuLink
+        <FlyoutMenuSubCategory
           v-for="category in categories"
           :key="category.id"
           :category="category"
@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import Container from '#ioc/atoms/Container'
 import ToCategory from '#ioc/mappers/ToCategory'
-import FlyoutMenuLink from '#ioc/molecules/HeaderMenu/FlyoutMenuLink'
+import FlyoutMenuSubCategory from '#ioc/molecules/HeaderMenu/FlyoutMenuSubCategory'
 import { PropType } from 'vue'
 
 defineProps({
