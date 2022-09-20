@@ -23,6 +23,7 @@ export default class Module {
   constructor(core, meta = {}) {
     this.core = core
     this.meta = meta
+    this._path = null
   }
 
   /**
@@ -78,12 +79,18 @@ export default class Module {
   }
 
   get path() {
+    if (this._path) {
+      return this._path
+    }
+
     try {
       if (this.name.startsWith('.')) {
-        return path.dirname(require.resolve(path.join(this.core.rootDir, this.name, 'package.json')))
+        this._path = path.dirname(require.resolve(path.join(this.core.rootDir, this.name, 'package.json')))
       } else {
-        return path.dirname(require.resolve(path.join(this.meta.name, 'package.json')))
+        this._path = path.dirname(require.resolve(path.join(this.meta.name, 'package.json')))
       }
+
+      return this._path
     } catch {
       const pkgManager = process.env.npm_config_user_agent?.includes('yarn') ? 'yarn' : 'mpm'
 
