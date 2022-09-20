@@ -37,10 +37,8 @@ const checkout = useCheckout()
 const shipping = useShipping()
 const confirmShippingAddress = useConfirmShippingAddress()
 const confirmShippingMethod = useConfirmShippingMethod()
-const pickedAdressName = ref()
-// const picked = computed(() => shipping.shippingAddress)
-// pickedAdressName need to be changed to maping from state when issue with handlers and dummy contact and init values is resolved
-const address = computed(() => pickedAdressName.value ?? '')
+const address = ref()
+// TODO map adress from state but first set it there trough handler
 
 onMounted(async () => {
   await once('https://widget.packeta.com/www/js/library.js', loadScript)
@@ -60,7 +58,7 @@ const pick = () => {
     ZASILKOVNA_API_KEY,
     async (location: any) => {
       if (!location) return
-      pickedAdressName.value = location.nameStreet
+      address.value = location.nameStreet
       shipping.setShippingHandler(async () => {
         await confirmShippingAddress({
           ...checkout.contactInformation!,
