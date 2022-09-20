@@ -11,11 +11,10 @@
         {{ category.name }}
       </Link>
     </div>
+
     <ul v-if="category?.children?.length" role="list" class="mt-4 space-y-2 sm:mt-2 sm:space-y-1">
       <li v-for="child in category.children.slice(0, 4)" :key="child.id" class="flex">
-        <Link :to="child.urlPath" color="black" class="font-normal hover:underline">
-          {{ child.name }}
-        </Link>
+        <FlyoutMenuSubCategoryChild :category="child"> </FlyoutMenuSubCategoryChild>
       </li>
     </ul>
   </div>
@@ -23,6 +22,7 @@
 
 <script setup lang="ts">
 import Link from '#ioc/atoms/Link'
+import FlyoutMenuSubCategoryChild from '#ioc/molecules/HeaderMenu/FlyoutMenuSubCategoryChild'
 import useCategory from '#ioc/composables/useCategory'
 import ToCategory from '#ioc/mappers/ToCategory'
 import SfxImage from '#ioc/components/SfxImage'
