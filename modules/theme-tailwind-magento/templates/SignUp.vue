@@ -38,6 +38,7 @@
 </template>
 
 <script setup lang="ts">
+import useLoginCustomer from '#ioc/services/useLoginCustomer'
 import useI18n from '#ioc/composables/useI18n'
 import SfxForm from '#ioc/components/SfxForm'
 import Heading from '#ioc/atoms/Heading'
@@ -50,6 +51,7 @@ import { ref } from 'vue'
 const { t } = useI18n()
 const showErrorNotification = useShowErrorNotification()
 const registerCustomer = useRegisterCustomer()
+const loginCustomer = useLoginCustomer()
 
 const isLoading = ref(false)
 
@@ -57,8 +59,9 @@ const onSubmit = async (data: { firstName: string; lastName: string; email: stri
   try {
     isLoading.value = true
     await registerCustomer(data, {
-      redirect: true,
+      redirect: false,
     })
+    await loginCustomer(data.email, data.password)
   } catch (e: any) {
     isLoading.value = false
 

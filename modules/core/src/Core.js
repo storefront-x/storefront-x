@@ -101,6 +101,10 @@ export default class Core {
       this.modules.push(module)
     }
 
+    // await fs.writeFile(path.join(this.rootDir, 'vite.config.js'), JSON.stringify(this.viteConfig), {
+    //   encoding: 'utf-8',
+    // })
+
     if (process.env.NODE_ENV !== 'test') logger.log('Modules loaded')
   }
 

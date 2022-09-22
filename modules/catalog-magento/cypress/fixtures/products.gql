@@ -1,0 +1,10 @@
+query {
+  products(search: "", pageSize: 100) {
+    items {
+      __typename
+      name
+      url_key
+      url_suffix
+    }
+  }
+}

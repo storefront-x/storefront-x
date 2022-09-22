@@ -5,5 +5,8 @@
   "type": "module",
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "cypress-vite": "^1.1.1"
   }
 }

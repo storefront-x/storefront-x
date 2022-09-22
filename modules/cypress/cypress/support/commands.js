@@ -1,25 +1,17 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import 'cypress-wait-until'
+
+Cypress.Commands.add('will', { prevSubject: 'element' }, (subject, chainers, value) => {
+  return cy
+    .wrap(subject)
+    .then((subject) => cy.wrap(subject).should(chainers, typeof value === 'function' ? value() : value))
+})
+
+Cypress.Commands.add('waitForSfx', { prevSubject: 'optional' }, () => {
+  return cy.waitUntil(() => {
+    return cy.window().its('sfx').should('be.true')
+  })
+})
+
+Cypress.Commands.add('withinIframe', (locator) => {
+  return cy.get(locator).its('0.contentDocument.body').should('not.be.empty').then(cy.wrap)
+})

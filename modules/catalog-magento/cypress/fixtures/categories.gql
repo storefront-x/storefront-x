@@ -1,0 +1,13 @@
+query {
+  categories(filters: { parent_id: { eq: "2" } }) {
+    items {
+      __typename
+      name
+      url_key
+      url_suffix
+      products {
+        total_count
+      }
+    }
+  }
+}
