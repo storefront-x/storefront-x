@@ -1,5 +1,5 @@
-import Multicurrency from '#cypress/support/pageObjects/Multicurrency'
-import Product from '#cypress/support/pageObjects/Product'
+import Multicurrency from '~/cypress/support/pageObjects/Multicurrency'
+import Product from '~/cypress/support/pageObjects/Product'
 
 describe('Multicurrency', () => {
   /** @type {Multicurrency} */

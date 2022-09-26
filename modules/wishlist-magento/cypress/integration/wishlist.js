@@ -1,7 +1,7 @@
-import Base from '#cypress/support/pageObjects/Base'
-import Wishlist from '#cypress/support/pageObjects/Wishlist'
-import Product from '#cypress/support/pageObjects/Product'
-import Account from '#cypress/support/pageObjects/Account'
+import Base from '~/cypress/support/pageObjects/Base'
+import Wishlist from '~/cypress/support/pageObjects/Wishlist'
+import Product from '~/cypress/support/pageObjects/Product'
+import Account from '~/cypress/support/pageObjects/Account'
 
 describe('Wishlist', () => {
   /** @type {Base} */

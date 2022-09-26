@@ -1,5 +1,5 @@
-import Base from '#cypress/support/pageObjects/Base'
-import Product from '#cypress/support/pageObjects/Product'
+import Base from '~/cypress/support/pageObjects/Base'
+import Product from '~/cypress/support/pageObjects/Product'
 
 describe('Product', () => {
   /** @type {Base} */

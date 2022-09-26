@@ -1,4 +1,4 @@
-import StoreSwitcher from '#cypress/support/pageObjects/StoreSwitcher'
+import StoreSwitcher from '~/cypress/support/pageObjects/StoreSwitcher'
 
 describe('Homepage', () => {
   /** @type {StoreSwitcher} */

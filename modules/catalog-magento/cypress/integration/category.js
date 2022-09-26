@@ -1,6 +1,6 @@
-import Base from '#cypress/support/pageObjects/Base'
-import Category from '#cypress/support/pageObjects/Category'
-import Listing from '#cypress/support/pageObjects/Listing'
+import Base from '~/cypress/support/pageObjects/Base'
+import Category from '~/cypress/support/pageObjects/Category'
+import Listing from '~/cypress/support/pageObjects/Listing'
 
 describe('Category', () => {
   /** @type {Base} */

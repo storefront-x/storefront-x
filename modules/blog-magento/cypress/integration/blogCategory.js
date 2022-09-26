@@ -1,4 +1,4 @@
-import BlogCategory from '#cypress/support/pageObjects/BlogCategory'
+import BlogCategory from '~/cypress/support/pageObjects/BlogCategory'
 
 describe('Blog category', () => {
   /** @type {BlogCategory} */

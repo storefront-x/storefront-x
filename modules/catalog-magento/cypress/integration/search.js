@@ -1,4 +1,4 @@
-import Listing from '#cypress/support/pageObjects/Listing'
+import Listing from '~/cypress/support/pageObjects/Listing'
 
 describe('Search page', () => {
   /** @type {Listing} */

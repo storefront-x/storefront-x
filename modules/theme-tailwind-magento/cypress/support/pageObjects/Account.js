@@ -1,4 +1,4 @@
-import { uniqueNumber } from '#cypress/utils'
+import { uniqueNumber } from '~/cypress/support/utils'
 
 export default class Account {
   constructor(params = {}) {
@@ -50,10 +50,10 @@ export default class Account {
 
     cy.get('input[name=firstName]').type(this.firstName)
     cy.get('input[name=lastName]').type(this.lastName)
-    cy.get('input[name=telephone]').type('123456789')
+    cy.get('input[name=phoneNumber]').type('123456789')
     cy.get('input[name=street]').type('Testovací')
     cy.get('input[name=city]').type('Brnel')
-    cy.get('input[name=postcode]').type('12345')
+    cy.get('input[name=zipcode]').type('12345')
     cy.get('select[name=countryCode]').select('CZ')
 
     cy.get('[data-cy=save]').click()

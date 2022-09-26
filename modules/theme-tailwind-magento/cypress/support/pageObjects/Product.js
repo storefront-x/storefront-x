@@ -1,5 +1,5 @@
-import GetProducts from '#cypress/repositories/GetProducts'
-import { randomNumber, uniqueNumber } from '#cypress/utils'
+import GetProducts from '~/cypress/support/repositories/GetProducts'
+import { randomNumber, uniqueNumber } from '~/cypress/support/utils'
 
 export default class Product {
   static Simple = 'SimpleProduct'

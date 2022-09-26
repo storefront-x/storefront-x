@@ -1,4 +1,4 @@
-import Account from '#cypress/support/pageObjects/Account'
+import Account from '~/cypress/support/pageObjects/Account'
 
 describe('Account', () => {
   /** @type {Account} */

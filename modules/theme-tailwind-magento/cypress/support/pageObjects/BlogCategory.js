@@ -1,4 +1,4 @@
-import GetRandomBlogCategory from '#cypress/repositories/GetRandomBlogCategory'
+import GetRandomBlogCategory from '~/cypress/support/repositories/GetRandomBlogCategory'
 
 export default class BlogCategory {
   constructor() {

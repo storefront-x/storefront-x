@@ -1,5 +1,5 @@
-import HamburgerMenu from '#cypress/support/pageObjects/HamburgerMenu'
-import StoreSwitcher from '#cypress/support/pageObjects/StoreSwitcher'
+import HamburgerMenu from '~/cypress/support/pageObjects/HamburgerMenu'
+import StoreSwitcher from '~/cypress/support/pageObjects/StoreSwitcher'
 
 describe('Homepage', () => {
   /** @type {HamburgerMenu} */
@@ -13,7 +13,7 @@ describe('Homepage', () => {
     storeSwitcher = new StoreSwitcher()
 
     cy.viewport('iphone-x')
-    cy.visit('/')
+    cy.visit('/').waitForSfx()
   })
 
   it('opens and closes hamburger menu', () => {
