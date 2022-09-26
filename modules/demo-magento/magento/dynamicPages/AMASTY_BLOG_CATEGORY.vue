@@ -20,6 +20,7 @@ import useGetBlogCategoryById from '#ioc/services/useGetBlogCategoryById'
 import useGetBlogPosts from '#ioc/services/useGetBlogPosts'
 import useRoute from '#ioc/composables/useRoute'
 import useAsyncData from '#ioc/composables/useAsyncData'
+import useHead from '#ioc/composables/useHead'
 
 const getBlogCategoryById = useGetBlogCategoryById()
 const getBlogPosts = useGetBlogPosts()
@@ -42,4 +43,8 @@ const {
     value: { blogPosts },
   },
 } = await useAsyncData('blogPosts', () => getBlogPosts('CATEGORY', props.id, Number(route.query.page ?? 1)))
+
+useHead({
+  title: blogCategory.name,
+})
 </script>
