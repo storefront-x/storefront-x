@@ -47,6 +47,7 @@
 import SfxShippingMethod from '#ioc/components/SfxShippingMethod'
 import Form from '#ioc/atoms/Form'
 import useCheckout from '#ioc/composables/useCheckout'
+import useCustomer from '#ioc/composables/useCustomer'
 import useI18n from '#ioc/composables/useI18n'
 import FormInput from '#ioc/molecules/FormInput'
 import debounce from '#ioc/utils/debounce'
@@ -57,9 +58,29 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['select', 'confirm'])
-
+const customer = useCustomer()
 const { t } = useI18n()
 const checkout = useCheckout()
+
+const offerLogin = ref(false)
+const offerRegistration = ref(true)
+
+const checkEmail = async () => {
+  if (customer.isLoggedIn || !customer.isLoggedIn) {
+    offerLogin.value = false
+    offerRegistration.value = false
+    return
+  }
+
+  const { emailAvailable } = await IsEmailAvailable(toCtx(this))(this.shipping.email)
+  if (emailAvailable) {
+    offerLogin.value = false
+    offerRegistration.value = true
+  } else {
+    offerLogin.value = true
+    offerRegistration.value = false
+  }
+}
 
 const form = ref<any>(null)
 
