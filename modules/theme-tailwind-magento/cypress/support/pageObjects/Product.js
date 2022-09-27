@@ -46,7 +46,7 @@ export default class Product {
     this.data = product
     this._products = [...this._products.slice(0, index), ...this._products.slice(index + 1, this._products.length)]
 
-    cy.visit(product.url_key + product.url_suffix).waitForSfx()
+    cy.visit(product.url_key + '.html').waitForSfx()
   }
 
   visitAgain() {

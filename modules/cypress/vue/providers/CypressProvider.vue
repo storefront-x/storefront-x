@@ -9,7 +9,7 @@ onMounted(() => {
   setTimeout(
     () =>
       // @ts-ignore
-      (window.sfx = true),
+      (window.sfxCypressMounted = true),
     2500,
   )
 })

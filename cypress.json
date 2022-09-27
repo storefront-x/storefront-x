@@ -1,9 +1,5 @@
 {
   "baseUrl": "http://local.magexo.cloud:3000",
-  "env": {
-    "GRAPHQL_URL": "https://be-sfx.demo.magexo.cloud/graphql",
-    "STORE": "b2c_en"
-  },
   "defaultCommandTimeout": 10000,
   "retries": {
     "runMode": 2

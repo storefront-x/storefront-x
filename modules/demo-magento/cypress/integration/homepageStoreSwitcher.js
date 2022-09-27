@@ -1,6 +1,6 @@
 import StoreSwitcher from '~/cypress/support/pageObjects/StoreSwitcher'
 
-describe('Homepage', () => {
+describe('HomepageStoreSwitcher', () => {
   /** @type {StoreSwitcher} */
   let storeSwitcher
 

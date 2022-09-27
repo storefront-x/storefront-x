@@ -1,5 +1,6 @@
 import 'cypress-wait-until'
 
+// @ts-ignore
 Cypress.Commands.add('will', { prevSubject: 'element' }, (subject, chainers, value) => {
   return cy
     .wrap(subject)

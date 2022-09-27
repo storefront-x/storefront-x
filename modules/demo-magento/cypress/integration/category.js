@@ -34,11 +34,6 @@ describe('Category', () => {
     listing.sortByPrice('DESC')
   })
 
-  // it('should have load more', () => {
-  //   cy.viewport('iphone-x')
-  //   listing.loadMore()
-  // })
-
   it('can be filtered', () => {
     listing.filter()
   })

@@ -5,7 +5,7 @@ import path from 'node:path'
 
 export default class CypressSupport extends GeneratingConcept {
   get directory() {
-    return 'cypress/support'
+    return 'cypress/commands'
   }
 
   get template() {
@@ -18,7 +18,7 @@ import '<%= records[item].path %>'
   }
 
   dst() {
-    return path.join(this.core.rootDir, this.directory)
+    return path.join(this.core.rootDir, 'cypress/support')
   }
 
   get fileName() {

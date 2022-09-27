@@ -5,6 +5,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '~': path.resolve(__dirname),
+      '#ioc': path.resolve(__dirname, './.sfx/ioc'),
     },
   },
 })

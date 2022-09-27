@@ -6,7 +6,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
+  "dependencies": {
     "cypress-vite": "^1.1.1"
   }
 }

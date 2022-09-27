@@ -1,9 +1,0 @@
-query {
-  amBlogCategories {
-    items {
-      name
-      url_key
-      post_count
-    }
-  }
-}
