@@ -1,4 +1,4 @@
-import { randomFrom } from '../utils'
+import randomFrom from '~/cypress/utils/randomFrom'
 
 export default () =>
   cy
