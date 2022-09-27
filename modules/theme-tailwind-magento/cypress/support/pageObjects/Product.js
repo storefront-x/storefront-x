@@ -50,7 +50,7 @@ export default class Product {
   }
 
   visitAgain() {
-    return cy.then(() => cy.visit(this.data.url_key + this.data.url_suffix).waitForSfx())
+    return cy.then(() => cy.visit(this.data.url_key + '.html').waitForSfx())
   }
 
   addToCart() {
