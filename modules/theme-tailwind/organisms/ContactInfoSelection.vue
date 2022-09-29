@@ -49,6 +49,7 @@ import Form from '#ioc/atoms/Form'
 import useCheckout from '#ioc/composables/useCheckout'
 import useCustomer from '#ioc/composables/useCustomer'
 import useI18n from '#ioc/composables/useI18n'
+import useEmailAvailable from '#ioc/services/useEmailAvailable'
 import FormInput from '#ioc/molecules/FormInput'
 import debounce from '#ioc/utils/debounce'
 import { ref, watch } from 'vue'
@@ -61,18 +62,21 @@ const emit = defineEmits(['select', 'confirm'])
 const customer = useCustomer()
 const { t } = useI18n()
 const checkout = useCheckout()
+const isEmailAvailable = useEmailAvailable()
 
 const offerLogin = ref(false)
-const offerRegistration = ref(true)
+const offerRegistration = ref(false)
 
-const checkEmail = async () => {
-  if (customer.isLoggedIn || !customer.isLoggedIn) {
+const checkEmail = async (email: string) => {
+  console.log('prapra', customer.isLoggedIn, email)
+  if (customer.isLoggedIn || !email) {
     offerLogin.value = false
     offerRegistration.value = false
     return
   }
-
-  const { emailAvailable } = await IsEmailAvailable(toCtx(this))(this.shipping.email)
+  console.log('before email')
+  const { emailAvailable } = await isEmailAvailable(email)
+  console.log('is email available', emailAvailable)
   if (emailAvailable) {
     offerLogin.value = false
     offerRegistration.value = true
@@ -86,6 +90,9 @@ const form = ref<any>(null)
 
 const onInput = debounce(async (data: any) => {
   if (!form.value?.isValid) return emit('select')
+  const { email } = form.value?.getData() ?? {}
+  await checkEmail(email)
+  console.log('test form data', email)
 
   checkout.setContactInformation({
     city: 'DUMMYDATA',
