@@ -4,7 +4,7 @@ import useLocalePath from '#ioc/composables/useLocalePath'
 import SHOPWARE_TOKEN_COOKIE_NAME from '#ioc/config/SHOPWARE_TOKEN_COOKIE_NAME'
 
 interface Options {
-  redirect?: true
+  redirect?: boolean
 }
 
 export default () => {

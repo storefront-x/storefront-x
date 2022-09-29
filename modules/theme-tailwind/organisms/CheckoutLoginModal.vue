@@ -10,48 +10,38 @@
   </Modal>
 </template>
 
-<script>
-import SfxForm from '@sfx/base/components/form/SfxForm.vue'
-import Modal from '@components/atoms/Modal'
-import Button from '@components/atoms/Button'
-import FormInput from '@components/molecules/FormInput'
+<script setup lang="ts">
+import SfxForm from '#ioc/components/SfxForm'
+import Modal from '#ioc/atoms/Modal'
+import Button from '#ioc/atoms/Button'
+import FormInput from '#ioc/molecules/FormInput'
+import useLoginCustomer from '#ioc/services/useLoginCustomer'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import { ref } from 'vue'
 
-export default {
-  components: {
-    Modal,
-    FormInput,
-    SfxForm,
-    Button,
+const showErrorNotification = useShowErrorNotification()
+const loginCustomer = useLoginCustomer()
+const isLoading = ref(false)
+const emit = defineEmits(['close'])
+
+const props = defineProps({
+  email: {
+    type: String,
+    required: true,
   },
+})
 
-  inject: ['$Checkout', '$Notifications'],
+const onSubmit = async ({ password }: { password: string }) => {
+  try {
+    isLoading.value = true
+    await loginCustomer(props.email, password, { redirect: false })
+    console.log('checkout modal password', password)
+    emit('close')
+  } catch (e: any) {
+    isLoading.value = false
 
-  props: {
-    email: {
-      type: String,
-      default: '',
-    },
-  },
-
-  data: () => ({
-    isLoading: false,
-  }),
-
-  methods: {
-    async onSubmit({ password }) {
-      try {
-        this.isLoading = true
-
-        await this.$Checkout.login(this.email, password)
-
-        this.$emit('close')
-      } catch (e) {
-        this.isLoading = false
-
-        this.$Notifications.showError(e)
-      }
-    },
-  },
+    showErrorNotification(e)
+  }
 }
 </script>
 

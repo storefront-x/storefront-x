@@ -39,7 +39,12 @@
       />
 
       <SfxShippingMethod export="contact" />
+      <div class="mt-4 flex items-end">
+        <Button v-if="offerLogin" color="primary" @click="showLogin = true">{{ $t('Login') }}</Button>
+      </div>
     </Form>
+
+    <CheckoutLoginModal v-if="showLogin" :email="form.value?.getData()?.email" @close="showLogin.value = false" />
   </div>
 </template>
 
@@ -50,7 +55,9 @@ import useCheckout from '#ioc/composables/useCheckout'
 import useCustomer from '#ioc/composables/useCustomer'
 import useI18n from '#ioc/composables/useI18n'
 import useEmailAvailable from '#ioc/services/useEmailAvailable'
+import Button from '#ioc/atoms/Button'
 import FormInput from '#ioc/molecules/FormInput'
+import CheckoutLoginModal from '#ioc/organisms/CheckoutLoginModal'
 import debounce from '#ioc/utils/debounce'
 import { ref, watch } from 'vue'
 
@@ -66,6 +73,7 @@ const isEmailAvailable = useEmailAvailable()
 
 const offerLogin = ref(false)
 const offerRegistration = ref(false)
+const showLogin = ref(false)
 
 const checkEmail = async (email: string) => {
   console.log('prapra', customer.isLoggedIn, email)
@@ -81,6 +89,7 @@ const checkEmail = async (email: string) => {
     offerLogin.value = false
     offerRegistration.value = true
   } else {
+    console.log('login will be offered')
     offerLogin.value = true
     offerRegistration.value = false
   }
