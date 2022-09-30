@@ -4,6 +4,7 @@
     :disabled="loading"
     data-cy="add-to-cart"
     class="relative w-full sm:w-auto sm:h-auto mt-4 sm:mt-0 sm:ml-3 text-bold"
+    :data-simple-product="product.isSimpleProduct && !product.productOptions.length"
     @click="onAddToCart"
   >
     <slot>
