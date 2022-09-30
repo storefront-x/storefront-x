@@ -4,9 +4,9 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@intlify/vite-plugin-vue-i18n": "^6.0.1",
-    "vite": "^3.1.0",
-    "vue": "^3.2.39",
+    "@intlify/vite-plugin-vue-i18n": "^6.0.3",
+    "vite": "^3.1.4",
+    "vue": "^3.2.40",
     "vue-i18n": "^9.2.2"
   },
   "publishConfig": {
