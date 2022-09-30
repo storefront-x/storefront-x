@@ -3260,6 +3260,8 @@ __metadata:
 "@storefront-x/cypress@workspace:modules/cypress":
   version: 0.0.0-use.local
   resolution: "@storefront-x/cypress@workspace:modules/cypress"
+  dependencies:
+    cypress-vite: ^1.1.1
   languageName: unknown
   linkType: soft
 
@@ -5830,6 +5832,22 @@ __metadata:
   version: 2.6.20
   resolution: "csstype@npm:2.6.20"
   checksum: cb5d5ded49c3390909e93b20b285d4a63d0ba5b10294bdfbc4cf911f80e91d6cf367ea671f99f09570762535c14ea7074a2c7fa73f02008203f01328dea8968b
+  languageName: node
+  linkType: hard
+
+"cypress-vite@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "cypress-vite@npm:1.1.1"
+  peerDependencies:
+    vite: ^2.9.0 || ^3.0.0
+  checksum: bcc5e903c95bd685a22ca0b10522a79030872db42110a03bbeeac24213eb27c94dc37782eb03389c7e7d57ffe24288fa4f1825107bbd961d6c7b9399900d21c0
+  languageName: node
+  linkType: hard
+
+"cypress-wait-until@npm:^1.7.2":
+  version: 1.7.2
+  resolution: "cypress-wait-until@npm:1.7.2"
+  checksum: e3fe3c35ef8cfda39fb8919ae63a238bd580a98f5c02120306b32d6502ddfa9bfc3afde733cd9b282035b9f67e8386bd6c58bd59ca5fd2ea65291e6d9bac1ed7
   languageName: node
   linkType: hard
 
@@ -12000,6 +12018,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.37.0
     cross-env: ^7.0.3
     cypress: ^9.7.0
+    cypress-wait-until: ^1.7.2
     eslint: ^8.23.1
     eslint-config-prettier: ^8.5.0
     eslint-plugin-cypress: ^2.12.1

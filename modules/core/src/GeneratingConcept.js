@@ -83,7 +83,7 @@ export default class GeneratingConcept extends OverridingConcept {
   async renderTemplate(template, data, { file } = {}) {
     const rendered = template(data)
 
-    await fs.writeFile(path.join(this.dst(), file ?? `${path.basename(this.directory)}.${this.extension}`), rendered, {
+    await fs.writeFile(path.join(this.dst(), file ?? this.fileName), rendered, {
       encoding: 'utf-8',
     })
   }
@@ -121,5 +121,9 @@ export default {
 
   get extension() {
     return 'ts'
+  }
+
+  get fileName() {
+    return `${path.basename(this.directory)}.${this.extension}`
   }
 }
