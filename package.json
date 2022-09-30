@@ -30,10 +30,13 @@
     "@storefront-x/core": "*"
   },
   "devDependencies": {
+    "@pinia/testing": "^0.0.14",
     "@playwright/test": "^1.25.2",
     "@types/yargs": "^17.0.12",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "@vue/test-utils": "^2.1.0",
     "cross-env": "^7.0.3",
     "cypress": "^9.7.0",
     "eslint": "^8.23.1",
@@ -42,11 +45,12 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.4.0",
     "husky": "^8.0.1",
+    "jsdom": "^20.0.0",
     "lerna": "^5.5.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "typescript": "^4.8.3",
     "vitepress": "^1.0.0-alpha.14",
-    "vitest": "^0.23.2"
+    "vitest": "^0.23.4"
   }
 }

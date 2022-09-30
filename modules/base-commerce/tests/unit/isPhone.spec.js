@@ -14,5 +14,10 @@ describe('utils/validation', () => {
     it('validates czech phone with space after prefix', () => {
       expect(isPhone('+420 123456789')).toBe(true)
     })
+    it('invalid phone', () => {
+      expect(isPhone('')).toBe(false)
+      expect(isPhone('4521YS')).toBe(false)
+      expect(isPhone('7458123$45')).toBe(false)
+    })
   })
 })
