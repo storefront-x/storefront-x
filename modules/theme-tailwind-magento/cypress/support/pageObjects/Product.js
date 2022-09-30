@@ -80,7 +80,12 @@ export default class Product {
   }
 
   openReviewForm() {
-    this.getReviewTab().click()
+    cy.waitUntil(() =>
+      this.getReviewTab()
+        .click()
+        .then(() => this.getAddReviewButton().should('be.visible')),
+    )
+
     this.getAddReviewButton().click()
   }
 
