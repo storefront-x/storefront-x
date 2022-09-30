@@ -41,6 +41,7 @@
       <SfxShippingMethod export="contact" />
       <div class="mt-4 flex items-end">
         <Button v-if="offerLogin" color="primary" @click="showLogin = true">{{ $t('Login') }}</Button>
+        <Button v-if="offerRegistration" color="primary" @click="showRegistration = true">{{ $t('Register') }}</Button>
       </div>
     </Form>
 
