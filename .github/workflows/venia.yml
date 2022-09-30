@@ -43,7 +43,8 @@ jobs:
       - run: yarn build --config storefront-x.venia.config.js
       - run: yarn serve &
       - run: yarn cypress run
-      - uses: actions/upload-artifact@v3
+      - if: failure()
+        uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
           path: cypress/videos
