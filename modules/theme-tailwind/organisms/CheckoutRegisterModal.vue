@@ -1,49 +1,61 @@
 <template>
-  <Modal @close="$emit('close')">
+  <Modal @close="emit('close')">
     <SfxForm name="register" class="space-y-6" @submit="onSubmit">
-      <FormInput name="firstName" :label="$t('First name')" autocomplete="given-name" validators="required" />
+      <FormInput name="firstName" :label="t('First name')" autocomplete="given-name" validators="required" />
 
-      <FormInput name="lastName" :label="$t('Last name')" autocomplete="family-name" validators="required" />
+      <FormInput name="lastName" :label="t('Last name')" autocomplete="family-name" validators="required" />
 
       <FormInput
         name="email"
         type="email"
-        :label="$t('Email address')"
+        :label="t('Email address')"
         autocomplete="email"
         validators="required|email"
-        :value="email"
+        :value="props.email"
       />
 
-      <FormInput name="password" type="password" :label="$t('Password')" validators="required|min:8|classes:3" />
+      <FormInput name="password" type="password" :label="t('Password')" validators="required|min:8|classes:3" />
 
       <FormInput
         name="passwordConfirmation"
         type="password"
-        :label="$t('Password confirmation')"
+        :label="t('Password confirmation')"
         validators="required|same:password"
       />
 
-      <Button type="submit" color="primary" :loading="isLoading" class="w-full" data-cy="sign-up">
-        {{ $t('Sign up') }}
+      <Button type="submit" color="primary" :loading="loading.value" class="w-full" data-cy="sign-up">
+        {{ t('Sign up') }}
       </Button>
     </SfxForm>
   </Modal>
 </template>
 
 <script setup lang="ts">
+import useI18n from '#ioc/composables/useI18n'
 import SfxForm from '#ioc/components/SfxForm'
 import Modal from '#ioc/atoms/Modal'
 import Button from '#ioc/atoms/Button'
 import FormInput from '#ioc/molecules/FormInput'
 import useLoginCustomer from '#ioc/services/useLoginCustomer'
+import useCustomerStore from '#ioc/stores/useCustomerStore'
+import useGetCustomer from '#ioc/services/useGetCustomer'
 import useConfirmContactInformation from '#ioc/services/useConfirmContactInformation'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
-import { ref } from 'vue'
+import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreements'
+
+import useRegisterCustomer from '#ioc/services/useRegisterCustomer'
+import { ref, onMounted } from 'vue'
 
 const showErrorNotification = useShowErrorNotification()
-const loginCustomer = useLoginCustomer()
 const confirmContactInformation = useConfirmContactInformation()
-const isLoading = ref(false)
+const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
+const registerCustomer = useRegisterCustomer()
+const loginCustomer = useLoginCustomer()
+const customerStore = useCustomerStore()
+const getCustomer = useGetCustomer()
+const { t } = useI18n()
+
+const loading = ref(false)
 const emit = defineEmits(['close'])
 
 const props = defineProps({
@@ -53,54 +65,32 @@ const props = defineProps({
   },
 })
 
-const onSubmit = async (data) => {}
-export default {
-  components: {
-    Modal,
-    FormInput,
-    SfxForm,
-    Button,
-  },
+const onSubmit = async (data: any) => {
+  try {
+    loading.value = true
+    await registerCustomer(data, {
+      redirect: false,
+    })
+    await confirmContactInformation({
+      email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
+      telephone: 'DUMMYDATA',
+      firstName: 'DUMMYDATA',
+      lastName: 'DUMMYDATA',
+      street: 'DUMMYDATA',
+      city: 'DUMMYDATA',
+      postcode: 'DUMMYDATA',
+      countryCode: 'CZ',
+    })
+    await refreshCheckoutAgreements()
+    await loginCustomer(data.email, data.password, { redirect: false })
+    const { customer } = await getCustomer()
+    customerStore.$patch({ customer })
+    emit('close')
+  } catch (e: any) {
+    loading.value = false
 
-  mixins: [UsesLogin(), UsesRegister()],
-
-  inject: ['$Checkout', '$Notifications'],
-
-  props: {
-    email: {
-      type: String,
-      default: '',
-    },
-  },
-
-  data: () => ({
-    isLoading: false,
-  }),
-
-  methods: {
-    async onSubmit(data) {
-      try {
-        this.isLoading = true
-
-        await this.$Checkout.register(data)
-
-        this.$Checkout.setShippingAddress({
-          firstName: 'DUMMYDATA',
-          lastName: 'DUMMYDATA',
-          telephone: 'DUMMYDATA',
-          city: 'DUMMYDATA',
-          street: 'DUMMYDATA',
-          postcode: 'DUMMYDATA',
-          countryCode: 'CZ',
-        })
-
-        this.$emit('close')
-      } catch (e) {
-        this.isLoading = false
-        this.$Notifications.showError(e)
-      }
-    },
-  },
+    showErrorNotification(e)
+  }
 }
 </script>
 

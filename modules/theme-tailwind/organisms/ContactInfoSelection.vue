@@ -40,12 +40,31 @@
 
       <SfxShippingMethod export="contact" />
       <div class="mt-4 flex items-end">
-        <Button v-if="offerLogin" color="primary" @click="showLogin = true">{{ $t('Login') }}</Button>
-        <Button v-if="offerRegistration" color="primary" @click="showRegistration = true">{{ $t('Register') }}</Button>
+        <Button v-if="offerLogin" color="primary" @click="showLogin = true">{{ t('Login') }}</Button>
+        <Button v-if="offerRegistration" color="primary" @click="showRegistration = true">{{ t('Register') }}</Button>
       </div>
     </Form>
 
-    <CheckoutLoginModal v-if="showLogin" :email="form.value?.getData()?.email" @close="showLogin.value = false" />
+    <CheckoutLoginModal
+      v-if="showLogin"
+      :email="contactEmail"
+      @close="
+        () => {
+          showLogin = false
+          offerLogin = false
+        }
+      "
+    />
+    <CheckoutRegisterModal
+      v-if="showRegistration"
+      :email="contactEmail"
+      @close="
+        () => {
+          showRegistration = false
+          offerRegistration = false
+        }
+      "
+    />
   </div>
 </template>
 
@@ -59,8 +78,9 @@ import useEmailAvailable from '#ioc/services/useEmailAvailable'
 import Button from '#ioc/atoms/Button'
 import FormInput from '#ioc/molecules/FormInput'
 import CheckoutLoginModal from '#ioc/organisms/CheckoutLoginModal'
+import CheckoutRegisterModal from '#ioc/organisms/CheckoutRegisterModal'
 import debounce from '#ioc/utils/debounce'
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 
 const props = defineProps({
   isOpen: Boolean,
@@ -75,22 +95,20 @@ const isEmailAvailable = useEmailAvailable()
 const offerLogin = ref(false)
 const offerRegistration = ref(false)
 const showLogin = ref(false)
+const showRegistration = ref(false)
+const contactEmail = ref()
 
 const checkEmail = async (email: string) => {
-  console.log('prapra', customer.isLoggedIn, email)
   if (customer.isLoggedIn || !email) {
     offerLogin.value = false
     offerRegistration.value = false
     return
   }
-  console.log('before email')
   const { emailAvailable } = await isEmailAvailable(email)
-  console.log('is email available', emailAvailable)
   if (emailAvailable) {
     offerLogin.value = false
     offerRegistration.value = true
   } else {
-    console.log('login will be offered')
     offerLogin.value = true
     offerRegistration.value = false
   }
@@ -100,9 +118,8 @@ const form = ref<any>(null)
 
 const onInput = debounce(async (data: any) => {
   if (!form.value?.isValid) return emit('select')
-  const { email } = form.value?.getData() ?? {}
-  await checkEmail(email)
-  console.log('test form data', email)
+  contactEmail.value = form.value?.getData()?.email ?? {}
+  await checkEmail(contactEmail.value)
 
   checkout.setContactInformation({
     city: 'DUMMYDATA',

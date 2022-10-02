@@ -6,9 +6,9 @@ export default () => {
 
   return async (email: string) => {
     const { data } = await magento.graphql(EmailExists().with({ email }))
-    console.log('use email', data)
+
     return {
-      emailAvailable: data.is_email_available ?? false,
+      emailAvailable: data?.isEmailAvailable?.is_email_available ?? false,
     }
   }
 }

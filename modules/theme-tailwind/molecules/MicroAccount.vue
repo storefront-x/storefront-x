@@ -5,7 +5,7 @@
       class="flex items-center px-2 py-0.5 mr-3 text-gray-400 hover:text-gray-500"
       data-cy="micro-account"
     >
-      <span class="sr-only">{{ $t('My account') }}</span>
+      <span class="sr-only">{{ t('My account') }}</span>
       <BorderFrame>
         <OutlineUser class="text-primary-500" />
       </BorderFrame>
