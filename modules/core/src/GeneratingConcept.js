@@ -70,7 +70,17 @@ export default class GeneratingConcept extends OverridingConcept {
         { file: path.basename(this.directory) + '.server.ts' },
       )
     } else {
-      await this.renderTemplate(this.compiledTemplate, { records })
+      if (this.generateMultipleFiles) {
+        for (const record of Object.keys(records)) {
+          await this.renderTemplate(
+            this.compiledTemplate,
+            { record: records[record] },
+            { file: records[record].ident + '.' + this.extension },
+          )
+        }
+      } else {
+        await this.renderTemplate(this.compiledTemplate, { records })
+      }
     }
   }
 
@@ -125,5 +135,15 @@ export default {
 
   get fileName() {
     return `${path.basename(this.directory)}.${this.extension}`
+  }
+
+  get generateMultipleFiles() {
+    return false
+  }
+  dst() {
+    if (this.generateMultipleFiles) {
+      return path.join(this.core.buildDir, path.dirname(this.directory), path.basename(this.directory))
+    }
+    return super.dst()
   }
 }
