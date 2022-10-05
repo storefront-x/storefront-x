@@ -1,9 +1,9 @@
 import path from 'node:path'
 import { CopyingConcept } from '@storefront-x/core'
 
-export default class Cypress extends CopyingConcept {
+export default class CypressIntegration extends CopyingConcept {
   get directory() {
-    return 'cypress'
+    return 'cypress/integration'
   }
 
   get recursive() {

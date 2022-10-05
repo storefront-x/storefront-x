@@ -1,5 +1,5 @@
 <template>
-  <Dropdown to-left data-cy="sort" class="lg:border lg:border-gray-200 lg:px-4 lg:py-2 lg:rounded-md">
+  <Dropdown id="sort" to-left data-cy="sort" class="lg:border lg:border-gray-200 lg:px-4 lg:py-2 lg:rounded-md">
     <template #title>
       <svg
         width="21"

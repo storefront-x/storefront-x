@@ -2,6 +2,10 @@
 
 Thank you for investing your time in contributing to Storefront X! Come and join our [Slack](https://join.slack.com/t/storefront-xworkspace/shared_invite/zt-1dwz7npyd-xjW5y02qUJvznFdnNtqN1Q) where we can chat and give you more help about Storefront X 🙂
 
+:::warning
+Due to bug in Yarn be careful to not use any special characters in path.
+:::
+
 ## Repo setup
 
 To hack on Storefront X, you will need to have working local version of the repository.
