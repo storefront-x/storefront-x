@@ -3,7 +3,7 @@ import { describe, it, expect, beforeAll } from 'vitest'
 import ToMoney from '../../mappers/ToMoney'
 import * as PRICE_OFFSET from '../../config/PRICE_OFFSET'
 
-describe('ToMoney', () => {
+describe('mappers/ToMoney', () => {
   beforeAll(() => {
     PRICE_OFFSET.default = 1000
   })

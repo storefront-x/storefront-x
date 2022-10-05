@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import SfxImage from '../../components/SfxImage.vue'
 
-describe('SfxImage', () => {
+describe('components/SfxImage', () => {
   it('renders', () => {
     const wrapper = mount(SfxImage)
 

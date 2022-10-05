@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 import SfxForm from '../../components/SfxForm.vue'
 import SfxInput from '../../components/SfxInput.vue'
 
-describe('SfxForm', () => {
+describe('components/SfxForm', () => {
   it('works', () => {
     const Component = {
       template: `

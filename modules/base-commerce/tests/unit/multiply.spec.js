@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import multiply from '../../utils/money/multiply'
 
-describe('multiply', () => {
+describe('utils/money/multiply', () => {
   it('exists', () => {
     expect(multiply).toBeDefined()
   })

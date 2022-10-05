@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import vClickOutside from '../../directives/vClickOutside'
 
-describe('ClickOutside', () => {
+describe('directives/ClickOutside', () => {
   it('calls handler when clicked outside of the element', async () => {
     let a = 0
     let b = 0

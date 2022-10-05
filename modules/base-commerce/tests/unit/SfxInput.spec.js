@@ -4,7 +4,7 @@ import SfxForm from '../../components/SfxForm.vue'
 import SfxInput from '../../components/SfxInput.vue'
 import validators from '~/.sfx/validators'
 
-describe('SfxInput', () => {
+describe('components/SfxInput', () => {
   beforeAll(() => {
     validators.__test__ = function (value, expected) {
       return value === expected || 'Validation error'

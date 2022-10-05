@@ -4,7 +4,7 @@ import SfxCarousel from '../../components/SfxCarousel.vue'
 
 vi.mock('keen-slider/keen-slider.min.css', () => ({ default: '' }))
 
-describe('SfxCarousel', () => {
+describe('components/SfxCarousel', () => {
   it('renders', () => {
     const wrapper = mount(SfxCarousel)
 
