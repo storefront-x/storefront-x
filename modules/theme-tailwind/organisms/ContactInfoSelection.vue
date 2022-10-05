@@ -12,7 +12,7 @@
         />
       </div>
       <Button v-if="selectedAddress" color="light" class="mt-4" @click="onCustomAddress">
-        {{ $t('Custom shipping address') }}
+        {{ t('Custom shipping address') }}
       </Button>
     </div>
 
