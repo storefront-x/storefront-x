@@ -1,6 +1,6 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
-import isPagination from '../../mixins/isPagination'
+import isPagination from '#ioc/mixins/isPagination'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const Component = {

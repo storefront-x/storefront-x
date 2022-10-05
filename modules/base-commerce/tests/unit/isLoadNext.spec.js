@@ -1,6 +1,6 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
-import isLoadNext from '../../mixins/isLoadNext'
+import isLoadNext from '#ioc/mixins/IsLoadNext'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const Component = {
