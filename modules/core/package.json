@@ -22,7 +22,7 @@
     "open": "^8.4.0",
     "rollup": "^2.79.0",
     "rollup-plugin-visualizer": "^5.8.1",
-    "vite": "^3.1.4",
+    "vite": "^3.1.0",
     "yargs": "^17.5.1",
     "youch": "^3.2.2"
   },
