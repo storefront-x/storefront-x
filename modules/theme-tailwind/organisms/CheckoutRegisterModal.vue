@@ -23,7 +23,7 @@
         validators="required|same:password"
       />
 
-      <Button type="submit" color="primary" :loading="loading.value" class="w-full" data-cy="sign-up">
+      <Button type="submit" color="primary" :loading="loading" class="w-full" data-cy="sign-up">
         {{ t('Sign up') }}
       </Button>
     </SfxForm>
