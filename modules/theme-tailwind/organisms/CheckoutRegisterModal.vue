@@ -44,7 +44,7 @@ import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreements'
 
 import useRegisterCustomer from '#ioc/services/useRegisterCustomer'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 const showErrorNotification = useShowErrorNotification()
 const confirmContactInformation = useConfirmContactInformation()
