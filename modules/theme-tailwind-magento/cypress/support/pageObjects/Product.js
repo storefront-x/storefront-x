@@ -1,6 +1,6 @@
 import GetProducts from '~/cypress/support/repositories/GetProducts'
-import randomNumber from '~/cypress/utils/randomNumber'
-import uniqueNumber from '~/cypress/utils/uniqueNumber'
+import randomNumber from '#ioc/utils/number/random'
+import uniqueNumber from '#ioc/utils/number/unique'
 
 export default class Product {
   static Simple = 'SimpleProduct'
@@ -24,7 +24,6 @@ export default class Product {
       } else {
         GetProducts().then((products) => {
           this._products = products
-
           this._visitRandom(type)
         })
       }
@@ -80,12 +79,8 @@ export default class Product {
   }
 
   openReviewForm() {
-    cy.waitUntil(() =>
-      this.getReviewTab()
-        .click()
-        .then(() => this.getAddReviewButton().should('be.visible')),
-    )
-
+    this.getReviewTab().scrollIntoView({ duration: 500 }).should('be.visible').click()
+    this.getAddReviewButton().scrollIntoView({ duration: 500 }).should('be.visible')
     this.getAddReviewButton().click()
   }
 
