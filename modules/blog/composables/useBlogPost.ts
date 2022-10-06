@@ -7,7 +7,7 @@ export default (post: Ref<ReturnType<typeof ToBlogPost>>) => {
 
   const title = computed(() => post.value.title)
 
-  const urlKey = computed(() => post.value.urlKey)
+  const urlKey = computed(() => '/blog/' + post.value.urlKey)
 
   const shortContent = computed(() => post.value.shortContent)
 
