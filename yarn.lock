@@ -3436,6 +3436,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/vue-pinia@workspace:modules/vue-pinia"
   dependencies:
+    "@pinia/testing": ^0.0.14
     pinia: ^2.0.22
     vue: ^3.2.39
   languageName: unknown
@@ -3455,6 +3456,7 @@ __metadata:
   resolution: "@storefront-x/vue@workspace:modules/vue"
   dependencies:
     "@vitejs/plugin-vue": ^3.1.0
+    "@vue/test-utils": ^2.1.0
     "@vueuse/integrations": ^9.2.0
     universal-cookie: ^4.0.4
     vite: ^3.1.0
@@ -12271,14 +12273,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "storefront-x@workspace:."
   dependencies:
-    "@pinia/testing": ^0.0.14
     "@playwright/test": ^1.25.2
     "@storefront-x/core": "*"
     "@types/yargs": ^17.0.12
     "@typescript-eslint/eslint-plugin": ^5.37.0
     "@typescript-eslint/parser": ^5.37.0
-    "@vitejs/plugin-vue": ^3.1.0
-    "@vue/test-utils": ^2.1.0
     cross-env: ^7.0.3
     cypress: ^9.7.0
     cypress-wait-until: ^1.7.2
