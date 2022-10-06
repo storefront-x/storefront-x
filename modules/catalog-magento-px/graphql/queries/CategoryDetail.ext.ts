@@ -1,5 +1,5 @@
 import field from '#ioc/graphql/field'
-import addFields from '#ioc/utils/addFields'
+import addFields from '#ioc/utils/graphql/addFields'
 
 export default <T extends (...args: any[]) => any>(CategoryDetail: T) =>
   (...args: any[]): ReturnType<T> => {

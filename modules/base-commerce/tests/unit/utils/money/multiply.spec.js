@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import multiply from '../../utils/money/multiply'
+import multiply from '#ioc/utils/money/multiply'
 
 describe('utils/money/multiply', () => {
   it('exists', () => {

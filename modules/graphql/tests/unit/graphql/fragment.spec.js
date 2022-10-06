@@ -3,7 +3,7 @@ import query from '#ioc/graphql/query'
 import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
 
-describe('Fragment', () => {
+describe('graphql/fragment', () => {
   it('is hoisted in out of the query', () => {
     const f = fragment('f', 'F', {
       a: field(),

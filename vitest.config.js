@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [Vue()],
   test: {
     environment: 'jsdom',
-    include: ['.sfx/tests/unit/*.spec.ts'],
+    include: ['.sfx/tests/unit/**/*.spec.ts'],
   },
   resolve: {
     alias: {

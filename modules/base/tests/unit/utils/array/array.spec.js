@@ -1,7 +1,7 @@
 import { describe, test, it, expect } from 'vitest'
-import ensureArray from '../../utils/array/ensureArray'
-import first from '../../utils/array/first'
-import last from '../../utils/array/last'
+import ensureArray from '#ioc/utils/array/ensureArray'
+import first from '#ioc/utils/array/first'
+import last from '#ioc/utils/array/last'
 
 describe('utils/array', () => {
   describe('ensureArray', () => {

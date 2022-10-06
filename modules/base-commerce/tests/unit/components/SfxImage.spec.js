@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
-import SfxImage from '../../components/SfxImage.vue'
+import SfxImage from '#ioc/components/SfxImage.js'
 
 describe('components/SfxImage', () => {
   it('renders', () => {

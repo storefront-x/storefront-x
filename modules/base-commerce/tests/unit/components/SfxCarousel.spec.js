@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, vi } from 'vitest'
-import SfxCarousel from '../../components/SfxCarousel.vue'
+import SfxCarousel from '#ioc/components/SfxCarousel.js'
 
 vi.mock('keen-slider/keen-slider.min.css', () => ({ default: '' }))
 

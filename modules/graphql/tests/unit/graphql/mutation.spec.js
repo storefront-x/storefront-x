@@ -1,20 +1,19 @@
 import { describe, it, expect } from 'vitest'
-import query from '#ioc/graphql/query'
+import mutation from '#ioc/graphql/mutation'
 import field from '#ioc/graphql/field'
 import on from '#ioc/graphql/on'
-import fragment from '#ioc/graphql/fragment'
 
-describe('Query', () => {
+describe('graphql/mutation', () => {
   it('has fields', () => {
-    const q = query({
+    const m = mutation({
       product: field(),
     })
 
-    expect(q.toString()).toEqual('query{product}')
+    expect(m.toString()).toEqual('mutation{product}')
   })
 
   it('supports nested fields', () => {
-    const q = query({
+    const m = mutation({
       a: field(),
       b: field({
         c: field(),
@@ -26,40 +25,40 @@ describe('Query', () => {
       }),
     })
 
-    expect(q.toString()).toEqual('query{a,b{c,d,e{f,g}}}')
+    expect(m.toString()).toEqual('mutation{a,b{c,d,e{f,g}}}')
   })
 
   it('supports optional fields', () => {
-    const q = query({
+    const m = mutation({
       a: true && field(),
       b: false && field(),
     })
 
-    expect(q.toString()).toEqual('query{a}')
+    expect(m.toString()).toEqual('mutation{a}')
   })
 
   it('support field aliases', () => {
-    const q = query({
+    const m = mutation({
       a: field('b', {
         c: field(),
       }),
     })
 
-    expect(q.toString()).toEqual('query{a:b{c}}')
+    expect(m.toString()).toEqual('mutation{a:b{c}}')
   })
 
   it('has fields method', () => {
-    const q = query().fields({
+    const m = mutation().fields({
       a: field().fields({
         b: field(),
       }),
     })
 
-    expect(q.toString()).toEqual('query{a{b}}')
+    expect(m.toString()).toEqual('mutation{a{b}}')
   })
 
   it('supports arguments', () => {
-    const q = query({
+    const m = mutation({
       a: field()
         .args({ b: 'c', d: [{ e: 'f' }], n: 1 })
         .fields({
@@ -67,11 +66,11 @@ describe('Query', () => {
         }),
     })
 
-    expect(q.toString()).toEqual('query{a(b:"c",d:[{e:"f"}],n:1){f}}')
+    expect(m.toString()).toEqual('mutation{a(b:"c",d:[{e:"f"}],n:1){f}}')
   })
 
   it('support object arguments', () => {
-    const q = query({
+    const m = mutation({
       a: field()
         .args({ filter: { ids: { eq: '$id' } } })
         .fields({
@@ -79,11 +78,11 @@ describe('Query', () => {
         }),
     })
 
-    expect(q.toString()).toEqual('query{a(filter:{ids:{eq:$id}}){b}}')
+    expect(m.toString()).toEqual('mutation{a(filter:{ids:{eq:$id}}){b}}')
   })
 
   it('supports variables', () => {
-    const q = query()
+    const m = mutation()
       .variables({
         $a: 'String!',
         $b: 'Int',
@@ -94,11 +93,11 @@ describe('Query', () => {
         }),
       })
 
-    expect(q.toString()).toEqual('query($a:String!,$b:Int){c(a:$a,b:$b){d}}')
+    expect(m.toString()).toEqual('mutation($a:String!,$b:Int){c(a:$a,b:$b){d}}')
   })
 
   it('can have multiple same fields with aliases', () => {
-    const q = query().fields({
+    const m = mutation().fields({
       a1: field('a', {
         b: field(),
       }),
@@ -110,11 +109,11 @@ describe('Query', () => {
       }),
     })
 
-    expect(q.toString()).toEqual('query{a1:a{b},a2:a{c},a3:a{d}}')
+    expect(m.toString()).toEqual('mutation{a1:a{b},a2:a{c},a3:a{d}}')
   })
 
   it('supports inline fragments', () => {
-    const q = query({
+    const m = mutation({
       products: field({
         id: field(),
         name: field(),
@@ -127,16 +126,12 @@ describe('Query', () => {
       }),
     })
 
-    expect(q.toString()).toEqual('query{products{id,name,...on ConfigurableProduct{configurable_options{id,name}}}}')
+    expect(m.toString()).toEqual('mutation{products{id,name,...on ConfigurableProduct{configurable_options{id,name}}}}')
   })
 
-  it('is not cached when some fragment is not cachable', async () => {
-    const f = fragment('f', 'F').cantBeCached().fields({
-      a: field(),
-      b: field(),
-    })
-    const q = query().fields({ ...f, a: field() })
+  it('is not cachable', async () => {
+    const m = mutation().fields({ a: field() })
 
-    expect(q.isCacheable()).toEqual(false)
+    expect(m.isCacheable()).toEqual(false)
   })
 })

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import isPhone from '../../utils/validation/isPhone'
+import isPhone from '#ioc/utils/validation/isPhone'
 
 describe('utils/validation', () => {
   describe('isPhone', () => {

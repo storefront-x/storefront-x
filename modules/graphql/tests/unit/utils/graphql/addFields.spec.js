@@ -2,9 +2,9 @@ import { describe, it, expect } from 'vitest'
 import query from '#ioc/graphql/query'
 import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
-import addFields from '#ioc/utils/addFields'
+import addFields from '#ioc/utils/graphql/addFields'
 
-describe('addFields', () => {
+describe('utils/graphql/addFields', () => {
   it('add fields to query', () => {
     const q = query({
       a: field(),

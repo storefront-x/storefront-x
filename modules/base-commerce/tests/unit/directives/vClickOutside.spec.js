@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
-import vClickOutside from '../../directives/vClickOutside'
+import vClickOutside from '#ioc/directives/vClickOutside'
 
 describe('directives/ClickOutside', () => {
   it('calls handler when clicked outside of the element', async () => {
