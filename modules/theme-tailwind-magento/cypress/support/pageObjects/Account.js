@@ -1,4 +1,4 @@
-import uniqueNumber from '~/cypress/utils/uniqueNumber'
+import uniqueNumber from '#ioc/utils/number/unique'
 
 export default class Account {
   constructor(params = {}) {
