@@ -1,4 +1,4 @@
-import randomFrom from '~/cypress/utils/randomFrom'
+import randomFrom from '#ioc/utils/array/randomFrom'
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
 import Categories from '#ioc/graphql/queries/Categories'
 import MAGENTO_GRAPHQL_ENDPOINT from '#ioc/config/MAGENTO_GRAPHQL_ENDPOINT'
