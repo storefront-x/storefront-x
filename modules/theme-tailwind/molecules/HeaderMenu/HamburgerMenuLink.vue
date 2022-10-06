@@ -1,5 +1,8 @@
 <template>
-  <Accordion :heading-class="['px-4', 'py-4', 'border-t-2', 'border-gray-50', 'justify-between']">
+  <Accordion
+    v-if="category.children.length > 0"
+    :heading-class="['px-4', 'py-4', 'border-t-2', 'border-gray-50', 'justify-between']"
+  >
     <template #heading>
       <div class="items-center flex text-left">
         <SfxImage v-if="category.thumbnailUrl" :src="category.thumbnailUrl" class="w-7 h-7" lazy></SfxImage>
@@ -16,6 +19,14 @@
       </ul>
     </template>
   </Accordion>
+  <SfxLink
+    v-else
+    :to="category.urlPath"
+    class="items-center flex text-left ml-2 px-4 py-4 border-t-2 border-gray-50 justify-between"
+  >
+    <SfxImage v-if="category.thumbnail" :src-m2="category.thumbnail" class="w-7 h-7" lazy></SfxImage>
+    {{ category.name }}
+  </SfxLink>
 </template>
 
 <script setup lang="ts">
