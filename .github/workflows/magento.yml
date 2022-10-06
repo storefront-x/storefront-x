@@ -45,7 +45,7 @@ jobs:
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
-      - run: yarn cypress run --parallel
+      - run: yarn cypress run --record --parallel
       - uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
