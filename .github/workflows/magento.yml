@@ -61,10 +61,10 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - setup
-    # strategy:
-    #   matrix:
-    #     # will be for eg chunk: [0,1]
-    #     job: ${{ $CHUNKSIDS }}
+    strategy:
+      matrix:
+        # will be for eg chunk: [0,1]
+        job: echo ${{ needs.setup.outputs['test-chunk-ids'] }}
     name: Cypress
     steps:
       - uses: actions/checkout@v2
