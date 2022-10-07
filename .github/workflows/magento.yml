@@ -76,7 +76,10 @@ jobs:
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
-      - run: yarn cypress run --spec ${{ needs.setup.outputs['test-chunks'][0] }}
+      - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text') && yarn cypress run --spec $SPECS
+        env:
+            NODE_TLS_REJECT_UNAUTHORIZED: 0
+            CHUNKS: ${{ needs.setup.outputs['test-chunks'] }}
       - uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
