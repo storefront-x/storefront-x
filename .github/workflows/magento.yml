@@ -67,7 +67,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: echo ${{ fromJson(needs.setup.outputs['test-chunk-ids']) }}
+      - run: echo ${{ needs.setup.outputs['test-chunks'] }}
+      - run: echo ${{ needs.setup.outputs['test-chunk-ids'] }}
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
