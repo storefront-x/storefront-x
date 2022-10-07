@@ -61,7 +61,11 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - setup
-    name: Cypress
+    name: Cypress (chunk ${{ matrix.chunk }})
+    strategy:
+      matrix:
+        # will be for eg chunk: [0,1]
+        chunk: ${{ needs.setup.outputs['test-chunk-ids'] }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -72,7 +76,7 @@ jobs:
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
-      - run: yarn cypress run
+      - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text') && yarn cypress run --spec $SPECS
       - uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
