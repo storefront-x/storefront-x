@@ -31,7 +31,7 @@ jobs:
       - run: yarn build --config storefront-x.magento.config.js --onlyBootstrap
       - run: yarn test:unit
 
-  cypress-setup:
+  setup:
       runs-on: ubuntu-latest
       outputs:
         # will contain a json string with an array of n elements, each being a string of spec files delimited by ,
