@@ -64,7 +64,7 @@ jobs:
     strategy:
       matrix:
         # will be for eg chunk: [0,1]
-        chunk: ${{ fromJSON(needs.setup.outputs['test-chunk-ids']) }}
+        chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
     name: Cypress
     steps:
       - uses: actions/checkout@v2
