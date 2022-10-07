@@ -65,7 +65,7 @@ jobs:
       matrix:
         # will be for eg chunk: [0,1]
         chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
-    name: Cypress
+    name: Cypress (chunk ${{ matrix.chunk }})
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -77,7 +77,7 @@ jobs:
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
       - run: yarn cypress run
-      # - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.job }}] | @text') && yarn cypress run --spec $SPECS
+      - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text') && yarn cypress run --spec $SPECS
       - uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
