@@ -81,9 +81,7 @@ export default class MergingConcept extends WatchingConcept {
   async renderTemplate(template, data, { file } = {}) {
     const rendered = template(data)
 
-    await fs.writeFile(path.join(this.dst(), file ?? `${path.basename(this.directory)}.${this.extension}`), rendered, {
-      encoding: 'utf-8',
-    })
+    await this.writeFile(path.join(this.dst(), file ?? `${path.basename(this.directory)}.${this.extension}`), rendered)
   }
 
   /**

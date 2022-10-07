@@ -93,9 +93,7 @@ export default class GeneratingConcept extends OverridingConcept {
   async renderTemplate(template, data, { file } = {}) {
     const rendered = template(data)
 
-    await fs.writeFile(path.join(this.dst(), file ?? this.fileName), rendered, {
-      encoding: 'utf-8',
-    })
+    await this.writeFile(path.join(this.dst(), file ?? this.fileName), rendered)
   }
 
   /**
@@ -143,7 +141,8 @@ export default {
   dst() {
     if (this.generateMultipleFiles) {
       return path.join(this.core.buildDir, path.dirname(this.directory), path.basename(this.directory))
+    } else {
+      return super.dst()
     }
-    return super.dst()
   }
 }

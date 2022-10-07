@@ -9,5 +9,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@pinia/testing": "^0.0.14"
   }
 }

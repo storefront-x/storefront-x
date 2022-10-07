@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import toDate from '../../utils/date/toDate'
+import toDate from '#ioc/utils/date/toDate'
 
 describe('utils/date', () => {
   describe('toDate', () => {

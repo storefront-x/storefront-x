@@ -1,13 +1,13 @@
 import { describe, it, vi, expect } from 'vitest'
-import hashCode from '../../utils/string/hashCode'
-import uuid from '../../utils/string/uuid'
-import truncate from '../../utils/string/truncate'
-import multireplace from '../../utils/string/multireplace'
-import htmlDecode from '../../utils/string/htmlDecode'
-import stripTags from '../../utils/string/stripTags'
-import stripHtml from '../../utils/string/stripHtml'
-import toBase64 from '../../utils/string/toBase64'
-import fromBase64 from '../../utils/string/fromBase64'
+import hashCode from '#ioc/utils/string/hashCode'
+import uuid from '#ioc/utils/string/uuid'
+import truncate from '#ioc/utils/string/truncate'
+import multireplace from '#ioc/utils/string/multireplace'
+import htmlDecode from '#ioc/utils/string/htmlDecode'
+import stripTags from '#ioc/utils/string/stripTags'
+import stripHtml from '#ioc/utils/string/stripHtml'
+import toBase64 from '#ioc/utils/string/toBase64'
+import fromBase64 from '#ioc/utils/string/fromBase64'
 
 describe('utils/string', () => {
   describe('hashCode', () => {
