@@ -56,6 +56,7 @@ jobs:
           run: echo "::set-output name=test-chunk-ids::$(echo $CHUNKS | jq -cM 'to_entries | map(.key)')"
           env:
             CHUNKS: ${{ steps['set-test-chunks'].outputs['test-chunks'] }}
+            CHUNKIDS: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
 
   cypress:
     runs-on: ubuntu-latest
