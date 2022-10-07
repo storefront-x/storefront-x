@@ -53,9 +53,10 @@ jobs:
         - id: set-test-chunk-ids
           name: Set Chunk IDs
           # get the number of elements from the above array as an array of indexes
-          run: echo "::set-output name=test-chunk-ids::$(echo $CHUNKS | jq -cM 'to_entries | map(.key)')"
           env:
             CHUNKS: ${{ steps['set-test-chunks'].outputs['test-chunks'] }}
+          run: echo "::set-output name=test-chunk-ids::$(echo $CHUNKS | jq -cM 'to_entries | map(.key)')"
+          env:
             CHUNKIDS: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
 
   cypress:
