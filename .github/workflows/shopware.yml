@@ -1,49 +1,49 @@
-# name: Shopware
+name: Shopware
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
-# jobs:
-#   lint:
-#     runs-on: ubuntu-latest
-#     name: Lint
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: 16
-#       - run: yarn install
-#       - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
-#       - run: yarn lint:prod
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Lint
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
+      - run: yarn lint:prod
 
-#   unit:
-#     runs-on: ubuntu-latest
-#     name: Unit
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: 16
-#       - run: yarn install
-#       - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
-#       - run: yarn test:unit
+  unit:
+    runs-on: ubuntu-latest
+    name: Unit
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
+      - run: yarn test:unit
 
-#   cypress:
-#     runs-on: ubuntu-latest
-#     name: Cypress
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: 16
-#       - run: yarn install
-#       - run: yarn build --config storefront-x.shopware.config.js
-#       - run: yarn serve &
-#       - run: yarn cypress run
-#       - uses: actions/upload-artifact@v3
-#         with:
-#           name: cypress-videos
-#           path: cypress/videos
+  cypress:
+    runs-on: ubuntu-latest
+    name: Cypress
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build --config storefront-x.shopware.config.js
+      - run: yarn serve &
+      - run: yarn cypress run
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos
+          path: cypress/videos

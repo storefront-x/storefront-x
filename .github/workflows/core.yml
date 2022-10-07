@@ -1,20 +1,20 @@
-# name: Core
+name: Core
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
-# jobs:
-#   playwright:
-#     runs-on: ubuntu-latest
-#     name: Playwright
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: 16
-#       - run: yarn install
-#       - run: yarn playwright install chromium
-#       - run: yarn test:playwright
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    name: Playwright
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn playwright install chromium
+      - run: yarn test:playwright
