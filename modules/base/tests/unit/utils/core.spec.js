@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import isObject from '../../utils/isObject'
-import isDeepEqual from '../../utils/isDeepEqual'
+import isObject from '#ioc/utils/isObject'
+import isDeepEqual from '#ioc/utils/isDeepEqual'
 
 describe('utils/core', () => {
   describe('isObject', () => {

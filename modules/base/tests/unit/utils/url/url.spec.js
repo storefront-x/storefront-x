@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import objectToQuery from '../../utils/url/objectToQuery'
-import queryToObject from '../../utils/url/queryToObject'
+import objectToQuery from '#ioc/utils/url/objectToQuery'
+import queryToObject from '#ioc/utils/url/queryToObject'
 
 describe('utils/url', () => {
   describe('objectToQuery', () => {
