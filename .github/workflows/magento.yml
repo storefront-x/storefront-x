@@ -73,11 +73,11 @@ jobs:
         with:
           node-version: 16
       - uses: c-hive/gha-yarn-cache@v2
-      - run: echo $(echo ${{ needs.setup.outputs['test-chunks'] }} | jq -cMr '.[${{ matrix.chunk }}] | @text')
+      - run: echo $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
-      - run: yarn cypress run --spec $(echo ${{ needs.setup.outputs['test-chunks'] }} | jq -cMr '.[${{ matrix.chunk }}] | @text')
+      - run: yarn cypress run --spec $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
       - uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
