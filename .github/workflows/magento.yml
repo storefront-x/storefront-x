@@ -71,12 +71,14 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: echo ${{ needs.setup.outputs['test-chunks'] }}
+      - run: echo ${{ needs.setup.outputs['test-chunks'][${{ matrix.chunk }}] }}
       - run: echo ${{ needs.setup.outputs['test-chunk-ids'] }}
+        env:
+          SPECS: ${{ steps['set-test-chunks'].outputs['test-chunks'] }}
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
-      - run: yarn cypress run --spec ${{fromJSON(needs.setup.outputs['test-chunks'])[${{ matrix.chunk }}]}}
+      - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text') && yarn cypress run --spec $SPECS
       - uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
