@@ -73,7 +73,7 @@ jobs:
         with:
           node-version: 16
       - uses: c-hive/gha-yarn-cache@v2
-      - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text') && echo DOING TESTS IN CURRENT CHUNK + "$SPECS"
+      - run: echo DOING TESTS IN CURRENT CHUNK + "$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text')"
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
