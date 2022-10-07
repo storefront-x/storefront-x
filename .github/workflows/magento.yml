@@ -71,12 +71,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: echo ${{ $CHUNKS }}
+      - run: echo ${{ needs.setup.outputs['test-chunks'] }}
       - run: echo ${{ needs.setup.outputs['test-chunk-ids'] }}
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
-      - run: yarn serve &
       - run: apt-get install jq -y
+      - run: yarn serve &
       - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text') && yarn cypress run --spec $SPECS
       - uses: actions/upload-artifact@v3
         with:
