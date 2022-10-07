@@ -31,7 +31,7 @@ jobs:
       - run: yarn build --config storefront-x.magento.config.js --onlyBootstrap
       - run: yarn test:unit
 
-  setup:
+  cypress setup:
       runs-on: ubuntu-latest
       outputs:
         # will contain a json string with an array of n elements, each being a string of spec files delimited by ,
@@ -78,7 +78,6 @@ jobs:
       - run: yarn serve &
       - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text') && yarn cypress run --spec $SPECS
         env:
-            NODE_TLS_REJECT_UNAUTHORIZED: 0
             CHUNKS: ${{ needs.setup.outputs['test-chunks'] }}
       - uses: actions/upload-artifact@v3
         with:
