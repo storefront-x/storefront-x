@@ -76,6 +76,7 @@ jobs:
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
+      - run: apt-get install jq -y
       - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text') && yarn cypress run --spec $SPECS
       - uses: actions/upload-artifact@v3
         with:
