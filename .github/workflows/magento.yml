@@ -73,6 +73,8 @@ jobs:
         with:
           node-version: 16
       - uses: c-hive/gha-yarn-cache@v2
+      - run: echo ${{ needs.setup.outputs['test-chunk-ids'] }}
+      - run: echo ${{ needs.setup.outputs['test-chunks'] }}
       - run: echo DOING TESTS IN CURRENT CHUNK + "$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text')"
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
