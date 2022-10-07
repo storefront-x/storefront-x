@@ -48,7 +48,7 @@ jobs:
         - run: yarn build --config storefront-x.magento.config.js --onlyBootstrap
         - id: set-test-chunks
           name: Set Chunks
-          # get all spec files from the integration directory, group them to be at most 15 at a time and transform them to json
+          # get all spec files from the integration directory, group them to be at most 3 at a time and transform them to json
           run: echo "::set-output name=test-chunks::$(find cypress/integration -type f -name "*.js" | xargs -n3 | tr ' ' ',' | jq -R . | jq -s -cM .)"
         - id: set-test-chunk-ids
           name: Set Chunk IDs
@@ -76,7 +76,6 @@ jobs:
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
-      - run: yarn cypress run
       - run: SPECS=$(echo $CHUNKS | jq -cMr '.[${{ matrix.chunk }}] | @text') && yarn cypress run --spec $SPECS
       - uses: actions/upload-artifact@v3
         with:
