@@ -21,7 +21,6 @@ import Button from '#ioc/atoms/Button'
 import FormInput from '#ioc/molecules/FormInput'
 import useI18n from '#ioc/composables/useI18n'
 import FormCheckbox from '#ioc/molecules/FormCheckbox'
-import Input from '#ioc/atoms/Input'
 import SfxForm from '#ioc/components/SfxForm'
 
 const { t } = useI18n()
