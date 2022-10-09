@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Label v-if="label" class="mb-1" :for="prefixedName" :required="isRequired">{{ label }}</Label>
+    <Label v-if="label" class="mb-1 text-left" :for="prefixedName" :required="isRequired">{{ label }}</Label>
 
     <Input
       :id="prefixedName"

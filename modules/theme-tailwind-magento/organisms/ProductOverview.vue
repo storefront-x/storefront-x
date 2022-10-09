@@ -69,6 +69,7 @@
       <div class="flex">
         <AddToWishlist :title="t('Add')" />
         <FacebookShare />
+        <PriceAlerts />
       </div>
       <div class="w-full flex mt-4 text-gray-400">
         <p class="mr-1">{{ t('Warranty: 24 months') }} |</p>
@@ -89,10 +90,11 @@ import StockIndicator from '#ioc/atoms/StockIndicator'
 import FacebookShare from '#ioc/atoms/FacebookShare'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import injectProduct from '#ioc/composables/injectProduct'
-import { computed, defineAsyncComponent, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
+import PriceAlerts from '#ioc/organisms/PriceAlerts'
+import { computed, defineAsyncComponent, ref } from 'vue'
 
 const ProductBundleOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductBundleOptions'))
 const ProductConfigurableOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductConfigurableOptions'))
