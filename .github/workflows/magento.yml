@@ -69,10 +69,10 @@ jobs:
     name: Cypress (chunk ${{ matrix.chunk }})
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - uses: c-hive/gha-yarn-cache@v2
+          cache: 'yarn'
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
