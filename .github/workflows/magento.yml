@@ -64,7 +64,6 @@ jobs:
       - setup
     strategy:
       matrix:
-        # will be for eg chunk: [0,1]
         chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
     name: Cypress (chunk ${{ matrix.chunk }})
     steps:
