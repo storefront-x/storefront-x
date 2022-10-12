@@ -11,10 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Lint
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'yarn'
       - run: yarn install
       - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
       - run: yarn lint:prod
@@ -23,10 +24,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Unit
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'yarn'
       - run: yarn install
       - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
       - run: yarn test:unit
@@ -35,10 +37,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Cypress
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'yarn'
       - run: yarn install
       - run: yarn build --config storefront-x.shopware.config.js
       - run: yarn serve &

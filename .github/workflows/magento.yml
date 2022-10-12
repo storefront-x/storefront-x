@@ -11,10 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Lint
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'yarn'
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js --onlyBootstrap
       - run: yarn lint:prod
@@ -23,19 +24,20 @@ jobs:
     runs-on: ubuntu-latest
     name: Unit
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'yarn'
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js --onlyBootstrap
       - run: yarn test:unit
 
-  setup:
-      uses: ./.github/workflows/setupCypress.yml
-      with:
-        number-of-tests-per-run: 4
-        target-directory: cypress/integration
+  setup-cypress:
+    uses: ./.github/workflows/setup-cypress.yml
+    with:
+      number-of-tests-per-run: 4
+      target-directory: cypress/integration
 
   cypress:
     runs-on: ubuntu-latest
@@ -46,7 +48,7 @@ jobs:
         chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
     name: Cypress (chunk ${{ matrix.chunk }})
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
