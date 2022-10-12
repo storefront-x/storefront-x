@@ -2,6 +2,10 @@ name: Setup Cypress
 
 on:
   workflow_call:
+    inputs:
+      number-of-tests-per-run:
+        default: 3
+        type: number
     outputs:
         test-chunks:
           description: "will contain a json string with an array of n elements, each being a string of spec files delimited by ,"
@@ -28,9 +32,7 @@ jobs:
         - id: set-test-chunks
           name: Set Chunks
           # get all spec files from the integration directory, group them to be at most 3 (xargs -n3) at a time and transform them to json
-          run: echo "::set-output name=test-chunks::$(find cypress/integration -type f -name "*.js" | xargs -n$NUMBEROFFILES | tr ' ' ',' | jq -R . | jq -s -cM .)"
-          env:
-            NUMBEROFFILES: 3
+          run: echo "::set-output name=test-chunks::$(find cypress/integration -type f -name "*.js" | xargs -n${{inputs.number-of-tests-per-run}} | tr ' ' ',' | jq -R . | jq -s -cM .)"
         - id: set-test-chunk-ids
           name: Set Chunk IDs
           # get the number of elements from the above array as an array of indexes

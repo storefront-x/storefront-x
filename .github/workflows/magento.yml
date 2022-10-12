@@ -33,6 +33,8 @@ jobs:
 
   setup:
       uses: ./.github/workflows/setupCypress.yml
+      with:
+        number-of-tests-per-run: 2
 
   cypress:
     runs-on: ubuntu-latest
