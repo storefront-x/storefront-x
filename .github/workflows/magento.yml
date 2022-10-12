@@ -34,7 +34,8 @@ jobs:
   setup:
       uses: ./.github/workflows/setupCypress.yml
       with:
-        number-of-tests-per-run: 2
+        number-of-tests-per-run: 4
+        target-directory: cypress/integration
 
   cypress:
     runs-on: ubuntu-latest

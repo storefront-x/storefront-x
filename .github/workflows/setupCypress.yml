@@ -6,6 +6,9 @@ on:
       number-of-tests-per-run:
         default: 3
         type: number
+      target-directory:
+        default: cypress/integration
+        type: string
     outputs:
         test-chunks:
           description: "will contain a json string with an array of n elements, each being a string of spec files delimited by ,"
@@ -31,8 +34,8 @@ jobs:
         - run: yarn build --config storefront-x.magento.config.js --onlyBootstrap
         - id: set-test-chunks
           name: Set Chunks
-          # get all spec files from the integration directory, group them to be at most 3 (xargs -n3) at a time and transform them to json
-          run: echo "::set-output name=test-chunks::$(find cypress/integration -type f -name "*.js" | xargs -n${{inputs.number-of-tests-per-run}} | tr ' ' ',' | jq -R . | jq -s -cM .)"
+          # get all spec files from the target-directory directory, group them to be at most number-of-tests-per-run (xargs -n...) at a time and transform them to json
+          run: echo "::set-output name=test-chunks::$(find ${{inputs.target-directory}} -type f -name "*.js" | xargs -n${{inputs.number-of-tests-per-run}} | tr ' ' ',' | jq -R . | jq -s -cM .)"
         - id: set-test-chunk-ids
           name: Set Chunk IDs
           # get the number of elements from the above array as an array of indexes
