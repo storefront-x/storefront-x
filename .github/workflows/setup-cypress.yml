@@ -18,7 +18,7 @@ on:
         value: ${{ jobs.setup.outputs['setup-test-chunk-ids'] }}
 
 jobs:
-  setup_cypress:
+  setup-cypress:
     runs-on: ubuntu-latest
     name: Setup Cypress
     outputs:
