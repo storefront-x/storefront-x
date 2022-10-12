@@ -33,8 +33,8 @@ jobs:
       - run: yarn build --config storefront-x.magento.config.js --onlyBootstrap
       - run: yarn test:unit
 
-  setup-cypress:
-    uses: ./.github/workflows/setup-cypress.yml
+  setup_cypress:
+    uses: ./.github/workflows/setup_cypress.yml
     with:
       number-of-tests-per-run: 4
       target-directory: cypress/integration
@@ -42,10 +42,10 @@ jobs:
   cypress:
     runs-on: ubuntu-latest
     needs:
-      - setup-cypress
+      - setup_cypress
     strategy:
       matrix:
-        chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
+        chunk: ${{fromJSON(needs.setup_cypress.outputs['test-chunk-ids'])}}
     name: Cypress (chunk ${{ matrix.chunk }})
     steps:
       - uses: actions/checkout@v3
@@ -56,7 +56,7 @@ jobs:
       - run: yarn install
       - run: yarn build --config storefront-x.magento.config.js
       - run: yarn serve &
-      - run: yarn cypress run --spec $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
+      - run: yarn cypress run --spec $(echo '${{ needs.setup_cypress.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
       - uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
