@@ -29,7 +29,6 @@ jobs:
           node-version: 16
           cache: 'yarn'
         name: Build app
-      - run: yarn --prefer-offline
       - run: yarn install
       - run: yarn build --config ${{inputs.storefront-x-config}} --onlyBootstrap
       - id: set-test-chunks
@@ -54,7 +53,6 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
-      - run: yarn --prefer-offline
       - run: yarn install
       - run: yarn build --config ${{inputs.storefront-x-config}}
       - run: yarn serve &
