@@ -18,13 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Setup Cypress
     outputs:
-      setup-test-chunks: 
-        description: 'json string with ids to use in the next job matrix depending on how many elements are in the above array, eg: [0,1]'
-        value: ${{ steps['set-test-chunks'].outputs['test-chunks'] }}
-      
-      setup-test-chunk-ids: 
-        description: 'json string with ids to use in the next job matrix depending on how many elements are in the above array, eg: [0,1]'
-        value: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
+      # will contain a json string with an array of n elements, each being a string of spec files delimited by ,
+      setup-test-chunks: ${{ steps['set-test-chunks'].outputs['test-chunks'] }}
+      # json string with ids to use in the next job matrix depending on how many elements are in the above array, eg: [0,1]
+      setup-test-chunk-ids: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
