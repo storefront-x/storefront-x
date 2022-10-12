@@ -16,7 +16,7 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    name: Setup Cypress
+    name: setup
     outputs:
       # will contain a json string with an array of n elements, each being a string of spec files delimited by ,
       test-chunks: ${{ steps['set-test-chunks'].outputs['test-chunks'] }}

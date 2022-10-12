@@ -34,19 +34,8 @@ jobs:
       - run: yarn test:unit
 
   cypress:
-    runs-on: ubuntu-latest
-    name: Cypress
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'yarn'
-      - run: yarn install
-      - run: yarn build --config storefront-x.venia.config.js
-      - run: yarn serve &
-      - run: yarn cypress run
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cypress-videos
-          path: cypress/videos
+    uses: ./.github/workflows/cypress.yml
+    with:
+      storefront-x-config: storefront-x.venia.config.js
+      number-of-tests-per-run: 3
+      target-directory: cypress/integration
