@@ -19,9 +19,9 @@ jobs:
     name: Setup Cypress
     outputs:
       # will contain a json string with an array of n elements, each being a string of spec files delimited by ,
-      setup-test-chunks: ${{ steps['set-test-chunks'].outputs['test-chunks'] }}
+      test-chunks: ${{ steps['set-test-chunks'].outputs['test-chunks'] }}
       # json string with ids to use in the next job matrix depending on how many elements are in the above array, eg: [0,1]
-      setup-test-chunk-ids: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
+      test-chunk-ids: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
