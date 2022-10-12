@@ -8,30 +8,14 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-    name: Lint
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'yarn'
-      - run: yarn install
-      - run: yarn build --config storefront-x.venia.config.js --onlyBootstrap
-      - run: yarn lint:prod
+    uses: ./.github/workflows/lint.yml
+      with:
+        storefront-x-config: storefront-x.venia.config.js
 
   unit:
-    runs-on: ubuntu-latest
-    name: Unit
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'yarn'
-      - run: yarn install
-      - run: yarn build --config storefront-x.venia.config.js --onlyBootstrap
-      - run: yarn test:unit
+    uses: ./.github/workflows/unit.yml
+      with:
+        storefront-x-config: storefront-x.venia.config.js
 
   cypress:
     uses: ./.github/workflows/cypress.yml
