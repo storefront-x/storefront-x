@@ -27,6 +27,7 @@ export default {
     '@storefront-x/wishlist',
     '@storefront-x/catalog-labels',
     '@storefront-x/robots',
+    '@storefront-x/cookie-script',
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',

@@ -91,6 +91,7 @@ export default defineConfig({
           { text: 'CMS Shopware', link: '/modules/cms-shopware' },
           { text: 'Wishlist', link: '/modules/wishlist' },
           { text: 'Theme Tailwind', link: '/modules/theme-tailwind' },
+          { text: 'cookie-script', link: '/modules/cookie-script' },
         ],
       },
     ],
