@@ -28,6 +28,7 @@ export default {
     '@storefront-x/catalog-labels',
     '@storefront-x/robots',
     '@storefront-x/cookie-script',
+    '@storefront-x/google-tag-manager',
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',

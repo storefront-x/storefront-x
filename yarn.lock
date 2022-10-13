@@ -3318,6 +3318,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/google-tag-manager@workspace:modules/google-tag-manager":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-tag-manager@workspace:modules/google-tag-manager"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/graphql@workspace:modules/graphql":
   version: 0.0.0-use.local
   resolution: "@storefront-x/graphql@workspace:modules/graphql"

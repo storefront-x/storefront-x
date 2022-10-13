@@ -92,6 +92,7 @@ export default defineConfig({
           { text: 'Wishlist', link: '/modules/wishlist' },
           { text: 'Theme Tailwind', link: '/modules/theme-tailwind' },
           { text: 'cookie-script', link: '/modules/cookie-script' },
+          { text: 'Google Tag Manager', link: '/modules/google-tag-manager' },
         ],
       },
     ],
