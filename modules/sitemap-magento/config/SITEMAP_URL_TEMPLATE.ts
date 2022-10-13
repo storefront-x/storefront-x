@@ -1,1 +1,1 @@
-export default process.env.SITEMAP_URL_TEMPLATE || '/media/sitemap/<%=storeCode%>.xml'
+export default '/media/sitemap/<%=storeCode%>.xml'

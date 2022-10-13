@@ -1,12 +1,6 @@
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 
 export default class SitemapRenderer {
-  withDifferentDomains(differentDomains) {
-    this._differentDomains = differentDomains
-
-    return this
-  }
-
   withStore(store) {
     this._store = store
 
@@ -55,7 +49,6 @@ export default class SitemapRenderer {
   }
 
   _getUrlPrefix() {
-    if (this._differentDomains) return ''
     if (this._store.name === VUE_I18N_LOCALES[0].name) return ''
     return `/${this._store.name}`
   }

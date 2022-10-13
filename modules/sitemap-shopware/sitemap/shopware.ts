@@ -1,6 +1,5 @@
 import SHOPWARE_URL from '#ioc/config/SHOPWARE_URL'
 import SHOPWARE_API_PREFIX from '#ioc/config/SHOPWARE_API_PREFIX'
-import IS_SERVER from '#ioc/config/IS_SERVER'
 import SHOPWARE_ACCESS_KEY from '#ioc/config/SHOPWARE_ACCESS_KEY'
 import pkgGzip from 'node-gzip'
 const { ungzip } = pkgGzip
@@ -21,7 +20,7 @@ export default async (store?: any) => {
 const fetchSitemap = async () => {
   const sitemapResponse = await fetch(SHOPWARE_URL + SHOPWARE_API_PREFIX + '/sitemap', {
     headers: {
-      ...(IS_SERVER && { 'sw-access-key': SHOPWARE_ACCESS_KEY }),
+      'sw-access-key': SHOPWARE_ACCESS_KEY,
     },
   })
 
