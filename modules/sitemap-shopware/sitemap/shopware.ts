@@ -2,7 +2,8 @@ import SHOPWARE_URL from '#ioc/config/SHOPWARE_URL'
 import SHOPWARE_API_PREFIX from '#ioc/config/SHOPWARE_API_PREFIX'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import SHOPWARE_ACCESS_KEY from '#ioc/config/SHOPWARE_ACCESS_KEY'
-import { ungzip } from 'node-gzip'
+import pkgGzip from 'node-gzip'
+const { ungzip } = pkgGzip
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async (store?: any) => {
