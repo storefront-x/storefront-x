@@ -1,0 +1,22 @@
+name: Test Unit
+
+on:
+  workflow_call:
+    inputs:
+      storefront-x-config:
+        required: true
+        type: string
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    name: Unit
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install
+      - run: yarn build --config ${{inputs.storefront-x-config}} --onlyBootstrap
+      - run: yarn test:unit
