@@ -8,42 +8,18 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-    name: Lint
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      - run: yarn install
-      - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
-      - run: yarn lint:prod
+    uses: ./.github/workflows/lint.yml
+    with:
+      storefront-x-config: storefront-x.shopware.config.js
 
   unit:
-    runs-on: ubuntu-latest
-    name: Unit
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      - run: yarn install
-      - run: yarn build --config storefront-x.shopware.config.js --onlyBootstrap
-      - run: yarn test:unit
+    uses: ./.github/workflows/unit.yml
+    with:
+      storefront-x-config: storefront-x.shopware.config.js
 
   cypress:
-    runs-on: ubuntu-latest
-    name: Cypress
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      - run: yarn install
-      - run: yarn build --config storefront-x.shopware.config.js
-      - run: yarn serve &
-      - run: yarn cypress run
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cypress-videos
-          path: cypress/videos
+    uses: ./.github/workflows/cypress.yml
+    with:
+      storefront-x-config: storefront-x.shopware.config.js
+      number-of-tests-per-run: 3
+      target-directory: cypress/integration
