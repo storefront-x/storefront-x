@@ -36,7 +36,7 @@ describe('Category', () => {
     listing.filter()
   })
 
-  it.only('allows adding simple products from category detail', () => {
+  it('allows adding simple products from category detail', () => {
     listing.getFirstAddToCart({ product: 'simple' }).click().waitForSfx()
     base.continueShopping()
 
