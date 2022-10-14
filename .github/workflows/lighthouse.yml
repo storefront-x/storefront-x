@@ -6,6 +6,12 @@ on:
       storefront-x-config:
         required: true
         type: string
+      homepage:
+        required: true
+        type: string
+      product-detail-page:
+        required: true
+        type: string
 
 jobs:
   lighthouse:
@@ -15,14 +21,14 @@ jobs:
       - name: Homepage page
         uses: jakepartusch/psi-action@v1.2
         with:
-          url: "https://magento.storefrontx.io/"
+          url: ${{inputs.homepage}}
           threshold: 85
           strategy: mobile
           key: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       - name: Product detail page
         uses: jakepartusch/psi-action@v1.2
         with:
-          url: "https://magento.storefrontx.io/dnp-ds820-professional-photo-printer.html"
+          url: ${{inputs.product-detail-page}}
           threshold: 85
           strategy: mobile
           key: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

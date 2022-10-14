@@ -28,4 +28,7 @@ jobs:
     uses: ./.github/workflows/lighthouse.yml
     with:
       storefront-x-config: storefront-x.shopware.config.js
+      homepage: https://shopware.storefrontx.io/
+      product-detail-page: https://shopware.storefrontx.io/3m-7000014557-display-privacy-filters-frameless-display-privacy-filter-43.2-cm-17/VNX7095
+
 
