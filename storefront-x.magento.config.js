@@ -27,6 +27,7 @@ export default {
     '@storefront-x/wishlist',
     '@storefront-x/catalog-labels',
     '@storefront-x/robots',
+    '@storefront-x/sitemap',
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',
@@ -44,6 +45,7 @@ export default {
     '@storefront-x/wishlist-magento',
     '@storefront-x/catalog-labels-magento',
     '@storefront-x/robots-magento',
+    '@storefront-x/sitemap-magento',
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',

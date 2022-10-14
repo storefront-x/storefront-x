@@ -1,0 +1,15 @@
+{
+  "name": "@storefront-x/sitemap-shopware",
+  "version": "0.2.8",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "node-gzip": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/node-gzip": "^1.1.0"
+  }
+}
