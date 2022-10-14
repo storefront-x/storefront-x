@@ -12,10 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     name: Lighthouse
     steps:
-      - name: Running Page Speed Insights
+      - name: Homepage page
         uses: jakepartusch/psi-action@v1.2
         with:
           url: "https://magento.storefrontx.io/"
-          threshold: 80
+          threshold: 85
           strategy: mobile
           key: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      - name: Product detail page
+        uses: jakepartusch/psi-action@v1.2
+        with:
+          url: "https://magento.storefrontx.io/dnp-ds820-professional-photo-printer.html"
+          threshold: 85
+          strategy: mobile
+          key: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
