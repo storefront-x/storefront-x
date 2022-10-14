@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-      <Button class="w-full" @click="emit('close')">
+      <Button class="w-full" data-cy="continue-shopping" @click="emit('close')">
         {{ t('Continue shopping') }}
       </Button>
       <Button :to="localePath('checkout')" color="primary" class="mt-3 sm:mt-0" data-cy="continue-to-checkout">
