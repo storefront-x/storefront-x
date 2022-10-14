@@ -1,1 +1,2 @@
-export default 'YOUR COOKIE-SCRIPT ID'
+export default null
+throw new Error('Override COOKIE_SCRIPT_ID')
