@@ -81,9 +81,9 @@ test('title changes between pages', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(page.locator('title')).toContainText('Homepage')
+      await expect(await page.locator('title').innerText()).toBe('Homepage')
       await page.locator('a').click()
-      await expect(page.locator('title')).toContainText('Test')
+      await expect(await page.locator('title').innerText()).toBe('Test')
     },
   )
 })

@@ -1,8 +1,8 @@
 import type { App } from 'vue'
-import { devalue } from 'devalue'
+import { uneval } from 'devalue'
 
 export const after = async (app: App, ctx: any) => {
-  const rendered = devalue(ctx.$state ?? {})
+  const rendered = uneval(ctx.$state ?? {})
 
   ctx.out.state = (html: string) => html.replace('</body>', `<script>window.$state=${rendered}</script></body>`)
 }
