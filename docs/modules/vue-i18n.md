@@ -63,6 +63,158 @@ const { t } = useI18n()
 Try to avoid using global messages and instead use `<i18n>` blocks in Vue components.
 :::
 
+## `i18n/datetimes/` concept
+
+The `i18n/datetimes` concept allows us to add global datetime formats. It contains files with names corresponding to the desired locale (`locale` field in `VUE_I18N_LOCALES`). These files default export object with formats.
+
+This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means that multiple `i18n/datetimes/en-US.ts` files are merged together, instead of overridden. If you have same keys inside objects, later module key is used.
+
+:::warning
+If you create new datetimes file with new language you must have default key inside exported object. There is a fallback on default key if you dont specify datetime format like "short" etc
+:::
+
+### Example
+
+```ts
+// config/VUE_I18N_LOCALES.ts
+
+export default [
+  {
+    name: 'en',
+    locale: 'en-US',
+    prefix: '/',
+  },
+  {
+    name: 'cz',
+    locale: 'cs-CZ',
+    prefix: '/cz',
+  },
+]
+```
+
+```ts
+// i18n/datetimes/en-US.ts
+
+export default {
+  default: {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  },
+  short: {
+    month: 'short',
+    day: 'numeric',
+  },
+}
+```
+
+```ts
+// i18n/datetimes/cs-CZ.ts
+
+export default {
+  default: {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  },
+  short: {
+    month: 'short',
+    day: 'numeric',
+  },
+}
+```
+
+```vue
+<template>
+  <h1>{{ d(new Date(), 'short') }}</h1>
+</template>
+
+<script setup lang="ts">
+import useI18n from '#ioc/composables/useI18n'
+
+const { d } = useI18n()
+</script>
+```
+
+## `i18n/numbers/` concept
+
+The `i18n/numbers` concept allows us to add global number formats. It contains files with names corresponding to the desired locale (`locale` field in `VUE_I18N_LOCALES`). These files default export object with formats.
+
+This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means that multiple `i18n/numbers/en-US.ts` files are merged together, instead of overridden. If you have same keys inside objects, later module key is used.
+
+### Example
+
+```ts
+// config/VUE_I18N_LOCALES.ts
+
+export default [
+  {
+    name: 'en',
+    locale: 'en-US',
+    prefix: '/',
+  },
+  {
+    name: 'cz',
+    locale: 'cs-CZ',
+    prefix: '/cz',
+  },
+]
+```
+
+```ts
+// i18n/numbers/en-US.ts
+
+export default {
+  currency: {
+    style: 'currency',
+    currency: 'USD',
+    notation: 'standard',
+  },
+  decimal: {
+    style: 'decimal',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  },
+  percent: {
+    style: 'percent',
+    useGrouping: false,
+  },
+}
+```
+
+```ts
+// i18n/numbers/cs-CZ.ts
+
+export default {
+  currency: {
+    style: 'currency',
+    currency: 'CZK',
+    notation: 'standard',
+  },
+  decimal: {
+    style: 'decimal',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  },
+  percent: {
+    style: 'percent',
+    useGrouping: false,
+  },
+}
+```
+
+```vue
+<template>
+  <h1>{{ n(3500, 'currency') }}</h1>
+</template>
+
+<script setup lang="ts">
+import useI18n from '#ioc/composables/useI18n'
+
+const { n } = useI18n()
+</script>
+```
+
 ## `useI18n` composable
 
 Wrapper around the `useI18n` composable.

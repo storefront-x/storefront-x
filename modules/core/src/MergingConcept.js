@@ -99,16 +99,16 @@ import <%= item.importName %> from '<%= item.path %>'
 <%_ } _%>
 <%_ } _%>
 
-const i18n: Record<string, any> = {}
+const obj: Record<string, any> = {}
 
 <%_ for (const [ident, group] of Object.entries(records)) { _%>
-i18n['<%= ident %>'] = {}
+obj['<%= ident %>'] = {}
 <%_ for (const item of group) { _%>
-Object.assign(i18n['<%= ident %>'], <%= item.importName %>)
+Object.assign(obj['<%= ident %>'], <%= item.importName %>)
 <%_ } _%>
 
 <%_ } _%>
-export default i18n
+export default obj
 `
   }
 
