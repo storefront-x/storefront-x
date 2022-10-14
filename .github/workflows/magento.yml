@@ -36,4 +36,6 @@ jobs:
     uses: ./.github/workflows/lighthouse.yml
     with:
       storefront-x-config: storefront-x.magento.config.js
+      homepage: https://magento.storefrontx.io/
+      product-detail-page: https://magento.storefrontx.io/dnp-ds820-professional-photo-printer.html
 
