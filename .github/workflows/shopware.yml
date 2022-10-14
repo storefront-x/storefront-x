@@ -23,3 +23,9 @@ jobs:
       storefront-x-config: storefront-x.shopware.config.js
       number-of-tests-per-run: 3
       target-directory: cypress/integration
+
+  lighthouse:
+    uses: ./.github/workflows/lighthouse.yml
+    with:
+      storefront-x-config: storefront-x.shopware.config.js
+
