@@ -1,0 +1,28 @@
+name: Performance audit
+
+on:
+  workflow_call:
+    inputs:
+      storefront-x-config:
+        required: true
+        type: string
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    name: Lighthouse
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+        run: |
+          npm install -g @lhci/cli@0.3.x
+          lhci autorun --upload.target=temporary-public-storage
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      - name: Running Page Speed Insights
+        uses: jakepartusch/psi-action@v1.2
+        with:
+          treshold: 70
+          url: https://magento.storefrontx.io
