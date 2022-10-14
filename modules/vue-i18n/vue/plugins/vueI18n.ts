@@ -9,6 +9,8 @@ import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import i18nMessages from '~/.sfx/i18n/messages'
+import i18nNumbers from '~/.sfx/i18n/numbers'
+import i18nDatetimes from '~/.sfx/i18n/datetimes'
 
 export default async (app: App, ctx: any) => {
   const locale = getLocale(ctx)
@@ -22,6 +24,8 @@ export default async (app: App, ctx: any) => {
     fallbackFormat: VUE_I18N_FALLBACK_FORMAT,
     missingWarn: VUE_I18N_MISSING_WARN,
     fallbackWarn: VUE_I18N_FALLBACK_WARN,
+    numberFormats: i18nNumbers,
+    datetimeFormats: i18nDatetimes,
   })
 
   ctx.$i18n = i18n
