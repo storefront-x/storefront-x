@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/google-tag-manager",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}

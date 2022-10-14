@@ -3222,6 +3222,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/cookie-script@workspace:modules/cookie-script":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/cookie-script@workspace:modules/cookie-script"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/core@*, @storefront-x/core@workspace:modules/core":
   version: 0.0.0-use.local
   resolution: "@storefront-x/core@workspace:modules/core"
@@ -3309,6 +3315,12 @@ __metadata:
 "@storefront-x/free-shipping@workspace:modules/free-shipping":
   version: 0.0.0-use.local
   resolution: "@storefront-x/free-shipping@workspace:modules/free-shipping"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/google-tag-manager@workspace:modules/google-tag-manager":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-tag-manager@workspace:modules/google-tag-manager"
   languageName: unknown
   linkType: soft
 
