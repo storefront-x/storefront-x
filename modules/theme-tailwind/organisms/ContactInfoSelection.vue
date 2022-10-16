@@ -2,9 +2,9 @@
   <div class="mt-10 border-t border-gray-200 pt-10">
     <h2 class="text-lg font-medium text-gray-900">{{ t('Contact information') }}</h2>
     <div v-if="isOpen">
-      <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+      <div v-if="customerAddresses?.addresses" class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
         <CheckoutCustomerAddress
-          v-for="customerAddress in customerAddresses"
+          v-for="customerAddress in customerAddresses?.addresses"
           :key="customerAddress.id"
           :customer-address="customerAddress"
           :is-active="selectedAddress && customerAddress.id === selectedAddress.id"
@@ -65,25 +65,12 @@
       </div>
     </Form>
 
-    <CheckoutLoginModal
-      v-if="showLogin"
-      :email="contactEmail"
-      @close="
-        () => {
-          showLogin = false
-          offerLogin = false
-        }
-      "
-    />
+    <CheckoutLoginModal v-if="showLogin" :email="contactEmail" @submit="afterLoginSubmit" @close="closeLoginModal" />
     <CheckoutRegisterModal
       v-if="showRegistration"
       :email="contactEmail"
-      @close="
-        () => {
-          showRegistration = false
-          offerRegistration = false
-        }
-      "
+      @submit="afterRegisterSubmit"
+      @close="closeCheckinModal"
     />
   </div>
 </template>
@@ -101,8 +88,9 @@ import CheckoutLoginModal from '#ioc/organisms/CheckoutLoginModal'
 import CheckoutRegisterModal from '#ioc/organisms/CheckoutRegisterModal'
 import CheckoutCustomerAddress from '#ioc/molecules/CheckoutCustomerAddress'
 import useGetCustomerAddresses from '#ioc/services/useGetCustomerAddresses'
+import useAsyncData from '#ioc/composables/useAsyncData'
 import debounce from '#ioc/utils/debounce'
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   isOpen: Boolean,
@@ -122,7 +110,8 @@ const showLogin = ref(false)
 const showRegistration = ref(false)
 const contactEmail = ref()
 const selectedAddress = ref(null)
-const customerAddresses = ref()
+
+const { data: customerAddresses } = useAsyncData('customerAddress', () => getCustomerAddresses())
 
 const onSelectCustomerAddress = (customerAddress: any) => {
   const shippingAddress = {
@@ -135,6 +124,24 @@ const onSelectCustomerAddress = (customerAddress: any) => {
 
 const onCustomAddress = () => {
   selectedAddress.value = null
+}
+
+const afterLoginSubmit = () => {
+  offerLogin.value = false
+  showLogin.value = false
+}
+
+const afterRegisterSubmit = () => {
+  offerRegistration.value = false
+  showRegistration.value = false
+}
+
+const closeLoginModal = () => {
+  showLogin.value = false
+}
+
+const closeCheckinModal = () => {
+  showRegistration.value = false
 }
 
 const checkEmail = async (email: string) => {
@@ -158,31 +165,30 @@ const checkEmail = async (email: string) => {
 const form = ref<any>(null)
 
 const onInput = debounce(async (data: any) => {
-  if (!form.value?.isValid && !selectedAddress.value) return emit('select')
-  const address = selectedAddress.value ? selectedAddress.value : data
+  try {
+    if (!form.value?.isValid && !selectedAddress.value) return emit('select')
+    const address = selectedAddress.value ? selectedAddress.value : data
 
-  contactEmail.value = form.value?.getData()?.email ?? {}
+    contactEmail.value = data?.email ?? {}
 
-  await checkEmail(contactEmail.value)
+    await checkEmail(contactEmail.value)
 
-  checkout.setContactInformation({
-    city: 'DUMMYDATA',
-    street: 'DUMMYDATA',
-    postcode: 'DUMMYDATA',
-    countryCode: 'CZ',
-    ...address,
-  })
+    checkout.setContactInformation({
+      city: 'DUMMYDATA',
+      street: 'DUMMYDATA',
+      postcode: 'DUMMYDATA',
+      countryCode: 'CZ',
+      ...address,
+    })
 
-  emit('confirm')
+    emit('confirm')
+  } catch (error) {
+    console.warn(error)
+  }
 }, 500)
 
-onMounted(async () => {
-  const { addresses } = await getCustomerAddresses()
-  customerAddresses.value = addresses
-})
-
 watch(customerAddresses, () => {
-  for (const customerAddress of customerAddresses.value) {
+  for (const customerAddress of customerAddresses.value.addresses) {
     if (customerAddress.defaultShipping) onSelectCustomerAddress(customerAddress)
   }
 })

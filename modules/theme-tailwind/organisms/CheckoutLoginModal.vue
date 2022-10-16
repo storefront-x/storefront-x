@@ -16,19 +16,15 @@ import SfxForm from '#ioc/components/SfxForm'
 import Modal from '#ioc/atoms/Modal'
 import Button from '#ioc/atoms/Button'
 import FormInput from '#ioc/molecules/FormInput'
-import useLoginCustomer from '#ioc/services/useLoginCustomer'
-import useCustomerStore from '#ioc/stores/useCustomerStore'
-import useGetCustomer from '#ioc/services/useGetCustomer'
+import useLoginCustomerInCheckout from '#ioc/services/useLoginCustomerInCheckout'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import { ref } from 'vue'
 
 const showErrorNotification = useShowErrorNotification()
-const loginCustomer = useLoginCustomer()
-const customerStore = useCustomerStore()
-const getCustomer = useGetCustomer()
+const loginCustomerInCheckout = useLoginCustomerInCheckout()
 const { t } = useI18n()
 const isLoading = ref(false)
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'submit'])
 
 const props = defineProps({
   email: {
@@ -40,10 +36,8 @@ const props = defineProps({
 const onSubmit = async ({ password }: { password: string }) => {
   try {
     isLoading.value = true
-    await loginCustomer(props.email, password, { redirect: false })
-    const { customer } = await getCustomer()
-    customerStore.$patch({ customer })
-    emit('close')
+    await loginCustomerInCheckout(props.email, password)
+    emit('submit')
   } catch (e: any) {
     isLoading.value = false
 

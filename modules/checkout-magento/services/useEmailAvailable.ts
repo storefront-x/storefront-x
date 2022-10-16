@@ -1,4 +1,4 @@
-import useGetIsEmailAvailable from '#ioc/repositories/useGetIsEmailAvailable'
+import useGetIsEmailAvailable from '#ioc/repositories/useGetIsEmailAvailableRepository'
 
 export default () => {
   const isEmailAvailable = useGetIsEmailAvailable()

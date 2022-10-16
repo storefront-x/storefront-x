@@ -36,27 +36,22 @@ import SfxForm from '#ioc/components/SfxForm'
 import Modal from '#ioc/atoms/Modal'
 import Button from '#ioc/atoms/Button'
 import FormInput from '#ioc/molecules/FormInput'
-import useLoginCustomer from '#ioc/services/useLoginCustomer'
-import useCustomerStore from '#ioc/stores/useCustomerStore'
-import useGetCustomer from '#ioc/services/useGetCustomer'
 import useConfirmContactInformation from '#ioc/services/useConfirmContactInformation'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreements'
-
-import useRegisterCustomer from '#ioc/services/useRegisterCustomer'
+import useRegisterCustomerInCheckout from '#ioc/services/useRegisterCustomerInCheckout'
+import useLoginCustomerInCheckout from '#ioc/services/useLoginCustomerInCheckout'
 import { ref } from 'vue'
 
 const showErrorNotification = useShowErrorNotification()
 const confirmContactInformation = useConfirmContactInformation()
 const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
-const registerCustomer = useRegisterCustomer()
-const loginCustomer = useLoginCustomer()
-const customerStore = useCustomerStore()
-const getCustomer = useGetCustomer()
+const useRegisterCustomer = useRegisterCustomerInCheckout()
+const loginCustomerInCheckout = useLoginCustomerInCheckout()
 const { t } = useI18n()
 
 const loading = ref(false)
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'submit'])
 
 const props = defineProps({
   email: {
@@ -68,9 +63,7 @@ const props = defineProps({
 const onSubmit = async (data: any) => {
   try {
     loading.value = true
-    await registerCustomer(data, {
-      redirect: false,
-    })
+    await useRegisterCustomer(data)
     await confirmContactInformation({
       email: 'DUMMYDATA@DUMMYDATA.DUMMYDATA',
       telephone: 'DUMMYDATA',
@@ -82,9 +75,7 @@ const onSubmit = async (data: any) => {
       countryCode: 'CZ',
     })
     await refreshCheckoutAgreements()
-    await loginCustomer(data.email, data.password, { redirect: false })
-    const { customer } = await getCustomer()
-    customerStore.$patch({ customer })
+    await loginCustomerInCheckout(data.email, data.password)
     emit('close')
   } catch (e: any) {
     loading.value = false
