@@ -1,6 +1,7 @@
 import path from 'node:path'
 import * as vite from 'vite'
 import open from 'open'
+import cssnano from 'cssnano'
 import { visualizer } from 'rollup-plugin-visualizer'
 import Core from './Core.js'
 
@@ -59,6 +60,13 @@ export default class Build extends Core {
 
             console.warn(msg)
           },
+        },
+      },
+      css: {
+        postcss: {
+          plugins: [
+            cssnano(), // Vite does not minify inline CSS in the server build
+          ],
         },
       },
     })

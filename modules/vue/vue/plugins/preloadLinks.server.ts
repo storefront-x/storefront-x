@@ -5,7 +5,7 @@ export const after = async (app: App, ctx: any) => {
 
   const rendered = preloadLinks(ctx)
 
-  ctx.out.preloadLinks = (html: string) => html.replace('</head>', `${rendered}</head>`)
+  ctx.out.preloadLinks = (html: string) => html.replace('</head>', `${rendered}\n</head>`)
 }
 
 function preloadLinks(ctx: Record<string, any>): string {
