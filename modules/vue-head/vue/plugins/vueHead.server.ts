@@ -6,7 +6,7 @@ export const after = async (app: App, ctx: any) => {
 
   ctx.out.head = (html: string) =>
     html
-      .replace('</head>', `${rendered.headTags}</head>`)
+      .replace('</head>', `${rendered.headTags}\n</head>`)
       .replace('<html>', `<html${rendered.htmlAttrs}>`)
       .replace('<body>', `<body${rendered.bodyAttrs}>`)
 }
