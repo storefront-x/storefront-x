@@ -4,9 +4,6 @@ import { makeProject } from '@storefront-x/testing'
 test('global styles are injected into html', async ({ page }) => {
   await makeProject(
     {
-      files: {
-        '.env': 'SFX_GREET=Hello, Dotenv!',
-      },
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
