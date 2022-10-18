@@ -10,7 +10,7 @@ export default (eventName: string) => {
   const localListeners: Listener[] = []
 
   const emit = (payload: any) => {
-    for (const listener of listeners[eventName]) {
+    for (const listener of listeners[eventName] ?? []) {
       listener(payload)
     }
   }

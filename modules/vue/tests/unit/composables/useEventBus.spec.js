@@ -52,13 +52,14 @@ describe('composables/useEventBus', () => {
   })
 
   it('clears listeners after unmount', async () => {
+    let result = 1
     const Emitter = {
       template: `<button @click="globalEmit">Emit</button>`,
       setup() {
         const { emit } = useEventBus('test')
 
         function globalEmit() {
-          emit('foo')
+          emit(1)
         }
 
         return { globalEmit }
@@ -66,56 +67,40 @@ describe('composables/useEventBus', () => {
     }
 
     const Listener = {
-      template: `<div>{{ eventPayload ?? "bar" }}</div>`,
+      template: `<div></div>`,
       setup() {
         const { listen } = useEventBus('test')
 
-        const eventPayload = ref()
-
         listen((value) => {
-          eventPayload.value = value
+          result += value
         })
-
-        return { eventPayload }
       },
     }
 
     const Component = {
       template: `<Emitter/>
-        <Listener/>`,
+        <div v-if="isListener"><Listener/></div>`,
       components: {
         Emitter,
         Listener,
       },
+      data: () => ({
+        isListener: true,
+      }),
     }
 
     let wrapper = mount(Component)
 
-    expect(wrapper.html()).toContain('bar')
+    expect(result).toBe(1)
 
     await wrapper.get('button').trigger('click')
 
-    expect(wrapper.html()).toContain('foo')
+    expect(result).toBe(2)
 
-    wrapper.unmount()
+    await wrapper.setData({ isListener: false })
 
-    const NewListener = {
-      template: `<div>{{ eventPayload }}</div>`,
-      setup() {
-        const { listen } = useEventBus('test')
+    await wrapper.get('button').trigger('click')
 
-        const eventPayload = ref('bar')
-
-        listen((value) => {
-          eventPayload.value = value
-        })
-
-        return { eventPayload }
-      },
-    }
-
-    wrapper = mount(NewListener)
-
-    expect(wrapper.html()).toContain('bar')
+    expect(result).toBe(2)
   })
 })
