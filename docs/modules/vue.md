@@ -236,6 +236,40 @@ if (IS_SERVER) {
 </script>
 ```
 
+## `hydrateWhenIdle` utils/hydration
+
+A function to wrap dynamically imported components to lazy hydrate then when the browser is idle. More about lazy hydration [here](/general/lazy-components)
+
+### Example
+
+```vue
+<template>
+  <MyComponent />
+</template>
+
+<script setup>
+import hydrateWhenIdle from '#ioc/utils/hydration'
+const MyComponent = hydrateWhenIdle(() => import('#ioc/components/MyComponent'))
+</script>
+```
+
+## `hydrateWhenVisible` utils/hydration
+
+A function to wrap dynamically imported components to lazy hydrate then when the component is visible in the browser window. More about lazy hydration [here](/general/lazy-components)
+
+### Example
+
+```vue
+<template>
+  <MyComponent />
+</template>
+
+<script setup>
+import hydrateWhenVisible from '#ioc/utils/hydration'
+const MyComponent = hydrateWhenVisible(() => import('#ioc/components/MyComponent'))
+</script>
+```
+
 ## `useContext` composable
 
 :::warning

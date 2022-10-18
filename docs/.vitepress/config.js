@@ -63,6 +63,7 @@ export default defineConfig({
           { text: 'The .sfx directory', link: '/general/sfx' },
           { text: 'PWA', link: '/general/pwa' },
           { text: 'Dotenv', link: '/general/dotenv' },
+          { text: 'Lazy components', link: '/general/lazy-components' },
           { text: 'Functionalities', link: '/general/functionalities' },
           { text: 'Best practices', link: '/general/best-practices' },
           { text: 'FAQ', link: '/general/faq' },
