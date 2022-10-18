@@ -1,0 +1,9 @@
+version: '3.4'
+services:
+  app:
+    container_name: ${COMPOSE_PROJECT_NAME}
+    build:
+      context: ..
+    restart: ${RESTART_POLICY:-unless-stopped}
+    expose:
+      - 3000
