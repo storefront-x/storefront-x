@@ -2,7 +2,7 @@ name: Create and publish a Docker image
 
 on:
   push:
-    branches: ['sfx-75-mx-cloud']
+    branches: ['sfx-75-mx-cloud-2']
 
 env:
   REGISTRY: ghcr.io
