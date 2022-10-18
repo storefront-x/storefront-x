@@ -4,6 +4,7 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}
     build:
       context: ..
+      dockerfile: mxcloud/Dockerfile
     restart: ${RESTART_POLICY:-unless-stopped}
     expose:
       - 3000
