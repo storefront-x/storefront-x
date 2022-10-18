@@ -27,9 +27,15 @@ yargs(hideBin(process.argv))
           default: 'storefront-x.config.js',
           description: 'Path to the Storefront X configuration file',
         })
+        .option('require', {
+          alias: 'r',
+          type: 'string',
+          description: 'Module to be imported before all the other scripts.',
+        })
     },
     handler: async (argv) => {
       try {
+        logger.log('Atatus', argv.require)
         logger.log('Loading', argv.config)
 
         const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))
@@ -74,11 +80,15 @@ yargs(hideBin(process.argv))
           default: 'esbuild',
           description: 'Algorithm used for minification.',
         })
+        .option('require', {
+          alias: 'r',
+          type: 'string',
+          description: 'Module to be imported before all the other scripts.',
+        })
     },
     handler: async (argv) => {
       try {
         process.env.NODE_ENV = 'production'
-
         logger.log('Loading', argv.config)
 
         const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))

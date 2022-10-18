@@ -19,6 +19,7 @@
     "lint": "eslint --ext .js,.ts,.vue .",
     "lint:prod": "cross-env NODE_ENV=production eslint --ext .js,.ts,.vue .",
     "dev": "sfx dev",
+    "dev:atatus": "sfx dev --require @storefront-x/atatus-apm/install",
     "build": "sfx build",
     "serve": "sfx serve",
     "cypress:open": "cypress open",
