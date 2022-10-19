@@ -1,18 +1,15 @@
-import uniqueNumber from '#ioc/utils/number/unique'
-
 export default class Product {
-  static Simple = 'SimpleProduct'
-
   constructor() {
     this.data = null
     this.data.name = 'Acer TravelMate 5742ZG-P613G32MN 39.6 cm (15.6") 1366 x 768 pixels Intel'
     this.data.url_key = '/acer-travelmate-5742zg-p613g32mn-39.6-cm-15.6-1366-x-768-pixels-intel/ALG2448'
 
-    this.reviewContent = {
-      nickname: 'nickname' + uniqueNumber(),
-      title: 'Very nice product',
-      text: 'Very nice product, thank you StorefrontX for quick delivery and support',
-    }
+    /*product = new Product(
+      (url_key = '3m-6531b-self-adhesive-note-paper-rectangle-yellow-100-sheets/ZMQ2141'),
+      (product_name = '3M 6531B self-adhesive note paper Rectangle Yellow 100 sheets'),
+      (product_SKU = 'ZMQ2141'),
+      (product_price = '€3420.00'),
+    )*/
 
     //this._products = null
   }
@@ -49,32 +46,6 @@ export default class Product {
     this.getQuantityInput().clear()
     this.getQuantityInput().type(quantity)
     this.getQuantityInput().blur()
-  }
-
-  openReviewForm() {
-    this.getReviewTab().scrollIntoView({ duration: 500 }).should('be.visible').click()
-    this.getAddReviewButton().scrollIntoView({ duration: 500 }).should('be.visible')
-    this.getAddReviewButton().click()
-  }
-
-  addReviewData() {
-    this.getNicknameField().type(this.reviewContent.nickname)
-    this.getTitleField().type(this.reviewContent.title)
-    this.getTextField().type(this.reviewContent.text)
-
-    this.getNthStar('Attributes', 3).trigger('mouseenter')
-    this.getNthStar('Attributes', 3).click()
-
-    this.getNthStar('Price', 3).trigger('mouseenter')
-    this.getNthStar('Price', 3).click()
-
-    this.getNthStar('Quality', 3).trigger('mouseenter')
-    this.getNthStar('Quality', 3).click()
-
-    this.getNthStar('Value', 3).trigger('mouseenter')
-    this.getNthStar('Value', 3).click()
-
-    this.getSubmitReviewButton().click()
   }
 
   getTitle() {
