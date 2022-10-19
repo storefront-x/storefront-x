@@ -7,7 +7,7 @@ export default () => {
     const response: any = await shopware.post(`/landing-page/${id}`, {
       includes: {
         cms_page: ['sections'],
-        cms_section: ['blocks'],
+        cms_section: ['blocks', 'cssClass'],
         cms_block: [
           'slots',
           'type',

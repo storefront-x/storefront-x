@@ -18,6 +18,7 @@
         </div>
       </template>
     </SfxCarousel>
+    test
   </div>
 </template>
 

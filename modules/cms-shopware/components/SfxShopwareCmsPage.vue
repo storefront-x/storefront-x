@@ -42,7 +42,7 @@ export default defineComponent({
 
     for (const section of this.data.sections) {
       for (const block of section.blocks) {
-        renderedBlock.push(this.renderBlock(block))
+        renderedBlock.push(this.renderBlock({ ...block, ...section }))
       }
     }
 

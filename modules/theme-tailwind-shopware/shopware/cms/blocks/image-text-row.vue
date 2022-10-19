@@ -1,5 +1,9 @@
 <template>
-  <div class="relative bg-center grid grid-cols-3 gap-x-8" :style="shopwareCmsBlock.styles">
+  <div
+    :class="shopwareCmsBlock.classes"
+    class="relative bg-center grid grid-cols-3 gap-x-8"
+    :style="shopwareCmsBlock.styles"
+  >
     <div>
       <slot name="left-image" />
       <slot name="left-text" />

@@ -1,14 +1,13 @@
 <template>
-  <Container class="mt-2 mb-8 md:mt-3 md:mb-10">
+  <div class="mx-auto mb-8">
     <SfxShopwareCmsPage :data="data" />
-  </Container>
+  </div>
 </template>
 
 <script setup lang="ts">
 import useGetCmsPageById from '#ioc/services/useGetCmsPageById'
 import SfxShopwareCmsPage from '#ioc/components/SfxShopwareCmsPage'
 import useAsyncData from '#ioc/composables/useAsyncData'
-import Container from '#ioc/atoms/Container'
 
 const props = defineProps({
   id: {
