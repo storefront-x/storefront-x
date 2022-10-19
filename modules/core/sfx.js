@@ -124,13 +124,15 @@ yargs(hideBin(process.argv))
         })
         .option('require', {
           alias: 'r',
-          type: 'string',
+          type: 'array',
           description: 'Module to be imported before all the other scripts.',
         })
     },
     handler: async (argv) => {
       try {
-        if (argv.require) await import(argv.require)
+        for (const require of argv.require ?? []) {
+          await import(require)
+        }
 
         process.env.NODE_ENV = 'production'
 
