@@ -28,7 +28,6 @@ export default {
     '@storefront-x/catalog-labels',
     '@storefront-x/robots',
     '@storefront-x/sitemap',
-    '@storefront-x/cookie-script',
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',
@@ -50,7 +49,6 @@ export default {
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
-    '@storefront-x/atatus-rum',
     '@storefront-x/demo-magento',
   ],
 }

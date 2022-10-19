@@ -5,6 +5,9 @@ import url from 'node:url'
 import yargs from 'yargs'
 import consola from 'consola'
 import { hideBin } from 'yargs/helpers'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 const logger = consola.withTag('cli')
 
@@ -27,11 +30,6 @@ yargs(hideBin(process.argv))
           default: 'storefront-x.config.js',
           description: 'Path to the Storefront X configuration file',
         })
-        .option('require', {
-          alias: 'r',
-          type: 'string',
-          description: 'Module to be imported before all the other scripts.',
-        })
     },
     handler: async (argv) => {
       try {
@@ -44,6 +42,7 @@ yargs(hideBin(process.argv))
         const { default: Dev } = await import('./src/Dev.js')
 
         const dev = new Dev(config, argv)
+
         await dev.bootstrap()
         const server = await dev.createServer()
 
@@ -79,11 +78,6 @@ yargs(hideBin(process.argv))
           type: 'string',
           default: 'esbuild',
           description: 'Algorithm used for minification.',
-        })
-        .option('require', {
-          alias: 'r',
-          type: 'string',
-          description: 'Module to be imported before all the other scripts.',
         })
     },
     handler: async (argv) => {
@@ -129,9 +123,16 @@ yargs(hideBin(process.argv))
           description:
             'When error occurs during SSR, SFX displays internal server error instead of falling back to client-only rendering.',
         })
+        .option('require', {
+          alias: 'r',
+          type: 'string',
+          description: 'Module to be imported before all the other scripts.',
+        })
     },
     handler: async (argv) => {
       try {
+        if (argv.require) await import(argv.require)
+
         process.env.NODE_ENV = 'production'
 
         const start = Date.now()

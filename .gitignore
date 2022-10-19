@@ -44,3 +44,5 @@ sw.*
 docs/.vitepress/dist
 
 .npmrc
+
+atatus-config.js

@@ -94,6 +94,7 @@ export default defineConfig({
           { text: 'Theme Tailwind', link: '/modules/theme-tailwind' },
           { text: 'Cookie Script', link: '/modules/cookie-script' },
           { text: 'Google Tag Manager', link: '/modules/google-tag-manager' },
+          { text: 'Atatus', link: '/modules/atatus' },
         ],
       },
     ],

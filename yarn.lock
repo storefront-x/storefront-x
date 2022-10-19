@@ -3092,18 +3092,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storefront-x/atatus-apm@workspace:modules/atatus-apm":
+"@storefront-x/atatus@workspace:modules/atatus":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/atatus-apm@workspace:modules/atatus-apm"
+  resolution: "@storefront-x/atatus@workspace:modules/atatus"
   dependencies:
     atatus-nodejs: ^1.5.5
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/atatus-rum@workspace:modules/atatus-rum":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/atatus-rum@workspace:modules/atatus-rum"
-  dependencies:
     atatus-spa: ^4.5.0
   languageName: unknown
   linkType: soft
@@ -3284,6 +3277,7 @@ __metadata:
     consola: ^2.15.3
     cssnano: ^5.1.13
     devalue: ^4.0.0
+    dotenv: ^16.0.3
     ejs: ^3.1.8
     express: ^4.18.2
     lodash-es: ^4.17.21
@@ -6803,6 +6797,13 @@ __metadata:
   dependencies:
     is-obj: ^2.0.0
   checksum: 0f47600a4b93e1dc37261da4e6909652c008832a5d3684b5bf9a9a0d3f4c67ea949a86dceed9b72f5733ed8e8e6383cc5958df3bbd0799ee317fd181f2ece700
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^16.0.3":
+  version: 16.0.3
+  resolution: "dotenv@npm:16.0.3"
+  checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
   languageName: node
   linkType: hard
 
