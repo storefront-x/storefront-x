@@ -33,7 +33,6 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
-        logger.log('Atatus', argv.require)
         logger.log('Loading', argv.config)
 
         const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))
