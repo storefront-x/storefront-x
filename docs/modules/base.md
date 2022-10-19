@@ -41,6 +41,83 @@ The first approach si generally recommended because Storefront X relies heavily 
 
 Serves static files. Their path determines URL under which they are accessible. So file `some-module/public/icon.svg` will be accessible under the `https://my.site/icon.svg` URL and file `some-module/public/nested/dir/pic.png` will be accessible under the `https://my.site/nested/dir/pic.png` URL.
 
+:::tip
+Using the [`assets/` concept](#assets-ioc-concept) is preferable because public files are served as is. Files from assets concept have hashed names to avoid stale cache problems during releases. Some files need to be served as is (robots.txt) so for those the public concept is good enough.
+:::
+
+## `assets/` IoC concept
+
+Concept for static assets (CSS, images, ...) that will be build into the application instead of being served via the `public/` concept.
+
+### Styles
+
+Styles inside the assets concept need to be imported like this to take an effect:
+
+```vue
+<template>
+  <h1>Hello, World!</h1>
+</template>
+
+<script setup>
+import '#ioc/assets/style'
+</script>
+```
+
+These styles are then downloaded as separate .css files.
+
+If you wish styles to be inlined inside the initial HTML response, use the [`global/styles/` concept](#global-styles-concept).
+
+### Other assets
+
+Assets like images or icons need to be imported and then used like this:
+
+```vue
+<template>
+  <img :src="logo" />
+</template>
+
+<script setup>
+import logo '#ioc/assets/logo'
+</script>
+```
+
+These assets are then downloaded as separate files.
+
+## `global/styles/` concept
+
+Concept for global styles that are to rendered in the initial HTML response. They do not need to be imported.
+
+### Example
+
+```css
+/* global/styles/style.css */
+
+body {
+  background-color: red;
+}
+```
+
+Returned index.html:
+
+```html
+<html>
+  <head>
+    <!-- rest of the head -->
+
+    <style>
+      body {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- the application -->
+    </div>
+  </body>
+</html>
+```
+
 ## `server/middleware/` concept
 
 Files with [Express](https://expressjs.com) middleware function exported as default export. They are applied to the server as `.use` middleware.
