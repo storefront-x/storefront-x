@@ -41,7 +41,6 @@ yargs(hideBin(process.argv))
         const { default: Dev } = await import('./src/Dev.js')
 
         const dev = new Dev(config, argv)
-
         await dev.bootstrap()
         const server = await dev.createServer()
 
@@ -82,6 +81,7 @@ yargs(hideBin(process.argv))
     handler: async (argv) => {
       try {
         process.env.NODE_ENV = 'production'
+
         logger.log('Loading', argv.config)
 
         const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))
