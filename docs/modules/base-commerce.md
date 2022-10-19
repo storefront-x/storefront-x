@@ -494,6 +494,53 @@ Helper composable for displaying success notifications.
 
 Helper composable for displaying caught errors.
 
+## `useEventBus` composable
+
+Helper composable for emiting and listening to global events.
+
+### Example
+
+```vue
+<!-- components/emitter.vue -->
+
+<template>
+  <Button @click="globalEmit">Emit</Button>
+</template>
+
+<script setup lang="ts">
+import useEventBus from '#ioc/composables/useEventBus.js'
+
+const { emit } = useEventBus('test') // name your events properly
+
+function globalEmit() {
+  emit('foo')
+}
+</script>
+```
+
+```vue
+<!-- components/listener.vue -->
+
+<template>
+  <div>
+    {{ eventPayload }}
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import useEventBus from '#ioc/composables/useEventBus.js'
+
+const { listen } = useEventBus('test')
+
+const eventPayload = ref()
+
+listen((value) => {
+  eventPayload.value = value
+})
+</script>
+```
+
 ## `CACHE_ID` config
 
 :::warning

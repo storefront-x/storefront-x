@@ -58,9 +58,9 @@ test('switch locale path', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('hello')
+      await expect(page.locator('h1')).toContainText('hello')
       await page.locator('p').click()
-      await expect(await page.content()).toContain('ahoj')
+      await expect(page.locator('h1')).toContainText('ahoj')
     },
   )
 })
@@ -126,9 +126,9 @@ test('switch locale to nested page', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/a/b/test', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('hello')
+      await expect(page.locator('h1')).toContainText('hello')
       await page.locator('p').click()
-      await expect(await page.content()).toContain('ahoj')
+      await expect(page.locator('h1')).toContainText('ahoj')
     },
   )
 })
@@ -190,9 +190,9 @@ test('switch locale path to default language', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/cz/test', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('ahoj')
+      await expect(page.locator('h1')).toContainText('ahoj')
       await page.locator('p').click()
-      await expect(await page.content()).toContain('hello')
+      await expect(page.locator('h1')).toContainText('hello')
     },
   )
 })
