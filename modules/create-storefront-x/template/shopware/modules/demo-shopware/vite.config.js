@@ -17,11 +17,11 @@ export default defineConfig({
         navigateFallback: null,
         runtimeCaching: [
           {
-            urlPattern: /_i/,
+            urlPattern: '/_i',
             handler: 'CacheFirst',
           },
           {
-            urlPattern: /_shopware/,
+            urlPattern: '/_shopware',
             handler: 'StaleWhileRevalidate',
           },
         ],
