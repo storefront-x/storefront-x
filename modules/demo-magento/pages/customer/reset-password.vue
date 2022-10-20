@@ -37,7 +37,7 @@ import FormInput from '#ioc/molecules/FormInput'
 import Heading from '#ioc/atoms/Heading'
 import Button from '#ioc/atoms/Button'
 import useRoute from '#ioc/composables/useRoute'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 const { t } = useI18n()
 
@@ -60,9 +60,6 @@ const updatePassword = async (data: any) => {
     isPasswordLoading.value = false
   }
 }
-onMounted(() => {
-  console.log('token', route.query.token)
-})
 </script>
 
 <i18n lang="yaml">
