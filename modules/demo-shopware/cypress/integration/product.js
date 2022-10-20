@@ -12,11 +12,11 @@ describe('Product', () => {
     base = new Base()
     product = new Product()
 
-    product.visit()
+    product.visitProduct()
   })
 
   it('contains product title', () => {
-    product.getTitle().will('include.text', () => product.data.name)
+    product.getTitle().will('include.text', product.productname)
   })
 
   it('contains product price', () => {
@@ -25,14 +25,15 @@ describe('Product', () => {
 
   it('can be added to cart', () => {
     product.addToCart()
+    base.continueShopping()
 
-    base.expectMicrocartQuantity(1)
+    base.expectMicrocartQuantity(1).waitForSfx()
   })
 
   it('can be added to wishlist', () => {
     product.addToWishlist()
 
-    base.expectMicrowishlistQuantity(1)
+    base.expectMicrowishlistQuantity(1).waitForSfx()
   })
 
   it('allows increasing quantity via buttons', () => {
@@ -41,21 +42,23 @@ describe('Product', () => {
     product.decreaseQuantity() // 2
 
     product.addToCart()
+    base.continueShopping()
 
-    base.expectMicrocartQuantity(2)
+    base.expectMicrocartQuantity(2).waitForSfx()
   })
 
   it('allows setting quantity via input', () => {
     product.setQuantity(3)
 
     product.addToCart()
+    base.continueShopping()
 
     base.expectMicrocartQuantity(3)
   })
-
+  /*
   it('allows adding reviews', () => {
     product.openReviewForm()
     product.addReviewData()
     base.expectNotificationReviewConfirm()
-  })
+  })*/
 })

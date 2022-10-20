@@ -1,29 +1,21 @@
 export default class Product {
-  constructor() {
-    this.data = null
-    this.data.name = 'Acer TravelMate 5742ZG-P613G32MN 39.6 cm (15.6") 1366 x 768 pixels Intel'
-    this.data.url_key = '/acer-travelmate-5742zg-p613g32mn-39.6-cm-15.6-1366-x-768-pixels-intel/ALG2448'
-
-    /*product = new Product(
-      (url_key = '3m-6531b-self-adhesive-note-paper-rectangle-yellow-100-sheets/ZMQ2141'),
-      (product_name = '3M 6531B self-adhesive note paper Rectangle Yellow 100 sheets'),
-      (product_SKU = 'ZMQ2141'),
-      (product_price = '€3420.00'),
-    )*/
-
-    //this._products = null
+  constructor(params = {}) {
+    this.productname = params.productname ?? '3M 6531B self-adhesive note paper Rectangle Yellow 100 sheets'
+    this.url_key = params.url_key ?? '/3m-6531b-self-adhesive-note-paper-rectangle-yellow-100-sheets/ZMQ2141'
+    this.product_SKU = params.product_SKU ?? 'ZMQ2141'
+    this.product_price = params.product_price ?? '€3420.00'
   }
 
   visitProduct() {
-    return cy.then(() => cy.visit(this.data.url_key).waitForSfx())
+    return cy.visit(this.url_key).waitForSfx()
   }
 
   visitAgain() {
-    return cy.then(() => cy.visit(this.data.url_key + '.html').waitForSfx())
+    return cy.visit(this.productname.waitForSfx())
   }
 
   addToCart() {
-    return this.getAddToCart().click()
+    return this.getAddToCart().click().waitForSfx()
   }
 
   continueToCheckout() {
@@ -49,7 +41,7 @@ export default class Product {
   }
 
   getTitle() {
-    return cy.get('[data-cy=title')
+    return cy.get('[data-cy=title]')
   }
 
   getPrice() {
@@ -79,7 +71,7 @@ export default class Product {
   getQuantityIncreaseButton() {
     return cy.get('[data-cy=product-quantity-configurator] > button:nth-of-type(2)')
   }
-
+  /*
   getAddReviewButton() {
     return cy.get('[data-cy=add-review-button]')
   }
@@ -103,4 +95,5 @@ export default class Product {
   getSubmitReviewButton() {
     return cy.get('[data-cy=submit-review]')
   }
+*/
 }
