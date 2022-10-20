@@ -12,10 +12,7 @@ export default () => {
         data: { addProductsToWishlist },
       } = await magento.graphql(AddProductsToWishlist().with({ id, items: products }))
 
-      if (!addProductsToWishlist) throw new Error()
-
       return {
-        wishlist: addProductsToWishlist.wishlist,
         userErrors: addProductsToWishlist?.user_errors?.map(ToWishlistUserError),
       }
     } catch (e) {

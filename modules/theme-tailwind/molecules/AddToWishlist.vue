@@ -95,7 +95,10 @@ export default defineComponent({
         if (this.wishlisted) {
           await this.removeFromWishlist(this.$Product)
         } else {
-          await this.addToWishlist(this.$Product)
+          const { userErrors } = await this.addToWishlist(this.$Product)
+          if (userErrors?.length) {
+            this.showErrorNotification(new Error(userErrors[0].message))
+          }
         }
       } catch (e) {
         this.showErrorNotification(e)

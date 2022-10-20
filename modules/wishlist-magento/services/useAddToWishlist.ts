@@ -4,6 +4,7 @@ import useProduct from '#ioc/composables/useProduct'
 import WISHLIST_COOKIES_NAME from '#ioc/config/WISHLIST_COOKIES_NAME'
 import useWishlistStore from '#ioc/stores/useWishlistStore'
 import useAddToWishlistRepository from '#ioc/repositories/useAddToWishlistRepository'
+import ToWishlistUserError from '#ioc/mappers/ToWishlistUserError'
 
 export default () => {
   const wishlistStore = useWishlistStore()
@@ -15,12 +16,10 @@ export default () => {
     const items = [...wishlistStore.items, { id: product.id, product }]
     const productIds = items.map((item) => item.product.sku)
 
-    if (customer.isLoggedIn) {
-      await addToWishlistRepository(product)
-    } else {
+    if (!customer.isLoggedIn) {
       cookies.set(WISHLIST_COOKIES_NAME, productIds, { path: '/' })
     }
-
     wishlistStore.$patch({ items })
+    return await addToWishlistRepository(product)
   }
 }
