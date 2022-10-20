@@ -18,14 +18,13 @@
         </div>
       </template>
     </SfxCarousel>
-    test
   </div>
 </template>
 
 <script setup lang="ts">
 import useShopwareCmsBlock from '#ioc/composables/useShopwareCmsBlock'
 import SfxCarousel from '#ioc/components/SfxCarousel'
-import ImageSliderItem from './image-slider-item.vue'
+import ImageSliderItem from '#ioc/image-slider-item.vue'
 import useShopwareCmsImageSliderBlock from '#ioc/composables/useShopwareCmsImageSliderBlock'
 
 const props = defineProps({
