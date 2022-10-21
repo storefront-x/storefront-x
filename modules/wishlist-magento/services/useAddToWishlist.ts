@@ -4,7 +4,6 @@ import useProduct from '#ioc/composables/useProduct'
 import WISHLIST_COOKIES_NAME from '#ioc/config/WISHLIST_COOKIES_NAME'
 import useWishlistStore from '#ioc/stores/useWishlistStore'
 import useAddToWishlistRepository from '#ioc/repositories/useAddToWishlistRepository'
-import ToWishlistUserError from '#ioc/mappers/ToWishlistUserError'
 
 export default () => {
   const wishlistStore = useWishlistStore()
