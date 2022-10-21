@@ -71,29 +71,4 @@ export default class Product {
   getQuantityIncreaseButton() {
     return cy.get('[data-cy=product-quantity-configurator] > button:nth-of-type(2)')
   }
-  /*
-  getAddReviewButton() {
-    return cy.get('[data-cy=add-review-button]')
-  }
-
-  getNicknameField() {
-    return cy.get('input[name=nickname]')
-  }
-
-  getTitleField() {
-    return cy.get('input[name=summary]')
-  }
-
-  getTextField() {
-    return cy.get('textarea[name=text]')
-  }
-
-  getNthStar(type, n) {
-    return cy.get(`[data-cy=${type}] svg:nth-of-type(${n})`)
-  }
-
-  getSubmitReviewButton() {
-    return cy.get('[data-cy=submit-review]')
-  }
-*/
 }

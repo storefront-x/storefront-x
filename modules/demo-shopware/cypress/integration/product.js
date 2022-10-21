@@ -55,10 +55,4 @@ describe('Product', () => {
 
     base.expectMicrocartQuantity(3)
   })
-  /*
-  it('allows adding reviews', () => {
-    product.openReviewForm()
-    product.addReviewData()
-    base.expectNotificationReviewConfirm()
-  })*/
 })
