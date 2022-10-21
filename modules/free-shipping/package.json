@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/free-shipping",
-  "version": "0.2.8",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
