@@ -95,6 +95,7 @@ export default defineConfig({
           { text: 'Cookie Script', link: '/modules/cookie-script' },
           { text: 'Google Tag Manager', link: '/modules/google-tag-manager' },
           { text: 'NProgress', link: '/modules/nprogress' },
+          { text: 'Atatus', link: '/modules/atatus' },
         ],
       },
     ],

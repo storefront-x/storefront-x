@@ -1,0 +1,13 @@
+{
+  "name": "@storefront-x/atatus",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "atatus-nodejs": "^1.5.5",
+    "atatus-spa": "^4.5.0"
+  }
+}
