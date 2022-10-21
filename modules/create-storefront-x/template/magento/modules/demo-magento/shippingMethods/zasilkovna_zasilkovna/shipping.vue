@@ -24,7 +24,7 @@ import useI18n from '#ioc/composables/useI18n'
 import ZASILKOVNA_API_KEY from '#ioc/config/ZASILKOVNA_API_KEY'
 import loadScript from '#ioc/utils/dom/loadScript'
 import once from '#ioc/utils/once'
-import { computed, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import useShipping from '#ioc/composables/useShipping'
 import useConfirmShippingAddress from '#ioc/services/useConfirmShippingAddress'
 import useConfirmShippingMethod from '#ioc/services/useConfirmShippingMethod'
@@ -37,10 +37,8 @@ const checkout = useCheckout()
 const shipping = useShipping()
 const confirmShippingAddress = useConfirmShippingAddress()
 const confirmShippingMethod = useConfirmShippingMethod()
-
-const picked = computed(() => shipping.shippingAddress)
-
-const address = computed(() => picked.value?.street ?? '')
+const address = ref()
+// TODO map adress from state but first set it there trough handler
 
 onMounted(async () => {
   await once('https://widget.packeta.com/www/js/library.js', loadScript)
@@ -60,7 +58,7 @@ const pick = () => {
     ZASILKOVNA_API_KEY,
     async (location: any) => {
       if (!location) return
-
+      address.value = location.nameStreet
       shipping.setShippingHandler(async () => {
         await confirmShippingAddress({
           ...checkout.contactInformation!,
