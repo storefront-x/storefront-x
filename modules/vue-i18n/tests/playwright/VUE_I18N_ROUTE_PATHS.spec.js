@@ -104,7 +104,7 @@ test('change of locale', async ({ page }) => {
               'cart.vue': `
                 <template>
                   <h1>{{ t('message') }}</h1>
-                  <a :href="switchLocalePath('cz').fullPath">click</a>
+                  <a :href="switchLocalePath('cz')">click</a>
                 </template>
                 <script setup>
                 import useI18n from '#ioc/composables/useI18n'

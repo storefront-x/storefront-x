@@ -289,7 +289,7 @@ localePath('/blog/welcome.html')
 
 ## `useSwitchLocalePath` composable
 
-Used for switching between the locales while staying on the current page.
+Returns path of the current route for specified locale.
 
 ### Example
 
@@ -304,7 +304,7 @@ import useSwitchLocalePath from '#ioc/composables/useSwitchLocalePath'
 const switchLocalePath = useSwitchLocalePath()
 
 const onClick = () => {
-  switchLocalePath('cz')
+  window.location.href = switchLocalePath('cz')
 }
 </script>
 ```

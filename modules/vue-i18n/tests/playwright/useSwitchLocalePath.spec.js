@@ -41,7 +41,7 @@ test('switch locale path', async ({ page }) => {
                   const switchLocalePath = useSwitchLocalePath()
 
                   function change() {
-                    window.location.href = switchLocalePath('cz').fullPath
+                    window.location.href = switchLocalePath('cz')
                   }
                   </script>
                   <i18n lang="yaml">
@@ -107,7 +107,7 @@ test('switch locale to nested page', async ({ page }) => {
                     const switchLocalePath = useSwitchLocalePath()
 
                     function change() {
-                      window.location.href = switchLocalePath('cz').fullPath
+                      window.location.href = switchLocalePath('cz')
                     }
                     </script>
                     <i18n lang="yaml">
@@ -147,6 +147,7 @@ test('switch locale path to default language', async ({ page }) => {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
                   {
+
                     name: 'en',
                     locale: 'en-US',
                     prefix: '/',
@@ -173,7 +174,7 @@ test('switch locale path to default language', async ({ page }) => {
                       const switchLocalePath = useSwitchLocalePath()
 
                       function change() {
-                        window.location.href = switchLocalePath('en').fullPath
+                        window.location.href = switchLocalePath('en')
                       }
                       </script>
                       <i18n lang="yaml">

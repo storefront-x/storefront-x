@@ -17,7 +17,6 @@ const urlResover = useUrlResolver()
 const { id, component, redirectTo } = await urlResover()
 
 if (redirectTo) {
-  const path = localePath(redirectTo)
-  router.replace({ path: path.fullPath })
+  router.replace({ path: localePath(redirectTo) })
 }
 </script>
