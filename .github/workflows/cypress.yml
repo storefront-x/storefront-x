@@ -59,6 +59,12 @@ jobs:
       - run: yarn serve &
       - run: yarn cypress run --browser chrome --spec $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
       - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v3
+        if: failure()
         with:
           name: cypress-videos
           path: cypress/videos
