@@ -6,6 +6,7 @@ import useGetProductsByIds from '#ioc/services/useGetProductsByIds'
 import usePbProducts from '#ioc/composables/usePbProducts'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+import { computed } from 'vue'
 
 const ProductCarousel = hydrateWhenVisible(() => import('#ioc/organisms/ProductCarousel'))
 
@@ -15,7 +16,7 @@ const pbProducts = usePbProducts(props.el)
 const getProductsByIds = useGetProductsByIds()
 
 const { data } = await useAsyncData('carouselProduct', () => getProductsByIds(pbProducts.skus))
-const products = data.value.products
+const products = computed(() => data.value.products)
 </script>
 <script lang="ts">
 import { defineComponent } from 'vue'
