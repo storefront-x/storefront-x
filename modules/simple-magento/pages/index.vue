@@ -3,3 +3,10 @@
 </template>
 
 <script setup lang="ts"></script>
+<script>
+export default {
+  mounted() {
+    // console.log('TEST OPTIONS API')
+  },
+}
+</script>
