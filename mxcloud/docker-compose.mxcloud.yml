@@ -6,7 +6,7 @@ services:
       - VIRTUAL_INNER_PROTO=http
       - VIRTUAL_PORT=3000
       - VIRTUAL_PROTO=https
-      - VIRTUAL_HOST=${APP_DOMAINS}
+      - VIRTUAL_HOST=${PROJECT_BASE_URL}
     restart: ${RESTART_POLICY:-unless-stopped}
     networks:
       - mxcloud_http
