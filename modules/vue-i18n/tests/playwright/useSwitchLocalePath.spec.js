@@ -197,3 +197,105 @@ test('switch locale path to default language', async ({ page }) => {
     },
   )
 })
+
+test('renders domain', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        '@storefront-x/vue-i18n',
+        [
+          'my-module',
+          {
+            config: {
+              'VUE_I18N_LOCALES.ts': `export default [
+                  {
+                    name: 'en',
+                    locale: 'en-US',
+                    prefix: '/',
+                    domain: 'my-shop.en',
+                  },
+                  {
+                    name: 'cz',
+                    locale: 'cs-CZ',
+                    prefix: '/',
+                    domain: 'my-shop.cz',
+                  },
+                ]
+                `,
+            },
+            pages: {
+              'test.vue': `
+                  <template>
+                    <h1>{{ switchLocalePath('cz') }}</h1>
+                  </template>
+                  <script setup>
+                  import useSwitchLocalePath from '#ioc/composables/useSwitchLocalePath'
+
+                  const switchLocalePath = useSwitchLocalePath()
+                  </script>
+                `,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/test', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('//my-shop.cz/test')
+    },
+  )
+})
+
+test('renders domain and prefix', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        '@storefront-x/vue-i18n',
+        [
+          'my-module',
+          {
+            config: {
+              'VUE_I18N_LOCALES.ts': `export default [
+                  {
+                    name: 'en',
+                    locale: 'en-US',
+                    prefix: '/',
+                    domain: 'my-shop.en',
+                  },
+                  {
+                    name: 'cz',
+                    locale: 'cs-CZ',
+                    prefix: '/cz',
+                    domain: 'my-shop.cz',
+                  },
+                ]
+                `,
+            },
+            pages: {
+              'test.vue': `
+                  <template>
+                    <h1>{{ switchLocalePath('cz') }}</h1>
+                  </template>
+                  <script setup>
+                  import useSwitchLocalePath from '#ioc/composables/useSwitchLocalePath'
+
+                  const switchLocalePath = useSwitchLocalePath()
+                  </script>
+                `,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/test', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('//my-shop.cz/cz/test')
+    },
+  )
+})

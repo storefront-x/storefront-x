@@ -1,6 +1,7 @@
 import useRouter from '#ioc/composables/useRouter'
 import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 import type { RouteLocationRaw, RouteLocationNamedRaw } from 'vue-router'
+import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 
 export default () => {
   const router = useRouter()
@@ -9,8 +10,10 @@ export default () => {
   return (target: RouteLocationRaw, locale: string = currentLocale.value.name): string => {
     if (!locale) throw new Error('Undefined locale')
 
+    const selectedLocale = VUE_I18N_LOCALES.find((l) => l.name === locale)!
+
     const fullPath = (): string => {
-      const currentPrefix = currentLocale.value.prefix
+      const currentPrefix = selectedLocale.prefix
 
       if (typeof target === 'string') {
         if (target.startsWith('/')) {
@@ -32,10 +35,14 @@ export default () => {
     }
 
     const domain = (): string => {
-      const currentDomain = currentLocale.value.domain
+      const currentDomain = selectedLocale.domain
 
       if (currentDomain) {
-        return '//' + currentDomain
+        if (selectedLocale.name === currentLocale.value.name) {
+          return ''
+        } else {
+          return '//' + currentDomain
+        }
       } else {
         return ''
       }

@@ -32,10 +32,10 @@
         <div class="p-6 flex items-end absolute inset-0">
           <div>
             <h3 class="font-semibold text-white">
-              <a :href="categories[0].urlPath" class="text-white">
+              <RouterLink :to="localePath(categories[0].urlPath)" class="text-white">
                 <span class="absolute inset-0"></span>
                 {{ categories[0].name }}
-              </a>
+              </RouterLink>
             </h3>
             <p aria-hidden="true" class="mt-1 text-sm text-white">
               {{ t('shop') }}
@@ -61,10 +61,10 @@
         <div class="p-6 flex items-end absolute inset-0">
           <div>
             <h3 class="font-semibold text-white">
-              <a :href="categories[1].urlPath" class="text-white">
+              <RouterLink :to="localePath(categories[1].urlPath)" class="text-white">
                 <span class="absolute inset-0"></span>
                 {{ categories[1].name }}
-              </a>
+              </RouterLink>
             </h3>
             <p aria-hidden="true" class="mt-1 text-sm text-white">
               {{ t('shop') }}
@@ -90,10 +90,10 @@
         <div class="p-6 flex items-end absolute inset-0">
           <div>
             <h3 class="font-semibold text-white">
-              <a :href="categories[2].urlPath" class="text-white">
+              <RouterLink :to="localePath(categories[2].urlPath)" class="text-white">
                 <span class="absolute inset-0"></span>
                 {{ categories[2].name }}
-              </a>
+              </RouterLink>
             </h3>
             <p aria-hidden="true" class="mt-1 text-sm text-white">
               {{ t('shop') }}
