@@ -4,7 +4,7 @@ import useLocalePath from '#ioc/composables/useLocalePath'
 import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
 
 interface Options {
-  redirect?: true
+  redirect?: boolean
 }
 
 export default () => {

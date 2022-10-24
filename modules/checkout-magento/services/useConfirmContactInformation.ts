@@ -31,6 +31,7 @@ export default () => {
           city: contactInformation.city,
           country_code: contactInformation.countryCode,
           postcode: contactInformation.postcode,
+          save_in_address_book: false,
         },
       })
 
@@ -46,6 +47,7 @@ export default () => {
         city: contactInformation.city,
         country_code: contactInformation.countryCode,
         postcode: contactInformation.postcode,
+        save_in_address_book: false,
       })
 
       checkoutStore.$patch(checkout)
