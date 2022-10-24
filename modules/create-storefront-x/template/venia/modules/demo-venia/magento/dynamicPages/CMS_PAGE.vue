@@ -1,5 +1,5 @@
 <template>
-  <Container class="mt-2 mb-8 md:mt-3 md:mb-10">
+  <Container class="mt-2 mb-8 md:mt-3 md:mb-10 links">
     <SfxMagentoCmsPage :cms-page="data.cmsPage" />
   </Container>
 </template>
@@ -21,3 +21,8 @@ const getCmsPageById = useGetCmsPageById()
 
 const { data } = await useAsyncData('cmsPage', () => getCmsPageById(props.id))
 </script>
+<style scoped>
+.links :deep(a) {
+  @apply text-primary-500 underline;
+}
+</style>
