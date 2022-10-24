@@ -50,7 +50,7 @@ export default () => {
 
 ## `MAGENTO_URL` config
 
-URL of the Magento instance.
+URL of the Magento instance. You need to Override it by adding `config/MAGENTO_URL.ts` to your module. To see how overriding works click [here](../guide/how-it-works.html#overriding)
 
 :::warning
 This config variable needs to be overrided because it does not contain any value by default!

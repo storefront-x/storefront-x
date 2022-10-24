@@ -5,6 +5,9 @@ import url from 'node:url'
 import yargs from 'yargs'
 import consola from 'consola'
 import { hideBin } from 'yargs/helpers'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 const logger = consola.withTag('cli')
 
@@ -119,9 +122,18 @@ yargs(hideBin(process.argv))
           description:
             'When error occurs during SSR, SFX displays internal server error instead of falling back to client-only rendering.',
         })
+        .option('require', {
+          alias: 'r',
+          type: 'array',
+          description: 'Module to be imported before all the other scripts.',
+        })
     },
     handler: async (argv) => {
       try {
+        for (const require of argv.require ?? []) {
+          await import(require)
+        }
+
         process.env.NODE_ENV = 'production'
 
         const start = Date.now()
