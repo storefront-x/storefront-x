@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   app:
-    image: ${CI_REGISTRY}/${CI_REPOSITORY}/sfx:${BUILD_TAG}
+    image: ${CI_REGISTRY}/${CI_REPOSITORY}:${BUILD_TAG}
     environment:
       - VIRTUAL_INNER_PROTO=http
       - VIRTUAL_PORT=3000
