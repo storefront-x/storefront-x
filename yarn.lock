@@ -3434,6 +3434,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/simple-magento@workspace:modules/simple-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/simple-magento@workspace:modules/simple-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/sitemap-magento@workspace:modules/sitemap-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/sitemap-magento@workspace:modules/sitemap-magento"

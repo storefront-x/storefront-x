@@ -32,7 +32,6 @@ export default () => {
       ...(selectedCurrencyCode && { 'Content-Currency': selectedCurrencyCode }),
     }
   }
-
   const graphql = async (gql: any, opts: Options = {}) => {
     const query = gql.toString()
     const variables = gql.getVariables()
