@@ -309,6 +309,23 @@ const onClick = () => {
 </script>
 ```
 
+## `useCurrentLocale` composable
+
+Returns current locale (object from the `VUE_I18N_LOCALES` array).
+
+### Example
+
+```vue
+<script setup>
+import useCurrentLocale from '#ioc/composables/useCurrentLocale'
+
+const currentLocale = useCurrentLocale()
+
+// one of the objects from the VUE_I18N_LOCALES array
+console.log(currentLocale.value)
+</script>
+```
+
 ## `VUE_I18N_LOCALES` config
 
 Contains array of locales. Each locale has to contain these fields:
@@ -316,6 +333,11 @@ Contains array of locales. Each locale has to contain these fields:
 - `name` Identifier of the locale. Used for switching locales.
 - `locale` Language. Used in `<i18n />` blocks.
 - `prefix` URL prefix that is added to every page.
+- `domain` Domain for the locale (optional)
+
+:::tip
+Any other property will be accessible via the `useCurrentLocale` composable.
+:::
 
 ### Example
 
@@ -335,6 +357,31 @@ export default [
   },
 ]
 ```
+
+### Example with multiple domains
+
+```ts
+// config/VUE_I18N_LOCALES.ts
+
+export default [
+  {
+    name: 'en',
+    locale: 'en-US',
+    prefix: '/',
+    domain: 'my-shop.eu',
+  },
+  {
+    name: 'cz',
+    locale: 'cs-CZ',
+    prefix: '/',
+    domain: 'my-shop.cz',
+  },
+]
+```
+
+:::tip
+The `prefix` can either be set to simple `/` (no prefix in the URL) or can be combined with custom domain (prefix: '/cz', domain: 'my-shop.cz')
+:::
 
 ## `VUE_I18N_ROUTE_PATHS` config
 

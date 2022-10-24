@@ -14,6 +14,10 @@ export default () => {
 
     cookies.set(SHOPWARE_TOKEN_COOKIE_NAME, token, { path: '/' })
 
-    window.location.href = localePath('/', store.name).fullPath
+    if (store.domain) {
+      window.location.href = store.domain + localePath('/', store.name).fullPath
+    } else {
+      window.location.href = localePath('/', store.name).fullPath
+    }
   }
 }

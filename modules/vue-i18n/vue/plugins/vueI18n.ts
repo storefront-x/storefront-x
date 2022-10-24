@@ -14,7 +14,7 @@ import i18nDatetimes from '~/.sfx/i18n/datetimes'
 
 export default async (app: App, ctx: any) => {
   const locale = getLocale(ctx)
-  const messages = getMessages()
+  const messages = buildMessages()
 
   const i18n = createI18n({
     locale: locale,
@@ -34,8 +34,21 @@ export default async (app: App, ctx: any) => {
 }
 
 function getLocale(ctx: any): string {
+  let domain = ''
+
+  if (IS_SERVER) {
+    domain = ctx.req.get('host')
+  } else {
+    domain = window.location.host
+  }
+
+  for (const locale of VUE_I18N_LOCALES) {
+    if (domain === locale.domain) {
+      return locale.locale
+    }
+  }
+
   let path = ''
-  let localeName = ''
 
   if (IS_SERVER) {
     path = ctx.req.url.split('/').slice(1)[0]
@@ -44,6 +57,8 @@ function getLocale(ctx: any): string {
   }
 
   const isRouteConfigDefined = Object.keys(VUE_I18N_ROUTE_PATHS).length > 0
+
+  let localeName = ''
 
   if (isRouteConfigDefined) {
     for (const [, value] of Object.entries(VUE_I18N_ROUTE_PATHS)) {
@@ -70,7 +85,7 @@ function getLocale(ctx: any): string {
   return VUE_I18N_LOCALES[0].locale
 }
 
-function getMessages() {
+function buildMessages() {
   const messages: any = {}
 
   for (const locale of VUE_I18N_LOCALES) {
