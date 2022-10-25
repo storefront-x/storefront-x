@@ -1,5 +1,7 @@
 FROM node:16 AS base
 
+ARG SFX_CONFIG=storefront-x.config.js
+
 WORKDIR /app
 
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -20,6 +22,6 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn build --config storefront-x.magento.config.js
+RUN yarn build --config $SFX_CONFIG
 
 CMD yarn serve --host 0.0.0.0

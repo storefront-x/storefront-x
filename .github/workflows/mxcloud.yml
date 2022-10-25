@@ -1,8 +1,11 @@
-name: Create and publish a Docker image
+name: MxCloud
 
 on:
-  push:
-    branches: ['sfx-75-mx-cloud-2']
+  workflow_call:
+    inputs:
+      storefront-x-config:
+        required: true
+        type: string
 
 env:
   REGISTRY: ghcr.io
@@ -39,6 +42,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args:
+            - SFX_CONFIG=${{ inputs.storefront-x-config }}
 
       - name: Deploy to MxCloud
         run: >
@@ -51,10 +56,10 @@ jobs:
           "commit_ref": "${{ github.sha }}",
           "env_vars": {
           "DEPLOY_TYPE": "deploy",
-          "CI_REGISTRY": "ghcr.io",
+          "CI_REGISTRY": "${{ env.REGISTRY }}",
           "CI_REPOSITORY_URL": "git@github.com:storefront-x/storefront-x.git",
           "PROJECT_NAME": "storefront-x",
           "BUILD_TAG": "${{ github.ref_name }}",
-          "CI_REPOSITORY": "storefront-x/storefront-x"
+          "CI_REPOSITORY": "${{ env.IMAGE_NAME }}"
           }
           }'

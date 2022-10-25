@@ -23,3 +23,8 @@ jobs:
       storefront-x-config: storefront-x.magento.config.js
       number-of-tests-per-run: 3
       target-directory: cypress/integration
+
+  mxcloud:
+    uses: ./.github/workflows/mxcloud.yml
+    with:
+      storefront-x-config: storefront-x.magento.config.js
