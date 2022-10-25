@@ -23,7 +23,7 @@ export default () => {
         cart,
       }
     } catch (e: any) {
-      if (e.data.category === 'graphql-no-such-entity') {
+      if (e.data?.category === 'graphql-no-such-entity') {
         cookies.remove(MAGENTO_CART_COOKIE_NAME)
         cartMagentoStore.$patch({ cartId: '' })
 
