@@ -25,8 +25,8 @@ const getAlias = (route: any) => {
     } else if (aliasPrefix) {
       aliases.push(`${aliasPrefix}${route.path}`)
     }
-    return aliases
   }
+  return aliases
 }
 const getChildren = (route: any): any => {
   const newChildren = []
@@ -34,7 +34,7 @@ const getChildren = (route: any): any => {
   for (const child of route.children ?? []) {
     newChildren.push({
       ...child,
-      alias: getAlias(route),
+      alias: getAlias(child),
       children: getChildren(child),
     })
   }
