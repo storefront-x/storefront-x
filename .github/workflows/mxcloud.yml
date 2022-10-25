@@ -6,6 +6,11 @@ on:
       storefront-x-config:
         required: true
         type: string
+    secrets:
+      MXCLOUD_URL:
+        required: true
+      MXCLOUD_AUTH:
+        required: true
 
 env:
   REGISTRY: ghcr.io

@@ -28,3 +28,6 @@ jobs:
     uses: ./.github/workflows/mxcloud.yml
     with:
       storefront-x-config: storefront-x.magento.config.js
+    secrets:
+      MXCLOUD_URL: ${{ secrets.MXCLOUD_URL }}
+      MXCLOUD_AUTH: ${{ secrets.MXCLOUD_AUTH }}
