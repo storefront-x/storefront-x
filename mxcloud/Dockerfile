@@ -1,7 +1,5 @@
 FROM node:16 AS base
 
-ARG SFX_CONFIG
-
 WORKDIR /app
 
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -13,6 +11,8 @@ COPY modules/ modules/
 RUN find modules \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
 
 FROM node:16
+
+ARG SFX_CONFIG
 
 WORKDIR /app
 
