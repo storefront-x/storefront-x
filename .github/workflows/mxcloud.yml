@@ -42,8 +42,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args:
-            SFX_CONFIG: ${{ inputs.storefront-x-config }}
+          build-args: SFX_CONFIG=${{ inputs.storefront-x-config }}
 
       - name: Deploy to MxCloud
         run: >
