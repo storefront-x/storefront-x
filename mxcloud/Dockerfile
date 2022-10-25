@@ -1,6 +1,6 @@
 FROM node:16 AS base
 
-ARG SFX_CONFIG=storefront-x.config.js
+ARG SFX_CONFIG
 
 WORKDIR /app
 
