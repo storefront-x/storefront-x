@@ -41,20 +41,20 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Deploy to MxCloud
-        run: >
-          curl -L --max-time 120 --retry 5 --request POST ${{ secrets.MXCLOUD_URL }}/api/env/deploy
-            --header 'Authorization: Basic ${{ secrets.MXCLOUD_AUTH }}'
-            --header 'Content-Type: application/json'
-            --data-raw '{
-              "git_project": "storefront-x",
-              "git_branch": "${{ github.ref_name }}",
-              "commit_ref": "${{ github.sha }}",
-              "env_vars": {
-                "DEPLOY_TYPE": "deploy",
-                "CI_REGISTRY": "ghcr.io",
-                "CI_REPOSITORY_URL": "git@github.com:storefront-x/storefront-x.git",
-                "PROJECT_NAME": "storefront-x",
-                "BUILD_TAG": "${{ github.ref_name }}",
-                "CI_REPOSITORY": "storefront-x/storefront-x"
-              }
+        run: |
+          curl -L --max-time 120 --retry 5 --request POST ${{ secrets.MXCLOUD_URL }}/api/env/deploy \
+            --header 'Authorization: Basic ${{ secrets.MXCLOUD_AUTH }}' \
+            --header 'Content-Type: application/json' \
+            --data-raw '{ \
+              "git_project": "storefront-x", \
+              "git_branch": "${{ github.ref_name }}", \
+              "commit_ref": "${{ github.sha }}", \
+              "env_vars": { \
+                "DEPLOY_TYPE": "deploy", \
+                "CI_REGISTRY": "ghcr.io", \
+                "CI_REPOSITORY_URL": "git@github.com:storefront-x/storefront-x.git", \
+                "PROJECT_NAME": "storefront-x", \
+                "BUILD_TAG": "${{ github.ref_name }}", \
+                "CI_REPOSITORY": "storefront-x/storefront-x" \
+              } \
             }'
