@@ -13,7 +13,7 @@ export default () => {
     await registerCustomerRepository(data)
 
     if (redirect) {
-      window.location.href = localePath('sign-in').fullPath
+      window.location.href = localePath('sign-in')
     }
   }
 }

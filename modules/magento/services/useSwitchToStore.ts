@@ -5,6 +5,6 @@ export default () => {
   const localePath = useLocalePath()
 
   return async (store: typeof VUE_I18N_LOCALES[0]) => {
-    window.location.href = localePath('/', store.name).fullPath
+    window.location.href = localePath('/', store.name)
   }
 }

@@ -24,7 +24,7 @@ export default (brand: Ref<ReturnType<typeof ToBrand>>) => {
     },
     {
       title: 'Brands',
-      link: localePath('brands').fullPath,
+      link: localePath('brands'),
     },
     {
       title: name.value,
