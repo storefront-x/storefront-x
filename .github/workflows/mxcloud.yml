@@ -55,9 +55,9 @@ jobs:
           ENV_DEPLOY_SUCCESS=false
 
           for i in $(seq 1 3); do
-            echo "Deploying '$BUILD_TAG' to $MXCLOUD_DEPLOY_API_DOMAIN attemp no. ${i}"
+            echo "Deploying '${{ github.ref_name }}' to ${{ secrets.MXCLOUD_URL }} attemp no. ${i}"
 
-            curl --fail -L --max-time 120 --retry 5 --request POST ${{ secrets.MXCLOUD_URL }}/api/env/deploy
+            curl --fail --location --max-time 120 --retry 5 --request POST '${{ secrets.MXCLOUD_URL }}/api/env/deploy'
             --header 'Authorization: Basic ${{ secrets.MXCLOUD_AUTH }}'
             --header 'Content-Type: application/json'
             --data-raw '{
