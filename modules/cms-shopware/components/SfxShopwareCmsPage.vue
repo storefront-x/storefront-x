@@ -11,19 +11,20 @@ export default defineComponent({
   },
 
   methods: {
-    renderBlock(block: any) {
-      const component = this.component(block.type)
+    renderBlock(group: any) {
+      const properties = Object.assign({}, group.block, group.section, group)
+      const component = this.component(properties.type)
       if (!component) return null
 
       const slots: any = {}
 
-      for (const slot of block.slots ?? []) {
+      for (const slot of properties.slots ?? []) {
         const slotName = slot.slot === 'content' ? 'default' : slot.slot || 'default'
 
         slots[slotName] = () => this.renderBlock(slot)
       }
 
-      return h(component, { data: block }, slots)
+      return h(component, { data: properties }, slots)
     },
 
     component(type: string) {
@@ -42,7 +43,7 @@ export default defineComponent({
 
     for (const section of this.data.sections) {
       for (const block of section.blocks) {
-        renderedBlock.push(this.renderBlock({ ...block, ...section }))
+        renderedBlock.push(this.renderBlock({ block, section }))
       }
     }
 
