@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test('switch locale path', async ({ page }) => {
+test.only('switch locale path', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -147,7 +147,6 @@ test('switch locale path to default language', async ({ page }) => {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
                   {
-
                     name: 'en',
                     locale: 'en-US',
                     prefix: '/',

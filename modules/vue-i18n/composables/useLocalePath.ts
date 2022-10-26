@@ -1,7 +1,10 @@
 import useRouter from '#ioc/composables/useRouter'
 import useCurrentLocale from '#ioc/composables/useCurrentLocale'
-import type { RouteLocationRaw, RouteLocationNamedRaw } from 'vue-router'
+import type { RouteLocationRaw } from 'vue-router'
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
+import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
+import isObject from '#ioc/utils/isObject'
+import isString from '#ioc/utils/isString'
 
 export default () => {
   const router = useRouter()
@@ -13,27 +16,31 @@ export default () => {
     const selectedLocale = VUE_I18N_LOCALES.find((l) => l.name === locale)!
 
     const fullPath = (): string => {
-      const currentPrefix = selectedLocale.prefix
+      let originalRouteTarget = {}
+      let sanitizedPath
+      const currentLocalePrefix = selectedLocale.prefix === '/' ? '' : selectedLocale.prefix
 
-      if (typeof target === 'string') {
-        if (target.startsWith('/')) {
-          if (currentPrefix === '/') {
-            return router.resolve(target).fullPath
-          } else {
-            return router.resolve(`${currentPrefix}${target}`).fullPath
-          }
-        } else {
-          return router.resolve({ name: `${target}__${locale}` }).fullPath
+      if (isString(target)) {
+        sanitizedPath = target.startsWith('/') ? target : `/${target}`
+        if (target === 'index') {
+          sanitizedPath = '/'
         }
-      } else if (isNamed(target)) {
-        const [name] = target.name!.toString().split('__')
-
-        return router.resolve({ ...target, name: `${name}__${locale}` }).fullPath
+      } else if (isObject(target) && 'name' in target) {
+        const { name, ...sanitazedTarget } = target
+        sanitizedPath = `/${String(name)}`
+        if (name === 'index') {
+          sanitizedPath = '/'
+        }
+        originalRouteTarget = sanitazedTarget
       } else {
-        return router.resolve(target).fullPath
+        throw new Error('Wrong target in localePath')
       }
-    }
 
+      const aliasLocale = (VUE_I18N_ROUTE_PATHS as any)[sanitizedPath]?.[locale] ?? null
+      const resolvedTarget = { ...originalRouteTarget, path: aliasLocale || sanitizedPath }
+
+      return `${currentLocalePrefix}${router.resolve(resolvedTarget).fullPath}`
+    }
     const domain = (): string => {
       const currentDomain = selectedLocale.domain
 
@@ -50,8 +57,4 @@ export default () => {
 
     return domain() + fullPath()
   }
-}
-
-export const isNamed = (target: RouteLocationRaw): target is RouteLocationNamedRaw => {
-  return (target as RouteLocationNamedRaw).name !== undefined
 }

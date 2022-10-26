@@ -1,3 +1,11 @@
+interface Locale {
+  name: string
+  locale: string
+  prefix: string
+  domain?: string
+  [x: string]: any
+}
+
 export default [
   {
     fullName: 'English',
@@ -15,4 +23,4 @@ export default [
     flag: '/flags/1x1/cz.svg',
     magentoStore: 'b2c_cz',
   },
-]
+] as Locale[]

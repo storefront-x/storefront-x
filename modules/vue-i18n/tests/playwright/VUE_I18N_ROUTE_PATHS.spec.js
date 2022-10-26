@@ -207,3 +207,67 @@ test('change of page', async ({ page }) => {
     },
   )
 })
+
+test('change of locale passes query and hash forward', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        '@storefront-x/vue-i18n',
+        [
+          'my-module',
+          {
+            config: {
+              'VUE_I18N_LOCALES.ts': `
+                export default [
+                  {
+                    name: 'en',
+                    locale: 'en-US',
+                    prefix: '/',
+                  },
+                  {
+                    name: 'cz',
+                    locale: 'cs-CZ',
+                    prefix: '/cz',
+                  },
+                ]
+              `,
+              'VUE_I18N_ROUTE_PATHS.ts': `
+                export default {
+                  '/cart': {
+                    en: '/cart',
+                    cz: '/kosik',
+                  }
+                }
+              `,
+            },
+            pages: {
+              'cart.vue': `
+                <template>
+                  <h1>{{ route.fullPath }}</h1>
+                  <a :href="switchLocalePath('cz')">click</a>
+                </template>
+                <script setup>
+                import useI18n from '#ioc/composables/useI18n'
+                import useRoute from '#ioc/composables/useRoute'
+                import useSwitchLocalePath from '#ioc/composables/useSwitchLocalePath'
+
+                const switchLocalePath = useSwitchLocalePath()
+                const { t } = useI18n()
+                const route = useRoute()
+                </script>
+              `,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/cart?test=123&path=/cart', { waitUntil: 'networkidle' })
+      await page.locator('a').click()
+      await expect(page.locator('h1')).toContainText('cz/kosik?test=123&path=/cart')
+    },
+  )
+})
