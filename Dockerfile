@@ -17,6 +17,8 @@ RUN find modules \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs 
 # Second stage
 FROM node:16-alpine
 
+ARG SFX_CONFIG=storefront-x.config.js
+
 WORKDIR /app
 
 # Coppy all of the files from first stage to the second one.
@@ -31,6 +33,6 @@ RUN yarn install
 # but because it's needed for prod build, we will leave it here.
 COPY . .
 
-# Firstly, yarn install will regenerate workspace symlinks.
-# Secondly, yarn install is part of CMD (not build step) because we need to fill host's node_modules.
-CMD yarn install && yarn dev
+RUN yarn build --config $SFX_CONFIG
+
+CMD yarn serve
