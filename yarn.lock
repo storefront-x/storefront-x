@@ -3012,7 +3012,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.26.1":
+"@playwright/test@npm:^1.27.1":
   version: 1.27.1
   resolution: "@playwright/test@npm:1.27.1"
   dependencies:
@@ -13551,7 +13551,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "storefront-x@workspace:."
   dependencies:
-    "@playwright/test": ^1.26.1
+    "@playwright/test": ^1.27.1
     "@storefront-x/core": "*"
     "@types/yargs": ^17.0.13
     "@typescript-eslint/eslint-plugin": ^5.40.0
