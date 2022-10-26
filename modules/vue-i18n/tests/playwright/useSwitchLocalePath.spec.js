@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('switch locale path', async ({ page }) => {
+test('switch locale path', async ({ page }) => {
   await makeProject(
     {
       modules: [

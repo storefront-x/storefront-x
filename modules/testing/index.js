@@ -25,12 +25,12 @@ export const makeProject = async (config, callback) => {
       }),
       vite: {
         server: {
-          // watch: {
-          //   // During tests we edit the files too fast and sometimes chokidar
-          //   // misses change events, so enforce polling for consistency
-          //   usePolling: true,
-          //   interval: 100,
-          // },
+          watch: {
+            // During tests we edit the files too fast and sometimes chokidar
+            // misses change events, so enforce polling for consistency
+            usePolling: true,
+            interval: 100,
+          },
           hmr: {
             port: hmrPort,
           },
