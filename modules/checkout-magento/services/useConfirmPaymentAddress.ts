@@ -19,6 +19,7 @@ export default () => {
       city: billingAddress.city,
       country_code: billingAddress.countryCode,
       postcode: billingAddress.postcode,
+      save_in_address_book: false,
     })
 
     checkoutStore.$patch(checkout)

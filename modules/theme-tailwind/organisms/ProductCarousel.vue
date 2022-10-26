@@ -28,43 +28,32 @@
   </SfxCarousel>
 </template>
 
-<script>
+<script setup lang="ts">
 import ProductProvider from '#ioc/providers/ProductProvider'
 import SfxCarousel from '#ioc/components/SfxCarousel'
 import ProductTile from '#ioc/molecules/ProductTile'
-import { defineComponent } from 'vue'
 
-export default defineComponent({
-  components: {
-    ProductProvider,
-    SfxCarousel,
-    ProductTile,
+defineProps({
+  products: {
+    type: Array,
+    default: () => [],
   },
-
-  props: {
-    products: {
-      type: Array,
-      default: () => [],
-    },
-  },
-
-  data: () => ({
-    breakpoints: {
-      '(max-width: 519.98px)': {
-        slides: { perView: 1 },
-      },
-      '(min-width:520px) and (max-width: 767.98px)': {
-        slides: { perView: 2 },
-      },
-      '(min-width:768px) and (max-width: 1199.98px)': {
-        slides: { perView: 3 },
-      },
-      '(min-width: 1200px)': {
-        slides: { perView: 4 },
-      },
-    },
-  }),
 })
+
+const breakpoints = {
+  '(max-width: 519.98px)': {
+    slides: { perView: 1 },
+  },
+  '(min-width:520px) and (max-width: 767.98px)': {
+    slides: { perView: 2 },
+  },
+  '(min-width:768px) and (max-width: 1199.98px)': {
+    slides: { perView: 3 },
+  },
+  '(min-width: 1200px)': {
+    slides: { perView: 4 },
+  },
+}
 </script>
 
 <style scoped>

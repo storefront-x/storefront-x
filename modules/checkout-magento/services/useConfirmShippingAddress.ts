@@ -20,6 +20,7 @@ export default () => {
         city: shippingAddress.city,
         country_code: shippingAddress.countryCode,
         postcode: shippingAddress.postcode,
+        save_in_address_book: false,
       },
       customerNotes: shippingAddress.customerNotes,
       pickupLocationCode: shippingAddress.pickupLocationCode,
