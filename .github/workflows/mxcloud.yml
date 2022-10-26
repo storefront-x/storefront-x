@@ -56,7 +56,7 @@ jobs:
       - name: Deploy to MxCloud
         shell: bash
         run: >
-          curl --location --max-time 120 --retry 5 --request POST '${{ secrets.MXCLOUD_URL }}/api/env/deploy'
+          curl --fail --location --max-time 120 --retry 5 --request POST '${{ secrets.MXCLOUD_URL }}/api/env/deploy'
           --header 'Authorization: Basic ${{ secrets.MXCLOUD_AUTH }}'
           --header 'Content-Type: application/json'
           --data-raw '{
