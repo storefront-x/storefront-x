@@ -1,5 +1,5 @@
 <template>
-  <SfxMagentoCmsPage :cms-page="data.cmsBlock" />
+  <SfxMagentoCmsPage :cms-page="data.cmsBlock" :attrs="$attrs" />
 </template>
 
 <script setup lang="ts">
@@ -12,7 +12,7 @@ const getCmsBlock = useGetCmsBlock()
 const props = defineProps({
   identifier: {
     type: String,
-    default: '',
+    default: null,
   },
 })
 

@@ -10,9 +10,17 @@ const loaders = []
 for (const { default: useStore } of Object.values(stores ?? {})) {
   const store = useStore()
   if (store.serverInit) {
-    loaders.push(Promise.resolve(store.serverInit()).then((data) => store.$patch(data)))
+    loaders.push(
+      Promise.resolve(store.serverInit())
+        .then((data) => store.$patch(data))
+        .catch((e) => console.error(e)),
+    )
   }
 }
 
-await Promise.all(loaders)
+try {
+  await Promise.all(loaders)
+} catch (e) {
+  console.error(e)
+}
 </script>

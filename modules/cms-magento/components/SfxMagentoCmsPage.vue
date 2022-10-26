@@ -12,12 +12,16 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    attrs: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   async setup(props) {
     const parsed = await parse(props.cmsPage.content)
 
-    const walked = await walk(parsed)
+    const walked = await walk(parsed, props.attrs)
 
     return () => walked
   },
@@ -65,7 +69,7 @@ const createTreeWalker = async (root, whatToShow) => {
   }
 }
 
-const walk = async (el) => {
+const walk = async (el, attrs) => {
   const resolved = []
 
   const tree = await createTreeWalker(el, SHOW_ELEMENT | SHOW_TEXT)
@@ -98,7 +102,7 @@ const walk = async (el) => {
     }
 
     const children = await walk(currentNode)
-    resolved.push(h(magentoCmsBlocks[ident], { el: currentNode }, () => children))
+    resolved.push(h(magentoCmsBlocks[ident], { attrs: attrs, el: currentNode }, () => children))
 
     currentNode = tree.nextSibling()
   }

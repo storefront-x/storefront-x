@@ -5,5 +5,5 @@ export default (data: any) => ({
   id: data.id as string,
   items: data.items.map(ToCartItem),
   coupons: [],
-  prices: ToCartPrices(data.prices),
+  prices: ToCartPrices({ ...data.prices, _shippingAddress: data.shipping_addresses[0] }),
 })

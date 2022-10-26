@@ -40,7 +40,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   const breadcrumbs = computed(() => [
     ...product.value.categories.map((category: any) => ({
       title: category.name,
-      link: category.url_path + '.html',
+      link: category.url_path + catalogMagentoStore.productUrlSuffix,
     })),
   ])
 

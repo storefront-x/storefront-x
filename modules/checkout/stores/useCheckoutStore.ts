@@ -1,5 +1,6 @@
 import ToCheckoutAgreement from '#ioc/mappers/ToCheckoutAgreement'
 import ToContactInformation from '#ioc/mappers/ToContactInformation'
+import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
 import ToPaymentAddress from '#ioc/mappers/ToPaymentAddress'
 import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
 import ToShippingAddress from '#ioc/mappers/ToShippingAddress'
@@ -18,5 +19,6 @@ export default defineStore('checkout', {
     paymentHandler: null as (() => Promise<void>) | null,
     shippingHandler: null as (() => Promise<void>) | null,
     agreements: [] as ReturnType<typeof ToCheckoutAgreement>[],
+    customerAddresses: [] as ReturnType<typeof ToCustomerAddress>[],
   }),
 })
