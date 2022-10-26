@@ -15,10 +15,11 @@ export default () => {
     const items = [...wishlistStore.items, { id: product.id, product }]
     const productIds = items.map((item) => item.product.sku)
 
-    if (!customer.isLoggedIn) {
+    if (customer.isLoggedIn) {
+      await addToWishlistRepository(product)
+    } else {
       cookies.set(WISHLIST_COOKIES_NAME, productIds, { path: '/' })
     }
     wishlistStore.$patch({ items })
-    return await addToWishlistRepository(product)
   }
 }
