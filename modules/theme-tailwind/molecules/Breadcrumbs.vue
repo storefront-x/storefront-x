@@ -1,9 +1,12 @@
 <template>
-  <nav class="flex" :aria-label="t('Breadcrumbs')">
-    <ol role="list" class="flex items-center space-x-4 list-none p-0 max-w-full">
+  <nav class="flex items-center nowrap whitespace-nowrap overflow-x-auto w-full" :aria-label="t('Breadcrumbs')">
+    <ol role="list" class="flex items-center space-x-1 sm:space-x-4 list-none p-0">
       <li>
         <div>
-          <RouterLink :to="localePath('/')" class="p-4 flex items-center text-gray-500 hover:text-gray-700">
+          <RouterLink
+            :to="localePath('/')"
+            class="sm:px-3 px-1 py-3 flex items-center justify-center text-gray-500 hover:text-gray-700"
+          >
             <SolidHome />
             <span v-if="breadcrumbs.length === 0" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
               {{ t('Home') }}
@@ -14,7 +17,7 @@
           </RouterLink>
         </div>
       </li>
-      <li v-for="(breadcrumb, index) in props.breadcrumbs" :key="index" class="item my-1 min-w-0">
+      <li v-for="(breadcrumb, index) in props.breadcrumbs" :key="index" class="item min-w-0 whitespace-nowrap">
         <div class="flex items-center">
           <div>
             <SolidChevronRight />
@@ -24,7 +27,7 @@
             :to="breadcrumb.link"
             class="md:ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 min-w-0 hover:underline"
           >
-            <p class="truncate whitespace-nowrap min-w-[16px]">{{ breadcrumb.title }}</p>
+            {{ breadcrumb.title }}
           </RouterLink>
         </div>
       </li>
