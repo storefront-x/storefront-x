@@ -1,4 +1,4 @@
-name: Test Cypress
+name: Cypress
 
 on:
   workflow_call:
