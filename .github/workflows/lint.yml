@@ -18,6 +18,5 @@ jobs:
           node-version: 16
           cache: 'yarn'
       - run: yarn install
-      - run: yarn build --config ${{inputs.storefront-x-config}} --onlyBootstrap
+      - run: yarn build --config ${{ inputs.storefront-x-config }} --onlyBootstrap
       - run: yarn lint:prod
-  
