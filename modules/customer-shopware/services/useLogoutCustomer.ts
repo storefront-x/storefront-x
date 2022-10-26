@@ -13,6 +13,6 @@ export default () => {
 
     cookies.set(SHOPWARE_TOKEN_COOKIE_NAME, token, { path: '/' })
 
-    window.location.href = localePath('sign-in').fullPath
+    window.location.href = localePath('sign-in')
   }
 }

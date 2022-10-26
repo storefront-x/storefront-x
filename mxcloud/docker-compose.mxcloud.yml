@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  app:
+    image: ${CI_REGISTRY}/${CI_REPOSITORY}:${BUILD_TAG}
+    environment:
+      - VIRTUAL_INNER_PROTO=http
+      - VIRTUAL_PORT=3000
+      - VIRTUAL_PROTO=https
+      - VIRTUAL_HOST=${PROJECT_BASE_URL}
+    restart: ${RESTART_POLICY:-unless-stopped}
+    networks:
+      - mxcloud_http
+
+networks:
+  mxcloud_http:
+    external: true

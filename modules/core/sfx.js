@@ -5,9 +5,9 @@ import url from 'node:url'
 import yargs from 'yargs'
 import consola from 'consola'
 import { hideBin } from 'yargs/helpers'
-import Dev from './src/Dev.js'
-import Build from './src/Build.js'
-import Serve from './src/Serve.js'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 const logger = consola.withTag('cli')
 
@@ -38,6 +38,7 @@ yargs(hideBin(process.argv))
         const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))
 
         const { default: config } = await import(href)
+        const { default: Dev } = await import('./src/Dev.js')
 
         const dev = new Dev(config, argv)
         await dev.bootstrap()
@@ -79,11 +80,14 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
+        process.env.NODE_ENV = 'production'
+
         logger.log('Loading', argv.config)
 
         const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))
 
         const { default: config } = await import(href)
+        const { default: Build } = await import('./src/Build.js')
 
         const build = new Build(config, argv)
         await build.bootstrap()
@@ -118,13 +122,26 @@ yargs(hideBin(process.argv))
           description:
             'When error occurs during SSR, SFX displays internal server error instead of falling back to client-only rendering.',
         })
+        .option('require', {
+          alias: 'r',
+          type: 'array',
+          description: 'Module to be imported before all the other scripts.',
+        })
     },
     handler: async (argv) => {
       try {
+        for (const require of argv.require ?? []) {
+          await import(require)
+        }
+
+        process.env.NODE_ENV = 'production'
+
         const start = Date.now()
 
         consola.wrapAll()
         consola.setReporters(new consola.BasicReporter())
+
+        const { default: Serve } = await import('./src/Serve.js')
 
         const serve = new Serve({}, argv)
         const server = await serve.createServer()

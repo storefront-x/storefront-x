@@ -19,6 +19,6 @@ export default () => {
 
     cartMagentoStore.$patch({ cartId: '' })
 
-    window.location.href = localePath('sign-in').fullPath
+    window.location.href = localePath('sign-in')
   }
 }

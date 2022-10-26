@@ -1,0 +1,15 @@
+{
+  "name": "@storefront-x/nprogress",
+  "version": "1.0.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "nprogress": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/nprogress": "^0.2.0"
+  }
+}
