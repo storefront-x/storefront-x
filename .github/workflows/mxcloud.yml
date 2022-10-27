@@ -49,7 +49,7 @@ jobs:
         with:
           file: Dockerfile
           push: true
-          tags: ${{ steps.branch-name.outputs.current_branch }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.branch-name.outputs.current_branch }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: SFX_CONFIG=${{ inputs.storefront-x-config }}
 
