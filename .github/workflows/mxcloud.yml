@@ -17,12 +17,8 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  mxcloud:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -53,6 +49,9 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: SFX_CONFIG=${{ inputs.storefront-x-config }}
 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to MxCloud
         shell: bash
         run: >
