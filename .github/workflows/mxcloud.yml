@@ -54,6 +54,9 @@ jobs:
     needs:
       - build
     steps:
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v6
       - name: Deploy to MxCloud
         shell: bash
         run: >
