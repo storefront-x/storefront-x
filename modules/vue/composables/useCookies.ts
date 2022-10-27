@@ -2,11 +2,11 @@ import { useCookies, createCookies } from '@vueuse/integrations/useCookies'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useContext from '#ioc/composables/useContext'
 
-export default () => {
+export default (injectedCtx = null) => {
   if (IS_CLIENT) {
     return useCookies()
   } else {
-    const ctx = useContext()
+    const ctx = injectedCtx ?? useContext()
     const cookies = createCookies(ctx.req)()
 
     cookies.addChangeListener((change) => {
