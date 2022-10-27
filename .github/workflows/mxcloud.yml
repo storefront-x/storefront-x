@@ -40,18 +40,18 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v6
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
           file: Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.branch-name.outputs.current_branch }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: SFX_CONFIG=${{ inputs.storefront-x-config }}
-
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v6
 
       - name: Deploy to MxCloud
         shell: bash
