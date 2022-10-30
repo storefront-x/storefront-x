@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-8">
     <h1>Unathorized</h1>
     <form :action="url" method="POST">
       <input type="text" name="username" placeholder="Username" />
@@ -9,22 +9,10 @@
   </div>
 </template>
 
-<script>
-import { BASIC_AUTH_REDIRECT_URL } from '@ioc/config'
+<script setup lang="ts">
+import BASIC_AUTH_REDIRECT_URL from '#ioc/config/BASIC_AUTH_REDIRECT_URL'
 
-export default {
-  layout: 'basic-auth',
+import { computed } from 'vue'
 
-  computed: {
-    url() {
-      return BASIC_AUTH_REDIRECT_URL
-    },
-  },
-}
+const url = computed(() => BASIC_AUTH_REDIRECT_URL)
 </script>
-
-<style scoped>
-div {
-  padding: 2rem;
-}
-</style>
