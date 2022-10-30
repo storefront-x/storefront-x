@@ -10,28 +10,25 @@
                   scope="col"
                   class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                 >
-                  Název
+                  {{ t('Name') }}
                 </th>
                 <th
                   scope="col"
                   class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                >
-                  Kategorie
-                </th>
+                ></th>
               </tr>
             </thead>
             <tbody>
-              <!-- Product 1 -->
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr
+                v-for="attribute in product.attributes"
+                :key="attribute.code"
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+              >
                 <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Apple MacBook Pro 17"
+                  {{ attribute.label }}
                 </td>
-                <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">Laptop</td>
-              </tr>
-              <!-- Product 2 -->
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Apple Imac 27"
+                <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                  {{ attribute.valueLabel || '—' }}
                 </td>
               </tr>
             </tbody>
@@ -41,3 +38,17 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import injectProduct from '#ioc/composables/injectProduct'
+import useI18n from '#ioc/composables/useI18n'
+
+const { t } = useI18n()
+
+const product = injectProduct()
+</script>
+
+<i18n lang="yaml">
+cs-CZ:
+  Name: Název
+</i18n>

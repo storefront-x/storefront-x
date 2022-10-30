@@ -25,7 +25,7 @@ import { defineAsyncComponent, shallowRef, toRaw } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
 
 const ProductDescription = defineAsyncComponent(() => import('#ioc/molecules/ProductDescription'))
-const ProductParameters = defineAsyncComponent(() => import('#ioc/molecules/ProductParameters'))
+const ProductSpecifications = defineAsyncComponent(() => import('#ioc/molecules/ProductSpecifications'))
 const ProductReviews = defineAsyncComponent(() => import('#ioc/organisms/ProductReviews'))
 
 const { t } = useI18n()
@@ -38,8 +38,8 @@ const tabs = [
     component: ProductDescription,
   },
   {
-    name: t('Parameters'),
-    component: ProductParameters,
+    name: t('Specifications'),
+    component: ProductSpecifications,
   },
   {
     name: t('Reviews'),
@@ -51,7 +51,7 @@ const tabs = [
 <i18n lang="yaml">
 cs-CZ:
   Detail: Detaily
-  Parameters: Parametry
+  Specifications: Specifikace
   Reviews: Hodnocení
   FAQ: FAQ
 </i18n>

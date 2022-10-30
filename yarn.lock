@@ -3183,6 +3183,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/catalog-attributes-magento@workspace:modules/catalog-attributes-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/catalog-attributes-magento@workspace:modules/catalog-attributes-magento"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/catalog-attributes@workspace:modules/catalog-attributes":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/catalog-attributes@workspace:modules/catalog-attributes"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/catalog-labels-magento@workspace:modules/catalog-labels-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/catalog-labels-magento@workspace:modules/catalog-labels-magento"
