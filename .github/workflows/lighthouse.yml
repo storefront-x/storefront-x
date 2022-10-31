@@ -22,7 +22,7 @@ jobs:
       - with:
           node-version: 16
       - run: npm install -g @lhci/cli@0.6.x
-      - run: yarn && yarn build --config ${{inputs.storefront-x-config ${{ inputs.storefront-x-config }}
+      - run: yarn && yarn build --config ${{inputs.storefront-x-config }}
       - run: lhci collect --startServerCommand yarn serve --url ${{ inputs.product-detail-page }}
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
