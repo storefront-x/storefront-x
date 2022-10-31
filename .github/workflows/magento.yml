@@ -37,5 +37,5 @@ jobs:
     with:
       storefront-x-config: storefront-x.magento.config.js
       homepage: https://magento.storefrontx.io/
-      product-detail-page: dnp-ds820-professional-photo-printer.html
+      product-detail-page: tripp-lite-n238-001-yw-keystone-module.html
 
