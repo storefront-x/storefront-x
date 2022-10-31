@@ -19,8 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      - run: npm install && npm install -g @lhci/cli@0.6.x
-      - run: yarn && yarn build --config ${{inputs.product-detail-page}}
+      - run: npm install -g @lhci/cli@0.6.x
+      - run: yarn && yarn build --config ${{inputs.storefront-x-configinputs.storefront-x-config}}
       - run: lhci collect --startServerCommand yarn serve --url ${{inputs.storefront-x-config}}
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
