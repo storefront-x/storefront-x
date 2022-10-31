@@ -1,6 +1,6 @@
 <template>
   <div class="p-8">
-    <h1>Unathorized</h1>
+    <h1>Unauthorized</h1>
     <form :action="url" method="POST">
       <input type="text" name="username" placeholder="Username" />
       <input type="password" name="password" placeholder="Password" />
