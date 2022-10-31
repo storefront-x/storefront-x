@@ -6,6 +6,14 @@ import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
 import isObject from '#ioc/utils/isObject'
 import isString from '#ioc/utils/isString'
 
+interface Locale {
+  name: string
+  locale: string
+  prefix: string
+  domain?: string
+  [x: string]: any
+}
+
 export default () => {
   const router = useRouter()
   const currentLocale = useCurrentLocale()
@@ -13,48 +21,67 @@ export default () => {
   return (target: RouteLocationRaw, locale: string = currentLocale.value.name): string => {
     if (!locale) throw new Error('Undefined locale')
 
-    const selectedLocale = VUE_I18N_LOCALES.find((l) => l.name === locale)!
+    const selectedLocale = VUE_I18N_LOCALES.find((l) => l.name === locale)
 
-    const fullPath = (): string => {
-      let originalRouteTarget = {}
-      let sanitizedPath
-      const currentLocalePrefix = selectedLocale.prefix === '/' ? '' : selectedLocale.prefix
+    if (!selectedLocale) throw new Error('Wrong format of locale')
 
-      if (isString(target)) {
-        sanitizedPath = target.startsWith('/') ? target : `/${target}`
-        if (target === 'index') {
-          sanitizedPath = '/'
-        }
-      } else if (isObject(target) && 'name' in target) {
-        const { name, ...sanitazedTarget } = target
-        sanitizedPath = `/${String(name)}`
-        if (name === 'index') {
-          sanitizedPath = '/'
-        }
-        originalRouteTarget = sanitazedTarget
-      } else {
-        throw new Error('Wrong target in localePath')
-      }
+    const isNewLocaleDomain = selectedLocale.name !== currentLocale.value.name && selectedLocale.domain
 
-      const aliasLocale = (VUE_I18N_ROUTE_PATHS as any)[sanitizedPath]?.[locale] ?? null
-      const resolvedTarget = { ...originalRouteTarget, path: aliasLocale || sanitizedPath }
-
-      return `${currentLocalePrefix}${router.resolve(resolvedTarget).fullPath}`
+    if (isNewLocaleDomain) {
+      return '//' + selectedLocale.domain + router.resolve(localizeTarget(target, selectedLocale)).fullPath
+    } else {
+      return router.resolve(localizeTarget(target, selectedLocale)).fullPath
     }
-    const domain = (): string => {
-      const currentDomain = selectedLocale.domain
+  }
+}
 
-      if (currentDomain) {
-        if (selectedLocale.name === currentLocale.value.name) {
-          return ''
-        } else {
-          return '//' + currentDomain
-        }
-      } else {
-        return ''
-      }
-    }
+const localizeTarget = (target: string | RouteLocationRaw, selectedLocale: Locale): RouteLocationRaw => {
+  const localePrefix = selectedLocale.prefix === '/' ? '' : selectedLocale.prefix
 
-    return domain() + fullPath()
+  if (isString(target)) {
+    return { path: localePrefix + sanitizeStringTarget(target, selectedLocale.name) }
+  } else if (isObject(target) && 'name' in target) {
+    const { sanitizedPath, sanitizedTarget } = sanitizeObjectTarget(target, selectedLocale.name)
+
+    return { path: localePrefix + sanitizedPath, ...sanitizedTarget }
+  } else {
+    throw new Error('Wrong target in localePath')
+  }
+}
+const sanitizeStringTarget = (target: string, localeName: string): string => {
+  let sanitizedPath = target.startsWith('/') ? target : `/${target}`
+
+  if (target === 'index') {
+    sanitizedPath = '/'
+  }
+  if (target.startsWith('/')) {
+    return sanitizedPath
+  } else {
+    return sanitizedPathToAliasLocale(sanitizedPath, localeName, null)
+  }
+}
+const sanitizeObjectTarget = (target: any, localeName: string): { sanitizedPath: string; sanitizedTarget: object } => {
+  const { name, params, ...sanitizedTarget } = target
+  let sanitizedPath = `/${String(name)}`
+
+  if (name === 'index') {
+    sanitizedPath = '/'
+  }
+
+  sanitizedPath = sanitizedPathToAliasLocale(sanitizedPath, localeName, params)
+
+  return { sanitizedPath, sanitizedTarget }
+}
+const sanitizedPathToAliasLocale = (sanitizedPath: string, localeName: string, params: any): string => {
+  const aliasLocale = (VUE_I18N_ROUTE_PATHS as any)[sanitizedPath]?.[localeName] ?? null
+
+  if (!aliasLocale) {
+    return sanitizedPath
+  }
+
+  if (params) {
+    return aliasLocale.replace(/\[(.+?)\]/g, (_: string, $1: string) => `${params[$1]}`)
+  } else {
+    return aliasLocale
   }
 }

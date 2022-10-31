@@ -7,12 +7,20 @@ export default (routes: any) => {
     alias: getAlias(route),
     children: getChildren(route),
   }))
+  // console.log(newRoutes[0].children.length)
+  // console.log(newRoutes[0].children[newRoutes[0].children.length - 2])
 }
 
 const getAlias = (route: any) => {
   const aliases = []
+  const isDynamicRoute = route.name && route.name.includes('[')
+  const aliasLocaleKey = isDynamicRoute ? `/${route.name}` : route.path
   for (const locale of VUE_I18N_LOCALES) {
-    const aliasLocale = (VUE_I18N_ROUTE_PATHS as any)[route.path]?.[locale.name] ?? null
+    const aliasLocale =
+      (VUE_I18N_ROUTE_PATHS as any)[aliasLocaleKey]?.[locale.name].replace(
+        /\[(.+?)\]/g,
+        (_: string, $1: string) => `:${$1}(.+)`,
+      ) ?? null
     const aliasPrefix = locale.prefix === '/' ? null : locale.prefix
     if (aliasLocale && aliasPrefix) {
       aliases.push(`${aliasPrefix}${aliasLocale}`)

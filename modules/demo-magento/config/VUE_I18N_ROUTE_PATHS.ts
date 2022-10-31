@@ -1,6 +1,6 @@
 export default {
-  '/wishlist': {
-    en: '/wishlist',
-    cz: '/seznamPrani',
+  '/user/[id]': {
+    en: '/user/[id]',
+    cz: '/uzivatel/[id]',
   },
 }
