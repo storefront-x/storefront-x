@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-      - with:
+        with:
           node-version: 16
       - run: npm install -g @lhci/cli@0.6.x
       - run: yarn && yarn build --config ${{ inputs.storefront-x-config }}
