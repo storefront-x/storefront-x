@@ -17,10 +17,12 @@ jobs:
   lighthouseci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - with:
+          node-version: 16
       - run: npm install -g @lhci/cli@0.6.x
       - run: yarn && yarn build --config ${{inputs.storefront-x-configinputs.storefront-x-config}}
-      - run: lhci collect --startServerCommand yarn serve --url ${{inputs.storefront-x-config}}
+      - run: lhci collect --startServerCommand yarn serve --url ${{ product-detail-page }}
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
