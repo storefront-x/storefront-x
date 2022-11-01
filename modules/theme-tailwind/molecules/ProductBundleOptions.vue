@@ -93,6 +93,7 @@ const updateFormValue = computed(() => {
 
   for (const idGroup of ids) {
     for (const idValue of Object.keys(product.bundle[idGroup])) {
+      // split into inModal/outOfModal is needed to have unique IDs for radio buttons
       const groupKey = idGroup + '-group'
       const keyInModal = idGroup + '-group' + idValue + '-inModal'
       const keyOutOfModal = idGroup + '-' + idValue + '-outOfModal'
