@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install -g @lhci/cli@0.6.x
+      - run: npm install -g @lhci/cli@0.9.x
       - run: yarn && yarn build --config ${{ inputs.storefront-x-config }}
       - run: lhci collect --startServerCommand "yarn serve" --url http://localhost:3000/${{ inputs.product-detail-page }}
       - run: lhci assert
