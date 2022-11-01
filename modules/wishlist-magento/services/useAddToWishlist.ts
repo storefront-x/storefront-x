@@ -20,7 +20,6 @@ export default () => {
     } else {
       cookies.set(WISHLIST_COOKIES_NAME, productIds, { path: '/' })
     }
-
     wishlistStore.$patch({ items })
   }
 }
