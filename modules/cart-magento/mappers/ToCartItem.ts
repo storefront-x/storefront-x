@@ -3,6 +3,7 @@ import ToMoney from '#ioc/mappers/ToMoney'
 import ToProduct from '#ioc/mappers/ToProduct'
 import ToCartConfigurableOption from '#ioc/mappers/ToCartConfigurableOption'
 import ToCartOption from '#ioc/mappers/ToCartOption'
+import ToVariant from '#ioc/mappers/ToVariant'
 
 export default (data: any) => ({
   id: data.id as string,
@@ -12,6 +13,7 @@ export default (data: any) => ({
   }),
   rowTotal: ToMoney(data.prices.row_total_including_tax),
   quantity: data.quantity as number,
+  variant: data?.variant?.map(ToVariant),
   product: ToProduct(data.product),
   stackable: true,
   configurableOptions: (data.configurable_options ?? []).map(ToCartConfigurableOption),
