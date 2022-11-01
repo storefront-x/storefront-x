@@ -1,6 +1,11 @@
 import ToProductReview from '#ioc/mappers/ToProductReview'
 import Extension from '#ioc/types/base/Extension'
-import ToProductType from '#ioc/types/product-reviews-magento/ToProductType'
+
+interface ToProductType {
+  reviews: ReturnType<typeof ToProductReview>[]
+  reviewCount: number
+  ratingSummary: number
+}
 
 const ToProduct: Extension<ToProductType> = (ToProduct) => (data) => ({
   ...ToProduct(data),

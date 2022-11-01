@@ -1,6 +1,11 @@
-import BreadCrumbData from '#ioc/types/base-commerce/BreadCrumbData'
+import Breadcrumb from '#ioc/types/base-commerce/Breadcrumb'
 
-export default (data: BreadCrumbData) => ({
+interface BreadcrumbData {
+  title: string
+  link: string
+}
+
+export default (data: BreadcrumbData): Breadcrumb => ({
   title: data.title,
   link: data.link,
 })

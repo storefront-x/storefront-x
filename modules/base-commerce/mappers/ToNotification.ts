@@ -1,6 +1,13 @@
-import ToNotificationData from '#ioc/types/base-commerce/ToNotificationData'
+import Notification from '#ioc/types/base-commerce/Notification'
 
-export default (data: ToNotificationData) => ({
+interface ToNotificationData {
+  id: string
+  title: string
+  message: string
+  level: string
+}
+
+export default (data: ToNotificationData): Notification => ({
   id: data.id,
   title: data.title,
   message: data.message,

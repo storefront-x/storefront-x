@@ -5,7 +5,13 @@ import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import useAddBundleProductToCartRepository from '#ioc/repositories/useAddBundleProductToCartRepository'
 import useAddConfigurableProductToCartRepository from '#ioc/repositories/useAddConfigurableProductToCartRepository'
 import useAddSimpleProductToCartRepository from '#ioc/repositories/useAddSimpleProductToCartRepository'
-import AddToCartOptions from '#ioc/types/cart-magento/AddToCartOptions'
+
+interface Options {
+  quantity?: number
+  bundle?: object
+  variantSku?: string
+  options?: object
+}
 
 export default () => {
   const cartStore = useCartStore()
@@ -16,7 +22,7 @@ export default () => {
 
   return async (
     product: ReturnType<typeof useProduct>,
-    { quantity = 1, bundle = {}, variantSku, options }: AddToCartOptions = {},
+    { quantity = 1, bundle = {}, variantSku, options }: Options = {},
   ) => {
     const { id } = await getOrCreateCartId()
 

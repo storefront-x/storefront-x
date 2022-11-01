@@ -1,7 +1,12 @@
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
-import ToMoneyData from '#ioc/types/base-commerce/ToMoneyData'
+import Money from '#ioc/types/base-commerce/Money'
 
-export default (data: ToMoneyData) => ({
+interface ToMoneyData {
+  value: number
+  currency?: string
+}
+
+export default (data: ToMoneyData): Money => ({
   value: Math.round(Number(data.value) * PRICE_OFFSET) || 0,
   currency: data.currency,
 })

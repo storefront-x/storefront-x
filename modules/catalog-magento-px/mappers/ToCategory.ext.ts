@@ -1,6 +1,9 @@
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
 import Extension from '#ioc/types/base/Extension'
-import ToCategoryType from '#ioc/types/catalog-magento-px/ToCategoryType'
+
+interface ToCategoryType {
+  thumbnailUrl: string
+}
 
 const ToCategory: Extension<ToCategoryType> = (ToCategory) => (data) => ({
   ...ToCategory(data),
