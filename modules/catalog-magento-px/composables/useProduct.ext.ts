@@ -1,12 +1,7 @@
-interface Extension<Ext = Record<string, never>> {
-  <T extends (...arg: any) => any>(useProduct: T): (...arg: any) => ReturnType<T> & Ext
-}
+import Extension from '#ioc/types/base/Extension'
+import UseProductType from '#ioc/types/catalog-magento-px/UseProductType'
 
-interface UseProduct {
-  message: string
-}
-
-const useProduct: Extension<UseProduct> =
+const useProduct: Extension<UseProductType> =
   (useProduct) =>
   (...args) => {
     const product = useProduct(...args)

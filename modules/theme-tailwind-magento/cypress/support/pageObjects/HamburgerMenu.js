@@ -6,6 +6,6 @@ export default class HamburgerMenu {
 
   close() {
     cy.get('header button.bg-white').click()
-    cy.get('.max-w-xs').should('not.be.visible')
+    cy.get('.max-w-xs').should('not.exist')
   }
 }
