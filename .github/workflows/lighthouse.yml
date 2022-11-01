@@ -23,7 +23,7 @@ jobs:
           node-version: 16
       - run: npm install -g @lhci/cli@0.9.x
       - run: yarn && yarn build --config ${{ inputs.storefront-x-config }}
-      - run: lhci collect --startServerCommand "yarn serve" --url http://localhost:3000/${{ inputs.product-detail-page }}
+      - run: lhci collect --startServerCommand "yarn serve --compression" --url http://localhost:3000/${{ inputs.product-detail-page }}
       - run: lhci assert
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
