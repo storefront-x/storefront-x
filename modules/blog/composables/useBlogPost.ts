@@ -1,3 +1,4 @@
+import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
 import ToBlogPost from '#ioc/mappers/ToBlogPost'
 import { computed, reactive, Ref } from 'vue'
 
@@ -16,9 +17,9 @@ export default (post: Ref<ReturnType<typeof ToBlogPost>>) => {
 
   const publishedAt = computed(() => post.value.publishedAt)
 
-  const postThumbnail = computed(() => post.value.postThumbnail)
+  const postThumbnail = computed(() => MAGENTO_URL + post.value.postThumbnail)
 
-  const listThumbnail = computed(() => post.value.listThumbnail)
+  const listThumbnail = computed(() => MAGENTO_URL + post.value.listThumbnail)
 
   const metaTitle = computed(() => post.value.meta.title)
 
