@@ -1,10 +1,4 @@
-interface Locale {
-  name: string
-  locale: string
-  prefix: string
-  domain?: string
-  [x: string]: any
-}
+import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
   {
