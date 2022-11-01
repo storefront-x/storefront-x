@@ -25,5 +25,6 @@ jobs:
       - run: yarn && yarn build --config ${{ inputs.storefront-x-config }}
       - run: lhci collect --startServerCommand "yarn serve --compression" --url http://localhost:3000/${{ inputs.product-detail-page }}
       - run: lhci assert
+      - run: lhci upload
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
