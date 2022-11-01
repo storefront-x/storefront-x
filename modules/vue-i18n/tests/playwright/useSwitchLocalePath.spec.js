@@ -147,7 +147,6 @@ test('switch locale path to default language', async ({ page }) => {
             config: {
               'VUE_I18N_LOCALES.ts': `export default [
                   {
-
                     name: 'en',
                     locale: 'en-US',
                     prefix: '/',
