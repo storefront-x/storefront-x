@@ -1,5 +1,5 @@
 <template>
-  <Link to="/checkout" class="relative pl-2 text-gray-400 hover:text-gray-500">
+  <Link :to="localePath('checkout')" class="relative pl-2 text-gray-400 hover:text-gray-500">
     <span class="sr-only">{{ t('Cart') }}</span>
     <div
       class="rounded-lg border-2 p-2 border-none border-gray-100 lg:border-solid hover:bg-gray-100 rounded-full lg:p-3"
@@ -20,12 +20,12 @@
 import Link from '#ioc/atoms/Link'
 import useCart from '#ioc/composables/useCart'
 import useI18n from '#ioc/composables/useI18n'
+import useLocalePath from '#ioc/composables/useLocalePath'
 import OutlineShoppingBag from '#ioc/icons/OutlineShoppingBag'
 
 const { t } = useI18n()
 const cart = useCart()
-
-// TODO: Implement
+const localePath = useLocalePath()
 </script>
 
 <i18n lang="yaml">

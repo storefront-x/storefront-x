@@ -25,6 +25,6 @@ export default () => {
       query: {
         orderNumber: order.orderNumber,
       },
-    }).fullPath
+    })
   }
 }

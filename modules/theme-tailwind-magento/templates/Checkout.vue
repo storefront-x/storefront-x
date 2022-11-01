@@ -93,8 +93,12 @@ const onSelectContactInfo = () => {
 }
 
 const onConfirmContactInfo = async () => {
-  await nextTick()
-  step.value = 4
+  try {
+    await nextTick()
+    step.value = 4
+  } catch (error) {
+    console.warn(error)
+  }
 }
 
 onMounted(async () => {
