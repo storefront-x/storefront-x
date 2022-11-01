@@ -5,14 +5,7 @@ import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
 import isObject from '#ioc/utils/isObject'
 import isString from '#ioc/utils/isString'
-
-interface Locale {
-  name: string
-  locale: string
-  prefix: string
-  domain?: string
-  [x: string]: any
-}
+import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default () => {
   const router = useRouter()
