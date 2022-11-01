@@ -1,4 +1,4 @@
-import useAsyncData from '#ioc/composables/useAsyncData'
+import useResource from '#ioc/composables/useResource'
 import useRoute from '#ioc/composables/useRoute'
 import useUrlResolverRepository from '#ioc/repositories/useUrlResolverRepository'
 import ensureArray from '#ioc/utils/array/ensureArray'
@@ -12,7 +12,10 @@ export default () => {
     const path = ensureArray(route.params?.pathMatch)
     const routePath = path.length ? path.join('/') : '/'
 
-    const { data } = await useAsyncData('urlResolver', () => urlResolverRepository(routePath))
+    const [data] = await useResource(
+      () => routePath,
+      (routePath) => urlResolverRepository(routePath),
+    )
 
     return {
       id: data.value.id,

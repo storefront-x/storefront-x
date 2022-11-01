@@ -1,7 +1,7 @@
 <template>
-  <RouterView v-slot="{ Component: resolved, route }">
-    <Suspense @pending="pendingEvent" @resolve="resolveEvent">
-      <Component :is="resolved" :key="route.fullPath" />
+  <RouterView v-slot="{ Component, route }">
+    <Suspense @pending="onPending" @resolve="onResolve">
+      <Component :is="Component" :key="route.path" />
     </Suspense>
   </RouterView>
 </template>
@@ -11,10 +11,7 @@ import useEventBus from '#ioc/composables/useEventBus.js'
 
 const { emit } = useEventBus('navigation')
 
-function pendingEvent() {
-  emit(true)
-}
-function resolveEvent() {
-  emit(false)
-}
+const onPending = () => emit(true)
+
+const onResolve = () => emit(false)
 </script>

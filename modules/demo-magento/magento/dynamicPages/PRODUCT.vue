@@ -8,9 +8,9 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
 import useGetProductById from '#ioc/services/useGetProductById'
-import useAsyncData from '#ioc/composables/useAsyncData'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+import useResource from '#ioc/composables/useResource'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 const ProductDetail = hydrateWhenVisible(() => import('#ioc/templates/ProductDetail'))
@@ -28,5 +28,8 @@ const props = defineProps({
 
 const getProductById = useGetProductById()
 
-const { data } = await useAsyncData('product', () => getProductById(props.relativeUrl.replace(/\.html$/, '')))
+const [data] = await useResource(
+  () => props.relativeUrl.replace(/\.html$/, ''),
+  (urlKey) => getProductById(urlKey),
+)
 </script>
