@@ -1,4 +1,4 @@
-name: Test Cypress
+name: Cypress
 
 on:
   workflow_call:
@@ -39,7 +39,8 @@ jobs:
         name: Set Chunk IDs
         # get the number of elements from the above array as an array of indexes
         run: echo "::set-output name=test-chunk-ids::$(echo '${{ steps['set-test-chunks'].outputs['test-chunks'] }}' | jq -cM 'to_entries | map(.key)')"
-  cypress:
+
+  test:
     runs-on: ubuntu-latest
     needs:
       - setup
@@ -47,7 +48,7 @@ jobs:
       fail-fast: false
       matrix:
         chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
-    name: Cypress (chunk ${{ matrix.chunk }})
+    name: chunk ${{ matrix.chunk }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -57,8 +58,14 @@ jobs:
       - run: yarn install
       - run: yarn build --config ${{inputs.storefront-x-config}}
       - run: yarn serve &
-      - run: yarn cypress run --spec $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
+      - run: yarn cypress run --browser chrome --spec $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
       - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v3
+        if: failure()
         with:
           name: cypress-videos
           path: cypress/videos

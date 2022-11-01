@@ -18,7 +18,7 @@ export default () => {
     cookies.set(MAGENTO_CUSTOMER_COOKIE_NAME, token, { path: '/' })
 
     if (redirect) {
-      window.location.href = localePath('/').fullPath
+      window.location.href = localePath('/')
     }
   }
 }

@@ -48,7 +48,7 @@ test('render store properties', async ({ page }) => {
                   const switchLocalePath = useSwitchLocalePath()
 
                   function change() {
-                    window.location.href = switchLocalePath('cz').fullPath
+                    window.location.href = switchLocalePath('cz')
                   }
                   const fullName = computed(() => currentLocale.value.fullName)
                   </script>

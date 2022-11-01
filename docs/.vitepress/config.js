@@ -37,6 +37,12 @@ export default defineConfig({
       { text: 'Blog', link: 'https://www.storefrontx.io/' },
     ],
 
+    algolia: {
+      appId: '6DEBL0BL14',
+      apiKey: 'eb2c839c3d67249f2167703c57d3a891',
+      indexName: 'storefrontx',
+    },
+
     sidebar: [
       {
         text: 'Guide',

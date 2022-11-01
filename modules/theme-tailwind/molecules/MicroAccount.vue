@@ -21,7 +21,7 @@
   </div>
 
   <div v-else class="flex flex-col font-semibold text-gray-800" data-cy="micro-account">
-    <span class="whitespace-nowrap font-bold">{{ t('Welcome {0}', [customer.fullName]) }}</span>
+    <span class="whitespace-nowrap font-bold">{{ t('welcome', [customer.fullName]) }}</span>
     <span class="flex items-center whitespace-nowrap gap-4">
       <Link class="text-primary-500" :to="localePath('account')">{{ t('My account') }}</Link>
       <span class="w-px border h-5 border-l-1 border-gray-300 text-bottom" />
@@ -59,10 +59,12 @@ const onLogout = async () => {
 </script>
 
 <i18n lang="yaml">
+en-US:
+  welcome: Welcome {0}
 cs-CZ:
   My account: Můj účet
   Logout: Odhlásit se
-  Welcome {0}: Vítejte, {0}
+  welcome: Vítejte, {0}
   Sign in: Přihlásit
   Sign up: Registrovat
 </i18n>
