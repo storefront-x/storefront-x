@@ -1,5 +1,5 @@
 <template>
-  <ProductCarousel v-if="products.length" :products="products" />
+  <ProductCarousel v-if="products?.length" :products="products" />
 </template>
 <script setup lang="ts">
 import useGetProductsByIds from '#ioc/services/useGetProductsByIds'

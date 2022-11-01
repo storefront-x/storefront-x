@@ -31,6 +31,7 @@ export default {
     '@storefront-x/nprogress',
 
     '@storefront-x/magento',
+    '@storefront-x/basic-auth',
     '@storefront-x/blog-magento',
     '@storefront-x/braintree-magento',
     '@storefront-x/brands-magento',

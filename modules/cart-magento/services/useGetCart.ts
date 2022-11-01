@@ -36,7 +36,6 @@ export default () => {
         }
       } else {
         console.error(e)
-        throw e
       }
     }
   }
