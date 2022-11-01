@@ -4,6 +4,7 @@ import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCookies from '#ioc/composables/useCookies'
 import MAGENTO_CART_COOKIE_NAME from '#ioc/config/MAGENTO_CART_COOKIE_NAME'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
+import isNoSuchEntityError from '#ioc/utils/graphql/isNoSuchEntityError'
 
 export default () => {
   const getOrCreateCartId = useGetOrCreateCartId()
@@ -23,7 +24,7 @@ export default () => {
         cart,
       }
     } catch (e: any) {
-      if (e.data?.category === 'graphql-no-such-entity') {
+      if (isNoSuchEntityError(e)) {
         cookies.remove(MAGENTO_CART_COOKIE_NAME)
         cartMagentoStore.$patch({ cartId: '' })
 

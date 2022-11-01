@@ -1,19 +1,25 @@
-import useCookies from '#ioc/composables/useCookies'
-import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
 import useGetCustomerCartId from '#ioc/services/useGetCustomerCartId'
+import useCustomerStore from '#ioc/stores/useCustomerStore'
+import waitForStore from '#ioc/utils/vue-pinia/waitForStore'
 
 export default <T extends (...args: any[]) => any>(useGetOrCreateCartId: T) => {
-  return (): ReturnType<T> => {
-    const cookies = useCookies()
+  return (): (() => Promise<any>) => {
     const getOrCreateCartId = useGetOrCreateCartId()
     const getCustomerCartId = useGetCustomerCartId()
+    const customerStore = useCustomerStore()
 
-    const token = cookies.get(MAGENTO_CUSTOMER_COOKIE_NAME)
-
-    if (token) {
-      return getCustomerCartId as ReturnType<T>
-    } else {
-      return getOrCreateCartId
+    return async () => {
+      return await waitForStore(
+        customerStore,
+        () => customerStore.customer !== undefined,
+        async () => {
+          if (customerStore.customer) {
+            return getCustomerCartId()
+          } else {
+            return getOrCreateCartId()
+          }
+        },
+      )
     }
   }
 }

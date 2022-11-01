@@ -4,6 +4,7 @@ import useCustomerStore from '#ioc/stores/useCustomerStore'
 import useGetWishlist from '#ioc/services/useGetWishlist'
 import useMergeWishlist from '#ioc/services/useMergeWishlist'
 import ToWishlistItem from '#ioc/mappers/ToWishlistItem'
+import waitForStore from '#ioc/utils/vue-pinia/waitForStore'
 
 export default defineStore('wishlist', {
   state: () => ({
@@ -17,24 +18,20 @@ export default defineStore('wishlist', {
       const customerStore = useCustomerStore()
       const getWishlist = useGetWishlist()
       const mergeWishlist = useMergeWishlist()
+      return async () => {
+        return await waitForStore(
+          customerStore,
+          () => customerStore.customer !== undefined,
+          async () => {
+            if (customerStore.customer) {
+              await mergeWishlist()
+              const wishlist = await getWishlist()
 
-      return new Promise<void>((resolve) => {
-        customerStore.$subscribe(async (_, state) => {
-          if (state.customer === undefined) return
-
-          try {
-            if (state.customer !== null) await mergeWishlist()
-          } catch (e) {
-            console.error(e)
-          }
-
-          const wishlist = await getWishlist()
-
-          this.$patch(wishlist)
-
-          resolve()
-        })
-      })
+              this.$patch(wishlist)
+            }
+          },
+        )
+      }
     },
   },
 })
