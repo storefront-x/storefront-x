@@ -387,7 +387,7 @@ test('works with route parameters', async ({ page }) => {
   )
 })
 
-test.only('works with multiple route parameters', async ({ page }) => {
+test('works with multiple route parameters', async ({ page }) => {
   await makeProject(
     {
       modules: [

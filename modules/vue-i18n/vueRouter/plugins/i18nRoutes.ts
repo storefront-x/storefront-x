@@ -7,8 +7,6 @@ export default (routes: any) => {
     alias: getAlias(route),
     children: getChildren(route),
   }))
-  // console.log(newRoutes[0].children.length)
-  // console.log(newRoutes[0].children[newRoutes[0].children.length - 2])
 }
 
 const getAlias = (route: any) => {
