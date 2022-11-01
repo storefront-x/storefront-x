@@ -1,5 +1,5 @@
 <template>
-  <SfxForm ref="form" class="flex flex-col md:flex-row gap-16 mb-4">
+  <Form :value="updateFormValue" class="flex flex-col md:flex-row gap-16 mb-4">
     <ProductConfigurableOption
       v-for="configurableOption in product.configurableOptions"
       :key="configurableOption.attributeCode"
@@ -7,13 +7,15 @@
       :in-modal="inModal"
       @input="onInput"
     />
-  </SfxForm>
+  </Form>
 </template>
 
 <script setup lang="ts">
-import SfxForm from '#ioc/components/SfxForm'
+import Form from '#ioc/atoms/Form'
 import ProductConfigurableOption from '#ioc/molecules//ProductConfigurableOption'
 import injectProduct from '#ioc/composables/injectProduct'
+import isEmpty from '#ioc/utils/isEmpty'
+import { computed } from 'vue'
 
 const product = injectProduct()
 
@@ -22,6 +24,20 @@ defineProps({
     type: String,
     default: 'outOfModal',
   },
+})
+
+const updateFormValue = computed(() => {
+  if (isEmpty(product.configuration)) return
+
+  const newValue = {} as any
+  const ids = Object.keys(product.configuration)
+
+  for (const id of ids) {
+    const idGroup = id + '-group'
+    newValue[idGroup] = String(product.configuration[id])
+  }
+
+  return newValue
 })
 
 const onInput = (configurableOption: any, id: any) => {
