@@ -386,3 +386,62 @@ test('works with route parameters', async ({ page }) => {
     },
   )
 })
+
+test.only('works with multiple route parameters', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        '@storefront-x/vue-i18n',
+        [
+          'my-module',
+          {
+            config: {
+              'VUE_I18N_LOCALES.ts': `
+                export default [
+                  {
+                    name: 'en',
+                    locale: 'en-US',
+                    prefix: '/',
+                  },
+                  {
+                    name: 'cz',
+                    locale: 'cs-CZ',
+                    prefix: '/cz',
+                  },
+                ]
+              `,
+              'VUE_I18N_ROUTE_PATHS.ts': `
+                export default {
+                  '/[user]/[id]': {
+                    en: '/[user]/[id]',
+                    cz: '/[user]/[id]',
+                  }
+                }
+              `,
+            },
+            pages: {
+              '[user]': {
+                '[id].vue': `
+                  <template>
+                    <h1>{{ localePath({name: '[user]/[id]', params: {user:'joe',id: 1 } }, 'cz') }}</h1>
+                  </template>
+                  <script setup>
+                  import useLocalePath from '#ioc/composables/useLocalePath'
+                  const localePath = useLocalePath()
+                  </script>
+                `,
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/bob/1', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('/cz/joe/1')
+    },
+  )
+})
