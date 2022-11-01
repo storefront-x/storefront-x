@@ -4,6 +4,7 @@ import usePlaceOrderRepository from '#ioc/repositories/usePlaceOrderRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCartStore from '#ioc/stores/useCartStore'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
+import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
 
 export default () => {
   const cookies = useCookies()
@@ -11,6 +12,7 @@ export default () => {
   const checkoutStore = useCheckoutStore()
   const getOrCreateCartId = useGetOrCreateCartId()
   const placeOrderRepository = usePlaceOrderRepository()
+  const cartMagentoStore = useCartMagentoStore()
 
   return async () => {
     const { id } = await getOrCreateCartId()
@@ -21,6 +23,7 @@ export default () => {
 
     cartStore.$reset()
     checkoutStore.$reset()
+    cartMagentoStore.$reset()
 
     return {
       order,
