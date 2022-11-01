@@ -16,6 +16,7 @@ This concept is not overriding on the file bases, but instead overriding on the 
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
+import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
   {
@@ -28,7 +29,7 @@ export default [
     locale: 'cs-CZ',
     prefix: '/cz',
   },
-]
+] as Locale[]
 ```
 
 ```ts
@@ -77,6 +78,7 @@ If you create new datetimes file with new language you must have default key ins
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
+import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
   {
@@ -89,7 +91,7 @@ export default [
     locale: 'cs-CZ',
     prefix: '/cz',
   },
-]
+] as Locale[]
 ```
 
 ```ts
@@ -146,6 +148,7 @@ This concept is not overriding on the file bases, but instead overriding on the 
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
+import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
   {
@@ -158,7 +161,7 @@ export default [
     locale: 'cs-CZ',
     prefix: '/cz',
   },
-]
+] as Locale[]
 ```
 
 ```ts
@@ -343,6 +346,7 @@ Any other property will be accessible via the `useCurrentLocale` composable.
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
+import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
   {
@@ -355,13 +359,14 @@ export default [
     locale: 'cs-CZ',
     prefix: '/cz',
   },
-]
+] as Locale[]
 ```
 
 ### Example with multiple domains
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
+import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
   {
@@ -376,7 +381,7 @@ export default [
     prefix: '/',
     domain: 'my-shop.cz',
   },
-]
+] as Locale[]
 ```
 
 :::tip
@@ -393,6 +398,7 @@ Keys of the exported object correspond with original page URLs you want to remap
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
+import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
   {
@@ -405,7 +411,7 @@ export default [
     locale: 'cs-CZ',
     prefix: '/cz',
   },
-]
+] as Locale[]
 ```
 
 ```ts
