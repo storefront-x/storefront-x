@@ -1,4 +1,4 @@
-name: Performance audit
+name: CI
 
 on:
   workflow_call:
@@ -14,7 +14,8 @@ on:
         type: string
 
 jobs:
-  lighthouseci:
+  lhci:
+    name: Lighthouse
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
