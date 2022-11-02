@@ -1,14 +1,11 @@
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
+import Extension from '#ioc/types/base/Extension'
 
-interface Extension<Ext = Record<string, never>> {
-  <T extends (...arg: any) => any>(useProduct: T): (...arg: any) => ReturnType<T> & Ext
-}
-
-interface ToCategory {
+interface ToCategoryType {
   thumbnailUrl: string
 }
 
-const ToCategory: Extension<ToCategory> = (ToCategory) => (data) => ({
+const ToCategory: Extension<ToCategoryType> = (ToCategory) => (data) => ({
   ...ToCategory(data),
   thumbnailUrl: data.thumbnail ? MAGENTO_URL + '/media/catalog/category/' + data.thumbnail : null,
 })
