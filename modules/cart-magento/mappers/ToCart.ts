@@ -6,4 +6,5 @@ export default (data: any) => ({
   items: data.items.map(ToCartItem),
   coupons: [],
   prices: ToCartPrices(data.prices),
+  variantSku: data?.variant?.sku,
 })

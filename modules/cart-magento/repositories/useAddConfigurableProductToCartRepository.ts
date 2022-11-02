@@ -18,23 +18,36 @@ export default () => {
   ): Promise<{
     cart: ReturnType<typeof ToCart>
   }> => {
+    const variant = {
+      sku: variantSku,
+      quantity,
+    }
+
     const { data } = await magento.graphql(
       AddConfigurableProductsToCart().with({
         cartId,
         cartItems: [
           {
             parent_sku: product.sku,
-            data: {
-              sku: variantSku,
-              quantity,
-            },
+            data: variant,
           },
         ],
       }),
     )
 
+    //altair can I get variant SKU ???
+    console.log(
+      'config products data',
+      ToCart({
+        ...data.addConfigurableProductsToCart.cart,
+        variant,
+      }),
+    )
     return {
-      cart: ToCart(data.addConfigurableProductsToCart.cart),
+      cart: ToCart({
+        ...data.addConfigurableProductsToCart.cart,
+        variant,
+      }),
     }
   }
 }
