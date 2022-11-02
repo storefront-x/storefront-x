@@ -12,6 +12,7 @@ import once from '#ioc/utils/once'
 import queryToObject from '#ioc/utils/url/queryToObject'
 import fromBase64 from '#ioc/utils/string/fromBase64'
 import toBase64 from '#ioc/utils/string/toBase64'
+import isEmpty from '#ioc/utils/isEmpty'
 
 import type { Request, Response, NextFunction } from 'express'
 
@@ -26,7 +27,7 @@ const users: User = BASIC_AUTH.split('|')
   .map((credentials) => credentials.split(':'))
   .reduce((users, [username, password]) => ({ ...users, [username]: password }), {}) as User
 
-const ipWhitelist = new Set(BASIC_AUTH_IP_WHITELIST?.split('|') || '')
+const ipWhitelist = !isEmpty(BASIC_AUTH_IP_WHITELIST) ? new Set(BASIC_AUTH_IP_WHITELIST.split('|')) : new Set([])
 
 const getRemoteIp = (req: Request) => req.headers['x-forwarded-for'] || req.socket.remoteAddress
 
