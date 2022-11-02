@@ -12,6 +12,9 @@ on:
       product-detail-page:
         required: true
         type: string
+      category-page:
+        required: true
+        type: string
 
 jobs:
   lighthouseci:
@@ -23,7 +26,11 @@ jobs:
           node-version: 16
       - run: npm install -g @lhci/cli@0.9.x
       - run: yarn && yarn build --config ${{ inputs.storefront-x-config }}
-      - run: lhci collect --startServerCommand "yarn serve --compression" --url http://localhost:3000/${{ inputs.product-detail-page }}
+      - run: >
+          lhci collect --startServerCommand "yarn serve --compression"
+          --url http://localhost:3000
+          --url http://localhost:3000/${{ inputs.product-detail-page }}
+          --url http://localhost:3000/${{ inputs.category-page }}
       - run: lhci upload
       - run: lhci assert
         env:
