@@ -26,7 +26,7 @@ const users: User = BASIC_AUTH.split('|')
   .map((credentials) => credentials.split(':'))
   .reduce((users, [username, password]) => ({ ...users, [username]: password }), {}) as User
 
-const ipWhitelist = new Set(BASIC_AUTH_IP_WHITELIST.split('|'))
+const ipWhitelist = new Set(BASIC_AUTH_IP_WHITELIST?.split('|') || '')
 
 const getRemoteIp = (req: Request) => req.headers['x-forwarded-for'] || req.socket.remoteAddress
 
