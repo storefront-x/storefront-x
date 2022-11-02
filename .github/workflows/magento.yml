@@ -36,6 +36,6 @@ jobs:
     uses: ./.github/workflows/lighthouse.yml
     with:
       storefront-x-config: storefront-x.magento.config.js
-      homepage: https://magento.storefrontx.io/
       product-detail-page: tripp-lite-n238-001-yw-keystone-module.html
+      category-page: computers-peripherals.html
 
