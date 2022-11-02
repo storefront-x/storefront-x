@@ -72,6 +72,10 @@ export default class Core {
 
     await entry(ctx)
 
+    if (ctx.redirect) {
+      return res.redirect(ctx.redirect)
+    }
+
     for (const out of Object.values(ctx.out)) {
       template = await out(template)
     }

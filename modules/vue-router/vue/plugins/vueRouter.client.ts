@@ -2,7 +2,8 @@ import VUE_ROUTER_SCROLL_BEHAVIOR from '#ioc/config/VUE_ROUTER_SCROLL_BEHAVIOR'
 import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from '~/.sfx/pages'
-import useCustomerStore from '#ioc/stores/useCustomerStore'
+import { default as beforeEachGuards } from '~/.sfx/global-before-each'
+
 export default async (app: App, ctx: any) => {
   const router = createRouter({
     history: createWebHistory(),
@@ -15,14 +16,11 @@ export default async (app: App, ctx: any) => {
   })
 
   ctx.$router = router
-  const store = useCustomerStore()
-  router.beforeEach((to, from, next) => {
-    console.log(to.name)
-    console.log(store.customer)
-    if (to.name !== 'sign-in' && !store.customer) next({ name: 'sign-in' })
-    else next()
-    console.log('next')
-  })
+
+  for (const beforeEachGuard of Object.values(beforeEachGuards)) {
+    router.beforeEach((to) => beforeEachGuard(to, ctx))
+  }
+
   await router.push(window.location.pathname + window.location.search + window.location.hash)
 
   await router.isReady()
