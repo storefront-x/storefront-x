@@ -6,6 +6,7 @@ import BASIC_AUTH from '#ioc/config/BASIC_AUTH'
 import BASIC_AUTH_IP_WHITELIST from '#ioc/config/BASIC_AUTH_IP_WHITELIST'
 import BASIC_AUTH_COOKIE_NAME from '#ioc/config/BASIC_AUTH_COOKIE_NAME'
 import BASIC_AUTH_REDIRECT_URL from '#ioc/config/BASIC_AUTH_REDIRECT_URL'
+import IS_PRODUCTION from '#ioc/config/IS_PRODUCTION'
 
 import once from '#ioc/utils/once'
 import queryToObject from '#ioc/utils/url/queryToObject'
@@ -32,7 +33,7 @@ const getRemoteIp = (req: Request) => req.headers['x-forwarded-for'] || req.sock
 export default (req: Request, res: Response, next: NextFunction) => {
   const cookies = createCookies(req)()
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (!IS_PRODUCTION) {
     logger.info('Basic auth disabled in dev mode')
     return (_: any, __: any, next: NextFunction) => next()
   }
