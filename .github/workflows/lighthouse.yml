@@ -25,6 +25,7 @@ jobs:
       - run: yarn && yarn build --config ${{ inputs.storefront-x-config }}
       - run: >
           lhci collect --startServerCommand "yarn serve --compression"
+          --startServerReadyPattern started
           --url http://localhost:3000
           --url http://localhost:3000/${{ inputs.product-detail-page }}
           --url http://localhost:3000/${{ inputs.category-page }}
