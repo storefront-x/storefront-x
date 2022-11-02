@@ -6,9 +6,6 @@ on:
       storefront-x-config:
         required: true
         type: string
-      homepage:
-        required: true
-        type: string
       product-detail-page:
         required: true
         type: string
