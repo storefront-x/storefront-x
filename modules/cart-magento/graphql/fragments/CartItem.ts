@@ -2,6 +2,7 @@ import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
 import Money from '#ioc/graphql/fragments/Money'
 import Product from '#ioc/graphql/fragments/Product'
+import ConfigurableProduct from '#ioc/graphql/fragments/ConfigurableProduct'
 import on from '#ioc/graphql/on'
 
 export default (name = 'cartItem') =>
@@ -38,6 +39,11 @@ export default (name = 'cartItem') =>
         }),
       }),
       ...on('ConfigurableCartItem', {
+        product: field({
+          ...on('ConfigurableProduct', {
+            ...ConfigurableProduct(),
+          }),
+        }),
         configurable_options: field({
           option_label: field(),
           value_label: field(),
