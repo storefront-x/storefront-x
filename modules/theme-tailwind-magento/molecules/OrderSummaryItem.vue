@@ -65,19 +65,11 @@
         <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-lg" />
 
         <SfxMoney v-if="cartItem.product.isOnSale" v-slot="{ html }" :money="cartItem.product.regularPrice">
-          <i18n-t tag="span" keypath="quantity" class="line-through text-red-600 ml-1">
-            <template #qty>
-              <span>{{ html }}</span>
-            </template>
-          </i18n-t>
+          <span class="line-through text-red-600 ml-1">{{ t('{0} / qty', [html]) }}</span>
         </SfxMoney>
 
         <SfxMoney v-slot="{ html }" :money="cartItem.price">
-          <i18n-t tag="span" keypath="quantity" class="ml-1">
-            <template #qty>
-              <span>{{ html }}</span>
-            </template>
-          </i18n-t>
+          <span class="ml-1">{{ t('{0} / qty', [html]) }}</span>
         </SfxMoney>
       </p>
     </div>
@@ -200,9 +192,8 @@ const updateQuantity = async (quantity: number) => {
 <i18n lang="yaml">
 en-US:
   'IN_STOCK': 'In stock'
-  quantity: '{qty} / qty'
 cs-CZ:
-  quantity: '{qty} / ks'
+  '{0} / qty': '{0} / ks'
   '{0} pcs in stock': 'Skladem {0} ks'
   '> {0} pcs in stock': 'Skladem > {0} ks'
   'IN_STOCK': 'Skladem'
