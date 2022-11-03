@@ -4,10 +4,14 @@ import { GeneratingConcept } from '@storefront-x/core'
 
 export default class GlobalBeforeEach extends GeneratingConcept {
   get directory() {
-    return 'global-before-each'
+    return 'vueRouter/beforeEach'
   }
 
   get recursive() {
+    return true
+  }
+
+  get supportsClientServer() {
     return true
   }
 }

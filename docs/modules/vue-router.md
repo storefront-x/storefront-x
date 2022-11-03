@@ -61,6 +61,41 @@ import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
 </script>
 ```
 
+### Global navigation guard
+
+You can have global navigation guard representing [before each navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards).
+
+:::info
+You can have guard only for client `auth.client.js` or only for server `auth.server.js`
+:::
+
+```
+modules/
+  my-modules/
+    vueRouter/
+      beforeEach/
+        auth.js
+```
+
+```javascript
+// vueRouter/beforeEach/auth.js
+
+import useCustomerStore from '#ioc/stores/useCustomerStore'
+
+export default (to, from, ctx) => {
+  const store = useCustomerStore()
+  const isRestricted = to.path.startsWith('/account')
+
+  if (isRestricted && to.name !== 'sign-in' && !store.customer) {
+    ctx.redirect = '/sign-in'
+
+    return { name: 'sign-in', force: true }
+  } else {
+    return true
+  }
+}
+```
+
 ### Navigation guard
 
 Pages can have correspond file representing the [before enter navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#per-route-guard).

@@ -2,7 +2,7 @@ import VUE_ROUTER_SCROLL_BEHAVIOR from '#ioc/config/VUE_ROUTER_SCROLL_BEHAVIOR'
 import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from '~/.sfx/pages'
-import { default as beforeEachGuards } from '~/.sfx/global-before-each'
+import beforeEachGuards from '~/.sfx/vueRouter/beforeEach.client'
 
 export default async (app: App, ctx: any) => {
   const router = createRouter({
@@ -18,7 +18,7 @@ export default async (app: App, ctx: any) => {
   ctx.$router = router
 
   for (const beforeEachGuard of Object.values(beforeEachGuards)) {
-    router.beforeEach((to) => beforeEachGuard(to, ctx))
+    router.beforeEach((to, from) => beforeEachGuard(to, from, ctx))
   }
 
   await router.push(window.location.pathname + window.location.search + window.location.hash)

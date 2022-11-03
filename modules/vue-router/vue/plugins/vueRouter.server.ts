@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 import { createRouter, createMemoryHistory } from 'vue-router'
 import { routes } from '~/.sfx/pages'
-import { default as beforeEachGuards } from '~/.sfx/global-before-each'
+import beforeEachGuards from '~/.sfx/vueRouter/beforeEach.server'
 
 export default async (app: App, ctx: any) => {
   const router = createRouter({
@@ -16,7 +16,7 @@ export default async (app: App, ctx: any) => {
   ctx.$router = router
 
   for (const beforeEachGuard of Object.values(beforeEachGuards)) {
-    router.beforeEach((to) => beforeEachGuard(to, ctx))
+    router.beforeEach((to, from) => beforeEachGuard(to, from, ctx))
   }
 
   await router.push(ctx.req.url)
