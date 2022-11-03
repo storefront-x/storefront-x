@@ -34,24 +34,4 @@ export default (name = 'cart') =>
           }),
         }),
       }),
-      shipping_addresses: field({
-        selected_shipping_method: field({
-          method_code: field(),
-          amount: field({
-            ...Money(),
-          }),
-        }),
-        available_shipping_methods: field({
-          carrier_code: field(),
-          carrier_title: field(),
-          method_code: field(),
-          method_title: field(),
-          price_excl_tax: field({
-            ...Money(),
-          }),
-          price_incl_tax: field({
-            ...Money(),
-          }),
-        }),
-      }),
     })

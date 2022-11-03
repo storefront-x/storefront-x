@@ -18,7 +18,7 @@
           <div class="flex items-center justify-between">
             <dt>{{ t('Shipping') }}</dt>
             <p v-if="isFree" class="text-green-600">{{ t('FREE') }}</p>
-            <SfxMoney v-else :money="undefined" el="dd" class="text-gray-900" />
+            <SfxMoney v-else :money="checkoutStore.shippingMethod?.priceInclTax" el="dd" class="text-gray-900" />
           </div>
           <div v-for="discount in cart.discounts" :key="discount.label" class="flex items-center justify-between">
             <dt>{{ discount.label }}</dt>
@@ -49,6 +49,7 @@ import useCart from '#ioc/composables/useCart'
 import useI18n from '#ioc/composables/useI18n'
 import OrderSummaryItem from '#ioc/molecules/OrderSummaryItem'
 import { computed } from 'vue'
+import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 
 defineProps({
   bottom: {
@@ -59,8 +60,13 @@ defineProps({
 
 const { t } = useI18n()
 const cart = useCart()
+const checkoutStore = useCheckoutStore()
 
-const isFree = computed(() => false)
+const isFree = computed(
+  () =>
+    checkoutStore.shippingMethod?.priceInclTax.value === 0 &&
+    checkoutStore.shippingMethod?.priceInclTax.currency !== undefined,
+)
 </script>
 
 <i18n lang="yaml">

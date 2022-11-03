@@ -8,10 +8,6 @@ export default {
       type: null,
       default: null,
     },
-    attrs: {
-      type: Object,
-      default: null,
-    },
   },
 
   computed: {

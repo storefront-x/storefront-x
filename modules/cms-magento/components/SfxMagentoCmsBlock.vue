@@ -1,5 +1,5 @@
 <template>
-  <SfxMagentoCmsPage :cms-page="data.cmsBlock" :attrs="$attrs" />
+  <SfxMagentoCmsPage :cms-page="data.cmsBlock" />
 </template>
 
 <script setup lang="ts">

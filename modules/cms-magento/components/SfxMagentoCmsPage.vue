@@ -12,16 +12,12 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-    attrs: {
-      type: Object,
-      default: () => ({}),
-    },
   },
 
-  async setup(props) {
+  async setup(props, { attrs }) {
     const parsed = await parse(props.cmsPage.content)
 
-    const walked = await walk(parsed, props.attrs)
+    const walked = await walk(parsed, attrs)
 
     return () => walked
   },
