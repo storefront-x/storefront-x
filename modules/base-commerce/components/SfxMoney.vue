@@ -33,7 +33,7 @@ export default defineComponent({
     })
 
     const currency = computed((): string => {
-      return props.money?.currency ?? storeStore.currency?.code
+      return props.money?.currency ?? storeStore.currency?.code ?? ''
     })
 
     const html = computed((): string => {
