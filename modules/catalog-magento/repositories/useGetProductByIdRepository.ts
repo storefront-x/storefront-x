@@ -21,8 +21,8 @@ export default () => {
     )
 
     return {
-      product: ToProduct(products.items.find((item: any) => item.url_key === id)),
-      aggregations: products.aggregations.map(ToAggregation) || [],
+      product: ToProduct(products?.items?.find((item: any) => item.url_key === id) || []),
+      aggregations: products?.aggregations?.map(ToAggregation) || [],
     }
   }
 }
