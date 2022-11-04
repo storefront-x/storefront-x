@@ -1,6 +1,5 @@
 import useMagento from '#ioc/composables/useMagento'
 import SetShippingMethodOncart from '#ioc/graphql/mutations/SetShippingMethodOnCart'
-import ToCart from '#ioc/mappers/ToCart'
 import ToCheckout from '#ioc/mappers/ToCheckout'
 import ToShippingMethod from '#ioc/mappers/ToShippingMethod'
 
@@ -12,7 +11,6 @@ export default () => {
 
     return {
       checkout: ToCheckout(data.setShippingMethodOnCart.cart),
-      cart: ToCart(data.setShippingMethodOnCart.cart),
     }
   }
 }

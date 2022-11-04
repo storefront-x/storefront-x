@@ -5,11 +5,9 @@ import { computed, reactive } from 'vue'
 import _shippingMethods from '~/.sfx/shippingMethods'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useSetShippingMethodOnCart from '#ioc/services/useSetShippingMethodOnCart'
-import useCartStore from '#ioc/stores/useCartStore'
 
 export default () => {
   const checkoutStore = useCheckoutStore()
-  const cartStore = useCartStore()
   const getOrCreateCartId = useGetOrCreateCartId()
   const setShippingMethodOnCart = useSetShippingMethodOnCart()
 
@@ -34,10 +32,9 @@ export default () => {
   const setShippingMethod = async (shippingMethod: ReturnType<typeof ToShippingMethod>) => {
     const { id } = await getOrCreateCartId()
 
-    const { checkout, cart } = await setShippingMethodOnCart(id, shippingMethod)
+    const { checkout } = await setShippingMethodOnCart(id, shippingMethod)
 
-    cartStore.$patch({ cart })
-    checkoutStore.$patch({ shippingMethod, ...checkout.shippingMethods, ...checkout.paymentMethods })
+    checkoutStore.$patch({ ...checkout, shippingMethod })
   }
 
   const setShippingHandler = (shippingHandler: () => Promise<void>) => {

@@ -98,7 +98,7 @@ const walk = async (el, attrs) => {
     }
 
     const children = await walk(currentNode)
-    resolved.push(h(magentoCmsBlocks[ident], { attrs: attrs, el: currentNode }, () => children))
+    resolved.push(h(magentoCmsBlocks[ident], { ...attrs, el: currentNode }, () => children))
 
     currentNode = tree.nextSibling()
   }
