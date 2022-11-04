@@ -3124,6 +3124,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/basic-auth@workspace:modules/basic-auth":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/basic-auth@workspace:modules/basic-auth"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/blog-magento@workspace:modules/blog-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/blog-magento@workspace:modules/blog-magento"

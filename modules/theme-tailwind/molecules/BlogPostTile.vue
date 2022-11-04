@@ -29,7 +29,7 @@
         </p>
         <div class="flex space-x-1 text-sm text-gray-500">
           <div>
-            {{ d(blogPost.publishedAt) }}
+            {{ d(blogPost.publishedAt!) }}
           </div>
           <span aria-hidden="true"> &middot; </span>
           <span>
