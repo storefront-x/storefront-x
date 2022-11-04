@@ -14,16 +14,16 @@ export default () => {
   return async (): Promise<{
     cart: ReturnType<typeof ToCart>
   }> => {
-    const { id } = await getOrCreateCartId()
-
     try {
+      const { id } = await getOrCreateCartId()
+
       const { cart } = await getCartByIdRepository(id)
 
       return {
         cart,
       }
     } catch (e: any) {
-      if (e.data?.category === 'graphql-no-such-entity') {
+      if (e.data.category === 'graphql-no-such-entity' || e.data.category === 'graphql-authorization') {
         cookies.remove(MAGENTO_CART_COOKIE_NAME)
         cartMagentoStore.$patch({ cartId: '' })
 

@@ -16,7 +16,7 @@
         :style="{ pointerEvents: isDragging ? 'none' : 'auto' }"
         :class="classSlide"
       >
-        <slot :slide="slide" :index="i" />
+        <slot :slide="slide" :index="i" :is-dragging="isDragging" />
       </div>
     </div>
 

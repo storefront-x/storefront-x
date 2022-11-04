@@ -15,7 +15,7 @@ const getAlias = (route: any) => {
   const aliasLocaleKey = isDynamicRoute ? `/${route.name}` : route.path
   for (const locale of VUE_I18N_LOCALES) {
     const aliasLocale =
-      (VUE_I18N_ROUTE_PATHS as any)[aliasLocaleKey]?.[locale.name].replace(
+      (VUE_I18N_ROUTE_PATHS as any)[aliasLocaleKey]?.[locale.name]?.replace(
         /\[(.+?)\]/g,
         (_: string, $1: string) => `:${$1}(.+)`,
       ) ?? null
