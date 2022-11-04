@@ -10,6 +10,7 @@ import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 import GraphQLError from '#ioc/errors/GraphQLError'
 
 interface Options {
+  headers?: object
   errorHandler?: (err: any) => Promise<void>
 }
 
@@ -67,7 +68,7 @@ export default () => {
 
       return await _fetch(`${URL + MAGENTO_GRAPHQL_ENDPOINT}?${body}`, {
         method: 'GET',
-        headers: headers(),
+        headers: { ...headers(), ...opts.headers },
       })
     } else {
       const body = JSON.stringify({
@@ -77,7 +78,7 @@ export default () => {
 
       return await _fetch(URL + MAGENTO_GRAPHQL_ENDPOINT, {
         method: 'POST',
-        headers: headers(),
+        headers: { ...headers(), ...opts.headers },
         body,
       })
     }

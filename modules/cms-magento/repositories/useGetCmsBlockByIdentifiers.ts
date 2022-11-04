@@ -6,10 +6,12 @@ export default () => {
   const magento = useMagento()
 
   return async (
-    identifiers: string[],
+    identifier: string,
   ): Promise<{
     cmsBlock: ReturnType<typeof ToCmsPage>
   }> => {
+    const identifiers = []
+    identifiers.push(identifier)
     const { data } = await magento.graphql(CmsBlock().with({ identifiers }))
 
     return {
