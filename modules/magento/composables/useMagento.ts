@@ -8,6 +8,7 @@ import IS_SERVER from '#ioc/config/IS_SERVER'
 import useStoreStore from '#ioc/stores/useStoreStore'
 import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 import GraphQLError from '#ioc/errors/GraphQLError'
+import errorHandlers from '~/.sfx/magento/errorHandlers'
 
 interface Options {
   errorHandler?: (err: any) => Promise<void>
@@ -19,7 +20,7 @@ export default () => {
   const cookie = useCookies()
   const storeStore = useStoreStore()
   const currentLocale = useCurrentLocale()
-
+  const bindedErrorHandlers = Object.values(errorHandlers).map((e) => e())
   const headers = () => {
     const store = currentLocale.value.magentoStore
     const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
@@ -51,6 +52,10 @@ export default () => {
           if (opts.errorHandler) {
             await opts.errorHandler(error)
           } else {
+            for (const errorHandler of bindedErrorHandlers) {
+              await errorHandler(error)
+            }
+
             throw new GraphQLError(error)
           }
         }
