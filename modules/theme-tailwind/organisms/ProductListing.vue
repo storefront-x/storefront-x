@@ -12,7 +12,7 @@
           class="absolute right-0 top-8 lg:top-[unset] lg:right-[unset] lg:static lg:flex lg:justify-between lg:items-end"
         >
           <h3 class="hidden lg:block mb-4 text-neutral-600 text-lg font-medium">
-            {{ t('Products found: {0}', [totalCount]) }}
+            {{ t('products_found', [totalCount]) }}
           </h3>
 
           <ProductSort class="mb-4" :title="t(sortedBy)" />
@@ -73,8 +73,9 @@ cs-CZ:
   Best match: nejlepší shoda
   'price,ASC': 'nejlevnějších'
   'price,DESC': 'nejdražších'
-  'Products found: {0}': 'Nalezeno produktů: {0}'
+  'products_found': 'Nalezeno produktů: {0}'
 en-US:
   'price,ASC': 'lowest price'
   'price,DESC': 'highest price'
+  'products_found': 'Products found: {0}'
 </i18n>

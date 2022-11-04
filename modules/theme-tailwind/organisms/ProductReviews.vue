@@ -41,4 +41,6 @@ cs-CZ:
   Customer Reviews: Zákaznické hodnocení
   Load more: Načíst další
   Add a new review: Přidat nové hodnocení
+en-US:
+  reviews: '{0} reviews'
 </i18n>
