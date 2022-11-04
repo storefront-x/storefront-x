@@ -38,6 +38,7 @@
           </div>
         </dl>
       </div>
+      <Coupons />
     </div>
   </div>
 </template>
@@ -48,6 +49,7 @@ import Heading from '#ioc/atoms/Heading'
 import useCart from '#ioc/composables/useCart'
 import useI18n from '#ioc/composables/useI18n'
 import OrderSummaryItem from '#ioc/molecules/OrderSummaryItem'
+import Coupons from '#ioc/molecules/Coupons'
 import { computed } from 'vue'
 
 defineProps({
