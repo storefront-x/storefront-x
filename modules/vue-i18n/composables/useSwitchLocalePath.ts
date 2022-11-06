@@ -1,14 +1,14 @@
-import type { RouteLocation } from 'vue-router'
 import useRoute from '#ioc/composables/useRoute'
-import useRouter from '#ioc/composables/useRouter'
+import useLocalePath from '#ioc/composables/useLocalePath'
 
 export default () => {
   const route = useRoute()
-  const router = useRouter()
+  const localePath = useLocalePath()
 
-  return (targetLocaleName: string): RouteLocation => {
-    const [name] = route.name!.toString().split('__')
-
-    return router.resolve({ ...route, name: `${name}__${targetLocaleName}` })
+  return (targetLocaleName: string): string => {
+    return localePath(
+      { name: route.name!, query: route.query, hash: route.hash, params: route.params },
+      targetLocaleName,
+    )
   }
 }

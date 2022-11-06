@@ -40,7 +40,31 @@ import OutlineX from '#ioc/icons/OutlineX'
 import OutlineCreditCard from '#ioc/icons/OutlineCreditCard'
 import useI18n from '#ioc/composables/useI18n'
 import useCart from '#ioc/composables/useCart'
+import FormInput from '#ioc/molecules/FormInput'
+import useRemoveCouponFromCart from '#ioc/services/useRemoveCouponFromCart'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import useApplyCouponToCart from '#ioc/services/useApplyCouponToCart'
+import { ref } from 'vue'
 
 const { t } = useI18n()
 const cart = useCart()
+const removeCouponFromCart = useRemoveCouponFromCart()
+const showErrorNotification = useShowErrorNotification()
+const applyCouponToCart = useApplyCouponToCart()
+
+const isAdding = ref(false)
+
+const onRemoveCoupon = async () => {
+  await removeCouponFromCart()
+}
+
+const onSubmit = async ({ code }: { code: string }) => {
+  try {
+    await applyCouponToCart(code)
+    isAdding.value = false
+  } catch (e: any) {
+    console.error(e)
+    showErrorNotification(e)
+  }
+}
 </script>

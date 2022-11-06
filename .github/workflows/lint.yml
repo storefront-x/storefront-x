@@ -10,7 +10,6 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Lint
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -18,6 +17,5 @@ jobs:
           node-version: 16
           cache: 'yarn'
       - run: yarn install
-      - run: yarn build --config ${{inputs.storefront-x-config}} --onlyBootstrap
+      - run: yarn build --config ${{ inputs.storefront-x-config }} --onlyBootstrap
       - run: yarn lint:prod
-  

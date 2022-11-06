@@ -14,9 +14,9 @@
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">
         <p class="text-sm font-medium text-indigo-600">
-          <Link :href="blogPost.urlKey" class="relative"> Article </Link>
+          <Link :href="localePath(blogPost.urlPath)" class="relative"> Article </Link>
         </p>
-        <Link :to="blogPost.urlKey" class="relative group block mt-2">
+        <Link :to="localePath(blogPost.urlPath)" class="relative group block mt-2">
           <p class="text-xl font-semibold text-gray-900 group-hover:underline">
             {{ blogPost.title }}
           </p>
@@ -29,7 +29,7 @@
         </p>
         <div class="flex space-x-1 text-sm text-gray-500">
           <div>
-            {{ d(blogPost.publishedAt) }}
+            {{ d(blogPost.publishedAt!) }}
           </div>
           <span aria-hidden="true"> &middot; </span>
           <span>
@@ -50,8 +50,10 @@ import useI18n from '#ioc/composables/useI18n'
 import usePost from '#ioc/composables/useBlogPost'
 import stripHtml from '#ioc/utils/string/stripHtml'
 import readingTime from '#ioc/utils/string/readingTime'
+import useLocalePath from '#ioc/composables/useLocalePath'
 
 const { t, d } = useI18n()
+const localePath = useLocalePath()
 
 const props = defineProps({
   id: {

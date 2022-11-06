@@ -4,7 +4,7 @@ import useLocalePath from '#ioc/composables/useLocalePath'
 import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
 
 interface Options {
-  redirect?: true
+  redirect?: boolean
 }
 
 export default () => {
@@ -18,7 +18,7 @@ export default () => {
     cookies.set(MAGENTO_CUSTOMER_COOKIE_NAME, token, { path: '/' })
 
     if (redirect) {
-      window.location.href = localePath('/').fullPath
+      window.location.href = localePath('/')
     }
   }
 }

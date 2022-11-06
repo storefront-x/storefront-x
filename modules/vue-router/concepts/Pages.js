@@ -218,7 +218,6 @@ export const routes = Object.values(plugins).reduce((routes, plugin) => plugin(r
   },
   <%_ } _%>
 ])
-
 `
   }
 }
