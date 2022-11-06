@@ -18,5 +18,9 @@ export default () =>
           wishlist: field({
             ...Wishlist(),
           }),
+          user_errors: field({
+            message: field(),
+            code: field(),
+          }),
         }),
     })
