@@ -7,6 +7,6 @@
     "access": "public"
   },
   "dependencies": {
-    "cypress-vite": "^1.2.0"
+    "cypress-vite": "^1.2.1"
   }
 }
