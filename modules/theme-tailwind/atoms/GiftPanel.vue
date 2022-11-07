@@ -26,11 +26,10 @@ const freeShippingConfig = useFreeShippingConfig()
 </script>
 
 <i18n lang="yaml">
-en-US:
-  'free_gift': 'Free gift'
-  'purchase_limit': 'Get free shipping with purchase over <strong>{0}</strong>.'
-
 cs-CZ:
   'free_gift': 'Dárek k nákupu'
   'purchase_limit': 'K nákupu nad <strong>{0}</strong> získáte doručení zdarma!'
+en-US:
+  'free_gift': 'Free gift'
+  'purchase_limit': 'Get free shipping with purchase over <strong>{0}</strong>.'
 </i18n>
