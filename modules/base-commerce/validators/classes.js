@@ -11,5 +11,5 @@ export default function classes(value, n) {
   if (digit.test(value)) classes++
   if (special.test(value)) classes++
 
-  return classes >= n || this.$t('Minimum {0} classes', [n])
+  return classes >= n || this.$t('minimum', [2])
 }
