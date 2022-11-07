@@ -3461,6 +3461,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/test@workspace:modules/test":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/test@workspace:modules/test"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/testing@workspace:modules/testing":
   version: 0.0.0-use.local
   resolution: "@storefront-x/testing@workspace:modules/testing"
@@ -3524,6 +3530,14 @@ __metadata:
   dependencies:
     "@pinia/testing": ^0.0.14
     pinia: ^2.0.23
+    vue: ^3.2.41
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/vue-router-simple@workspace:modules/vue-router-simple":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/vue-router-simple@workspace:modules/vue-router-simple"
+  dependencies:
     vue: ^3.2.41
   languageName: unknown
   linkType: soft
