@@ -6,7 +6,7 @@
 
 <script>
 import debounce from '#ioc/utils/debounce'
-import isObject from '#ioc/utils/isObject'
+import isObject from '#ioc/utils/object/isObject'
 import { defineComponent } from 'vue'
 
 export const $Form = '$Form'

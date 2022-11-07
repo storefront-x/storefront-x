@@ -8,7 +8,9 @@ export default () => {
 
   return (error: any) => {
     if (error instanceof CartError) {
-      showErrorNotification(t('cartExpired'))
+      showErrorNotification(t('errors.cartExpired'))
+    } else {
+      throw error
     }
   }
 }

@@ -6,6 +6,7 @@ import useCartStore from '#ioc/stores/useCartStore'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
 import useGetCartByIdRepository from '#ioc/repositories/useGetCartByIdRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
+import isNoSuchEntityError from '#ioc/utils/graphql/isNoSuchEntityError'
 
 export default recursive(() => {
   const cartStore = useCartStore()
@@ -14,7 +15,7 @@ export default recursive(() => {
   const getCartByIdRepository = useGetCartByIdRepository()
   const cookies = useCookies()
   return async (error: any) => {
-    if (error?.extensions?.category === 'graphql-no-such-entity') {
+    if (isNoSuchEntityError(error)) {
       cookies.remove(MAGENTO_CART_COOKIE_NAME)
       cartMagentoStore.$patch({ cartId: '' })
 

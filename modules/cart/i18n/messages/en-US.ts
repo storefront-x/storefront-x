@@ -1,3 +1,3 @@
 export default {
-  cartExpired: 'Your cart expired please try again',
+  errors: { cartExpired: 'Your cart expired please try again' },
 }

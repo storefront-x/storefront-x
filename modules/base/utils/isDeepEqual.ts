@@ -1,5 +1,5 @@
 import isArray from '#ioc/utils/isArray'
-import isObject from '#ioc/utils/isObject'
+import isObject from '#ioc/utils/object/isObject'
 
 const isDeepEqual = (a: any, b: any) => {
   if (a === b) {

@@ -1,6 +1,6 @@
 import isArray from '#ioc/utils/isArray'
 import isNullish from '#ioc/utils/isNullish'
-import isObject from '#ioc/utils/isObject'
+import isObject from '#ioc/utils/object/isObject'
 
 export default (object: any, { arraySeparator }: any = {}) => {
   if (isNullish(object)) return ''

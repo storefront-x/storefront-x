@@ -6,6 +6,9 @@ import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NA
 import useCookies from '#ioc/composables/useCookies'
 
 export default defineStore('customerMagento', {
+  state: () => ({
+    customerId: '',
+  }),
   actions: {
     async serverInit() {
       if (IS_CLIENT) return
@@ -14,10 +17,13 @@ export default defineStore('customerMagento', {
       const getCustomer = useGetCustomer()
 
       const id = cookies.get(MAGENTO_CUSTOMER_COOKIE_NAME)
-
-      const { customer } = await getCustomer(id)
-
-      customerStore.$patch({ customer })
+      this.$patch({ customerId: id })
+      if (this.customerId) {
+        const { customer } = await getCustomer()
+        customerStore.$patch({ customer })
+      } else {
+        customerStore.$patch({ customer: null })
+      }
     },
   },
 })

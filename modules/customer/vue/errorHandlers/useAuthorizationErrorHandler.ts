@@ -8,7 +8,9 @@ export default () => {
 
   return (error: any) => {
     if (error instanceof AuthorizationError) {
-      showErrorNotification(t('authorizationError'))
+      showErrorNotification(t('errors.authorizationError'))
+    } else {
+      throw error
     }
   }
 }
