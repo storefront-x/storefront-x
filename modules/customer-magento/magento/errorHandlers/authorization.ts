@@ -1,6 +1,6 @@
 import useCookies from '#ioc/composables/useCookies'
 import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
-import AuthorizationError from '#ioc/errors/AuthorizationError'
+import CustomerNotAuthorized from '#ioc/errors/CustomerNotAuthorized'
 import useCustomerStore from '#ioc/stores/useCustomerStore'
 import isAuthorizationError from '#ioc/utils/graphql/isAuthorizationError'
 
@@ -13,7 +13,7 @@ export default () => {
       cookies.remove(MAGENTO_CUSTOMER_COOKIE_NAME)
       customerStore.$patch({ customer: null })
 
-      throw new AuthorizationError()
+      throw new CustomerNotAuthorized()
     }
   }
 }
