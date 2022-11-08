@@ -1,6 +1,6 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import { App, computed, reactive, readonly, ref, shallowRef } from 'vue'
-import { routes } from '~/.sfx/pages'
+import { layouts, routes } from '~/.sfx/pages'
 
 interface CreateRouterOptions {
   history: ReturnType<typeof createHistory>
@@ -8,12 +8,26 @@ interface CreateRouterOptions {
 }
 
 export const createRouter = (options: CreateRouterOptions) => {
+  const $layout = shallowRef<any>(null)
   const $page = shallowRef<any>(null)
 
   const push = async (path: string) => {
+    for (const layout of layouts) {
+      if (layout.path.test(path)) {
+        if ($layout.value !== layout) {
+          $layout.value = layout
+        }
+
+        break
+      }
+    }
+
     for (const route of routes) {
       if (route.path.test(path)) {
-        $page.value = route
+        if ($page.value !== route) {
+          $page.value = route
+        }
+
         break
       }
     }
@@ -25,10 +39,21 @@ export const createRouter = (options: CreateRouterOptions) => {
     }
   }
 
+  const resolve = (input: any) => {
+    return {
+      path: input.path,
+      fullPath: input.path,
+    }
+  }
+
   const params = computed(() => {
     const path = options.history.url.value
 
     return path.match($page.value.path)?.groups ?? {}
+  })
+
+  const query = computed(() => {
+    return {}
   })
 
   return {
@@ -38,8 +63,9 @@ export const createRouter = (options: CreateRouterOptions) => {
         '$route',
         reactive({
           path: readonly(options.history.url),
+          fullPath: readonly(options.history.url),
           params,
-          $page,
+          query,
         }),
       )
 
@@ -47,6 +73,9 @@ export const createRouter = (options: CreateRouterOptions) => {
         '$router',
         reactive({
           push,
+          resolve,
+          $page,
+          $layout,
         }),
       )
     },

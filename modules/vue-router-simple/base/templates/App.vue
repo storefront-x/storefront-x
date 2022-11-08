@@ -1,14 +1,10 @@
 <template>
   <SfxVueProviders>
-    <Suspense>
-      <Component :is="route.$page.component" />
-    </Suspense>
+    <App />
   </SfxVueProviders>
 </template>
 
 <script setup lang="ts">
 import SfxVueProviders from '#ioc/components/SfxVueProviders'
-import useRoute from '#ioc/composables/useRoute'
-
-const route = useRoute()
+import { App } from '~/.sfx/pages'
 </script>
