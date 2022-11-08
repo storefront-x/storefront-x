@@ -27,7 +27,7 @@ import useHead from '#ioc/composables/useHead'
 import Heading from '#ioc/atoms/Heading'
 import useI18n from '#ioc/composables/useI18n'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
-import useProductSchema from '#ioc/composables/schemeOrg/useProductSchema'
+import useProductSchema from '#ioc/composables/schemaOrg/useProductSchema'
 
 const ProductDetailTabs = hydrateWhenVisible(() => import('#ioc/organisms/ProductDetailTabs'))
 const ProductCarousel = hydrateWhenVisible(() => import('#ioc/organisms/ProductCarousel'))
