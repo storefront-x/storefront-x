@@ -34,6 +34,10 @@ describe('Category', () => {
     listing.sortByPrice('DESC')
   })
 
+  it('category shows number of products ', () => {
+    listing.getListProductCount().should('not.have.value', 'Product found: {0}')
+  })
+
   it('can be filtered', () => {
     listing.filter()
   })

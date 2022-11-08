@@ -61,4 +61,17 @@ describe('Checkout', () => {
 
     thankYouPage.isVisible()
   })
+
+  it.only('add valid coupon', () => {
+    product.visitRandom()
+    product.addToCart()
+    product.continueToCheckout()
+
+    checkout.getAddCoupon.click()
+    checkout.getCouponCode.type('coupon_cypress_test')
+    checkout.couponApply()
+    checkout.getAppliedCoupon().should('eq', 'coupon_cypress_test')
+    checkout.couponRemove()
+    checkout.getAppliedCoupon().should('not.exist')
+  })
 })

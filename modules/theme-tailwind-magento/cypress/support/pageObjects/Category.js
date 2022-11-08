@@ -16,4 +16,8 @@ export default class Category {
   getTitle() {
     return cy.get('[data-cy=title]')
   }
+
+  getNumberOfProductsInCategory() {
+    return cy.get('[data-cy=title]')
+  }
 }

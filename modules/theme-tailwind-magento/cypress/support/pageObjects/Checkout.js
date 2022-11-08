@@ -54,4 +54,24 @@ export default class Checkout {
   getCustomerAddress() {
     return cy.get('[data-cy=customer-address]').first()
   }
+
+  getAddCoupon() {
+    return cy.get('[data-cy=add-coupon]').first()
+  }
+
+  getCouponCode() {
+    return cy.get('[data-cy=coupon-code]')
+  }
+
+  couponApply() {
+    cy.get('[data-cy=coupon-apply]').click()
+  }
+
+  getAppliedCoupon() {
+    return cy.get('[data-cy=coupon-applied]')
+  }
+
+  couponRemove() {
+    cy.get('[data-cy=coupon-remove]').click()
+  }
 }
