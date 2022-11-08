@@ -29,6 +29,7 @@ export default {
     '@storefront-x/robots',
     '@storefront-x/sitemap',
     '@storefront-x/nprogress',
+    '@storefront-x/schema-org',
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',
