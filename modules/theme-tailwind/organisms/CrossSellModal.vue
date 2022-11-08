@@ -1,5 +1,5 @@
 <template>
-  <Modal @close="emit('close')">
+  <Modal v-if="data?.products.length" @close="emit('close')">
     <div>
       <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
         <svg
@@ -27,7 +27,7 @@
         {{ t('Continue to checkout') }}
       </Button>
     </div>
-    <div v-if="data?.products.length" class="mt-2">
+    <div class="mt-2">
       <h5 class="w-100 font-medium text-lg text-gray-900 text-center my-4">
         {{ t('Other people also like to buy') }}:
       </h5>
@@ -61,11 +61,3 @@ const getCrossSellForProduct = useGetCrossSellForProduct()
 
 const { data } = useAsyncData('GetCrossSellProducts', () => getCrossSellForProduct(product))
 </script>
-
-<i18n lang="yaml">
-cs-CZ:
-  Added to cart: Přidáno do košíku
-  Continue shopping: Pokračovat v nákupu
-  Continue to checkout: Pokračovat do košíku
-  Other people also like to buy: Ostatní také nakupují
-</i18n>
