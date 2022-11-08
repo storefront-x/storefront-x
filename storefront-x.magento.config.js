@@ -30,6 +30,7 @@ export default {
     '@storefront-x/sitemap',
     '@storefront-x/nprogress',
     '@storefront-x/partytown',
+    '@storefront-x/google-tag-manager-partytown',
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',
