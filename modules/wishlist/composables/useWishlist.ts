@@ -14,28 +14,21 @@ export default () => {
   onMounted(async () => {
     if (wishlistStore.items.length) {
       const initialWishlistProducts = await getProductsFromWishlistItems(wishlistStore.items)
-      wishlistProducts.value.push(...initialWishlistProducts)
+      wishlistProducts.value.push(
+        ...initialWishlistProducts.sort((a, b) => wishlistStore.items.indexOf(a) - wishlistStore.items.indexOf(b)),
+      )
     }
   })
 
   watch(
-    () => items.value.length,
-    async () => {
-      const newItems = wishlistStore.items
-      const oldItems = wishlistProducts.value.map((p) => p.sku)
-
-      if (newItems.length > oldItems.length) {
-        const diference = newItems.filter((x) => !oldItems.includes(x))
-        const addWishlistProducts = await getProductsFromWishlistItems(diference)
-
-        wishlistProducts.value.push(...addWishlistProducts)
-      } else {
-        const diference = oldItems.find((x) => !newItems.includes(x))
-        const removeIndex = wishlistProducts.value.findIndex((p) => p.sku === diference)
-
+    () => items,
+    (newItems) => {
+      if (newItems.value.length < wishlistProducts.value.length) {
+        const removeIndex = wishlistProducts.value.findIndex((p) => !newItems.value.includes(p.sku))
         wishlistProducts.value.splice(removeIndex, 1)
       }
     },
+    { deep: true },
   )
 
   async function getProductsFromWishlistItems(ids: ReturnType<typeof ToWishlistItem>[]) {
