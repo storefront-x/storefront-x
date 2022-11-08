@@ -27,6 +27,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  section: {
+    type: Object,
+    default: () => ({}),
+  },
 })
 
 const shopwareCmsBlock = useShopwareCmsBlock(props)
