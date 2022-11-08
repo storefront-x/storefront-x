@@ -31,7 +31,7 @@
           </SfxMoney>
 
           <SfxMoney v-slot="{ html }" :money="cartItem.price">
-            <span class="text-gray-700 text-sm" v-html="t('{0} / qty', [html])" />
+            <span class="text-gray-700 text-sm" v-html="t('qty', [html])" />
           </SfxMoney>
         </div>
 
@@ -95,3 +95,14 @@ const onRemove = async () => {
   await removeFromCart(cartItem)
 }
 </script>
+
+<i18n lang="yaml">
+cs-CZ:
+  'IN_STOCK': 'Skladem'
+  'OUT_OF_STOCK': 'Vyprodáno'
+  'qty': '{0} / ks'
+en-US:
+  'IN_STOCK': 'In stock'
+  'OUT_OF_STOCK': 'Out of stock'
+  'qty': '{0} / ks'
+</i18n>

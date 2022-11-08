@@ -8,7 +8,7 @@
     class="w-full md:w-fit md:mx-auto"
     @click.prevent="loadMore"
   >
-    {{ t('Load next {0}', [perPage]) }}
+    {{ t('load_next', [perPage]) }}
   </Button>
 </template>
 
@@ -37,5 +37,7 @@ export default defineComponent({
 
 <i18n lang="yaml">
 cs-CZ:
-  Load next {0}: Načíst dalších {0}
+  'load_next': Načíst dalších {0}
+en-US:
+  'load_next': Load next {0}
 </i18n>
