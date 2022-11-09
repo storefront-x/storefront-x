@@ -3433,6 +3433,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/schema-org@workspace:modules/schema-org":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/schema-org@workspace:modules/schema-org"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/shopware@workspace:modules/shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/shopware@workspace:modules/shopware"
