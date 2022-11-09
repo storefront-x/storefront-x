@@ -1,4 +1,4 @@
-import isObject from '#ioc/utils/object/isObject'
+import isObject from '#ioc/utils/isObject'
 
 const mergeDeep = (target: object, ...sources: object[]): object => {
   if (!sources.length) return target

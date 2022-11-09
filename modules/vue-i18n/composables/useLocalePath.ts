@@ -3,7 +3,7 @@ import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 import type { RouteLocationRaw } from 'vue-router'
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
-import isObject from '#ioc/utils/object/isObject'
+import isObject from '#ioc/utils/isObject'
 import isString from '#ioc/utils/isString'
 import Locale from '#ioc/types/vue-i18n/Locale'
 

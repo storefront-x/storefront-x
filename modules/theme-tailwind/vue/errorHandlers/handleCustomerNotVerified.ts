@@ -4,6 +4,7 @@ import CustomerNotVerified from '#ioc/errors/CustomerNotVerified'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useRouter from '#ioc/composables/useRouter'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
+
 export default () => {
   const showErrorNotification = useShowErrorNotification()
   const { t } = useI18n()

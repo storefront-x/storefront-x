@@ -6,7 +6,7 @@ import useCustomerStore from '#ioc/stores/useCustomerStore'
 import useMergeWishlist from '#ioc/services/useMergeWishlist'
 import useGetWishlistRepository from '#ioc/repositories/useGetWishlistRepository'
 import ToWishlistItem from '#ioc/mappers/ToWishlistItem'
-import waitForStore from '#ioc/utils/vue-pinia/waitForStore'
+import waitForStore from '#ioc/utils/vuePinia/waitForStore'
 export default defineStore('wishlist', {
   state: () => ({
     items: [] as ReturnType<typeof ToWishlistItem>[],

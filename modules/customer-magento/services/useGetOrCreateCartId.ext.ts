@@ -1,6 +1,6 @@
 import useGetCustomerCartId from '#ioc/services/useGetCustomerCartId'
 import useCustomerStore from '#ioc/stores/useCustomerStore'
-import waitForStore from '#ioc/utils/vue-pinia/waitForStore'
+import waitForStore from '#ioc/utils/vuePinia/waitForStore'
 
 export default <T extends (...args: any[]) => any>(useGetOrCreateCartId: T) => {
   return (): (() => Promise<any>) => {

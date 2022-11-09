@@ -21,6 +21,7 @@ export default () => {
   const customerMagento = useCustomerMagentoStore()
   const currentLocale = useCurrentLocale()
   const bindedErrorHandlers = Object.values(errorHandlers).map((e) => e())
+
   const headers = () => {
     const store = currentLocale.value.magentoStore
     const customerId = customerMagento.customerId

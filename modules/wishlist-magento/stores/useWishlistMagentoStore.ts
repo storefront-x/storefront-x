@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useCustomerStore from '#ioc/stores/useCustomerStore'
-import waitForStore from '#ioc/utils/vue-pinia/waitForStore'
+import waitForStore from '#ioc/utils/vuePinia/waitForStore'
 import useGetWishlistRepository from '#ioc/repositories/useGetWishlistRepository'
 
 export default defineStore('wishlistMagento', {
