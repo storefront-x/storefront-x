@@ -30,7 +30,6 @@ export default {
     '@storefront-x/robots',
     '@storefront-x/sitemap',
     '@storefront-x/nprogress',
-    '@storefront-x/partytown',
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',
