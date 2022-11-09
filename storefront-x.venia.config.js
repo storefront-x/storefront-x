@@ -21,6 +21,7 @@ export default {
     '@storefront-x/multicurrency',
     '@storefront-x/product-reviews',
     '@storefront-x/wishlist',
+    '@storefront-x/schema-org',
 
     '@storefront-x/magento',
     '@storefront-x/cart-magento',
