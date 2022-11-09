@@ -1,0 +1,6 @@
+export default {
+  errors: {
+    authorizationError: 'Platnost vašeho přihlášení vypršela, přihlašte se prosím znovu.',
+    customerNotAuthorized: 'Pro přístup na tuto stránku musíte být přihlášen',
+  },
+}

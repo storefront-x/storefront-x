@@ -30,10 +30,6 @@ const wishlist = useWishlist()
 </script>
 ```
 
-## `useGetWishlist` service
-
-Fetches wishlist. Should be called in `serverInit` action.
-
 ## `useAddToWishlist` service
 
 Adds product to wishlist.
@@ -72,3 +68,4 @@ Merges local wishlist with wishlist of currently signed in customer. Should be c
 ## `useWishlistStore` store
 
 Stores state of the wishlist. Should be initialized in `serverInit` action.
+Will set local wishlist to state, if there is currently signed customer, it will get his wishlist and merge it with local one.
