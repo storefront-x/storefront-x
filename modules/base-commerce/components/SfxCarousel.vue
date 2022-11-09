@@ -4,10 +4,8 @@
       ref="container"
       class="keen-slider"
       :class="classSlider"
-      @mouseenter="setPause()"
-      @mouseleave="sliderAutoDragPlay()"
-      @pointerenter="setPause()"
-      @pointerleave="sliderAutoDragPlay()"
+      @mouseenter="setPause"
+      @mouseleave="sliderAutoDragPlay"
     >
       <div
         v-for="(slide, i) in visibleSlides"
