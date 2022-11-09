@@ -26,10 +26,6 @@ export default (brand: Ref<ReturnType<typeof ToBrand>>) => {
       title: 'Brands',
       link: localePath('brands'),
     },
-    {
-      title: name.value,
-      link: urlPath.value,
-    },
   ])
 
   return reactive({
