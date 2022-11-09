@@ -5,12 +5,12 @@
     :init-slides-per-view="4"
     :breakpoints="breakpoints"
     loop
-    class="relative -mx-4"
+    class="relative"
     class-slide="pb-10"
   >
     <template #default="{ slide }">
       <ProductProvider :product="slide">
-        <ProductTile :index="-1" />
+        <ProductTile :index="-1" class="h-full" />
       </ProductProvider>
     </template>
     <template #pagination="{ pageIds, currentPage, showPage }">
@@ -20,7 +20,7 @@
           :key="pageId"
           class="w-4 h-4 rounded-full border border-gray-300 cursor-pointer"
           :class="currentPage === pageId ? 'bg-black' : 'bg-white'"
-          :aria-label="currentPage"
+          :aria-label="String(currentPage)"
           @click="showPage(pageId)"
         />
       </div>
