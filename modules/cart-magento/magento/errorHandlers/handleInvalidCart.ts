@@ -3,7 +3,6 @@ import MAGENTO_CART_COOKIE_NAME from '#ioc/config/MAGENTO_CART_COOKIE_NAME'
 import CartResetted from '#ioc/errors/CartResetted'
 import useCartStore from '#ioc/stores/useCartStore'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
-import isNoSuchEntityError from '#ioc/utils/graphql/isNoSuchEntityError'
 
 export default () => {
   const cartStore = useCartStore()
@@ -11,7 +10,7 @@ export default () => {
   const cookies = useCookies()
 
   return async (error: any) => {
-    if (isNoSuchEntityError(error)) {
+    if (error.message?.startsWith('Could not find a cart with ID')) {
       cookies.remove(MAGENTO_CART_COOKIE_NAME)
       cartMagentoStore.$patch({ cartId: '' })
 
