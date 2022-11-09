@@ -12,6 +12,7 @@ export default {
     '@storefront-x/atomic-design',
     '@storefront-x/graphql',
     '@storefront-x/cypress',
+    '@storefront-x/schema-org',
 
     '@storefront-x/cart',
     '@storefront-x/catalog',
@@ -21,7 +22,6 @@ export default {
     '@storefront-x/multicurrency',
     '@storefront-x/product-reviews',
     '@storefront-x/wishlist',
-    '@storefront-x/schema-org',
 
     '@storefront-x/magento',
     '@storefront-x/cart-magento',
