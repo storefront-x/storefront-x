@@ -24,7 +24,7 @@ export default () => {
       const { cart } = await mergeCarts(sourceCartId, destinationCartId)
       cartStore.$patch({ cart })
 
-      cookies.set(MAGENTO_CART_COOKIE_NAME, destinationCartId)
+      cookies.set(MAGENTO_CART_COOKIE_NAME, destinationCartId, { path: '/' })
       cartMagentoStore.$patch({ cartId: destinationCartId })
     } catch (error) {
       cartMagentoStore.$patch({ cartId: '' })
