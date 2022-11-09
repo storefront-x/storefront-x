@@ -40,6 +40,8 @@ describe('Wishlist', () => {
     product.visitRandom()
     product.addToWishlist()
 
+    base.expectMicrowishlistQuantity(1)
+
     product.visitRandom()
     product.addToWishlist()
 

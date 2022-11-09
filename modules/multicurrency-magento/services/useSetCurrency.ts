@@ -6,7 +6,7 @@ export default () => {
   const cookies = useCookies()
 
   return async (currency: ReturnType<typeof ToCurrency>) => {
-    cookies.set(MULTICURRENCY_COOKIE_NAME, currency.code)
+    cookies.set(MULTICURRENCY_COOKIE_NAME, currency.code, { path: '/' })
 
     window.location.reload()
   }

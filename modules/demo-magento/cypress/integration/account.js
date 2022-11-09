@@ -17,4 +17,9 @@ describe('Account', () => {
     account.login()
     account.logout()
   })
+
+  it('supports restricted access to account', () => {
+    cy.visit('/account/orders')
+    cy.url().should('include', '/sign-in')
+  })
 })

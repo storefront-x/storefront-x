@@ -53,7 +53,7 @@ export default class Product {
   }
 
   addToCart() {
-    return this.getAddToCart().click()
+    return this.getAddToCart().scrollIntoView({ duration: 500 }).should('be.visible').click()
   }
 
   continueToCheckout() {
@@ -61,15 +61,15 @@ export default class Product {
   }
 
   addToWishlist() {
-    return this.getAddToWishlist().click()
+    return this.getAddToWishlist().scrollIntoView({ duration: 500 }).should('be.visible').click()
   }
 
   decreaseQuantity() {
-    this.getQuantityDecreaseButton().click()
+    this.getQuantityDecreaseButton().scrollIntoView({ duration: 500 }).should('be.visible').click()
   }
 
   increaseQuantity() {
-    this.getQuantityIncreaseButton().click()
+    this.getQuantityIncreaseButton().scrollIntoView({ duration: 500 }).should('be.visible').click()
   }
 
   setQuantity(quantity) {
@@ -81,7 +81,7 @@ export default class Product {
   openReviewForm() {
     this.getReviewTab().scrollIntoView({ duration: 500 }).should('be.visible').click()
     this.getAddReviewButton().scrollIntoView({ duration: 500 }).should('be.visible')
-    this.getAddReviewButton().click()
+    this.getAddReviewButton().scrollIntoView({ duration: 500 }).should('be.visible').click()
   }
 
   addReviewData() {
