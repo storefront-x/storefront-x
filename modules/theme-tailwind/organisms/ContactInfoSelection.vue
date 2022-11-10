@@ -166,12 +166,12 @@ const form = ref<any>(null)
 
 const onInput = debounce(async (data: any) => {
   try {
-    if (!form.value?.isValid && !selectedAddress.value) return emit('select')
-    const address = selectedAddress.value ? selectedAddress.value : data
-
     contactEmail.value = data?.email ?? {}
 
     await checkEmail(contactEmail.value)
+
+    if (!form.value?.isValid && !selectedAddress.value) return emit('select')
+    const address = selectedAddress.value ? selectedAddress.value : data
 
     checkout.setContactInformation({
       city: 'DUMMYDATA',

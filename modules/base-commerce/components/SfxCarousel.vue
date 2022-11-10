@@ -4,10 +4,8 @@
       ref="container"
       class="keen-slider"
       :class="classSlider"
-      @mouseenter="setPause()"
-      @mouseleave="sliderAutoDragPlay()"
-      @pointerenter="setPause()"
-      @pointerleave="sliderAutoDragPlay()"
+      @mouseenter="setPause"
+      @mouseleave="sliderAutoDragPlay"
     >
       <div
         v-for="(slide, i) in visibleSlides"
@@ -16,7 +14,7 @@
         :style="{ pointerEvents: isDragging ? 'none' : 'auto' }"
         :class="classSlide"
       >
-        <slot :slide="slide" :index="i" />
+        <slot :slide="slide" :index="i" :is-dragging="isDragging" />
       </div>
     </div>
 

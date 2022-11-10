@@ -1,6 +1,6 @@
 <template>
   <FormRadioGroup
-    :name="configurableOption.attributeCode"
+    :name="configurableOption.attributeCode + '-group'"
     :label="configurableOption.label"
     :classes="`flex space-x-2 space-y-0 align-start`"
   >
@@ -8,8 +8,8 @@
       v-for="value in configurableOption.values"
       :key="value.index"
       :label="value.label"
-      :value="`${value.index}-${inModal}`"
-      :name="`${value.index}`"
+      :value="`${value.index}`"
+      :name="`${value.index}-${inModal}`"
       :is-circle="isColor"
       :background="value.swatchData.value"
       @input="$emit('input', configurableOption, value.index)"

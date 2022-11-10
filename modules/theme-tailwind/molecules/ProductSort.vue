@@ -15,7 +15,7 @@
         />
       </svg>
 
-      {{ t('Sort by: {0}', [title]) }}
+      {{ t('sort_by', [title]) }}
     </template>
 
     <DropdownItem
@@ -57,8 +57,10 @@ defineProps({
 
 <i18n lang="yaml">
 cs-CZ:
-  'Sort by: {0}': 'Řadit dle: {0}'
   Best match: Nejlepší shoda
   'Price: Low to High': Od nejlevnějších
   'Price: High to Low': Od nejdražších
+  'sort_by': 'Řadit dle: {0}'
+en-US:
+  'sort_by': 'Sort by: {0}'
 </i18n>

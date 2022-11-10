@@ -1,20 +1,19 @@
-import useProduct from '#ioc/composables/useProduct'
 import useMagento from '#ioc/composables/useMagento'
 import AddProductsToWishlist from '#ioc/graphql/mutations/AddProductsToWishlist'
-import useWishlistStore from '#ioc/stores/useWishlistStore'
+import useWishlistMagentoStore from '#ioc/stores/useWishlistMagentoStore'
 
 export default () => {
   const magento = useMagento()
-  const wishlistStore = useWishlistStore()
+  const wishlistMagentoStore = useWishlistMagentoStore()
 
-  return async (product: ReturnType<typeof useProduct>) => {
-    // @ts-ignore
-    const id = wishlistStore.id
+  return async (sku: string) => {
+    const id = wishlistMagentoStore.wishlistId
 
-    const { data } = await magento.graphql(
-      AddProductsToWishlist().with({ id, items: [{ sku: product?.sku, quantity: 1 }] }),
-    )
-
-    if (!data) throw new Error()
+    const {
+      data: { addProductsToWishlist },
+    } = await magento.graphql(AddProductsToWishlist().with({ id, items: [{ sku, quantity: 1 }] }))
+    if (addProductsToWishlist?.user_errors?.length > 0) {
+      throw new Error(addProductsToWishlist.userErrors[0].message)
+    }
   }
 }

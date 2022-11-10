@@ -1,0 +1,13 @@
+version: '3.4'
+services:
+  app:
+    container_name: ${COMPOSE_PROJECT_NAME}
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    restart: ${RESTART_POLICY:-unless-stopped}
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=3000
+    expose:
+      - 3000

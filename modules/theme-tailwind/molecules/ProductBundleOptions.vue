@@ -1,5 +1,5 @@
 <template>
-  <Form>
+  <Form :value="updateFormValue">
     <div v-for="bundleItem in product.bundleItems" :key="bundleItem.id" class="mb-4">
       <Heading
         :level="2"
@@ -18,7 +18,7 @@
         <FormCheckbox
           v-for="bundleOption in bundleItem.options"
           :key="bundleOption.id"
-          :name="`${bundleItem.id}-${bundleOption.id}`"
+          :name="`${bundleItem.id}-${bundleOption.id}-${inModal}`"
           :label="bundleOption.label"
           class="mt-2"
           @input="onInput(bundleItem, bundleOption, $event, 'checkbox')"
@@ -40,15 +40,15 @@
         </div>
         <div v-else>
           <FormRadioGroup
-            :name="`${bundleItem.id}-${inModal}-group`"
+            :name="`${bundleItem.id}-group`"
             :label="''"
             :classes="`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 space-y-0 align-start`"
           >
             <FormRadioBox
               v-for="bundleOption in bundleItem.options"
               :key="bundleOption.id"
-              :name="`${bundleItem.id}-${bundleOption.id}`"
-              :value="`${bundleOption.id}-${inModal}`"
+              :name="`${bundleItem.id}-${bundleOption.id}-${inModal}`"
+              :value="`${bundleOption.id}`"
               :label="bundleOption.label"
               @input="onInput(bundleItem, bundleOption, true, 'radio')"
             />
@@ -68,8 +68,9 @@ import FormSelect from '#ioc/molecules/FormSelect'
 import FormRadioBox from '#ioc/molecules/FormRadioBox'
 import FormRadioGroup from '#ioc/molecules/FormRadioGroup'
 import injectProduct from '#ioc/composables/injectProduct'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
+import isEmpty from '#ioc/utils/isEmpty'
 
 const { t } = useI18n()
 const product = injectProduct()
@@ -83,6 +84,27 @@ defineProps({
 
 const selectedOptions = ref({} as any)
 const selectedLabel = ref({} as any)
+
+const updateFormValue = computed(() => {
+  if (isEmpty(product.bundle)) return
+
+  const newValue = {} as any
+  const ids = Object.keys(product.bundle)
+
+  for (const idGroup of ids) {
+    for (const idValue of Object.keys(product.bundle[idGroup])) {
+      // split into inModal/outOfModal is needed to have unique IDs for radio buttons
+      const groupKey = idGroup + '-group'
+      const keyInModal = idGroup + '-group' + idValue + '-inModal'
+      const keyOutOfModal = idGroup + '-' + idValue + '-outOfModal'
+      newValue[groupKey] = idValue
+      newValue[keyInModal] = true
+      newValue[keyOutOfModal] = true
+    }
+  }
+
+  return newValue
+})
 
 const onInput = (bundleItem: any, bundleOption: any, isChecked: any, type: string) => {
   if (!selectedOptions.value[bundleItem.id]) {

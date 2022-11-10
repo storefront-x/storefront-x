@@ -13,10 +13,10 @@ export default () => {
   const cookies = useCookies()
 
   return async (email: string, password: string) => {
-    const { token } = await loginCustomerRepository(email, password)
-    cookies.set(MAGENTO_CUSTOMER_COOKIE_NAME, token, { path: '/' })
+    const { id } = await loginCustomerRepository(email, password)
+    cookies.set(MAGENTO_CUSTOMER_COOKIE_NAME, id, { path: '/' })
     await mergeCarts()
-    const { customer } = await getCustomer()
+    const { customer } = await getCustomer(id)
     customerStore.$patch({ customer })
   }
 }

@@ -27,6 +27,7 @@
     "@storefront-x/atomic-design": "^1.0.0",
     "@storefront-x/graphql": "^1.0.0",
     "@storefront-x/cypress": "^1.0.0",
+    "@storefront-x/schema-org": "^1.0.0",
     "@storefront-x/blog": "^1.0.0",
     "@storefront-x/braintree": "^1.0.0",
     "@storefront-x/brands": "^1.0.0",

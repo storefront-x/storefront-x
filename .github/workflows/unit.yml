@@ -1,4 +1,4 @@
-name: Test Unit
+name: Unit
 
 on:
   workflow_call:
@@ -10,13 +10,12 @@ on:
 jobs:
   unit:
     runs-on: ubuntu-latest
-    name: Unit
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'yarn'
       - run: yarn install
-      - run: yarn build --config ${{inputs.storefront-x-config}} --onlyBootstrap
+      - run: yarn build --config ${{ inputs.storefront-x-config }} --onlyBootstrap
       - run: yarn test:unit

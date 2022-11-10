@@ -60,6 +60,17 @@ export default {
       }
     },
 
+    mobileBackground() {
+      if (!this.isVisible) return {}
+
+      const background = this.getBackground(this._wrapperElement, { mobileImage: true })
+
+      return {
+        ...background,
+        backgroundImage: this.isVisible ? background.backgroundImage : '',
+      }
+    },
+
     advanced() {
       return {
         ...this._getPadding(this.el),
