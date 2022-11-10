@@ -61,3 +61,11 @@ const getCrossSellForProduct = useGetCrossSellForProduct()
 
 const { data } = useAsyncData('GetCrossSellProducts', () => getCrossSellForProduct(product))
 </script>
+
+<i18n lang="yaml">
+cs-CZ:
+  Added to cart: Přidáno do košíku
+  Continue shopping: Pokračovat v nákupu
+  Continue to checkout: Pokračovat do košíku
+  Other people also like to buy: Ostatní také nakupují
+</i18n>
