@@ -2,7 +2,7 @@
 
 import { GeneratingConcept } from '@storefront-x/core'
 
-export default class GlobalBeforeEach extends GeneratingConcept {
+export default class VueRouterBeforeEach extends GeneratingConcept {
   get directory() {
     return 'vueRouter/beforeEach'
   }
