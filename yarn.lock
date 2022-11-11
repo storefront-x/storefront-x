@@ -1491,6 +1491,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@builder.io/partytown@npm:^0.5.0":
+  version: 0.5.4
+  resolution: "@builder.io/partytown@npm:0.5.4"
+  bin:
+    partytown: bin/partytown.cjs
+  checksum: 2935390013f82e731160465a3b1d229cedfafec6b8c2ac7aad65e67012da0711962d9619bdffea1dbbae42b6109a89b501a655ef13a7c432bf95876f59f71f76
+  languageName: node
+  linkType: hard
+
 "@colors/colors@npm:1.5.0":
   version: 1.5.0
   resolution: "@colors/colors@npm:1.5.0"
@@ -3362,6 +3371,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/google-tag-manager-partytown@workspace:modules/google-tag-manager-partytown":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-tag-manager-partytown@workspace:modules/google-tag-manager-partytown"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/google-tag-manager@workspace:modules/google-tag-manager":
   version: 0.0.0-use.local
   resolution: "@storefront-x/google-tag-manager@workspace:modules/google-tag-manager"
@@ -3406,6 +3421,14 @@ __metadata:
   dependencies:
     "@types/nprogress": ^0.2.0
     nprogress: ^0.2.0
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/partytown@workspace:modules/partytown":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/partytown@workspace:modules/partytown"
+  dependencies:
+    "@builder.io/partytown": ^0.5.0
   languageName: unknown
   linkType: soft
 
