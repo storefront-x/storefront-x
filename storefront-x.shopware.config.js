@@ -21,6 +21,7 @@ export default {
     '@storefront-x/multicurrency',
     '@storefront-x/cms',
     '@storefront-x/sitemap',
+    '@storefront-x/schema-org',
 
     '@storefront-x/shopware',
     '@storefront-x/catalog-shopware',
