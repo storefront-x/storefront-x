@@ -1,18 +1,17 @@
-import useAsyncData from '#ioc/composables/useAsyncData'
-import useRoute from '#ioc/composables/useRoute'
 import useUrlResolverRepository from '#ioc/repositories/useUrlResolverRepository'
-import ensureArray from '#ioc/utils/array/ensureArray'
 import dynamicPages from '~/.sfx/magento/dynamicPages'
+import useResource from '#ioc/composables/useResource'
+import useRoute from '#ioc/composables/useRoute'
 
 export default () => {
-  const route = useRoute()
   const urlResolverRepository = useUrlResolverRepository()
-
-  return async (): Promise<{ id: string; component: any; relativeUrl: string }> => {
-    const path = ensureArray(route.params?.pathMatch)
-    const routePath = path.length ? path.join('/') : '/'
-
-    const { data } = await useAsyncData('urlResolver', () => urlResolverRepository(routePath))
+  const route = useRoute()
+  return async (rawPath: string = route.path): Promise<{ id: string; component: any; relativeUrl: string }> => {
+    // console.log({ routeInResolver: rawPath })
+    const [data] = await useResource(
+      () => rawPath,
+      (routePath) => urlResolverRepository(routePath),
+    )
 
     return {
       id: data.value.id,

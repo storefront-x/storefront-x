@@ -28,6 +28,7 @@
           <Pagination :total="totalCount" class="my-8" />
         </div>
         <slot name="bellow-products" />
+        <LoadNext :total="totalCount" class="my-8" />
       </div>
     </div>
   </div>
@@ -43,7 +44,7 @@ import ProductProvider from '#ioc/providers/ProductProvider'
 import { computed, PropType } from 'vue'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
-
+import LoadNext from '#ioc/molecules/LoadNext'
 const ProductFilters = hydrateWhenIdle(() => import('#ioc/molecules/ProductFilters'))
 const Pagination = hydrateWhenVisible(() => import('#ioc/molecules/Pagination'))
 

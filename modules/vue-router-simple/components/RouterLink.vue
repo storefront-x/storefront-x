@@ -1,5 +1,5 @@
 <template>
-  <a :href="to" @click.prevent="onClick">
+  <a class="hover:cursor-pointer" @click="onClick">
     <slot />
   </a>
 </template>

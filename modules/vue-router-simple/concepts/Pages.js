@@ -39,6 +39,7 @@ export default class Pages extends GeneratingConcept {
     }
 
     pages.sort((a, z) => a.priority - z.priority)
+    layouts.sort((a, z) => a.priority - z.priority)
 
     await this.renderTemplate(this.compiledTemplate, { pages, layouts, app })
   }
@@ -55,7 +56,7 @@ export default class Pages extends GeneratingConcept {
    */
   getName(parts) {
     if (parts.includes('$layout')) return undefined
-    if (parts.includes('$404')) return undefined
+    if (parts.includes('$404')) return 'resolver'
 
     return parts.join('/')
   }
@@ -78,7 +79,7 @@ export default class Pages extends GeneratingConcept {
       }
     }
 
-    return '/^' + '\\/' + path.join('\\/') + '\\/?' + '$/'
+    return '/^' + '\\/' + path.join('\\/') + '\\/?' + (parts.includes('$layout') ? '/' : '$/')
   }
 
   /**

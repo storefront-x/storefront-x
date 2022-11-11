@@ -1,10 +1,9 @@
 import type { App } from 'vue'
-import { createRouter, createWebHistory } from '../../Router'
+import { createRouter } from '../../Router'
 import { routes } from '~/.sfx/pages'
 
 export default async (app: App) => {
   const router = createRouter({
-    history: createWebHistory(),
     routes,
   })
 

@@ -16,21 +16,32 @@ interface Options {
 
 const URL = IS_SERVER ? MAGENTO_URL : '/_magento'
 
-export default () => {
-  const cookie = useCookies()
-  const storeStore = useStoreStore()
-  const currentLocale = useCurrentLocale()
+export default (noCtx = false) => {
+  let headers
+  if (noCtx) {
+    headers = () => {
+      return {
+        'Content-Type': 'application/json',
+        ...{ Store: 'b2c_en' },
+        ...{ 'Content-Currency': '' },
+      }
+    }
+  } else {
+    const cookie = useCookies()
+    const storeStore = useStoreStore()
+    const currentLocale = useCurrentLocale()
 
-  const headers = () => {
-    const store = currentLocale.value.magentoStore
-    const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
-    const selectedCurrencyCode = storeStore.currency?.code ?? ''
+    headers = () => {
+      const store = currentLocale.value.magentoStore
+      const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
+      const selectedCurrencyCode = storeStore.currency?.code ?? ''
 
-    return {
-      'Content-Type': 'application/json',
-      ...(store && { Store: store }),
-      ...(token && { Authorization: `Bearer ${token}` }),
-      ...(selectedCurrencyCode && { 'Content-Currency': selectedCurrencyCode }),
+      return {
+        'Content-Type': 'application/json',
+        ...(store && { Store: store }),
+        ...(token && { Authorization: `Bearer ${token}` }),
+        ...(selectedCurrencyCode && { 'Content-Currency': selectedCurrencyCode }),
+      }
     }
   }
 

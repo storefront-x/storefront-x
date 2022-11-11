@@ -1,19 +1,39 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import { App, computed, reactive, readonly, ref, shallowRef } from 'vue'
+import { App, computed, reactive, readonly, ref, shallowRef, nextTick } from 'vue'
 import { layouts, routes } from '~/.sfx/pages'
+import isArray from '#ioc/utils/isArray'
+import isEmpty from '#ioc/utils/isEmpty'
 
-interface CreateRouterOptions {
-  history: ReturnType<typeof createHistory>
-  routes: any
+interface rawLocationObject {
+  path: string
+  query: { string: string }
+  hash: string
 }
+// const urlResover = useUrlResolver()
 
-export const createRouter = (options: CreateRouterOptions) => {
+export const createRouter = () => {
   const $layout = shallowRef<any>(null)
   const $page = shallowRef<any>(null)
+  const $props = shallowRef<any>(null)
+  const $history = reactive<any>({ location: null })
+  const $path = ref('')
+  const $resolved = ref(true)
 
-  const push = async (path: string) => {
+  const push = async (rawLocation: string | rawLocationObject) => {
+    // console.log({ rawLocation })
+    $resolved.value = false
+    let rawPath = ''
+    if (typeof rawLocation === 'string') {
+      const sanitizedRawLocation = rawLocation.startsWith('/') ? rawLocation : '/' + rawLocation
+      rawPath = sanitizedRawLocation.split('?')[0]
+    } else if (typeof rawLocation === 'object') {
+      rawPath = resolveLocation(rawLocation)
+    } else {
+      throw new Error('Wrong path pushed')
+    }
+    // console.log({ rawPath })
     for (const layout of layouts) {
-      if (layout.path.test(path)) {
+      if (layout.path.test(rawPath)) {
         if ($layout.value !== layout) {
           $layout.value = layout
         }
@@ -23,37 +43,71 @@ export const createRouter = (options: CreateRouterOptions) => {
     }
 
     for (const route of routes) {
-      if (route.path.test(path)) {
+      if (route.path.test(rawPath)) {
+        // if (route.name === 'test') {
+        //   console.log('RESOLVER', route)
+        //   // const { component, ...props } = await urlResover(rawPath)
+        //   $props.value = props
+        //   if ($page.value?.component !== component) {
+        //     console.log('COMPORESET')
+        //     $page.value = { component }
+        //   }
+        // } else {
+        //   if ($page.value !== route) {
+        //     $page.value = route
+        //   }
+        // }
         if ($page.value !== route) {
           $page.value = route
         }
-
         break
       }
     }
 
-    options.history.url.value = path
+    $path.value = rawPath.split('?')[0]
 
+    $history.location = parseURL(parseQuery, rawPath)
+    await nextTick()
+    // console.log({ fullPATHHISTORY: $history.location.fullPath })
     if (IS_CLIENT) {
-      history.pushState(null, null, path)
+      history.pushState({ scrollTop: 0 }, null, $history.location.fullPath)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
     }
+    $resolved.value = true
   }
 
   const resolve = (input: any) => {
+    const { path } = input
     return {
-      path: input.path,
-      fullPath: input.path,
+      path: path,
+      fullPath: path,
     }
   }
 
+  const resolveLocation = (rawLocation: rawLocationObject) => {
+    let resolvedPath = ''
+    const { path, query, hash } = rawLocation
+    if (path) {
+      resolvedPath = path
+    } else {
+      resolvedPath = $path.value
+    }
+    if (query) {
+      resolvedPath += encodeQuery(query)
+    }
+    if (hash) {
+      resolvedPath += hash
+    }
+    return resolvedPath
+  }
+
   const params = computed(() => {
-    const path = options.history.url.value
+    const path = $history.location.path
 
     return path.match($page.value.path)?.groups ?? {}
-  })
-
-  const query = computed(() => {
-    return {}
   })
 
   return {
@@ -62,10 +116,11 @@ export const createRouter = (options: CreateRouterOptions) => {
       app.provide(
         '$route',
         reactive({
-          path: readonly(options.history.url),
-          fullPath: readonly(options.history.url),
-          params,
-          query,
+          path: computed(() => $history.location.path),
+          fullPath: computed(() => $history.location.path.fullPath),
+          params: readonly(params.value),
+          query: computed(() => $history.location.query),
+          hash: computed(() => $history.location.hash),
         }),
       )
 
@@ -76,32 +131,144 @@ export const createRouter = (options: CreateRouterOptions) => {
           resolve,
           $page,
           $layout,
+          $path,
+          $props,
+          $resolved,
         }),
       )
     },
   }
 }
 
-export const createWebHistory = () => {
-  const history = createHistory()
+const parseURL = (parseQuery: (search: string) => any, location: string, currentLocation = '/'): any => {
+  let path
+  let query = {}
+  let searchString = ''
+  let hash = ''
+
+  // Could use URL and URLSearchParams but IE 11 doesn't support it
+  // TODO: move to new URL()
+  const hashPos = location.indexOf('#')
+  let searchPos = location.indexOf('?')
+  // the hash appears before the search, so it's not part of the search string
+  if (hashPos < searchPos && hashPos >= 0) {
+    searchPos = -1
+  }
+
+  if (searchPos > -1) {
+    path = location.slice(0, searchPos)
+    searchString = location.slice(searchPos + 1, hashPos > -1 ? hashPos : location.length)
+
+    query = parseQuery(searchString)
+  }
+
+  if (hashPos > -1) {
+    path = path || location.slice(0, hashPos)
+    // keep the # character
+    hash = location.slice(hashPos, location.length)
+  }
+
+  // no search and no query
+  path = resolveRelativePath(path != null ? path : location, currentLocation)
+  // empty path means a relative query or hash `?foo=f`, `#thing`
 
   return {
-    ...history,
+    fullPath: path + (searchString && '?') + searchString + hash,
+    path,
+    query,
+    hash,
   }
 }
 
-export const createMemoryHistory = () => {
-  const history = createHistory()
+const resolveRelativePath = (to: string, from: string): string => {
+  if (to.startsWith('/')) return to
 
-  return {
-    ...history,
+  if (!to) return from
+
+  const fromSegments = from.split('/')
+  const toSegments = to.split('/')
+
+  let position = fromSegments.length - 1
+  let toPosition: number
+  let segment: string
+
+  for (toPosition = 0; toPosition < toSegments.length; toPosition++) {
+    segment = toSegments[toPosition]
+
+    // we stay on the same position
+    if (segment === '.') continue
+    // go up in the from array
+    if (segment === '..') {
+      // we can't go below zero, but we still need to increment toPosition
+      if (position > 1) position--
+      // continue
+    }
+    // we reached a non-relative path, we stop here
+    else break
   }
+
+  return (
+    fromSegments.slice(0, position).join('/') +
+    '/' +
+    toSegments
+      // ensure we use at least the last element in the toSegments
+      .slice(toPosition - (toPosition === toSegments.length ? 1 : 0))
+      .join('/')
+  )
 }
 
-const createHistory = () => {
-  const url = ref('')
+const parseQuery = (search: string): any => {
+  const query: any = {}
+  // avoid creating an object with an empty key and empty value
+  // because of split('&')
+  if (search === '' || search === '?') return query
+  const hasLeadingIM = search[0] === '?'
+  const searchParams = (hasLeadingIM ? search.slice(1) : search).split('&')
+  for (let i = 0; i < searchParams.length; ++i) {
+    // pre decode the + into space
+    const searchParam = searchParams[i].replace(/\+/g, ' ')
+    // allow the = character
+    const eqPos = searchParam.indexOf('=')
+    const key = decode(eqPos < 0 ? searchParam : searchParam.slice(0, eqPos))
+    const value = eqPos < 0 ? null : decode(searchParam.slice(eqPos + 1))
 
-  return {
-    url,
+    if (key in query) {
+      // an extra variable for ts types
+      let currentValue = query[key]
+      if (!isArray(currentValue)) {
+        currentValue = query[key] = [currentValue]
+      }
+      // we force the modification
+      ;(currentValue as any[]).push(value)
+    } else {
+      query[key] = value
+    }
   }
+  return query
+}
+
+const decode = (text: string | number): string => {
+  try {
+    return decodeURIComponent('' + text)
+  } catch (err) {
+    console.warn(`Error decoding "${text}". Using original value`)
+  }
+  return '' + text
+}
+
+const encodeQuery = (query: { string: string | [] }) => {
+  const _query = { ...query }
+  Object.keys(_query).map((q: string) => isEmpty(_query[q]) && delete _query[q])
+  return (
+    '?' +
+    Object.keys(_query)
+      .map((q: string) => {
+        if (isArray(_query[q])) {
+          return _query[q].map((s: string) => `${q}=${s}`).join('&')
+        }
+        return `${q}=${_query[q]}`
+      })
+      .join('&')
+      .toString()
+  )
 }

@@ -36,67 +36,47 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed } from 'vue'
 import Button from '#ioc/atoms/Button'
-import UsesFilters from '#ioc/mixins/UsesFilters'
 import useI18n from '#ioc/composables/useI18n'
-import { defineComponent } from 'vue'
+import useFilters from '#ioc/composables/useFilters'
 
-export default defineComponent({
-  components: {
-    Button,
-  },
-
-  mixins: [UsesFilters],
-
-  props: {
-    aggregations: {
-      type: Array,
-      default: () => [],
-    },
-  },
-
-  setup() {
-    const { t } = useI18n()
-
-    return {
-      t,
-    }
-  },
-
-  data: () => ({
-    isOpen: {},
-    collapsed: {},
-  }),
-
-  computed: {
-    filteredAggregations() {
-      return this.aggregations.filter((aggregation) => {
-        return aggregation.options.length > 0
-      })
-    },
-
-    areAnyFiltersSelected() {
-      return Object.keys(this.filters).length > 0
-    },
-  },
-
-  methods: {
-    onInput(e, key, value) {
-      const selected = e.target.value === 'true'
-
-      if (!selected) {
-        this.addFilter(key, value)
-      } else {
-        this.removeFilter(key, value)
-      }
-    },
-
-    isCollapsed(code) {
-      return !!this.collapsed[code]
-    },
+const props = defineProps({
+  aggregations: {
+    type: Array,
+    default: () => [],
   },
 })
+
+const { t } = useI18n()
+const { filters, addFilter, removeFilter, removeAllFilters, isFilterSelected } = useFilters()
+// const isOpen = ref({})
+const collapsed = {} as any
+
+const filteredAggregations = computed(() => {
+  return props.aggregations.filter((aggregation: any) => {
+    return aggregation.options.length > 0
+  })
+})
+
+const areAnyFiltersSelected = computed(() => {
+  return Object.keys(filters.value).length > 0
+})
+
+const onInput = (e, key, value) => {
+  const selected = e.target.value === 'true'
+
+  if (!selected) {
+    addFilter(key, value)
+  } else {
+    removeFilter(key, value)
+  }
+}
+
+const isCollapsed = (code: string) => {
+  return !!collapsed[code]
+}
 </script>
 
 <style scoped>
