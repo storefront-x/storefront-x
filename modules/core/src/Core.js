@@ -138,7 +138,11 @@ export default class Core {
     await fs.rm(this.buildDir, { recursive: true, force: true })
   }
 
-  async close() {}
+  async close() {
+    for (const closeHandler of this.closeHandlers) {
+      await closeHandler()
+    }
+  }
 
   /**
    * @param {() => Promise<void>} closeHandler

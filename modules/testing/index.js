@@ -65,8 +65,8 @@ export const makeProject = async (config, callback) => {
         },
       })
     } finally {
-      await server.close()
       await dev.close()
+      await server.close()
     }
   })
 }
