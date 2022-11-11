@@ -32,7 +32,7 @@ describe('Checkout', () => {
     thankYouPage.isVisible()
   })
 
-  it.only('accepts credit card payment', () => {
+  it('accepts credit card payment', () => {
     product.visitRandom()
     product.addToCart()
     product.continueToCheckout()
@@ -67,10 +67,10 @@ describe('Checkout', () => {
     product.addToCart()
     product.continueToCheckout()
 
-    checkout.getAddCoupon.click()
-    checkout.getCouponCode.type('coupon_cypress_test')
+    checkout.getAddCoupon().click()
+    checkout.getCouponCode().type('coupon_cypress_test')
     checkout.couponApply()
-    checkout.getAppliedCoupon().should('eq', 'coupon_cypress_test')
+    checkout.getAppliedCoupon().should('have.text', 'coupon_cypress_test')
     checkout.couponRemove()
     checkout.getAppliedCoupon().should('not.exist')
   })

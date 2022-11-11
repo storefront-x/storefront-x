@@ -56,11 +56,11 @@ export default class Checkout {
   }
 
   getAddCoupon() {
-    return cy.get('[data-cy=add-coupon]').first()
+    return cy.get('[data-cy=add-coupon]').eq(1)
   }
 
   getCouponCode() {
-    return cy.get('[data-cy=coupon-code]')
+    return cy.get('[data-cy=coupon-code] > input')
   }
 
   couponApply() {
@@ -68,10 +68,10 @@ export default class Checkout {
   }
 
   getAppliedCoupon() {
-    return cy.get('[data-cy=coupon-applied]')
+    return cy.get('[data-cy=coupon-applied]').eq(1)
   }
 
   couponRemove() {
-    cy.get('[data-cy=coupon-remove]').click()
+    cy.get('[data-cy=coupon-remove]').eq(1).click()
   }
 }
