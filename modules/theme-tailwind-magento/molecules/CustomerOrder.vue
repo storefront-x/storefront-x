@@ -82,9 +82,7 @@ const reorderItems = useReorderItems()
 const onReorderItems = async () => {
   try {
     isReorderLoading.value = true
-    console.log('incoming nr', customerOrder.orderNumber)
     await reorderItems(customerOrder.orderNumber)
-    console.log('reordered')
     router.push(localePath('checkout'))
   } catch (e) {
     showErrorNotification(e)

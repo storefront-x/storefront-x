@@ -15,7 +15,11 @@ export default () => {
         orderNumber,
       }),
     )
-    console.log('repo reorderitems', data)
+
+    if (data?.reorderItems?.user_errors?.length > 0) {
+      throw new Error(data.reorderItems.userErrors[0].message)
+    }
+
     return {
       cart: ToCart(data.reorderItems.cart),
     }

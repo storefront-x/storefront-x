@@ -5,7 +5,6 @@ export default () => {
   const cartStore = useCartStore()
 
   return async (orderId: string) => {
-    console.log('order id service', orderId)
     try {
       const { cart } = await reorderItemsRepository(orderId)
       cartStore.$patch({ cart })
