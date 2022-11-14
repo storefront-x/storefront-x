@@ -9,17 +9,18 @@ export default () => {
   const cartMagentoStore = useCartMagentoStore()
   const cookies = useCookies()
 
+  const errorMessages = ['Could not find a cart with ID', `The cart isn't active`]
+
   return async (error: any) => {
-    if (
-      error.message?.startsWith('Could not find a cart with ID') ||
-      error.message?.startsWith(`The cart isn't active.`)
-    ) {
-      cookies.remove(MAGENTO_CART_COOKIE_NAME)
-      cartMagentoStore.$patch({ cartId: '' })
+    for (const message of errorMessages) {
+      if (error.message?.includes(message)) {
+        cookies.remove(MAGENTO_CART_COOKIE_NAME)
+        cartMagentoStore.$patch({ cartId: '' })
 
-      cartStore.$reset()
+        cartStore.$reset()
 
-      throw new CartResetted()
+        throw new CartResetted()
+      }
     }
   }
 }
