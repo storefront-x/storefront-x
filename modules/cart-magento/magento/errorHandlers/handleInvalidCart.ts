@@ -10,7 +10,7 @@ export default () => {
   const cookies = useCookies()
 
   return async (error: any) => {
-    if (error.message?.startsWith('Could not find a cart with ID')) {
+    if (error.message?.startsWith('Could not find a cart with ID') || error.message?.startsWith(`The cart isn't active.`)) {
       cookies.remove(MAGENTO_CART_COOKIE_NAME)
       cartMagentoStore.$patch({ cartId: '' })
 
