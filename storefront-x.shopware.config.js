@@ -11,6 +11,7 @@ export default {
     '@storefront-x/base-commerce',
     '@storefront-x/atomic-design',
     '@storefront-x/cypress',
+    '@storefront-x/schema-org',
 
     '@storefront-x/catalog',
     '@storefront-x/cart',
@@ -20,6 +21,7 @@ export default {
     '@storefront-x/multicurrency',
     '@storefront-x/cms',
     '@storefront-x/sitemap',
+    '@storefront-x/schema-org',
 
     '@storefront-x/shopware',
     '@storefront-x/catalog-shopware',

@@ -26,6 +26,7 @@
     "@storefront-x/base-commerce": "^1.0.0",
     "@storefront-x/atomic-design": "^1.0.0",
     "@storefront-x/cypress": "^1.0.0",
+    "@storefront-x/schema-org": "^1.0.0",
     "@storefront-x/catalog": "^1.0.0",
     "@storefront-x/cart": "^1.0.0",
     "@storefront-x/customer": "^1.0.0",

@@ -21,6 +21,7 @@ import ToProduct from '#ioc/mappers/ToProduct'
 import useHead from '#ioc/composables/useHead'
 import { computed, PropType } from 'vue'
 import useCategory from '#ioc/composables/useCategory'
+import useCategorySchema from '#ioc/composables/schemaOrg/useCategorySchema'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
@@ -47,6 +48,10 @@ const props = defineProps({
   },
 })
 
+const category = useCategory(computed(() => props.category))
+
+useCategorySchema(category)
+
 useHead({
   title: props.category.name,
   meta: [
@@ -62,6 +67,4 @@ useHead({
     },
   ],
 })
-
-const category = useCategory(computed(() => props.category))
 </script>

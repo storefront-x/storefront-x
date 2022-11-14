@@ -35,17 +35,17 @@ export default [
 ```ts
 // i18n/messages/en-US.ts
 
-export default [
-  hello: "Hello world!"
-]
+export default {
+  hello: 'Hello world!',
+}
 ```
 
 ```ts
 // i18n/messages/cs-CZ.ts
 
-export default [
-  hello: "Ahoj světe!"
-]
+export default {
+  hello: 'Ahoj světe!',
+}
 ```
 
 ```vue

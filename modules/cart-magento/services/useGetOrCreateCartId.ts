@@ -16,7 +16,7 @@ export default () => {
 
     {
       const { id } = await createEmptyCartRepository()
-      cookies.set(MAGENTO_CART_COOKIE_NAME, id)
+      cookies.set(MAGENTO_CART_COOKIE_NAME, id, { path: '/' })
 
       cartMagentoStore.$patch({ cartId: id })
 

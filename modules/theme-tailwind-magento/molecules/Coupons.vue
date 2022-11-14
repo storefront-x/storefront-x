@@ -43,6 +43,7 @@ import useCart from '#ioc/composables/useCart'
 import FormInput from '#ioc/molecules/FormInput'
 import useRemoveCouponFromCart from '#ioc/services/useRemoveCouponFromCart'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import useApplyCouponToCart from '#ioc/services/useApplyCouponToCart'
 import { ref } from 'vue'
 
@@ -50,21 +51,34 @@ const { t } = useI18n()
 const cart = useCart()
 const removeCouponFromCart = useRemoveCouponFromCart()
 const showErrorNotification = useShowErrorNotification()
+const showSuccessNotification = useShowSuccessNotification()
 const applyCouponToCart = useApplyCouponToCart()
 
 const isAdding = ref(false)
 
 const onRemoveCoupon = async () => {
-  await removeCouponFromCart()
+  try {
+    await removeCouponFromCart()
+    showSuccessNotification('', t('Your coupon was successfully removed'))
+  } catch (e: any) {
+    showErrorNotification(e)
+  }
 }
 
 const onSubmit = async ({ code }: { code: string }) => {
   try {
     await applyCouponToCart(code)
     isAdding.value = false
+    showSuccessNotification('', t('Your coupon was successfully applied'))
   } catch (e: any) {
     console.error(e)
     showErrorNotification(e)
   }
 }
 </script>
+
+<i18n lang="yaml">
+cs-CZ:
+  Your coupon was successfully applied: Váš kupón byl úspěšně uplatněn
+  Your coupon was successfully removed: Váš kupón byl úspěšně odstraněn
+</i18n>

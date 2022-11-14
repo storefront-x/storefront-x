@@ -1,0 +1,12 @@
+{
+  "name": "@storefront-x/partytown",
+  "version": "1.0.1",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@builder.io/partytown": "^0.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,13 +1,13 @@
 {
   "name": "@storefront-x/base-commerce",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "keen-slider": "^6.8.2",
-    "lru-cache": "^7.14.0",
-    "photoswipe": "^5.3.2",
-    "sharp": "^0.31.1"
+    "keen-slider": "^6.8.3",
+    "lru-cache": "^7.14.1",
+    "photoswipe": "^5.3.3",
+    "sharp": "^0.31.2"
   },
   "publishConfig": {
     "access": "public"
