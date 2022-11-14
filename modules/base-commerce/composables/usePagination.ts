@@ -65,7 +65,7 @@ export default (props: any) => {
       pages.push(lastLoadedPage.value - page)
     }
 
-    pages.push(lastLoadedPage)
+    pages.push(lastLoadedPage.value)
 
     for (let page = 1; page <= rightPages.value; page++) {
       pages.push(lastLoadedPage.value + page)
@@ -98,7 +98,7 @@ export default (props: any) => {
       newPage = Number(page.value)
     }
 
-    return route.path + '?' + queryRouter.getQuery({ newPage, pages: undefined })
+    return route.path + '?' + queryRouter.getQuery({ page: newPage, pages: undefined })
   }
 
   return {

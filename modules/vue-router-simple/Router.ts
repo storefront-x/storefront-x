@@ -1,5 +1,5 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import { App, computed, reactive, readonly, ref, shallowRef, nextTick } from 'vue'
+import { App, computed, reactive, ref, shallowRef, nextTick } from 'vue'
 import { layouts, routes } from '~/.sfx/pages'
 import isArray from '#ioc/utils/isArray'
 import isEmpty from '#ioc/utils/isEmpty'
@@ -7,9 +7,16 @@ import isEmpty from '#ioc/utils/isEmpty'
 interface rawLocationObject {
   path: string
   query: { string: string }
+  params: { any: any }
   hash: string
 }
-// const urlResover = useUrlResolver()
+interface routeLocationObject {
+  path: string
+  fullPath: string
+  query: { string: string }
+  params: { any: any }
+  hash: string
+}
 
 export const createRouter = () => {
   const $layout = shallowRef<any>(null)
@@ -17,21 +24,29 @@ export const createRouter = () => {
   const $props = shallowRef<any>(null)
   const $history = reactive<any>({ location: null })
   const $path = ref('')
-  const $resolved = ref(true)
+  const $pathMatch = ref()
 
-  const push = async (rawLocation: string | rawLocationObject) => {
-    // console.log({ rawLocation })
-    $resolved.value = false
+  const popStateHandler = ({ state }) => {
+    if (state) {
+      push(state.path, false)
+    }
+  }
+
+  if (IS_CLIENT) {
+    window.addEventListener('popstate', popStateHandler)
+  }
+
+  const push = async (rawLocation: string | rawLocationObject, pushHistory = true) => {
     let rawPath = ''
+    let params = null
     if (typeof rawLocation === 'string') {
-      const sanitizedRawLocation = rawLocation.startsWith('/') ? rawLocation : '/' + rawLocation
-      rawPath = sanitizedRawLocation.split('?')[0]
+      rawPath = rawLocation.startsWith('/') ? rawLocation : '/' + rawLocation
     } else if (typeof rawLocation === 'object') {
+      params = rawLocation?.params ?? null
       rawPath = resolveLocation(rawLocation)
     } else {
       throw new Error('Wrong path pushed')
     }
-    // console.log({ rawPath })
     for (const layout of layouts) {
       if (layout.path.test(rawPath)) {
         if ($layout.value !== layout) {
@@ -42,41 +57,43 @@ export const createRouter = () => {
       }
     }
 
-    for (const route of routes) {
+    outer: for (const route of routes) {
+      for (const alias of route.alias) {
+        if (alias.test(rawPath)) {
+          if ($page.value !== route) {
+            $page.value = route
+          }
+          $pathMatch.value = rawPath.match(alias)?.groups?.pathMatch ?? null
+          break outer
+        }
+      }
+
       if (route.path.test(rawPath)) {
-        // if (route.name === 'test') {
-        //   console.log('RESOLVER', route)
-        //   // const { component, ...props } = await urlResover(rawPath)
-        //   $props.value = props
-        //   if ($page.value?.component !== component) {
-        //     console.log('COMPORESET')
-        //     $page.value = { component }
-        //   }
-        // } else {
-        //   if ($page.value !== route) {
-        //     $page.value = route
-        //   }
-        // }
         if ($page.value !== route) {
           $page.value = route
         }
+        $pathMatch.value = rawPath.match(route.path)?.groups?.pathMatch ?? null
         break
       }
     }
 
     $path.value = rawPath.split('?')[0]
 
-    $history.location = parseURL(parseQuery, rawPath)
     await nextTick()
-    // console.log({ fullPATHHISTORY: $history.location.fullPath })
+    $history.location = { ...parseURL(parseQuery, rawPath), params }
     if (IS_CLIENT) {
-      history.pushState({ scrollTop: 0 }, null, $history.location.fullPath)
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      })
+      pushHistory && history.pushState({ path: $history.location.fullPath }, null, $history.location.fullPath)
+      const scrollBehavior = getScrollBehavior($history.location, null)
+      window.scrollTo(scrollBehavior)
     }
-    $resolved.value = true
+  }
+
+  const getScrollBehavior = (to: routeLocationObject, savedPosition) => {
+    if (savedPosition) return savedPosition
+    if (to?.params?.savePosition) return { top: window.pageYOffset, behavior: 'smooth' }
+    if (to.hash) return { el: to.hash, behavior: 'smooth' }
+
+    return { top: 0, behavior: 'smooth' }
   }
 
   const resolve = (input: any) => {
@@ -104,12 +121,6 @@ export const createRouter = () => {
     return resolvedPath
   }
 
-  const params = computed(() => {
-    const path = $history.location.path
-
-    return path.match($page.value.path)?.groups ?? {}
-  })
-
   return {
     push,
     install: (app: App) => {
@@ -117,8 +128,8 @@ export const createRouter = () => {
         '$route',
         reactive({
           path: computed(() => $history.location.path),
-          fullPath: computed(() => $history.location.path.fullPath),
-          params: readonly(params.value),
+          fullPath: computed(() => $history.location.fullPath),
+          params: computed(() => $history.location.params),
           query: computed(() => $history.location.query),
           hash: computed(() => $history.location.hash),
         }),
@@ -132,8 +143,8 @@ export const createRouter = () => {
           $page,
           $layout,
           $path,
+          $pathMatch,
           $props,
-          $resolved,
         }),
       )
     },

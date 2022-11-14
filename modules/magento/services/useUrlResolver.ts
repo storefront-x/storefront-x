@@ -1,15 +1,13 @@
 import useUrlResolverRepository from '#ioc/repositories/useUrlResolverRepository'
 import dynamicPages from '~/.sfx/magento/dynamicPages'
 import useResource from '#ioc/composables/useResource'
-import useRoute from '#ioc/composables/useRoute'
 
 export default () => {
   const urlResolverRepository = useUrlResolverRepository()
-  const route = useRoute()
-  return async (rawPath: string = route.path): Promise<{ id: string; component: any; relativeUrl: string }> => {
-    // console.log({ routeInResolver: rawPath })
+
+  return async (resolvePath: string): Promise<{ id: string; component: any; relativeUrl: string }> => {
     const [data] = await useResource(
-      () => rawPath,
+      () => resolvePath,
       (routePath) => urlResolverRepository(routePath),
     )
 

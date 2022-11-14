@@ -61,6 +61,8 @@ export default () => {
           query: {
             ...route.query,
             filter: _filters,
+            page: undefined,
+            pages: undefined,
           },
           params: {
             savePosition: true,

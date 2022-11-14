@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('global components', async ({ page }) => {
+test('global components', async ({ page }) => {
   await makeProject(
     {
       modules: [
