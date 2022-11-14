@@ -32,7 +32,7 @@ export default {
     },
 
     previousPage() {
-      return this.currentPage - (Number(this.$route.query.pages) || 1)
+      return Math.abs(this.currentPage - (Number(this.$route.query.pages) || 1))
     },
 
     lastLoadedPage() {
