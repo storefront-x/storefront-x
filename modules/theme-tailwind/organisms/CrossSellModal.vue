@@ -1,6 +1,6 @@
 <template>
   <Modal @close="emit('close')">
-    <div v-show="data?.products.length">
+    <div v-show="data?.products.length > 0">
       <div>
         <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
           <svg
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div v-show="!data?.products.length">
+    <div v-show="data?.products.length === 0">
       <div>
         <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
           <svg
