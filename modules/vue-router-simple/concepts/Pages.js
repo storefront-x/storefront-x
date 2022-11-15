@@ -91,8 +91,8 @@ export default class Pages extends GeneratingConcept {
     for (const part of parts) {
       if (part === 'index') {
         priority += 1
-      } else if (part === '$layout') {
-        priority += 0
+      } else if (part === '$layout' && parts.length === 1) {
+        priority += 50
       } else if (part === '$404') {
         priority += 9001
       } else {

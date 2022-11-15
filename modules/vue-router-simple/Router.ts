@@ -1,6 +1,5 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import { App, computed, reactive, ref, shallowRef, nextTick } from 'vue'
-import { layouts, routes } from '~/.sfx/pages'
 import isArray from '#ioc/utils/isArray'
 import isEmpty from '#ioc/utils/isEmpty'
 
@@ -18,13 +17,14 @@ interface routeLocationObject {
   hash: string
 }
 
-export const createRouter = () => {
+export const createRouter = ({ routes, layouts = [] }) => {
   const $layout = shallowRef<any>(null)
   const $page = shallowRef<any>(null)
   const $props = shallowRef<any>(null)
   const $history = reactive<any>({ location: null })
-  const $path = ref('')
+  const $currentPath = ref('')
   const $pathMatch = ref()
+  const $ready = ref(false)
 
   const popStateHandler = ({ state }) => {
     if (state) {
@@ -37,6 +37,7 @@ export const createRouter = () => {
   }
 
   const push = async (rawLocation: string | rawLocationObject, pushHistory = true) => {
+    $ready.value = false
     let rawPath = ''
     let params = null
     if (typeof rawLocation === 'string') {
@@ -47,8 +48,11 @@ export const createRouter = () => {
     } else {
       throw new Error('Wrong path pushed')
     }
+
+    $currentPath.value = rawPath.split('?')[0]
+
     for (const layout of layouts) {
-      if (layout.path.test(rawPath)) {
+      if (layout.path.test($currentPath.value)) {
         if ($layout.value !== layout) {
           $layout.value = layout
         }
@@ -58,17 +62,19 @@ export const createRouter = () => {
     }
 
     outer: for (const route of routes) {
-      for (const alias of route.alias) {
-        if (alias.test(rawPath)) {
-          if ($page.value !== route) {
-            $page.value = route
+      if ('alias' in route) {
+        for (const alias of route.alias) {
+          if (alias.test($currentPath.value)) {
+            if ($page.value !== route) {
+              $page.value = route
+            }
+            $pathMatch.value = rawPath.match(alias)?.groups?.pathMatch ?? null
+            break outer
           }
-          $pathMatch.value = rawPath.match(alias)?.groups?.pathMatch ?? null
-          break outer
         }
       }
 
-      if (route.path.test(rawPath)) {
+      if (route.path.test($currentPath.value)) {
         if ($page.value !== route) {
           $page.value = route
         }
@@ -77,13 +83,15 @@ export const createRouter = () => {
       }
     }
 
-    $path.value = rawPath.split('?')[0]
-
     await nextTick()
+
     $history.location = { ...parseURL(parseQuery, rawPath), params }
+
     if (IS_CLIENT) {
       pushHistory && history.pushState({ path: $history.location.fullPath }, null, $history.location.fullPath)
+
       const scrollBehavior = getScrollBehavior($history.location, null)
+
       window.scrollTo(scrollBehavior)
     }
   }
@@ -99,7 +107,7 @@ export const createRouter = () => {
   const resolve = (input: any) => {
     const { path } = input
     return {
-      path: path,
+      path: $currentPath.value,
       fullPath: path,
     }
   }
@@ -110,7 +118,7 @@ export const createRouter = () => {
     if (path) {
       resolvedPath = path
     } else {
-      resolvedPath = $path.value
+      resolvedPath = $currentPath.value
     }
     if (query) {
       resolvedPath += encodeQuery(query)
@@ -121,8 +129,21 @@ export const createRouter = () => {
     return resolvedPath
   }
 
+  const isReady = async (): Promise<void> => {
+    let test = 0
+    while (test < 5) {
+      test++
+      await nextTick()
+      if ($ready.value) return Promise.resolve()
+    }
+    return Promise.reject()
+  }
+
+  $ready.value = true
+
   return {
     push,
+    isReady,
     install: (app: App) => {
       app.provide(
         '$route',
@@ -142,7 +163,7 @@ export const createRouter = () => {
           resolve,
           $page,
           $layout,
-          $path,
+          $currentPath,
           $pathMatch,
           $props,
         }),
@@ -157,8 +178,6 @@ const parseURL = (parseQuery: (search: string) => any, location: string, current
   let searchString = ''
   let hash = ''
 
-  // Could use URL and URLSearchParams but IE 11 doesn't support it
-  // TODO: move to new URL()
   const hashPos = location.indexOf('#')
   let searchPos = location.indexOf('?')
   // the hash appears before the search, so it's not part of the search string

@@ -1,5 +1,5 @@
 <template>
-  <a :href="to" @click.prevent="onClick">
+  <a :href="to" @click.prevent.stop="onClick">
     <slot />
   </a>
 </template>
