@@ -12,6 +12,7 @@ export default {
     '@storefront-x/atomic-design',
     '@storefront-x/graphql',
     '@storefront-x/cypress',
+    '@storefront-x/schema-org',
 
     '@storefront-x/blog',
     '@storefront-x/braintree',

@@ -12,15 +12,11 @@ export default () => {
   const addToWishlistRepository = useAddToWishlistRepository()
 
   return async (product: ReturnType<typeof useProduct>) => {
-    const items = [...wishlistStore.items, { id: product.id, product }]
-    const productIds = items.map((item) => item.product.id)
-
+    wishlistStore.items.push(product.id)
     if (customer.isLoggedIn) {
-      await addToWishlistRepository(product)
+      await addToWishlistRepository(product.id)
     } else {
-      cookies.set(WISHLIST_COOKIES_NAME, productIds, { path: '/' })
+      cookies.set(WISHLIST_COOKIES_NAME, wishlistStore.items, { path: '/' })
     }
-
-    wishlistStore.$patch({ items })
   }
 }

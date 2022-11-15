@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
 ARG SFX_CONFIG=storefront-x.config.js
 

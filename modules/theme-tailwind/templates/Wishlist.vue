@@ -3,7 +3,7 @@
     <Heading :level="1">{{ t('Wishlist') }}</Heading>
 
     <div class="pt-4 md:pt-6 md:pb-8 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-0 xl:grid-cols-3 2xl:grid-cols-4">
-      <ProductProvider v-for="(item, i) in wishlist.items" :key="item.id" :product="item.product">
+      <ProductProvider v-for="(item, i) in wishlist.wishlistProducts.value" :key="item.id" :product="item">
         <ProductTile :index="i" />
       </ProductProvider>
     </div>
