@@ -47,6 +47,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
     $ready.value = false
     let rawPath = ''
     let params = null
+
     if (typeof rawLocation === 'string') {
       rawPath = rawLocation.startsWith('/') ? rawLocation : '/' + rawLocation
     } else if (typeof rawLocation === 'object') {
@@ -75,7 +76,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
             if ($page.value !== route) {
               $page.value = route
             }
-            $pathMatch.value = rawPath.match(alias)?.groups?.pathMatch ?? null
+            $pathMatch.value = rawPath.match(alias)?.groups?.pathMatch.split('?')[0] ?? null
             break outer
           }
         }
@@ -85,11 +86,13 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
         if ($page.value !== route) {
           $page.value = route
         }
-        $pathMatch.value = rawPath.match(route.path)?.groups?.pathMatch ?? null
+        $pathMatch.value = rawPath.match(route.path)?.groups?.pathMatch.split('?')[0] ?? null
         break
       }
     }
-    console.log($pathMatch.value)
+    if ($pathMatch.value === '') {
+      $pathMatch.value = rawPath
+    }
     await nextTick()
 
     $history.location = { ...parseURL(parseQuery, rawPath), params }

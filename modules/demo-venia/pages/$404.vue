@@ -11,6 +11,7 @@ const props = defineProps({
   resolvePath: {
     type: String,
     required: true,
+    default: '/',
   },
 })
 
