@@ -11,13 +11,11 @@
 import useGetCmsPageById from '#ioc/services/useGetCmsPageById'
 import SfxShopwareCmsPage from '#ioc/components/SfxShopwareCmsPage'
 import useResource from '#ioc/composables/useResource'
-import Container from '#ioc/atoms/Container'
 import useI18n from '#ioc/composables/useI18n'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 
 const ReviewShowreel = hydrateWhenVisible(() => import('#ioc/molecules/ReviewShowreel'))
 const { t } = useI18n()
-
 
 const props = defineProps({
   id: {
