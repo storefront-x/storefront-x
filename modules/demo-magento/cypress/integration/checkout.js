@@ -84,7 +84,6 @@ describe('Checkout', () => {
     checkout.getCouponCode().type('WrongCoupon')
     checkout.couponApply()
     checkout.getAppliedCoupon().should('not.exist')
-    //cy.get('[data-cy=coupon-applied]').should('not.exist')
     cy.get('[data-cy="notification-body"]').should(
       'have.text',
       "The coupon code isn't valid. Verify the code and try again.",
