@@ -1,5 +1,9 @@
 <template>
-  <div class="relative bg-center grid grid-cols-2 gap-x-8" :style="shopwareCmsBlock.styles">
+  <div
+    :class="shopwareCmsBlock.classes"
+    class="relative bg-center grid grid-cols-2 gap-x-8"
+    :style="shopwareCmsBlock.styles"
+  >
     <div class="grid grid-rows-2 gap-y-8">
       <slot name="left-top" />
       <slot name="left-bottom" />
@@ -13,6 +17,10 @@ import useShopwareCmsBlock from '#ioc/composables/useShopwareCmsBlock'
 
 const props = defineProps({
   data: {
+    type: Object,
+    default: () => ({}),
+  },
+  section: {
     type: Object,
     default: () => ({}),
   },
