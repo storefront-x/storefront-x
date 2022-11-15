@@ -90,6 +90,7 @@ export default (props: any) => {
   const rightLastItem = computed(() => {
     return rightPagesTotal.value - rightPages.value > 0
   })
+
   function getUrlFor(page: number | ComputedRef<number>) {
     let newPage
     if (typeof page === 'number') {

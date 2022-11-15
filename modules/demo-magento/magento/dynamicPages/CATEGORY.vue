@@ -33,6 +33,7 @@ const props = defineProps({
 
 const route = useRoute()
 const getCategoryById = useGetCategoryById()
+
 const [data] = await useResource(
   () => ({
     id: props.id,

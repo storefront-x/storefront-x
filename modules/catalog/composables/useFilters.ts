@@ -43,6 +43,7 @@ export default () => {
   const totalFilterCount = computed(() => {
     return Object.entries(filters.value).filter(([, values]) => values && values.length > 0).length
   })
+
   watch(
     () => _options.innerFilters,
     debounce(

@@ -51,7 +51,7 @@ const props = defineProps({
 
 const { t } = useI18n()
 const { filters, addFilter, removeFilter, removeAllFilters, isFilterSelected } = useFilters()
-// const isOpen = ref({})
+
 const collapsed = {} as any
 
 const filteredAggregations = computed(() => {

@@ -81,8 +81,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['close'])
+
 const { t } = useI18n()
 const { filters, addFilter, removeFilter, removeAllFilters } = useFilters()
+
 const isOpen = reactive({})
 
 const filteredAggregations = computed(() => {
@@ -106,6 +108,7 @@ const removeFilters = async () => {
   await nextTick()
   emit('close')
 }
+
 const getCountFilters = (filter) => {
   if (filters.value[filter.attributeCode] !== undefined) {
     return filters.value[filter.attributeCode].length
