@@ -68,7 +68,7 @@ export default class Checkout {
   }
 
   getAppliedCoupon() {
-    return cy.get('[data-cy=coupon-applied]').eq(1)
+    return cy.get('[data-cy=coupon-applied]')
   }
 
   couponRemove() {
