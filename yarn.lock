@@ -3491,12 +3491,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/test@workspace:modules/test":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/test@workspace:modules/test"
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/testing@workspace:modules/testing":
   version: 0.0.0-use.local
   resolution: "@storefront-x/testing@workspace:modules/testing"
