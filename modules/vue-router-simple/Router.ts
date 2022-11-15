@@ -1,23 +1,30 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import { App, computed, reactive, ref, shallowRef, nextTick } from 'vue'
+import { App, computed, reactive, ref, shallowRef, nextTick, DefineComponent } from 'vue'
 import isArray from '#ioc/utils/isArray'
 import isEmpty from '#ioc/utils/isEmpty'
 
-interface rawLocationObject {
+interface RouteLocationRaw {
   path: string
-  query: { string: string }
-  params: { any: any }
+  query: { [key: string]: string }
+  params: { [key: string]: string }
   hash: string
 }
-interface routeLocationObject {
+interface RouteLocation {
   path: string
   fullPath: string
-  query: { string: string }
-  params: { any: any }
+  query: { [key: string]: string }
+  params: { [key: string]: string }
   hash: string
 }
 
-export const createRouter = ({ routes, layouts = [] }) => {
+interface routeRaw {
+  name: string
+  path: RegExp
+  component: DefineComponent
+  alias: RegExp[]
+}
+
+export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; layouts: routeRaw[] | [] }) => {
   const $layout = shallowRef<any>(null)
   const $page = shallowRef<any>(null)
   const $props = shallowRef<any>(null)
@@ -26,7 +33,7 @@ export const createRouter = ({ routes, layouts = [] }) => {
   const $pathMatch = ref()
   const $ready = ref(false)
 
-  const popStateHandler = ({ state }) => {
+  const popStateHandler = ({ state }: { state: any }) => {
     if (state) {
       push(state.path, false)
     }
@@ -36,7 +43,7 @@ export const createRouter = ({ routes, layouts = [] }) => {
     window.addEventListener('popstate', popStateHandler)
   }
 
-  const push = async (rawLocation: string | rawLocationObject, pushHistory = true) => {
+  const push = async (rawLocation: string | RouteLocationRaw, pushHistory = true) => {
     $ready.value = false
     let rawPath = ''
     let params = null
@@ -82,26 +89,18 @@ export const createRouter = ({ routes, layouts = [] }) => {
         break
       }
     }
-
+    console.log($pathMatch.value)
     await nextTick()
 
     $history.location = { ...parseURL(parseQuery, rawPath), params }
 
     if (IS_CLIENT) {
-      pushHistory && history.pushState({ path: $history.location.fullPath }, null, $history.location.fullPath)
+      pushHistory && history.pushState({ path: $history.location.fullPath }, '', $history.location.fullPath)
 
-      const scrollBehavior = getScrollBehavior($history.location, null)
+      const scrollBehavior = getScrollBehavior($history.location)
 
       window.scrollTo(scrollBehavior)
     }
-  }
-
-  const getScrollBehavior = (to: routeLocationObject, savedPosition) => {
-    if (savedPosition) return savedPosition
-    if (to?.params?.savePosition) return { top: window.pageYOffset, behavior: 'smooth' }
-    if (to.hash) return { el: to.hash, behavior: 'smooth' }
-
-    return { top: 0, behavior: 'smooth' }
   }
 
   const resolve = (input: any) => {
@@ -112,7 +111,7 @@ export const createRouter = ({ routes, layouts = [] }) => {
     }
   }
 
-  const resolveLocation = (rawLocation: rawLocationObject) => {
+  const resolveLocation = (rawLocation: RouteLocationRaw) => {
     let resolvedPath = ''
     const { path, query, hash } = rawLocation
     if (path) {
@@ -170,6 +169,12 @@ export const createRouter = ({ routes, layouts = [] }) => {
       )
     },
   }
+}
+
+const getScrollBehavior = (to: RouteLocation): ScrollToOptions => {
+  if (to?.params?.savePosition) return { top: window.pageYOffset, behavior: 'smooth' }
+
+  return { top: 0, left: 0, behavior: 'smooth' }
 }
 
 const parseURL = (parseQuery: (search: string) => any, location: string, currentLocation = '/'): any => {
@@ -286,7 +291,7 @@ const decode = (text: string | number): string => {
   return '' + text
 }
 
-const encodeQuery = (query: { string: string | [] }) => {
+const encodeQuery = (query: { [key: string]: string | [] }) => {
   const _query = { ...query }
   Object.keys(_query).map((q: string) => isEmpty(_query[q]) && delete _query[q])
   return (
