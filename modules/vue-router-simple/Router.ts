@@ -106,6 +106,11 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
     }
   }
 
+  const replace = (input: RouteLocationRaw) => {
+    const rawPath = resolveLocation(input)
+    push(rawPath, false)
+  }
+
   const resolve = (input: any) => {
     const { path } = input
     return {
@@ -151,6 +156,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
   })
   const router = reactive({
     push,
+    replace,
     resolve,
     $page,
     $layout,
