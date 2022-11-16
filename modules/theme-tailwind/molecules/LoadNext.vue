@@ -17,13 +17,17 @@ import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import IsLoadNext from '#ioc/mixins/IsLoadNext'
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   components: {
     Button,
   },
+
   mixins: [IsLoadNext],
+
   setup() {
     const { t } = useI18n()
+
     return {
       t,
     }

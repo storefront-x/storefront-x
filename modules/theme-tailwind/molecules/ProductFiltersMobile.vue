@@ -72,28 +72,36 @@ import Drawer from '#ioc/atoms/Drawer'
 import FilterButton from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   components: {
     Drawer,
     FilterButton,
   },
+
   mixins: [UsesFilters],
+
   props: {
     aggregations: {
       type: Array,
       default: () => [],
     },
   },
+
   emits: ['close'],
+
   setup() {
     const { t } = useI18n()
+
     return {
       t,
     }
   },
+
   data: () => ({
     isOpen: {},
   }),
+
   computed: {
     filteredAggregations() {
       return this.aggregations.filter((aggregation) => {
@@ -101,15 +109,18 @@ export default defineComponent({
       })
     },
   },
+
   methods: {
     onInput(e, key, value) {
       const selected = e.target.value === 'true'
+
       if (!selected) {
         this.addFilter(key, value)
       } else {
         this.removeFilter(key, value)
       }
     },
+
     async removeFilters() {
       this.removeAllFilters()
       await this.$nextTick()

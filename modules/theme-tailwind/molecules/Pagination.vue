@@ -97,6 +97,7 @@ import SolidArrowRight from '#ioc/icons/SolidArrowRight'
 import SolidChevronRight from '#ioc/icons/SolidChevronRight'
 import useI18n from '#ioc/composables/useI18n'
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   components: {
     BackToTop,
@@ -105,9 +106,12 @@ export default defineComponent({
     SolidArrowRight,
     SolidChevronRight,
   },
+
   mixins: [IsPagination],
+
   setup() {
     const { t } = useI18n()
+
     return {
       t,
     }

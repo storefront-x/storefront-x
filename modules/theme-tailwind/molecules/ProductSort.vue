@@ -18,19 +18,21 @@
       {{ t('sort_by', [title]) }}
     </template>
 
-    <DropdownItem :to="{ query: { ...route.query, sort: undefined, page: undefined }, params: { savePosition: true } }">
+    <DropdownItem
+      :to="{ query: { ...$route.query, sort: undefined, page: undefined }, params: { savePosition: true } }"
+    >
       {{ t('Best match') }}
     </DropdownItem>
 
     <DropdownItem
-      :to="{ query: { ...route.query, sort: 'price,ASC', page: undefined }, params: { savePosition: true } }"
+      :to="{ query: { ...$route.query, sort: 'price,ASC', page: undefined }, params: { savePosition: true } }"
       data-cy="sort-price-ASC"
     >
       {{ t('Price: Low to High') }}
     </DropdownItem>
 
     <DropdownItem
-      :to="{ query: { ...route.query, sort: 'price,DESC', page: undefined }, params: { savePosition: true } }"
+      :to="{ query: { ...$route.query, sort: 'price,DESC', page: undefined }, params: { savePosition: true } }"
       data-cy="sort-price-DESC"
     >
       {{ t('Price: High to Low') }}
@@ -42,10 +44,9 @@
 import Dropdown from '#ioc/atoms/Dropdown'
 import DropdownItem from '#ioc/atoms/DropdownItem'
 import useI18n from '#ioc/composables/useI18n'
-import useRoute from '#ioc/composables/useRoute'
 
 const { t } = useI18n()
-const route = useRoute()
+
 defineProps({
   title: {
     type: String,
