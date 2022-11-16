@@ -18,7 +18,7 @@ const [data] = await useResource(
     search: String(route.query.query),
     filter: ensureArray(route.query.filter),
     currentPage: Number(route.query.page ?? 1),
-    pageSize: CATALOG_PAGE_SIZE,
+    pageSize: CATALOG_PAGE_SIZE * (route.query.pages || 1),
     sort: route.query.sort as string,
   }),
   (params) =>

@@ -7,7 +7,7 @@ test('query stays after reload', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {

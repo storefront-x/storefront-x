@@ -5,21 +5,23 @@ import isEmpty from '#ioc/utils/isEmpty'
 
 interface RouteLocationRaw {
   path: string
+  name: string
   query: { [key: string]: string }
-  params: { [key: string]: string }
+  params: { [key: string]: string } | null
   hash: string
 }
 interface RouteLocation {
   path: string
   fullPath: string
   query: { [key: string]: string }
-  params: { [key: string]: string }
+  params: { [key: string]: string } | null
   hash: string
 }
 
 interface routeRaw {
   name: string
   path: RegExp
+  readablePath: string
   component: DefineComponent
   alias: RegExp[]
 }
@@ -45,19 +47,17 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
 
   const push = async (rawLocation: string | RouteLocationRaw, pushHistory = true) => {
     $ready.value = false
-    let rawPath = ''
-    let params = null
+    let locationToMatch = {} as RouteLocationRaw
 
     if (typeof rawLocation === 'string') {
-      rawPath = rawLocation.startsWith('/') ? rawLocation : '/' + rawLocation
+      locationToMatch = parseURL(parseQuery, rawLocation.startsWith('/') ? rawLocation : '/' + rawLocation)
     } else if (typeof rawLocation === 'object') {
-      params = rawLocation?.params ?? null
-      rawPath = resolveLocation(rawLocation)
+      locationToMatch = { ...rawLocation, ...resolveLocation(rawLocation) }
     } else {
       throw new Error('Wrong path pushed')
     }
 
-    $currentPath.value = rawPath.split('?')[0]
+    $currentPath.value = locationToMatch.path
 
     for (const layout of layouts) {
       if (layout.path.test($currentPath.value)) {
@@ -68,34 +68,50 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
         break
       }
     }
+    if ('name' in locationToMatch) {
+      const matchedRoute = routes.find((r) => r.name === locationToMatch.name)
+      if ($page.value !== matchedRoute) {
+        $page.value = matchedRoute
+      }
+    } else {
+      outer: for (const route of routes) {
+        if ('alias' in route) {
+          for (const alias of route.alias) {
+            if (alias.test($currentPath.value)) {
+              if ($page.value !== route) {
+                $page.value = route
+              }
+              const matchedParams = $currentPath.value.match(alias)?.groups ?? null
+              if (matchedParams) {
+                locationToMatch.params = { ...locationToMatch.params, ...matchedParams }
+              }
 
-    outer: for (const route of routes) {
-      if ('alias' in route) {
-        for (const alias of route.alias) {
-          if (alias.test($currentPath.value)) {
-            if ($page.value !== route) {
-              $page.value = route
+              break outer
             }
-            $pathMatch.value = rawPath.match(alias)?.groups?.pathMatch.split('?')[0] ?? null
-            break outer
           }
         }
-      }
 
-      if (route.path.test($currentPath.value)) {
-        if ($page.value !== route) {
-          $page.value = route
+        if (route.path.test($currentPath.value)) {
+          if ($page.value !== route) {
+            $page.value = route
+          }
+          const matchedParams = $currentPath.value.match(route.path)?.groups ?? null
+          if (matchedParams) {
+            locationToMatch.params = { ...locationToMatch.params, ...matchedParams }
+          }
+          break
         }
-        $pathMatch.value = rawPath.match(route.path)?.groups?.pathMatch.split('?')[0] ?? null
-        break
       }
     }
-    if ($pathMatch.value === '') {
-      $pathMatch.value = rawPath
+    if ($currentPath.value === '/') {
+      $pathMatch.value = $currentPath.value
+    } else {
+      $pathMatch.value = $currentPath.value.replace(/^\/+/g, '')
     }
+
     await nextTick()
 
-    $history.location = { ...parseURL(parseQuery, rawPath), params }
+    $history.location = locationToMatch
 
     if (IS_CLIENT) {
       pushHistory && history.pushState({ path: $history.location.fullPath }, '', $history.location.fullPath)
@@ -107,8 +123,8 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
   }
 
   const replace = (input: RouteLocationRaw) => {
-    const rawPath = resolveLocation(input)
-    push(rawPath, false)
+    const { path } = resolveLocation(input)
+    push(path, false)
   }
 
   const resolve = (input: any) => {
@@ -120,20 +136,41 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
   }
 
   const resolveLocation = (rawLocation: RouteLocationRaw) => {
+    let resolvedFullPath = ''
     let resolvedPath = ''
-    const { path, query, hash } = rawLocation
+    const { path, query, hash, name, params } = rawLocation
     if (path) {
       resolvedPath = path
+      resolvedFullPath = path
+    } else if (name) {
+      const matchedReadablePath = resolveNamedLocation(name, params)
+      resolvedPath = matchedReadablePath
+      resolvedFullPath = matchedReadablePath
     } else {
       resolvedPath = $currentPath.value
+      resolvedFullPath = $currentPath.value
     }
+
     if (query) {
-      resolvedPath += encodeQuery(query)
+      resolvedFullPath += encodeQuery(query)
     }
     if (hash) {
-      resolvedPath += hash
+      resolvedFullPath += hash
     }
-    return resolvedPath
+
+    return { path: resolvedPath, fullPath: resolvedFullPath }
+  }
+
+  const resolveNamedLocation = (name: string, params: { [key: string]: string } | null) => {
+    const matchedRoute = routes.find((r) => r.name === name)
+    if (!matchedRoute) {
+      throw Error('no route matched to this name')
+    }
+    if (params) {
+      return matchedRoute.readablePath.replace(/\[(.+?)\]/g, (_: string, $1: string) => `${params[$1]}`)
+    } else {
+      return matchedRoute.readablePath
+    }
   }
 
   const isReady = async (): Promise<void> => {
@@ -285,6 +322,7 @@ const parseQuery = (search: string): any => {
       query[key] = value
     }
   }
+
   return query
 }
 
@@ -300,16 +338,19 @@ const decode = (text: string | number): string => {
 const encodeQuery = (query: { [key: string]: string | [] }) => {
   const _query = { ...query }
   Object.keys(_query).map((q: string) => isEmpty(_query[q]) && delete _query[q])
-  return (
-    '?' +
-    Object.keys(_query)
-      .map((q: string) => {
-        if (isArray(_query[q])) {
-          return _query[q].map((s: string) => `${q}=${s}`).join('&')
-        }
-        return `${q}=${_query[q]}`
-      })
-      .join('&')
-      .toString()
-  )
+  if (Object.keys(_query).length) {
+    return (
+      '?' +
+      Object.keys(_query)
+        .map((q: string) => {
+          const _q = _query[q]
+          if (isArray(_q)) {
+            return _q.map((s: string) => `${q}=${s}`).join('&')
+          }
+          return `${q}=${_q}`
+        })
+        .join('&')
+        .toString()
+    )
+  } else return ''
 }

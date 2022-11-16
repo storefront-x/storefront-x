@@ -7,7 +7,7 @@ test('$app component', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
@@ -31,7 +31,7 @@ test('$app component with outlet', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {

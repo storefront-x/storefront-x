@@ -33,6 +33,7 @@ export default class Pages extends GeneratingConcept {
           ident: this.getIdent(parts),
           name: this.getName(parts),
           path: this.getPath(parts),
+          readablePath: this.getReadablePath(parts),
           priority: this.getPriority(parts),
         })
       }
@@ -82,6 +83,24 @@ export default class Pages extends GeneratingConcept {
     return '/^' + '\\/' + path.join('\\/') + '\\/?' + (parts.includes('$layout') ? '/' : '$/')
   }
 
+  getReadablePath(parts) {
+    const path = []
+
+    for (const part of parts) {
+      if (part === 'index') {
+        path.push('')
+      } else if (part === '$layout') {
+        path.push('')
+      } else if (part === '$404') {
+        path.push(':pathMatch*')
+      } else {
+        path.push(part.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}(.+)`))
+      }
+    }
+
+    return '/' + path.join('/').replace(/\/$/, '')
+  }
+
   /**
    * @param {string[]} parts
    */
@@ -124,6 +143,7 @@ export const routes = Object.values(plugins).reduce((routes, plugin) => plugin(r
   {
     name: <%- page.name ? "'" + page.name + "'" : 'undefined' %>,
     path: <%- page.path %>,
+    readablePath: <%- "'" + page.readablePath + "'" %>,
     component: defineAsyncComponent(() => import('<%= page.component %>')),
   },
   <%_ } _%>

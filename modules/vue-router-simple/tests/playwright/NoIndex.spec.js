@@ -7,12 +7,12 @@ test('no index page', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
             pages: {
-              '$layout.vue': `<template>Layout<RouterView /></template>`,
+              '$layout.vue': `<template>Layout<SfxLayoutOutlet /></template>`,
               '$404.vue': `<template>Correct text</template>`,
             },
           },

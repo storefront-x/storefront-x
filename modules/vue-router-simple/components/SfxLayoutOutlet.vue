@@ -1,6 +1,6 @@
 <template>
   <Suspense @pending="pendingEvent" @resolve="resolveEvent">
-    <Component :is="router.$page.component" :key="router.$pathMatch" :resolve-path="router.$pathMatch" />
+    <Component :is="router.$page.component" :key="router.$pathMatch" v-bind="{ pathMatch: router.$pathMatch }" />
   </Suspense>
 </template>
 
@@ -9,7 +9,6 @@ import useRouter from '#ioc/composables/useRouter'
 import useEventBus from '#ioc/composables/useEventBus.js'
 
 const router = useRouter()
-
 const { emit } = useEventBus('navigation')
 
 function pendingEvent() {

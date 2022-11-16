@@ -7,15 +7,15 @@ test('layout in directory', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
             pages: {
-              '$layout.vue': `<template><h1>root</h1><RouterView /></template>`,
+              '$layout.vue': `<template><h1>root</h1><SfxLayoutOutlet /></template>`,
               'index.vue': `<template><h2>root</h2></template>`,
               'nested': {
-                '$layout.vue': `<template><h1>nested</h1><RouterView /></template>`,
+                '$layout.vue': `<template><h1>nested</h1><SfxLayoutOutlet /></template>`,
                 'index.vue': `<template><h2>nested</h2></template>`,
               },
             },

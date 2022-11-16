@@ -7,7 +7,7 @@ test('basic params', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
@@ -33,7 +33,7 @@ test('navigating to named route with params', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {

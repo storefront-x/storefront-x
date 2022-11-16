@@ -7,7 +7,7 @@ test('basic router', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
@@ -31,7 +31,7 @@ test('SSR non-index page', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
@@ -56,7 +56,7 @@ test('navigating between pages', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
@@ -83,13 +83,13 @@ test('layout', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
             pages: {
               'a.vue': `<template><h2>Page A</h2></template>`,
-              '$layout.vue': `<template><h1>Layout</h1><RouterView /></template>`,
+              '$layout.vue': `<template><h1>Layout</h1><SfxLayoutOutlet /></template>`,
             },
           },
         ],
@@ -109,7 +109,7 @@ test('404', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
@@ -134,7 +134,7 @@ test('nested routes', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
@@ -160,7 +160,7 @@ test('navigating to named route', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
@@ -186,7 +186,7 @@ test('navigating to named nested route', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
@@ -216,12 +216,12 @@ test('show 404 if index is missing', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         [
           'my-module',
           {
             pages: {
-              '$layout.vue': `<template><header>Header</Header><RouterView /></template>`,
+              '$layout.vue': `<template><header>Header</Header><SfxLayoutOutlet /></template>`,
               '$404.vue': `<template><main>404</main></template>`,
               'test.vue': `<template><main>test</main></template>`,
             },
