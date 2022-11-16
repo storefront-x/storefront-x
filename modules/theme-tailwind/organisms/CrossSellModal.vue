@@ -1,5 +1,5 @@
 <template>
-  <Modal v-show="data?.products" @close="emit('close')">
+  <Modal @close="emit('close')">
     <div>
       <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
         <svg
@@ -27,7 +27,8 @@
         {{ t('Continue to checkout') }}
       </Button>
     </div>
-    <div v-show="data?.products.length > 0" class="mt-2">
+
+    <div v-if="data.products.length" class="mt-2">
       <h5 class="w-100 font-medium text-lg text-gray-900 text-center my-4">
         {{ t('Other people also like to buy') }}:
       </h5>
@@ -59,7 +60,7 @@ const localePath = useLocalePath()
 const product = injectProduct()
 const getCrossSellForProduct = useGetCrossSellForProduct()
 
-const { data } = useAsyncData('GetCrossSellProducts', () => getCrossSellForProduct(product))
+const { data } = await useAsyncData('GetCrossSellProducts', () => getCrossSellForProduct(product))
 </script>
 
 <i18n lang="yaml">
