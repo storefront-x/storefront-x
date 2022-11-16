@@ -1,5 +1,5 @@
-const intl = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' })
-const intlNumber = new Intl.NumberFormat('de-DE', {
+const intl = new Intl.NumberFormat('sfb', { style: 'currency', currency: 'EUR' })
+const intlNumber = new Intl.NumberFormat('sfb', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 })
