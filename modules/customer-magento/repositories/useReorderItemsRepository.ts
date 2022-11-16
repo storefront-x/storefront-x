@@ -17,7 +17,7 @@ export default () => {
     )
 
     if (data?.reorderItems?.userInputErrors?.length > 0) {
-      throw new Error(data.reorderItems.userErrors[0].message)
+      throw new Error(data.reorderItems.userInputErrors[0].message)
     }
 
     return {
