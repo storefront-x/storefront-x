@@ -5,7 +5,7 @@ export default () => {
 
   return async (path = 'home') => {
     // TODO fix this mess
-    if (path === '' || path === '/' || path === '/undefined') {
+    if (path === '' || path === '/' || path === 'undefined') {
       path = 'home'
     }
 
@@ -34,10 +34,11 @@ export default () => {
         },
       ],
     })
+
     return {
-      foreignKey: elements[0].foreignKey as string,
-      ident: elements[0].routeName as string,
-      seoPath: elements[0].seoPathInfo === 'home' ? '' : (('/' + elements[0].seoPathInfo) as string),
+      foreignKey: elements[0]?.foreignKey as string,
+      ident: elements[0]?.routeName as string,
+      seoPath: elements[0]?.seoPathInfo === 'home' ? '' : (('/' + elements[0].seoPathInfo) as string),
     }
   }
 }
