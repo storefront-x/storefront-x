@@ -12,27 +12,23 @@
   </Button>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
-import useLoadNext from '#ioc/composables/useLoadNext'
-import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
-
-const props = defineProps({
-  total: {
-    type: Number,
-    required: true,
-    default: 0,
+import IsLoadNext from '#ioc/mixins/IsLoadNext'
+import { defineComponent } from 'vue'
+export default defineComponent({
+  components: {
+    Button,
   },
-  perPage: {
-    type: Number,
-    required: false,
-    default: CATALOG_PAGE_SIZE,
+  mixins: [IsLoadNext],
+  setup() {
+    const { t } = useI18n()
+    return {
+      t,
+    }
   },
 })
-
-const { t } = useI18n()
-const { canLoadMore, loadMoreUrl, loadMore } = useLoadNext(props)
 </script>
 
 <i18n lang="yaml">

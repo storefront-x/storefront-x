@@ -4,6 +4,7 @@ export default () => {
   const shopware = useShopware()
 
   return async (path = 'home') => {
+    // TODO fix this mess
     if (path === '' || path === '/' || path === 'undefined') {
       path = 'home'
     }

@@ -20,7 +20,7 @@
         >
         <RouterLink
           v-for="page in pages"
-          :key="`${page}`"
+          :key="page"
           :to="getUrlFor(page)"
           :class="[
             'md:border-t-2 md:pt-4 px-2 mx-1 md:px-4 items-center font-base md:font-medium md:bg-inherit md:hover:bg-inherit md:rounded-none',
@@ -88,51 +88,31 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import RouterLink from '#ioc/components/RouterLink'
 import BackToTop from '#ioc/molecules/BackToTop'
-import usePagination from '#ioc/composables/usePagination'
+import IsPagination from '#ioc/mixins/IsPagination'
 import SolidArrowLeft from '#ioc/icons/SolidArrowLeft'
 import SolidArrowRight from '#ioc/icons/SolidArrowRight'
 import SolidChevronRight from '#ioc/icons/SolidChevronRight'
 import useI18n from '#ioc/composables/useI18n'
-import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
-
-const props = defineProps({
-  total: {
-    type: Number,
-    required: true,
-    default: 0,
+import { defineComponent } from 'vue'
+export default defineComponent({
+  components: {
+    BackToTop,
+    RouterLink,
+    SolidArrowLeft,
+    SolidArrowRight,
+    SolidChevronRight,
   },
-  perPage: {
-    type: Number,
-    required: false,
-    default: CATALOG_PAGE_SIZE,
-  },
-  extraPages: {
-    type: Number,
-    required: false,
-    default: 2,
+  mixins: [IsPagination],
+  setup() {
+    const { t } = useI18n()
+    return {
+      t,
+    }
   },
 })
-
-const { t } = useI18n()
-
-const {
-  pages,
-  leftLastItem,
-  getUrlFor,
-  firstPage,
-  leftSeparator,
-  currentPage,
-  lastPage,
-  rightSeparator,
-  rightLastItem,
-  isOnFirstPage,
-  previousPage,
-  isOnLastPage,
-  nextPage,
-} = usePagination(props)
 </script>
 
 <i18n lang="yaml">

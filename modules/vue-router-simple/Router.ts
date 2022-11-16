@@ -142,34 +142,31 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
   }
 
   $ready.value = true
-
+  const route = reactive({
+    path: computed(() => $history.location.path),
+    fullPath: computed(() => $history.location.fullPath),
+    params: computed(() => $history.location.params),
+    query: computed(() => $history.location.query),
+    hash: computed(() => $history.location.hash),
+  })
+  const router = reactive({
+    push,
+    resolve,
+    $page,
+    $layout,
+    $currentPath,
+    $pathMatch,
+    $props,
+  })
   return {
     push,
     isReady,
     install: (app: App) => {
-      app.provide(
-        '$route',
-        reactive({
-          path: computed(() => $history.location.path),
-          fullPath: computed(() => $history.location.fullPath),
-          params: computed(() => $history.location.params),
-          query: computed(() => $history.location.query),
-          hash: computed(() => $history.location.hash),
-        }),
-      )
+      app.config.globalProperties.$router = router
+      app.config.globalProperties.$route = route
+      app.provide('$route', route)
 
-      app.provide(
-        '$router',
-        reactive({
-          push,
-          resolve,
-          $page,
-          $layout,
-          $currentPath,
-          $pathMatch,
-          $props,
-        }),
-      )
+      app.provide('$router', router)
     },
   }
 }
