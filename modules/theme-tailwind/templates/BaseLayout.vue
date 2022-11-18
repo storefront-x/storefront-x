@@ -6,6 +6,7 @@
   </main>
   <Footer />
   <Notifications />
+  <MiniCart />
 </template>
 
 <script setup lang="ts">
@@ -21,6 +22,7 @@ const HamburgerMenu = defineAsyncComponent(() => import('#ioc/organisms/Hamburge
 const Header = hydrateWhenIdle(() => import('#ioc/organisms/Header'))
 const Footer = hydrateWhenVisible(() => import('#ioc/organisms/Footer'))
 const Notifications = hydrateWhenIdle(() => import('#ioc/organisms/Notifications'))
+const MiniCart = hydrateWhenIdle(() => import('#ioc/organisms/MiniCart'))
 
 const route = useRoute()
 const themeTailwindStore = useThemeTailwindStore()
