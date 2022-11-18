@@ -2,10 +2,10 @@
   <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
     <div v-if="cart.coupons.length" class="pt-6 px-4 sm:px-6">
       <div v-for="coupon in cart.coupons" :key="coupon.code" class="flex items-center mb-6">
-        <div class="mr-2 grow">
+        <div class="mr-2 grow" data-cy="coupon-applied">
           {{ coupon.code }}
         </div>
-        <Button @click="onRemoveCoupon">
+        <Button data-cy="coupon-remove" @click="onRemoveCoupon">
           <OutlineX />
         </Button>
       </div>
@@ -15,6 +15,7 @@
         v-if="!isAdding"
         href="javascript:void(0)"
         class="flex gap-4 w-full p-6 text-primary-600 hover:text-primary-500 hover:underline"
+        data-cy="add-coupon"
         @click="isAdding = true"
       >
         <OutlineCreditCard class="text-black" />
@@ -24,8 +25,8 @@
       </a>
 
       <SfxForm v-else class="py-6 px-4 sm:px-6" @submit="onSubmit">
-        <FormInput validators="required" name="code" :label="t('Coupon code')" />
-        <Button type="submit" color="primary" class="w-full mt-4">
+        <FormInput validators="required" name="code" :label="t('Coupon code')" data-cy="coupon-code" />
+        <Button type="submit" color="primary" class="w-full mt-4" data-cy="coupon-apply">
           {{ t('Apply') }}
         </Button>
       </SfxForm>

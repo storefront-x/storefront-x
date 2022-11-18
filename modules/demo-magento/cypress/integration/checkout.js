@@ -61,4 +61,32 @@ describe('Checkout', () => {
 
     thankYouPage.isVisible()
   })
+
+  it('add valid coupon', () => {
+    product.visitRandom()
+    product.addToCart()
+    product.continueToCheckout()
+
+    checkout.getAddCoupon().click()
+    checkout.getCouponCode().type('coupon_cypress_test')
+    checkout.couponApply()
+    checkout.getAppliedCoupon().eq(1).should('have.text', 'coupon_cypress_test')
+    checkout.couponRemove()
+    checkout.getAppliedCoupon().eq(1).should('not.exist')
+  })
+
+  it('add invalid coupon', () => {
+    product.visitRandom()
+    product.addToCart()
+    product.continueToCheckout()
+
+    checkout.getAddCoupon().click()
+    checkout.getCouponCode().type('WrongCoupon')
+    checkout.couponApply()
+    checkout.getAppliedCoupon().should('not.exist')
+    cy.get('[data-cy="notification-body"]').should(
+      'have.text',
+      "The coupon code isn't valid. Verify the code and try again.",
+    )
+  })
 })

@@ -113,7 +113,7 @@ export default class Product {
   }
 
   getAddToCart() {
-    return cy.get('[data-cy=add-to-cart]').first()
+    return cy.get('[data-cy=add-to-cart] > span').first()
   }
 
   getAddToWishlist() {

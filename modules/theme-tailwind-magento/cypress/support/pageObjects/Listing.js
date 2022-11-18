@@ -55,4 +55,8 @@ export default class Listing {
       return cy.get(base).first()
     }
   }
+
+  getListProductCount() {
+    return cy.get('[aria-labelledby="product-heading"] > div > h3')
+  }
 }
