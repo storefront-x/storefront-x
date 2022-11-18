@@ -51,7 +51,7 @@ const props = defineProps({
   },
   loop: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   breakpoints: {
     type: Object,
@@ -141,7 +141,12 @@ function setPause() {
 }
 
 onMounted(() => {
-  visibleSlides.value = props.slides
+  const possibleVisibleSlides = props.slides
+  while (possibleVisibleSlides.length <= slidesPerView.value) {
+    const newItemIndex = Math.floor(Math.random() * (props.slides.length - 0) + 0)
+    possibleVisibleSlides.push(props.slides[newItemIndex])
+  }
+  visibleSlides.value = possibleVisibleSlides
   sliderAutoDragPlay()
 })
 
