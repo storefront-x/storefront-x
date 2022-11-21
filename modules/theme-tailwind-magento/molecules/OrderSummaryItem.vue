@@ -197,5 +197,5 @@ cs-CZ:
 en-US:
   'IN_STOCK': 'In stock'
   'OUT_OF_STOCK': 'Out of stock'
-  'qty': '{0} / ks'
+  'qty': '{0} / pc'
 </i18n>

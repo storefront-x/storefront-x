@@ -3558,6 +3558,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/vue-router-simple@workspace:modules/vue-router-simple":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/vue-router-simple@workspace:modules/vue-router-simple"
+  dependencies:
+    vue: ^3.2.41
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/vue-router@workspace:modules/vue-router":
   version: 0.0.0-use.local
   resolution: "@storefront-x/vue-router@workspace:modules/vue-router"

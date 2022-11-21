@@ -3,7 +3,7 @@ export default {
     '@storefront-x/base',
 
     '@storefront-x/vue',
-    '@storefront-x/vue-router',
+    '@storefront-x/vue-router-simple',
     '@storefront-x/vue-head',
     '@storefront-x/vue-i18n',
     '@storefront-x/vue-pinia',

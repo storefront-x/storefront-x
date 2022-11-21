@@ -19,14 +19,14 @@
       >
         <OutlineCreditCard class="text-black" />
         <span>
-          {{ t('Do you have coupon?') }}
+          {{ t('haveCoupon') }}
         </span>
       </a>
 
       <SfxForm v-else class="py-6 px-4 sm:px-6" @submit="onSubmit">
-        <FormInput validators="required" name="code" :label="t('Coupon code')" />
+        <FormInput validators="required" name="code" :label="t('couponCode')" />
         <Button type="submit" color="primary" class="w-full mt-4">
-          {{ t('Apply') }}
+          {{ t('applyCoupon') }}
         </Button>
       </SfxForm>
     </div>
@@ -59,7 +59,7 @@ const isAdding = ref(false)
 const onRemoveCoupon = async () => {
   try {
     await removeCouponFromCart()
-    showSuccessNotification('', t('Your coupon was successfully removed'))
+    showSuccessNotification('', t('couponRemoved'))
   } catch (e: any) {
     showErrorNotification(e)
   }
@@ -69,7 +69,7 @@ const onSubmit = async ({ code }: { code: string }) => {
   try {
     await applyCouponToCart(code)
     isAdding.value = false
-    showSuccessNotification('', t('Your coupon was successfully applied'))
+    showSuccessNotification('', t('couponApplied'))
   } catch (e: any) {
     console.error(e)
     showErrorNotification(e)
@@ -79,6 +79,15 @@ const onSubmit = async ({ code }: { code: string }) => {
 
 <i18n lang="yaml">
 cs-CZ:
-  Your coupon was successfully applied: Váš kupón byl úspěšně uplatněn
-  Your coupon was successfully removed: Váš kupón byl úspěšně odstraněn
+  couponApplied: Váš kupón byl úspěšně uplatněn
+  couponRemoved: Váš kupón byl úspěšně odstraněn
+  applyCoupon: Přidat kupón
+  haveCoupon: Máte kupón?
+  couponCode: Kód vašeho kupónu
+en-US:
+  couponApplied: Your coupon was successfully applied
+  couponRemoved: Your coupon was successfully removed
+  applyCoupon: Apply coupon
+  haveCoupon: Do you have coupon?
+  couponCode: Your coupon code
 </i18n>

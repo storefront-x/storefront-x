@@ -10,8 +10,8 @@
 <script setup lang="ts">
 import useGetCmsPageById from '#ioc/services/useGetCmsPageById'
 import SfxShopwareCmsPage from '#ioc/components/SfxShopwareCmsPage'
+import useResource from '#ioc/composables/useResource'
 import useI18n from '#ioc/composables/useI18n'
-import useAsyncData from '#ioc/composables/useAsyncData'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 
 const ReviewShowreel = hydrateWhenVisible(() => import('#ioc/molecules/ReviewShowreel'))
@@ -43,7 +43,10 @@ const reviews = [
 
 const getCmsPageById = useGetCmsPageById()
 
-const { data } = await useAsyncData('cmsPage', () => getCmsPageById(props.id))
+const [data] = await useResource(
+  () => props.id,
+  (id) => getCmsPageById(id),
+)
 </script>
 
 <i18n lang="yaml">
