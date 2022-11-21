@@ -141,10 +141,9 @@ function setPause() {
 }
 
 onMounted(() => {
-  const possibleVisibleSlides = props.slides
+  const possibleVisibleSlides = [...props.slides]
   while (possibleVisibleSlides.length <= slidesPerView.value) {
-    const newItemIndex = Math.floor(Math.random() * (props.slides.length - 0) + 0)
-    possibleVisibleSlides.push(props.slides[newItemIndex])
+    possibleVisibleSlides.push(...props.slides)
   }
   visibleSlides.value = possibleVisibleSlides
   sliderAutoDragPlay()
