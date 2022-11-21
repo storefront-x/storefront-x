@@ -17,9 +17,10 @@
       {{ cart.itemsTotalQuantity }}
     </span>
   </Link>
-  <Link
+  <div
+    role="button"
     class="relative pl-2 text-gray-400 hover:text-gray-500 hover:cursor-pointer lg:block hidden"
-    @click="cartStore.miniCartVisible = !cartStore.miniCartVisible"
+    @click.stop="cartStore.miniCartVisible = !cartStore.miniCartVisible"
   >
     <span class="sr-only">{{ t('Cart') }}</span>
     <div
@@ -34,7 +35,7 @@
     >
       {{ cart.itemsTotalQuantity }}
     </span>
-  </Link>
+  </div>
 </template>
 
 <script setup lang="ts">
