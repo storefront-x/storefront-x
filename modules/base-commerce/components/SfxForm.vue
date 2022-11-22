@@ -1,5 +1,5 @@
 <template>
-  <Component :is="tag ? tag : $Form ? 'div' : 'form'" @submit.prevent="onSubmit" @keydown="onKeydown">
+  <Component :is="tag ? tag : $Form ? 'div' : 'form'" method="POST" @submit.prevent="onSubmit" @keydown="onKeydown">
     <slot />
   </Component>
 </template>
