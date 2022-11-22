@@ -142,8 +142,10 @@ function setPause() {
 
 onMounted(() => {
   const possibleVisibleSlides = [...props.slides]
-  while (possibleVisibleSlides.length <= slidesPerView.value) {
-    possibleVisibleSlides.push(...props.slides)
+  if (props.slides.length) {
+    while (possibleVisibleSlides.length <= slidesPerView.value) {
+      possibleVisibleSlides.push(...props.slides)
+    }
   }
   visibleSlides.value = possibleVisibleSlides
   sliderAutoDragPlay()
