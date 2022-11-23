@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { onUnmounted, inject, ref, onMounted, computed } from 'vue'
+import { onUnmounted, inject, ref, onMounted, computed, provide, reactive } from 'vue'
 
 const map = inject('$SfxMap')
 
@@ -20,12 +20,17 @@ const props = defineProps({
     type: Array,
     default: null,
   },
+  selected: {
+    type: Object,
+    default: () => ({}),
+  },
 })
 
 const marker = ref(null)
-const selected = ref(null)
 
-const isSelected = computed(() => marker.value === selected.value)
+const isSelected = computed(() => {
+  return marker.value === props.selected
+})
 
 onMounted(() => {
   marker.value = new window.google.maps.Marker({
@@ -34,7 +39,7 @@ onMounted(() => {
     map: map.map,
   })
 
-  window.google.maps.event.addListener(marker, 'click', handleClick)
+  window.google.maps.event.addListener(marker.value, 'click', handleClick)
 
   map.registerMarker(marker.value)
 })
@@ -45,7 +50,6 @@ onUnmounted(() => {
 })
 
 const handleClick = () => {
-  selected.value = marker.value
   map.selectMarker(marker)
 }
 
@@ -57,4 +61,11 @@ const _getIcon = () => {
     anchor: new window.google.maps.Point(...props.iconAnchor),
   }
 }
+
+provide(
+  '$SfxMapMarker',
+  reactive({
+    marker,
+  }),
+)
 </script>

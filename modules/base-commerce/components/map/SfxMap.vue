@@ -31,7 +31,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['current-location'])
+const emit = defineEmits(['current-location', 'select'])
 
 const el = ref(null)
 const map = ref(null)
@@ -66,8 +66,17 @@ const unregisterMarker = (marker) => {
 }
 
 const selectMarker = (marker) => {
+  if (!marker) {
+    emit('select', null)
+    return
+  }
+
   for (const m of markers.value) {
-    m.isSelected = m === marker
+    if (m === marker.value) {
+      emit('select', m)
+      break
+    }
+    emit('select', null)
   }
 }
 

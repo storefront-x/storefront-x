@@ -3,14 +3,15 @@
 
   <Modal v-if="showMap" :has-close-btn="false" size="lg" @close="showMap = false">
     <Heading :level="3">{{ t('Select on a map') }}</Heading>
-    <SfxMap style="min-height: 500px; position: relative" @current-location="onCurrentLocation">
+    <SfxMap style="min-height: 500px; position: relative" @current-location="onCurrentLocation" @select="selectMarker">
       <SfxMapMarker
         v-for="pickupLocation in pickupLocations"
         :key="pickupLocation.pickupLocationCode"
         :position="{ lat: pickupLocation.latitude, lng: pickupLocation.longitude }"
+        :selected="selected"
       >
         <SfxMapWindow>
-          <div>
+          <div class="p-1">
             <strong>{{ pickupLocation.name }}</strong>
             <br />
             <span> {{ pickupLocation.city }}, {{ pickupLocation.street }}, {{ pickupLocation.postcode }} </span>
@@ -103,6 +104,7 @@ const { data } = await useAsyncData('pickupLocations', () => getPickupLocations(
 const showMap = ref(false)
 const picked = ref<ReturnType<typeof ToPickupLocation> | null>(null)
 const currentLocation = ref(null)
+const selected = ref({})
 
 const pickupLocations = computed(() => data.value.pickupLocations)
 
@@ -146,6 +148,10 @@ const select = async (pickupLocation: ReturnType<typeof ToPickupLocation>) => {
 
 const onCurrentLocation = (location: any) => {
   currentLocation.value = location
+}
+
+const selectMarker = (marker: any) => {
+  selected.value = marker
 }
 </script>
 

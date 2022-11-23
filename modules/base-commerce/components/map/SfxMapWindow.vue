@@ -7,9 +7,8 @@
 <script setup>
 import { onMounted, ref, inject, onUnmounted } from 'vue'
 
-const map = inject('map')
-const marker = inject('marker')
-const selectMarker = inject('selectMarker')
+const map = inject('$SfxMap')
+const marker = inject('$SfxMapMarker')
 
 const mapWindow = ref(null)
 const infoWindow = ref(null)
@@ -21,7 +20,7 @@ onMounted(() => {
 
   window.google.maps.event.addListener(infoWindow.value, 'closeclick', handleClose)
 
-  infoWindow.value.open(map(), marker())
+  infoWindow.value.open(map.map, marker.marker)
 })
 
 onUnmounted(() => {
@@ -29,6 +28,6 @@ onUnmounted(() => {
 })
 
 const handleClose = () => {
-  selectMarker(null)
+  map.selectMarker(null)
 }
 </script>
