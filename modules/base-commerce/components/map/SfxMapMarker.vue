@@ -1,18 +1,11 @@
 <template>
-  <div v-if="marker" class="sfx-map-marker">
-    <div v-if="isSelected">
-      <slot />
-    </div>
-  </div>
+  <slot v-if="isSelected" />
 </template>
 
 <script setup>
-import { onUnmounted, inject, ref, onMounted, provide, computed } from 'vue'
+import { onUnmounted, inject, ref, onMounted, computed } from 'vue'
 
-const map = inject('map')
-const unregisterMarker = inject('unregisterMarker')
-const registerMarker = inject('registerMarker')
-const selectMarker = inject('selectMarker')
+const map = inject('$SfxMap')
 
 const props = defineProps({
   position: {
@@ -29,31 +22,31 @@ const props = defineProps({
   },
 })
 
-let marker = null
+const marker = ref(null)
 const selected = ref(null)
 
-const isSelected = computed(() => marker === selected.value)
+const isSelected = computed(() => marker.value === selected.value)
 
 onMounted(() => {
-  marker = new window.google.maps.Marker({
+  marker.value = new window.google.maps.Marker({
     position: props.position,
     icon: _getIcon(),
-    map: map(),
+    map: map.map,
   })
 
   window.google.maps.event.addListener(marker, 'click', handleClick)
 
-  registerMarker(marker)
+  map.registerMarker(marker.value)
 })
 
 onUnmounted(() => {
-  unregisterMarker(marker)
-  marker.setMap(null)
+  map.unregisterMarker(marker.value)
+  marker.value.setMap(null)
 })
 
 const handleClick = () => {
-  selected.value = marker
-  selectMarker(marker)
+  selected.value = marker.value
+  map.selectMarker(marker)
 }
 
 const _getIcon = () => {
@@ -64,6 +57,4 @@ const _getIcon = () => {
     anchor: new window.google.maps.Point(...props.iconAnchor),
   }
 }
-
-provide('marker', () => marker)
 </script>
