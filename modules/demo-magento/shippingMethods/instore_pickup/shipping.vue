@@ -109,13 +109,18 @@ const selected = ref({})
 const pickupLocations = computed(() => data.value.pickupLocations)
 
 const sortedPickupLocations = computed(() => {
-  if (!location.location.value) return pickupLocations.value
+  if (!location.coordinates) return pickupLocations.value
 
-  const distance = (a: any, b: any) =>
-    Math.sqrt(Math.pow(a.latitude - b.latitude, 2) + Math.pow(a.longitude - b.longitude, 2))
+  const distance = (a: any, b: any) => {
+    const latitudeA = Number(a.latitude)
+    const latitudeB = b.latitude
+    const longitudeA = Number(a.longitude)
+    const longitudeB = b.longitude
+    return Math.sqrt(Math.pow(latitudeA - latitudeB, 2) + Math.pow(longitudeA - longitudeB, 2))
+  }
 
   return [...pickupLocations.value].sort(
-    (a, b) => distance(a, location.location.value) - distance(b, location.location.value),
+    (a, b) => distance(a, location.coordinates) - distance(b, location.coordinates),
   )
 })
 

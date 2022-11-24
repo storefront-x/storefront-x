@@ -1,15 +1,16 @@
-import { onMounted, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
+import type { Ref } from 'vue'
 
 export default () => {
-  const location = ref(null)
+  const coordinates: Ref<GeolocationCoordinates | null> = ref(null)
 
   onMounted(() => {
     if (!('geolocation' in navigator)) return
 
-    navigator.geolocation.getCurrentPosition((position: any) => (location.value = position.coords))
+    navigator.geolocation.getCurrentPosition((position) => (coordinates.value = position.coords))
   })
 
-  return {
-    location,
-  }
+  return reactive({
+    coordinates,
+  })
 }
