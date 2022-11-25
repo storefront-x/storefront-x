@@ -30,7 +30,7 @@ test('global messages', async ({ page }) => {
             },
             i18n: {
               messages: {
-                'cs-CZ.ts': `
+                'cs-CZ.js': `
                   export default {
                     message1: 'A',
                     message2: 'B',
@@ -107,7 +107,7 @@ test('merging of global messages', async ({ page }) => {
           {
             i18n: {
               messages: {
-                'cs-CZ.ts': `
+                'cs-CZ.js': `
                   export default {
                     message1: 'A',
                   }
@@ -121,7 +121,7 @@ test('merging of global messages', async ({ page }) => {
           {
             i18n: {
               messages: {
-                'cs-CZ.ts': `
+                'cs-CZ.js': `
                   export default {
                     message2: 'B',
                   }
@@ -185,7 +185,7 @@ test('overriding of global messages', async ({ page }) => {
           {
             i18n: {
               messages: {
-                'cs-CZ.ts': `
+                'cs-CZ.js': `
                   export default {
                     message1: 'A',
                     message2: 'B',
@@ -200,7 +200,7 @@ test('overriding of global messages', async ({ page }) => {
           {
             i18n: {
               messages: {
-                'cs-CZ.ts': `
+                'cs-CZ.js': `
                   export default {
                     message1: 'C',
                   }
