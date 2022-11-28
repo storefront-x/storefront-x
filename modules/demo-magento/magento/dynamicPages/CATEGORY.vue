@@ -40,6 +40,7 @@ const [data] = await useResource(
     pages: Number(route.query.pages ?? 1),
     sort: route.query.sort as string,
     filter: ensureArray(route.query.filter),
+    pageSize: Number(route.query.pageSize),
   }),
   (params) =>
     getCategoryById(params.id, {
@@ -47,7 +48,7 @@ const [data] = await useResource(
       pages: params.pages,
       sort: params.sort,
       filter: params.filter,
-      pageSize: 3,
+      pageSize: params.pageSize,
     }),
 )
 </script>

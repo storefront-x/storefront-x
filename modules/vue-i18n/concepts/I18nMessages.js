@@ -1,6 +1,7 @@
 import { WatchingConcept } from '@storefront-x/core'
 import path from 'node:path'
-import url from 'node:url'
+import fs from 'node:fs/promises'
+import { merge } from 'lodash-es'
 
 export default class I18nMessages extends WatchingConcept {
   get directory() {
@@ -10,19 +11,19 @@ export default class I18nMessages extends WatchingConcept {
     const records = {}
 
     for (const { module, file } of Object.values(files)) {
-      const { default: fileContents } = await import(url.pathToFileURL(path.join(this.src(module), file)).href)
+      const rawFile = await fs.readFile(path.join(this.src(module), file), { encoding: 'utf-8' })
       const fileWithoutExt = file.replace(/\.\w+$/, '')
 
       if (!records[fileWithoutExt]) {
-        records[fileWithoutExt] = this.mergeDeep({}, fileContents)
+        records[fileWithoutExt] = JSON.parse(rawFile)
       } else {
-        records[fileWithoutExt] = this.mergeDeep(records[fileWithoutExt], fileContents)
+        records[fileWithoutExt] = merge(records[fileWithoutExt], JSON.parse(rawFile))
       }
     }
     for (const recordName of Object.keys(records)) {
       await this.writeFile(
         path.join(this.dst(), path.basename(this.directory), recordName + '.' + this.extension),
-        JSON.stringify(records[recordName]),
+        JSON.stringify(records[recordName], null, '  '),
       )
     }
   }
@@ -45,27 +46,5 @@ export default class I18nMessages extends WatchingConcept {
 
   get extension() {
     return 'json'
-  }
-
-  mergeDeep(target, ...sources) {
-    if (!sources.length) return target
-    const source = sources.shift()
-
-    if (this.isObject(target) && this.isObject(source)) {
-      for (const key in source) {
-        if (this.isObject(source[key])) {
-          if (!target[key]) target[key] = {}
-          this.mergeDeep(target[key], source[key])
-        } else {
-          target[key] = source[key]
-        }
-      }
-    }
-
-    return this.mergeDeep(target, ...sources)
-  }
-
-  isObject(val) {
-    return val === Object(val)
   }
 }

@@ -17,24 +17,30 @@
 
       {{ t('sort_by', [title]) }}
     </template>
+    <template #default="{ close }">
+      <DropdownItem
+        :to="{ query: { ...route.query, sort: undefined, page: undefined }, params: { savePosition: true } }"
+        @click="close"
+      >
+        {{ t('Best match') }}
+      </DropdownItem>
 
-    <DropdownItem :to="{ query: { ...route.query, sort: undefined, page: undefined }, params: { savePosition: true } }">
-      {{ t('Best match') }}
-    </DropdownItem>
+      <DropdownItem
+        :to="{ query: { ...route.query, sort: 'price,ASC', page: undefined }, params: { savePosition: true } }"
+        data-cy="sort-price-ASC"
+        @click="close"
+      >
+        {{ t('Price: Low to High') }}
+      </DropdownItem>
 
-    <DropdownItem
-      :to="{ query: { ...route.query, sort: 'price,ASC', page: undefined }, params: { savePosition: true } }"
-      data-cy="sort-price-ASC"
-    >
-      {{ t('Price: Low to High') }}
-    </DropdownItem>
-
-    <DropdownItem
-      :to="{ query: { ...route.query, sort: 'price,DESC', page: undefined }, params: { savePosition: true } }"
-      data-cy="sort-price-DESC"
-    >
-      {{ t('Price: High to Low') }}
-    </DropdownItem>
+      <DropdownItem
+        :to="{ query: { ...route.query, sort: 'price,DESC', page: undefined }, params: { savePosition: true } }"
+        data-cy="sort-price-DESC"
+        @click="close"
+      >
+        {{ t('Price: High to Low') }}
+      </DropdownItem>
+    </template>
   </Dropdown>
 </template>
 
