@@ -142,6 +142,7 @@ function setPause() {
 
 onMounted(() => {
   const possibleVisibleSlides = [...props.slides]
+
   if (props.slides.length) {
     while (possibleVisibleSlides.length <= slidesPerView.value) {
       possibleVisibleSlides.push(...props.slides)
