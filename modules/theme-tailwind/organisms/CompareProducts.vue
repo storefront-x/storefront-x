@@ -33,8 +33,6 @@
 </template>
 
 <script setup lang="ts">
-import Heading from '#ioc/atoms/Heading'
-
 const data = [
   {
     description:

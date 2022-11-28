@@ -45,6 +45,7 @@ export default {
     '@storefront-x/multicurrency-magento',
     '@storefront-x/product-reviews-magento',
     '@storefront-x/wishlist-magento',
+    '@storefront-x/compare-products-magento',
     '@storefront-x/catalog-labels-magento',
     '@storefront-x/robots-magento',
     '@storefront-x/sitemap-magento',
