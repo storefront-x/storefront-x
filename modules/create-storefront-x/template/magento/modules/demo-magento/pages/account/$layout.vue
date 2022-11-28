@@ -1,9 +1,9 @@
 <template>
-  <SfxLayoutOutlet />
+  <BaseLayout />
 </template>
 
 <script setup lang="ts">
-import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
+import BaseLayout from '#ioc/templates/BaseLayout'
 import useCustomerVerification from '#ioc/composables/useCustomerVerification'
 
 useCustomerVerification()
