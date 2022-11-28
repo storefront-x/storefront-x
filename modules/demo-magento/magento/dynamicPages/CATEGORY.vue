@@ -37,16 +37,17 @@ const [data] = await useResource(
   () => ({
     id: props.id,
     page: Number(route.query.page ?? 1),
-    pageSize: route.query.pages,
+    pages: Number(route.query.pages ?? 1),
     sort: route.query.sort as string,
     filter: ensureArray(route.query.filter),
   }),
   (params) =>
     getCategoryById(params.id, {
       page: params.page,
-      pageSize: params.pageSize,
+      pages: params.pages,
       sort: params.sort,
       filter: params.filter,
+      pageSize: 3,
     }),
 )
 </script>

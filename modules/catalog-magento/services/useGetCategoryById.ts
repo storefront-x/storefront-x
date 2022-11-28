@@ -1,36 +1,45 @@
-import useGetCategoryByIdRepository, { CategoryOptions } from '#ioc/repositories/useGetCategoryByIdRepository'
+import useGetCategoryByIdRepository from '#ioc/repositories/useGetCategoryByIdRepository'
 import ToProduct from '#ioc/mappers/ToProduct'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 
+interface Options {
+  page?: number
+  pageSize?: number
+  filter?: any
+  sort?: any
+  pages?: number
+}
+
 export default () => {
   const getCategoryByIdRepository = useGetCategoryByIdRepository()
-  let prevGetProducts = [] as ReturnType<typeof ToProduct>[]
-  let storedPageSize = false
 
-  return async (...args: CategoryOptions) => {
-    let firstLoadPageSize = false
-    const [id, { pageSize, page, ...subArgs }] = args
+  let previousProducts = [] as ReturnType<typeof ToProduct>[]
 
-    if (IS_CLIENT && pageSize && !storedPageSize) {
-      firstLoadPageSize = true
+  return async (id: string, { page = 1, pageSize, filter, sort, pages = 1 }: Options = {}) => {
+    const isInitialLoadWithLoadMore = IS_CLIENT && pages > 1 && previousProducts.length === 0
+
+    if (isInitialLoadWithLoadMore) {
+      const firstLoadCategoryResponse = await getCategoryByIdRepository(id, {
+        page: page - 1,
+        pageSize,
+        filter,
+        sort,
+      })
+
+      previousProducts.push(...firstLoadCategoryResponse.products)
     }
 
-    storedPageSize = pageSize
+    const categoryResponse = await getCategoryByIdRepository(id, { page, pageSize, filter, sort })
 
-    if (firstLoadPageSize) {
-      const firstLoadCategoryResponse = await getCategoryByIdRepository(id, { page: Number(page) - 1, ...subArgs })
-      prevGetProducts = [...firstLoadCategoryResponse.products]
+    previousProducts.push(...categoryResponse.products)
+
+    if (pages > 1 && previousProducts.length > 0) {
+      return { ...categoryResponse, products: previousProducts }
+    } else {
+      // User clicks on page, thus resetting load more.
+      previousProducts = []
+
+      return categoryResponse
     }
-
-    const categoryResponse = await getCategoryByIdRepository(id, { page, ...subArgs })
-    prevGetProducts = [...prevGetProducts, ...categoryResponse.products]
-
-    if (storedPageSize) {
-      return { ...categoryResponse, products: prevGetProducts }
-    }
-
-    prevGetProducts = []
-
-    return categoryResponse
   }
 }

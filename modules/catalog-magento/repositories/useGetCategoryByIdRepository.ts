@@ -11,7 +11,7 @@ import CategoryDetail from '#ioc/graphql/queries/CategoryDetail'
 import ToAggregation from '#ioc/mappers/ToAggregation'
 import CATALOG_FILTER_ATTRIBUTES_HIDDEN from '../config/magento/CATALOG_FILTER_ATTRIBUTES_HIDDEN'
 
-export interface CategoryOptions {
+interface CategoryOptions {
   page?: number
   pageSize?: number
   filter?: any
@@ -23,7 +23,7 @@ export default () => {
 
   return async (
     id: string,
-    { page = 1, filter, sort }: CategoryOptions = {},
+    { page = 1, pageSize, filter, sort }: CategoryOptions = {},
   ): Promise<{
     category: ReturnType<typeof ToCategory>
     products: ReturnType<typeof ToProduct>[]
@@ -42,7 +42,7 @@ export default () => {
           .fields(buildAggregationFields(filterWithCategoryId, ''))
           .with({
             id,
-            pageSize: CATALOG_PAGE_SIZE,
+            pageSize: pageSize || CATALOG_PAGE_SIZE,
             currentPage: page,
             sort: transformSortQuery(sort),
             filter: filterWithCategoryId,
