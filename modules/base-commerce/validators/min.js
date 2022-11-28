@@ -1,3 +1,3 @@
 export default function min(value, length) {
-  return value?.length >= length || this.$t('at_least', [length])
+  return value?.length >= length || this.$t('validators.min', [length])
 }

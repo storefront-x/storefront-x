@@ -30,7 +30,7 @@
         type="email"
         autocomplete="email"
         class="mt-4"
-        validators="required"
+        validators="required|email"
       />
 
       <FormInput
@@ -39,7 +39,7 @@
         name="telephone"
         autocomplete="tel"
         class="mt-4"
-        validators="required"
+        validators="required|phone"
       />
 
       <FormInput

@@ -30,10 +30,10 @@ test('global messages', async ({ page }) => {
             },
             i18n: {
               messages: {
-                'cs-CZ.ts': `
-                  export default {
-                    message1: 'A',
-                    message2: 'B',
+                'cs-CZ.json': `
+                  {
+                    "message1": "A",
+                    "message2": "B"
                   }
                 `,
               },
@@ -107,9 +107,9 @@ test('merging of global messages', async ({ page }) => {
           {
             i18n: {
               messages: {
-                'cs-CZ.ts': `
-                  export default {
-                    message1: 'A',
+                'cs-CZ.json': `
+                  {
+                    "message1": "A"
                   }
                 `,
               },
@@ -121,9 +121,9 @@ test('merging of global messages', async ({ page }) => {
           {
             i18n: {
               messages: {
-                'cs-CZ.ts': `
-                  export default {
-                    message2: 'B',
+                'cs-CZ.json': `
+                  {
+                    "message2": "B"
                   }
                 `,
               },
@@ -185,10 +185,10 @@ test('overriding of global messages', async ({ page }) => {
           {
             i18n: {
               messages: {
-                'cs-CZ.ts': `
-                  export default {
-                    message1: 'A',
-                    message2: 'B',
+                'cs-CZ.json': `
+                  {
+                    "message1": "A",
+                    "message2": "B"
                   }
                 `,
               },
@@ -200,9 +200,9 @@ test('overriding of global messages', async ({ page }) => {
           {
             i18n: {
               messages: {
-                'cs-CZ.ts': `
-                  export default {
-                    message1: 'C',
+                'cs-CZ.json': `
+                  {
+                    "message1": "C"
                   }
                 `,
               },
@@ -214,6 +214,65 @@ test('overriding of global messages', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/cz/cart', { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('CB')
+    },
+  )
+})
+
+test('global messages interpolation', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        '@storefront-x/vue-i18n',
+        [
+          'my-module',
+          {
+            config: {
+              'VUE_I18N_LOCALES.ts': `
+                export default [
+                  {
+                    name: 'en',
+                    locale: 'en-US',
+                    prefix: '/',
+                  },
+                  {
+                    name: 'cz',
+                    locale: 'cs-CZ',
+                    prefix: '/cz',
+                  },
+                ]
+              `,
+            },
+            i18n: {
+              messages: {
+                'cs-CZ.json': `
+                  {
+                    "message": "test {0}"
+                  }
+                `,
+              },
+            },
+            pages: {
+              'cart.vue': `
+                <template>
+                  <h1>{{ t('message', ['success']) }}</h1>
+                </template>
+                <script setup>
+                import useI18n from '#ioc/composables/useI18n'
+
+                const { t } = useI18n()
+                </script>
+              `,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/cz/cart', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('test success')
     },
   )
 })

@@ -39,9 +39,7 @@ export default class Concept {
   /**
    * @param {Module} module
    */
-  async run(module) {
-    let a = 'fdfds'
-  }
+  async run(module) {}
 
   async after() {}
 

@@ -1,6 +1,0 @@
-export default {
-  errors: {
-    authorizationError: 'Your session expired, please log in again.',
-    customerNotAuthorized: 'Sorry, you are not allowed to access this page, please log in.',
-  },
-}
