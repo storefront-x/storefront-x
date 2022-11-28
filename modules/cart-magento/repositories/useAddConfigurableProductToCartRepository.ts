@@ -35,14 +35,6 @@ export default () => {
       }),
     )
 
-    //altair can I get variant SKU ???
-    console.log(
-      'config products data',
-      ToCart({
-        ...data.addConfigurableProductsToCart.cart,
-        variant,
-      }),
-    )
     return {
       cart: ToCart({
         ...data.addConfigurableProductsToCart.cart,
