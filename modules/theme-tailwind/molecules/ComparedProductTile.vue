@@ -26,16 +26,12 @@
 </template>
 
 <script setup lang="ts">
-import ProductProvider from '#ioc/providers/ProductProvider'
-import Container from '#ioc/atoms/Container'
-import Heading from '#ioc/atoms/Heading'
-import ProductTile from '#ioc/molecules/ProductTile'
-import useWishlist from '#ioc/composables/useWishlist'
 import useI18n from '#ioc/composables/useI18n'
+import injectProduct from '#ioc/composables/injectProduct'
 
 const { t } = useI18n()
+const product = injectProduct()
 
-const wishlist = useWishlist()
 defineProps({
   item: {
     type: Object,
