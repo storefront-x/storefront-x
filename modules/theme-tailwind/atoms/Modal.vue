@@ -29,7 +29,7 @@
         >
           <div
             v-if="isOpen"
-            class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-center overflow-hidden shadow-xl sm:my-8 sm:align-middle h-full sm:p-6"
+            class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-center overflow-hidden shadow-xl sm:my-8 sm:align-middle h-full sm:p-6 w-full"
             :class="classes"
           >
             <slot />
