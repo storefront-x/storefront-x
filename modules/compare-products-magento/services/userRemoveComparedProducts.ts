@@ -9,7 +9,7 @@ export default () => {
 
   return async (product: ReturnType<typeof useProduct>) => {
     const removeIndex = compareProductsStore.items.indexOf(product.id)
-
+    console.log('removing a product', product)
     compareProductsStore.items.splice(removeIndex, 1)
     cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, compareProductsStore.items, { path: '/' })
   }

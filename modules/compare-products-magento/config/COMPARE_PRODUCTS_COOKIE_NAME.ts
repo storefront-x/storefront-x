@@ -1,1 +1,1 @@
-export default 'compareProducts:items'
+export default 'compare:items'

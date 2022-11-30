@@ -1,17 +1,20 @@
 <template>
-  <div>
+  <Container class="my-8 md:my-10">
     <Heading :level="1">{{ t('Compare products') }}</Heading>
     <div class="grid grid-flow-col grid-rows-1">
-      <ProductProvider v-for="(item, i) in comparedProducts.value" :key="item.id" :product="item">
-        <ComparedProductsTile :index="i" />
+      <ProductProvider v-for="item in comparedProducts" :key="item.id" :product="item">
+        <div class="grid grid-rows-1">
+          <ComparedProductsTile />
+        </div>
       </ProductProvider>
     </div>
-  </div>
+  </Container>
 </template>
 
 <script setup lang="ts">
 import useCompareProducts from '#ioc/services/useCompareProducts'
 import ProductProvider from '#ioc/providers/ProductProvider'
+import Container from '#ioc/atoms/Container'
 import Heading from '#ioc/atoms/Heading'
 import ComparedProductsTile from '#ioc/molecules/ComparedProductTile'
 import useI18n from '#ioc/composables/useI18n'
