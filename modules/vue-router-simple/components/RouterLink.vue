@@ -1,14 +1,12 @@
 <template>
   <a :href="resolvedHref" @click.prevent.stop="onClick">
-    <slot v-bind="{ isExactActive }" />
+    <slot />
   </a>
 </template>
 
 <script setup lang="ts">
 import useRouter from '#ioc/composables/useRouter'
-import useRoute from '#ioc/composables/useRoute'
 import { computed } from 'vue'
-import isDeepEqual from '#ioc/utils/isDeepEqual'
 
 const props = defineProps({
   to: {
@@ -18,25 +16,12 @@ const props = defineProps({
 })
 
 const router = useRouter()
-const route = useRoute()
 
 const resolvedHref = computed(() => {
   if (typeof props.to === 'string') {
     return props.to || '/'
   }
   return router.resolve(props.to).fullPath
-})
-
-const isExactActive = computed(() => {
-  if (typeof props.to === 'string') {
-    return props.to === route.fullPath
-  }
-  const matched = router.resolve(props.to).fullPath === route.fullPath
-  if ('params' in props.to) {
-    return matched && isDeepEqual(props.to.params, route.params)
-  } else {
-    return matched
-  }
 })
 const onClick = () => {
   router.push(props.to)
