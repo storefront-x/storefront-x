@@ -1,7 +1,5 @@
 <template>
-  <Suspense>
-    <Component :is="router.$layout.component" />
-  </Suspense>
+  <Component :is="router.$layout.component" />
 </template>
 
 <script setup lang="ts">

@@ -4,7 +4,6 @@
     :interval="3000"
     :init-slides-per-view="4"
     :breakpoints="breakpoints"
-    loop
     class="relative"
     class-slide="pb-10"
   >

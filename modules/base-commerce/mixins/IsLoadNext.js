@@ -27,7 +27,13 @@ export default {
     },
 
     loadMoreUrl() {
-      return '?' + this.getQuery({ pages: this.loadedPages + 1 })
+      return (
+        '?' +
+        this.getQuery({
+          page: (this.$route.query.page && Number(this.$route.query.page) + 1) || 2,
+          pages: this.loadedPages + 1,
+        })
+      )
     },
 
     lastPage() {
@@ -41,7 +47,10 @@ export default {
 
   methods: {
     loadMore() {
-      this.pushQuery({ pages: this.loadedPages + 1 }, { savePosition: true })
+      this.pushQuery(
+        { page: (this.$route.query.page && Number(this.$route.query.page) + 1) || 2, pages: this.loadedPages + 1 },
+        { savePosition: true },
+      )
     },
   },
 }

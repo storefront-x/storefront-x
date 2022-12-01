@@ -1,5 +1,8 @@
 <template>
-  <Link :to="product.urlPath" class="group cursor-pointer flex p-2 text-gray-800 hover:bg-gray-50 no-underline">
+  <Link
+    :to="localePath(product.urlPath)"
+    class="group cursor-pointer flex p-2 text-gray-800 hover:bg-gray-50 no-underline"
+  >
     <div class="w-2/12 p-2">
       <SfxImage :src="product.thumbnailUrl" :width="50" :height="50" />
     </div>
@@ -18,6 +21,8 @@ import SfxMoney from '#ioc/components/SfxMoney'
 import SfxImage from '#ioc/components/SfxImage'
 import Link from '#ioc/atoms/Link'
 import injectProduct from '#ioc/composables/injectProduct'
+import useLocalePath from '#ioc/composables/useLocalePath'
 
 const product = injectProduct()
+const localePath = useLocalePath()
 </script>
