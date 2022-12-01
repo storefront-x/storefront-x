@@ -75,6 +75,7 @@ test('is same path with params', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/user/test', { waitUntil: 'networkidle' })
+      await page.evaluate(() => new Promise(requestAnimationFrame))
       await page.locator('button').click()
       await expect(page.locator('h1')).toContainText('success')
     },
