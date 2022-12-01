@@ -4,7 +4,7 @@
     class="rounded-md flex items-center text-gray-400 justify-center"
     :class="classes"
     data-cy="compare-products"
-    @click="add"
+    @click="resolveAddToCompare"
   >
     <span class="sr-only">
       {{ t('Compare products') }}
@@ -18,10 +18,12 @@
 
 <script>
 import OutlineScale from '#ioc/icons/OutlineScale'
-import { defineComponent, inject } from 'vue'
+import { defineComponent, inject, ref } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
 import useAddComparedProducts from '#ioc/services/useAddComparedProducts'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import useCompareProductsStore from '#ioc/stores/useCompareProductsStore'
+import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 
 export default defineComponent({
   components: {
@@ -38,12 +40,18 @@ export default defineComponent({
     const { t } = useI18n()
     const addComparedProducts = useAddComparedProducts()
     const showErrorNotification = useShowErrorNotification()
+    const showSuccessNotification = useShowSuccessNotification()
+    const compareProductsStore = useCompareProductsStore()
     const Product = inject('$Product')
+    const selected = ref(compareProductsStore.items.some((item) => item === Product.sku))
+
     return {
       t,
       addComparedProducts,
       showErrorNotification,
       Product,
+      showSuccessNotification,
+      selected,
     }
   },
 
@@ -55,6 +63,13 @@ export default defineComponent({
         this.showErrorNotification(error)
       }
     },
+    async resolveAddToCompare() {
+      if (!this.selected) {
+        this.add()
+      } else {
+        this.showSuccessNotification('', this.t('Product has been already added.'))
+      }
+    },
   },
 })
 </script>
@@ -62,4 +77,5 @@ export default defineComponent({
 <i18n lang="yaml">
 cs-CZ:
   Compare products: Srovnat produkty
+  Product has been already added.: Produkt už byl přidán
 </i18n>

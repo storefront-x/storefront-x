@@ -11,6 +11,10 @@ export default () => {
     const removeIndex = compareProductsStore.items.indexOf(product.id)
     console.log('removing a product', product)
     compareProductsStore.items.splice(removeIndex, 1)
-    cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, compareProductsStore.items, { path: '/' })
+    if (compareProductsStore.items.length) {
+      cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, compareProductsStore.items, { path: '/' })
+    } else {
+      cookies.remove(COMPARE_PRODUCTS_COOKIE_NAME)
+    }
   }
 }

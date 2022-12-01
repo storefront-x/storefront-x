@@ -1,10 +1,10 @@
 <template>
   <div class="flex" name="row1">
-    <div v-if="index === 0" class="w-40" name="header"></div>
-    <div name="data">
+    <div v-if="index === 0" class="w-20 border-r py-4" name="header"></div>
+    <div class="p-4 border-t relative" name="data">
       <button
         type="button"
-        class="-mr-2 w-10 h-10 bg-white p-2 rounded-md flex items-center justify-center text-gray-400"
+        class="absolute top-0 right-0 mr-2 re w-10 h-10 bg-white p-2 rounded-md flex items-center justify-center text-gray-400"
         @click="removeProduct"
       >
         <span class="sr-only">Close menu</span>
@@ -25,9 +25,9 @@
         />
       </div>
 
-      <div>{{ shrinkedTitle }}</div>
-      <div><ReviewStars class="sm:justify-center" :rating="product.ratingSummary" /></div>
-      <div>
+      <div class="mt-4">{{ shrinkedTitle }}</div>
+      <div class="mt-4"><ReviewStars :rating="product.ratingSummary" :count="product.reviewCount" /></div>
+      <div class="mt-4">
         As low as
         <SfxMoney
           :money="product.finalPrice"
@@ -36,20 +36,20 @@
           data-cy="product-price"
         />
       </div>
-      <div>
-        <AddToCart class="" />
-        <AddToWishlist class="absolute top-3 right-4" :fill-on-hover="true" @click.stop />
+      <div class="flex justify-start mt-4">
+        <AddToCart class="mr-3" />
+        <AddToWishlist :fill-on-hover="true" @click.stop />
       </div>
     </div>
   </div>
-  <div class="flex" name="row2">
-    <div v-if="index === 0" class="w-40" name="header">SKU</div>
-    <div>WJ11</div>
+  <div class="flex border-t" name="row2">
+    <div v-if="index === 0" class="border-r py-4 w-20" name="header">SKU</div>
+    <div class="p-4">{{ product.sku }}</div>
   </div>
-  <div class="flex h-100" name="row3">
-    <div v-if="index === 0" class="w-40" name="description">Description</div>
-    <div name="row3">
-      {{ product.shortDescriptionHtml }}
+  <div class="flex border-t" name="row3">
+    <div v-if="index === 0" class="border-r py-4" name="description">Description</div>
+    <div class="px-4 pt-2 h-90 max-w-sm" name="row3">
+      <div v-html="product.shortDescriptionHtml" />
     </div>
   </div>
 </template>
@@ -73,7 +73,7 @@ const product = injectProduct()
 const removeComparedProducts = userRemoveComparedProducts()
 const showErrorNotification = useShowErrorNotification()
 const shrinkedTitle = computed(() => {
-  return truncate(product.name, 65)
+  return truncate(product.name, 40)
 })
 
 const removeProduct = async () => {
@@ -91,7 +91,7 @@ defineProps({
   },
   index: {
     type: Number,
-    default: 0,
+    default: 1,
   },
 })
 </script>

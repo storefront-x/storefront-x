@@ -1,12 +1,14 @@
 <template>
   <Container class="my-8 md:my-10">
-    <Heading :level="1">{{ t('Compare products') }}</Heading>
-    <div class="grid grid-flow-col grid-rows-1">
-      <ProductProvider v-for="item in comparedProducts" :key="item.id" :product="item">
-        <div class="grid grid-rows-1">
-          <ComparedProductsTile />
-        </div>
-      </ProductProvider>
+    <Heading class="mb-12" :level="1">{{ t('Compare products') }}</Heading>
+    <div class="max-w-full overflow-x-auto">
+      <div class="flex">
+        <ProductProvider v-for="(item, index) in comparedProducts" :key="item.id" :product="item">
+          <div>
+            <ComparedProductsTile :index="index" />
+          </div>
+        </ProductProvider>
+      </div>
     </div>
   </Container>
 </template>
