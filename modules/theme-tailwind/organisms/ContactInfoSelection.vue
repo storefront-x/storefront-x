@@ -43,6 +43,7 @@
       />
 
       <FormInput
+        :value="customer.firstName"
         :label="t('First name')"
         name="firstName"
         autocomplete="given-name"
@@ -51,6 +52,7 @@
       />
 
       <FormInput
+        :value="customer.lastName"
         :label="t('Last name')"
         name="lastName"
         autocomplete="family-name"
