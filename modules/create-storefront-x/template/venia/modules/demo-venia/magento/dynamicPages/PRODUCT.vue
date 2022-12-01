@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import ProductDetail from '#ioc/templates/ProductDetail'
 import useGetProductById from '#ioc/services/useGetProductById'
-import useAsyncData from '#ioc/composables/useAsyncData'
+import useResource from '#ioc/composables/useResource'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import { defineAsyncComponent } from 'vue'
 
@@ -27,5 +27,8 @@ const props = defineProps({
 
 const getProductById = useGetProductById()
 
-const { data } = await useAsyncData('product', () => getProductById(props.relativeUrl.replace(/\.html$/, '')))
+const [data] = await useResource(
+  () => props.relativeUrl.replace(/\.html$/, ''),
+  (id) => getProductById(id),
+)
 </script>

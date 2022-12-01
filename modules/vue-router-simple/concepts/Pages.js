@@ -128,7 +128,7 @@ import { defineAsyncComponent } from 'vue'
 export { default as App } from '<%= app %>'
 import plugins from './vueSimpleRouter/plugins'
 
-export const layouts = [
+export const layouts = Object.values(plugins).reduce((layouts, plugin) => plugin(layouts), [
   <%_ for (const layout of layouts) { _%>
   {
     name: <%- layout.name ? "'" + layout.name + "'" : 'undefined' %>,
@@ -136,7 +136,7 @@ export const layouts = [
     component: defineAsyncComponent(() => import('<%= layout.component %>')),
   },
   <%_ } _%>
-]
+])
 
 export const routes = Object.values(plugins).reduce((routes, plugin) => plugin(routes), [
   <%_ for (const page of pages) { _%>

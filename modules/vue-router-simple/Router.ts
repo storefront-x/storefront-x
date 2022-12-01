@@ -48,6 +48,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
   const push = async (rawLocation: string | RouteLocationRaw, pushHistory = true) => {
     $ready.value = false
     let locationToMatch = {} as RouteLocationRaw
+    let matchedParams = null
 
     if (typeof rawLocation === 'string') {
       locationToMatch = parseURL(parseQuery, rawLocation.startsWith('/') ? rawLocation : '/' + rawLocation)
@@ -58,8 +59,18 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
     }
 
     $currentPath.value = locationToMatch.path
+    outer: for (const layout of layouts) {
+      if ('alias' in layout) {
+        for (const alias of layout.alias) {
+          if (alias.test($currentPath.value)) {
+            if ($layout.value !== layout) {
+              $layout.value = layout
+            }
 
-    for (const layout of layouts) {
+            break outer
+          }
+        }
+      }
       if (layout.path.test($currentPath.value)) {
         if ($layout.value !== layout) {
           $layout.value = layout
@@ -68,6 +79,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
         break
       }
     }
+
     if ('name' in locationToMatch) {
       const matchedRoute = routes.find((r) => r.name === locationToMatch.name)
       if ($page.value !== matchedRoute) {
@@ -81,7 +93,8 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
               if ($page.value !== route) {
                 $page.value = route
               }
-              const matchedParams = $currentPath.value.match(alias)?.groups ?? null
+              matchedParams = $currentPath.value.match(alias)?.groups ?? null
+
               if (matchedParams) {
                 locationToMatch.params = { ...locationToMatch.params, ...matchedParams }
               }
@@ -95,7 +108,8 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
           if ($page.value !== route) {
             $page.value = route
           }
-          const matchedParams = $currentPath.value.match(route.path)?.groups ?? null
+          matchedParams = $currentPath.value.match(route.path)?.groups ?? null
+
           if (matchedParams) {
             locationToMatch.params = { ...locationToMatch.params, ...matchedParams }
           }
@@ -103,10 +117,14 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
         }
       }
     }
-    if ($currentPath.value === '/') {
-      $pathMatch.value = $currentPath.value
+    if (matchedParams && matchedParams.pathMatch) {
+      $pathMatch.value = matchedParams.pathMatch
     } else {
-      $pathMatch.value = $currentPath.value.replace(/^\/+/g, '')
+      if ($currentPath.value === '/') {
+        $pathMatch.value = $currentPath.value
+      } else {
+        $pathMatch.value = $currentPath.value.replace(/^\/+/g, '')
+      }
     }
 
     await nextTick()
@@ -128,11 +146,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
   }
 
   const resolve = (input: any) => {
-    const { path } = input
-    return {
-      path: $currentPath.value,
-      fullPath: path,
-    }
+    return resolveLocation(input)
   }
 
   const resolveLocation = (rawLocation: RouteLocationRaw) => {
