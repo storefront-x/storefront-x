@@ -1,26 +1,31 @@
 import useCompareProductsStore from '#ioc/stores/useCompareProductsStore'
 import useGetProductsByIdsRepository from '#ioc/repositories/useGetProductsByIdsRepository'
+import useCookies from '#ioc/composables/useCookies'
 import ToProduct from '#ioc/mappers/ToProduct'
+import COMPARE_PRODUCTS_COOKIE_NAME from '#ioc/config/COMPARE_PRODUCTS_COOKIE_NAME'
 import { storeToRefs } from 'pinia'
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, onUnmounted } from 'vue'
 
 export default () => {
   const compareProductsStore = useCompareProductsStore()
-  const { items } = storeToRefs(compareProductsStore)
+  const cookies = useCookies()
   const getProductsByIdsRepository = useGetProductsByIdsRepository()
   const comparedProducts = ref([] as ReturnType<typeof ToProduct>[])
+  const { items } = storeToRefs(compareProductsStore)
 
-  console.log('use SERVICE  compare product items', comparedProducts)
   onMounted(async () => {
     if (compareProductsStore.items.length) {
       const { products } = (await getProductsByIdsRepository(compareProductsStore.items)) as any
-      console.log('those are wishlist products', products)
       comparedProducts.value.push(
         ...products.sort(
           (a: any, b: any) => compareProductsStore.items.indexOf(a) - compareProductsStore.items.indexOf(b),
         ),
       )
     }
+  })
+
+  onUnmounted(() => {
+    cookies.remove(COMPARE_PRODUCTS_COOKIE_NAME)
   })
 
   watch(
@@ -33,6 +38,5 @@ export default () => {
     },
     { deep: true },
   )
-  console.log('compared products before sending', compareProductsStore)
   return comparedProducts
 }

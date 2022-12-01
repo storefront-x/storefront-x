@@ -13,7 +13,6 @@ export default defineStore('compareProducts', {
       if (IS_CLIENT) return
       const cookies = useCookies()
       const itemsCompared = cookies.get(COMPARE_PRODUCTS_COOKIE_NAME) || []
-      console.log('serverIniti userCompareProducts', itemsCompared)
       this.$patch({ items: itemsCompared })
     },
   },

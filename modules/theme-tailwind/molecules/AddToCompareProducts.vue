@@ -16,66 +16,52 @@
   </button>
 </template>
 
-<script>
+<script setup lang="ts">
 import OutlineScale from '#ioc/icons/OutlineScale'
-import { defineComponent, inject, ref } from 'vue'
+import { computed } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
+import injectProduct from '#ioc/composables/injectProduct'
 import useAddComparedProducts from '#ioc/services/useAddComparedProducts'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useCompareProductsStore from '#ioc/stores/useCompareProductsStore'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 
-export default defineComponent({
-  components: {
-    OutlineScale,
-  },
-
-  props: {
-    title: {
-      type: String,
-      default: '',
-    },
-  },
-  setup() {
-    const { t } = useI18n()
-    const addComparedProducts = useAddComparedProducts()
-    const showErrorNotification = useShowErrorNotification()
-    const showSuccessNotification = useShowSuccessNotification()
-    const compareProductsStore = useCompareProductsStore()
-    const Product = inject('$Product')
-    const selected = ref(compareProductsStore.items.some((item) => item === Product.sku))
-
-    return {
-      t,
-      addComparedProducts,
-      showErrorNotification,
-      Product,
-      showSuccessNotification,
-      selected,
-    }
-  },
-
-  methods: {
-    async add() {
-      try {
-        await this.addComparedProducts(this.Product)
-      } catch (error) {
-        this.showErrorNotification(error)
-      }
-    },
-    async resolveAddToCompare() {
-      if (!this.selected) {
-        this.add()
-      } else {
-        this.showSuccessNotification('', this.t('Product has been already added.'))
-      }
-    },
+defineProps({
+  title: {
+    type: String,
+    default: '',
   },
 })
+
+const { t } = useI18n()
+const addComparedProducts = useAddComparedProducts()
+const showErrorNotification = useShowErrorNotification()
+const showSuccessNotification = useShowSuccessNotification()
+const compareProductsStore = useCompareProductsStore()
+const product = injectProduct()
+
+const isSelected = computed(() => {
+  return compareProductsStore.items.some((item) => item === product.sku)
+})
+
+const add = async () => {
+  try {
+    await addComparedProducts(product)
+  } catch (error) {
+    showErrorNotification(error)
+  }
+}
+const resolveAddToCompare = async () => {
+  if (!isSelected.value) {
+    add()
+  } else {
+    showSuccessNotification('', t('Product has been already added.'))
+  }
+}
 </script>
 
 <i18n lang="yaml">
 cs-CZ:
   Compare products: Srovnat produkty
-  Product has been already added.: Produkt už byl přidán
+  Product has been already added for comparison.: Produkt již byl přidán ke srovnání.
 </i18n>
