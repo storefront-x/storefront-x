@@ -11,8 +11,8 @@
             <Heading :level="3" class="text-center">{{ t('emptyCart') }}</Heading>
           </li>
         </ul>
-        <dl v-if="cart.items.length" class="py-6 px-4 space-y-6 sm:px-6">
-          <div class="flex items-center justify-between border-gray-200 pt-6">
+        <dl v-if="cart.items.length" class="bg-gray-50 border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
+          <div class="flex items-center justify-between border-gray-200">
             <Link :to="localePath('checkout')" class="relative pl-2 text-gray-400 hover:text-gray-500">
               <Button color="primary">
                 <span>{{ t('cartDetails') }}</span>
