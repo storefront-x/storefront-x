@@ -36,7 +36,7 @@ export default {
     },
 
     lastLoadedPage() {
-      return this.currentPage - 1 || 1
+      return this.currentPage || 1
     },
 
     firstPage() {
