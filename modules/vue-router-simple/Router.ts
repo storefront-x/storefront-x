@@ -27,8 +27,9 @@ interface routeRaw {
 }
 
 export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; layouts: routeRaw[] | [] }) => {
-  const $layout = shallowRef<any>(null)
-  const $page = shallowRef<any>(null)
+  const $view = shallowRef<any>({ layout: null, page: null })
+  let _layout = {} as routeRaw
+  let _page = {} as routeRaw
   const $props = shallowRef<any>(null)
   const $history = reactive<any>({ location: null })
   const $currentPath = ref('')
@@ -63,8 +64,8 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
       if ('alias' in layout) {
         for (const alias of layout.alias) {
           if (alias.test($currentPath.value)) {
-            if ($layout.value !== layout) {
-              $layout.value = layout
+            if ($view.value.layout !== layout) {
+              _layout = layout
             }
 
             break outer
@@ -72,8 +73,8 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
         }
       }
       if (layout.path.test($currentPath.value)) {
-        if ($layout.value !== layout) {
-          $layout.value = layout
+        if ($view.value.layout !== layout) {
+          _layout = layout
         }
 
         break
@@ -82,16 +83,16 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
 
     if ('name' in locationToMatch) {
       const matchedRoute = routes.find((r) => r.name === locationToMatch.name)
-      if ($page.value !== matchedRoute) {
-        $page.value = matchedRoute
+      if ($view.value.page !== matchedRoute) {
+        _page = matchedRoute
       }
     } else {
       outer: for (const route of routes) {
         if ('alias' in route) {
           for (const alias of route.alias) {
             if (alias.test($currentPath.value)) {
-              if ($page.value !== route) {
-                $page.value = route
+              if ($view.value.page !== route) {
+                _page = route
               }
               matchedParams = $currentPath.value.match(alias)?.groups ?? null
 
@@ -105,8 +106,8 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
         }
 
         if (route.path.test($currentPath.value)) {
-          if ($page.value !== route) {
-            $page.value = route
+          if ($view.value.page !== route) {
+            _page = route
           }
           matchedParams = $currentPath.value.match(route.path)?.groups ?? null
 
@@ -126,6 +127,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
         $pathMatch.value = $currentPath.value.replace(/^\/+/g, '')
       }
     }
+    $view.value = { layout: _layout, page: _page }
 
     await nextTick()
 
@@ -209,8 +211,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
     push,
     replace,
     resolve,
-    $page,
-    $layout,
+    $view,
     $currentPath,
     $pathMatch,
     $props,
