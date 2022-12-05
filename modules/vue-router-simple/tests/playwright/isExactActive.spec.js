@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('is same simple path', async ({ page }) => {
+test('is same simple path', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -27,7 +27,7 @@ test.only('is same simple path', async ({ page }) => {
   )
 })
 
-test.only('is same path with query', async ({ page }) => {
+test('is same path with query', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -53,7 +53,7 @@ test.only('is same path with query', async ({ page }) => {
   )
 })
 
-test.only('is same path with params', async ({ page }) => {
+test('is same path with params', async ({ page }) => {
   await makeProject(
     {
       modules: [
