@@ -22,7 +22,7 @@ export default defineConfig({
           },
           {
             urlPattern: /_shopware/,
-            handler: 'StaleWhileRevalidate',
+            handler: 'NetworkFirst',
           },
         ],
       },
