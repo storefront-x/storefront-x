@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test('is same simple path', async ({ page }) => {
+test.only('is same simple path', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -27,7 +27,7 @@ test('is same simple path', async ({ page }) => {
   )
 })
 
-test('is same path with query', async ({ page }) => {
+test.only('is same path with query', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -53,7 +53,7 @@ test('is same path with query', async ({ page }) => {
   )
 })
 
-test('is same path with params', async ({ page }) => {
+test.only('is same path with params', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -65,8 +65,20 @@ test('is same path with params', async ({ page }) => {
           {
             pages: {
               user: {
-                'test.vue': `<template><button @click="$router.push({name:'user/[name]', params:{name:'tester'}})">Click me</button></template>`,
-                '[name].vue': `<template><RouterLink v-slot="{ isExactActive }" :to="{name:'user/[name]', params:{name:'tester'}}"><h1>{{isExactActive ? 'success':'fail'}}</h1></RouterLink></template>`,
+                'test.vue': `
+                  <template>
+                    <button @click="$router.push({name:'user/[name]', params:{name:'tester'}})">
+                      Click me
+                    </button>
+                  </template>
+                `,
+                '[name].vue': `
+                  <template>
+                    <RouterLink v-slot="{ isExactActive }" :to="{ name: 'user/[name]', params: { name: 'tester' }}">
+                      <h1>{{ isExactActive ? 'success' : 'fail' }}</h1>
+                    </RouterLink>
+                  </template>
+                `,
               },
             },
           },
