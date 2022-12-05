@@ -70,10 +70,15 @@ export default class Core {
       out: {},
     }
 
-    await entry(ctx)
-
-    for (const out of Object.values(ctx.out)) {
-      template = await out(template)
+    try {
+      await entry(ctx)
+      for (const out of Object.values(ctx.out)) {
+        template = await out(template)
+      }
+    } catch (e) {
+      if ('url' in e && 'status' in e) {
+        return res.status(e.status).redirect(e.url)
+      }
     }
 
     return res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
