@@ -1,21 +1,12 @@
 <template>
-  <Suspense @pending="pendingEvent" @resolve="resolveEvent">
-    <Component :is="router.$page.component" :key="router.$pathMatch" v-bind="{ pathMatch: router.$pathMatch }" />
-  </Suspense>
+  <Component :is="$page" v-bind="{ pathMatch: router.$pathMatch }" />
 </template>
 
 <script setup lang="ts">
 import useRouter from '#ioc/composables/useRouter'
-import useEventBus from '#ioc/composables/useEventBus'
+import { inject } from 'vue'
 
 const router = useRouter()
-const { emit } = useEventBus('navigation')
 
-function pendingEvent() {
-  emit(true)
-}
-
-function resolveEvent() {
-  emit(false)
-}
+const $page = inject('$page')
 </script>
