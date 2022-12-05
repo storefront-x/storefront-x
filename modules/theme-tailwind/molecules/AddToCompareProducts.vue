@@ -52,7 +52,7 @@ const add = async () => {
 }
 const resolveAddToCompare = async () => {
   if (!isSelected.value) {
-    add()
+    await add()
     showSuccessNotification('', t('Product has been added successfully.'))
   } else {
     showSuccessNotification('', t('Product has been already added.'))
