@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import useRouter from '#ioc/composables/useRouter'
-import useEventBus from '#ioc/composables/useEventBus.js'
+import useEventBus from '#ioc/composables/useEventBus'
 
 const router = useRouter()
 const { emit } = useEventBus('navigation')
