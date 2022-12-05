@@ -101,7 +101,6 @@ defineProps({
 
 <i18n lang="yaml">
 cs-CZ:
-  Wishlist: Seznam přání
   As low as: Za pouze
   Description: Parametry
 </i18n>

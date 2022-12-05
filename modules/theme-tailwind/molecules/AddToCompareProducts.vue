@@ -53,6 +53,7 @@ const add = async () => {
 const resolveAddToCompare = async () => {
   if (!isSelected.value) {
     add()
+    showSuccessNotification('', t('Product has been added successfully.'))
   } else {
     showSuccessNotification('', t('Product has been already added.'))
   }
@@ -63,4 +64,5 @@ const resolveAddToCompare = async () => {
 cs-CZ:
   Compare products: Srovnat produkty
   Product has been already added for comparison.: Produkt již byl přidán ke srovnání.
+  Product has been added successfully.: Produkt byl úspěšně přidán.
 </i18n>
