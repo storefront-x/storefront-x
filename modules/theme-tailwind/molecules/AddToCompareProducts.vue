@@ -2,7 +2,6 @@
   <button
     type="button"
     class="rounded-md flex items-center text-gray-400 justify-center"
-    :class="classes"
     data-cy="compare-products"
     @click="resolveAddToCompare"
   >
