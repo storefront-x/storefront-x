@@ -2,12 +2,12 @@
   <div class="mt-10 border-t border-gray-200 pt-10">
     <h2 class="text-lg font-medium text-gray-900">{{ t('Contact information') }}</h2>
     <div v-if="isOpen">
-      <div v-if="customerAddresses?.addresses" class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+      <div v-if="customerAddresses" class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
         <CheckoutCustomerAddress
           v-for="customerAddress in customerAddresses?.addresses"
           :key="customerAddress.id"
           :customer-address="customerAddress"
-          :is-active="selectedAddress && customerAddress.id === selectedAddress.id"
+          :is-active="!!selectedAddress && customerAddress.id === selectedAddress.id"
           @select="onSelectCustomerAddress"
         />
       </div>
@@ -86,6 +86,7 @@ import useI18n from '#ioc/composables/useI18n'
 import useEmailAvailable from '#ioc/services/useEmailAvailable'
 import Button from '#ioc/atoms/Button'
 import FormInput from '#ioc/molecules/FormInput'
+import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
 import CheckoutLoginModal from '#ioc/organisms/CheckoutLoginModal'
 import CheckoutRegisterModal from '#ioc/organisms/CheckoutRegisterModal'
 import CheckoutCustomerAddress from '#ioc/molecules/CheckoutCustomerAddress'
@@ -111,9 +112,11 @@ const offerRegistration = ref(false)
 const showLogin = ref(false)
 const showRegistration = ref(false)
 const contactEmail = ref()
-const selectedAddress = ref(null)
+const selectedAddress = ref<ReturnType<typeof ToCustomerAddress> | null>(null)
 
-const { data: customerAddresses } = useAsyncData('customerAddress', () => getCustomerAddresses())
+const { data: customerAddresses } = useAsyncData('customerAddress', async () =>
+  customer.isLoggedIn ? await getCustomerAddresses() : null,
+)
 
 const onSelectCustomerAddress = (customerAddress: any) => {
   const shippingAddress = {
