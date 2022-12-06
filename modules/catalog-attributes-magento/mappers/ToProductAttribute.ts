@@ -1,8 +1,9 @@
 import ToProductAttributeOption from '#ioc/mappers/ToProductAttributeOption'
+import capitalizeFirstLetter from '#ioc/utils/string/capitalizeFirstLetter'
 
 export default (data: any) => ({
   code: data?.attribute_code || '',
-  label: data?.frontend_label.toUpperCase() || '',
+  label: capitalizeFirstLetter(data?.frontend_label) || '',
   value: data?.value || '',
   valueLabel: String(data.value ?? '')
     .split(',')

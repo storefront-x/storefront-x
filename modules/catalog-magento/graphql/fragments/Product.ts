@@ -39,14 +39,10 @@ export default (name = 'product') =>
     thumbnail: field({
       url: field(),
     }),
-    mx_attributes: field({
+    sfx_attributes: field({
       attribute_code: field(),
       frontend_label: field(),
       value: field(),
-      attribute_options: field({
-        options_id: field(),
-        option_value: field(),
-      }),
     }),
     media_gallery: field({
       url: field(),
