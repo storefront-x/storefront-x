@@ -9,15 +9,11 @@ import isAuthorizationError from '#ioc/utils/graphql/isAuthorizationError'
 export default () => {
   const cookies = useCookies()
   const customerStore = useCustomerStore()
-  const cartStore = useCartStore()
-  const checkoutStore = useCheckoutStore()
 
   return async (error: any) => {
     if (isAuthorizationError(error)) {
       cookies.remove(MAGENTO_CUSTOMER_COOKIE_NAME)
       customerStore.$patch({ customer: null })
-      cartStore.$reset()
-      checkoutStore.$reset()
 
       throw new CustomerNotAuthorized()
     }
