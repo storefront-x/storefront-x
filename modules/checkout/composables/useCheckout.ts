@@ -13,6 +13,10 @@ export default () => {
 
   const shippingHandler = computed(() => checkoutStore.shippingHandler)
 
+  const grandTotal = computed(() => checkoutStore.grandTotal)
+
+  const shippingMethod = computed(() => checkoutStore.shippingMethod)
+
   const setContactInformation = (contactInformation: ReturnType<typeof ToContactInformation>) => {
     checkoutStore.$patch({ contactInformation })
   }
@@ -22,6 +26,8 @@ export default () => {
     agreements,
     paymentHandler,
     shippingHandler,
+    grandTotal,
+    shippingMethod,
     setContactInformation,
   })
 }

@@ -1,13 +1,13 @@
 {
   "name": "@storefront-x/vue-i18n",
-  "version": "1.0.4",
+  "version": "1.2.0",
   "license": "MIT",
   "type": "module",
   "dependencies": {
     "@intlify/vite-plugin-vue-i18n": "^7.0.0-beta.1",
-    "vite": "^3.1.8",
+    "vite": "^3.2.3",
     "vue": "^3.2.41",
-    "vue-i18n": "^9.3.0-beta.6"
+    "vue-i18n": "^9.3.0-beta.10"
   },
   "publishConfig": {
     "access": "public"

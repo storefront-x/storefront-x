@@ -14,8 +14,8 @@ export default () => {
   return async () => {
     await logoutCustomerRepository()
 
-    cookies.remove(MAGENTO_CART_COOKIE_NAME, { path: '/' })
-    cookies.remove(MAGENTO_CUSTOMER_COOKIE_NAME, { path: '/' })
+    cookies.remove(MAGENTO_CART_COOKIE_NAME)
+    cookies.remove(MAGENTO_CUSTOMER_COOKIE_NAME)
 
     cartMagentoStore.$patch({ cartId: '' })
 

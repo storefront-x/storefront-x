@@ -1,1 +1,1 @@
-export default (val: any): boolean => typeof val === 'string' || val instanceof String
+export default (val: any): val is string => typeof val === 'string' || val instanceof String

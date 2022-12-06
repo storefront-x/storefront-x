@@ -1,7 +1,7 @@
 /* eslint-disable vue/one-component-per-file */
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import schedule from '#ioc/utils/schedule'
-import { h, defineComponent, defineAsyncComponent } from 'vue'
+import { h, defineComponent, getCurrentInstance, defineAsyncComponent } from 'vue'
 
 const name = 'HydrateWhenIdle'
 
@@ -30,11 +30,20 @@ export default (source: () => Promise<{ default: any }>): any => {
     return defineComponent({
       name,
       setup() {
-        schedule(() => {
-          source().then(resolve)
-        })
+        const currentInstance = getCurrentInstance()
 
-        return () => h(LazyComponent)
+        // el is directly present in the setup function only during hydration
+        // this might be a case of abusing implementation details but it kinda makes sense?
+        const el = currentInstance!.vnode.el as Element | null
+
+        const isHydration = !!el
+        if (isHydration) {
+          schedule(() => source().then(resolve))
+
+          return () => h(LazyComponent)
+        } else {
+          return () => h(EagerComponent)
+        }
       },
     })
   }

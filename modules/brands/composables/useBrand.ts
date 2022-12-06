@@ -19,16 +19,8 @@ export default (brand: Ref<ReturnType<typeof ToBrand>>) => {
 
   const breadcrumbs = computed(() => [
     {
-      title: 'Home',
-      link: '/',
-    },
-    {
       title: 'Brands',
       link: localePath('brands'),
-    },
-    {
-      title: name.value,
-      link: urlPath.value,
     },
   ])
 

@@ -103,11 +103,11 @@ describe('mixins/isLoadNext', () => {
     wrapper.vm.loadMore()
     await flushPromises()
 
-    expect(wrapper.vm.loadMoreUrl).toEqual('?pages=3')
+    expect(wrapper.vm.loadMoreUrl).toEqual('?page=3&pages=3')
 
     wrapper.vm.loadMore()
     await flushPromises()
 
-    expect(wrapper.vm.loadMoreUrl).toEqual('?pages=4')
+    expect(wrapper.vm.loadMoreUrl).toEqual('?page=4&pages=4')
   })
 })

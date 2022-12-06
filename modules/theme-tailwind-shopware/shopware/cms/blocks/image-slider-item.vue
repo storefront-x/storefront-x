@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="localePath(sliderItem.url)" class="inline-block relative w-full h-[300px]">
+  <RouterLink :to="localePath(sliderItem.url)" class="inline-block relative w-full h-[600px]">
     <SfxImage fit="cover" :src="sliderItem.media.url" class="w-full h-full mx-auto object-cover" />
   </RouterLink>
 </template>

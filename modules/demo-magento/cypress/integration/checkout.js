@@ -32,7 +32,7 @@ describe('Checkout', () => {
     thankYouPage.isVisible()
   })
 
-  it.only('accepts credit card payment', () => {
+  it('accepts credit card payment', () => {
     product.visitRandom()
     product.addToCart()
     product.continueToCheckout()

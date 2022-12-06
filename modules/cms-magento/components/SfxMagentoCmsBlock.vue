@@ -12,7 +12,7 @@ const getCmsBlock = useGetCmsBlock()
 const props = defineProps({
   identifier: {
     type: String,
-    default: '',
+    default: null,
   },
 })
 

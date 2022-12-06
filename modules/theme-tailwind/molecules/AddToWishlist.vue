@@ -4,7 +4,7 @@
     class="rounded-md flex items-center justify-center"
     :class="classes"
     data-cy="add-to-wishlist"
-    @click="wishlistAddOrRemove"
+    @click="resolveAddToWishlist"
   >
     <span class="sr-only">
       {{ t('Add to favorites') }}
@@ -18,9 +18,9 @@
 
 <script>
 import OutlineHeartIcon from '#ioc/icons/OutlineHeart'
-import { defineComponent } from 'vue'
+import { defineComponent, ref, inject } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
-import useWishlist from '#ioc/composables/useWishlist'
+import useWishlistStore from '#ioc/stores/useWishlistStore'
 import useAddToWishlist from '#ioc/services/useAddToWishlist'
 import useRemoveFromWishlist from '#ioc/services/useRemoveFromWishlist'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
@@ -30,7 +30,6 @@ export default defineComponent({
     OutlineHeartIcon,
   },
 
-  inject: ['$Product'],
   props: {
     fillOnHover: {
       default: false,
@@ -43,27 +42,24 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n()
-    const wishlist = useWishlist()
+    const wishlistStore = useWishlistStore()
     const addToWishlist = useAddToWishlist()
     const removeFromWishlist = useRemoveFromWishlist()
     const showErrorNotification = useShowErrorNotification()
+    const Product = inject('$Product')
+    const wishlisted = ref(wishlistStore.items.some((item) => item === Product.sku))
 
     return {
       t,
-      wishlist,
+      wishlisted,
       addToWishlist,
       removeFromWishlist,
       showErrorNotification,
+      Product,
     }
   },
 
   computed: {
-    wishlisted() {
-      if (!this.wishlist.items) return false
-
-      return this.wishlist.items.some((item) => item.product.id === this.$Product.id)
-    },
-
     outlineClasses() {
       return this.fillOnHover
         ? [
@@ -90,15 +86,33 @@ export default defineComponent({
   },
 
   methods: {
-    async wishlistAddOrRemove() {
+    async add() {
       try {
-        if (this.wishlisted) {
-          await this.removeFromWishlist(this.$Product)
-        } else {
-          await this.addToWishlist(this.$Product)
-        }
-      } catch (e) {
-        this.showErrorNotification(e)
+        this.wishlisted = true
+
+        await this.addToWishlist(this.Product)
+      } catch (error) {
+        this.wishlisted = false
+
+        this.showErrorNotification(error)
+      }
+    },
+    async remove() {
+      try {
+        this.wishlisted = false
+
+        await this.removeFromWishlist(this.Product)
+      } catch (error) {
+        this.wishlisted = true
+
+        this.showErrorNotification(error)
+      }
+    },
+    async resolveAddToWishlist() {
+      if (this.wishlisted) {
+        this.remove()
+      } else {
+        this.add()
       }
     },
   },

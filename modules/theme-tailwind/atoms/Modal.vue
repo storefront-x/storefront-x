@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div class="fixed z-40 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed z-50 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div class="flex items-center justify-center pt-4 px-4 pb-20 text-center sm:py-0 min-h-screen">
         <transition
           appear
@@ -29,7 +29,7 @@
         >
           <div
             v-if="isOpen"
-            class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-center overflow-hidden shadow-xl sm:my-8 sm:align-middle h-full sm:p-6"
+            class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-center overflow-hidden shadow-xl sm:my-8 sm:align-middle h-full sm:p-6 w-full"
             :class="classes"
           >
             <slot />

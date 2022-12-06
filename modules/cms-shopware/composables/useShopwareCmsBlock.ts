@@ -21,6 +21,8 @@ export default (props: any) => {
     }
   })
 
+  const classes = computed(() => props?.section?.cssClass)
+
   const verticalAlign = (item: any) => {
     if (!item.config?.verticalAlign?.value) {
       return ''
@@ -39,5 +41,6 @@ export default (props: any) => {
     styles,
     verticalAlign,
     hasChildren,
+    classes,
   })
 }
