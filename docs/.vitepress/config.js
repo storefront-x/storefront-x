@@ -67,6 +67,7 @@ export default defineConfig({
           { text: 'CLI', link: '/general/cli' },
           { text: 'Bootstrap', link: '/general/bootstrap' },
           { text: 'The .sfx directory', link: '/general/sfx' },
+          { text: 'Concepts', link: '/general/concepts' },
           { text: 'PWA', link: '/general/pwa' },
           { text: 'Dotenv', link: '/general/dotenv' },
           { text: 'Lazy components', link: '/general/lazy-components' },
