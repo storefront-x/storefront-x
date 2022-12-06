@@ -8,6 +8,7 @@ export default <T extends (...args: any[]) => any>(useCustomerLogin: T) => {
 
     return async (...args) => {
       await customerLogin(...args)
+
       cookies.remove(MAGENTO_CART_COOKIE_NAME)
     }
   }
