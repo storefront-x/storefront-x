@@ -1,5 +1,5 @@
 <template>
-  <a :href="resolvedHref" @click.prevent.stop="onClick">
+  <a :href="resolvedHref" :class="isExactActive ? exactActiveClass : exactInactiveClass" @click.prevent.stop="onClick">
     <slot v-bind="{ isExactActive }" />
   </a>
 </template>
@@ -14,6 +14,14 @@ const props = defineProps({
   to: {
     type: [String, Object],
     required: true,
+  },
+  exactActiveClass: {
+    type: String,
+    default: '',
+  },
+  exactInactiveClass: {
+    type: String,
+    default: '',
   },
 })
 
