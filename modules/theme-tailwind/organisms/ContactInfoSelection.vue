@@ -93,6 +93,7 @@ import CheckoutCustomerAddress from '#ioc/molecules/CheckoutCustomerAddress'
 import useGetCustomerAddresses from '#ioc/services/useGetCustomerAddresses'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import debounce from '#ioc/utils/debounce'
+import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
 import { ref, watch } from 'vue'
 
 const props = defineProps({
@@ -115,7 +116,7 @@ const contactEmail = ref()
 const selectedAddress = ref<ReturnType<typeof ToCustomerAddress> | null>(null)
 
 const { data: customerAddresses } = useAsyncData('customerAddress', async () =>
-  customer.isLoggedIn ? await getCustomerAddresses() : null,
+  customer.isLoggedIn ? await getCustomerAddresses() : { addresses: [] },
 )
 
 const onSelectCustomerAddress = (customerAddress: any) => {
