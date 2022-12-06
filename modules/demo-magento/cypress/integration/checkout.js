@@ -24,8 +24,12 @@ describe('Checkout', () => {
     product.continueToCheckout()
   }
 
-  it('checks reload wont delete checkout', () => {
+  it('checks that reload wont delete checkout', () => {
     addRandomProductToCartAndProceedToCheckout()
+
+    checkout.checkOrderSummaryItems()
+    cy.reload()
+    checkout.checkOrderSummaryItems()
   })
 
   it('finishes checkout process', () => {
