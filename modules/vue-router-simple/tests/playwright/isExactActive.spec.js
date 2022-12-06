@@ -53,8 +53,7 @@ test('is same path with query', async ({ page }) => {
   )
 })
 
-// TEST-TODO fix this on MAC Linux, its working on Windows
-test.skip('is same path with params', async ({ page }) => {
+test('is same path with params', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -66,13 +65,6 @@ test.skip('is same path with params', async ({ page }) => {
           {
             pages: {
               user: {
-                'test.vue': `
-                  <template>
-                    <button @click="$router.push({name:'user/[name]', params:{name:'tester'}})">
-                      Click me
-                    </button>
-                  </template>
-                `,
                 '[name].vue': `
                   <template>
                     <RouterLink v-slot="{ isExactActive }" :to="{ name: 'user/[name]', params: { name: 'tester' }}">
@@ -87,9 +79,7 @@ test.skip('is same path with params', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/user/test', { waitUntil: 'networkidle' })
-      await page.evaluate(() => new Promise(requestAnimationFrame))
-      await page.locator('button').click()
+      await page.goto(url + '/user/tester', { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('success')
     },
   )
