@@ -6,7 +6,7 @@ import useMulticurrencyStore from '#ioc/stores/useMulticurrencyStore'
 import useStoreStore from '#ioc/stores/useStoreStore'
 import { defineStore } from 'pinia'
 
-export default defineStore('multicurrencyShopware', {
+export default defineStore('multicurrencyMagento', {
   actions: {
     async serverInit() {
       if (IS_CLIENT) return

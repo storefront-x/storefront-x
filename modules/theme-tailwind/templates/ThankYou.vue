@@ -5,7 +5,7 @@
     </h1>
     <p class="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">{{ t("It's on the way!") }}</p>
     <p class="mt-2 text-base text-gray-500">
-      {{ t('Your order #{0} has shipped and will be with you soon.', [route.query.orderNumber]) }}
+      {{ t('your_order', [route.query.orderNumber]) }}
     </p>
 
     <dl class="mt-12 text-sm font-medium">
@@ -27,6 +27,8 @@ const route = useRoute()
 cs-CZ:
   Thank you!: Děkujeme!
   It's on the way!: Zásilka je na cestě!
-  'Your order #{0} has shipped and will be with you soon.': 'Vaše objednávka číslo #{0} byla odeslána a bude u Vás co nejdříve.'
   Tracking number: Sledovací číslo
+  'your_order': 'Vaše objednávka číslo #{0} byla odeslána a bude u Vás co nejdříve.'
+en-US:
+  'your_order': 'Your order #{0} has shipped and will be with you soon.'
 </i18n>

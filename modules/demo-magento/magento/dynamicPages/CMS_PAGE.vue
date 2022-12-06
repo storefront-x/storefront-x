@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import useGetCmsPageById from '#ioc/services/useGetCmsPageById'
 import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
-import useAsyncData from '#ioc/composables/useAsyncData'
+import useResource from '#ioc/composables/useResource'
 import Container from '#ioc/atoms/Container'
 
 const props = defineProps({
@@ -19,7 +19,10 @@ const props = defineProps({
 
 const getCmsPageById = useGetCmsPageById()
 
-const { data } = await useAsyncData('cmsPage', () => getCmsPageById(props.id))
+const [data] = await useResource(
+  () => props.id,
+  (id) => getCmsPageById(id),
+)
 </script>
 <style scoped>
 .links :deep(a) {

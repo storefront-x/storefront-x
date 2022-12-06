@@ -7,7 +7,7 @@
           v-for="customerAddress in customerAddresses?.addresses"
           :key="customerAddress.id"
           :customer-address="customerAddress"
-          :is-active="selectedAddress && customerAddress.id === selectedAddress.id"
+          :is-active="!!selectedAddress && customerAddress.id === selectedAddress.id"
           @select="onSelectCustomerAddress"
         />
       </div>
@@ -30,7 +30,7 @@
         type="email"
         autocomplete="email"
         class="mt-4"
-        validators="required"
+        validators="required|email"
       />
 
       <FormInput
@@ -39,10 +39,11 @@
         name="telephone"
         autocomplete="tel"
         class="mt-4"
-        validators="required"
+        validators="required|phone"
       />
 
       <FormInput
+        :value="customer.firstName"
         :label="t('First name')"
         name="firstName"
         autocomplete="given-name"
@@ -51,6 +52,7 @@
       />
 
       <FormInput
+        :value="customer.lastName"
         :label="t('Last name')"
         name="lastName"
         autocomplete="family-name"
@@ -90,6 +92,7 @@ import CheckoutCustomerAddress from '#ioc/molecules/CheckoutCustomerAddress'
 import useGetCustomerAddresses from '#ioc/services/useGetCustomerAddresses'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import debounce from '#ioc/utils/debounce'
+import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
 import { ref, watch } from 'vue'
 
 const props = defineProps({
@@ -109,9 +112,11 @@ const offerRegistration = ref(false)
 const showLogin = ref(false)
 const showRegistration = ref(false)
 const contactEmail = ref()
-const selectedAddress = ref(null)
+const selectedAddress = ref<ReturnType<typeof ToCustomerAddress> | null>(null)
 
-const { data: customerAddresses } = useAsyncData('customerAddress', () => getCustomerAddresses())
+const { data: customerAddresses } = useAsyncData('customerAddress', async () =>
+  customer.isLoggedIn ? await getCustomerAddresses() : { addresses: [] },
+)
 
 const onSelectCustomerAddress = (customerAddress: any) => {
   const shippingAddress = {

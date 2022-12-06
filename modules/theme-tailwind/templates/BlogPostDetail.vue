@@ -33,6 +33,7 @@ import useBlogPost from '#ioc/composables/useBlogPost'
 import { computed, PropType, toRef } from 'vue'
 import ToBlogPost from '#ioc/mappers/ToBlogPost'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
+import useBlogPostSchema from '#ioc/composables/schemaOrg/useBlogPostSchema'
 
 const SfxMagentoCmsPage = hydrateWhenIdle(() => import('#ioc/components/SfxMagentoCmsPage'))
 
@@ -48,6 +49,8 @@ const props = defineProps({
 })
 
 const blogPost = useBlogPost(toRef(props, 'blogPost'))
+
+useBlogPostSchema(blogPost)
 
 useHead({
   title: computed(() => blogPost.metaTitle),

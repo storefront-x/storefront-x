@@ -1,9 +1,6 @@
 import field from '#ioc/graphql/field'
 import addFields from '#ioc/utils/graphql/addFields'
-
-interface Extension<Ext = Record<string, never>> {
-  <T extends (...arg: any) => any>(useProduct: T): (...arg: any) => ReturnType<T> & Ext
-}
+import Extension from '#ioc/types/base/Extension'
 
 const CategoryList: Extension =
   (CategoryList) =>

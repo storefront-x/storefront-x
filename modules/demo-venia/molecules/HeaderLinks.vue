@@ -28,7 +28,7 @@
           link-like
           :title="currentStore?.fullName"
           :to-left="true"
-          class="text-gray-600 hover:text-gray-800"
+          class="text-gray-600 hover:text-gray-800 cursor-pointer"
           data-cy="store-switcher"
         >
           <DropdownItem v-for="store in stores" :key="store.name" @click="switchToStore(store)">

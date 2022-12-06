@@ -37,6 +37,12 @@ export default defineConfig({
       { text: 'Blog', link: 'https://www.storefrontx.io/' },
     ],
 
+    algolia: {
+      appId: '6DEBL0BL14',
+      apiKey: 'eb2c839c3d67249f2167703c57d3a891',
+      indexName: 'storefrontx',
+    },
+
     sidebar: [
       {
         text: 'Guide',
@@ -61,6 +67,7 @@ export default defineConfig({
           { text: 'CLI', link: '/general/cli' },
           { text: 'Bootstrap', link: '/general/bootstrap' },
           { text: 'The .sfx directory', link: '/general/sfx' },
+          { text: 'Concepts', link: '/general/concepts' },
           { text: 'PWA', link: '/general/pwa' },
           { text: 'Dotenv', link: '/general/dotenv' },
           { text: 'Lazy components', link: '/general/lazy-components' },
