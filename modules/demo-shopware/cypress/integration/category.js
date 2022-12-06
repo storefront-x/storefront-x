@@ -20,7 +20,7 @@ describe('Category', () => {
     category.visit('Office')
   })
 
-  it('contains category title', () => {
+  it.skip('contains category title', () => {
     category.getTitle().will('include.text', () => category.name)
   })
 
