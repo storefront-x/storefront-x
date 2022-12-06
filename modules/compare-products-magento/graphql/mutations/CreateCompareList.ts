@@ -3,15 +3,9 @@ import mutation from '#ioc/graphql/mutation'
 
 export default () =>
   mutation()
-    .variables({
-      $input: 'CreateCompareListInput',
-    })
+    .variables({})
     .fields({
-      createCompareList: field()
-        .args({
-          input: '$input',
-        })
-        .fields({
-          uid: field(),
-        }),
+      createCompareList: field().fields({
+        uid: field(),
+      }),
     })

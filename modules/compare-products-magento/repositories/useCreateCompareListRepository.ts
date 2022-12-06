@@ -5,7 +5,10 @@ export default () => {
   const magento = useMagento()
 
   return async () => {
-    const { data } = await magento.graphql(CreateCompareList().with())
+    const { data } = await magento.graphql(CreateCompareList())
     console.log('these are data from create compare list', data)
+    return {
+      id: data.CreateCompareList?.uid ?? 0,
+    }
   }
 }
