@@ -68,9 +68,9 @@ const onAddToCart = async () => {
   }
 
   if (product.isBundleProduct && !product.isBundleConfigured) {
-    if (product?.bundleItems?.length === 0) {
+    if (product?.bundleItems) {
       const data = await getProductById(product.urlKey)
-      product.bundleItems.value = data.product.bundleItems
+      product.bundleItems.push.apply(product.bundleItems, data.product.bundleItems)
     }
     isBundleModalOpen.value = true
     return

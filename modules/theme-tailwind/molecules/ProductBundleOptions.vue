@@ -1,6 +1,6 @@
 <template>
   <Form :value="updateFormValue">
-    <div v-for="bundleItem in product.bundleItems.value" :key="bundleItem.id" class="mb-4">
+    <div v-for="bundleItem in product.bundleItems" :key="bundleItem.id" class="mb-4">
       <Heading
         :level="2"
         class="relative inline-block"
