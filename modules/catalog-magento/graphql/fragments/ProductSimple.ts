@@ -5,6 +5,8 @@ import Money from '#ioc/graphql/fragments/Money'
 export default (name = 'product') =>
   fragment(name, 'ProductInterface', {
     __typename: field(),
+    id: field(),
+    sku: field(),
     name: field(),
     url_key: field(),
     stock_status: field(),

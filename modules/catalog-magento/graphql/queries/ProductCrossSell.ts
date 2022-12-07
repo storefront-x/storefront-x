@@ -1,6 +1,6 @@
 import query from '#ioc/graphql/query'
 import field from '#ioc/graphql/field'
-import Product from '#ioc/graphql/fragments/Product'
+import ProductSimple from '#ioc/graphql/fragments/ProductSimple'
 
 export default () =>
   query()
@@ -16,7 +16,7 @@ export default () =>
           total_count: field(),
           items: field({
             crosssell_products: field({
-              ...Product().inline(),
+              ...ProductSimple().inline(),
             }),
           }),
         }),
