@@ -28,7 +28,7 @@ describe('Checkout', () => {
     addRandomProductToCartAndProceedToCheckout()
 
     checkout.checkOrderSummaryItems()
-    cy.reload()
+    cy.reload().waitForSfx()
     checkout.checkOrderSummaryItems()
   })
 
