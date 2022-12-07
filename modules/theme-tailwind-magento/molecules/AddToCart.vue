@@ -34,6 +34,7 @@ import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
 import { ref } from 'vue'
+import useGetProductById from '#ioc/services/useGetProductById'
 import ConfigurableOptionsModal from '#ioc/organisms/ConfigurableOptionsModal'
 import BundleOptionsModal from '#ioc/organisms/BundleOptionsModal'
 import ProductOptionsModal from '#ioc/organisms/ProductOptionsModal'
@@ -48,6 +49,7 @@ const props = defineProps({
 const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
+const getProductById = useGetProductById()
 
 const loading = ref(false)
 const isCrossSellModalOpen = ref(false)
@@ -66,6 +68,10 @@ const onAddToCart = async () => {
   }
 
   if (product.isBundleProduct && !product.isBundleConfigured) {
+    if (product?.bundleItems?.length === 0) {
+      const data = await getProductById(product.urlKey)
+      product.bundleItems.value = data.product.bundleItems
+    }
     isBundleModalOpen.value = true
     return
   }
