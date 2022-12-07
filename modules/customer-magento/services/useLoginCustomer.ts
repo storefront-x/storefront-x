@@ -1,13 +1,16 @@
 import useLoginCustomerRepository from '#ioc/repositories/useLoginCustomerRepository'
 import useCookies from '#ioc/composables/useCookies'
 import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
-import UseLoginCustomer from '#ioc/types/UseLoginCustomer'
 
-const useLoginCustomer: UseLoginCustomer = () => {
+interface Options {
+  redirect?: string
+}
+
+export default () => {
   const cookies = useCookies()
   const loginCustomerRepository = useLoginCustomerRepository()
 
-  return async (email, password, options = {}) => {
+  return async (email: string, password: string, options: Options = {}) => {
     const { token } = await loginCustomerRepository(email, password)
 
     cookies.set(MAGENTO_CUSTOMER_COOKIE_NAME, token, { path: '/' })
@@ -19,5 +22,3 @@ const useLoginCustomer: UseLoginCustomer = () => {
     }
   }
 }
-
-export default useLoginCustomer
