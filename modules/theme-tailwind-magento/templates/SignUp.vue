@@ -39,6 +39,7 @@
 
 <script setup lang="ts">
 import useLoginCustomer from '#ioc/services/useLoginCustomer'
+import useLocalePath from '#ioc/composables/useLocalePath'
 import useI18n from '#ioc/composables/useI18n'
 import SfxForm from '#ioc/components/SfxForm'
 import Heading from '#ioc/atoms/Heading'
@@ -49,6 +50,7 @@ import useRegisterCustomer from '#ioc/services/useRegisterCustomer'
 import { ref } from 'vue'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 const showErrorNotification = useShowErrorNotification()
 const registerCustomer = useRegisterCustomer()
 const loginCustomer = useLoginCustomer()
@@ -61,7 +63,9 @@ const onSubmit = async (data: { firstName: string; lastName: string; email: stri
     await registerCustomer(data, {
       redirect: false,
     })
-    await loginCustomer(data.email, data.password)
+    await loginCustomer(data.email, data.password, {
+      redirect: localePath('account'),
+    })
   } catch (e: any) {
     isLoading.value = false
 

@@ -1,24 +1,23 @@
 import useLoginCustomerRepository from '#ioc/repositories/useLoginCustomerRepository'
 import useCookies from '#ioc/composables/useCookies'
-import useLocalePath from '#ioc/composables/useLocalePath'
 import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
+import UseLoginCustomer from '#ioc/types/UseLoginCustomer'
 
-interface Options {
-  redirect?: boolean
-}
-
-export default () => {
-  const localePath = useLocalePath()
+const useLoginCustomer: UseLoginCustomer = () => {
   const cookies = useCookies()
   const loginCustomerRepository = useLoginCustomerRepository()
 
-  return async (email: string, password: string, { redirect = true }: Options = {}) => {
+  return async (email, password, options = {}) => {
     const { token } = await loginCustomerRepository(email, password)
 
     cookies.set(MAGENTO_CUSTOMER_COOKIE_NAME, token, { path: '/' })
 
-    if (redirect) {
-      window.location.href = localePath('/')
+    if (options.redirect) {
+      window.location.href = options.redirect
+    } else {
+      window.location.reload()
     }
   }
 }
+
+export default useLoginCustomer
