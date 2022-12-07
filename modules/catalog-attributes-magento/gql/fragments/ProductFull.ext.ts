@@ -9,6 +9,10 @@ export default (self: any) => {
         attribute_code: field(),
         frontend_label: field(),
         value: field(),
+        attribute_options: field({
+          options_id: field(),
+          option_value: field(),
+        }),
       }),
     })
 
