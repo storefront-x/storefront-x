@@ -18,8 +18,8 @@ describe('Checkout', () => {
     product.addToCart()
     product.continueToCheckout()
 
-    checkout.checkOrderSummaryItems()
+    checkout.getOrderSummaryItems()
     cy.reload().waitForSfx()
-    checkout.checkOrderSummaryItems()
+    checkout.getOrderSummaryItems()
   })
 })

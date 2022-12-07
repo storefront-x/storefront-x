@@ -27,9 +27,9 @@ describe('Checkout', () => {
   it('checks that reload wont delete checkout', () => {
     addRandomProductToCartAndProceedToCheckout()
 
-    checkout.checkOrderSummaryItems()
+    checkout.getOrderSummaryItems()
     cy.reload().waitForSfx()
-    checkout.checkOrderSummaryItems()
+    checkout.getOrderSummaryItems()
   })
 
   it('finishes checkout process', () => {

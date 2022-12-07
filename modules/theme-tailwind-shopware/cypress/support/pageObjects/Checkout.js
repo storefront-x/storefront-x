@@ -4,7 +4,7 @@ export default class Checkout {
     this.paymentMethod = null
   }
 
-  checkOrderSummaryItems() {
+  getOrderSummaryItems() {
     return cy.get('[data-cy^=cart-summary-list-item-]:visible')
   }
 }

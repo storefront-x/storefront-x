@@ -55,7 +55,7 @@ export default class Checkout {
     return cy.get('[data-cy=customer-address]').first()
   }
 
-  checkOrderSummaryItems() {
+  getOrderSummaryItems() {
     return cy.get('[data-cy^=cart-summary-list-item-]:visible')
   }
 }
