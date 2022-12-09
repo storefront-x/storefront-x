@@ -7,10 +7,8 @@ const name = 'NoHydrate'
 export default (source: () => Promise<{ default: any }>): any => {
   const EagerComponent = defineAsyncComponent(source)
 
-  const promise = new Promise<any>(() => ({}))
-
   const LazyComponent = defineAsyncComponent({
-    loader: () => promise,
+    loader: () => new Promise<any>(() => ({})),
     suspensible: false,
   })
 
