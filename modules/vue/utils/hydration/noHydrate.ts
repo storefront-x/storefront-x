@@ -7,12 +7,7 @@ const name = 'NoHydrate'
 export default (source: () => Promise<{ default: any }>): any => {
   const EagerComponent = defineAsyncComponent(source)
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  let resolve: any
-
-  const promise = new Promise<any>((_resolve) => {
-    resolve = _resolve
-  })
+  const promise = new Promise<any>(() => ({}))
 
   const LazyComponent = defineAsyncComponent({
     loader: () => promise,
