@@ -85,7 +85,7 @@ test('is same path with params', async ({ page }) => {
   )
 })
 
-test.only('exactActiveClass and exactInactiveClass', async ({ page }) => {
+test('exactActiveClass and exactInactiveClass', async ({ page }) => {
   await makeProject(
     {
       modules: [
