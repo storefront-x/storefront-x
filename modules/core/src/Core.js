@@ -70,12 +70,13 @@ export default class Core {
       out: {},
     }
 
-    try {
-      await entry(ctx)
-      for (const out of Object.values(ctx.out)) {
-        template = await out(template)
-      }
-    } catch (e) {
+    await entry(ctx)
+    for (const out of Object.values(ctx.out)) {
+      template = await out(template)
+    }
+    if (ctx.errorCaptured) {
+      const e = ctx.errorCaptured
+
       if ('url' in e && 'status' in e) {
         return res.status(e.status).redirect(e.url)
       }
