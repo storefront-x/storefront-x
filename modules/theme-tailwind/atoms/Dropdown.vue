@@ -2,6 +2,7 @@
   <div class="relative inline-block">
     <div v-click-outside="close" class="flex">
       <button
+        :disabled="isDisabled"
         type="button"
         class="group inline-flex justify-center items-center"
         :class="{ 'hover:underline': linkLike, 'font-medium': !linkLike }"
@@ -56,6 +57,10 @@ defineProps({
     default: false,
   },
   linkLike: {
+    type: Boolean,
+    default: false,
+  },
+  isDisabled: {
     type: Boolean,
     default: false,
   },

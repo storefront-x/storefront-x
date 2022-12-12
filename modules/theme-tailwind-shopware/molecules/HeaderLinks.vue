@@ -5,14 +5,15 @@
     </div>
 
     <div class="flex items-center space-x-6">
-      <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, setCurrency }">
+      <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, loadingCurrency, changeCurrency }">
         <Dropdown
           link-like
+          :is-disabled="loadingCurrency"
           :title="currentCurrency?.code"
           class="text-gray-600 hover:text-gray-800"
           data-cy="currency-switcher"
         >
-          <DropdownItem v-for="currency in currencies" :key="currency.code" @click="setCurrency(currency)">
+          <DropdownItem v-for="currency in currencies" :key="currency.code" @click="changeCurrency(currency)">
             {{ currency.code }}
           </DropdownItem>
         </Dropdown>

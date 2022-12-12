@@ -25,8 +25,8 @@ Higher-order component which provides its slot with a list of currencies, curren
 
 ```vue
 <template>
-  <SfxCurrencySwitcher v-slot="{ currencies, currentCurrency, setCurrency }">
-    <div v-for="currency in currencies" :key="currency.id" @click="setCurrency(currency)">
+  <SfxCurrencySwitcher v-slot="{ currencies, currentCurrency, changeCurrency }">
+    <div v-for="currency in currencies" :key="currency.id" @click="changeCurrency(currency)">
       {{ currency.code }}
       <span v-if="currency === currentCurrency">(selected)</span>
     </div>
