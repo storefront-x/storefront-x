@@ -4,8 +4,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "pinia": "^2.0.23",
-    "vue": "^3.2.41"
+    "pinia": "^2.0.28"
   },
   "publishConfig": {
     "access": "public"

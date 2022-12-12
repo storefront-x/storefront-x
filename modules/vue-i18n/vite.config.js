@@ -9,4 +9,7 @@ export default (core) =>
         include: resolve(core.rootDir, './.sfx/i18n/messages/**'),
       }),
     ],
+    ssr: {
+      noExternal: ['vue-i18n'],
+    },
   })
