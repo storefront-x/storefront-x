@@ -101,10 +101,6 @@ export default (data: any) => ({
 })
 ```
 
-:::info
-A mapper is higher-order function (function that returns another function), because it is also a composable so it can use other composables in the first function.
-:::
-
 ### 2. Create new repository
 
 We need repository for communication with backend. In this repository we can use `fetch` method or some adapter (e.g. `useShopware`). In this example, we will display a todo from the [JSON placeholder](https://jsonplaceholder.typicode.com).
@@ -135,8 +131,8 @@ import useGetTodoRepository from '#ioc/repositories/useGetTodoRepository'
 export default () => {
   const getTodoRepository = useGetTodoRepository()
 
-  return async (...args: Parameters<typeof getTodoRepository>) => {
-    return await getTodoRepository(...args)
+  return async (id: string) => {
+    return await getTodoRepository(id)
   }
 }
 ```
@@ -162,4 +158,62 @@ const getTodo = useGetTodo()
 
 const { data: todo } = await useAsyncData('todo', () => getTodo(route.params.id as string))
 </script>
+```
+
+## How to create new IoC concept
+
+IoC concepts are the most common and the most easy to create. Just add the concept to the `concepts/` directory in your module.
+
+> `my-module/concepts/Foobars.js`
+
+```js
+import { IocConcept } from '@storefront-x/core'
+
+export default class Foobars extends IocConcept {
+  get directory() {
+    return 'foobars'
+  }
+}
+```
+
+:::warning
+Concept file has to be in JavaScript!
+:::
+
+Now restart the dev server and you should be able to import files in `foobars/` directories of enabled modules via the `#ioc` alias.
+
+> `my-modules/foobars/Baz.ts`
+
+```ts
+export default 'Buzz'
+```
+
+```ts
+import Baz from '#ioc/foobars/Baz'
+
+console.log(Baz) // 'Buzz'
+```
+
+## How to use generating concept
+
+Sometimes you might wish for your concept to generate a single file which re-exports all the files inside concept directories as single object. This is useful for example if you want some file to import all the concept files at once.
+
+> `my-module/concepts/PaymentMethods.js`
+
+```js
+import { GeneratingConcept } from '@storefront-x/core'
+
+export default class PaymentMethods extends GeneratingConcept {
+  get directory() {
+    return 'paymentMethods'
+  }
+}
+```
+
+This concept now generates single file called `paymentMethods.js` inside the `.sfx/` directory which you can use like this:
+
+```ts
+import paymentMethods from '~/.sfx/paymentMethods'
+
+console.log(paymentMethods) // object will all payment methods
 ```

@@ -1,22 +1,26 @@
-import useAsyncData from '#ioc/composables/useAsyncData'
-import useRoute from '#ioc/composables/useRoute'
 import useUrlResolverRepository from '#ioc/repositories/useUrlResolverRepository'
-import ensureArray from '#ioc/utils/array/ensureArray'
 import dynamicPages from '~/.sfx/magento/dynamicPages'
+import useResource from '#ioc/composables/useResource'
+import useLocalePath from '#ioc/composables/useLocalePath'
+import redirect from '#ioc/utils/redirect'
 
 export default () => {
-  const route = useRoute()
   const urlResolverRepository = useUrlResolverRepository()
+  const localePath = useLocalePath()
 
-  return async (): Promise<{ id: string; component: any; relativeUrl: string }> => {
-    const path = ensureArray(route.params?.pathMatch)
-    const routePath = path.length ? path.join('/') : '/'
+  return async (resolvePath: string): Promise<{ id: string; component: any; relativeUrl: string }> => {
+    const [data] = await useResource(
+      () => resolvePath,
+      (routePath) => urlResolverRepository(routePath),
+    )
 
-    const { data } = await useAsyncData('urlResolver', () => urlResolverRepository(routePath))
+    if (data.value.redirectCode >= 300 && data.value.redirectCode <= 400) {
+      redirect(localePath(data.value.relativeUrl), data.value.redirectCode)
+    }
 
     return {
       id: data.value.id,
-      component: dynamicPages[data.value.type as keyof typeof dynamicPages],
+      component: dynamicPages[data.value.type as keyof typeof dynamicPages] ?? null,
       relativeUrl: data.value.relativeUrl,
     }
   }

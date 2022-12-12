@@ -25,7 +25,7 @@
       <div v-if="!results.length" class="p-2">{{ t('No results found') }}</div>
 
       <ProductProvider v-for="product in results" :key="product.id" :product="product">
-        <SearchBarResult />
+        <SearchBarResult @click="close" />
       </ProductProvider>
     </div>
 

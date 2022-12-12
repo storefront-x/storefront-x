@@ -35,7 +35,7 @@
         class="origin-top-right absolute mt-2 py-1 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
         :class="toLeft ? 'right-0' : 'left-0'"
       >
-        <slot />
+        <slot v-bind="{ close }" />
       </div>
     </Transition>
   </div>

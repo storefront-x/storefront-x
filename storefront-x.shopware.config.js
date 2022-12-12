@@ -3,7 +3,7 @@ export default {
     '@storefront-x/base',
 
     '@storefront-x/vue',
-    '@storefront-x/vue-router',
+    '@storefront-x/vue-router-simple',
     '@storefront-x/vue-head',
     '@storefront-x/vue-i18n',
     '@storefront-x/vue-pinia',
@@ -21,7 +21,6 @@ export default {
     '@storefront-x/multicurrency',
     '@storefront-x/cms',
     '@storefront-x/sitemap',
-    '@storefront-x/schema-org',
 
     '@storefront-x/shopware',
     '@storefront-x/catalog-shopware',

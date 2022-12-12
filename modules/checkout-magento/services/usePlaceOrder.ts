@@ -5,6 +5,7 @@ import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCartStore from '#ioc/stores/useCartStore'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
+import { onUnmounted, ref } from 'vue'
 
 export default () => {
   const cookies = useCookies()
@@ -14,6 +15,16 @@ export default () => {
   const placeOrderRepository = usePlaceOrderRepository()
   const cartMagentoStore = useCartMagentoStore()
 
+  const isOrderPlaced = ref(false)
+
+  onUnmounted(() => {
+    if (isOrderPlaced.value) {
+      cartStore.$reset()
+      checkoutStore.$reset()
+      cartMagentoStore.$reset()
+    }
+  })
+
   return async () => {
     const { id } = await getOrCreateCartId()
 
@@ -21,9 +32,7 @@ export default () => {
 
     cookies.remove(MAGENTO_CART_COOKIE_NAME)
 
-    cartStore.$reset()
-    checkoutStore.$reset()
-    cartMagentoStore.$reset()
+    isOrderPlaced.value = true
 
     return {
       order,

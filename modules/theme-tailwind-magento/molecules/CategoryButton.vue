@@ -1,6 +1,6 @@
 <template>
   <Link
-    :to="category.urlPath"
+    :to="localePath(category.urlPath)"
     class="bg-white border border-gray-400 p-2 rounded-md transition ease-in-out delay-75 hover:no-underline"
   >
     <div class="flex flex-row my-1 items-center">
@@ -25,6 +25,7 @@
 import Link from '#ioc/atoms/Link'
 import SfxImage from '#ioc/components/SfxImage'
 import useCategory from '#ioc/composables/useCategory'
+import useLocalePath from '#ioc/composables/useLocalePath'
 import ToCategory from '#ioc/mappers/ToCategory'
 import { computed, PropType, toRef } from 'vue'
 
@@ -35,6 +36,7 @@ const props = defineProps({
   },
 })
 
+const localePath = useLocalePath()
 const category = useCategory(toRef(props, 'category'))
 
 const hasImage = computed(() => {
