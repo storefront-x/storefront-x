@@ -3,8 +3,8 @@ import addFields from '#ioc/utils/graphql/addFields'
 
 export default (self: any) => {
   return () => {
-    const query = self()
-    addFields(query, 'products', {
+    const fragment = self()
+    addFields(fragment, {
       sfx_attributes: field({
         attribute_code: field(),
         frontend_label: field(),
@@ -16,6 +16,6 @@ export default (self: any) => {
       }),
     })
 
-    return query
+    return fragment
   }
 }

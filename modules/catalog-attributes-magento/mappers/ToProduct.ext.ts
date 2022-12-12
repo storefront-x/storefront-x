@@ -1,11 +1,14 @@
 import ToProductAttribute from '#ioc/mappers/ToProductAttribute'
 
-export default <T extends (...args: any[]) => any>(toProduct: T) => {
-  return (data: any): ReturnType<T> => {
-    const _toProduct = toProduct(data)
+import Extension from '#ioc/types/base/Extension'
 
-    _toProduct.attributes = data?.sfx_attributes?.map(ToProductAttribute) ?? []
-
-    return _toProduct
-  }
+interface ToProductType {
+  attributes2: ReturnType<typeof ToProductAttribute>[]
 }
+
+const ToProduct: Extension<ToProductType> = (ToProduct) => (data) => ({
+  ...ToProduct(data),
+  attributes: data?.sfx_attributes?.map(ToProductAttribute) ?? [],
+})
+
+export default ToProduct
