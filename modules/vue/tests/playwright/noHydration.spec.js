@@ -14,16 +14,17 @@ test('noHydration after ssr hydration', async ({ page }) => {
             components: {
               'Hello.vue': `
                   <template>
-                    <h1>{{ title }}</h1>
+                    <h1>Hello</h1>
+                    <div v-if="more" class="more">More</div>
                   </template>
 
                   <script setup lang="ts">
                   import { onMounted, ref } from 'vue'
 
-                  const title = ref('Hello')
+                  const more = ref(false)
 
                   onMounted(() => {
-                    title.value = 'Hello on client'
+                    more.value = true
                   })
                   </script>
                 `,
@@ -35,7 +36,6 @@ test('noHydration after ssr hydration', async ({ page }) => {
                 </template>
                 <script setup lang="ts">
                 import noHydrate from '#ioc/utils/hydration/noHydrate'
-                //import Hello from '#ioc/components/Hello'
                 const Hello = noHydrate(() => import('#ioc/components/Hello'))
                 </script>
               `,
@@ -46,7 +46,7 @@ test('noHydration after ssr hydration', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello')
+      await expect(await page.locator('div.more')).toHaveCount(0)
     },
   )
 })
@@ -102,10 +102,10 @@ test('noHydration after router navigation', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/page1', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Page 1')
+      await expect(await page.locator('h1')).toContainText('Page 1')
       await page.locator('button').click()
       await page.locator('#changeText').click()
-      await expect(await page.content()).toContain('Hello changed')
+      await expect(await page.locator('h1')).toContainText('Hello changed')
     },
   )
 })
