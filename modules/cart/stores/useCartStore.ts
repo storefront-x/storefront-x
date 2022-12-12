@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 
 export default defineStore('cart', {
   state: () => ({
-    miniCartVisible: false,
+    isMiniCartVisible: false,
     cart: undefined as ReturnType<typeof ToCart> | undefined | null,
   }),
 })

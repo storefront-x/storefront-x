@@ -20,7 +20,7 @@
   <div
     role="button"
     class="relative pl-2 text-gray-400 hover:text-gray-500 hover:cursor-pointer lg:block hidden"
-    @click.stop="cartStore.miniCartVisible = !cartStore.miniCartVisible"
+    @click.stop="cartStore.isMiniCartVisible = !cartStore.isMiniCartVisible"
   >
     <span class="sr-only">{{ t('Cart') }}</span>
     <div
@@ -36,6 +36,7 @@
       {{ cart.itemsTotalQuantity }}
     </span>
   </div>
+  <MiniCart v-if="cartStore.isMiniCartVisible" />
 </template>
 
 <script setup lang="ts">
@@ -45,7 +46,9 @@ import useI18n from '#ioc/composables/useI18n'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import OutlineShoppingBag from '#ioc/icons/OutlineShoppingBag'
 import useCartStore from '#ioc/stores/useCartStore'
+import { defineAsyncComponent } from 'vue'
 
+const MiniCart = defineAsyncComponent(() => import('#ioc/organisms/MiniCart'))
 const { t } = useI18n()
 const cart = useCart()
 const cartStore = useCartStore()

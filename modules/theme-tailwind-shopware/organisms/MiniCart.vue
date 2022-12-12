@@ -1,5 +1,5 @@
 <template>
-  <div v-click-outside="close" :class="{ hidden: !cartStore.miniCartVisible }">
+  <div v-click-outside="close" :class="{ hidden: !cartStore.isMiniCartVisible }">
     <div aria-live="assertive" class="absolute max-w-2xl px-4 z-50 inset-y-28 right-0">
       <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
         <ul role="list" class="divide-y divide-gray-200">
@@ -50,8 +50,8 @@ const localePath = useLocalePath()
 const route = useRoute()
 
 const close = () => {
-  if (cartStore.miniCartVisible) {
-    cartStore.miniCartVisible = false
+  if (cartStore.isMiniCartVisible) {
+    cartStore.isMiniCartVisible = false
   }
 }
 
