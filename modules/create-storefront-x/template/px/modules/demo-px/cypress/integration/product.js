@@ -1,15 +1,13 @@
-import Base from '~/cypress/support/pageObjects/Base'
+import expectMicrocartQuantity from '~/cypress/support/pageObjects/Base/expectMicrocartQuantity'
+import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/Base/expectMicrowishlistQuantity'
+import expectNotificationReviewConfirm from '~/cypress/support/pageObjects/Base/expectNotificationReviewConfirm'
 import Product from '~/cypress/support/pageObjects/Product'
 
 describe('Product', () => {
-  /** @type {Base} */
-  let base
-
   /** @type {Product} */
   let product
 
   beforeEach(() => {
-    base = new Base()
     product = new Product()
 
     product.visitRandom()
@@ -26,13 +24,13 @@ describe('Product', () => {
   it('can be added to cart', () => {
     product.addToCart()
 
-    base.expectMicrocartQuantity(1)
+    expectMicrocartQuantity.expectMicrocartQuantity(1)
   })
 
   it('can be added to wishlist', () => {
     product.addToWishlist()
 
-    base.expectMicrowishlistQuantity(1)
+    expectMicrowishlistQuantity.expectMicrowishlistQuantity(1)
   })
 
   it('allows increasing quantity via buttons', () => {
@@ -42,7 +40,7 @@ describe('Product', () => {
 
     product.addToCart()
 
-    base.expectMicrocartQuantity(2)
+    expectMicrocartQuantity.expectMicrocartQuantity(2)
   })
 
   it('allows setting quantity via input', () => {
@@ -50,12 +48,12 @@ describe('Product', () => {
 
     product.addToCart()
 
-    base.expectMicrocartQuantity(3)
+    expectMicrocartQuantity.expectMicrocartQuantity(3)
   })
 
   it('allows adding reviews', () => {
     product.openReviewForm()
     product.addReviewData()
-    base.expectNotificationReviewConfirm()
+    expectNotificationReviewConfirm.expectNotificationReviewConfirm()
   })
 })
