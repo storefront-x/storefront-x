@@ -1,3 +1,4 @@
+import CartResetted from '#ioc/errors/CartResetted'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useI18n from '#ioc/composables/useI18n'
 
@@ -6,7 +7,7 @@ export default () => {
   const { t } = useI18n()
 
   return (error: any) => {
-    if (error.__typename === 'CartResetted') {
+    if (error instanceof CartResetted) {
       showErrorNotification(t('errors.cartExpired'))
     } else {
       throw error

@@ -1,3 +1,1 @@
-export default class CartResetted extends Error {
-  public __typename = 'CartResetted'
-}
+export default class CartResetted extends Error {}

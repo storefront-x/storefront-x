@@ -77,7 +77,7 @@ export default class Core {
     if (ctx.errorCaptured) {
       const e = ctx.errorCaptured
 
-      if ('url' in e && 'status' in e) {
+      if (e.__typename === 'Redirect') {
         return res.status(e.status).redirect(e.url)
       }
     }
