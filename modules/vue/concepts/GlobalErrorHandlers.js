@@ -7,6 +7,10 @@ export default class GlobalErrorHandlers extends GeneratingConcept {
     return 'vue/errorHandlers'
   }
 
+  get supportsClientServer() {
+    return true
+  }
+
   get recursive() {
     return true
   }
