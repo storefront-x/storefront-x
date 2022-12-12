@@ -1,11 +1,11 @@
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
-import vueI18n from '@intlify/vite-plugin-vue-i18n'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 
 export default (core) =>
   defineConfig({
     plugins: [
-      vueI18n({
+      VueI18n({
         include: resolve(core.rootDir, './.sfx/i18n/messages/**'),
       }),
     ],
