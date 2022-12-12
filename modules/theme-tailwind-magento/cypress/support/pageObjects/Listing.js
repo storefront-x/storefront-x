@@ -6,7 +6,7 @@ export default class Listing {
 
     cy.waitUntil(() =>
       cy.get('[data-cy=product-price]').then((inputs) => {
-        const prices = [...inputs].map((input) => parseFloat(input.textContent.replace(/\s+/g, '')))
+        const prices = [...inputs].map((input) => parseFloat(input.textContent.replace(/\./g, '')))
 
         const sorted = [...prices].sort((a, b) => (order === 'ASC' ? a - b : b - a))
 
