@@ -4,7 +4,7 @@
 
 Wrapper module around the [vue-i18n](https://www.npmjs.com/package/vue-i18n) library. It extends router to allow for translated routes, locale route prefixes and other functionalities.
 
-It also uses the [@intlify/vite-plugin-vue-i18n](https://www.npmjs.com/package/@intlify/vite-plugin-vue-i18n) library for the `<i18n />` blocks in Vue SFCs.
+It also uses the [@intlify/unplugin-vue-i18n](https://www.npmjs.com/package/@intlify/unplugin-vue-i18n) library for the `<i18n />` blocks in Vue SFCs.
 
 ## `i18n/messages/` concept
 

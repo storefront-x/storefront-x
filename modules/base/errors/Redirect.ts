@@ -1,4 +1,5 @@
 export default class Redirect extends Error {
+  public __typename = 'Redirect'
   public url: string
   public status: number
   constructor(opts: { url: string; status: number }) {
