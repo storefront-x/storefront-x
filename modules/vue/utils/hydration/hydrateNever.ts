@@ -2,7 +2,7 @@
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import { h, defineComponent, defineAsyncComponent, getCurrentInstance } from 'vue'
 
-const name = 'NoHydrate'
+const name = 'HydrateNever'
 
 export default (source: () => Promise<{ default: any }>): any => {
   const EagerComponent = defineAsyncComponent(source)

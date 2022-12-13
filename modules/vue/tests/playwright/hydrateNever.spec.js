@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test('noHydration after ssr hydration', async ({ page }) => {
+test('component is dead after hydration', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -31,8 +31,8 @@ test('noHydration after ssr hydration', async ({ page }) => {
                   <Counter />
                 </template>
                 <script setup lang="ts">
-                  import noHydrate from '#ioc/utils/hydration/noHydrate'
-                  const Counter = noHydrate(() => import('#ioc/components/Counter'))
+                  import hydrateNever from '#ioc/utils/hydration/hydrateNever'
+                  const Counter = hydrateNever(() => import('#ioc/components/Counter'))
                 </script>
               `,
             },
@@ -49,7 +49,7 @@ test('noHydration after ssr hydration', async ({ page }) => {
   )
 })
 
-test('noHydration after router navigation', async ({ page }) => {
+test('component is alive after navigation', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -79,8 +79,8 @@ test('noHydration after router navigation', async ({ page }) => {
                   <Counter />
                 </template>
                 <script setup lang="ts">
-                  import noHydrate from '#ioc/utils/hydration/noHydrate'
-                  const Counter = noHydrate(() => import('#ioc/components/Counter'))
+                  import hydrateNever from '#ioc/utils/hydration/hydrateNever'
+                  const Counter = hydrateNever(() => import('#ioc/components/Counter'))
                 </script>
               `,
               'entry.vue': `
