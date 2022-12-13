@@ -1,1 +1,1 @@
-export default (val: any): boolean => Array.isArray(val)
+export default (val: any): val is any[] => Array.isArray(val)

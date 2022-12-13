@@ -19,14 +19,14 @@
       >
         <OutlineCreditCard class="text-black" />
         <span>
-          {{ t('Do you have coupon?') }}
+          {{ t('haveCoupon') }}
         </span>
       </a>
 
       <SfxForm v-else class="py-6 px-4 sm:px-6" @submit="onSubmit">
-        <FormInput validators="required" name="code" :label="t('Coupon code')" />
+        <FormInput validators="required" name="code" :label="t('couponCode')" />
         <Button type="submit" color="primary" class="w-full mt-4">
-          {{ t('Apply') }}
+          {{ t('applyCoupon') }}
         </Button>
       </SfxForm>
     </div>
@@ -40,7 +40,54 @@ import OutlineX from '#ioc/icons/OutlineX'
 import OutlineCreditCard from '#ioc/icons/OutlineCreditCard'
 import useI18n from '#ioc/composables/useI18n'
 import useCart from '#ioc/composables/useCart'
+import FormInput from '#ioc/molecules/FormInput'
+import useRemoveCouponFromCart from '#ioc/services/useRemoveCouponFromCart'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
+import useApplyCouponToCart from '#ioc/services/useApplyCouponToCart'
+import { ref } from 'vue'
 
 const { t } = useI18n()
 const cart = useCart()
+const removeCouponFromCart = useRemoveCouponFromCart()
+const showErrorNotification = useShowErrorNotification()
+const showSuccessNotification = useShowSuccessNotification()
+const applyCouponToCart = useApplyCouponToCart()
+
+const isAdding = ref(false)
+
+const onRemoveCoupon = async () => {
+  try {
+    await removeCouponFromCart()
+    showSuccessNotification('', t('couponRemoved'))
+  } catch (e: any) {
+    showErrorNotification(e)
+  }
+}
+
+const onSubmit = async ({ code }: { code: string }) => {
+  try {
+    await applyCouponToCart(code)
+    isAdding.value = false
+    showSuccessNotification('', t('couponApplied'))
+  } catch (e: any) {
+    console.error(e)
+    showErrorNotification(e)
+  }
+}
 </script>
+
+<i18n lang="yaml">
+cs-CZ:
+  couponApplied: Váš kupón byl úspěšně uplatněn
+  couponRemoved: Váš kupón byl úspěšně odstraněn
+  applyCoupon: Přidat kupón
+  haveCoupon: Máte kupón?
+  couponCode: Kód vašeho kupónu
+en-US:
+  couponApplied: Your coupon was successfully applied
+  couponRemoved: Your coupon was successfully removed
+  applyCoupon: Apply coupon
+  haveCoupon: Do you have coupon?
+  couponCode: Your coupon code
+</i18n>

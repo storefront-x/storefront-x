@@ -8,13 +8,16 @@ on:
 
 jobs:
   playwright:
-    runs-on: ubuntu-latest
     name: Playwright
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
       - run: yarn install
       - run: yarn playwright install chromium
-      - run: yarn test:playwright
+      - run: yarn test:playwright --forbid-only

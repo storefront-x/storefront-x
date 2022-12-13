@@ -1,6 +1,1 @@
-import ToProduct from '#ioc/mappers/ToProduct'
-
-export default (data: any) => ({
-  id: data.id,
-  product: ToProduct(data),
-})
+export default (data: any) => data.id

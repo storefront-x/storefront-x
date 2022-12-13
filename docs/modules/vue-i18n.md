@@ -4,13 +4,13 @@
 
 Wrapper module around the [vue-i18n](https://www.npmjs.com/package/vue-i18n) library. It extends router to allow for translated routes, locale route prefixes and other functionalities.
 
-It also uses the [@intlify/vite-plugin-vue-i18n](https://www.npmjs.com/package/@intlify/vite-plugin-vue-i18n) library for the `<i18n />` blocks in Vue SFCs.
+It also uses the [@intlify/unplugin-vue-i18n](https://www.npmjs.com/package/@intlify/unplugin-vue-i18n) library for the `<i18n />` blocks in Vue SFCs.
 
 ## `i18n/messages/` concept
 
 The `i18n/messages` concept allows us to add global translation messages. It contains files with names corresponding to the desired locale (`locale` field in `VUE_I18N_LOCALES`). These files default export object with translations.
 
-This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means that multiple `i18n/messages/en-US.ts` files are merged together, instead of overridden.
+This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means that multiple `i18n/messages/en-US.json` files are merged together, instead of overridden.
 
 ### Example
 
@@ -32,20 +32,20 @@ export default [
 ] as Locale[]
 ```
 
-```ts
-// i18n/messages/en-US.ts
+```json
+// i18n/messages/en-US.json
 
-export default [
-  hello: "Hello world!"
-]
+{
+  "hello": "Hello world!"
+}
 ```
 
-```ts
-// i18n/messages/cs-CZ.ts
+```json
+// i18n/messages/cs-CZ.json
 
-export default [
-  hello: "Ahoj světe!"
-]
+{
+  "hello": "Ahoj světe!"
+}
 ```
 
 ```vue

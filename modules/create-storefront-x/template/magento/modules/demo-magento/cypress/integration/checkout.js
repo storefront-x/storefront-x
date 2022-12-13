@@ -18,10 +18,22 @@ describe('Checkout', () => {
     thankYouPage = new ThankYouPage()
   })
 
-  it('finishes checkout process', () => {
+  let addRandomProductToCartAndProceedToCheckout = () => {
     product.visitRandom()
     product.addToCart()
     product.continueToCheckout()
+  }
+
+  it('checks that reload wont delete checkout', () => {
+    addRandomProductToCartAndProceedToCheckout()
+
+    checkout.getOrderSummaryItems()
+    cy.reload().waitForSfx()
+    checkout.getOrderSummaryItems()
+  })
+
+  it('finishes checkout process', () => {
+    addRandomProductToCartAndProceedToCheckout()
 
     checkout.selectShipping('flatrate_flatrate')
     checkout.selectPayment('checkmo')
@@ -32,10 +44,8 @@ describe('Checkout', () => {
     thankYouPage.isVisible()
   })
 
-  it.only('accepts credit card payment', () => {
-    product.visitRandom()
-    product.addToCart()
-    product.continueToCheckout()
+  it('accepts credit card payment', () => {
+    addRandomProductToCartAndProceedToCheckout()
 
     checkout.selectShipping('flatrate_flatrate')
     checkout.selectPayment('braintree')
@@ -48,9 +58,7 @@ describe('Checkout', () => {
   })
 
   it('supports instore pickup', () => {
-    product.visitRandom()
-    product.addToCart()
-    product.continueToCheckout()
+    addRandomProductToCartAndProceedToCheckout()
 
     checkout.selectShipping('instore_pickup')
     checkout.getInstorePickupLocation().click()

@@ -60,11 +60,11 @@ const onLogout = async () => {
 
 <i18n lang="yaml">
 en-US:
-  welcome: Welcome {0}
+  'welcome': 'Welcome {0}'
 cs-CZ:
   My account: Můj účet
   Logout: Odhlásit se
-  welcome: Vítejte, {0}
+  'welcome': 'Vítejte, {0}'
   Sign in: Přihlásit
   Sign up: Registrovat
 </i18n>

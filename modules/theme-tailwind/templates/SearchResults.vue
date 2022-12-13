@@ -39,7 +39,7 @@ const route = useRoute()
 
 <i18n lang="yaml">
 cs-CZ:
-  title: 'Hledaný výraz: "{0}"'
+  'title': 'Hledaný výraz: {0}'
 en-US:
-  title: 'Search query: "{0}"'
+  'title': 'Search query: {0}'
 </i18n>

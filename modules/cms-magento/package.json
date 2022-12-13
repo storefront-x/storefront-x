@@ -1,10 +1,10 @@
 {
   "name": "@storefront-x/cms-magento",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "happy-dom": "^7.5.10"
+    "happy-dom": "^8.1.0"
   },
   "publishConfig": {
     "access": "public"

@@ -22,7 +22,7 @@ export default defineConfig({
           },
           {
             urlPattern: /_magento/,
-            handler: 'StaleWhileRevalidate',
+            handler: 'NetworkFirst',
           },
         ],
       },

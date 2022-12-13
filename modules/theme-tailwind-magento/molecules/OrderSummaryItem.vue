@@ -8,7 +8,10 @@
         <div class="flex">
           <div class="min-w-0 flex-1">
             <h4 class="text-sm">
-              <RouterLink :to="cartItem.product.urlPath" class="font-medium text-gray-700 hover:text-gray-800">
+              <RouterLink
+                :to="localePath(cartItem.product.urlPath)"
+                class="font-medium text-gray-700 hover:text-gray-800"
+              >
                 {{ cartItem.product.name }}
               </RouterLink>
             </h4>
@@ -65,11 +68,11 @@
         <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-lg" />
 
         <SfxMoney v-if="cartItem.product.isOnSale" v-slot="{ html }" :money="cartItem.product.regularPrice">
-          <span class="line-through text-red-600 ml-1">{{ t('{0} / qty', [html]) }}</span>
+          <span class="line-through text-red-600 ml-1">{{ t('qty', [html]) }}</span>
         </SfxMoney>
 
         <SfxMoney v-slot="{ html }" :money="cartItem.price">
-          <span class="ml-1">{{ t('{0} / qty', [html]) }}</span>
+          <span class="ml-1">{{ t('qty', [html]) }}</span>
         </SfxMoney>
       </p>
     </div>
@@ -90,6 +93,7 @@ import { computed, defineAsyncComponent, PropType, ref, toRef, watch } from 'vue
 import useRemoveFromCart from '#ioc/services/useRemoveFromCart'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useUpdateCartItem from '#ioc/services/useUpdateCartItem'
+import useLocalePath from '#ioc/composables/useLocalePath'
 
 const ConfirmProductRemovalModal = defineAsyncComponent(() => import('#ioc/organisms/ConfirmProductRemovalModal'))
 
@@ -105,6 +109,7 @@ const cartItem = useCartItem(toRef(props, 'cartItem'))
 const removeFromCart = useRemoveFromCart()
 const updateCartItem = useUpdateCartItem()
 const showErrorNotification = useShowErrorNotification()
+const localePath = useLocalePath()
 
 const tmpQuantity = ref(props.cartItem.quantity)
 const isRemoveModalOpen = ref(false)
@@ -190,12 +195,12 @@ const updateQuantity = async (quantity: number) => {
 </script>
 
 <i18n lang="yaml">
-en-US:
-  'IN_STOCK': 'In stock'
 cs-CZ:
-  '{0} / qty': '{0} / ks'
-  '{0} pcs in stock': 'Skladem {0} ks'
-  '> {0} pcs in stock': 'Skladem > {0} ks'
   'IN_STOCK': 'Skladem'
   'OUT_OF_STOCK': 'Vyprodáno'
+  'qty': '{0} / ks'
+en-US:
+  'IN_STOCK': 'In stock'
+  'OUT_OF_STOCK': 'Out of stock'
+  'qty': '{0} / pc'
 </i18n>

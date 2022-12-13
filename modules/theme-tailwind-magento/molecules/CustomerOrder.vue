@@ -27,7 +27,7 @@
         </div>
 
         <div class="flex justify-between pt-6 font-medium text-gray-900 sm:block sm:pt-0">
-          <Button :loading="isReorderLoading" :disabled="isReorderLoading">
+          <Button :loading="isReorderLoading" :disabled="isReorderLoading" @click="onReorderItems">
             {{ t('Reorder items') }}
           </Button>
         </div>
@@ -61,11 +61,35 @@ import useI18n from '#ioc/composables/useI18n'
 import { computed, ref } from 'vue'
 import useOrderItem from '#ioc/composables/useOrderItem'
 import CustomerOrderItem from '#ioc/molecules/CustomerOrderItem'
+import useReorderItems from '#ioc/services/useReorderItems'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import useRouter from '#ioc/composables/useRouter'
+import useLocalePath from '#ioc/composables/useLocalePath'
 
 const { t, d } = useI18n()
 const customerOrder = injectCustomerOrder()
 
+const localePath = useLocalePath()
+
+const router = useRouter()
+
 const isReorderLoading = ref(false)
+
+const showErrorNotification = useShowErrorNotification()
+
+const reorderItems = useReorderItems()
+
+const onReorderItems = async () => {
+  try {
+    isReorderLoading.value = true
+    await reorderItems(customerOrder.orderNumber)
+    router.push(localePath('checkout'))
+  } catch (e) {
+    showErrorNotification(e)
+  } finally {
+    isReorderLoading.value = false
+  }
+}
 
 const orderStatus = computed(() => {
   return {

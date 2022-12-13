@@ -29,11 +29,11 @@
         </p>
         <div class="flex space-x-1 text-sm text-gray-500">
           <div>
-            {{ d(blogPost.publishedAt) }}
+            {{ d(blogPost.publishedAt!) }}
           </div>
           <span aria-hidden="true"> &middot; </span>
           <span>
-            {{ t('{0} min read', [postReadingTime]) }}
+            {{ t('min_read', [postReadingTime]) }}
           </span>
         </div>
       </div>
@@ -77,5 +77,7 @@ const postReadingTime = computed(() => {
 
 <i18n lang="yaml">
 cs-CZ:
-  '{0} min read': '{0} minut'
+  'min_read': '{0} min read'
+en-US:
+  'min_read': '{0} minut'
 </i18n>

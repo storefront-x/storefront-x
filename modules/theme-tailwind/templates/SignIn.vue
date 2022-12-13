@@ -59,7 +59,9 @@ const onSubmit = async (data: { email: string; password: string }) => {
   try {
     isLoading.value = true
 
-    await loginCustomer(data.email, data.password)
+    await loginCustomer(data.email, data.password, {
+      redirect: localePath('account'),
+    })
   } catch (e: any) {
     isLoading.value = false
 
