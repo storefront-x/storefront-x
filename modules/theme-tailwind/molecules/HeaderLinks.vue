@@ -8,7 +8,7 @@
       <Link :to="localePath('brands')" color="gray">{{ t('Brands') }}</Link>
       <Link :to="localePath('blog')" color="gray">{{ t('Blog') }}</Link>
 
-      <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, loadingCurrency, changeCurrency }">
+      <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, loadingCurrency, setCurrency }">
         <Dropdown
           link-like
           :title="currentCurrency?.code"
@@ -20,7 +20,7 @@
             v-for="currency in currencies"
             :key="currency.code"
             href="javascript:void(0)"
-            @click="changeCurrency(currency)"
+            @click="setCurrency(currency)"
           >
             {{ currency.code }}
           </DropdownItem>

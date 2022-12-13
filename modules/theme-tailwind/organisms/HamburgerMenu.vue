@@ -92,7 +92,7 @@
       </div>
     </SfxStoreSwitcher>
 
-    <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, loadingCurrency, changeCurrency }">
+    <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, loadingCurrency, setCurrency }">
       <div class="flex items-center px-4 pb-4 mb-3 border-b-2 border-gray-50">
         <Dropdown
           link-like
@@ -105,7 +105,7 @@
             v-for="currency in currencies"
             :key="currency.code"
             href="javascript:void(0)"
-            @click="changeCurrency(currency)"
+            @click="setCurrency(currency)"
           >
             {{ currency.code }}
           </DropdownItem>

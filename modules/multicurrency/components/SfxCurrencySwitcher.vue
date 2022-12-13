@@ -1,5 +1,5 @@
 <template>
-  <slot v-bind="{ currencies, currentCurrency, loadingCurrency, changeCurrency }" />
+  <slot v-bind="{ currencies, currentCurrency, loadingCurrency, setCurrency }" />
 </template>
 
 <script setup lang="ts">
@@ -10,13 +10,13 @@ import { computed, ref } from 'vue'
 
 const storeStore = useStoreStore()
 const multicurrencyStore = useMulticurrencyStore()
-const setCurrency = useSetCurrency()
+const _setCurrency = useSetCurrency()
 const loadingCurrency = ref(false)
 
-const changeCurrency = async (...args: Parameters<typeof setCurrency>) => {
+const setCurrency = async (...args: Parameters<typeof _setCurrency>) => {
   loadingCurrency.value = true
 
-  await setCurrency(...args)
+  await _setCurrency(...args)
 }
 
 const currencies = computed(() => multicurrencyStore.currencies)
