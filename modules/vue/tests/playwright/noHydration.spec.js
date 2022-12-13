@@ -12,31 +12,27 @@ test('noHydration after ssr hydration', async ({ page }) => {
           'my-module',
           {
             components: {
-              'Hello.vue': `
-                  <template>
-                    <h1>Hello</h1>
-                    <div v-if="more" class="more">More</div>
-                  </template>
+              'Counter.vue': `
+                <template>
+                  <h1>Count: {{ count }}</h1>
+                  <button @click="count += 1"></button>
+                </template>
 
-                  <script setup lang="ts">
-                  import { onMounted, ref } from 'vue'
+                <script setup lang="ts">
+                  import { ref } from 'vue'
 
-                  const more = ref(false)
-
-                  onMounted(() => {
-                    more.value = true
-                  })
-                  </script>
-                `,
+                  const count = ref(0)
+                </script>
+              `,
             },
             pages: {
               'index.vue': `
                 <template>
-                  <Hello />
+                  <Counter />
                 </template>
                 <script setup lang="ts">
-                import noHydrate from '#ioc/utils/hydration/noHydrate'
-                const Hello = noHydrate(() => import('#ioc/components/Hello'))
+                  import noHydrate from '#ioc/utils/hydration/noHydrate'
+                  const Counter = noHydrate(() => import('#ioc/components/Counter'))
                 </script>
               `,
             },
@@ -46,7 +42,9 @@ test('noHydration after ssr hydration', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.locator('div.more')).toHaveCount(0)
+      await expect(page.locator('h1')).toContainText('Count: 0')
+      await page.locator('button').click()
+      await expect(page.locator('h1')).toContainText('Count: 0')
     },
   )
 })
@@ -62,50 +60,51 @@ test('noHydration after router navigation', async ({ page }) => {
           'my-module',
           {
             components: {
-              'Hello.vue': `
-                    <template>
-                      <h1>{{ title }}</h1>
-                      <button id="changeText" @click="myClick">Change</button>
-                    </template>
-  
-                    <script setup lang="ts">
-                    import { onMounted, ref } from 'vue'
-  
-                    const title = ref('Hello')
-  
-                    const myClick = () => {
-                        title.value = 'Hello changed'
-                    }
-                    </script>
-                  `,
+              'Counter.vue': `
+                <template>
+                  <h1>Count: {{ count }}</h1>
+                  <button @click="count += 1"></button>
+                </template>
+
+                <script setup lang="ts">
+                  import { ref } from 'vue'
+
+                  const count = ref(0)
+                </script>
+              `,
             },
             pages: {
               'index.vue': `
-                  <template>
-                    <Hello />
-                  </template>
-                  <script setup lang="ts">
+                <template>
+                  <Counter />
+                </template>
+                <script setup lang="ts">
                   import noHydrate from '#ioc/utils/hydration/noHydrate'
-                  const Hello = noHydrate(() => import('#ioc/components/Hello'))
-                  </script>
-                `,
-              'page1.vue': `
-                  <template>
-                    <h1>Page 1</h1>
-                    <button @click="$router.push({path: '/'})">Click me</button>
-                  </template>
-                `,
+                  const Counter = noHydrate(() => import('#ioc/components/Counter'))
+                </script>
+              `,
+              'entry.vue': `
+                <template>
+                  <div />
+                </template>
+                <script>
+                export default {
+                  mounted() {
+                    this.$router.push('/')
+                  }
+                }
+                </script>
+              `,
             },
           },
         ],
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/page1', { waitUntil: 'networkidle' })
-      await expect(await page.locator('h1')).toContainText('Page 1')
+      await page.goto(url + '/entry', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('Count: 0')
       await page.locator('button').click()
-      await page.locator('#changeText').click()
-      await expect(await page.locator('h1')).toContainText('Hello changed')
+      await expect(page.locator('h1')).toContainText('Count: 1')
     },
   )
 })
