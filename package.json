@@ -10,7 +10,8 @@
   "type": "module",
   "packageManager": "yarn@3.2.1",
   "workspaces": [
-    "./modules/*"
+    "./modules/*",
+    "./local_modules/*"
   ],
   "scripts": {
     "test:unit": "vitest run",

@@ -85,7 +85,10 @@ export default class Concept {
   getPathForFile(module, file) {
     return (
       '~/' +
-      path.relative(this.core.rootDir, module.join(this.directory, file)).replace(/\.ts$/, '').replace(/\\/g, '/')
+      path
+        .relative(this.core.rootDir, module.join(this.directory, file))
+        .replace(/\.tsx?$/, '')
+        .replace(/\\/g, '/')
     )
   }
 
