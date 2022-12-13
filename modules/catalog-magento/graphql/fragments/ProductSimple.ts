@@ -2,7 +2,7 @@ import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
 import Money from '#ioc/graphql/fragments/Money'
 
-export default (name = 'product') =>
+export default (name = 'productSimple') =>
   fragment(name, 'ProductInterface', {
     __typename: field(),
     id: field(),
