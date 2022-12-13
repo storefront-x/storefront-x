@@ -32,7 +32,7 @@ test('server-side rendering of title', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('<title>Homepage</title>')
+      expect(await expect(page).toHaveTitle('Homepage'))
     },
   )
 })
@@ -81,9 +81,9 @@ test('title changes between pages', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.locator('title').innerText()).toBe('Homepage')
+      expect(await expect(page).toHaveTitle('Homepage'))
       await page.locator('a').click()
-      await expect(await page.locator('title').innerText()).toBe('Test')
+      expect(await expect(page).toHaveTitle('Test'))
     },
   )
 })

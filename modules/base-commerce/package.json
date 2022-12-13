@@ -4,9 +4,9 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "keen-slider": "^6.8.3",
+    "keen-slider": "^6.8.5",
     "lru-cache": "^7.14.1",
-    "photoswipe": "^5.3.3",
+    "photoswipe": "^5.3.4",
     "sharp": "^0.31.2"
   },
   "publishConfig": {
