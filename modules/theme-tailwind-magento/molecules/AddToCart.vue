@@ -68,7 +68,7 @@ const onAddToCart = async () => {
   }
 
   if (product.isBundleProduct && !product.isBundleConfigured) {
-    if (product?.bundleItems) {
+    if (product?.bundleItems?.length > 0) {
       const data = await getProductById(product.urlKey)
       product.bundleItems.push.apply(product.bundleItems, data.product.bundleItems)
     }
