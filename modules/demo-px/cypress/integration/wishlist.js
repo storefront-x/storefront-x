@@ -1,7 +1,11 @@
 import Base from '~/cypress/support/pageObjects/Base'
 import Wishlist from '~/cypress/support/pageObjects/Wishlist'
 import Product from '~/cypress/support/pageObjects/Product'
-import Account from '~/cypress/support/pageObjects/Account'
+import AccountCredentials from '~/cypress/support/pageObjects/account/AccountCredentials'
+
+import register from '~/cypress/support/pageObjects/account/register'
+import login from '~/cypress/support/pageObjects/account/login'
+import logout from '~/cypress/support/pageObjects/account/logout'
 
 describe('Wishlist', () => {
   /** @type {Base} */
@@ -14,10 +18,10 @@ describe('Wishlist', () => {
   let product = null
 
   /** @type {Account} */
-  let account = null
+  let accountCredentials = null
 
   before(() => {
-    account = new Account()
+    accountCredentials = new AccountCredentials()
   })
 
   beforeEach(() => {
@@ -61,17 +65,17 @@ describe('Wishlist', () => {
     product.visitRandom()
     product.addToWishlist()
 
-    account.register()
+    register.register(accountCredentials)
 
     product.visitRandom()
     product.addToWishlist()
 
-    account.logout()
+    logout.logout()
 
     product.visitRandom()
     product.addToWishlist()
 
-    account.login()
+    login.login(accountCredentials)
 
     base.gotoWishlist()
 
