@@ -2,7 +2,10 @@ import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/Base/expe
 import gotoWishlist from '~/cypress/support/pageObjects/Base/gotoWishlist'
 import Wishlist from '~/cypress/support/pageObjects/Wishlist'
 import Product from '~/cypress/support/pageObjects/Product'
-import Account from '~/cypress/support/pageObjects/Account'
+import AccountCredentials from '~/cypress/support/pageObjects/Account'
+import register from '~/cypress/support/pageObjects/account/register'
+import login from '~/cypress/support/pageObjects/account/login'
+import logout from '~/cypress/support/pageObjects/account/logout'
 
 describe('Wishlist', () => {
   /** @type {Wishlist} */
@@ -11,11 +14,11 @@ describe('Wishlist', () => {
   /** @type {Product} */
   let product = null
 
-  /** @type {Account} */
-  let account = null
+  /** @type {AccountCredentials} */
+  let accountCredentials = null
 
   before(() => {
-    account = new Account()
+    accountCredentials = new AccountCredentials()
   })
 
   beforeEach(() => {
@@ -58,17 +61,17 @@ describe('Wishlist', () => {
     product.visitRandom()
     product.addToWishlist()
 
-    account.register()
+    register.register(accountCredentials)
 
     product.visitRandom()
     product.addToWishlist()
 
-    account.logout()
+    logout.logout()
 
     product.visitRandom()
     product.addToWishlist()
 
-    account.login()
+    login.login(accountCredentials)
 
     gotoWishlist.gotoWishlist()
 
