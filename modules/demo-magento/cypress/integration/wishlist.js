@@ -2,7 +2,6 @@ import Base from '~/cypress/support/pageObjects/Base'
 import Wishlist from '~/cypress/support/pageObjects/Wishlist'
 import Product from '~/cypress/support/pageObjects/Product'
 import AccountCredentials from '~/cypress/support/pageObjects/account/AccountCredentials'
-
 import register from '~/cypress/support/pageObjects/account/register'
 import login from '~/cypress/support/pageObjects/account/login'
 import logout from '~/cypress/support/pageObjects/account/logout'
