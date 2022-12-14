@@ -7,11 +7,14 @@ interface ToProductType {
   ratingSummary: number
 }
 
-const ToProduct: Extension<ToProductType> = (ToProduct) => (data) => ({
-  ...ToProduct(data),
-  reviews: data.reviews?.items.map(ToProductReview) ?? [],
-  reviewCount: data.review_count ?? 0,
-  ratingSummary: data.rating_summary ?? 0,
-})
+const ToProduct: Extension<ToProductType> = (ToProduct) => (data) => {
+  const self = ToProduct(data)
+
+  self.reviews = data.reviews?.items.map(ToProductReview) ?? []
+  self.reviewCount = data.review_count ?? 0
+  self.ratingSummary = data.rating_summary ?? 0
+
+  return self
+}
 
 export default ToProduct

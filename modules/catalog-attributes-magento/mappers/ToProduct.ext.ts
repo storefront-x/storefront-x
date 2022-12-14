@@ -1,5 +1,4 @@
 import ToProductAttribute from '#ioc/mappers/ToProductAttribute'
-
 import Extension from '#ioc/types/base/Extension'
 
 interface Attributes {
