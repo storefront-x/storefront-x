@@ -29,7 +29,7 @@ jobs:
           node-version: 18
           cache: 'yarn'
         name: Build app
-      - run: yarn install
+      - run: yarn install --immutable --immutable-cache
       - run: yarn build --config ${{inputs.storefront-x-config}} --onlyBootstrap
       - id: set-test-chunks
         name: Set Chunks
@@ -55,7 +55,7 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
-      - run: yarn install
+      - run: yarn install --immutable --immutable-cache
       - run: yarn build --config ${{inputs.storefront-x-config}}
       - run: yarn serve &
       - run: yarn cypress run --browser chrome --spec $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
