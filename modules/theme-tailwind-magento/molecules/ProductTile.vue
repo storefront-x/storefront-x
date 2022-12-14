@@ -33,7 +33,7 @@
           :money="product.finalPrice"
           class="text-xl font-semibold text-neutral-600 mt-2 sm:mt-4 sm:text-center"
           :class="product.isOnSale ? 'mb-1' : 'mb-7'"
-          data-cy="product-price"
+          :data-cy="`product-price_val_${product.finalPrice.value}`"
         />
         <SfxMoney
           v-if="product.isOnSale"

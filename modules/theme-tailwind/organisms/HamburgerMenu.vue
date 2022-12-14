@@ -92,10 +92,11 @@
       </div>
     </SfxStoreSwitcher>
 
-    <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, setCurrency }">
+    <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, loadingCurrency, setCurrency }">
       <div class="flex items-center px-4 pb-4 mb-3 border-b-2 border-gray-50">
         <Dropdown
           link-like
+          :is-disabled="loadingCurrency"
           :title="currentCurrency?.code"
           class="text-gray-600 hover:text-gray-800"
           data-cy="currency-switcher"
