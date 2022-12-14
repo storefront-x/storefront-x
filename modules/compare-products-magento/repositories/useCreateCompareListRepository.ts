@@ -8,7 +8,7 @@ export default () => {
     const { data } = await magento.graphql(CreateCompareList())
     console.log('these are data from create compare list', data)
     return {
-      id: data.CreateCompareList?.uid ?? 0,
+      id: data.createCompareList?.uid ?? 0,
     }
   }
 }
