@@ -1,14 +1,17 @@
+import ToProductAttribute from '#ioc/mappers/ToProductAttribute'
 import Extension from '#ioc/types/base/Extension'
 import { computed } from 'vue'
 
-const useProduct: Extension<any> =
-  (useProduct) =>
-  (...args) => {
-    const product = useProduct(...args)
+interface Attributes {
+  attributes: ReturnType<typeof ToProductAttribute>[]
+}
 
-    product.attributes = computed(() => product.value.attributes || [])
+const useProduct: Extension<Attributes> = (useProduct) => (product) => {
+  const self = useProduct(product)
 
-    return product
-  }
+  self.attributes = computed(() => product.value.attributes)
+
+  return self
+}
 
 export default useProduct
