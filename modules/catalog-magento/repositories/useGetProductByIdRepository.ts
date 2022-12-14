@@ -16,9 +16,10 @@ export default () => {
       data: { products },
     } = await magento.graphql(
       ProductDetail().with({
-        urlKey: id,
+        id: id,
       }),
     )
+    console.log({ products })
 
     return {
       product: ToProduct(products?.items?.find((item: any) => item.url_key === id) || []),

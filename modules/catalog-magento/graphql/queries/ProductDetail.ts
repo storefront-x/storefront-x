@@ -4,11 +4,11 @@ import Product from '#ioc/graphql/fragments/Product'
 export default () =>
   query()
     .variables({
-      $urlKey: 'String!',
+      $id: 'String!',
     })
     .fields({
       products: field()
-        .args({ filter: { url_key: { eq: '$urlKey' } } })
+        .args({ filter: { id: { eq: '$id' } } })
         .fields({
           items: field({
             ...Product(),
