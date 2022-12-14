@@ -1,14 +1,14 @@
-export default function register() {
+export default function register(params = {}) {
   cy.visit('/sign-up').waitForSfx()
 
-  this.getFirstNameInput().type(this.firstName)
-  this.getLastNameInput().type(this.lastName)
-  this.getEmailInput().type(this.email)
-  this.getPasswordInput().type(this.password)
-  this.getPasswordConfirmationInput().type(this.password)
+  this.getFirstNameInput().type(params.firstName)
+  this.getLastNameInput().type(params.lastName)
+  this.getEmailInput().type(params.email)
+  this.getPasswordInput().type(params.password)
+  this.getPasswordConfirmationInput().type(params.password)
 
   this.getSignUpButton().click()
 
-  this.getMicroAccount().should('include.text', this.firstName)
-  this.getMicroAccount().should('include.text', this.lastName)
+  this.getMicroAccount().should('include.text', params.firstName)
+  this.getMicroAccount().should('include.text', params.lastName)
 }

@@ -6,5 +6,9 @@ export default class AccountCredentials {
     this.lastName = params.lastName ?? 'Testovič'
     this.email = params.emal ?? `tester+${uniqueNumber()}@testovic.cz`
     this.password = params.password ?? 'TestTest123$'
+    this.street = params.street ?? 'Testovací'
+    this.city = params.city ?? 'Brno'
+    this.zipcode = params.zipcode ?? '12345'
+    this.countryCode = params.countryCode ?? 'CZ'
   }
 }

@@ -2,7 +2,7 @@ import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/Base/expe
 import gotoWishlist from '~/cypress/support/pageObjects/Base/gotoWishlist'
 import Wishlist from '~/cypress/support/pageObjects/Wishlist'
 import Product from '~/cypress/support/pageObjects/Product'
-import AccountCredentials from '~/cypress/support/pageObjects/Account'
+import AccountCredentials from '~/cypress/support/pageObjects/account/accountCredentials'
 import register from '~/cypress/support/pageObjects/account/register'
 import login from '~/cypress/support/pageObjects/account/login'
 import logout from '~/cypress/support/pageObjects/account/logout'
