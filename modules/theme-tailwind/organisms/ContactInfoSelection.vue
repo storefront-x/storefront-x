@@ -2,7 +2,7 @@
   <div class="mt-10 border-t border-gray-200 pt-10">
     <h2 class="text-lg font-medium text-gray-900">{{ t('Contact information') }}</h2>
     <div v-if="isOpen">
-      <div v-if="customerAddresses?.addresses" class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+      <div v-if="customerAddresses" class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
         <CheckoutCustomerAddress
           v-for="customerAddress in customerAddresses?.addresses"
           :key="customerAddress.id"

@@ -8,7 +8,7 @@ import VUE_I18N_FALLBACK_WARN from '#ioc/config/VUE_I18N_FALLBACK_WARN'
 import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import messages from '@intlify/vite-plugin-vue-i18n/messages'
+import messages from '@intlify/unplugin-vue-i18n/messages'
 import i18nNumbers from '~/.sfx/i18n/numbers'
 import i18nDatetimes from '~/.sfx/i18n/datetimes'
 

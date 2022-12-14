@@ -20,4 +20,4 @@ jobs:
           node-version: 18
       - run: yarn install
       - run: yarn playwright install chromium
-      - run: yarn test:playwright
+      - run: yarn test:playwright --forbid-only

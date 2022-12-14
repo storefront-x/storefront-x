@@ -72,6 +72,7 @@ export default defineConfig({
           { text: 'Dotenv', link: '/general/dotenv' },
           { text: 'Lazy components', link: '/general/lazy-components' },
           { text: 'Functionalities', link: '/general/functionalities' },
+          { text: 'Redirecting', link: '/general/redirecting' },
           { text: 'Best practices', link: '/general/best-practices' },
           { text: 'FAQ', link: '/general/faq' },
         ],

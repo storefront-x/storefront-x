@@ -69,15 +69,17 @@ export default class Core {
       manifest,
       out: {},
     }
-
     try {
       await entry(ctx)
       for (const out of Object.values(ctx.out)) {
         template = await out(template)
       }
+      if (ctx.errorCaptured) {
+        throw ctx.errorCaptured
+      }
     } catch (e) {
-      if ('url' in e && 'status' in e) {
-        return res.status(e.status).redirect(e.url)
+      if (e.__typename === 'Redirect') {
+        return res.redirect(e.status, e.url)
       }
     }
 
