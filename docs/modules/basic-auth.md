@@ -2,11 +2,15 @@
 
 > `@storefront-x/basic-auth`
 
-This module provides basic-auth functionality. For example you want to guard under-construction site with login/pass for your testers and devs. This module has to be placed as the last one in your `storefront-x.config.js`. If you place any module after this one it will not be protected by basic-auth.
+This module provides basic-auth functionality. For example, if you want to guard under-construction site with login/pass for your testers and devs. This module has to be placed as the last one in your `storefront-x.config.js`. If you place any module after this one it will not be protected by basic-auth.
+
+:::info
+If you dont like visual look of basic-auth pages, you can override them in your module with `pages/basic-auth/$layout.vue` and `pages/basic-auth/index.vue`.
+:::
 
 ## `BASIC_AUTH` config
 
-This config contains allowed credentials as `login:pass`. In case you want to have more accounts in use its `login:pass|login1:pass1`.
+This config contains allowed credentials as `login:pass`. In case you want to have more accounts, use `login:pass|login1:pass1`.
 
 :::warning
 This config variable needs to be overrided because it does not contain any value by default!
