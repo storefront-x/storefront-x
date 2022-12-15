@@ -71,19 +71,25 @@ export default class Core {
     }
     try {
       await entry(ctx)
+
       for (const out of Object.values(ctx.out)) {
         template = await out(template)
       }
+
       if (ctx.errorCaptured) {
         throw ctx.errorCaptured
       }
+
+      return res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
     } catch (e) {
       if (e.__typename === 'Redirect') {
         return res.redirect(e.status, e.url)
+      } else {
+        console.error(e)
+
+        return res.status(500).set({ 'Content-Type': 'text/html' }).end(template)
       }
     }
-
-    return res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
   }
 
   /**
