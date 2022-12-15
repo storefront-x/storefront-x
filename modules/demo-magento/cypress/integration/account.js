@@ -13,16 +13,16 @@ describe('Account', () => {
   })
 
   it('supports registration', () => {
-    register.register(accountCredentials)
+    register(accountCredentials)
   })
 
   it('supports login', () => {
-    login.login(accountCredentials)
+    login(accountCredentials)
   })
 
   it('supports logout', () => {
-    login.login(accountCredentials)
-    logout.logout()
+    login(accountCredentials)
+    logout()
   })
 
   it('supports restricted access to account', () => {
