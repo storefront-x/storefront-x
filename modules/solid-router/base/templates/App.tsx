@@ -1,12 +1,19 @@
 import { Component } from 'solid-js'
 import { Router, useRoutes } from '@solidjs/router'
+import IS_SERVER from '#ioc/config/IS_SERVER'
 import { routes } from '~/.sfx/pages'
 
-const App: Component = () => {
+interface Props {
+  ctx: any
+}
+
+const App: Component<Props> = (props) => {
   const Routes = useRoutes(routes)
 
   return (
-    <Router>
+    <Router
+      url={IS_SERVER ? props.ctx.req.url : window.location.pathname + window.location.search + window.location.hash}
+    >
       <Routes />
     </Router>
   )

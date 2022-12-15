@@ -27,7 +27,7 @@ test('basic router', async ({ page }) => {
   )
 })
 
-test.only('non index page', async ({ page }) => {
+test('non index page', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -38,8 +38,11 @@ test.only('non index page', async ({ page }) => {
           'my-module',
           {
             pages: {
-              'a.jsx': `
-                export default () => <h1>Hello from A!</h1>
+              'index.jsx': `
+                export default () => <h1>index page</h1>
+              `,
+              'test.jsx': `
+                export default () => <h1>test page</h1>
               `,
             },
           },
@@ -47,8 +50,8 @@ test.only('non index page', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/a', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello from A!')
+      await page.goto(url + '/test', { waitUntil: 'networkidle' })
+      await expect(await page.content()).toContain('test page')
     },
   )
 })

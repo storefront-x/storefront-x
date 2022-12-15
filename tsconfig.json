@@ -22,6 +22,6 @@
     },
     "types": ["node", "cypress", "vitest/globals"]
   },
-  "include": ["modules/**/*", "cypress/**/*", ".sfx/**/*"],
+  "include": ["modules/**/*", "local_modules/**/*", "cypress/**/*", ".sfx/**/*"],
   "exclude": [".sfx/vite"]
 }
