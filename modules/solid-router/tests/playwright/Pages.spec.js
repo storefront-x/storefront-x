@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('basic router', async ({ page }) => {
+test('basic router', async ({ page }) => {
   await makeProject(
     {
       modules: [
