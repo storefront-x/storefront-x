@@ -1,2 +1,1 @@
-// Format: ip|ip
-export default []
+export default ''
