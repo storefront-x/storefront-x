@@ -23,7 +23,7 @@ import injectProduct from '#ioc/composables/injectProduct'
 import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
-import useRoute from '#ioc/composables/useRoute'
+
 import useRouter from '#ioc/composables/useRouter'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import { ref, computed } from 'vue'
@@ -39,7 +39,7 @@ const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
 const router = useRouter()
-const route = useRoute()
+
 const localePath = useLocalePath()
 
 const isLoading = ref(false)
