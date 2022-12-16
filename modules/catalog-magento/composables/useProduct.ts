@@ -62,7 +62,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const reviews = computed(() => product.value.reviews ?? [])
 
-  const isSimpleProduct = computed(() => product.value.__typename === 'SimpleProduct')
+  const isSimpleProduct = computed(() => product.value.__typename === 'SimpleProduct' && product.value.options === null)
 
   const isConfigurableProduct = computed(() => product.value.__typename === 'ConfigurableProduct')
 

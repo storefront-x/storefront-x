@@ -1,6 +1,6 @@
 import query from '#ioc/graphql/query'
 import field from '#ioc/graphql/field'
-import ProductSimple from '#ioc/graphql/fragments/ProductSimple'
+import ProductInCategory from '#ioc/graphql/fragments/ProductInCategory'
 import Aggregation from '#ioc/graphql/fragments/Aggregation'
 
 export default () =>
@@ -47,7 +47,7 @@ export default () =>
         .fields({
           total_count: field(),
           items: field({
-            ...ProductSimple(),
+            ...ProductInCategory(),
           }),
         }),
       aggregations: field('products')
