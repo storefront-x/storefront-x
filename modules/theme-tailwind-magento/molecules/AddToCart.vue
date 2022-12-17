@@ -39,7 +39,6 @@ const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
 const router = useRouter()
-
 const localePath = useLocalePath()
 
 const isLoading = ref(false)
