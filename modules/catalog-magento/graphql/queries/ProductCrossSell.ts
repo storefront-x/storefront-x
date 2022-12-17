@@ -16,7 +16,7 @@ export default () =>
           total_count: field(),
           items: field({
             crosssell_products: field({
-              ...ProductInCategory(),
+              ...ProductInCategory().inline(),
             }),
           }),
         }),
