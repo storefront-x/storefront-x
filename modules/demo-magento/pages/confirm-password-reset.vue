@@ -4,8 +4,8 @@
       {{ t('Reset password') }}
     </Heading>
 
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="bg-gray-50 py-8 px-4 sm:rounded-lg sm:px-10">
+    <div class="mt-8 bg-gray-50 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="py-8 px-4 sm:rounded-lg sm:px-10">
         <SfxForm class="space-y-6" @submit="updatePassword">
           <FormInput name="email" type="email" :label="t('Email')" validators="required|email" />
 
@@ -17,7 +17,13 @@
           />
 
           <div class="flex justify-end">
-            <Button type="submit" color="primary" :loading="isPasswordLoading" :disabled="isPasswordLoading">
+            <Button
+              type="submit"
+              color="primary"
+              class="w-full"
+              :loading="isPasswordLoading"
+              :disabled="isPasswordLoading"
+            >
               {{ t('Change password') }}
             </Button>
           </div>
