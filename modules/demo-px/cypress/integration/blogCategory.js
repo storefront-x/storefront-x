@@ -1,20 +1,21 @@
-import BlogCategory from '~/cypress/support/pageObjects/BlogCategory'
+import getBlogTitle from '~/cypress/support/pageObjects/blogCategory/getBlogTitle'
+import getBlogPostTiles from '~/cypress/support/pageObjects/blogCategory/getBlogPostTiles'
+import visitRandom from '~/cypress/support/pageObjects/blogCategory/visitRandom'
 
 describe('Blog category', () => {
-  /** @type {BlogCategory} */
-  let blogCategory = null
-
   beforeEach(() => {
-    blogCategory = new BlogCategory()
-
-    blogCategory.visitRandom()
+    visitRandom().as('blogCategory')
   })
 
   it('renders its name', () => {
-    blogCategory.getTitle().will('include.text', () => blogCategory.data.name)
+    cy.get('@blogCategory').then((blogCategory) => {
+      getBlogTitle().will('include.text', () => blogCategory.data.name)
+    })
   })
 
   it('has blog posts', () => {
-    blogCategory.getBlogPostTiles().will('have.length.at.most', () => blogCategory.data.post_count)
+    cy.get('@blogCategory').then((blogCategory) => {
+      getBlogPostTiles().will('have.length.at.most', () => blogCategory.data.post_count)
+    })
   })
 })
