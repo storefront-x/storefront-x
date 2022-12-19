@@ -17,11 +17,6 @@ export default (name = 'configurableProduct') =>
       }),
       product_id: field(),
     }),
-    configurable_product_options_selection: field({
-      variant: field({
-        sku: field(),
-      }),
-    }),
     variants: field({
       product: field({
         id: field(),
