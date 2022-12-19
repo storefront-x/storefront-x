@@ -1,11 +1,9 @@
-import Base from '~/cypress/support/pageObjects/Base'
+import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
+
 import Category from '~/cypress/support/pageObjects/Category'
 import Listing from '~/cypress/support/pageObjects/Listing'
 
 describe('Category', () => {
-  /** @type {Base} */
-  let base
-
   /** @type {Category} */
   let category
 
@@ -13,7 +11,6 @@ describe('Category', () => {
   let listing
 
   beforeEach(() => {
-    base = new Base()
     category = new Category()
     listing = new Listing()
 
@@ -41,6 +38,6 @@ describe('Category', () => {
   it('allows adding simple products from category detail', () => {
     listing.getFirstAddToCart({ product: 'simple' }).click()
 
-    base.expectMicrocartQuantity(1)
+    expectMicrocartQuantity(1)
   })
 })

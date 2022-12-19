@@ -22,7 +22,7 @@ describe('Account', () => {
 
   it('supports logout', () => {
     login(accountCredentials)
-    logout()
+    logout(accountCredentials)
   })
 
   it('supports restricted access to account', () => {

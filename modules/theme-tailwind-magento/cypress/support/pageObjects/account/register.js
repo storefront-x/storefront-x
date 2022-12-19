@@ -1,14 +1,22 @@
+import getEmailInput from './getEmailInput'
+import getPasswordInput from './getPasswordInput'
+import getFirstNameInput from './getFirstNameInput'
+import getMicroAccount from './getMicroAccount'
+import getLastNameInput from './getLastNameInput'
+import getPasswordConfirmationInput from './getPasswordConfirmationInput'
+import getSignUpButton from './getSignUpButton'
+
 export default function register(params = {}) {
   cy.visit('/sign-up').waitForSfx()
 
-  this.getFirstNameInput().type(params.firstName)
-  this.getLastNameInput().type(params.lastName)
-  this.getEmailInput().type(params.email)
-  this.getPasswordInput().type(params.password)
-  this.getPasswordConfirmationInput().type(params.password)
+  getFirstNameInput().type(params.firstName)
+  getLastNameInput().type(params.lastName)
+  getEmailInput().type(params.email)
+  getPasswordInput().type(params.password)
+  getPasswordConfirmationInput().type(params.password)
 
-  this.getSignUpButton().click()
+  getSignUpButton().click()
 
-  this.getMicroAccount().should('include.text', params.firstName)
-  this.getMicroAccount().should('include.text', params.lastName)
+  getMicroAccount().should('include.text', params.firstName)
+  getMicroAccount().should('include.text', params.lastName)
 }

@@ -1,8 +1,11 @@
-export default function logout() {
+import getLogoutButton from './getLogoutButton'
+import getMicroAccount from './getMicroAccount'
+
+export default function logout(params = {}) {
   cy.visit('/').waitForSfx()
 
-  this.getLogoutButton().click()
+  getLogoutButton().click()
 
-  this.getMicroAccount().should('not.include.text', this.firstName)
-  this.getMicroAccount().should('not.include.text', this.lastName)
+  getMicroAccount().should('not.include.text', params.firstName ?? 'Karel')
+  getMicroAccount().should('not.include.text', params.lastName ?? 'Varel')
 }
