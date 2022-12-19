@@ -1,8 +1,4 @@
 import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
-<<<<<<< HEAD
-=======
-
->>>>>>> 8f6b357 (Add refactor for Base module)
 import Category from '~/cypress/support/pageObjects/Category'
 import Listing from '~/cypress/support/pageObjects/Listing'
 
@@ -41,10 +37,6 @@ describe('Category', () => {
   it('allows adding simple products from category detail', () => {
     listing.getFirstAddToCart({ product: 'simple' }).click()
 
-<<<<<<< HEAD
-    expectMicrocartQuantity.expectMicrocartQuantity(1)
-=======
     expectMicrocartQuantity(1)
->>>>>>> 8f6b357 (Add refactor for Base module)
   })
 })
