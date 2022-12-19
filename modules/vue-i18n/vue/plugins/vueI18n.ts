@@ -8,18 +8,17 @@ import VUE_I18N_FALLBACK_WARN from '#ioc/config/VUE_I18N_FALLBACK_WARN'
 import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import i18nMessages from '~/.sfx/i18n/messages'
+import messages from '@intlify/unplugin-vue-i18n/messages'
 import i18nNumbers from '~/.sfx/i18n/numbers'
 import i18nDatetimes from '~/.sfx/i18n/datetimes'
 
 export default async (app: App, ctx: any) => {
   const locale = getLocale(ctx)
-  const messages = buildMessages()
 
   const i18n = createI18n({
     locale: locale,
     fallbackLocale: VUE_I18N_LOCALES[0].locale,
-    messages: messages,
+    messages,
     legacy: VUE_I18N_LEGACY,
     fallbackFormat: VUE_I18N_FALLBACK_FORMAT,
     missingWarn: VUE_I18N_MISSING_WARN,
@@ -83,14 +82,4 @@ function getLocale(ctx: any): string {
   }
 
   return VUE_I18N_LOCALES[0].locale
-}
-
-function buildMessages() {
-  const messages: any = {}
-
-  for (const locale of VUE_I18N_LOCALES) {
-    messages[locale.locale] = i18nMessages[locale.locale] ?? {}
-  }
-
-  return messages
 }

@@ -69,14 +69,27 @@ export default class Core {
       manifest,
       out: {},
     }
+    try {
+      await entry(ctx)
 
-    await entry(ctx)
+      for (const out of Object.values(ctx.out)) {
+        template = await out(template)
+      }
 
-    for (const out of Object.values(ctx.out)) {
-      template = await out(template)
+      if (ctx.errorCaptured) {
+        throw ctx.errorCaptured
+      }
+
+      return res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
+    } catch (e) {
+      if (e.__typename === 'Redirect') {
+        return res.redirect(e.status, e.url)
+      } else {
+        console.error(e)
+
+        return res.status(500).set({ 'Content-Type': 'text/html' }).end(template)
+      }
     }
-
-    return res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
   }
 
   /**
@@ -138,7 +151,11 @@ export default class Core {
     await fs.rm(this.buildDir, { recursive: true, force: true })
   }
 
-  async close() {}
+  async close() {
+    for (const closeHandler of this.closeHandlers) {
+      await closeHandler()
+    }
+  }
 
   /**
    * @param {() => Promise<void>} closeHandler

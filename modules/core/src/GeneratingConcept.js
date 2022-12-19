@@ -144,6 +144,7 @@ export default {
   get generateMultipleFiles() {
     return false
   }
+
   dst() {
     if (this.generateMultipleFiles) {
       return path.join(this.core.buildDir, path.dirname(this.directory), path.basename(this.directory))

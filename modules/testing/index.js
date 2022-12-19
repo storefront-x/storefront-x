@@ -25,12 +25,6 @@ export const makeProject = async (config, callback) => {
       }),
       vite: {
         server: {
-          watch: {
-            // During tests we edit the files too fast and sometimes chokidar
-            // misses change events, so enforce polling for consistency
-            usePolling: true,
-            interval: 100,
-          },
           hmr: {
             port: hmrPort,
           },
@@ -49,25 +43,56 @@ export const makeProject = async (config, callback) => {
     })
 
     const url = `http://localhost:${serverPort}`
+
     try {
       await callback({
         url,
         writeFile: async (_path, _content) => {
-          await writeFile(path.join(dir, _path), _content)
-          await new Promise((resolve) => setTimeout(resolve, 250)) // TODO: Remove timeout
+          try {
+            await writeFile(path.join(dir, _path), _content)
+            await new Promise((resolve) => setTimeout(resolve, 250)) // TODO: Remove timeout
+          } catch (e) {
+            console.error(e)
+          }
         },
         rm: async (_path) => {
-          await fs.rm(path.join(dir, _path), { recursive: true, force: true })
-          await new Promise((resolve) => setTimeout(resolve, 250)) // TODO: Remove timeout
+          try {
+            await fs.rm(path.join(dir, _path), { recursive: true, force: true })
+            await new Promise((resolve) => setTimeout(resolve, 250)) // TODO: Remove timeout
+          } catch (e) {
+            console.error(e)
+          }
         },
       })
     } finally {
-      await server.close()
       await dev.close()
+      await server.close()
     }
   })
 }
 
+export const wrapConsole = async (callback) => {
+  const errors = []
+  const warnings = []
+
+  const oldError = console.error
+  const oldWarn = console.warn
+
+  console.error = (e) => {
+    errors.push(e.toString())
+  }
+
+  console.warn = (e) => {
+    warnings.push(e.toString())
+  }
+
+  await callback()
+
+  console.error = oldError
+  console.warn = oldWarn
+
+  return { errors: errors.join('\n'), warnings: warnings.join('\n') }
+}
 const makeTempDir = async (fn) => {
   const dir = await fs.mkdtemp('.test/temp-')
 

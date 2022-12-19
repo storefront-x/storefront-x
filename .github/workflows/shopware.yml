@@ -23,3 +23,13 @@ jobs:
       storefront-x-config: storefront-x.shopware.config.js
       number-of-tests-per-run: 3
       target-directory: cypress/integration
+
+  lighthouse:
+    uses: ./.github/workflows/lighthouse.yml
+    with:
+      storefront-x-config: storefront-x.shopware.config.js
+      product-detail-page: 3m-7000014557-display-privacy-filters-frameless-display-privacy-filter-43.2-cm-17/VNX7095
+      category-page: Computers-Peripherals
+
+
+

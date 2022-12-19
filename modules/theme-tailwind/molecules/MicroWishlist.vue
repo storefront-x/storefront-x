@@ -9,11 +9,11 @@
       <OutlineHeart class="text-primary-500" />
     </div>
     <span
-      v-if="wishlist.wishlistQuantity"
+      v-if="wishlistStore.items.length"
       class="absolute top-0 right-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800"
       data-cy="micro-wishlist-quantity"
     >
-      {{ wishlist.wishlistQuantity }}
+      {{ wishlistStore.items.length }}
     </span>
   </Link>
 </template>
@@ -23,13 +23,12 @@ import Link from '#ioc/atoms/Link'
 import OutlineHeart from '#ioc/icons/OutlineHeart'
 import useI18n from '#ioc/composables/useI18n'
 import useLocalePath from '#ioc/composables/useLocalePath'
-import useWishlist from '#ioc/composables/useWishlist'
+import useWishlistStore from '#ioc/stores/useWishlistStore'
 
 const { t } = useI18n()
 
 const localePath = useLocalePath()
-
-const wishlist = useWishlist()
+const wishlistStore = useWishlistStore()
 </script>
 
 <i18n lang="yaml">

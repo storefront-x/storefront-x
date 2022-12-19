@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/braintree-magento",
-  "version": "1.0.3",
+  "version": "1.4.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

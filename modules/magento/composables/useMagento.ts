@@ -1,34 +1,36 @@
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
 import MAGENTO_GRAPHQL_ENDPOINT from '#ioc/config/MAGENTO_GRAPHQL_ENDPOINT'
-import useCookies from '#ioc/composables/useCookies'
-import MAGENTO_CUSTOMER_COOKIE_NAME from '#ioc/config/MAGENTO_CUSTOMER_COOKIE_NAME'
 import objectToQuery from '#ioc/utils/url/objectToQuery'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import useStoreStore from '#ioc/stores/useStoreStore'
 import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 import GraphQLError from '#ioc/errors/GraphQLError'
+import errorHandlers from '~/.sfx/magento/errorHandlers'
+import useCustomerMagentoStore from '#ioc/stores/useCustomerMagentoStore'
 
 interface Options {
+  headers?: object
   errorHandler?: (err: any) => Promise<void>
 }
 
 const URL = IS_SERVER ? MAGENTO_URL : '/_magento'
 
 export default () => {
-  const cookie = useCookies()
   const storeStore = useStoreStore()
+  const customerMagento = useCustomerMagentoStore()
   const currentLocale = useCurrentLocale()
+  const bindedErrorHandlers = Object.values(errorHandlers).map((e) => e())
 
   const headers = () => {
     const store = currentLocale.value.magentoStore
-    const token = cookie.get(MAGENTO_CUSTOMER_COOKIE_NAME)
+    const customerId = customerMagento.customerId
     const selectedCurrencyCode = storeStore.currency?.code ?? ''
 
     return {
       'Content-Type': 'application/json',
       ...(store && { Store: store }),
-      ...(token && { Authorization: `Bearer ${token}` }),
+      ...(customerId && { Authorization: `Bearer ${customerId}` }),
       ...(selectedCurrencyCode && { 'Content-Currency': selectedCurrencyCode }),
     }
   }
@@ -51,6 +53,10 @@ export default () => {
           if (opts.errorHandler) {
             await opts.errorHandler(error)
           } else {
+            for (const errorHandler of bindedErrorHandlers) {
+              await errorHandler(error)
+            }
+
             throw new GraphQLError(error)
           }
         }
@@ -67,7 +73,7 @@ export default () => {
 
       return await _fetch(`${URL + MAGENTO_GRAPHQL_ENDPOINT}?${body}`, {
         method: 'GET',
-        headers: headers(),
+        headers: { ...headers(), ...opts.headers },
       })
     } else {
       const body = JSON.stringify({
@@ -77,7 +83,7 @@ export default () => {
 
       return await _fetch(URL + MAGENTO_GRAPHQL_ENDPOINT, {
         method: 'POST',
-        headers: headers(),
+        headers: { ...headers(), ...opts.headers },
         body,
       })
     }

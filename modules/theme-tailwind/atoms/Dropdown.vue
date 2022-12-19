@@ -2,6 +2,7 @@
   <div class="relative inline-block">
     <div v-click-outside="close" class="flex">
       <button
+        :disabled="isDisabled"
         type="button"
         class="group inline-flex justify-center items-center"
         :class="{ 'hover:underline': linkLike, 'font-medium': !linkLike }"
@@ -34,7 +35,7 @@
         class="origin-top-right absolute mt-2 py-1 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
         :class="toLeft ? 'right-0' : 'left-0'"
       >
-        <slot />
+        <slot v-bind="{ close }" />
       </div>
     </Transition>
   </div>
@@ -56,6 +57,10 @@ defineProps({
     default: false,
   },
   linkLike: {
+    type: Boolean,
+    default: false,
+  },
+  isDisabled: {
     type: Boolean,
     default: false,
   },

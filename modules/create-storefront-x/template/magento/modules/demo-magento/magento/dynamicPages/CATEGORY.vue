@@ -13,8 +13,8 @@
 import CategoryDetail from '#ioc/templates/CategoryDetail'
 import useGetCategoryById from '#ioc/services/useGetCategoryById'
 import useRoute from '#ioc/composables/useRoute'
-import useAsyncData from '#ioc/composables/useAsyncData'
 import ensureArray from '#ioc/utils/array/ensureArray'
+import useResource from '#ioc/composables/useResource'
 import { defineAsyncComponent } from 'vue'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
@@ -31,14 +31,24 @@ const props = defineProps({
 })
 
 const route = useRoute()
-
 const getCategoryById = useGetCategoryById()
 
-const { data } = await useAsyncData('category', () =>
-  getCategoryById(props.id, {
+const [data] = await useResource(
+  () => ({
+    id: props.id,
     page: Number(route.query.page ?? 1),
+    pages: Number(route.query.pages ?? 1),
     sort: route.query.sort as string,
     filter: ensureArray(route.query.filter),
+    pageSize: Number(route.query.pageSize),
   }),
+  (params) =>
+    getCategoryById(params.id, {
+      page: params.page,
+      pages: params.pages,
+      sort: params.sort,
+      filter: params.filter,
+      pageSize: params.pageSize,
+    }),
 )
 </script>

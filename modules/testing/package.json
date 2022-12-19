@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/testing",
-  "version": "1.0.1",
+  "version": "1.4.0",
   "license": "MIT",
   "type": "module",
   "main": "./index.js",

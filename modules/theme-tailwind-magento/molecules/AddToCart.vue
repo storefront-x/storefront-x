@@ -34,12 +34,9 @@ import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
 import { ref } from 'vue'
-import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import ConfigurableOptionsModal from '#ioc/organisms/ConfigurableOptionsModal'
 import BundleOptionsModal from '#ioc/organisms/BundleOptionsModal'
 import ProductOptionsModal from '#ioc/organisms/ProductOptionsModal'
-
-const showErrorNotification = useShowErrorNotification()
 
 const props = defineProps({
   quantity: {
@@ -91,8 +88,6 @@ const onAddToCart = async () => {
     product.options = []
     delete product.bundle
     product.configuration = {}
-  } catch (e: any) {
-    showErrorNotification(e)
   } finally {
     loading.value = false
     isConfigurationModalOpen.value = false

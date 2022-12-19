@@ -13,8 +13,8 @@ export default () => {
     const { data } = response
 
     return {
-      productUrlSuffix: data.storeConfig.product_url_suffix,
-      categoryUrlSuffix: data.storeConfig.category_url_suffix,
+      productUrlSuffix: data.storeConfig.product_url_suffix ?? '',
+      categoryUrlSuffix: data.storeConfig.category_url_suffix ?? '',
     }
   }
 }

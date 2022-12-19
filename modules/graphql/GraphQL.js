@@ -389,12 +389,3 @@ export class Fragment extends Gql {
     return `...${this._name}`
   }
 }
-
-export class GraphQLError extends Error {
-  constructor(error) {
-    super(error.message)
-
-    this.extensions = error.extensions
-    this.locations = error.locations
-  }
-}

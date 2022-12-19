@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import { renderHeadToString } from '@vueuse/head'
 
 export const after = async (app: App, ctx: any) => {
-  const rendered = renderHeadToString(ctx.$head)
+  const rendered = await renderHeadToString(ctx.$head)
 
   ctx.out.head = (html: string) =>
     html

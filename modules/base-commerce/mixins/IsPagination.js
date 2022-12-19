@@ -28,15 +28,15 @@ export default {
     },
 
     nextPage() {
-      return this.currentPage + (Number(this.$route.query.pages) || 1)
+      return this.currentPage + 1
     },
 
     previousPage() {
-      return this.currentPage - (Number(this.$route.query.pages) || 1)
+      return this.currentPage - 1
     },
 
     lastLoadedPage() {
-      return this.currentPage + ((Number(this.$route.query.pages) || 1) - 1)
+      return this.currentPage || 1
     },
 
     firstPage() {

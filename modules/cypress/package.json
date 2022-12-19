@@ -1,12 +1,12 @@
 {
   "name": "@storefront-x/cypress",
-  "version": "1.0.1",
+  "version": "1.4.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "cypress-vite": "^1.2.0"
+    "cypress-vite": "^1.2.1"
   }
 }

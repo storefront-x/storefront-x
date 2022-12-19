@@ -3,7 +3,7 @@ export default {
     '@storefront-x/base',
 
     '@storefront-x/vue',
-    '@storefront-x/vue-router',
+    '@storefront-x/vue-router-simple',
     '@storefront-x/vue-head',
     '@storefront-x/vue-i18n',
     '@storefront-x/vue-pinia',
@@ -12,6 +12,7 @@ export default {
     '@storefront-x/atomic-design',
     '@storefront-x/graphql',
     '@storefront-x/cypress',
+    '@storefront-x/schema-org',
 
     '@storefront-x/blog',
     '@storefront-x/braintree',
@@ -40,6 +41,7 @@ export default {
     '@storefront-x/checkout-magento',
     '@storefront-x/cms-magento',
     '@storefront-x/customer-magento',
+    '@storefront-x/catalog-attributes-magento',
     '@storefront-x/free-shipping-magento',
     '@storefront-x/multicurrency-magento',
     '@storefront-x/product-reviews-magento',

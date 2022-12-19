@@ -217,6 +217,15 @@ const { data } = await useAsyncData('todo', async () => {
 
 Wrapper around the [`useCookies`](https://vueuse.org/integrations/usecookies/) composable from the [VueUse](https://vueuse.org) library.
 
+:::warning
+It is recomended to set cookie with path like this
+
+```javascript
+cookies.set('msg', 'Hello, World!', { path: '/' })
+```
+
+:::
+
 ### Example
 
 ```vue

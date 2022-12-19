@@ -4,6 +4,7 @@ import isEmail from '#ioc/utils/validation/isEmail'
 describe('validation/isEmail', () => {
   it('email is valid', () => {
     expect(isEmail('test@testing.cz')).toBe(true)
+    expect(isEmail('a+a@neco.zz')).toBe(true)
     expect(isEmail('example-indeed@strange-example.com')).toBe(true)
     expect(isEmail('332.joe-doe@ma432-CK.yest')).toBe(true)
   })
