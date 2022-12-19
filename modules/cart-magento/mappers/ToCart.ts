@@ -1,10 +1,12 @@
 import ToCartItem from '#ioc/mappers/ToCartItem'
 import ToCartPrices from '#ioc/mappers/ToCartPrices'
+import ToCartCoupon from '#ioc/mappers/ToCartCoupon'
+import ToChildSku from '#ioc/mappers/ToChildSku'
 
 export default (data: any) => ({
   id: data.id as string,
   items: data.items.map(ToCartItem),
   coupons: [],
   prices: ToCartPrices(data.prices),
-  variantSku: data?.variant?.sku,
+  childItems: data?.child_skus?.map(ToChildSku) ?? [],
 })

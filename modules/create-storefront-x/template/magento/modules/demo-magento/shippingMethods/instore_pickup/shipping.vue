@@ -57,7 +57,7 @@ const getPickupLocations = useGetPickupLocationsRepository()
 const confirmShippingAddress = useConfirmShippingAddress()
 const confirmShippingMethod = useConfirmShippingMethod()
 
-const { data } = await useAsyncData('pickupLocations', () => getPickupLocations(cart.items))
+const { data } = await useAsyncData('pickupLocations', () => getPickupLocations(cart.childItems))
 
 const pickupLocations = computed(() => data.value.pickupLocations)
 

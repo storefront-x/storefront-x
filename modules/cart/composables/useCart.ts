@@ -24,6 +24,10 @@ export default () => {
 
   const discounts = computed(() => cartStore.cart?.prices.discounts ?? [])
 
+  const coupons = computed(() => cartStore.cart?.coupons ?? [])
+
+  const childItems = computed(() => cartStore?.cart?.childItems ?? [])
+
   return reactive({
     items,
     itemsTotalQuantity,
@@ -31,5 +35,7 @@ export default () => {
     subtotalIncludingTax,
     taxes,
     discounts,
+    coupons,
+    childItems,
   })
 }

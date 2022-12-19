@@ -2,12 +2,16 @@ import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
 import CartItem from '#ioc/graphql/fragments/CartItem'
 import Money from '#ioc/graphql/fragments/Money'
+import ChildSku from '#ioc/graphql/fragments/ChildSku'
 
 export default (name = 'cart') =>
   fragment(name, 'Cart')
     .cantBeCached()
     .fields({
       id: field(),
+      child_skus: field({
+        ...ChildSku(),
+      }),
       items: field({
         ...CartItem(),
       }),
