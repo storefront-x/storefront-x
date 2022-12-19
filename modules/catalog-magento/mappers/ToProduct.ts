@@ -34,7 +34,6 @@ export default (data: any) => ({
   configurableOptions: (data.configurable_options ?? []).map(ToConfigurableOption),
   configurableOptionsCount: data.configurable_options?.length,
   variants: (data.variants ?? []).map(ToVariant),
-  variant: data?.variant?.map(ToVariant),
   options: data.options?.map(ToOptions),
   groupedItems: data.items?.map(ToGroupedItem),
 })
