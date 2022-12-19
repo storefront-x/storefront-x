@@ -1,6 +1,8 @@
 import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
 import Money from '#ioc/graphql/fragments/Money'
+import CustomizableOptionInterface from '#ioc/graphql/fragments/CustomizableOptionInterface'
+import on from '#ioc/graphql/on'
 
 export default (name = 'ProductInCategory') =>
   fragment(name, 'ProductInterface', {
@@ -22,5 +24,10 @@ export default (name = 'ProductInCategory') =>
     }),
     thumbnail: field({
       url: field(),
+    }),
+    ...on('SimpleProduct', {
+      options: field({
+        ...CustomizableOptionInterface(),
+      }),
     }),
   })
