@@ -1,25 +1,24 @@
+import visitCategory from '~/cypress/support/pageObjects/category/visitCategory'
 import continueShopping from '~/cypress/support/pageObjects/base/continueShopping'
 import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
+import getCategoryTitle from '~/cypress/support/pageObjects/base/getCategoryTitle'
 
-import Category from '~/cypress/support/pageObjects/Category'
 import Listing from '~/cypress/support/pageObjects/Listing'
 
 describe('Category', () => {
-  /** @type {Category} */
-  let category
-
   /** @type {Listing} */
   let listing
 
   beforeEach(() => {
-    category = new Category()
     listing = new Listing()
 
-    category.visit('Office')
+    visitCategory('Office').as('category')
   })
 
   it('contains category title', () => {
-    category.getTitle().will('include.text', () => category.name)
+    cy.get('@category').then((category) => {
+      getCategoryTitle().will('include.text', () => category.name)
+    })
   })
 
   it('can be sorted by prices in ascending order', () => {
