@@ -5,7 +5,7 @@
     </Heading>
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="bg-gray-50 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <div class="bg-gray-50 py-8 px-4 sm:rounded-lg sm:px-10">
         <SfxForm class="space-y-6" @submit="onSubmit">
           <FormInput
             name="email"
