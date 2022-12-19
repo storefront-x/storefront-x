@@ -1,28 +1,39 @@
 <template>
   <div v-click-outside="close" :class="{ hidden: !cartStore.isMiniCartVisible }">
-    <div aria-live="assertive" class="absolute max-w-2xl px-4 z-50 inset-y-28 right-0">
+    <div aria-live="assertive" class="absolute max-w-lg px-4 z-50 inset-y-28 right-0">
       <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
-        <ul role="list" class="divide-y divide-gray-200">
-          <CartItemProvider v-for="cartItem in cart.items.slice(0, 4)" :key="cartItem.id" :cart-item="cartItem">
-            <MiniCartItem />
-          </CartItemProvider>
-          <li v-if="cart.items.length > 4" class="flex flex-col">
-            <Heading :level="3" class="text-center">{{ t('moreItemsInMiniCart') }}</Heading>
-          </li>
-          <li v-if="cart.items.length === 0" class="flex flex-col px-6">
-            <Heading :level="3" class="text-center">{{ t('emptyCart') }}</Heading>
-          </li>
-        </ul>
-        <dl v-if="cart.items.length" class="border-gray-200 py-6 px-4 space-y-6 sm:px-6">
-          <div class="flex items-center justify-between border-gray-200 pt-6">
-            <Link :to="localePath('checkout')" class="relative pl-2 text-gray-400 hover:text-gray-500">
-              <Button color="primary">
-                <span>{{ t('cartDetails') }}</span>
-              </Button>
-            </Link>
-            <SfxMoney :money="cart.subtotalIncludingTax" el="dd" class="text-lg font-bold text-gray-900" />
+        <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+          <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+            <div class="mt-0">
+              <div class="flow-root">
+                <ul role="list" class="-my-6 divide-y divide-gray-200 p-0">
+                  <CartItemProvider v-for="cartItem in cart.items.slice(0, 4)" :key="cartItem.id" :cart-item="cartItem">
+                    <MiniCartItem />
+                  </CartItemProvider>
+                  <li v-if="cart.items.length > 4" class="flex flex-col">
+                    <Heading :level="3" class="text-center my-4 p-0">{{
+                      t('moreItemsInMiniCart', [cart.items.length])
+                    }}</Heading>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </dl>
+
+          <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
+            <div class="flex justify-between text-base font-medium text-gray-900 items-center">
+              <p>Subtotal</p>
+              <SfxMoney :money="cart.subtotalIncludingTax" el="dd" class="text-lg font-bold text-gray-900" />
+            </div>
+            <div class="mt-3">
+              <Link :to="localePath('checkout')">
+                <Button color="primary" class="w-full">
+                  <span>{{ t('cartDetails') }}</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -67,10 +78,10 @@ watchEffect(() => {
 <i18n lang="yaml">
 en-US:
   cartDetails: Checkout
-  moreItemsInMiniCart: To see all your items go to Checkout
+  moreItemsInMiniCart: To see all ({0}) your items go to Checkout
   emptyCart: Your cart is empty
 cs-CZ:
   cartDetails: Detaily kosiku
-  moreItemsInMiniCart: Všechny produkty uvidíte v detailu košíku
+  moreItemsInMiniCart: Všechny ({0}) produkty uvidíte v detailu košíku
   emptyCart: Váš košík je prázdný
 </i18n>
