@@ -26,11 +26,11 @@ test('handleRequest to catch error and return status 500', async () => {
       ],
     },
     async ({ url }) => {
-      const { errors } = await wrapConsole(async () => {
+      await wrapConsole(async () => {
         const response = await fetch(url, { redirect: 'manual' })
         expect(response.status).toEqual(500)
+        expect(await response.text()).toContain('test error') // in dev mode, error message is displayed in the error page
       })
-      expect(errors).toContain('test error')
     },
   )
 })
