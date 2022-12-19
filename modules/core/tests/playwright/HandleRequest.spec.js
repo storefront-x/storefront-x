@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject, wrapConsole } from '@storefront-x/testing'
 
-test.only('handleRequest to catch error and return status 500', async () => {
+test('handleRequest to catch error and return status 500', async () => {
   await makeProject(
     {
       modules: [
