@@ -7,7 +7,7 @@ export default () => {
   const magento = useMagento()
 
   return async (childItems: ReturnType<typeof ToChildSku>[]) => {
-    const productsInfo = childItems.map((cartItem) => ({ sku: cartItem.sku }))
+    const productsInfo = childItems.map((childItem) => ({ sku: childItem.sku }))
 
     const { data } = await magento.graphql(GetPickupLocations().with({ productsInfo }))
 
