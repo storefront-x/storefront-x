@@ -4,7 +4,7 @@ import Money from '#ioc/graphql/fragments/Money'
 import CustomizableOptionInterface from '#ioc/graphql/fragments/CustomizableOptionInterface'
 import on from '#ioc/graphql/on'
 
-export default (name = 'ProductInCategory') =>
+export default (name = 'ProductInListing') =>
   fragment(name, 'ProductInterface', {
     __typename: field(),
     id: field(),
