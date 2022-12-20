@@ -163,7 +163,7 @@ export default class Pages extends GeneratingConcept {
       } else if (part === '$404') {
         path.push(':pathMatch*')
       } else {
-        path.push(part.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}(.+)`))
+        path.push(part.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}`))
       }
     }
 
