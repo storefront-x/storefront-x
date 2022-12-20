@@ -1,16 +1,12 @@
 import Product from '~/cypress/support/pageObjects/Product'
-import Checkout from '~/cypress/support/pageObjects/Checkout'
+import getOrderSummaryItems from '~/cypress/support/pageObjects/checkout/getOrderSummaryItems'
 
 describe('Checkout', () => {
   /** @type {Product} */
   let product
 
-  /** @type {Checkout} */
-  let checkout
-
   beforeEach(() => {
     product = new Product()
-    checkout = new Checkout()
   })
 
   it('checks that reload wont delete checkout', () => {
@@ -18,8 +14,8 @@ describe('Checkout', () => {
     product.addToCart()
     product.continueToCheckout()
 
-    checkout.getOrderSummaryItems()
+    getOrderSummaryItems()
     cy.reload().waitForSfx()
-    checkout.getOrderSummaryItems()
+    getOrderSummaryItems()
   })
 })

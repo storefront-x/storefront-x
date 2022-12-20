@@ -1,15 +1,20 @@
-import Checkout from '~/cypress/support/pageObjects/Checkout'
-import Product from '~/cypress/support/pageObjects/Product'
+import getOrderSummaryItems from '~/cypress/support/pageObjects/checkout/getOrderSummaryItems'
+import selectShipping from '~/cypress/support/pageObjects/checkout/selectShipping'
+import selectPayment from '~/cypress/support/pageObjects/checkout/selectPayment'
+import fillShippingInfo from '~/cypress/support/pageObjects/checkout/fillShippingInfo'
+import confirmAgreements from '~/cypress/support/pageObjects/checkout/confirmAgreements'
+import placeOrder from '~/cypress/support/pageObjects/checkout/placeOrder'
+import fillCreditCardInfo from '~/cypress/support/pageObjects/checkout/fillCreditCardInfo'
+import getInstorePickupLocation from '~/cypress/support/pageObjects/checkout/getInstorePickupLocation'
+
 import checkThankYouPageVisibility from '~/cypress/support/pageObjects/thankYouPage/checkThankYouPageVisibility'
 
-describe('Checkout', () => {
-  /** @type {Checkout} */
-  let checkout
+import Product from '~/cypress/support/pageObjects/Product'
 
+describe('Checkout', () => {
   /** @type {Product} */
   let product
   beforeEach(() => {
-    checkout = new Checkout()
     product = new Product()
   })
 
@@ -22,19 +27,19 @@ describe('Checkout', () => {
   it('checks that reload wont delete checkout', () => {
     addRandomProductToCartAndProceedToCheckout()
 
-    checkout.getOrderSummaryItems()
+    getOrderSummaryItems()
     cy.reload().waitForSfx()
-    checkout.getOrderSummaryItems()
+    getOrderSummaryItems()
   })
 
   it('finishes checkout process', () => {
     addRandomProductToCartAndProceedToCheckout()
 
-    checkout.selectShipping('flatrate_flatrate')
-    checkout.selectPayment('checkmo')
-    checkout.fillShippingInfo()
-    checkout.confirmAgreements()
-    checkout.placeOrder()
+    selectShipping('flatrate_flatrate')
+    selectPayment('checkmo')
+    fillShippingInfo()
+    confirmAgreements()
+    placeOrder()
 
     checkThankYouPageVisibility()
   })
@@ -42,12 +47,12 @@ describe('Checkout', () => {
   it('accepts credit card payment', () => {
     addRandomProductToCartAndProceedToCheckout()
 
-    checkout.selectShipping('flatrate_flatrate')
-    checkout.selectPayment('braintree')
-    checkout.fillShippingInfo()
-    checkout.confirmAgreements()
-    checkout.placeOrder()
-    checkout.fillCreditCardInfo()
+    selectShipping('flatrate_flatrate')
+    selectPayment('braintree')
+    fillShippingInfo()
+    confirmAgreements()
+    placeOrder()
+    fillCreditCardInfo()
 
     checkThankYouPageVisibility()
   })
@@ -55,12 +60,12 @@ describe('Checkout', () => {
   it('supports instore pickup', () => {
     addRandomProductToCartAndProceedToCheckout()
 
-    checkout.selectShipping('instore_pickup')
-    checkout.getInstorePickupLocation().click()
-    checkout.selectPayment('checkmo')
-    checkout.fillShippingInfo()
-    checkout.confirmAgreements()
-    checkout.placeOrder()
+    selectShipping('instore_pickup')
+    getInstorePickupLocation().click()
+    selectPayment('checkmo')
+    fillShippingInfo()
+    confirmAgreements()
+    placeOrder()
 
     checkThankYouPageVisibility()
   })
