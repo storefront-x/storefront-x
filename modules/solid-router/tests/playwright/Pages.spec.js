@@ -93,7 +93,7 @@ test('SSR - parameters', async ({ page }) => {
   )
 })
 
-test.only('client navigation', async ({ page }) => {
+test('client navigation', async ({ page }) => {
   await makeProject(
     {
       modules: [
