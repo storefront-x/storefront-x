@@ -71,6 +71,28 @@ export const makeProject = async (config, callback) => {
   })
 }
 
+export const wrapConsole = async (callback) => {
+  const errors = []
+  const warnings = []
+
+  const oldError = console.error
+  const oldWarn = console.warn
+
+  console.error = (e) => {
+    errors.push(e.toString())
+  }
+
+  console.warn = (e) => {
+    warnings.push(e.toString())
+  }
+
+  await callback()
+
+  console.error = oldError
+  console.warn = oldWarn
+
+  return { errors: errors.join('\n'), warnings: warnings.join('\n') }
+}
 const makeTempDir = async (fn) => {
   const dir = await fs.mkdtemp('.test/temp-')
 

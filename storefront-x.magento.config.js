@@ -41,6 +41,7 @@ export default {
     '@storefront-x/checkout-magento',
     '@storefront-x/cms-magento',
     '@storefront-x/customer-magento',
+    '@storefront-x/catalog-attributes-magento',
     '@storefront-x/free-shipping-magento',
     '@storefront-x/multicurrency-magento',
     '@storefront-x/product-reviews-magento',
