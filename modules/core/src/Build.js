@@ -51,7 +51,7 @@ export default class Build extends Core {
       clearScreen: false,
       root: this.buildDir,
       build: {
-        ssr: 'entry.server.ts',
+        ssr: 'entry.server',
         outDir: path.join(this.distDir, 'server'),
         emptyOutDir: false,
         rollupOptions: {
