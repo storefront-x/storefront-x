@@ -1,16 +1,12 @@
 import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
 import getCategoryTitle from '~/cypress/support/pageObjects/category/getCategoryTitle'
 import visitRandom from '~/cypress/support/pageObjects/category/visitRandom'
-
-import Listing from '~/cypress/support/pageObjects/Listing'
+import sortByPrice from '~/cypress/support/pageObjects/listing/sortByPrice'
+import filter from '~/cypress/support/pageObjects/listing/filter'
+import getFirstAddToCart from '~/cypress/support/pageObjects/listing/getFirstAddToCart'
 
 describe('Category', () => {
-  /** @type {Listing} */
-  let listing
-
   beforeEach(() => {
-    listing = new Listing()
-
     visitRandom({
       minProducts: 14,
     }).as('category')
@@ -23,19 +19,19 @@ describe('Category', () => {
   })
 
   it('can be sorted by prices in ascending order', () => {
-    listing.sortByPrice('ASC')
+    sortByPrice('ASC')
   })
 
   it('can be sorted by prices in descending order', () => {
-    listing.sortByPrice('DESC')
+    sortByPrice('DESC')
   })
 
   it('can be filtered', () => {
-    listing.filter()
+    filter()
   })
 
   it('allows adding simple products from category detail', () => {
-    listing.getFirstAddToCart({ product: 'simple' }).click()
+    getFirstAddToCart({ product: 'simple' }).click()
 
     expectMicrocartQuantity(1)
   })
