@@ -88,5 +88,5 @@ cs-CZ:
   subscribedTitle: Přihlášen k odběru
   thankYou: Děkujeme.
   email: Emailová adresa
-  Your e-mail: Váš e-mail
+  yourEmail: Váš e-mail
 </i18n>
