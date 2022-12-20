@@ -23,6 +23,8 @@ export default defineStore('compareProducts', {
 
       const { id } = await createCompareListIdRepository()
       this.$patch({ compareListId: id })
+
+      //maybe in get items service ?
       const itemsCompared = cookies.get(COMPARE_PRODUCTS_COOKIE_NAME) || []
       this.$patch({ items: itemsCompared })
 
