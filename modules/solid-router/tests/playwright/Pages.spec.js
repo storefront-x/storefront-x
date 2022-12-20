@@ -56,6 +56,32 @@ test('SSR - non index page', async ({ page }) => {
   )
 })
 
+test('SSR - 404', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/solid',
+        '@storefront-x/solid-router',
+        [
+          'my-module',
+          {
+            pages: {
+              'index.jsx': `
+                export default () => <h1>Hello from home!</h1>
+              `,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/test', { waitUntil: 'networkidle' })
+      await expect(await page.content()).toContain('404 - Page not found')
+    },
+  )
+})
+
 test('SSR - parameters', async ({ page }) => {
   await makeProject(
     {
