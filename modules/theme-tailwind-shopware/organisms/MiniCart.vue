@@ -2,9 +2,9 @@
   <div v-click-outside="close" :class="{ hidden: !cartStore.isMiniCartVisible }">
     <div aria-live="assertive" class="absolute max-w-lg px-4 z-50 inset-y-28 right-0">
       <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
-        <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-          <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
-            <div class="mt-0">
+        <div class="flex h-full flex-col overflow-y-hidden shadow-xl">
+          <div class="flex-1 overflow-y-hidden py-6 px-4 sm:px-6">
+            <div class="mt-0 bg-white">
               <div class="flow-root">
                 <ul role="list" class="-my-6 divide-y divide-gray-200 p-0">
                   <CartItemProvider v-for="cartItem in cart.items.slice(0, 4)" :key="cartItem.id" :cart-item="cartItem">
@@ -15,12 +15,15 @@
                       t('moreItemsInMiniCart', [cart.items.length])
                     }}</Heading>
                   </li>
+                  <li v-if="cart.items.length === 0" class="flex flex-col py-6">
+                    <Heading :level="3" class="text-center">{{ t('emptyCart') }}</Heading>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
+          <div v-if="cart.items.length > 0" class="border-t border-gray-200 py-6 px-4 sm:px-6">
             <div class="flex justify-between text-base font-medium text-gray-900 items-center">
               <p>Subtotal</p>
               <SfxMoney :money="cart.subtotalIncludingTax" el="dd" class="text-lg font-bold text-gray-900" />
