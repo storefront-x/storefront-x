@@ -1,17 +1,14 @@
 import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/base/expectMicrowishlistQuantity'
 import gotoWishlist from '~/cypress/support/pageObjects/base/gotoWishlist'
-
-import Wishlist from '~/cypress/support/pageObjects/Wishlist'
-import Product from '~/cypress/support/pageObjects/Product'
+import expectWishlistQuantity from '~/cypress/support/pageObjects/wishlist/expectWishlistQuantity'
 import AccountCredentials from '~/cypress/support/pageObjects/account/AccountCredentials'
 import register from '~/cypress/support/pageObjects/account/register'
 import login from '~/cypress/support/pageObjects/account/login'
 import logout from '~/cypress/support/pageObjects/account/logout'
 
-describe('Wishlist', () => {
-  /** @type {Wishlist} */
-  let wishlist = null
+import Product from '~/cypress/support/pageObjects/Product'
 
+describe('Wishlist', () => {
   /** @type {Product} */
   let product = null
 
@@ -23,7 +20,6 @@ describe('Wishlist', () => {
   })
 
   beforeEach(() => {
-    wishlist = new Wishlist()
     product = new Product()
   })
 
@@ -34,7 +30,7 @@ describe('Wishlist', () => {
     expectMicrowishlistQuantity(1)
     gotoWishlist()
 
-    wishlist.expectWishlistQuantity(1)
+    expectWishlistQuantity(1)
   })
 
   it('allows removing from the wishlist', () => {
@@ -48,14 +44,14 @@ describe('Wishlist', () => {
 
     gotoWishlist()
 
-    wishlist.expectWishlistQuantity(2)
+    expectWishlistQuantity(2)
 
     product.visitAgain()
     product.getAddToWishlist().click() // Clicking again will remove it from wishlist
 
     gotoWishlist()
 
-    wishlist.expectWishlistQuantity(1)
+    expectWishlistQuantity(1)
   })
 
   it('merges wishlist with customer wishlist', () => {
@@ -76,6 +72,6 @@ describe('Wishlist', () => {
 
     gotoWishlist()
 
-    wishlist.expectWishlistQuantity(3)
+    expectWishlistQuantity(3)
   })
 })
