@@ -1,6 +1,6 @@
 import Checkout from '~/cypress/support/pageObjects/Checkout'
 import Product from '~/cypress/support/pageObjects/Product'
-import ThankYouPage from '~/cypress/support/pageObjects/ThankYouPage'
+import checkThankYouPageVisibility from '~/cypress/support/pageObjects/thankYouPage/checkThankYouPageVisibility'
 
 describe('Checkout', () => {
   /** @type {Checkout} */
@@ -8,14 +8,9 @@ describe('Checkout', () => {
 
   /** @type {Product} */
   let product
-
-  /** @type {ThankYouPage} */
-  let thankYouPage
-
   beforeEach(() => {
     checkout = new Checkout()
     product = new Product()
-    thankYouPage = new ThankYouPage()
   })
 
   let addRandomProductToCartAndProceedToCheckout = () => {
@@ -41,7 +36,7 @@ describe('Checkout', () => {
     checkout.confirmAgreements()
     checkout.placeOrder()
 
-    thankYouPage.isVisible()
+    checkThankYouPageVisibility()
   })
 
   it('accepts credit card payment', () => {
@@ -54,7 +49,7 @@ describe('Checkout', () => {
     checkout.placeOrder()
     checkout.fillCreditCardInfo()
 
-    thankYouPage.isVisible()
+    checkThankYouPageVisibility()
   })
 
   it('supports instore pickup', () => {
@@ -67,6 +62,6 @@ describe('Checkout', () => {
     checkout.confirmAgreements()
     checkout.placeOrder()
 
-    thankYouPage.isVisible()
+    checkThankYouPageVisibility()
   })
 })
