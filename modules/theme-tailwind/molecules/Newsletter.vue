@@ -2,12 +2,12 @@
   <div
     class="mt-8 md:mt-0 flex flex-col items-center lg:items-start col-span-6 md:mt-0 md:row-start-2 md:col-start-3 md:col-span-8 lg:row-start-1 lg:col-start-9 lg:col-span-4"
   >
-    <p class="text-gray-500 mt-0 text-center sm:text-left font-semibold mb-2">{{ t('Sign up for our newsletter') }}</p>
+    <p class="text-gray-500 mt-0 text-center sm:text-left font-semibold mb-2">{{ t('newsletterSignup') }}</p>
     <SfxForm class="mt-2 flex sm:max-w-md" @submit="onSubmitNewsletter">
-      <label for="newsletter" class="sr-only">{{ t('Email address') }}</label>
+      <label for="newsletter" class="sr-only">{{ t('email') }}</label>
       <FormInput
         v-if="!subscribed"
-        :placeholder="t('Your e-mail')"
+        :placeholder="t('yourEmail')"
         class="mr-4 text-gray-400"
         name="newsletter"
         autocomplete="email"
@@ -61,12 +61,9 @@ const onSubmitNewsletter = async ({ newsletter }: { newsletter: string }) => {
     const { status } = await subscribeToNewsletter(newsletter)
 
     if (status === 'SUBSCRIBED') {
-      showSuccessNotification(t('Subscribed'), t('Thank you.'))
+      showSuccessNotification(t('subscribedTitle'), t('thankYou'))
     } else if (status === 'NOT_ACTIVE') {
-      showSuccessNotification(
-        t('Requires a confirmation'),
-        t('Please, confirm your sign-up by link from e-mail we sent to your e-mail address.'),
-      )
+      showSuccessNotification(t('confirmationRequired'), t('confirmationDesc'))
     }
     subscribed.value = true
   } finally {
@@ -76,14 +73,20 @@ const onSubmitNewsletter = async ({ newsletter }: { newsletter: string }) => {
 </script>
 
 <i18n lang="yaml">
+en-US:
+  newsletterSignup: Sign up for our newsletter
+  confirmationRequired: Requires a confirmation
+  confirmationDesc: Please, confirm your sign-up by link from e-mail we sent to your e-mail address.
+  subscribedTitle: Subscribed
+  thankYou: Thank you.
+  email: Email address
+  yourEmail: Your e-mail
 cs-CZ:
-  Sign up for our newsletter: Přihlašte se k našemu zpravodaji
-  Requires a confirmation: Vyžaduje potvrzení
-  Please, confirm your sign-up by link from e-mail we sent to your e-mail address.: Potvrďte prosím svou registraci odkazem z e-mailu, který jsme vám zaslali na vaši e-mailovou adresu.
-  Subscribed: Přihlášen k odběru
-  Thank you.: Děkujeme.
-  Email address: Emailová adresa
-  Sign up: Přihlásit se
-  Signed in: Přihlášen
+  newsletterSignup: Přihlašte se k našemu zpravodaji
+  confirmationRequired: Vyžaduje se potvrzení
+  confirmationDesc: Potvrďte prosím svou registraci odkazem z e-mailu, který jsme vám zaslali na vaši e-mailovou adresu.
+  subscribedTitle: Přihlášen k odběru
+  thankYou: Děkujeme.
+  email: Emailová adresa
   Your e-mail: Váš e-mail
 </i18n>

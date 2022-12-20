@@ -37,11 +37,14 @@ export default () => {
 
       const message = errMessages.find((err) => err.magentoResponse === error.message)
 
-      if (message)
+      if (message) {
         showErrorNotification({
           name: t('errors.newsletter.title'),
           message: t(`errors.newsletter.${message.i18nKey}`),
         })
-    } else throw error
+      }
+    } else {
+      throw error
+    }
   }
 }
