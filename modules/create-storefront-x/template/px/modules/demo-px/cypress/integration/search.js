@@ -1,24 +1,20 @@
-import Listing from '~/cypress/support/pageObjects/Listing'
+import sortByPrice from '~/cypress/support/pageObjects/listing/sortByPrice'
+import filter from '~/cypress/support/pageObjects/listing/filter'
 
 describe('Search page', () => {
-  /** @type {Listing} */
-  let listing
-
   beforeEach(() => {
-    listing = new Listing()
-
     cy.visit('/search?query=a').waitForSfx()
   })
 
   it('can be sorted by prices in ascending order', () => {
-    listing.sortByPrice('ASC')
+    sortByPrice('ASC')
   })
 
   it('can be sorted by prices in descending order', () => {
-    listing.sortByPrice('DESC')
+    sortByPrice('DESC')
   })
 
   it('can be filtered', () => {
-    listing.filter()
+    filter()
   })
 })
