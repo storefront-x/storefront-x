@@ -69,6 +69,7 @@ export default class Core {
       manifest,
       out: {},
     }
+
     try {
       await entry(ctx)
 
@@ -84,10 +85,13 @@ export default class Core {
     } catch (e) {
       if (e.__typename === 'Redirect') {
         return res.redirect(e.status, e.url)
-      } else {
+      } else if (process.env.NODE_ENV === 'production') {
+        // TODO: Move this if to the Serve class
         console.error(e)
 
         return res.status(500).set({ 'Content-Type': 'text/html' }).end(template)
+      } else {
+        throw e
       }
     }
   }
