@@ -1,5 +1,5 @@
-import getLogoutButton from './getLogoutButton'
-import getMicroAccount from './getMicroAccount'
+import getLogoutButton from '~/cypress/support/pageObjects/account/getLogoutButton'
+import getMicroAccount from '~/cypress/support/pageObjects/account/getMicroAccount'
 
 export default function logout(params = {}) {
   cy.visit('/').waitForSfx()

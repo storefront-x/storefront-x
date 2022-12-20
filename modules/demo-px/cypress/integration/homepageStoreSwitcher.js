@@ -1,16 +1,11 @@
-import StoreSwitcher from '~/cypress/support/pageObjects/StoreSwitcher'
+import selectDifferentStore from '~/cypress/support/pageObjects/storeSwitcher/selectDifferentStore'
 
 describe('HomepageStoreSwitcher', () => {
-  /** @type {StoreSwitcher} */
-  let storeSwitcher
-
   beforeEach(() => {
-    storeSwitcher = new StoreSwitcher()
-
     cy.visit('/')
   })
 
   it('switches stores', () => {
-    storeSwitcher.selectDifferentStore()
+    selectDifferentStore()
   })
 })

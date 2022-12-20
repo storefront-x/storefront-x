@@ -1,7 +1,7 @@
-import getEmailInput from './getEmailInput'
-import getPasswordInput from './getPasswordInput'
-import getSignInButton from './getSignInButton'
-import getMicroAccount from './getMicroAccount'
+import getEmailInput from '~/cypress/support/pageObjects/account/getEmailInput'
+import getPasswordInput from '~/cypress/support/pageObjects/account/getPasswordInput'
+import getSignInButton from '~/cypress/support/pageObjects/account/getSignInButton'
+import getMicroAccount from '~/cypress/support/pageObjects/account/getMicroAccount'
 
 export default function login(params = {}) {
   cy.visit('/sign-in').waitForSfx()
