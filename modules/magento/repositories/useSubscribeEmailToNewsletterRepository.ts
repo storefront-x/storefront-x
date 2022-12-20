@@ -1,4 +1,5 @@
 import useMagento from '#ioc/composables/useMagento'
+import NewsletterError from '#ioc/errors/NewsletterError'
 import SubscribeEmailToNewsletter from '#ioc/graphql/mutations/SubscribeEmailToNewsletter'
 
 export default () => {
@@ -7,8 +8,7 @@ export default () => {
   return async (
     email: string,
   ): Promise<{
-    ok: boolean
-    statusText: string
+    status: string
   }> => {
     try {
       const {
@@ -16,14 +16,10 @@ export default () => {
       } = await magento.graphql(SubscribeEmailToNewsletter().with({ email }))
 
       return {
-        ok: true,
-        statusText: response.status,
+        status: response.status,
       }
     } catch (e: any) {
-      return {
-        ok: false,
-        statusText: e.message,
-      }
+      throw new NewsletterError(e.message)
     }
   }
 }

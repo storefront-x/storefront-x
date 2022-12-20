@@ -45,34 +45,32 @@ import SolidTwitter from '#ioc/icons/SolidTwitter'
 import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import useSubscribeEmailToNewsletter from '#ioc/services/useSubscribeToNewsletter'
-import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import { ref } from 'vue'
 
 const { t } = useI18n()
 const loading = ref(false)
 const subscribed = ref(false)
-const showErrorNotification = useShowErrorNotification()
 const showSuccessNotification = useShowSuccessNotification()
 const subscribeToNewsletter = useSubscribeEmailToNewsletter()
 
 const onSubmitNewsletter = async ({ newsletter }: { newsletter: string }) => {
+  loading.value = true
+
   try {
-    loading.value = true
+    const { status } = await subscribeToNewsletter(newsletter)
 
-    const { statusText, ok } = await subscribeToNewsletter(newsletter)
-
-    loading.value = false
-
-    if (!ok) {
-      showErrorNotification(new Error(statusText))
-    } else {
-      showSuccessNotification(statusText ? t(`${statusText}`) : t(`Subscribed`), t('Thank you.'))
-
-      subscribed.value = true
+    if (status === 'SUBSCRIBED') {
+      showSuccessNotification(t('Subscribed'), t('Thank you.'))
+    } else if (status === 'NOT_ACTIVE') {
+      showSuccessNotification(
+        t('Requires a confirmation'),
+        t('Please, confirm your sign-up by link from e-mail we sent to your e-mail address.'),
+      )
     }
-  } catch (error) {
-    console.warn(error)
+    subscribed.value = true
+  } finally {
+    loading.value = false
   }
 }
 </script>
@@ -80,8 +78,10 @@ const onSubmitNewsletter = async ({ newsletter }: { newsletter: string }) => {
 <i18n lang="yaml">
 cs-CZ:
   Sign up for our newsletter: Přihlašte se k našemu zpravodaji
+  Requires a confirmation: Vyžaduje potvrzení
+  Please, confirm your sign-up by link from e-mail we sent to your e-mail address.: Potvrďte prosím svou registraci odkazem z e-mailu, který jsme vám zaslali na vaši e-mailovou adresu.
   Subscribed: Přihlášen k odběru
-  Thank you: Děkujeme
+  Thank you.: Děkujeme.
   Email address: Emailová adresa
   Sign up: Přihlásit se
   Signed in: Přihlášen
