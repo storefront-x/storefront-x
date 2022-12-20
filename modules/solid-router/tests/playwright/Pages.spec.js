@@ -111,7 +111,7 @@ test('client navigation', async ({ page }) => {
                   return <A href="/test">test</A>
                 }
               `,
-              '[name].jsx': `
+              'test.jsx': `
                 export default () => {
                   return <h1>test page</h1>
                 }
