@@ -32,8 +32,9 @@ export default defineStore('wishlist', {
 
           if (customerStore.customer) {
             const { items } = await getWishlistRepository()
-
-            await mergeWislist()
+            if (this.anonymousWishlist.length) {
+              await mergeWislist()
+            }
 
             this.items.push(...items)
 

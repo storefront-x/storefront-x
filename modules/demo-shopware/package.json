@@ -1,10 +1,10 @@
 {
   "name": "@storefront-x/demo-shopware",
-  "version": "1.3.0",
+  "version": "1.4.1",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "vite-plugin-pwa": "^0.13.2"
+    "vite-plugin-pwa": "^0.13.3"
   },
   "publishConfig": {
     "access": "public"

@@ -1,10 +1,9 @@
 {
   "name": "@storefront-x/vue-router",
-  "version": "1.2.0",
+  "version": "1.4.1",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "vue": "^3.2.41",
     "vue-router": "^4.1.6"
   },
   "publishConfig": {

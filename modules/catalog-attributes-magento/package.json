@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/catalog-attributes-magento",
+  "version": "1.4.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}

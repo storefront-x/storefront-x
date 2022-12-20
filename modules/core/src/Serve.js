@@ -44,7 +44,7 @@ export default class Serve extends Core {
         if (this.argv.failOnServerError) {
           res.status(500).send('Internal server error')
         } else {
-          res.send(template)
+          res.status(500).send(template)
         }
       }
     })
