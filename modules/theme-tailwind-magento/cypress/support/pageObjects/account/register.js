@@ -1,10 +1,10 @@
-import getEmailInput from './getEmailInput'
-import getPasswordInput from './getPasswordInput'
-import getFirstNameInput from './getFirstNameInput'
-import getMicroAccount from './getMicroAccount'
-import getLastNameInput from './getLastNameInput'
-import getPasswordConfirmationInput from './getPasswordConfirmationInput'
-import getSignUpButton from './getSignUpButton'
+import getEmailInput from '~/cypress/support/pageObjects/account/getEmailInput'
+import getPasswordInput from '~/cypress/support/pageObjects/account/getPasswordInput'
+import getFirstNameInput from '~/cypress/support/pageObjects/account/getFirstNameInput'
+import getMicroAccount from '~/cypress/support/pageObjects/account/getMicroAccount'
+import getLastNameInput from '~/cypress/support/pageObjects/account/getLastNameInput'
+import getPasswordConfirmationInput from '~/cypress/support/pageObjects/account/getPasswordConfirmationInput'
+import getSignUpButton from '~/cypress/support/pageObjects/account/getSignUpButton'
 
 export default function register(params = {}) {
   cy.visit('/sign-up').waitForSfx()
