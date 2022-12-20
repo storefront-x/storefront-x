@@ -4,7 +4,7 @@ import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import COMPARE_PRODUCTS_COOKIE_NAME from '#ioc/config/COMPARE_PRODUCTS_COOKIE_NAME'
 import useCookies from '#ioc/composables/useCookies'
 import waitForStore from '#ioc/utils/vuePinia/waitForStore'
-import useCreateCompareListIdRepository from '#ioc/repositories/useCreateCompareListIdRepository'
+import useCreateCompareListId from '#ioc/services/useCreateCompareListId'
 import useCustomerStore from '#ioc/stores/useCustomerStore'
 import useGetCompareListById from '#ioc/services/useGetCompareListById'
 
@@ -17,11 +17,11 @@ export default defineStore('compareProducts', {
     async serverInit() {
       if (IS_CLIENT) return
       const customerStore = useCustomerStore()
-      const createCompareListIdRepository = useCreateCompareListIdRepository()
+      const createCompareListId = useCreateCompareListId()
       const getCompareListById = useGetCompareListById()
       const cookies = useCookies()
 
-      const { id } = await createCompareListIdRepository()
+      const { id } = await createCompareListId()
       this.$patch({ compareListId: id })
 
       //maybe in get items service ?
@@ -33,7 +33,7 @@ export default defineStore('compareProducts', {
         () => customerStore !== undefined,
         async () => {
           if (customerStore.customer) {
-            const { id } = await createCompareListIdRepository()
+            const { id } = await createCompareListId()
             const { items } = await getCompareListById(id)
             this.$patch({ items: items })
             cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, items, { path: '/' })
