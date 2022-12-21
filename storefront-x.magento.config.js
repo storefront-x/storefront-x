@@ -13,6 +13,8 @@ export default {
     '@storefront-x/graphql',
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
+    '@storefront-x/nprogress',
+    '@storefront-x/google-analytics',
 
     '@storefront-x/blog',
     '@storefront-x/braintree',
@@ -29,7 +31,6 @@ export default {
     '@storefront-x/catalog-labels',
     '@storefront-x/robots',
     '@storefront-x/sitemap',
-    '@storefront-x/nprogress',
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',
