@@ -1,7 +1,7 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import getPort from 'get-port'
-import { Dev } from '@storefront-x/core'
+import { Build, Dev } from '@storefront-x/core'
 
 export const makeProject = async (config, callback) => {
   await makeTempDir(async (dir) => {
@@ -68,6 +68,31 @@ export const makeProject = async (config, callback) => {
       await dev.close()
       await server.close()
     }
+  })
+}
+
+export const buildProject = async (config) => {
+  await makeTempDir(async (dir) => {
+    for (const pkg of config.modules) {
+      if (typeof pkg === 'string') continue
+
+      await writePackage(dir, pkg[0], pkg[1])
+    }
+
+    const build = new Build({
+      dir,
+      modules: config.modules.map((pkg) => {
+        if (typeof pkg === 'string') return pkg
+
+        return `./${pkg[0]}`
+      }),
+      vite: {
+        logLevel: 'silent',
+      },
+    })
+
+    await build.bootstrap()
+    await build.build()
   })
 }
 
