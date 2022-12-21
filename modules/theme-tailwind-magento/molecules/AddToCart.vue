@@ -1,20 +1,16 @@
 <template>
   <Button
     color="primary"
-    :disabled="loading"
+    :disabled="isLoading"
     data-cy="add-to-cart"
     class="relative w-full sm:w-auto sm:h-auto mt-4 sm:mt-0 sm:ml-3 text-bold"
-    :data-simple-product="product.isSimpleProduct && !product.productOptions.length"
+    :data-simple-product="product.isSimpleProduct && !product.isOptionsProduct"
     @click="onAddToCart"
   >
     <slot>
-      <span v-if="!loading">{{ t('Add to cart') }}</span>
-      <Spinner v-if="loading" />
+      <span v-if="!isLoading">{{ t(isEnabled ? 'Add' : 'Conf') }}</span>
+      <Spinner v-if="isLoading" />
     </slot>
-
-    <BundleOptionsModal v-if="isBundleModalOpen" @close="isBundleModalOpen = false" @add-to-cart="onAddToCart" />
-
-    <ProductOptionsModal v-if="isOptionsModalOpen" @close="isOptionsModalOpen = false" @add-to-cart="onAddToCart" />
 
     <CrossSellModal v-if="isCrossSellModalOpen" @close="onClose" />
   </Button>
@@ -27,12 +23,10 @@ import injectProduct from '#ioc/composables/injectProduct'
 import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
-import { ref } from 'vue'
-import BundleOptionsModal from '#ioc/organisms/BundleOptionsModal'
-import ProductOptionsModal from '#ioc/organisms/ProductOptionsModal'
+
 import useRouter from '#ioc/composables/useRouter'
-import useRoute from '#ioc/composables/useRoute'
-import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import useLocalePath from '#ioc/composables/useLocalePath'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
   quantity: {
@@ -45,40 +39,34 @@ const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
 const router = useRouter()
-const route = useRoute()
-const showErrorNotification = useShowErrorNotification()
+const localePath = useLocalePath()
 
-const loading = ref(false)
+const isLoading = ref(false)
 const isCrossSellModalOpen = ref(false)
-const isBundleModalOpen = ref(false)
-const isOptionsModalOpen = ref(false)
 
 const onClose = () => {
   isCrossSellModalOpen.value = false
 }
 
+const isEnabled = computed(() => {
+  if (product.isConfigurableProduct) {
+    return product.isConfigured
+  }
+  if (product.isBundleProduct) {
+    return product.isBundleConfigured
+  }
+  if (product.productOptions.length) {
+    return product.isOptionsConfigured
+  }
+  return true
+})
+
 const onAddToCart = async () => {
-  if (product.isConfigurableProduct && !product.isConfigured) {
-    if (route.fullPath === product.urlPath) {
-      showErrorNotification(t('Please configure your product'))
-      return
-    } else {
-      router.push(product.urlPath)
-      return
-    }
-  }
-
-  if (product.isBundleProduct && !product.isBundleConfigured) {
-    isBundleModalOpen.value = true
+  if (!isEnabled.value) {
+    router.push(localePath(product.urlPath))
     return
   }
-
-  if (product.productOptions.length > 0 && !product.isOptionsConfigured) {
-    isOptionsModalOpen.value = true
-    return
-  }
-
-  loading.value = true
+  isLoading.value = true
 
   try {
     await addToCart(product, {
@@ -91,15 +79,16 @@ const onAddToCart = async () => {
     product.options = []
     delete product.bundle
   } finally {
-    loading.value = false
-    isBundleModalOpen.value = false
-    isOptionsModalOpen.value = false
+    isLoading.value = false
   }
 }
 </script>
 
 <i18n lang="yaml">
+en-US:
+  Add: Add to cart
+  Conf: Configure
 cs-CZ:
-  Add to cart: Přidat do košíku
-  Please configure your product: Nakonfigurujte svůj produkt
+  Add: Přidat do košíku
+  Conf: Nakonfigurovat
 </i18n>

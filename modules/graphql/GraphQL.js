@@ -375,6 +375,9 @@ export class Fragment extends Gql {
     }
   }
 
+  /**
+   * @deprecated
+   */
   inline() {
     return this._fields
   }
