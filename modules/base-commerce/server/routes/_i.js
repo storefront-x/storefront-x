@@ -7,8 +7,6 @@ const IMAGE_RESIZER_CACHE_ENABLED = !IS_PRODUCTION
 const SERVER_HOST = process.env.SERVER_HOST || 'localhost'
 const SERVER_PORT = process.env.SERVER_PORT || 3000
 
-const ONE_YEAR = 31557600000
-
 const cache = new LRU({
   max: 100,
 })
@@ -68,8 +66,11 @@ const resizeImage = async (req, res) => {
 
 const sendBuffer = (req, res, buffer) => {
   const format = getFormat(req)
+
+  const ONE_YEAR = '31536000'
+
   const headers = {
-    'Cache-Control': `max-age=${ONE_YEAR}`,
+    'Cache-Control': `public, max-age=${ONE_YEAR}, immutable`,
     'Content-Type': `image/${format}`,
   }
 
