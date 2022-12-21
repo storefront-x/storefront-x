@@ -9,7 +9,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const bundle = ref({} as any)
 
-  const configuration = ref({} as any)
+  const configuration = reactive({} as any)
 
   const options = ref({} as string[])
 
@@ -29,11 +29,11 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const shortDescriptionHtml = computed(() => product.value.shortDescriptionHtml)
 
-  const thumbnailUrl = computed(() => variant.value.thumbnaulUrl ?? product.value.thumbnailUrl)
+  const thumbnailUrl = computed(() => variant.value.thumbnailUrl ?? product.value.thumbnailUrl)
 
-  const regularPrice = computed(() => product.value.regularPrice)
+  const regularPrice = computed(() => variant.value.regularPrice ?? product.value.regularPrice)
 
-  const finalPrice = computed(() => product.value.finalPrice)
+  const finalPrice = computed(() => variant.value.finalPrice ?? product.value.finalPrice)
 
   const minimumPrice = computed(() => product.value.minimumPrice)
 
@@ -81,16 +81,76 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const bundleItems = computed(() => product.value.bundleItems || [])
 
-  const configurableOptions = computed(() => product.value.configurableOptions ?? [])
+  const configurableOptions = computed(() => {
+    const newOptions = []
+    const allConfigurableOptions = product.value.configurableOptions ?? []
+
+    if (allConfigurableOptions.length) {
+      for (const option of allConfigurableOptions) {
+        newOptions.push({ ...option, values: availableVariants(option.values, option.attributeCode) })
+      }
+      return newOptions
+    } else {
+      return allConfigurableOptions
+    }
+  })
 
   const variants = computed(() => product.value.variants ?? [])
 
+  const availableVariants = (values: any, optionKey: string) => {
+    const allConfigurableOptions = product.value.configurableOptions
+    const configurationLength = Object.keys(configuration).length
+
+    if (allConfigurableOptions.length === 1) {
+      const availableValues = []
+
+      for (const variant of variants.value) {
+        if (!variant.product.available) continue
+        for (const value of Object.values(variant.attributes)) {
+          availableValues.push(values.find((item: any) => item.index === value))
+        }
+      }
+
+      return availableValues
+    }
+
+    if (
+      (configurationLength === allConfigurableOptions.length - 1 ||
+        configurationLength === allConfigurableOptions.length) &&
+      allConfigurableOptions.length !== 1
+    ) {
+      const availableValues = []
+      for (const variant of variants.value) {
+        for (const key of Object.keys(configuration)) {
+          if (key === optionKey && configurationLength === allConfigurableOptions.length) continue
+          else if (key === optionKey) return values
+          if (variant.attributes[key] === configuration[key] && variant.product.available) {
+            availableValues.push(variant.attributes[optionKey])
+          }
+        }
+      }
+
+      const newValues = []
+
+      for (const value of values) {
+        if (availableValues.includes(value.index)) {
+          newValues.push({ ...value, disabled: false })
+        } else {
+          newValues.push({ ...value, disabled: true })
+        }
+      }
+      return newValues
+    }
+
+    return values
+  }
+
   const variant = computed(() => {
-    if (!Object.keys(configuration.value).length) return {}
+    if (!Object.keys(configuration).length) return {}
 
     out: for (const { attributes, product } of variants.value) {
       for (const [key, value] of Object.entries(attributes)) {
-        if (configuration.value[key] !== value) {
+        if (configuration[key] !== value) {
           continue out
         }
       }
@@ -140,6 +200,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     configurableOptions,
     configuration,
     variant,
+    variants,
     productOptions,
     options,
     isConfigured,
@@ -147,5 +208,6 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isOptionsConfigured,
     groupedItems,
     isGroupedProduct,
+    availableVariants,
   })
 }

@@ -12,12 +12,6 @@
       <Spinner v-if="loading" />
     </slot>
 
-    <ConfigurableOptionsModal
-      v-if="isConfigurationModalOpen"
-      @close="isConfigurationModalOpen = false"
-      @add-to-cart="onAddToCart"
-    />
-
     <BundleOptionsModal v-if="isBundleModalOpen" @close="isBundleModalOpen = false" @add-to-cart="onAddToCart" />
 
     <ProductOptionsModal v-if="isOptionsModalOpen" @close="isOptionsModalOpen = false" @add-to-cart="onAddToCart" />
@@ -34,9 +28,10 @@ import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
 import { ref } from 'vue'
-import ConfigurableOptionsModal from '#ioc/organisms/ConfigurableOptionsModal'
 import BundleOptionsModal from '#ioc/organisms/BundleOptionsModal'
 import ProductOptionsModal from '#ioc/organisms/ProductOptionsModal'
+import useRouter from '#ioc/composables/useRouter'
+import useRoute from '#ioc/composables/useRoute'
 
 const props = defineProps({
   quantity: {
@@ -45,13 +40,16 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits(['show-configuration-error'])
+
 const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
+const router = useRouter()
+const route = useRoute()
 
 const loading = ref(false)
 const isCrossSellModalOpen = ref(false)
-const isConfigurationModalOpen = ref(false)
 const isBundleModalOpen = ref(false)
 const isOptionsModalOpen = ref(false)
 
@@ -61,8 +59,13 @@ const onClose = () => {
 
 const onAddToCart = async () => {
   if (product.isConfigurableProduct && !product.isConfigured) {
-    isConfigurationModalOpen.value = true
-    return
+    if (route.fullPath === product.urlPath) {
+      emit('show-configuration-error')
+      return
+    } else {
+      router.push(product.urlPath)
+      return
+    }
   }
 
   if (product.isBundleProduct && !product.isBundleConfigured) {
@@ -87,10 +90,8 @@ const onAddToCart = async () => {
     isCrossSellModalOpen.value = true
     product.options = []
     delete product.bundle
-    product.configuration = {}
   } finally {
     loading.value = false
-    isConfigurationModalOpen.value = false
     isBundleModalOpen.value = false
     isOptionsModalOpen.value = false
   }

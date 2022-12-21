@@ -1,10 +1,11 @@
 <template>
-  <Form :value="updateFormValue" class="flex flex-col md:flex-row gap-16 mb-4">
+  <Form :value="updateFormValue" class="flex flex-col gap-y-6 mb-4">
     <ProductConfigurableOption
       v-for="configurableOption in product.configurableOptions"
       :key="configurableOption.attributeCode"
       :configurable-option="configurableOption"
       :in-modal="inModal"
+      :show-error="showError"
       @input="onInput"
     />
   </Form>
@@ -15,7 +16,7 @@ import Form from '#ioc/atoms/Form'
 import ProductConfigurableOption from '#ioc/molecules//ProductConfigurableOption'
 import injectProduct from '#ioc/composables/injectProduct'
 import isEmpty from '#ioc/utils/isEmpty'
-import { computed } from 'vue'
+import { computed, onUnmounted } from 'vue'
 
 const product = injectProduct()
 
@@ -24,7 +25,13 @@ defineProps({
     type: String,
     default: 'outOfModal',
   },
+  showError: {
+    type: Boolean,
+    default: false,
+  },
 })
+
+onUnmounted(() => (product.configuration = {}))
 
 const updateFormValue = computed(() => {
   if (isEmpty(product.configuration)) return
