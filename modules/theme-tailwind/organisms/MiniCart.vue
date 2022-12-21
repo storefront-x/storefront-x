@@ -22,7 +22,7 @@
                   <li v-if="cart.items.length === 0" class="flex flex-col py-6">
                     <Heading :level="3" class="text-center">{{ t('emptyCart') }}</Heading>
                     <div class="flex justify-center my-4">
-                      <img class="h-24 w-auto" :src="noItemsIcon" :alt="t('No cart items icon')" />
+                      <img class="h-24 w-auto opacity-70" :src="noItemsIcon" :alt="t('No cart items icon')" />
                     </div>
                   </li>
                 </ul>
