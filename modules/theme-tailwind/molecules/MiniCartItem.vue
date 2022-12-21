@@ -1,40 +1,41 @@
 <template>
-  <li class="flex flex-col py-6 pr-4 px-2 sm:px-2">
-    <div class="grid grid-cols-9">
-      <div class="col-span-1 flex items-center">
-        <img :src="src" :alt="cartItem.product.name" class="w-20 rounded-md" />
-      </div>
-      <div class="col-span-2 mx-2 flex flex-col">
-        <div class="flex">
-          <div class="min-w-0 flex-1">
-            <h4 class="text-sm">
-              <RouterLink :to="cartItem.product.urlPath" class="font-medium text-gray-700 hover:text-gray-800">
-                {{ cartItem.product.name }}
-              </RouterLink>
-            </h4>
-          </div>
+  <li class="flex py-4">
+    <div class="h-20 w-20 flex-shrink-0 overflow-hidden">
+      <SfxImage
+        :src="cartItem.product.thumbnailUrl"
+        :width="80"
+        :height="80"
+        fit="contain"
+        class="h-full w-full object-cover object-center"
+      />
+    </div>
+
+    <div class="ml-4 flex flex-1 flex-col">
+      <div>
+        <div class="flex justify-between text-base font-medium text-gray-900 items-center">
+          <h3 class="m-0 p-0 pr-4">
+            <RouterLink :to="cartItem.product.urlPath" class="font-medium text-gray-700 hover:text-gray-800 text-base">
+              {{ cartItem.product.name }}
+            </RouterLink>
+          </h3>
+
+          <a class="text-gray-400 hover:text-red-500 hover:cursor-pointer" @click="promptRemoval">
+            <OutlineX />
+          </a>
         </div>
       </div>
-      <div class="col-span-2 mt-2 flex items-center justify-between">
-        <p class="flex flex-col mt-1 text-sm font-medium text-gray-900 flex-end text-right">
-          <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-lg" />
-        </p>
-      </div>
-      <div class="col-span-3 mt-2 flex items-center justify-between">
+      <div class="flex flex-1 items-center justify-between text-sm mt-4">
         <div class="flex gap-2">
           <Button @click="onDec">-</Button>
           <Input :value="tmpQuantity" :inputmode="'decimal'" class="w-16 text-center" @input="onInput" />
           <Button @click="onInc">+</Button>
         </div>
-      </div>
 
-      <div class="col-span-1 flex items-center justify-center">
-        <a class="text-gray-400 hover:text-red-500 hover:cursor-pointer" @click="promptRemoval">
-          <SolidTrash />
-        </a>
+        <div class="flex">
+          <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-lg" />
+        </div>
       </div>
     </div>
-
     <ConfirmProductRemovalModal
       v-if="isRemoveModalOpen"
       :name="cartItem.product.name"
@@ -46,51 +47,34 @@
 </template>
 
 <script setup lang="ts">
+import SfxImage from '#ioc/components/SfxImage'
 import SfxMoney from '#ioc/components/SfxMoney'
-import useCartItem from '#ioc/composables/useCartItem'
-import ToCartItem from '#ioc/mappers/ToCartItem'
-import resizeImage from '#ioc/utils/url/resizeImage'
 import debounce from '#ioc/utils/debounce'
-import SolidTrash from '#ioc/icons/SolidTrash'
+import OutlineX from '#ioc/icons/OutlineX'
+import injectCartItem from '#ioc/composables/injectCartItem'
 import Button from '#ioc/atoms/Button'
 import Input from '#ioc/atoms/Input'
-import { computed, defineAsyncComponent, PropType, ref, toRef, watch } from 'vue'
+import { defineAsyncComponent, ref, watch } from 'vue'
 import useRemoveFromCart from '#ioc/services/useRemoveFromCart'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useUpdateCartItem from '#ioc/services/useUpdateCartItem'
 
 const ConfirmProductRemovalModal = defineAsyncComponent(() => import('#ioc/organisms/ConfirmProductRemovalModal'))
 
-const props = defineProps({
-  cartItem: {
-    type: Object as PropType<ReturnType<typeof ToCartItem>>,
-    required: true,
-  },
-})
-
-const cartItem = useCartItem(toRef(props, 'cartItem'))
+const cartItem = injectCartItem()
 const removeFromCart = useRemoveFromCart()
 const updateCartItem = useUpdateCartItem()
 const showErrorNotification = useShowErrorNotification()
 
-const tmpQuantity = ref(props.cartItem.quantity)
+const tmpQuantity = ref(cartItem.quantity)
 const isRemoveModalOpen = ref(false)
 const isRemoveLoading = ref(false)
-
-const src = computed(() =>
-  resizeImage({
-    w: 80,
-    h: 80,
-    path: cartItem.product.thumbnailUrl,
-    fit: 'contain',
-  }),
-)
 
 watch(
   tmpQuantity,
   debounce(async (value: number) => {
     if (value === 0) {
-      await promptRemoval()
+      promptRemoval()
     } else if (value > 0) {
       await updateQuantity(value)
     } else {

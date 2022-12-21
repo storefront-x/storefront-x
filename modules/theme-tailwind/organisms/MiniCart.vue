@@ -25,7 +25,7 @@
 
           <div v-if="cart.items.length > 0" class="border-t border-gray-200 py-6 px-4 sm:px-6">
             <div class="flex justify-between text-base font-medium text-gray-900 items-center">
-              <p>Subtotal</p>
+              <p>{{ t('subtotal') }}</p>
               <SfxMoney :money="cart.subtotalIncludingTax" el="dd" class="text-lg font-bold text-gray-900" />
             </div>
             <div class="mt-3">
@@ -80,10 +80,12 @@ watchEffect(() => {
 
 <i18n lang="yaml">
 en-US:
+  subtotal: Subtotal
   cartDetails: Checkout
   moreItemsInMiniCart: To see all ({0}) your items go to Checkout
   emptyCart: Your cart is empty
 cs-CZ:
+  subtotal: Mezisoučet
   cartDetails: Detaily kosiku
   moreItemsInMiniCart: Všechny ({0}) produkty uvidíte v detailu košíku
   emptyCart: Váš košík je prázdný
