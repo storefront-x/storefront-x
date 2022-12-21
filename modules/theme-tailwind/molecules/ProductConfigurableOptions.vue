@@ -15,7 +15,7 @@ import Form from '#ioc/atoms/Form'
 import ProductConfigurableOption from '#ioc/molecules//ProductConfigurableOption'
 import injectProduct from '#ioc/composables/injectProduct'
 import isEmpty from '#ioc/utils/isEmpty'
-import { computed, onUnmounted } from 'vue'
+import { computed } from 'vue'
 
 const product = injectProduct()
 
