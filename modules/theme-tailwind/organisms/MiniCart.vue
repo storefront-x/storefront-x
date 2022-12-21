@@ -1,6 +1,10 @@
 <template>
   <div v-click-outside="close" :class="{ hidden: !cartStore.isMiniCartVisible }">
-    <div aria-live="assertive" class="absolute max-w-lg px-4 z-50 inset-y-28 right-0">
+    <div
+      aria-live="assertive"
+      class="absolute max-w-lg px-4 z-50 inset-y-28 right-0"
+      :class="{ 'min-w-[20em]': cart.items.length === 0 }"
+    >
       <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
         <div class="flex h-full flex-col overflow-y-hidden shadow-xl">
           <div class="flex-1 overflow-y-hidden py-6 px-4 sm:px-6">
@@ -17,6 +21,9 @@
                   </li>
                   <li v-if="cart.items.length === 0" class="flex flex-col py-6">
                     <Heading :level="3" class="text-center">{{ t('emptyCart') }}</Heading>
+                    <div class="flex justify-center my-4">
+                      <img class="h-24 w-auto" :src="noItemsIcon" :alt="t('No cart items icon')" />
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -56,6 +63,7 @@ import useCartStore from '#ioc/stores/useCartStore'
 import { watchEffect } from 'vue'
 import useRoute from '#ioc/composables/useRoute'
 import vClickOutside from '#ioc/directives/vClickOutside'
+import noItemsIcon from '#ioc/assets/images/cart/no-items-icon'
 
 const { t } = useI18n()
 const cartStore = useCartStore()
@@ -89,4 +97,5 @@ cs-CZ:
   cartDetails: Detaily kosiku
   moreItemsInMiniCart: Všechny ({0}) produkty uvidíte v detailu košíku
   emptyCart: Váš košík je prázdný
+  No cart items icon: Prázdný košík ikona
 </i18n>
