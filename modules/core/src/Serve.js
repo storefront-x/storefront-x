@@ -29,7 +29,13 @@ export default class Serve extends Core {
       server.use(compression())
     }
 
-    server.use(express.static(path.join(this.distDir, 'client'), { index: false }))
+    server.use(
+      express.static(path.join(this.distDir, 'client'), {
+        index: false,
+        immutable: true,
+        maxAge: '1y',
+      }),
+    )
 
     await this._loadServerMiddleware(server)
     await this._loadServerRoutes(server)
