@@ -98,51 +98,41 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   const variants = computed(() => product.value.variants ?? [])
 
   const availableVariants = (values: any, optionKey: string) => {
-    const allConfigurableOptions = product.value.configurableOptions
-    const configurationLength = Object.keys(configuration).length
+    const configurationKeys = Object.keys(configuration)
 
-    if (allConfigurableOptions.length === 1) {
-      const availableValues = []
+    const newValues = []
+    let filteredVariants = []
 
-      for (const variant of variants.value) {
-        if (!variant.product.available) continue
-        for (const value of Object.values(variant.attributes)) {
-          availableValues.push(values.find((item: any) => item.index === value))
-        }
+    for (const variant of variants.value) {
+      if (variant.product.available) {
+        filteredVariants.push(variant)
       }
-
-      return availableValues
     }
 
-    if (
-      (configurationLength === allConfigurableOptions.length - 1 ||
-        configurationLength === allConfigurableOptions.length) &&
-      allConfigurableOptions.length !== 1
-    ) {
-      const availableValues = []
-      for (const variant of variants.value) {
-        for (const key of Object.keys(configuration)) {
-          if (key === optionKey && configurationLength === allConfigurableOptions.length) continue
-          else if (key === optionKey) return values
-          if (variant.attributes[key] === configuration[key] && variant.product.available) {
-            availableValues.push(variant.attributes[optionKey])
-          }
+    if (configurationKeys.length > 0) {
+      for (const key of configurationKeys) {
+        if (key !== optionKey) {
+          filteredVariants = filteredVariants.filter((item: any) => item.attributes[key] === configuration[key])
         }
       }
-
-      const newValues = []
-
-      for (const value of values) {
-        if (availableValues.includes(value.index)) {
-          newValues.push({ ...value, disabled: false })
-        } else {
-          newValues.push({ ...value, disabled: true })
-        }
-      }
-      return newValues
     }
 
-    return values
+    for (const value of values) {
+      let isAvailable = false
+      for (const filteredVariant of filteredVariants) {
+        if (filteredVariant.attributes[optionKey] === value.index) {
+          isAvailable = true
+          break
+        }
+      }
+      if (isAvailable) {
+        newValues.push({ ...value, disabled: false })
+      } else {
+        newValues.push({ ...value, disabled: true })
+      }
+    }
+
+    return newValues
   }
 
   const variant = computed(() => {
@@ -200,7 +190,6 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     configurableOptions,
     configuration,
     variant,
-    variants,
     productOptions,
     options,
     isConfigured,
@@ -208,6 +197,5 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isOptionsConfigured,
     groupedItems,
     isGroupedProduct,
-    availableVariants,
   })
 }

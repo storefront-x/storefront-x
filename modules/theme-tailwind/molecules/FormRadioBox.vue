@@ -3,9 +3,9 @@
     <p class="sr-only">{{ label }}</p>
     <Label
       :for="`${id}-input`"
-      class="border flex items-center justify-center h-full text-sm font-medium uppercase sm:flex-1 cursor-pointer hover:ring-2"
+      class="relative border flex items-center justify-center h-full text-sm font-medium uppercase sm:flex-1 cursor-pointer hover:ring-2"
       :style="isCircle ? { 'background-color': background, '--tw-ring-color': background } : ''"
-      :class="[classes, disabled ? 'pointer-events-none opacity-50' : '']"
+      :class="[classes, disabled && 'pointer-events-none opacity-50']"
     >
       <input
         :id="`${id}-input`"

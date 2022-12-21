@@ -21,7 +21,7 @@
       <div v-if="product.isConfigurableProduct" class="mt-3">
         <h2 class="sr-only">Product configurations</h2>
 
-        <ProductConfigurableOptions :show-error="showError" />
+        <ProductConfigurableOptions />
       </div>
 
       <div v-if="product.isBundleProduct" class="mt-3">
@@ -59,7 +59,7 @@
           <ProductQuantityConfigurator @input="onQuantityChange" />
         </div>
 
-        <AddToCart :quantity="quantity" @show-configuration-error="showError = true" />
+        <AddToCart :quantity="quantity" />
       </div>
 
       <GroupedItems v-if="product.groupedItems.length && product.isGroupedProduct" />
@@ -103,7 +103,6 @@ const { t } = useI18n()
 const product = injectProduct()
 
 const quantity = ref(1)
-const showError = ref(false)
 
 const discounted = computed(() => {
   return {

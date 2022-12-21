@@ -34,9 +34,6 @@
         @input="$emit('input', configurableOption, value.index)"
       />
     </FormRadioGroup>
-    <p v-if="showError && !product.configuration[configurableOption.attributeCode]" class="mt-2 text-sm text-red-600">
-      {{ t('This is required field') }}
-    </p>
   </div>
 </template>
 
@@ -47,12 +44,10 @@ import FormRadioBox from '#ioc/molecules/FormRadioBox'
 import FormSelect from '#ioc/molecules/FormSelect'
 import isEmpty from '#ioc/utils/isEmpty'
 import { ref } from 'vue'
-import injectProduct from '#ioc/composables/injectProduct'
 
 defineEmits(['input'])
 
 const { t } = useI18n()
-const product = injectProduct()
 
 const selectedLabel = ref({} as any)
 
@@ -64,10 +59,6 @@ defineProps({
   inModal: {
     type: String,
     default: 'outOfModal',
-  },
-  showError: {
-    type: Boolean,
-    default: false,
   },
 })
 

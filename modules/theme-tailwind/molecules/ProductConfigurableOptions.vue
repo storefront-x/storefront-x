@@ -5,7 +5,6 @@
       :key="configurableOption.attributeCode"
       :configurable-option="configurableOption"
       :in-modal="inModal"
-      :show-error="showError"
       @input="onInput"
     />
   </Form>
@@ -25,13 +24,7 @@ defineProps({
     type: String,
     default: 'outOfModal',
   },
-  showError: {
-    type: Boolean,
-    default: false,
-  },
 })
-
-onUnmounted(() => (product.configuration = {}))
 
 const updateFormValue = computed(() => {
   if (isEmpty(product.configuration)) return

@@ -32,6 +32,7 @@ import BundleOptionsModal from '#ioc/organisms/BundleOptionsModal'
 import ProductOptionsModal from '#ioc/organisms/ProductOptionsModal'
 import useRouter from '#ioc/composables/useRouter'
 import useRoute from '#ioc/composables/useRoute'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 
 const props = defineProps({
   quantity: {
@@ -40,13 +41,12 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['show-configuration-error'])
-
 const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
 const router = useRouter()
 const route = useRoute()
+const showErrorNotification = useShowErrorNotification()
 
 const loading = ref(false)
 const isCrossSellModalOpen = ref(false)
@@ -60,7 +60,7 @@ const onClose = () => {
 const onAddToCart = async () => {
   if (product.isConfigurableProduct && !product.isConfigured) {
     if (route.fullPath === product.urlPath) {
-      emit('show-configuration-error')
+      showErrorNotification(t('Please configure your product'))
       return
     } else {
       router.push(product.urlPath)
@@ -101,4 +101,5 @@ const onAddToCart = async () => {
 <i18n lang="yaml">
 cs-CZ:
   Add to cart: Přidat do košíku
+  Please configure your product: Nakonfigurujte svůj produkt
 </i18n>
