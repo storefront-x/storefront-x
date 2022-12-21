@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { buildProject } from '@storefront-x/testing'
 
-test.only('with vue', async () => {
+test('with vue', async () => {
   await buildProject({
     modules: [
       '@storefront-x/base',
