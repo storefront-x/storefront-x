@@ -33,11 +33,7 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
-        logger.log('Loading', argv.config)
-
-        const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))
-
-        const { default: config } = await import(href)
+        const config = await loadConfig(argv.config)
         const { default: Dev } = await import('./src/Dev.js')
 
         const dev = new Dev(config, argv)
@@ -82,11 +78,8 @@ yargs(hideBin(process.argv))
       try {
         process.env.NODE_ENV = 'production'
 
-        logger.log('Loading', argv.config)
+        const config = await loadConfig(argv.config)
 
-        const { href } = url.pathToFileURL(path.resolve(process.cwd(), argv.config))
-
-        const { default: config } = await import(href)
         const { default: Build } = await import('./src/Build.js')
 
         const build = new Build(config, argv)
@@ -161,3 +154,17 @@ yargs(hideBin(process.argv))
   .help()
   .locale('en')
   .parse()
+
+async function loadConfig(pathName) {
+  logger.log('Loading', pathName)
+  try {
+    const { href } = url.pathToFileURL(path.resolve(process.cwd(), pathName))
+
+    const { default: config } = await import(href)
+
+    return config
+  } catch (e) {
+    logger.error(`Could not find ${pathName}. Create or specify config using --config.`)
+    process.exit(1)
+  }
+}
