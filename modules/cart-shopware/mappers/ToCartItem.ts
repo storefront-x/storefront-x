@@ -12,7 +12,7 @@ export default (data: any) => ({
     id: data.referencedId as string,
     name: data.label as string,
     urlKey: data.referencedId as string,
-    urlPath: `/p/${data.referencedId}`,
+    urlPath: (data.urlPath as string) ?? '',
     thumbnailUrl: (data.cover?.url ?? gift) as string,
   } as ReturnType<typeof ToProduct>,
 })
