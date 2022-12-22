@@ -18,8 +18,15 @@
 import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import _404 from '#ioc/assets/images/404'
+import useContext from '#ioc/composables/useContext'
+import IS_SERVER from '#ioc/config/IS_SERVER'
 
 const { t } = useI18n()
+if (IS_SERVER) {
+  const ctx = useContext()
+
+  ctx.responseStatus = 404
+}
 </script>
 
 <i18n lang="yaml">
