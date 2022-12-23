@@ -1,7 +1,7 @@
 import useCartItem from '#ioc/composables/useCartItem'
 import useShopware from '#ioc/composables/useShopware'
 import ToCart from '#ioc/mappers/ToCart'
-import useAddSeoPathToCartItem from '#ioc/services/useAddSeoPathToCartItem'
+import useAddSeoPathToCartItems from '#ioc/services/useAddSeoPathToCartItems'
 
 interface Options {
   quantity?: number
@@ -9,7 +9,7 @@ interface Options {
 
 export default () => {
   const shopware = useShopware()
-  const addSeoPathToItem = useAddSeoPathToCartItem()
+  const addSeoPathToItems = useAddSeoPathToCartItems()
 
   return async (
     cartItem: ReturnType<typeof useCartItem>,
@@ -19,7 +19,7 @@ export default () => {
   }> => {
     if (options.quantity === 0) {
       const response = await shopware.del(`/checkout/cart/line-item?ids[]=${cartItem.id}`)
-      const responseWithURLs = await addSeoPathToItem(response)
+      const responseWithURLs = await addSeoPathToItems(response)
 
       return {
         cart: ToCart(responseWithURLs),
@@ -34,7 +34,7 @@ export default () => {
         },
       ],
     })
-    const responseWithURLs = await addSeoPathToItem(response)
+    const responseWithURLs = await addSeoPathToItems(response)
 
     return {
       cart: ToCart(responseWithURLs),
