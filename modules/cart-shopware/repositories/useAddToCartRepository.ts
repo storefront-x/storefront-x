@@ -2,19 +2,16 @@ import useShopware from '#ioc/composables/useShopware'
 import ToProduct from '#ioc/mappers/ToProduct'
 import ToCart from '#ioc/mappers/ToCart'
 import useCartStore from '#ioc/stores/useCartStore'
+import useAddSeoPathToCartItem from '#ioc/services/useAddSeoPathToCartItem'
 
 interface Options {
   quantity?: number
 }
 
-const productPaths: {
-  id: string
-  path: string
-}[] = []
-
 export default () => {
   const shopware = useShopware()
   const cartStore = useCartStore()
+  const addSeoPathToItem = useAddSeoPathToCartItem()
 
   return async (
     product: ReturnType<typeof ToProduct>,
@@ -35,27 +32,13 @@ export default () => {
           ],
         })
 
-        const lineItems = response.lineItems?.map((entry: any) => {
-          for (const path of productPaths) {
-            if (path.id === entry.referencedId) {
-              entry.urlPath = path.path ?? ''
-              break
-            }
-          }
-          return entry
-        })
-        response.lineItems = lineItems
+        const responseWithURLs = await addSeoPathToItem(response)
 
         return {
-          cart: ToCart(response),
+          cart: ToCart(responseWithURLs),
         }
       }
     }
-
-    productPaths.push({
-      id: product.id,
-      path: product.urlPath,
-    })
 
     const response = await shopware.post('/checkout/cart/line-item', {
       items: [
@@ -67,19 +50,10 @@ export default () => {
       ],
     })
 
-    const lineItems = response.lineItems?.map((entry: any) => {
-      for (const path of productPaths) {
-        if (path.id === entry.referencedId) {
-          entry.urlPath = path.path ?? ''
-          break
-        }
-      }
-      return entry
-    })
-    response.lineItems = lineItems
+    const responseWithURLs = await addSeoPathToItem(response)
 
     return {
-      cart: ToCart(response),
+      cart: ToCart(responseWithURLs),
     }
   }
 }
