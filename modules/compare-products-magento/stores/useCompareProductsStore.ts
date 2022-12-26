@@ -20,9 +20,9 @@ export default defineStore('compareProducts', {
       const createCompareListId = useCreateCompareListId()
       const getCompareListById = useGetCompareListById()
       const cookies = useCookies()
-
-      const { id } = await createCompareListId()
-      this.$patch({ compareListId: id })
+      //neni potreba jen pro zaregistrovane uzivatele
+      //  const { id } = await createCompareListId()
+      //  this.$patch({ compareListId: id })
 
       //maybe in get items service ?
       const itemsCompared = cookies.get(COMPARE_PRODUCTS_COOKIE_NAME) || []
@@ -33,8 +33,11 @@ export default defineStore('compareProducts', {
         () => customerStore !== undefined,
         async () => {
           if (customerStore.customer) {
+            console.log('Customer is logged in, CompareStore')
             const { id } = await createCompareListId()
+            // add items from cookie if they exist
             const { items } = await getCompareListById(id)
+            console.log('items in compareStore', items)
             this.$patch({ items: items })
             cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, items, { path: '/' })
           }

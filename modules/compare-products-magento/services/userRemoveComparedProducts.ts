@@ -11,17 +11,25 @@ export default () => {
   const cookies = useCookies()
 
   return async (product: ReturnType<typeof useProduct>) => {
-    const removeIndex = compareProductsStore.items.indexOf(product.sku)
-    const customer = useCustomer()
-    compareProductsStore.items.splice(removeIndex, 1)
+    try {
+      const removeIndex = compareProductsStore.items.indexOf(product.sku)
 
-    if (compareProductsStore.items.length) {
-      cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, compareProductsStore.items, { path: '/' })
+      const customer = useCustomer()
+
+      compareProductsStore.items.splice(removeIndex, 1)
+      console.log('removing service NOT LOGGED', product.id)
       if (customer.isLoggedIn) {
-        await deleteProductsFromCompareList({ uid: compareProductsStore.compareListId, products: [product.sku] })
+        console.log('removing service', product.id)
+        await deleteProductsFromCompareList({ uid: compareProductsStore.compareListId, products: [product.id] })
       }
-    } else {
-      cookies.remove(COMPARE_PRODUCTS_COOKIE_NAME)
+
+      if (compareProductsStore.items.length) {
+        cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, compareProductsStore.items, { path: '/' })
+      } else {
+        cookies.remove(COMPARE_PRODUCTS_COOKIE_NAME)
+      }
+    } catch (error) {
+      console.log('chyba', error)
     }
   }
 }
