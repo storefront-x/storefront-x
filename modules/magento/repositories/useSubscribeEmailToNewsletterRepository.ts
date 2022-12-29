@@ -1,5 +1,5 @@
 import useMagento from '#ioc/composables/useMagento'
-import NewsletterError from '#ioc/errors/NewsletterError'
+import GraphQLError from "#ioc/errors/GraphQLError"
 import SubscribeEmailToNewsletter from '#ioc/graphql/mutations/SubscribeEmailToNewsletter'
 
 export default () => {
@@ -19,7 +19,7 @@ export default () => {
         status: response.status,
       }
     } catch (e: any) {
-      throw new NewsletterError(e.message)
+      throw new GraphQLError({ message: e.message })
     }
   }
 }
