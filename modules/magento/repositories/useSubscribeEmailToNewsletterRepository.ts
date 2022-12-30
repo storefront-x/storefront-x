@@ -10,8 +10,8 @@ export default () => {
     status: string
   }> => {
     const {
-      data: {subscribeEmailToNewsletter: response},
-    } = await magento.graphql(SubscribeEmailToNewsletter().with({email}))
+      data: { subscribeEmailToNewsletter: response },
+    } = await magento.graphql(SubscribeEmailToNewsletter().with({ email }))
 
     return {
       status: response.status,
