@@ -67,18 +67,22 @@ onMounted(() =>
         item_id: product.sku,
         item_name: product.name,
         // affiliation: 'Google Merchandise Store',
-        discount: product.finalPrice?.value !== product.regularPrice?.value ? (+product.regularPrice.value - +product.finalPrice.value) / PRICE_OFFSET : 0.00,
+        discount:
+          product.finalPrice?.value !== product.regularPrice?.value
+            ? (+product.regularPrice.value - +product.finalPrice.value) / PRICE_OFFSET
+            : 0.0,
         item_brand: productBrand?.valueLabel,
-        item_category: product.categories?.at(0) && product.categories[0].name,
-        item_category2: product.categories?.at(1) && product.categories[1].name,
-        item_category3: product.categories?.at(2) && product.categories[2].name,
-        item_category4: product.categories?.at(3) && product.categories[3].name,
-        item_category5: product.categories?.at(4) && product.categories[4].name,
+        item_category: product.categories?.at(0)?.name,
+        item_category2: product.categories?.at(1)?.name,
+        item_category3: product.categories?.at(2)?.name,
+        item_category4: product.categories?.at(3)?.name,
+        item_category5: product.categories?.at(4)?.name,
         price: +product.regularPrice.value / PRICE_OFFSET,
         product_type: product.productType,
       },
     ],
-  }))
+  }),
+)
 </script>
 
 <i18n lang="yaml">
