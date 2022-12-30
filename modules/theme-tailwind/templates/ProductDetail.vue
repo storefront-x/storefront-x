@@ -28,7 +28,9 @@ import Heading from '#ioc/atoms/Heading'
 import useI18n from '#ioc/composables/useI18n'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import useProductSchema from '#ioc/composables/schemaOrg/useProductSchema'
+import productDetailListener from "#ioc/analyticsData/listeners/productDetailListener"
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
+import {onMounted} from 'vue'
 
 const ProductDetailTabs = hydrateWhenVisible(() => import('#ioc/organisms/ProductDetailTabs'))
 const ProductCarousel = hydrateWhenVisible(() => import('#ioc/organisms/ProductCarousel'))
@@ -56,26 +58,27 @@ useHead({
 
 const productBrand = product.attributes.find((atr) => atr.code === 'brand')
 
-const emit = {
-  currency: product.finalPrice?.currency,
-  value: +product.finalPrice?.value / PRICE_OFFSET,
-  items: [
-    {
-      item_id: product.sku,
-      item_name: product.name,
-      // affiliation: 'Google Merchandise Store',
-      discount: product.finalPrice?.value !== product.regularPrice?.value ? (+product.regularPrice.value - +product.finalPrice.value) / PRICE_OFFSET : 0.00,
-      item_brand: productBrand?.valueLabel,
-      item_category: product.categories?.at(0) && product.categories[0].name,
-      item_category2: product.categories?.at(1) && product.categories[1].name,
-      item_category3: product.categories?.at(2) && product.categories[2].name,
-      item_category4: product.categories?.at(3) && product.categories[3].name,
-      item_category5: product.categories?.at(4) && product.categories[4].name,
-      price: +product.regularPrice.value / PRICE_OFFSET,
-      product_type: product.productType,
-    },
-  ],
-}
+onMounted(() =>
+  productDetailListener({
+    currency: product.finalPrice?.currency,
+    value: +product.finalPrice?.value / PRICE_OFFSET,
+    items: [
+      {
+        item_id: product.sku,
+        item_name: product.name,
+        // affiliation: 'Google Merchandise Store',
+        discount: product.finalPrice?.value !== product.regularPrice?.value ? (+product.regularPrice.value - +product.finalPrice.value) / PRICE_OFFSET : 0.00,
+        item_brand: productBrand?.valueLabel,
+        item_category: product.categories?.at(0) && product.categories[0].name,
+        item_category2: product.categories?.at(1) && product.categories[1].name,
+        item_category3: product.categories?.at(2) && product.categories[2].name,
+        item_category4: product.categories?.at(3) && product.categories[3].name,
+        item_category5: product.categories?.at(4) && product.categories[4].name,
+        price: +product.regularPrice.value / PRICE_OFFSET,
+        product_type: product.productType,
+      },
+    ],
+  }))
 </script>
 
 <i18n lang="yaml">
