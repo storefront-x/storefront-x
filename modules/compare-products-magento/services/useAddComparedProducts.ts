@@ -16,9 +16,8 @@ export default () => {
   return async (product: ReturnType<typeof useProduct>) => {
     compareProductsStore.items.push(product.sku)
     if (customer.isLoggedIn) {
-      console.log('adding  product service ID', product.id)
       const { id } = await createCompareListId()
-      console.log('our id', id)
+
       await addProductsToCompareListRepository({ uid: id, products: [product.id] })
     }
     cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, compareProductsStore.items, { path: '/' })

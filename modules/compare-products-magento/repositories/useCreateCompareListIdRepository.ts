@@ -7,8 +7,6 @@ export default () => {
   return async () => {
     const { data } = await magento.graphql(CreateCompareList())
 
-    console.log('repo createCompareList id', data)
-
     return {
       id: data.createCompareList?.uid,
     }
