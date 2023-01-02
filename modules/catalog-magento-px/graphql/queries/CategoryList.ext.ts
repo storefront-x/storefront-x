@@ -7,15 +7,15 @@ const CategoryList: Extension =
   (...args: any[]) => {
     const self = CategoryList(...args)
 
-    addFields(self, 'categoryList.children', {
+    addFields(self, 'categories.items.children', {
       thumbnail: field(),
     })
 
-    addFields(self, 'categoryList.children.children', {
+    addFields(self, 'categories.items.children.children', {
       thumbnail: field(),
     })
 
-    addFields(self, 'categoryList.children.children.children', {
+    addFields(self, 'categories.items.children.children.children', {
       thumbnail: field(),
     })
 

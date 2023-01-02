@@ -1,3 +1,5 @@
+import Locale from '#ioc/types/vue-i18n/Locale'
+
 export default [
   {
     fullName: 'English',
@@ -5,6 +7,6 @@ export default [
     locale: 'en-US',
     prefix: '/',
     flag: '/flags/1x1/us.svg',
-    magentoStore: 'default',
+    magentoStore: 'b2b_en',
   },
-]
+] as Locale[]
