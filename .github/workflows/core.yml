@@ -37,7 +37,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: yarn create storefront-x --directory=app --integration=magento
-      - run: cd app
-      - run: yarn install
-      - run: yarn build
+      - run: |
+          yarn create storefront-x --directory=app --integration=magento
+          cd app
+          yarn install
+          yarn build
