@@ -35,7 +35,7 @@ jobs:
         with:
           node-version: 18
       - run: |
-          npm create storefront-x@latest --directory=app --integration=${{ matrix.integration }}
+          npm create storefront-x@latest -y -- --directory=app --integration=${{ matrix.integration }}
           cd app
           npm install
           npm run build
