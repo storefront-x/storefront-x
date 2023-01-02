@@ -2,7 +2,7 @@ import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMi
 import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/base/expectMicrowishlistQuantity'
 import expectNotificationReviewConfirm from '~/cypress/support/pageObjects/base/expectNotificationReviewConfirm'
 
-import Product from '~/cypress/support/pageObjects/Product'
+import Product from '~/cypress/support/pageObjects/product/Product'
 
 describe('Product', () => {
   /** @type {Product} */
