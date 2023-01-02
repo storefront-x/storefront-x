@@ -1,8 +1,17 @@
 import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
 import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/base/expectMicrowishlistQuantity'
 import expectNotificationReviewConfirm from '~/cypress/support/pageObjects/base/expectNotificationReviewConfirm'
-
 import Product from '~/cypress/support/pageObjects/product/Product'
+import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
+import getTitle from '~/cypress/support/pageObjects/product/getTitle'
+import getPrice from '~/cypress/support/pageObjects/product/getPrice'
+import addToCart from '~/cypress/support/pageObjects/product/addToCart'
+import addToWishlist from '~/cypress/support/pageObjects/product/addToWishlist'
+import increaseQuantity from '~/cypress/support/pageObjects/product/increaseQuantity'
+import decreaseQuantity from '~/cypress/support/pageObjects/product/decreaseQuantity'
+import setQuantity from '~/cypress/support/pageObjects/product/setQuantity'
+import openReviewForm from '~/cypress/support/pageObjects/product/openReviewForm'
+import addReviewData from '~/cypress/support/pageObjects/product/addReviewData'
 
 describe('Product', () => {
   /** @type {Product} */
@@ -11,50 +20,50 @@ describe('Product', () => {
   beforeEach(() => {
     product = new Product()
 
-    product.visitRandom()
+    visitRandom()
   })
 
   it('contains product title', () => {
-    product.getTitle().will('include.text', () => product.data.name)
+    getTitle().will('include.text', () => product.data.name)
   })
 
   it('contains product price', () => {
-    product.getPrice().should('not.be.empty')
+    getPrice().should('not.be.empty')
   })
 
   it('can be added to cart', () => {
-    product.addToCart()
+    addToCart()
 
     expectMicrocartQuantity(1)
   })
 
   it('can be added to wishlist', () => {
-    product.addToWishlist()
+    addToWishlist()
 
     expectMicrowishlistQuantity(1)
   })
 
   it('allows increasing quantity via buttons', () => {
-    product.increaseQuantity() // 2
-    product.increaseQuantity() // 3
-    product.decreaseQuantity() // 2
+    increaseQuantity() // 2
+    increaseQuantity() // 3
+    decreaseQuantity() // 2
 
-    product.addToCart()
+    addToCart()
 
     expectMicrocartQuantity(2)
   })
 
   it('allows setting quantity via input', () => {
-    product.setQuantity(3)
+    setQuantity(3)
 
-    product.addToCart()
+    addToCart()
 
     expectMicrocartQuantity(3)
   })
 
   it('allows adding reviews', () => {
-    product.openReviewForm()
-    product.addReviewData()
+    openReviewForm()
+    addReviewData()
     expectNotificationReviewConfirm()
   })
 })
