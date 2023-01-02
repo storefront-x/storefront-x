@@ -1,3 +1,3 @@
 export default null
 
-throw new Error('Override MAGENTO_URL config')
+throw new Error('Override config/MAGENTO_URL')

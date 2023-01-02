@@ -1,2 +1,3 @@
 export default null
-throw new Error('Override COOKIE_SCRIPT_ID')
+
+throw new Error('Override config/OOKIE_SCRIPT_ID')
