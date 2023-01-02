@@ -5,8 +5,11 @@ import AccountCredentials from '~/cypress/support/pageObjects/account/AccountCre
 import register from '~/cypress/support/pageObjects/account/register'
 import login from '~/cypress/support/pageObjects/account/login'
 import logout from '~/cypress/support/pageObjects/account/logout'
-
-import Product from '~/cypress/support/pageObjects/Product'
+import Product from '~/cypress/support/pageObjects/product/Product'
+import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
+import addToWishlist from '~/cypress/support/pageObjects/product/addToWishlist'
+import visitAgain from '~/cypress/support/pageObjects/product/visitAgain'
+import getAddToWishlist from '~/cypress/support/pageObjects/product/getAddToWishlist'
 
 describe('Wishlist', () => {
   /** @type {Product} */
@@ -21,12 +24,12 @@ describe('Wishlist', () => {
 
   beforeEach(() => {
     product = new Product()
+
+    visitRandom()
+    addToWishlist()
   })
 
   it('allows adding products to the wishlist from product detail page', () => {
-    product.visitRandom()
-    product.addToWishlist()
-
     expectMicrowishlistQuantity(1)
     gotoWishlist()
 
@@ -34,20 +37,17 @@ describe('Wishlist', () => {
   })
 
   it('allows removing from the wishlist', () => {
-    product.visitRandom()
-    product.addToWishlist()
-
     expectMicrowishlistQuantity(1)
 
-    product.visitRandom()
-    product.addToWishlist()
+    visitRandom()
+    addToWishlist()
 
     gotoWishlist()
 
     expectWishlistQuantity(2)
 
-    product.visitAgain()
-    product.getAddToWishlist().click() // Clicking again will remove it from wishlist
+    visitAgain(product)
+    getAddToWishlist().click() // Clicking again will remove it from wishlist
 
     gotoWishlist()
 
@@ -55,20 +55,17 @@ describe('Wishlist', () => {
   })
 
   it('merges wishlist with customer wishlist', () => {
-    product.visitRandom()
-    product.addToWishlist()
+    register(accountCredentials)
 
-    register.register(accountCredentials)
+    visitRandom()
+    addToWishlist()
 
-    product.visitRandom()
-    product.addToWishlist()
+    logout()
 
-    logout.logout()
+    visitRandom()
+    addToWishlist()
 
-    product.visitRandom()
-    product.addToWishlist()
-
-    login.login(accountCredentials)
+    login(accountCredentials)
 
     gotoWishlist()
 

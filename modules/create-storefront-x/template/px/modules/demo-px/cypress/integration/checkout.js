@@ -6,35 +6,29 @@ import confirmAgreements from '~/cypress/support/pageObjects/checkout/confirmAgr
 import placeOrder from '~/cypress/support/pageObjects/checkout/placeOrder'
 import fillCreditCardInfo from '~/cypress/support/pageObjects/checkout/fillCreditCardInfo'
 import getInstorePickupLocation from '~/cypress/support/pageObjects/checkout/getInstorePickupLocation'
-
 import checkThankYouPageVisibility from '~/cypress/support/pageObjects/thankYouPage/checkThankYouPageVisibility'
-
-import Product from '~/cypress/support/pageObjects/Product'
+import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
+import addToCart from '~/cypress/support/pageObjects/product/addToCart'
+import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
 
 describe('Checkout', () => {
-  /** @type {Product} */
-  let product
   beforeEach(() => {
-    product = new Product()
+    addRandomProductToCartAndProceedToCheckout()
   })
 
   let addRandomProductToCartAndProceedToCheckout = () => {
-    product.visitRandom()
-    product.addToCart()
-    product.continueToCheckout()
+    visitRandom()
+    addToCart()
+    continueToCheckout()
   }
 
   it('checks that reload wont delete checkout', () => {
-    addRandomProductToCartAndProceedToCheckout()
-
     getOrderSummaryItems()
     cy.reload().waitForSfx()
     getOrderSummaryItems()
   })
 
   it('finishes checkout process', () => {
-    addRandomProductToCartAndProceedToCheckout()
-
     selectShipping('flatrate_flatrate')
     selectPayment('checkmo')
     fillShippingInfo()
@@ -45,8 +39,6 @@ describe('Checkout', () => {
   })
 
   it('accepts credit card payment', () => {
-    addRandomProductToCartAndProceedToCheckout()
-
     selectShipping('flatrate_flatrate')
     selectPayment('braintree')
     fillShippingInfo()
@@ -58,8 +50,6 @@ describe('Checkout', () => {
   })
 
   it('supports instore pickup', () => {
-    addRandomProductToCartAndProceedToCheckout()
-
     selectShipping('instore_pickup')
     getInstorePickupLocation().click()
     selectPayment('checkmo')

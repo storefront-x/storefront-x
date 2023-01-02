@@ -1,3 +1,3 @@
-export default function visitAgain(productName) {
-  return cy.visit(productName).waitForSfx()
+export default function visitAgain(data) {
+  return cy.visit(data.productname).waitForSfx()
 }

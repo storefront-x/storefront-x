@@ -19,7 +19,7 @@ describe('Product', () => {
   beforeEach(() => {
     product = new Product()
 
-    visitProduct(product.url_key)
+    visitProduct(product)
   })
 
   it('contains product title', () => {
