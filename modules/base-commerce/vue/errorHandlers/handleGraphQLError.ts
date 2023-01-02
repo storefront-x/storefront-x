@@ -1,6 +1,6 @@
-import GraphQLError from '#ioc/errors/GraphQLError'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useI18n from '#ioc/composables/useI18n'
+import GraphQLError from '#ioc/errors/GraphQLError'
 
 export default function useHandleGraphQLError() {
   const showErrorNotification = useShowErrorNotification()
