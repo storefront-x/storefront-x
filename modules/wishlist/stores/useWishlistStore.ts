@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import WISHLIST_COOKIES_NAME from '#ioc/config/WISHLIST_COOKIES_NAME'
 import useCookies from '#ioc/composables/useCookies'

@@ -6,6 +6,10 @@ on:
       - main
   pull_request:
 
+concurrency:
+  group: shopware-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     uses: ./.github/workflows/lint.yml
@@ -30,6 +34,3 @@ jobs:
       storefront-x-config: storefront-x.shopware.config.js
       product-detail-page: 3m-7000014557-display-privacy-filters-frameless-display-privacy-filter-43.2-cm-17/VNX7095
       category-page: Computers-Peripherals
-
-
-

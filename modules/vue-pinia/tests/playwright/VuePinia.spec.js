@@ -31,7 +31,7 @@ test('server-side global state management', async ({ page }) => {
             },
             stores: {
               'useMainStore.js': `
-                import { defineStore } from 'pinia'
+                import defineStore from '#ioc/utils/vuePinia/defineStore'
                 export default defineStore('main', {
                   state: () => ({
                     count: 0,
@@ -85,7 +85,7 @@ test('transfer state', async ({ page }) => {
             },
             stores: {
               'useMainStore.js': `
-                import { defineStore } from 'pinia'
+                import defineStore from '#ioc/utils/vuePinia/defineStore'
                 export default defineStore('main', {
                   state: () => ({
                     count: 0,

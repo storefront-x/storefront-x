@@ -5,7 +5,7 @@ import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 import useGetPaymentMethods from '#ioc/services/useGetPaymentMethods'
 import useGetShippingMethods from '#ioc/services/useGetShippingMethods'
 
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('checkoutShopware', {
   actions: {
