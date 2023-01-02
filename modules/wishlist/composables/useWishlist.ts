@@ -3,7 +3,7 @@ import useGetProductsByIdsRepository from '#ioc/repositories/useGetProductsByIds
 import { ref, onMounted, watch } from 'vue'
 import ToProduct from '#ioc/mappers/ToProduct'
 import ToWishlistItem from '#ioc/mappers/ToWishlistItem'
-import { storeToRefs } from 'pinia'
+import storeToRefs from '#ioc/utils/vuePinia/storeToRefs'
 
 export default () => {
   const wishlistStore = useWishlistStore()

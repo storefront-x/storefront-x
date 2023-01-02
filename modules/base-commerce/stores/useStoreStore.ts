@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 import ToCurrency from '#ioc/mappers/ToCurrency'
 
 export default defineStore('store', {

@@ -1,7 +1,7 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useGetCurrencies from '#ioc/services/useGetCurrencies'
 import useMulticurrencyStore from '#ioc/stores/useMulticurrencyStore'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('multicurrencyShopware', {
   actions: {

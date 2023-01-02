@@ -18,7 +18,7 @@ All `serverInit` actions in all stores are executed in parallel so they are grea
 // stores/useAwesomeStore.ts
 
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('awesome', {
   state: () => ({

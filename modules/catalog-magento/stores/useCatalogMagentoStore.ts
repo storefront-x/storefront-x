@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useCatalogStore from '#ioc/stores/useCatalogStore'
 import useGetNavigationMenu from '#ioc/services/useGetNavigationMenu'

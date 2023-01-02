@@ -1,5 +1,5 @@
 import ToCategory from '#ioc/mappers/ToCategory'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('catalog', {
   state: () => ({
