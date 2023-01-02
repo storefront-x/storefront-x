@@ -53,6 +53,7 @@ export default {
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
+    '@storefront-x/theme-tailwind-magento-px',
 
     '@storefront-x/demo-magento',
   ],

@@ -89,8 +89,6 @@ const pageLinksByCategory = [
   {
     name: 'Useful information',
     children: [
-      { label: 'Brands', path: 'brands' },
-      { label: 'Blog', path: 'blog' },
       { label: 'About us', path: '/about-company' },
       { label: 'Contact', path: '/contact-us' },
     ],
