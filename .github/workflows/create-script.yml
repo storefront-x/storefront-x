@@ -13,6 +13,7 @@ concurrency:
 jobs:
   yarn:
     strategy:
+      fail-fast: false
       matrix:
         integration: [magento, shopware, venia]
     runs-on: ubuntu-latest
@@ -27,6 +28,7 @@ jobs:
           yarn build
   npm:
     strategy:
+      fail-fast: false
       matrix:
         integration: [magento, shopware, venia]
     runs-on: ubuntu-latest
