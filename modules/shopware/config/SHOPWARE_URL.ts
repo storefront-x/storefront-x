@@ -1,3 +1,3 @@
 export default null
 
-throw new Error('Override SHOPWARE_URL config')
+throw new Error('Override config/SHOPWARE_URL')
