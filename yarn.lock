@@ -3518,6 +3518,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/google-analytics@workspace:modules/google-analytics":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-analytics@workspace:modules/google-analytics"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/google-tag-manager-partytown@workspace:modules/google-tag-manager-partytown":
   version: 0.0.0-use.local
   resolution: "@storefront-x/google-tag-manager-partytown@workspace:modules/google-tag-manager-partytown"

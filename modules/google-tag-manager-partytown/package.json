@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/google-tag-manager-partytown",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

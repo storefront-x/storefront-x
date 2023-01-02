@@ -12,6 +12,7 @@ export default {
     '@storefront-x/atomic-design',
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
+    '@storefront-x/nprogress',
 
     '@storefront-x/catalog',
     '@storefront-x/cart',
