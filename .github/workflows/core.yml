@@ -8,7 +8,6 @@ on:
 
 jobs:
   playwright:
-    name: Playwright
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -21,3 +20,13 @@ jobs:
       - run: yarn install --immutable --immutable-cache
       - run: yarn playwright install chromium
       - run: yarn test:playwright --forbid-only
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - run: yarn install --immutable --immutable-cache
+      - run: yarn docs:build
