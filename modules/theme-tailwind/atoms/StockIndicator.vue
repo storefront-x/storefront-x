@@ -1,5 +1,5 @@
 <template>
-  <p v-if="stockStatus" class="text-sm text-green-600 flex items-center mt-4" :class="classes">
+  <p class="text-sm font-bold flex items-center mt-4" :class="classes">
     <InStockTile v-if="stockStatus" class="h-2 w-auto mr-1" />
     <OutOfStockTile v-if="!stockStatus" class="h-4 w-auto mr-1" />
     {{ t(stockStatus ? 'IN_STOCK' : 'OUT_OF_STOCK') }}
@@ -24,7 +24,7 @@ const props = defineProps({
 
 const classes = computed(() => {
   return {
-    'font-bold': props.stockStatus,
+    'text-green-600': props.stockStatus,
     'text-red-600': !props.stockStatus,
   }
 })
