@@ -1,3 +1,13 @@
+## v1.4.5 (2023-01-02)
+
+#### :house: Internal
+
+- [#243](https://github.com/storefront-x/storefront-x/pull/243) Fix create script ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.4.4 (2023-01-02)
 
 #### :rocket: Enhancement
