@@ -90,7 +90,7 @@ const pageLinksByCategory = [
     name: 'Useful information',
     children: [
       { label: 'About us', path: '/about-company' },
-      { label: 'Contact', path: '/contact-us' },
+      { label: 'Contact', path: '/contact' },
     ],
   },
   {
@@ -99,8 +99,7 @@ const pageLinksByCategory = [
       { label: 'Shipping and payment', path: '/shipping-and-payment' },
       { label: 'Return policy', path: '/return-policy' },
       { label: 'Terms of service', path: '/terms-of-service' },
-      { label: 'Privacy policy', path: '/privacy-policy' },
-      { label: 'Cookies policy', path: '/cookies-policy' },
+      { label: 'Privacy policy and cookies policy', path: '/privacy-policy-cookie-restriction-mode' },
     ],
   },
   {
