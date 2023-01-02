@@ -30,3 +30,14 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: yarn docs:build
+  create-script-yarn:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: yarn create storefront-x --directory=app --integration=magento
+      - run: cd app
+      - run: yarn install
+      - run: yarn build
