@@ -60,8 +60,8 @@ const productBrand = product.attributes.find((atr) => atr.code === 'brand')
 
 onMounted(() =>
   productDetailListener({
-    currency: product.finalPrice?.currency,
-    value: +product.finalPrice?.value / PRICE_OFFSET,
+    currency: product.finalPrice?.currency ?? '',
+    value: +product.finalPrice.value / PRICE_OFFSET,
     items: [
       {
         item_id: product.sku,
