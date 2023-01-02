@@ -26,7 +26,7 @@ test('import of stores over ioc', async ({ page }) => {
             },
             stores: {
               'useMainStore.ts': `
-                import { defineStore } from 'pinia'
+                import defineStore from '#ioc/utils/vuePinia/defineStore'
                 export default defineStore('main', {
                   state: () => ({
                     count: 0,
@@ -76,7 +76,7 @@ test('overriding of stores over ioc', async ({ page }) => {
             },
             stores: {
               'useMainStore.ts': `
-                import { defineStore } from 'pinia'
+                import defineStore from '#ioc/utils/vuePinia/defineStore'
                 export default defineStore('main', {
                   state: () => ({
                     count: 0,
@@ -96,7 +96,7 @@ test('overriding of stores over ioc', async ({ page }) => {
           {
             stores: {
               'useMainStore.ts': `
-                import { defineStore } from 'pinia'
+                import defineStore from '#ioc/utils/vuePinia/defineStore'
                 export default defineStore('main', {
                   state: () => ({
                     count: 0,

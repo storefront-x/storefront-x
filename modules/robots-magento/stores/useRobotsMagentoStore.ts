@@ -1,6 +1,6 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useGetRobots from '#ioc/services/useGetRobots'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 import useRobotsStore from '#ioc/stores/useRobotsStore'
 
 export default defineStore('robotsMagento', {
