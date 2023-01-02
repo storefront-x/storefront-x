@@ -4,13 +4,13 @@ import useI18n from '#ioc/composables/useI18n'
 
 export default () => {
   const showErrorNotification = useShowErrorNotification()
-  const { t } = useI18n()
+  const { t, te } = useI18n()
 
   return (error: any) => {
     if (error instanceof GraphQLError) {
       showErrorNotification({
         name: t('errors.title'),
-        message: t(`errors["${error.message}"]`).startsWith('errors') ? error.message : t(`errors["${error.message}"]`),
+        message: te(`errors["${error.message}"]`) ? t(`errors["${error.message}"]`) : error.message,
       })
     } else {
       throw error
