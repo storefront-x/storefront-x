@@ -1,7 +1,7 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import getPort from 'get-port'
-import { Dev } from '@storefront-x/core'
+import { Build, Dev } from '@storefront-x/core'
 
 export const makeProject = async (config, callback) => {
   await makeTempDir(async (dir) => {
@@ -71,6 +71,53 @@ export const makeProject = async (config, callback) => {
   })
 }
 
+export const buildProject = async (config) => {
+  await makeTempDir(async (dir) => {
+    for (const pkg of config.modules) {
+      if (typeof pkg === 'string') continue
+
+      await writePackage(dir, pkg[0], pkg[1])
+    }
+
+    const build = new Build({
+      dir,
+      modules: config.modules.map((pkg) => {
+        if (typeof pkg === 'string') return pkg
+
+        return `./${pkg[0]}`
+      }),
+      vite: {
+        logLevel: 'silent',
+      },
+    })
+
+    await build.bootstrap()
+    await build.build()
+  })
+}
+
+export const wrapConsole = async (callback) => {
+  const errors = []
+  const warnings = []
+
+  const oldError = console.error
+  const oldWarn = console.warn
+
+  console.error = (e) => {
+    errors.push(e.toString())
+  }
+
+  console.warn = (e) => {
+    warnings.push(e.toString())
+  }
+
+  await callback()
+
+  console.error = oldError
+  console.warn = oldWarn
+
+  return { errors: errors.join('\n'), warnings: warnings.join('\n') }
+}
 const makeTempDir = async (fn) => {
   const dir = await fs.mkdtemp('.test/temp-')
 

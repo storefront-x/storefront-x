@@ -3340,6 +3340,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/catalog-attributes-magento@workspace:modules/catalog-attributes-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/catalog-attributes-magento@workspace:modules/catalog-attributes-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/catalog-labels-magento@workspace:modules/catalog-labels-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/catalog-labels-magento@workspace:modules/catalog-labels-magento"
@@ -3509,6 +3515,12 @@ __metadata:
 "@storefront-x/free-shipping@workspace:modules/free-shipping":
   version: 0.0.0-use.local
   resolution: "@storefront-x/free-shipping@workspace:modules/free-shipping"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/google-analytics@workspace:modules/google-analytics":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-analytics@workspace:modules/google-analytics"
   languageName: unknown
   linkType: soft
 

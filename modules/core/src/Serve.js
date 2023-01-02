@@ -29,7 +29,20 @@ export default class Serve extends Core {
       server.use(compression())
     }
 
-    server.use(express.static(path.join(this.distDir, 'client'), { index: false }))
+    server.use(
+      '/assets',
+      express.static(path.join(this.distDir, 'client', 'assets'), {
+        index: false,
+        immutable: true, // We can use immutable because assets have their content hash in the name
+        maxAge: '1y',
+      }),
+    )
+
+    server.use(
+      express.static(path.join(this.distDir, 'client'), {
+        index: false,
+      }),
+    )
 
     await this._loadServerMiddleware(server)
     await this._loadServerRoutes(server)
@@ -44,7 +57,7 @@ export default class Serve extends Core {
         if (this.argv.failOnServerError) {
           res.status(500).send('Internal server error')
         } else {
-          res.send(template)
+          res.status(500).send(template)
         }
       }
     })

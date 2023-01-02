@@ -1,7 +1,6 @@
 import ProductDetail from '#ioc/graphql/queries/ProductDetail'
 import useMagento from '#ioc/composables/useMagento'
 import ToProduct from '#ioc/mappers/ToProduct'
-import ToAggregation from '#ioc/mappers/ToAggregation'
 
 export default () => {
   const magento = useMagento()
@@ -10,7 +9,6 @@ export default () => {
     id: string,
   ): Promise<{
     product: ReturnType<typeof ToProduct>
-    aggregations: ReturnType<typeof ToAggregation>[]
   }> => {
     const {
       data: { products },
@@ -22,7 +20,6 @@ export default () => {
 
     return {
       product: ToProduct(products?.items?.find((item: any) => item.url_key === id) || []),
-      aggregations: products?.aggregations?.map(ToAggregation) || [],
     }
   }
 }

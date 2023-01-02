@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/brands-magento",
-  "version": "1.0.1",
+  "version": "1.4.2",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

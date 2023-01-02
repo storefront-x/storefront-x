@@ -64,6 +64,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isSimpleProduct = computed(() => product.value.__typename === 'SimpleProduct')
 
+  const isOptionsProduct = computed(() => 'options' in product.value && !!product.value.options)
+
   const isConfigurableProduct = computed(() => product.value.__typename === 'ConfigurableProduct')
 
   const isBundleProduct = computed(() => product.value.__typename === 'BundleProduct')
@@ -131,6 +133,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isSimpleProduct,
     isConfigurableProduct,
     isBundleProduct,
+    isOptionsProduct,
     mediaGallery,
     crossSellProducts,
     upsellProducts,

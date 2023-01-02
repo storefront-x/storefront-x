@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject, wrapConsole } from '@storefront-x/testing'
 
 test('redirect is working', async ({ page }) => {
   await makeProject(
@@ -25,8 +25,10 @@ test('redirect is working', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/a', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('B')
+      await wrapConsole(async () => {
+        await page.goto(url + '/a', { waitUntil: 'networkidle' })
+        await expect(await page.content()).toContain('B')
+      })
     },
   )
 })
@@ -55,8 +57,10 @@ test('redirect results in proper redirect code', async () => {
       ],
     },
     async ({ url }) => {
-      const response = await fetch(url + '/a', { redirect: 'manual' })
-      expect(response.status).toEqual(301)
+      await wrapConsole(async () => {
+        const response = await fetch(url + '/a', { redirect: 'manual' })
+        expect(response.status).toEqual(301)
+      })
     },
   )
 })

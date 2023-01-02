@@ -8,10 +8,11 @@
       <Link :to="localePath('brands')" color="gray">{{ t('Brands') }}</Link>
       <Link :to="localePath('blog')" color="gray">{{ t('Blog') }}</Link>
 
-      <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, setCurrency }">
+      <SfxCurrencySwitcher v-slot="{ currentCurrency, currencies, loadingCurrency, setCurrency }">
         <Dropdown
           link-like
           :title="currentCurrency?.code"
+          :is-disabled="loadingCurrency"
           class="text-gray-600 hover:text-gray-800"
           data-cy="currency-switcher"
         >
