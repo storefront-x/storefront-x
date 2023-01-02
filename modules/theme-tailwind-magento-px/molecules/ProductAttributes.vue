@@ -46,7 +46,6 @@ import useI18n from '#ioc/composables/useI18n'
 const { t } = useI18n()
 
 const product = injectProduct()
-console.log(product)
 </script>
 
 <i18n lang="yaml">
