@@ -11,6 +11,7 @@ export default defineConfig({
   },
   plugins: [
     VitePWA({
+      registerType: 'autoUpdate',
       injectRegister: 'inline',
       workbox: {
         globPatterns: ['**/*.{js,css,ico,svg,png}'],
