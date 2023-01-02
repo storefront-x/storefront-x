@@ -73,7 +73,6 @@ export default defineConfig({
           { text: 'Lazy components', link: '/general/lazy-components' },
           { text: 'Functionalities', link: '/general/functionalities' },
           { text: 'Redirecting', link: '/general/redirecting' },
-          { text: 'Setting Response Status', link: '/general/setResponseStatus' },
           { text: 'Best practices', link: '/general/best-practices' },
           { text: 'FAQ', link: '/general/faq' },
         ],
