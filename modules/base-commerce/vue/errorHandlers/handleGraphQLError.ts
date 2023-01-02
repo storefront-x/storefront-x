@@ -2,11 +2,11 @@ import GraphQLError from '#ioc/errors/GraphQLError'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useI18n from '#ioc/composables/useI18n'
 
-export default () => {
+export default function useHandleGraphQLError() {
   const showErrorNotification = useShowErrorNotification()
   const { t, te } = useI18n()
 
-  return (error: any) => {
+  return function handleGraphQLError(error: any) {
     if (error instanceof GraphQLError) {
       showErrorNotification({
         name: t('errors.title'),
