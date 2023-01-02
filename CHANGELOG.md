@@ -1,3 +1,13 @@
+## v1.4.4 (2023-01-02)
+
+#### :rocket: Enhancement
+
+- [#242](https://github.com/storefront-x/storefront-x/pull/242) Allow overriding of create-script prompts with argument flags ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.4.3 (2023-01-02)
 
 #### :rocket: Enhancement
