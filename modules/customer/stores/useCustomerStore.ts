@@ -1,5 +1,5 @@
 import ToCustomer from '#ioc/mappers/ToCustomer'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('customer', {
   state: () => ({

@@ -6,7 +6,7 @@ import ToPaymentAddress from '#ioc/mappers/ToPaymentAddress'
 import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
 import ToShippingAddress from '#ioc/mappers/ToShippingAddress'
 import ToShippingMethod from '#ioc/mappers/ToShippingMethod'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('checkout', {
   state: () => ({

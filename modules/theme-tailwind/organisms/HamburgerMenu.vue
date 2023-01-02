@@ -125,8 +125,8 @@
 </template>
 
 <script lang="ts">
-import { mapState } from 'pinia'
 import { defineComponent, ref } from 'vue'
+import mapState from '#ioc/utils/vuePinia/mapState'
 import Drawer from '#ioc/atoms/Drawer'
 import MicroAccount from '#ioc/molecules/MicroAccount'
 import MicroWishlist from '#ioc/molecules/MicroWishlist'

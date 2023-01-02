@@ -4,7 +4,7 @@ import MULTICURRENCY_COOKIE_NAME from '#ioc/config/MULTICURRENCY_COOKIE_NAME'
 import useGetCurrencies from '#ioc/services/useGetCurrencies'
 import useMulticurrencyStore from '#ioc/stores/useMulticurrencyStore'
 import useStoreStore from '#ioc/stores/useStoreStore'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('multicurrencyMagento', {
   actions: {
