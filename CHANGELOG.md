@@ -1,4 +1,4 @@
-## Unreleased (2022-12-21)
+## v1.4.2 (2022-12-22)
 
 #### :boom: Breaking Change
 
@@ -6,15 +6,22 @@
 
 #### :rocket: Enhancement
 
+- [#229](https://github.com/storefront-x/storefront-x/pull/229) Add basic support for Google Analytics ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
 - [#210](https://github.com/storefront-x/storefront-x/pull/210) Separate Product fragment into two ([@JaroslavSku](https://github.com/JaroslavSku))
+
+#### :memo: Documentation
+
+- [#234](https://github.com/storefront-x/storefront-x/pull/234) Add documentation and tests for Google Analytics ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
 
 #### :house: Internal
 
+- [#232](https://github.com/storefront-x/storefront-x/pull/232) Improve caching of static assets ([@adamjedlicka](https://github.com/adamjedlicka))
 - [#230](https://github.com/storefront-x/storefront-x/pull/230) Add buildProject Playwright util ([@adamjedlicka](https://github.com/adamjedlicka))
 
-#### Committers: 2
+#### Committers: 3
 
 - Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
 - [@JaroslavSku](https://github.com/JaroslavSku)
 
 ## v1.4.1 (2022-12-19)
