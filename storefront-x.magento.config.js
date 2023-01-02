@@ -14,6 +14,8 @@ export default {
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
 
+    '@storefront-x/magento',
+
     '@storefront-x/blog',
     '@storefront-x/braintree',
     '@storefront-x/brands',
@@ -31,7 +33,6 @@ export default {
     '@storefront-x/sitemap',
     '@storefront-x/nprogress',
 
-    '@storefront-x/magento',
     '@storefront-x/blog-magento',
     '@storefront-x/braintree-magento',
     '@storefront-x/brands-magento',
