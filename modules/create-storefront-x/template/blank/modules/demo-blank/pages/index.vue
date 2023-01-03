@@ -1,5 +1,6 @@
 <template>
   <h1>{{ title }}</h1>
+  <RouterLink to="/counter">Go to counter</RouterLink>
 </template>
 
 <script setup lang="ts">
