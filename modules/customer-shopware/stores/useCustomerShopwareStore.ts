@@ -1,5 +1,5 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 import useCustomerStore from '#ioc/stores/useCustomerStore'
 import useGetCustomer from '#ioc/services/useGetCustomer'
 

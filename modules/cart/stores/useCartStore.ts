@@ -1,5 +1,5 @@
 import ToCart from '#ioc/mappers/ToCart'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('cart', {
   state: () => ({

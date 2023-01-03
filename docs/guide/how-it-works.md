@@ -93,7 +93,7 @@ While inversion of control allows overriding existing files, sometimes that migh
 
 Extensions are files with `.ext.*` suffix. They are placed in the concept directory they interact with (extension modifying mixin is to be placed in the `mixins` directory) and their name has to be the same as the file they extend (except the `.ext` suffix). So `mixins/IsProduct.js` is extended by `mixins/IsProduct.ext.js` and `gql/fragments/Product.js` is extended by `gql/fragments/Product.ext.js`.
 
-Extensions are also special. They are special because they do not override each other. If two modules have same extensions with same names, all of the extensions will be applied. If there are multiple extensions, the order in which they are called is not guaranteed.
+Extensions are also special. They are special because they do not override each other. If two modules have same extensions with same names, all of the extensions will be applied.
 
 #### Example
 

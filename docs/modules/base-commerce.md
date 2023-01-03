@@ -508,7 +508,7 @@ Helper composable for emiting and listening to global events.
 </template>
 
 <script setup lang="ts">
-import useEventBus from '#ioc/composables/useEventBus.js'
+import useEventBus from '#ioc/composables/useEventBus'
 
 const { emit } = useEventBus('test') // name your events properly
 
@@ -529,7 +529,7 @@ function globalEmit() {
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import useEventBus from '#ioc/composables/useEventBus.js'
+import useEventBus from '#ioc/composables/useEventBus'
 
 const { listen } = useEventBus('test')
 

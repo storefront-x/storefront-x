@@ -18,8 +18,12 @@
 import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import _404 from '#ioc/assets/images/404'
+import useSetResponseStatus from '#ioc/composables/useSetResponseStatus'
 
 const { t } = useI18n()
+const setResponseStatus = useSetResponseStatus()
+
+setResponseStatus(404)
 </script>
 
 <i18n lang="yaml">

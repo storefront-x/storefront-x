@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import useRouter from '#ioc/composables/useRouter'
-import useEventBus from '#ioc/composables/useEventBus.js'
+import useEventBus from '#ioc/composables/useEventBus'
 import InnerSfxLayout from '#ioc/components/InnerSfxLayout'
 
 const router = useRouter()

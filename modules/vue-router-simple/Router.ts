@@ -183,7 +183,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
       throw Error('no route matched to this name')
     }
     if (params) {
-      return matchedRoute.readablePath.replace(/\[(.+?)\]/g, (_: string, $1: string) => `${params[$1]}`)
+      return '/' + matchedRoute.name.replace(/\[(.+?)\]/g, (_: string, $1: string) => `${params[$1]}`)
     } else {
       return matchedRoute.readablePath
     }

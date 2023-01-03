@@ -1,7 +1,7 @@
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useCartStore from '#ioc/stores/useCartStore'
 import useGetCart from '#ioc/services/useGetCart'
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 import useCookies from '#ioc/composables/useCookies'
 import MAGENTO_CART_COOKIE_NAME from '#ioc/config/MAGENTO_CART_COOKIE_NAME'
 

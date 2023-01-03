@@ -4,9 +4,9 @@
 
     <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
       <h3 class="sr-only">{{ t('Items in your cart') }}</h3>
-      <ul role="list" class="divide-y divide-gray-200">
-        <CartItemProvider v-for="cartItem in cart.items" :key="cartItem.id" :cart-item="cartItem">
-          <OrderSummaryItem />
+      <ul role="list" class="divide-y divide-gray-200" data-cy="cart-summary-list">
+        <CartItemProvider v-for="(cartItem, index) in cart.items" :key="cartItem.id" :cart-item="cartItem">
+          <OrderSummaryItem :data-cy="`cart-summary-list-item-${index}`" />
         </CartItemProvider>
       </ul>
 

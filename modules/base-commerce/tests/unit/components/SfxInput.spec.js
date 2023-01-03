@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, beforeAll } from 'vitest'
-import SfxForm from '#ioc/components/SfxForm.js'
-import SfxInput from '#ioc/components/SfxInput.js'
+import SfxForm from '#ioc/components/SfxForm'
+import SfxInput from '#ioc/components/SfxInput'
 import validators from '~/.sfx/validators'
 
 describe('components/SfxInput', () => {

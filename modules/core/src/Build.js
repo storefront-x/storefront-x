@@ -26,7 +26,7 @@ export default class Build extends Core {
                 return 'assets/[hash][extname]'
               } else {
                 // There's a bug in Vite that requires name in non CSS assets
-                return 'assets/[name].[hash][extname]'
+                return 'assets/[name]-[hash][extname]'
               }
             },
           },

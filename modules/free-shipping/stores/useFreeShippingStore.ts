@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 import ToFreeShippingConfig from '#ioc/mappers/ToFreeShippingConfig'
 
 export default defineStore('freeShipping', {

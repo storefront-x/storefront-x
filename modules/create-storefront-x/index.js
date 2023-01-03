@@ -68,6 +68,8 @@ const main = async () => {
 }
 
 async function getResponses() {
+  prompts.override(argv.argv)
+
   const targetDir = argv.argv._[0]
 
   try {
