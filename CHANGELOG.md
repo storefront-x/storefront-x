@@ -1,3 +1,15 @@
+## v1.4.6 (2023-01-03)
+
+#### :house: Internal
+
+- [#249](https://github.com/storefront-x/storefront-x/pull/249) Update the 'blank' demo ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#247](https://github.com/storefront-x/storefront-x/pull/247) Use TypeScript for IoC generated files ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#244](https://github.com/storefront-x/storefront-x/pull/244) Test create script in pipelines ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.4.5 (2023-01-02)
 
 #### :house: Internal
