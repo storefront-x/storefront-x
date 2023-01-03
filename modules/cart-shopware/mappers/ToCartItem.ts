@@ -11,8 +11,6 @@ export default (data: any) => ({
   product: {
     id: data.referencedId as string,
     name: data.label as string,
-    urlKey: data.referencedId as string,
-    urlPath: `/p/${data.referencedId}`,
     thumbnailUrl: (data.cover?.url ?? gift) as string,
   } as ReturnType<typeof ToProduct>,
 })

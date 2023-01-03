@@ -7,9 +7,13 @@
     <div class="ml-6 flex-1 flex flex-col">
       <div class="flex">
         <div class="min-w-0 flex-1">
-          <RouterLink :to="cartItem.product.urlPath" class="font-medium text-gray-700 hover:text-gray-800">
+          <a
+            href="javascript:void(0)"
+            class="font-medium text-gray-700 hover:text-gray-800"
+            @click.prevent.stop="redirectToProductUrl(cartItem.product.id)"
+          >
             {{ cartItem.product.name }}
-          </RouterLink>
+          </a>
         </div>
 
         <div class="ml-4 flex-shrink-0 flow-root">
@@ -59,12 +63,16 @@ import useRemoveFromCart from '#ioc/services/useRemoveFromCart'
 import useI18n from '#ioc/composables/useI18n'
 import useUpdateCartItem from '#ioc/services/useUpdateCartItem'
 import debounce from '#ioc/utils/debounce'
+import useGetProductById from '#ioc/services/useGetProductById'
 import { ref, watch } from 'vue'
+import useRouter from '#ioc/composables/useRouter'
 
 const { t } = useI18n()
 const cartItem = injectCartItem()
 const removeFromCart = useRemoveFromCart()
 const updateCartItem = useUpdateCartItem()
+const getProductById = useGetProductById()
+const router = useRouter()
 
 const tmpQuantity = ref(cartItem.quantity)
 
@@ -93,6 +101,10 @@ const onDec = () => {
 
 const onRemove = async () => {
   await removeFromCart(cartItem)
+}
+async function redirectToProductUrl(id: string) {
+  const { product } = await getProductById(id)
+  router.push(product.urlPath)
 }
 </script>
 
