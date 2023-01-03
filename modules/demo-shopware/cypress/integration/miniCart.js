@@ -26,7 +26,7 @@ describe('Minicart', () => {
     product.addToCart()
 
     miniCart.open()
-    miniCart.getTitle().will('include.text', () => product.data.name)
+    miniCart.getTitle().will('include.text', () => product.productname)
     miniCart.close()
   })
 })
