@@ -20,7 +20,7 @@ export default class IocConcept extends WatchingConcept {
 
       if (extensions.length === 0) {
         loaders.push(
-          this.writeFile(path.join(this.dst(), `${fileWithoutExt}.js`), `export { default } from '${filePath}'\n`),
+          this.writeFile(path.join(this.dst(), `${fileWithoutExt}.ts`), `export { default } from '${filePath}'\n`),
         )
       } else {
         let content = `import self from '${filePath}'\n`
@@ -38,7 +38,7 @@ export default class IocConcept extends WatchingConcept {
         }
         content += `\n`
 
-        loaders.push(this.writeFile(path.join(this.dst(), `${fileWithoutExt}.js`), content))
+        loaders.push(this.writeFile(path.join(this.dst(), `${fileWithoutExt}.ts`), content))
       }
     }
 
