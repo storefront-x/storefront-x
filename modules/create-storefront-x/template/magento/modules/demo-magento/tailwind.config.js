@@ -5,7 +5,6 @@ export default {
   content: [
     './node_modules/@storefront-x/theme-tailwind/**/*.vue',
     './node_modules/@storefront-x/theme-tailwind-magento/**/*.vue',
-    './node_modules/@storefront-x/theme-tailwind-magento-px/**/*.vue',
     './modules/demo-magento/**/*.vue',
   ],
   plugins: [forms],
