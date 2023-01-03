@@ -22,7 +22,7 @@ describe('Minicart', () => {
   })
 
   it('open and close minicart with product', () => {
-    product.visitRandom()
+    product.visitProduct()
     product.addToCart()
 
     miniCart.open()
