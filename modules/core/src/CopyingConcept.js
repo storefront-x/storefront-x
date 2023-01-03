@@ -18,6 +18,8 @@ export default class CopyingConcept extends OverridingConcept {
     }
 
     for (const { module, file } of Object.values(files)) {
+      if (this.ignoredFiles.test(file)) continue
+
       await this.copyFile(path.join(this.src(module), file), path.join(this.dst(), file))
     }
   }
