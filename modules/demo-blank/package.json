@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/demo-blank",
+  "version": "1.4.6",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}
