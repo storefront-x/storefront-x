@@ -1,6 +1,7 @@
 <template>
   <div v-click-outside="close" :class="{ hidden: !cartStore.isMiniCartVisible }">
     <div
+      id="minicart-wrapper"
       aria-live="assertive"
       class="absolute max-w-lg px-4 z-50 inset-y-28 right-0"
       :class="{ 'min-w-[20em]': cart.items.length === 0 }"

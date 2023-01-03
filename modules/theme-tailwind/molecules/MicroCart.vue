@@ -20,6 +20,7 @@
   <div
     role="button"
     class="relative pl-2 text-gray-400 hover:text-gray-500 hover:cursor-pointer lg:block hidden"
+    data-cy="minicart-button"
     @click.stop="cartStore.isMiniCartVisible = !cartStore.isMiniCartVisible"
   >
     <span class="sr-only">{{ t('Cart') }}</span>

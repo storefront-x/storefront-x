@@ -1,5 +1,5 @@
 <template>
-  <li class="flex py-4">
+  <li data-cy="minicart-item" class="flex py-4">
     <div class="h-20 w-20 flex-shrink-0 overflow-hidden">
       <SfxImage
         :src="cartItem.product.thumbnailUrl"
