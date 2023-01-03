@@ -3482,6 +3482,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/demo-blank@workspace:modules/demo-blank":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/demo-blank@workspace:modules/demo-blank"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/demo-magento@workspace:modules/demo-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/demo-magento@workspace:modules/demo-magento"
