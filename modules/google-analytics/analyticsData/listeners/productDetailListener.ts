@@ -13,8 +13,8 @@ interface ProductItem {
     item_category4: string
     item_category5: string
     price: number
-    product_type: string
   }[]
+  product_type: string
 }
 
 export default function (item: ProductItem) {

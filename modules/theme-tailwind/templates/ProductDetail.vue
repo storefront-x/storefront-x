@@ -78,9 +78,9 @@ onMounted(() =>
         item_category4: product.categories?.at(3)?.name ?? '',
         item_category5: product.categories?.at(4)?.name ?? '',
         price: +product.regularPrice.value / PRICE_OFFSET,
-        product_type: product.productType ?? '',
       },
     ],
+    product_type: product.productType ?? '',
   }),
 )
 </script>
