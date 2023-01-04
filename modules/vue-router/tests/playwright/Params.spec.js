@@ -22,7 +22,7 @@ test('basic params', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/hello/Params', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello, Params!')
+      await expect(page.locator('h1')).toContainText('Hello, Params!')
     },
   )
 })

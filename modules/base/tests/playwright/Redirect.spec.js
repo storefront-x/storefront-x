@@ -27,7 +27,7 @@ test('redirect is working', async ({ page }) => {
     async ({ url }) => {
       await wrapConsole(async () => {
         await page.goto(url + '/a', { waitUntil: 'networkidle' })
-        await expect(await page.content()).toContain('B')
+        await expect(page.locator('h1')).toContainText('B')
       })
     },
   )
@@ -77,9 +77,9 @@ test('redirect works on client', async ({ page }) => {
           {
             pages: {
               'a.vue': `<template>
-                            <RouterLink to="/b">
+                            <a href="/b">
                                 <h1>LINK</h1>
-                            </RouterLink>
+                            </a>
                         </template>
                         `,
               'b.vue': `<template><h1>B</h1></template>
@@ -97,7 +97,7 @@ test('redirect works on client', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/a', { waitUntil: 'networkidle' })
       await page.locator('a').click()
-      await expect(await page.content()).toContain('C')
+      await expect(page.locator('h1')).toContainText('C')
     },
   )
 })

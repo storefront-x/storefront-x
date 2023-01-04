@@ -60,9 +60,9 @@ test('render store properties', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('<h1>English</h1>')
+      await expect(page.locator('h1')).toContainText('English')
       await page.locator('a').click()
-      await expect(await page.content()).toContain('<h1>Czech</h1>')
+      await expect(page.locator('h1')).toContainText('Czech')
     },
   )
 })

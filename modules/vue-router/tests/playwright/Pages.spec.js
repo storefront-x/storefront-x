@@ -20,7 +20,7 @@ test('basic router', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello from home!')
+      await expect(page.locator('h1')).toContainText('Hello from home!')
     },
   )
 })
@@ -45,7 +45,7 @@ test('SSR non-index page', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/a', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Page A')
+      await expect(page.locator('h1')).toContainText('Page A')
     },
   )
 })
@@ -97,8 +97,8 @@ test('layout', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/a', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Layout')
-      await expect(await page.content()).toContain('Page A')
+      await expect(page.locator('h1')).toContainText('Layout')
+      await expect(page.locator('h1')).toContainText('Page A')
     },
   )
 })
@@ -123,7 +123,7 @@ test('404', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/a', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Error page')
+      await expect(page.locator('h1')).toContainText('Error page')
     },
   )
 })
@@ -149,7 +149,7 @@ test('nested routes', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/hello/world', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello, World!')
+      await expect(page.locator('h1')).toContainText('Hello, World!')
     },
   )
 })
