@@ -13,10 +13,6 @@ test('magento error handling is working', async ({ page }) => {
         '@storefront-x/base-commerce',
         '@storefront-x/graphql',
         '@storefront-x/magento',
-        '@storefront-x/cart',
-        '@storefront-x/checkout',
-        '@storefront-x/customer',
-        '@storefront-x/customer-magento',
         [
           'my-module',
           {
@@ -36,7 +32,7 @@ test('magento error handling is working', async ({ page }) => {
               'index.vue': `
                 <template>
                   <Error />
-                  <p v-if="notification.notifications">{{ notification.notifications[0].message }}</p>
+                  <p v-if="notification.notifications" id="errMsg">{{ notification.notifications[0].message }}</p>
                 </template>
                 <script setup>
                   import Error from '#ioc/components/Error'
@@ -47,7 +43,7 @@ test('magento error handling is working', async ({ page }) => {
               `,
             },
             config: {
-              'MAGENTO_URL.ts': `export default 'https://be-sfx.demo.magexo.cloud'`,
+              'MAGENTO_URL.ts': `export default '/'`,
               'VUE_I18N_LOCALES.ts': `
                 export default [
                   {
@@ -58,6 +54,24 @@ test('magento error handling is working', async ({ page }) => {
                 ]
               `,
             },
+            composables: {
+              'useMagento.ts': `
+                export default () => {
+                  const graphql = async () => {
+                    return {
+                      data: {
+                        storeConfig: {
+                          base_currency_code: 'EUR',
+                        },
+                      },
+                    }
+                  }
+                  return {
+                    graphql
+                  }
+                }
+              `,
+            },
           },
         ],
       ],
@@ -65,7 +79,7 @@ test('magento error handling is working', async ({ page }) => {
     async ({ url }) => {
       await wrapConsole(async () => {
         await page.goto(url, { waitUntil: 'networkidle' })
-        await expect(page.locator('p')).toContainText('Error message has been sent!')
+        await expect(page.locator('#errMsg')).toContainText('Error message has been sent!')
       })
     },
   )
@@ -83,10 +97,6 @@ test('magento error messages translation is working', async ({ page }) => {
         '@storefront-x/base-commerce',
         '@storefront-x/graphql',
         '@storefront-x/magento',
-        '@storefront-x/cart',
-        '@storefront-x/checkout',
-        '@storefront-x/customer',
-        '@storefront-x/customer-magento',
         [
           'my-module',
           {
@@ -106,7 +116,7 @@ test('magento error messages translation is working', async ({ page }) => {
               'index.vue': `
                 <template>
                   <Error />
-                  <p v-if="notification.notifications">{{ notification.notifications[0].message }}</p>
+                  <p v-if="notification.notifications" id="errMsg">{{ notification.notifications[0].message }}</p>
                 </template>
                 <script setup>
                   import Error from '#ioc/components/Error'
@@ -117,7 +127,7 @@ test('magento error messages translation is working', async ({ page }) => {
               `,
             },
             config: {
-              'MAGENTO_URL.ts': `export default 'https://be-sfx.demo.magexo.cloud'`,
+              'MAGENTO_URL.ts': `export default '/'`,
               'VUE_I18N_LOCALES.ts': `
                 export default [
                   {
@@ -151,6 +161,24 @@ test('magento error messages translation is working', async ({ page }) => {
                 `,
               },
             },
+            composables: {
+              'useMagento.ts': `
+                export default () => {
+                  const graphql = async () => {
+                    return {
+                      data: {
+                        storeConfig: {
+                          base_currency_code: 'EUR',
+                        },
+                      },
+                    }
+                  }
+                  return {
+                    graphql
+                  }
+                }
+              `,
+            },
           },
         ],
       ],
@@ -158,9 +186,9 @@ test('magento error messages translation is working', async ({ page }) => {
     async ({ url }) => {
       await wrapConsole(async () => {
         await page.goto(url, { waitUntil: 'networkidle' })
-        await expect(page.locator('p')).toContainText('Cannot create a newsletter subscription.')
+        await expect(page.locator('#errMsg')).toContainText('Cannot create a newsletter subscription.')
         await page.goto(url + '/cz', { waitUntil: 'networkidle' })
-        await expect(page.locator('p')).toContainText('Nelze vytvořit odběr newsletteru.')
+        await expect(page.locator('#errMsg')).toContainText('Nelze vytvořit odběr newsletteru.')
       })
     },
   )
