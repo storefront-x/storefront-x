@@ -1,1 +1,1 @@
-export default 'https://be-sfx.demo.magexo.cloud'
+export default 'https://f-px-1421-fixes-core.magexo.cloud/'
