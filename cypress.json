@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://b2b-cz-f-px-1421-fixes-core.magexo.cloud",
+  "baseUrl": "https://magento-245-upgrade-test-storefront-x.magexo.cloud",
   "defaultCommandTimeout": 10000,
   "retries": {
     "runMode": 2
