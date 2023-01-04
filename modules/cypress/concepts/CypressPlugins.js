@@ -2,8 +2,14 @@
 
 import { GeneratingConcept } from '@storefront-x/core'
 import path from 'node:path'
+import fs from 'node:fs/promises'
 
 export default class CypressPlugins extends GeneratingConcept {
+  async before() {
+    await this.clearCypressDir()
+    await fs.mkdir(this.dst(), { recursive: true })
+  }
+
   get directory() {
     return 'cypress/plugins'
   }
@@ -35,5 +41,13 @@ export default (on: any, config: any) => {
 
   get fileName() {
     return 'index.ts'
+  }
+
+  async clearCypressDir() {
+    await fs.rm(this.cypressDir, { recursive: true, force: true })
+  }
+
+  get cypressDir() {
+    return path.resolve(this.core.rootDir, this.directory)
   }
 }

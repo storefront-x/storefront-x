@@ -50,8 +50,6 @@ export default class Core {
 
     await this.clearBuildDir()
 
-    await this.clearCypressDir()
-
     await this.loadModules()
 
     await this.loadConcepts()
@@ -160,10 +158,6 @@ export default class Core {
     await fs.rm(this.buildDir, { recursive: true, force: true })
   }
 
-  async clearCypressDir() {
-    await fs.rm(this.cypressDir, { recursive: true, force: true })
-  }
-
   async close() {
     for (const closeHandler of this.closeHandlers) {
       await closeHandler()
@@ -187,9 +181,5 @@ export default class Core {
 
   get rootDir() {
     return this.config.dir ?? process.cwd()
-  }
-
-  get cypressDir() {
-    return path.resolve(this.rootDir, 'cypress')
   }
 }
