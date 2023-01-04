@@ -20,9 +20,9 @@ test('magento error handling is working', async ({ page }) => {
         [
           'my-module',
           {
-            pages: {
-              'error.vue': `
-                <template><RouterLink to="/">Go home</RouterLink></template>
+            components: {
+              'Error.vue': `
+                <template></template>
                 <script setup>
                   import MagentoError from '#ioc/errors/MagentoError'
 
@@ -31,11 +31,15 @@ test('magento error handling is working', async ({ page }) => {
                   })
                 </script>
               `,
+            },
+            pages: {
               'index.vue': `
                 <template>
+                  <Error />
                   <p v-if="notification.notifications">{{ notification.notifications[0].message }}</p>
                 </template>
                 <script setup>
+                  import Error from '#ioc/components/Error'
                   import useNotificationStore from '#ioc/stores/useNotificationStore'
 
                   const notification = useNotificationStore()
@@ -60,8 +64,7 @@ test('magento error handling is working', async ({ page }) => {
     },
     async ({ url }) => {
       await wrapConsole(async () => {
-        await page.goto(url + '/error', { waitUntil: 'networkidle' })
-        await page.locator('a').click()
+        await page.goto(url, { waitUntil: 'networkidle' })
         await expect(await page.content()).toContain('Error message has been sent!')
       })
     },
@@ -87,12 +90,9 @@ test('magento error messages translation is working', async ({ page }) => {
         [
           'my-module',
           {
-            pages: {
-              'error.vue': `
-                <template>
-                  <RouterLink to="/">Go home EN</RouterLink>
-                  <RouterLink to="/cz">Go home CZ</RouterLink>
-                </template>
+            components: {
+              'Error.vue': `
+                <template></template>
                 <script setup>
                   import MagentoError from '#ioc/errors/MagentoError'
 
@@ -101,11 +101,15 @@ test('magento error messages translation is working', async ({ page }) => {
                   })
                 </script>
               `,
+            },
+            pages: {
               'index.vue': `
                 <template>
+                  <Error />
                   <p v-if="notification.notifications">{{ notification.notifications[0].message }}</p>
                 </template>
                 <script setup>
+                  import Error from '#ioc/components/Error'
                   import useNotificationStore from '#ioc/stores/useNotificationStore'
 
                   const notification = useNotificationStore()
@@ -153,12 +157,10 @@ test('magento error messages translation is working', async ({ page }) => {
     },
     async ({ url }) => {
       await wrapConsole(async () => {
-        await page.goto(url + '/error', { waitUntil: 'networkidle' })
-        await page.locator('a', { hasText: 'Go home EN' }).click()
-        await expect(page.locator('p')).toHaveText('Cannot create a newsletter subscription.')
-        await page.goto(url + '/cz/error', { waitUntil: 'networkidle' })
-        await page.locator('a', { hasText: 'Go home CZ' }).click()
-        await expect(page.locator('p')).toHaveText('Nelze vytvořit odběr newsletteru.')
+        await page.goto(url, { waitUntil: 'networkidle' })
+        await expect(await page.content()).toContain('Cannot create a newsletter subscription.')
+        await page.goto(url + '/cz', { waitUntil: 'networkidle' })
+        await expect(await page.content()).toContain('Nelze vytvořit odběr newsletteru.')
       })
     },
   )
