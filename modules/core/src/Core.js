@@ -70,13 +70,33 @@ export default class Core {
       out: {},
     }
 
-    await entry(ctx)
+    try {
+      await entry(ctx)
 
-    for (const out of Object.values(ctx.out)) {
-      template = await out(template)
+      for (const out of Object.values(ctx.out)) {
+        template = await out(template)
+      }
+
+      if (ctx.errorCaptured) {
+        throw ctx.errorCaptured
+      }
+
+      return res
+        .status(ctx.responseStatus || 200)
+        .set({ 'Content-Type': 'text/html' })
+        .end(template)
+    } catch (e) {
+      if (e.__typename === 'Redirect') {
+        return res.redirect(e.status, e.url)
+      } else if (process.env.NODE_ENV === 'production') {
+        // TODO: Move this if to the Serve class
+        console.error(e)
+
+        return res.status(500).set({ 'Content-Type': 'text/html' }).end(template)
+      } else {
+        throw e
+      }
     }
-
-    return res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
   }
 
   /**

@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import useEventBus from '#ioc/composables/useEventBus.js'
+import useEventBus from '#ioc/composables/useEventBus'
 
 const { emit } = useEventBus('navigation')
 

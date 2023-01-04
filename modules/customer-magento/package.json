@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/customer-magento",
-  "version": "1.2.0",
+  "version": "1.4.6",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

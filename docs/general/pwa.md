@@ -26,6 +26,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     VitePWA({
+      registerType: 'autoUpdate',
       injectRegister: 'inline',
       // Workbox is a service worker library that will help use
       // easily configure a service worker

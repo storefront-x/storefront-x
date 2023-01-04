@@ -1,11 +1,12 @@
 <template>
-  <a :href="resolvedHref" @click.prevent.stop="onClick">
-    <slot />
+  <a :href="resolvedHref" :class="isExactActive ? exactActiveClass : exactInactiveClass" @click.prevent.stop="onClick">
+    <slot v-bind="{ isExactActive }" />
   </a>
 </template>
 
 <script setup lang="ts">
 import useRouter from '#ioc/composables/useRouter'
+import useRoute from '#ioc/composables/useRoute'
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -13,15 +14,32 @@ const props = defineProps({
     type: [String, Object],
     required: true,
   },
+  exactActiveClass: {
+    type: String,
+    default: '',
+  },
+  exactInactiveClass: {
+    type: String,
+    default: '',
+  },
 })
 
 const router = useRouter()
+const route = useRoute()
 
 const resolvedHref = computed(() => {
   if (typeof props.to === 'string') {
     return props.to || '/'
   }
   return router.resolve(props.to).fullPath
+})
+
+const isExactActive = computed(() => {
+  if (typeof props.to === 'string') {
+    return props.to === route.fullPath
+  }
+
+  return router.resolve(props.to).fullPath === route.fullPath
 })
 const onClick = () => {
   router.push(props.to)

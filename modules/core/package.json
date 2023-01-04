@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/core",
-  "version": "1.2.0",
+  "version": "1.4.6",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -20,11 +20,11 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "lodash-es": "^4.17.21",
-    "node-fetch": "^3.2.10",
+    "node-fetch": "^3.3.0",
     "open": "^8.4.0",
-    "rollup": "^3.2.5",
+    "rollup": "^3.7.3",
     "rollup-plugin-visualizer": "^5.8.3",
-    "vite": "^3.2.3",
+    "vite": "^4.0.0",
     "yargs": "^17.6.2",
     "youch": "^3.2.2"
   },

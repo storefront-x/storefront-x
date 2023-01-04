@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import WISHLIST_COOKIES_NAME from '#ioc/config/WISHLIST_COOKIES_NAME'
 import useCookies from '#ioc/composables/useCookies'
@@ -32,8 +32,9 @@ export default defineStore('wishlist', {
 
           if (customerStore.customer) {
             const { items } = await getWishlistRepository()
-
-            await mergeWislist()
+            if (this.anonymousWishlist.length) {
+              await mergeWislist()
+            }
 
             this.items.push(...items)
 

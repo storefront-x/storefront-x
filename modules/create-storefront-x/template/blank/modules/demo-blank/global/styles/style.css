@@ -1,0 +1,9 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  text-align: center;
+  width: 300px;
+}

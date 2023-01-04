@@ -16,6 +16,6 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
-      - run: yarn install
+      - run: yarn install --immutable --immutable-cache
       - run: yarn build --config ${{ inputs.storefront-x-config }} --onlyBootstrap
       - run: yarn lint:prod

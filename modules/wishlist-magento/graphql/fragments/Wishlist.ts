@@ -1,6 +1,6 @@
 import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
-import Product from '#ioc/graphql/fragments/Product'
+import ProductInListing from '#ioc/graphql/fragments/ProductInListing'
 
 export default (name = 'wishlist') =>
   fragment(name, 'Wishlist')
@@ -10,7 +10,7 @@ export default (name = 'wishlist') =>
       items: field({
         id: field(),
         product: field({
-          ...Product(),
+          ...ProductInListing(),
         }),
       }),
     })

@@ -34,6 +34,8 @@ export default class I18nMessages extends WatchingConcept {
 
     for (const mod of this._mods) {
       for (const file of mod.files) {
+        if (this.ignoredFiles.test(file)) continue
+
         files[`${file}_${mod.module.name}`] = {
           module: mod.module,
           file,

@@ -7,6 +7,7 @@ yarn-error.log*
 
 # Dependency directories
 node_modules/
+local_modules/
 
 # dotenv environment variables file
 .env
@@ -44,3 +45,5 @@ sw.*
 docs/.vitepress/dist
 
 .npmrc
+
+storefront-x.local.config.js

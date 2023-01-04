@@ -13,6 +13,8 @@ export default {
     '@storefront-x/graphql',
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
+    '@storefront-x/nprogress',
+    '@storefront-x/google-analytics',
 
     '@storefront-x/blog',
     '@storefront-x/braintree',
@@ -29,7 +31,6 @@ export default {
     '@storefront-x/catalog-labels',
     '@storefront-x/robots',
     '@storefront-x/sitemap',
-    '@storefront-x/nprogress',
 
     '@storefront-x/magento',
     '@storefront-x/blog-magento',
@@ -41,6 +42,7 @@ export default {
     '@storefront-x/checkout-magento',
     '@storefront-x/cms-magento',
     '@storefront-x/customer-magento',
+    '@storefront-x/catalog-attributes-magento',
     '@storefront-x/free-shipping-magento',
     '@storefront-x/multicurrency-magento',
     '@storefront-x/product-reviews-magento',

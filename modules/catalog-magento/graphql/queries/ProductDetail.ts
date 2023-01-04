@@ -1,6 +1,7 @@
 import query from '#ioc/graphql/query'
 import field from '#ioc/graphql/field'
 import Product from '#ioc/graphql/fragments/Product'
+import ProductInListing from '#ioc/graphql/fragments/ProductInListing'
 export default () =>
   query()
     .variables({
@@ -13,17 +14,10 @@ export default () =>
           items: field({
             ...Product(),
             related_products: field({
-              ...Product().inline(),
+              ...ProductInListing().inline(),
             }),
             upsell_products: field({
-              ...Product().inline(),
-            }),
-          }),
-          aggregations: field({
-            attribute_code: field(),
-            label: field(),
-            options: field({
-              label: field(),
+              ...ProductInListing().inline(),
             }),
           }),
         }),

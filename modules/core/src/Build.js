@@ -21,14 +21,8 @@ export default class Build extends Core {
           output: {
             entryFileNames: 'assets/[hash].js',
             chunkFileNames: 'assets/[hash].js',
-            assetFileNames: (asset) => {
-              if (asset.name?.endsWith('.css')) {
-                return 'assets/[hash][extname]'
-              } else {
-                // There's a bug in Vite that requires name in non CSS assets
-                return 'assets/[name].[hash][extname]'
-              }
-            },
+            // There's a bug in Vite that requires name in assets
+            assetFileNames: 'assets/[name]-[hash][extname]',
           },
           plugins: [
             //@ts-ignore

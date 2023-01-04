@@ -8,7 +8,12 @@
       <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
         <h3 :class="bottom ? 'hidden lg:block' : ''" class="sr-only">Items in your cart</h3>
         <ul :class="bottom ? 'hidden lg:block' : ''" role="list" class="divide-y divide-gray-200">
-          <OrderSummaryItem v-for="cartItem in cart.items" :key="cartItem.id" :cart-item="cartItem" />
+          <OrderSummaryItem
+            v-for="(cartItem, index) in cart.items"
+            :key="cartItem.id"
+            :cart-item="cartItem"
+            :data-cy="`cart-summary-list-item-${index}`"
+          />
         </ul>
         <dl :class="bottom ? 'lg:border-t' : 'border-t'" class="border-gray-200 py-6 px-4 space-y-6 sm:px-6">
           <div class="flex items-center justify-between">

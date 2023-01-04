@@ -1,19 +1,18 @@
 {
   "name": "@storefront-x/vue",
-  "version": "1.2.0",
+  "version": "1.4.6",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@vitejs/plugin-vue": "^3.2.0",
-    "@vueuse/integrations": "^9.4.0",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vueuse/integrations": "^9.6.0",
     "universal-cookie": "^4.0.4",
-    "vite": "^3.2.3",
-    "vue": "^3.2.41"
+    "vue": "^3.2.45"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@vue/test-utils": "^2.2.1"
+    "@vue/test-utils": "^2.2.6"
   }
 }
