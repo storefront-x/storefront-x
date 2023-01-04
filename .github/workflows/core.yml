@@ -6,10 +6,6 @@ on:
       - main
   pull_request:
 
-concurrency:
-  group: core-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   playwright:
     strategy:

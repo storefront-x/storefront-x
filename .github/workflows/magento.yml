@@ -6,10 +6,6 @@ on:
       - main
   pull_request:
 
-concurrency:
-  group: magento-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   lint:
     uses: ./.github/workflows/lint.yml
