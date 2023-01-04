@@ -1,3 +1,19 @@
+## v1.5.0 (2023-01-04)
+
+#### :rocket: Enhancement
+
+- [#257](https://github.com/storefront-x/storefront-x/pull/257) Add ToMagentoImage mapper ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#186](https://github.com/storefront-x/storefront-x/pull/186) Add Minicart ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#248](https://github.com/storefront-x/storefront-x/pull/248) Fix click-through from cart item to product detail on Shopware ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 2
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.4.6 (2023-01-03)
 
 #### :house: Internal
