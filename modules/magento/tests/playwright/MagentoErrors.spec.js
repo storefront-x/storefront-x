@@ -54,22 +54,10 @@ test('magento error handling is working', async ({ page }) => {
                 ]
               `,
             },
-            composables: {
-              'useMagento.ts': `
-                export default () => {
-                  const graphql = async () => {
-                    return {
-                      data: {
-                        storeConfig: {
-                          base_currency_code: 'EUR',
-                        },
-                      },
-                    }
-                  }
-                  return {
-                    graphql
-                  }
-                }
+            stores: {
+              'useMagentoStore.ts': `
+                import { defineStore } from 'pinia'
+                export default defineStore('magentoStore', {});
               `,
             },
           },
@@ -161,22 +149,10 @@ test('magento error messages translation is working', async ({ page }) => {
                 `,
               },
             },
-            composables: {
-              'useMagento.ts': `
-                export default () => {
-                  const graphql = async () => {
-                    return {
-                      data: {
-                        storeConfig: {
-                          base_currency_code: 'EUR',
-                        },
-                      },
-                    }
-                  }
-                  return {
-                    graphql
-                  }
-                }
+            stores: {
+              'useMagentoStore.ts': `
+                import { defineStore } from 'pinia'
+                export default defineStore('magentoStore', {});
               `,
             },
           },
