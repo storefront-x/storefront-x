@@ -99,7 +99,7 @@ const getPickupLocations = useGetPickupLocationsRepository()
 const confirmShippingAddress = useConfirmShippingAddress()
 const confirmShippingMethod = useConfirmShippingMethod()
 
-const { data } = await useAsyncData('pickupLocations', () => getPickupLocations(cart.items))
+const { data } = await useAsyncData('pickupLocations', () => getPickupLocations(cart.childItems))
 
 const showMap = ref(false)
 const picked = ref<ReturnType<typeof ToPickupLocation> | null>(null)

@@ -24,6 +24,8 @@ export default () => {
 
   const coupons = computed(() => cartStore.cart?.coupons ?? [])
 
+  const childItems = computed(() => cartStore?.cart?.childItems ?? [])
+
   return reactive({
     items,
     itemsTotalQuantity,
@@ -31,5 +33,6 @@ export default () => {
     taxes,
     discounts,
     coupons,
+    childItems,
   })
 }
