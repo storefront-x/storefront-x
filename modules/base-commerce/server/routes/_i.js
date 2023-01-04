@@ -1,6 +1,7 @@
 import sharp from 'sharp'
 import LRU from 'lru-cache'
 import IS_PRODUCTION from '#ioc/config/IS_PRODUCTION'
+import plugins from '~/.sfx/baseCommerce/imageResizer'
 
 const IMAGE_RESIZER_CACHE_ENABLED = !IS_PRODUCTION
 
@@ -98,7 +99,15 @@ const getPath = (req) => {
   if (req.query.sfx) {
     return `http://${SERVER_HOST}:${SERVER_PORT}` + req.query.sfx
   } else if (req.query.path) {
-    return req.query.path
+    let path = req.query.path
+
+    for (const plugin of Object.values(plugins)) {
+      if (plugin.processPath) {
+        path = plugin.processPath(path)
+      }
+    }
+
+    return path
   } else {
     throw new Error('Missing image location parameter')
   }
