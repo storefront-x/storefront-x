@@ -98,7 +98,7 @@ test('layout', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/a', { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('Layout')
-      await expect(page.locator('h1')).toContainText('Page A')
+      await expect(page.locator('h2')).toContainText('Page A')
     },
   )
 })
