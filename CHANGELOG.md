@@ -1,3 +1,13 @@
+## v1.5.1 (2023-01-04)
+
+#### :rocket: Enhancement
+
+- [#258](https://github.com/storefront-x/storefront-x/pull/258) Use ToMagentoImage in ToBrand mapper ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.5.0 (2023-01-04)
 
 #### :rocket: Enhancement
