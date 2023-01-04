@@ -65,7 +65,7 @@ test('magento error handling is working', async ({ page }) => {
     async ({ url }) => {
       await wrapConsole(async () => {
         await page.goto(url, { waitUntil: 'networkidle' })
-        await expect(await page.content()).toContain('Error message has been sent!')
+        await expect(page.locator('p')).toContainText('Error message has been sent!')
       })
     },
   )
@@ -158,9 +158,9 @@ test('magento error messages translation is working', async ({ page }) => {
     async ({ url }) => {
       await wrapConsole(async () => {
         await page.goto(url, { waitUntil: 'networkidle' })
-        await expect(await page.content()).toContain('Cannot create a newsletter subscription.')
+        await expect(page.locator('p')).toContainText('Cannot create a newsletter subscription.')
         await page.goto(url + '/cz', { waitUntil: 'networkidle' })
-        await expect(await page.content()).toContain('Nelze vytvořit odběr newsletteru.')
+        await expect(page.locator('p')).toContainText('Nelze vytvořit odběr newsletteru.')
       })
     },
   )
