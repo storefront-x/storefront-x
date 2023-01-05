@@ -1,4 +1,4 @@
-export default class GraphQLError extends Error {
+export default class MagentoError extends Error {
   data: any
 
   constructor(err: any) {
