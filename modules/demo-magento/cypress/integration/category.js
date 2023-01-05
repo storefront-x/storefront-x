@@ -1,13 +1,24 @@
 import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
-import visitRandomCategory from '~/cypress/support/pageObjects/category/visitRandomCategory'
 import sortByPrice from '~/cypress/support/pageObjects/listing/sortByPrice'
 import filter from '~/cypress/support/pageObjects/listing/filter'
 import getFirstAddToCart from '~/cypress/support/pageObjects/listing/getFirstAddToCart'
+import GetRandomCategory from '~/cypress/support/repositories/GetRandomCategory'
+import getCategoryTitle from '~/cypress/support/pageObjects/category/getCategoryTitle'
 
 describe('Category', () => {
   beforeEach(() => {
-    visitRandomCategory({
+    GetRandomCategory({
       minProducts: 14,
+    }).as('category')
+
+    cy.get('@category').then((category) => {
+      cy.visit(category.url_key + category.url_suffix).waitForSfx()
+    })
+  })
+
+  it('contains category title', () => {
+    cy.get('@category').then((category) => {
+      getCategoryTitle().will('include.text', () => category.name)
     })
   })
 
