@@ -12,13 +12,13 @@ describe('Blog category', () => {
 
   it('renders its name', () => {
     cy.get('@blogCategory').then((blogCategory) => {
-      getBlogTitle().will('include.text', () => blogCategory.name)
+      getBlogTitle().should('contain', blogCategory.name)
     })
   })
 
   it('has blog posts', () => {
     cy.get('@blogCategory').then((blogCategory) => {
-      getBlogPostTiles().will('have.length.at.most', () => blogCategory.post_count)
+      getBlogPostTiles().contains(blogCategory.post_count)
     })
   })
 })
