@@ -1,30 +1,27 @@
-import useCookies from '#ioc/composables/useCookies'
 import useProduct from '#ioc/composables/useProduct'
-import COMPARE_PRODUCTS_COOKIE_NAME from '#ioc/config/COMPARE_PRODUCTS_COOKIE_NAME'
 import useCompareProductsStore from '#ioc/stores/useCompareProductsStore'
 import useDeleteProductsFromCompareListRepository from '#ioc/repositories/useDeleteProductsFromCompareListRepository'
 import useCustomer from '#ioc/composables/useCustomer'
+import useCookies from '#ioc/composables/useCookies'
+import COMPARE_PRODUCTS_COOKIE_NAME from '#ioc/config/COMPARE_PRODUCTS_COOKIE_NAME'
 
 export default () => {
   const compareProductsStore = useCompareProductsStore()
   const deleteProductsFromCompareList = useDeleteProductsFromCompareListRepository()
+  const customer = useCustomer()
   const cookies = useCookies()
 
   return async (product: ReturnType<typeof useProduct>) => {
-    const removeIndex = compareProductsStore.items.indexOf(product.sku)
+    const { items, attributes } = await deleteProductsFromCompareList({
+      products: [product.id],
+      uid: compareProductsStore.compareListId,
+    })
 
-    const customer = useCustomer()
+    compareProductsStore.$patch({ items, attributes })
 
-    compareProductsStore.items.splice(removeIndex, 1)
-
-    if (customer.isLoggedIn) {
-      await deleteProductsFromCompareList({ uid: compareProductsStore.compareListId, products: [product.id] })
-    }
-
-    if (compareProductsStore.items.length) {
-      cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, compareProductsStore.items, { path: '/' })
-    } else {
-      cookies.remove(COMPARE_PRODUCTS_COOKIE_NAME)
+    if (!customer.isLoggedIn) {
+      const productIds = compareProductsStore.items.map((item) => item.product.id)
+      cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, productIds, { path: '/' })
     }
   }
 }

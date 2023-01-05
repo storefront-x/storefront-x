@@ -9,7 +9,7 @@
     <span class="sr-only">
       {{ t('Add to favorites') }}
     </span>
-    <OutlineHeartIcon :class="outlineClasses" :fill="wishlisted ? 'currentColor' : 'none'" />
+    <OutlineHeartIcon :class="[outlineClasses, size]" :fill="wishlisted ? 'currentColor' : 'none'" />
     <span class="ml-1">
       {{ title }}
     </span>
@@ -39,6 +39,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    compare: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup() {
     const { t } = useI18n()
@@ -64,8 +68,6 @@ export default defineComponent({
       return this.fillOnHover
         ? [
             'lg:hover:stroke-pink-500',
-            '!w-4',
-            '!h-4',
             'md:!w-6',
             'md:!h-6',
             'transition',
@@ -74,6 +76,9 @@ export default defineComponent({
             'lg:hover:scale-125',
           ]
         : []
+    },
+    size() {
+      return this.compare ? ['!w-6'] : ['!w-4', '!h-4']
     },
     classes() {
       return {

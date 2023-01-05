@@ -1,6 +1,6 @@
 import field from '#ioc/graphql/field'
 import mutation from '#ioc/graphql/mutation'
-import Product from '#ioc/graphql/fragments/Product'
+import CompareList from '#ioc/graphql/fragments/CompareList'
 
 export default () =>
   mutation()
@@ -13,17 +13,6 @@ export default () =>
           input: '$input',
         })
         .fields({
-          item_count: field(),
-          uid: field(),
-          items: field({
-            uid: field(),
-            product: field({
-              ...Product(),
-            }),
-            attributes: field({
-              code: field(),
-              value: field(),
-            }),
-          }),
+          ...CompareList(),
         }),
     })

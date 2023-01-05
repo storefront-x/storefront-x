@@ -1,5 +1,6 @@
 <template>
   <Link
+    v-if="compareProductsStore.items.length"
     :to="localePath('compare-products')"
     class="relative mr-0 p-2 text-gray-400 hover:text-gray-500"
     data-cy="micro-compare-products"

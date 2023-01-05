@@ -1,41 +1,52 @@
 import { defineStore } from 'pinia'
-import ToWishlistItem from '#ioc/mappers/ToWishlistItem'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
-import COMPARE_PRODUCTS_COOKIE_NAME from '#ioc/config/COMPARE_PRODUCTS_COOKIE_NAME'
-import useCookies from '#ioc/composables/useCookies'
-import waitForStore from '#ioc/utils/vuePinia/waitForStore'
 import useCreateCompareListId from '#ioc/services/useCreateCompareListId'
-import useCustomerStore from '#ioc/stores/useCustomerStore'
 import useGetCompareListById from '#ioc/services/useGetCompareListById'
+import ToCompareItem from '#ioc/mappers/ToCompareItem'
+import ToCompareAttribute from '#ioc/mappers/ToCompareAttribute'
+import useCustomerStore from '#ioc/stores/useCustomerStore'
+import waitForStore from '#ioc/utils/vuePinia/waitForStore'
+import useAssignCompareListToCustomer from '#ioc/services/useAssignCompareListToCustomer'
+import useCookies from '#ioc/composables/useCookies'
+import COMPARE_PRODUCTS_COOKIE_NAME from '#ioc/config/COMPARE_PRODUCTS_COOKIE_NAME'
+import COMPARE_PRODUCTS_STORE_ID_COOKIE_NAME from '#ioc/config/COMPARE_PRODUCTS_STORE_ID_COOKIE_NAME'
 
 export default defineStore('compareProducts', {
   state: () => ({
-    items: [] as ReturnType<typeof ToWishlistItem>[],
+    items: [] as ReturnType<typeof ToCompareItem>[],
+    attributes: [] as ReturnType<typeof ToCompareAttribute>[],
     compareListId: '',
   }),
   actions: {
     async serverInit() {
       if (IS_CLIENT) return
-      const customerStore = useCustomerStore()
+
       const createCompareListId = useCreateCompareListId()
       const getCompareListById = useGetCompareListById()
+      const customerStore = useCustomerStore()
+      const assignCompareListToCustomer = useAssignCompareListToCustomer()
       const cookies = useCookies()
 
-      const itemsCompared = cookies.get(COMPARE_PRODUCTS_COOKIE_NAME) || []
-      this.$patch({ items: itemsCompared })
-
-      return await waitForStore(
+      await waitForStore(
         customerStore,
-        () => customerStore !== undefined,
+        () => customerStore.customer !== undefined,
         async () => {
           if (customerStore.customer) {
-            const { id } = await createCompareListId()
+            const itemsCompared = cookies.get(COMPARE_PRODUCTS_COOKIE_NAME) || []
+            cookies.remove(COMPARE_PRODUCTS_COOKIE_NAME)
+            if (itemsCompared.length) {
+              const id = cookies.get(COMPARE_PRODUCTS_STORE_ID_COOKIE_NAME)
 
-            const { items } = await getCompareListById(id)
-
-            this.$patch({ items: items })
-            cookies.set(COMPARE_PRODUCTS_COOKIE_NAME, items, { path: '/' })
+              const { uid, items, attributes } = await assignCompareListToCustomer(id)
+              this.$patch({ items: items, attributes: attributes, compareListId: uid })
+            }
+            cookies.remove(COMPARE_PRODUCTS_STORE_ID_COOKIE_NAME)
           }
+          const { id } = await createCompareListId()
+
+          const { items, attributes } = await getCompareListById(id)
+
+          this.$patch({ items: items, attributes: attributes, compareListId: id })
         },
       )
     },

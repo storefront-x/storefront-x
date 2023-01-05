@@ -5,14 +5,16 @@ import CompareList from '#ioc/graphql/fragments/CompareList'
 export default () =>
   mutation()
     .variables({
-      $input: 'RemoveProductsFromCompareListInput!',
+      $uid: 'ID!',
     })
     .fields({
-      removeProductsFromCompareList: field()
+      assignCompareListToCustomer: field()
         .args({
-          input: '$input',
+          uid: '$uid',
         })
         .fields({
-          ...CompareList(),
+          compare_list: field({
+            ...CompareList(),
+          }),
         }),
     })

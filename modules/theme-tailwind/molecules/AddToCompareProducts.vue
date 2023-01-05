@@ -1,7 +1,8 @@
 <template>
   <button
     type="button"
-    class="rounded-md flex items-center text-gray-400 justify-center"
+    class="rounded-md flex items-center justify-center"
+    :class="classes"
     data-cy="compare-products"
     @click="resolveAddToCompare"
   >
@@ -30,6 +31,10 @@ defineProps({
     type: String,
     default: '',
   },
+  blackOnHover: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const { t } = useI18n()
@@ -40,7 +45,14 @@ const compareProductsStore = useCompareProductsStore()
 const product = injectProduct()
 
 const isSelected = computed(() => {
-  return compareProductsStore.items.some((item) => item === product.sku)
+  return compareProductsStore.items.some((item) => item.product.sku === product.sku)
+})
+
+const classes = computed(() => {
+  return {
+    'text-gray-400 hover:text-gray-800': !isSelected.value,
+    'text-gray-700 hover:text-gray-800': isSelected.value,
+  }
 })
 
 const add = async () => {

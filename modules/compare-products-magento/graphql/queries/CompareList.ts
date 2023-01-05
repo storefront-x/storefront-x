@@ -1,11 +1,11 @@
 import field from '#ioc/graphql/field'
 import query from '#ioc/graphql/query'
-import Product from '#ioc/graphql/fragments/Product'
+import CompareList from '#ioc/graphql/fragments/CompareList'
 
 export default () =>
   query()
     .variables({
-      $uid: 'Int!',
+      $uid: 'ID!',
     })
     .fields({
       compareList: field()
@@ -13,16 +13,6 @@ export default () =>
           uid: '$uid',
         })
         .fields({
-          item_count: field(),
-          items: field({
-            uid: field(),
-            product: field({
-              ...Product(),
-            }),
-            attributes: field({
-              code: field(),
-              value: field(),
-            }),
-          }),
+          ...CompareList(),
         }),
     })
