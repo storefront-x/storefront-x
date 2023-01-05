@@ -49,6 +49,7 @@ export default defineConfig({
         items: [
           { text: 'Introduction', link: '/getting-started/introduction' },
           { text: 'Quick Start', link: '/getting-started/quick-start' },
+          { text: 'Simple TODO app', link: '/getting-started/simple-todo-app' },
           { text: 'How it works', link: '/getting-started/how-it-works' },
           { text: 'Cookbook', link: '/getting-started/cookbook' },
           { text: 'Contributing', link: '/contributing' },
