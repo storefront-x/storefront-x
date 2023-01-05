@@ -8,8 +8,8 @@ Our main goal as developers is sustainability for complex projects, coupled with
 
 ## What is Storefront X ?
 
-Storefront X (SFX) is JavaScript framework with modular architecture, built for complex projects in e-commerce or anything you can imagine. It is built around fast and SEO reliable server-side rendering, PWA friendly client side and large amount of ready to use modules to get you quickly up and running. Storefront X is under hood using Vue 3 with full TypeScript support, but it does not mean you cannot use your favorite framework with Storefront-X like React or SolidJS. Together with large number of modules we created large number of automated tests to make your development easier.
+Storefront X (SFX) is JavaScript framework with modular architecture, built for complex projects in e-commerce or anything you can imagine. It is built around fast and SEO reliable server-side rendering, PWA friendly client side and large amount of ready to use modules to get you quickly up and running. Storefront X is under hood using Vue 3 with full TypeScript support, but it does not mean you cannot use your favorite framework with Storefront X like React or SolidJS. Storefront X is has great support for unit tests, integration tests and end-to-end tests to make development faster, easier and safer.
 
 ## What will you get ?
 
-With Storefront X you will get solid architecture for your project. It will allow you to grow without slowing down, it will help you with challenging multidimensionality of your app. Your development will be less stressful because of large ready to use test-suite. With full support of TypeScript you will get most of your IDE autocomplete functionality.
+With Storefront X you will get solid architecture for your project. It will allow you to grow without slowing down, it will help you with challenging multidimensionality of your app. Your development will be less stressful because of large ready to use test-suite. With full support of TypeScript you will get most from your IDE autocomplete functionality.
