@@ -15,6 +15,7 @@ local_modules/
 # IDE / Editor
 .idea
 .vscode
+.fleet
 
 # Service worker
 sw.*

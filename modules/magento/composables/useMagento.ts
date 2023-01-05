@@ -5,7 +5,7 @@ import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import useStoreStore from '#ioc/stores/useStoreStore'
 import useCurrentLocale from '#ioc/composables/useCurrentLocale'
-import GraphQLError from '#ioc/errors/GraphQLError'
+import MagentoError from '#ioc/errors/MagentoError'
 import errorHandlers from '~/.sfx/magento/errorHandlers'
 import useCustomerMagentoStore from '#ioc/stores/useCustomerMagentoStore'
 
@@ -57,7 +57,7 @@ export default () => {
               await errorHandler(error)
             }
 
-            throw new GraphQLError(error)
+            throw new MagentoError(error)
           }
         }
       }
