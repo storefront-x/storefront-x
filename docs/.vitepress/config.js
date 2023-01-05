@@ -45,13 +45,13 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Guide',
+        text: 'Getting started',
         items: [
-          { text: 'Why Storefront X', link: '/guide/why-storefront-x' },
-          { text: 'Getting Started', link: '/guide/getting-started' },
-          { text: 'Simple TODO app', link: '/guide/simple-todo-app' },
-          { text: 'How it works', link: '/guide/how-it-works' },
-          { text: 'Cookbook', link: '/guide/cookbook' },
+          { text: 'Introduction', link: '/getting-started/introduction' },
+          { text: 'Quick Start', link: '/getting-started/quick-start' },
+          { text: 'Simple TODO app', link: '/getting-started/simple-todo-app' },
+          { text: 'How it works', link: '/getting-started/how-it-works' },
+          { text: 'Cookbook', link: '/getting-started/cookbook' },
           { text: 'Contributing', link: '/contributing' },
         ],
       },

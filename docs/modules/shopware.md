@@ -70,7 +70,7 @@ export default 'https://my-store.shopware.com'
 
 Access key to your Shopware instance.
 
-URL of the Shopware instance. You need to Override it by adding `config/SHOPWARE_ACCESS_KEY.ts` to your module. To see how overriding works click [here](../guide/how-it-works.html#overriding)
+URL of the Shopware instance. You need to Override it by adding `config/SHOPWARE_ACCESS_KEY.ts` to your module. To see how overriding works click [here](../getting-started/how-it-works.html#overriding)
 
 :::warning
 This config variable needs to be overrided because it does not contain any value by default!
