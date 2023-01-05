@@ -2,7 +2,7 @@
 
 Storefront X contains integration for [Shopware 6](https://www.shopware.com/).
 
-General integration code is inside the [`@storefornt-x/shopware`](/modules/shopware) module. Module specific integrations are in modules like `@storefornt-x/catalog-shopware`.
+General integration code is inside the [`@storefront-x/shopware`](/modules/shopware) module. Module's specific integrations are in modules, like `@storefront-x/catalog-shopware`.
 
 ## List of covered features
 
@@ -29,7 +29,7 @@ General integration code is inside the [`@storefornt-x/shopware`](/modules/shopw
 
 ## How to configure Shopware endpoint?
 
-To which Shopware BE Storefront X connects is set in the `SHOPWARE_URL` config.
+Use `SHOPWARE_URL` config to specify Shopware backend endpoint to which Storefront X will connect.
 
 :::warning
 You have to override it in your module because default value is not defined.

@@ -2,7 +2,7 @@
 
 Storefront X contains integration for [Magento 2](https://www.magento.com/).
 
-General integration code is inside the [`@storefornt-x/magento`](/modules/magento) module. Module specific integrations are in modules like `@storefornt-x/catalog-magento`.
+General integration code is inside the [`@storefront-x/magento`](/modules/magento) module. Module's specific integrations are in modules, like `@storefront-x/catalog-magento`.
 
 ## List of covered features
 
@@ -49,7 +49,7 @@ General integration code is inside the [`@storefornt-x/magento`](/modules/magent
 
 ## How to configure Magento endpoint?
 
-To which Magento BE Storefront X connects is set in the `MAGENTO_URL` config.
+Use `MAGENTO_URL` config to specify Magento backend endpoint to which Storefront X will connect.
 
 :::warning
 You have to override it in your module because default value is not defined.

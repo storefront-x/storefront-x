@@ -14,7 +14,7 @@ You can run it either directly with package manager (`yarn sfx`) or add helpful 
 }
 ```
 
-Each command has it's own help section which you can show with the `--help` flag (`yarn dev --help`).
+Each command has it's own help section, which you can show with the `--help` flag (`yarn dev --help`).
 
 ## dev
 
@@ -22,17 +22,17 @@ Starts the development server. It watches the project files and performs hot-mod
 
 - `--port` set port for the development server
 - `--host` set host for the development server
-- `--config` path to the Storefront X configuration file
+- `--config` set path to the Storefront X configuration file
 
 :::warning
-Because development build isn't optimized, initial load might appear to be broken (slow loading, missing styles, ...). This is a side effect how Vite serves files to the browser during the development and is non-issue in the production build.
+Because development build isn't optimized, initial load might appear to be broken (slow loading, missing styles, etc.). This is a side effect, how Vite serves files to the browser during the development and is non-issue in the production build.
 :::
 
 ## build
 
 Builds the production bundle. The production bundle can be found in the `.sfx/dist/` directory.
 
-- `--config` path to the Storefront X configuration file
+- `--config` set path to the Storefront X configuration file
 - `--analyze` show visualization of the build JS bundle
 - `--onlyBootstrap` only generate the `.sfx` directory without building the application
 

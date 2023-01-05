@@ -1,10 +1,10 @@
 # Cookbook
 
-## How to create new module
+## How to create a new module
 
-Modules in Storefront X are NPM packages. So they require `package.json` a need to be importable by their identifier. For local development, easiest way is to leverage monorepo functionalities. In root 'package.json', the `workspaces` fields specifies which directories are scanned for NPM packages. By default, it is a `modules` directory.
+Modules in Storefront X are NPM packages. So they require `package.json` a need to be importable by their identifier. For local development, easiest way is to leverage monorepo functionalities. In root 'package.json' file, the `workspaces` fields specifies which directories are scanned for NPM packages. By default, it is a `modules` directory.
 
-First, create new directory for the module in the modules directory and add `package.json`.
+First, create a new directory for the module in the `modules` directory and add `package.json`.
 
 > `modules/my-module/package.json`
 
@@ -18,10 +18,10 @@ First, create new directory for the module in the modules directory and add `pac
 ```
 
 :::tip
-Why inside `modules` directory? Storefront X have to be valid NPM packages and are resolved the same way as installed NPM packages. In `package.json`, there is a `workspaces` field setting which directories NPM/Yarn searches for NPM packages (in addition to `node_modules`).
+Why inside `modules` directory? Storefront X has to be valid NPM package and modules are resolved the same way as the installed NPM packages. In `package.json`, there is a `workspaces` field setting which specifies directories, where NPM/Yarn searches for NPM packages (in addition to `node_modules`).
 :::
 
-Next enable the module in `storefront-x.config.js`.
+Next, enable the module in `storefront-x.config.js`.
 
 > `storefront-x.config.js`
 
@@ -39,9 +39,9 @@ export default {
 }
 ```
 
-And finally, you need to run `npm install`/`yarn install` so that the package manager can discover this newly added NPM package and resolve it. After each modification of `storefront-x.config.js` you need to restart the development server (`yarn dev`) or build the application for production use (`yarn build`).
+And finally, you need to run `npm install`/`yarn install` so the package manager can discover this newly added NPM package and resolve it. After each modification of `storefront-x.config.js` you need to restart the development server (`yarn dev`) or build the application for production use (`yarn build`).
 
-To test that everything works, we can for example add test page to our module.
+To test that everything works, we can, for example, add `test` page to our module.
 
 > `modules/my-module/pages/test.vue`
 
@@ -55,11 +55,11 @@ This page should now be visible under the `/test` URL.
 
 ## How to override a component
 
-First, you need to know, which component to override and what's its relative path the root of its module (e.g. `atoms/Button.vue`). For this you can either use the `.sfx/ioc/` directory (more info [here](/general/sfx)), or you can use [Vue devtools](https://devtools.vuejs.org).
+First, you need to know, which component to override and what's its relative path the root of its module (e.g. `atoms/Button.vue`). For this, you can either use the `.sfx/ioc/` directory (more info [here](/general/sfx)), or you can use [Vue devtools](https://devtools.vuejs.org).
 
 ![Vue devtools](../assets/images/vue-devtools.png)
 
-After you located your component, create new file with the same name and in the same directory as the component you want to override in your module. This module has to be loaded after the module in which the original component is located.
+After you located your component, create new file with the same name and in the same concept (directory) as the component you want to override in your module. This module has to be loaded after the module in which the original component is located.
 
 ### Example
 
@@ -79,15 +79,15 @@ export default {
 }
 ```
 
-In development mode, overridden component is hot-module-reloaded so no need to restart dev server. But for the production build, you will need to rebuild the application.
+In development mode, overridden component is hot-module-reloaded so there is no need to restart dev server. But, for the production build, you will need to rebuild the application.
 
 :::tip
-Same way you can override basically any file, not only components.
+In the same way, you can override basically any file, not only components.
 :::
 
 ## How to display data from backend
 
-### 1. Create new mapper
+### 1. Create a new mapper
 
 We need mapper to sanitize data returned from backend. We also use mappers to provide use with type information.
 
@@ -119,9 +119,9 @@ export default () => {
 }
 ```
 
-### 3. Create new service
+### 3. Create a new service
 
-Service wraps repository and adds business logic. A lot of the times there might not be additional business logic so services might be basically empty.
+Service wraps repository and adds business logic. A lot of the times there might not be additional business logic, so services might be basically empty.
 
 > `services/useGetTodo.ts`
 
@@ -137,7 +137,7 @@ export default () => {
 }
 ```
 
-### 4. Fetch data in component
+### 4. Fetch data in a component
 
 When fetching data that should be rendered on the page, we can't call the service normally. We have to call it inside `useAsyncData` composable. If called on the server during server-side rendering, this composable stores fetched data and transfers them to the browser so that browsers has access to the same data and doesn't have to do any additional requests.
 
@@ -160,7 +160,7 @@ const { data: todo } = await useAsyncData('todo', () => getTodo(route.params.id 
 </script>
 ```
 
-## How to create new IoC concept
+## How to create a new IoC concept
 
 IoC concepts are the most common and the most easy to create. Just add the concept to the `concepts/` directory in your module.
 
@@ -180,7 +180,7 @@ export default class Foobars extends IocConcept {
 Concept file has to be in JavaScript!
 :::
 
-Now restart the dev server and you should be able to import files in `foobars/` directories of enabled modules via the `#ioc` alias.
+Now, restart the dev server and you should be able to import files in `foobars/` directories of enabled modules via the `#ioc` alias.
 
 > `my-modules/foobars/Baz.ts`
 
@@ -196,7 +196,7 @@ console.log(Baz) // 'Buzz'
 
 ## How to use generating concept
 
-Sometimes you might wish for your concept to generate a single file which re-exports all the files inside concept directories as single object. This is useful for example if you want some file to import all the concept files at once.
+Sometimes, you might wish for your concept to generate a single file which re-exports all the files inside concept directories as a single object. This is useful, for example, if you want some file to import all the concept files at once.
 
 > `my-module/concepts/PaymentMethods.js`
 
@@ -210,10 +210,10 @@ export default class PaymentMethods extends GeneratingConcept {
 }
 ```
 
-This concept now generates single file called `paymentMethods.js` inside the `.sfx/` directory which you can use like this:
+This concept now generates single file called `paymentMethods.js` inside the `.sfx/` directory, which you can use like this:
 
 ```ts
 import paymentMethods from '~/.sfx/paymentMethods'
 
-console.log(paymentMethods) // object will all payment methods
+console.log(paymentMethods) // object with all payment methods
 ```
