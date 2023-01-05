@@ -1,10 +1,10 @@
 import getBlogTitle from '~/cypress/support/pageObjects/blogCategory/getBlogTitle'
 import getBlogPostTiles from '~/cypress/support/pageObjects/blogCategory/getBlogPostTiles'
-import visitRandom from '~/cypress/support/pageObjects/blogCategory/visitRandom'
+import visitRandomBlogCategory from '~/cypress/support/pageObjects/blogCategory/visitRandomBlogCategory'
 
 describe('Blog category', () => {
   beforeEach(() => {
-    visitRandom().as('blogCategory')
+    visitRandomBlogCategory().as('blogCategory')
   })
 
   it('renders its name', () => {
