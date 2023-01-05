@@ -75,7 +75,7 @@ test('cms block', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello, World!')
+      await expect(page.locator('h1')).toContainText('Hello, World!')
     },
   )
 })
@@ -112,14 +112,14 @@ test('cms block with slots', async ({ page }) => {
                                                       'type': 'text',
                                                       'slot': 'left',
                                                       'data': {
-                                                          'content': '<h1>Hello, Left World!</h1>',
+                                                          'content': '<h1 id="h1Left">Hello, Left World!</h1>',
                                                       }
                                                   },
                                                   {
                                                     'type': 'text',
                                                     'slot': 'right',
                                                     'data': {
-                                                        'content': '<h1>Hello, Right World!</h1>',
+                                                        'content': '<h1 id="h1Right">Hello, Right World!</h1>',
                                                     }
                                                 },
                                               ]
@@ -182,8 +182,8 @@ test('cms block with slots', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello, Left World!')
-      await expect(await page.content()).toContain('Hello, Right World!')
+      await expect(page.locator('#h1Left')).toContainText('Hello, Left World!')
+      await expect(page.locator('#h1Right')).toContainText('Hello, Right World!')
     },
   )
 })

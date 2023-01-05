@@ -22,7 +22,7 @@ test('redirect all pages to basic-auth page', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Unauthorized')
+      await expect(await page.locator('h1')).toContainText('Unauthorized')
     },
   )
 })
@@ -54,7 +54,7 @@ test('working login with credentials', async ({ page }) => {
       await page.locator("[name='username']").fill('test')
       await page.locator("[name='password']").fill('pass')
       await page.locator("[type='submit']").click()
-      expect(await page.content()).toContain('BEHIND AUTH')
+      await expect(page.locator('h1')).toContainText('BEHIND AUTH')
     },
   )
 })
