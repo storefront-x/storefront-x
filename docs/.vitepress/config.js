@@ -45,12 +45,12 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Guide',
+        text: 'Getting started',
         items: [
-          { text: 'Why Storefront X', link: '/guide/why-storefront-x' },
-          { text: 'Getting Started', link: '/guide/getting-started' },
-          { text: 'How it works', link: '/guide/how-it-works' },
-          { text: 'Cookbook', link: '/guide/cookbook' },
+          { text: 'Introduction', link: '/gettingStarted/introduction' },
+          { text: 'Quick Start', link: '/gettingStarted/quickStart' },
+          { text: 'How it works', link: '/gettingStarted/how-it-works' },
+          { text: 'Cookbook', link: '/gettingStarted/cookbook' },
           { text: 'Contributing', link: '/contributing' },
         ],
       },

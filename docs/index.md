@@ -13,11 +13,11 @@ hero:
     alt: Storefront X
   actions:
     - theme: brand
-      text: Get Started
-      link: /guide/getting-started
+      text: Quick Start
+      link: /gettingStarted/quickStart
     - theme: alt
-      text: Why Storefront X
-      link: /guide/why-storefront-x
+      text: Introduction
+      link: /gettingStarted/introduction
     - theme: alt
       text: View on GitHub
       link: https://github.com/storefront-x/storefront-x
