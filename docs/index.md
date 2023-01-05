@@ -14,10 +14,10 @@ hero:
   actions:
     - theme: brand
       text: Quick Start
-      link: /gettingStarted/quickStart
+      link: /getting-started/quick-start
     - theme: alt
       text: Introduction
-      link: /gettingStarted/introduction
+      link: /getting-started/introduction
     - theme: alt
       text: View on GitHub
       link: https://github.com/storefront-x/storefront-x

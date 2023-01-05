@@ -57,7 +57,7 @@ When you are ready to ship your app to production, run the following:
 >   yarn serve
 ```
 
-This will create a production-ready build of your app in the project's ./sfx/.dist directory. Storefront-x builds one folder for client and one for server. Your application is exposed on port 3000. You can find more about build or serve options ( like on what port it runs ) here [CLI](/general/CLI)
+This will create a production-ready build of your app in the project's ./sfx/.dist directory. Storefront-x builds one folder for client and one for server. Your application is exposed on port 3000. You can find more about build or serve options ( like on what port it runs ) here [CLI](/general/cli)
 
 ## Configuration
 

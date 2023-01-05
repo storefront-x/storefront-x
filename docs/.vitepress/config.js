@@ -47,10 +47,10 @@ export default defineConfig({
       {
         text: 'Getting started',
         items: [
-          { text: 'Introduction', link: '/gettingStarted/introduction' },
-          { text: 'Quick Start', link: '/gettingStarted/quickStart' },
-          { text: 'How it works', link: '/gettingStarted/how-it-works' },
-          { text: 'Cookbook', link: '/gettingStarted/cookbook' },
+          { text: 'Introduction', link: '/getting-started/introduction' },
+          { text: 'Quick Start', link: '/getting-started/quick-start' },
+          { text: 'How it works', link: '/getting-started/how-it-works' },
+          { text: 'Cookbook', link: '/getting-started/cookbook' },
           { text: 'Contributing', link: '/contributing' },
         ],
       },
