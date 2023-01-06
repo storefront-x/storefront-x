@@ -6,13 +6,15 @@
 </template>
 
 <script setup lang="ts">
-import ProductDetail from '#ioc/templates/ProductDetail'
+import { defineAsyncComponent, watchEffect } from 'vue'
 import useGetProductById from '#ioc/services/useGetProductById'
-import useResource from '#ioc/composables/useResource'
 import ProductProvider from '#ioc/providers/ProductProvider'
-import { defineAsyncComponent } from 'vue'
+import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+import useResource from '#ioc/composables/useResource'
+import useRoute from '#ioc/composables/useRoute'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
+const ProductDetail = hydrateWhenVisible(() => import('#ioc/templates/ProductDetail'))
 
 const props = defineProps({
   id: {
@@ -26,9 +28,10 @@ const props = defineProps({
 })
 
 const getProductById = useGetProductById()
-
+const route = useRoute()
+watchEffect(() => console.log(route.query.sku))
 const [data] = await useResource(
-  () => props.relativeUrl.replace(/\.html$/, ''),
+  () => route.query.sku,
   (id) => getProductById(id),
 )
 </script>
