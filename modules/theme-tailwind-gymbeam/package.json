@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/theme-tailwind-gymbeam",
+  "version": "1.5.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}

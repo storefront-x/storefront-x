@@ -1,0 +1,12 @@
+{
+  "name": "@storefront-x/demo-gymbeam",
+  "version": "1.5.1",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "vite-plugin-pwa": "^0.13.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

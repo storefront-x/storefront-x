@@ -3488,6 +3488,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/demo-gymbeam@workspace:modules/demo-gymbeam":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/demo-gymbeam@workspace:modules/demo-gymbeam"
+  dependencies:
+    vite-plugin-pwa: ^0.13.3
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/demo-magento@workspace:modules/demo-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/demo-magento@workspace:modules/demo-magento"
@@ -3661,6 +3669,12 @@ __metadata:
 "@storefront-x/theme-blank@workspace:modules/theme-blank":
   version: 0.0.0-use.local
   resolution: "@storefront-x/theme-blank@workspace:modules/theme-blank"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/theme-tailwind-gymbeam@workspace:modules/theme-tailwind-gymbeam":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/theme-tailwind-gymbeam@workspace:modules/theme-tailwind-gymbeam"
   languageName: unknown
   linkType: soft
 

@@ -29,6 +29,7 @@ export default () => {
 
     return {
       'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa('gymbeam:XvYjbzfonbI2wSbpsq'),
       ...(store && { Store: store }),
       ...(customerId && { Authorization: `Bearer ${customerId}` }),
       ...(selectedCurrencyCode && { 'Content-Currency': selectedCurrencyCode }),
@@ -38,6 +39,8 @@ export default () => {
   const graphql = async (gql: any, opts: Options = {}) => {
     const query = gql.toString()
     const variables = gql.getVariables()
+    console.log({ headers: headers() })
+    console.log(query)
 
     const _fetch = async (input: RequestInfo, init: RequestInit) => {
       const response = await fetch(input, init)
