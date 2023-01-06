@@ -54,11 +54,11 @@ defineProps({
 
 <i18n lang="yaml">
 en-US:
-  title: Storefront-x blog
+  title: Storefront X blog
   subtitle: News from the Magento family.
   no posts: No blog posts found
 cs-CZ:
-  title: Storefront-x blog
-  subtitle: Novinky a články ze světa Magento, stejně tak jako poslední novinky ze světa Storefront-x rodiny.
+  title: Storefront X blog
+  subtitle: Novinky a články ze světa Magento, stejně tak jako poslední novinky ze světa Storefront X rodiny.
   no posts: Žádné články nenalezeny
 </i18n>

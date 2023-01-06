@@ -60,7 +60,7 @@ test('route paths', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/cz/kosik', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('<h1>Hello, Košíku!</h1>')
+      await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
   )
 })

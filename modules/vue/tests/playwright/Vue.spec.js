@@ -68,7 +68,7 @@ test('overriding of App.vue', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Overrided')
+      await expect(page.locator('h1')).toContainText('Overrided')
     },
   )
 })
