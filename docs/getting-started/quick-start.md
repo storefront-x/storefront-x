@@ -43,7 +43,7 @@ Once the project is created, follow the instructions to install dependencies and
 >   yarn dev
 ```
 
-This will create a dev-ready build of your app in the project's ./sfx directory. Behind the scenes Storefront X collects all your files in enabled modules and creates a build folder. With each module setup you get a fully functional e-commerce solution with example components.
+This will create a dev-ready build of your app in the project's [./sfx directory](/essentials/sfx). Behind the scenes Storefront X collects all your files in enabled modules and creates a build folder, we call this process [Bootstrap](/essentials/bootstrap). With each module setup you get a fully functional e-commerce solution with example components.
 
 - The recommended IDE setup is [Visual Studio Code](https://code.visualstudio.com/) + [Volar extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
 - More information about other e-commerce integrations can be found here [Magento](/integrations/magento) or [Shopware](/integrations/shopware)
@@ -57,11 +57,11 @@ When you are ready to ship your app to production, run the following:
 >   yarn serve
 ```
 
-This will create a production-ready build of your app in the project's ./sfx/.dist directory. Storefront X builds one folder for client and one for server. Your application is exposed on port 3000. You can find more about build or serve options ( like on what port it runs ) here [CLI](/general/cli)
+This will create a production-ready build of your app in the project's [./sfx/.dist directory](/essentials/sfx). Storefront X builds one folder for client and one for server. Your application is exposed on port 3000. You can find more about build or serve options ( like on what port it runs ) here [CLI](/essentials/cli)
 
 ## Configuration
 
-Storefront X has just one configuration file which controls how your application is built `storefront-x.config.js`. This file specifies which modules are enabled and which order they are loaded.
+Storefront X has just one configuration file which controls how your application is built `storefront-x.config.js`. This file specifies which modules are enabled and in what order they are loaded.
 
 :::warning
 Every time you change `storefront-x.config.js`, you will need to restart development server/rebuild the application.
