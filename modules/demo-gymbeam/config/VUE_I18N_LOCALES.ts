@@ -1,8 +1,8 @@
 export default [
   {
-    fullName: 'English',
+    fullName: 'Slovak',
     name: 'en',
-    locale: 'en-US',
+    locale: 'sk-SK',
     prefix: '/',
     flag: '/flags/1x1/us.svg',
     magentoStore: 'gymbeamsk',

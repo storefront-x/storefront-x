@@ -1,4 +1,3 @@
-import colors from 'tailwindcss/colors.js'
 import forms from '@tailwindcss/forms'
 
 export default {
@@ -7,11 +6,27 @@ export default {
     './node_modules/@storefront-x/theme-tailwind-gymbeam/**/*.vue',
     './node_modules/@storefront-x/demo-gymbeam/**/*.vue',
   ],
-  plugins: [forms],
+  plugins: [
+    forms,
+    function ({ addComponents }) {
+      addComponents({
+        '.container': {
+          '@screen lg': {
+            maxWidth: '960px',
+          },
+        },
+      })
+    },
+  ],
   theme: {
     extend: {
       colors: {
-        primary: colors.orange,
+        primary: {
+          500: '#000000',
+        },
+        secondary: {
+          500: '#f44100',
+        },
       },
     },
   },
