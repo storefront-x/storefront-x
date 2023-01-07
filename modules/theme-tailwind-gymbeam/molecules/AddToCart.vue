@@ -1,6 +1,6 @@
 <template>
   <Button
-    color="primary"
+    color="secondary"
     :disabled="isLoading"
     data-cy="add-to-cart"
     class="relative w-full sm:w-auto sm:h-auto mt-4 sm:mt-0 sm:ml-3 text-bold"
@@ -8,8 +8,11 @@
     @click="onAddToCart"
   >
     <slot>
-      <span v-if="!isLoading">{{ t(isEnabled ? 'Add' : 'Conf') }}</span>
-      <Spinner v-if="isLoading" />
+      <template v-if="isEnabled">
+        <Spinner v-if="isLoading" />
+      </template>
+
+      <img class="w-8 h-8 whiteCart" :src="cartIcon" alt="Logo" />
     </slot>
 
     <CrossSellModal v-if="isCrossSellModalOpen" @close="onClose" />
@@ -23,6 +26,7 @@ import injectProduct from '#ioc/composables/injectProduct'
 import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
+import cartIcon from '#ioc/assets/images/cartWhite'
 
 import useRouter from '#ioc/composables/useRouter'
 import useLocalePath from '#ioc/composables/useLocalePath'
