@@ -27,6 +27,9 @@ export default {
         secondary: {
           500: '#f44100',
         },
+        grey: {
+          855: '#00000073',
+        },
       },
     },
   },

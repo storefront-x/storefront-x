@@ -5,7 +5,7 @@
   >
     <span class="sr-only">{{ t('Cart') }}</span>
     <div>
-      <img class="w-8 h-7" :src="cartIcon" alt="Logo" />
+      <img class="w-8 h-8" :src="cartIcon" alt="Logo" />
     </div>
     <span
       v-if="cart.itemsTotalQuantity > 0"
@@ -23,7 +23,7 @@
   >
     <span class="sr-only">{{ t('Cart') }}</span>
     <div>
-      <img class="w-8 h-7" :src="cartIcon" alt="Logo" />
+      <img class="w-8 h-8" :src="cartIcon" alt="Logo" />
     </div>
     <span
       v-if="cart.itemsTotalQuantity > 0"

@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="bg-primary-500">
+    <div class="bg-primary-500 pb-4">
       <Container>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4">
           <ul class="m-0 p-0 list-none text-white space-y-2">
