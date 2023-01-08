@@ -9,11 +9,11 @@ export default () => {
     categories: ReturnType<typeof ToCategory>[]
   }> => {
     const {
-      data: { categoryList },
+      data: { categories },
     } = await magento.graphql(CategoryList())
 
     return {
-      categories: categoryList[0].children.map(ToCategory),
+      categories: categories.items[0].children.map(ToCategory),
     }
   }
 }
