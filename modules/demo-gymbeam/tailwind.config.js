@@ -29,6 +29,7 @@ export default {
         },
         grey: {
           855: '#00000073',
+          890: '#ececec',
         },
       },
     },
