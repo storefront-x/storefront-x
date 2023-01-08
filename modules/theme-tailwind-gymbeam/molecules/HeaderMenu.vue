@@ -4,7 +4,7 @@
       v-for="category in catalogStore.menu"
       :key="category.id"
       :category="category"
-      classes="py-4 text-primary-500 font-bold uppercase"
+      classes="py-4 text-primary-500 font-bold uppercase text-[17px]"
       color="primary"
       @mouseenter="onMouseEnter(category)"
       @mouseleave="onMouseLeave(category)"

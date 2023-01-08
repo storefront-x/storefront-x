@@ -378,7 +378,7 @@
               class="hidden lg:flex px-2 py-1 lg:rounded-none bg-grey-895 font-semibold text-white mb-4 ml-2"
               @click="isDesktopFiltersOpen = !isDesktopFiltersOpen"
             >
-              {{ 'Show filters' }}
+              Zobraziť filtre
             </button>
           </div>
 
@@ -459,6 +459,7 @@ sk-SK:
   'price,ASC': 'nejlevnějších'
   'price,DESC': 'nejdražších'
   'products_found': 'Nalezeno produktů: {0}'
+  Show filters: Zobraziť filtre
 </i18n>
 
 <style scoped>
