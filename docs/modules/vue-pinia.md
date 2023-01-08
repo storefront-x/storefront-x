@@ -6,11 +6,11 @@ Wrapper around the [Pinia](https://pinia.vuejs.org) library. Adds server -> clie
 
 ## `stores/` IoC concept
 
-Files exporting Pinia stores. These stores can be imported via IoC and are enhanced by the special `serverInit` action that is executed the beginning of every server request.
+Files exporting Pinia stores. These stores can be imported via IoC and are enhanced by the special `serverInit` action, that is executed in the beginning of every server request.
 
 ### `serverInit`
 
-All `serverInit` actions in all stores are executed in parallel so they are great fit for fetching global data (customer, cart, ...). It's a good idea to guard them with `IS_SERVER` config to improve tree-shaking.
+All `serverInit` actions in all stores are executed in parallel, so they are great fit for fetching global data (customer, cart, etc.). It's a good idea to guard them with `IS_SERVER` config to improve tree-shaking.
 
 ### Example
 

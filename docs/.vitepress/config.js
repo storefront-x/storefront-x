@@ -55,6 +55,22 @@ export default defineConfig({
         ],
       },
       {
+        text: 'Essentials',
+        items: [
+          { text: 'CLI', link: '/essentials/cli' },
+          { text: 'Bootstrap', link: '/essentials/bootstrap' },
+          { text: 'The .sfx directory', link: '/essentials/sfx' },
+          { text: 'Concepts', link: '/essentials/concepts' },
+          { text: 'PWA', link: '/essentials/pwa' },
+          { text: 'Dotenv', link: '/essentials/dotenv' },
+          { text: 'Lazy components', link: '/essentials/lazy-components' },
+          { text: 'Functionalities', link: '/essentials/functionalities' },
+          { text: 'Redirecting', link: '/essentials/redirecting' },
+          { text: 'Best practices', link: '/essentials/best-practices' },
+          { text: 'FAQ', link: '/essentials/faq' },
+        ],
+      },
+      {
         text: 'Cookbook',
         items: [
           { text: 'Create new module', link: '/cookbook/create-new-module' },
@@ -69,22 +85,6 @@ export default defineConfig({
         items: [
           { text: 'Magento', link: '/integrations/magento' },
           { text: 'Shopware', link: '/integrations/shopware' },
-        ],
-      },
-      {
-        text: 'Essentials',
-        items: [
-          { text: 'CLI', link: '/essentials/cli' },
-          { text: 'Bootstrap', link: '/essentials/bootstrap' },
-          { text: 'The .sfx directory', link: '/essentials/sfx' },
-          { text: 'Concepts', link: '/essentials/concepts' },
-          { text: 'PWA', link: '/essentials/pwa' },
-          { text: 'Dotenv', link: '/essentials/dotenv' },
-          { text: 'Lazy components', link: '/essentials/lazy-components' },
-          { text: 'Functionalities', link: '/essentials/functionalities' },
-          { text: 'Redirecting', link: '/essentials/redirecting' },
-          { text: 'Best practices', link: '/essentials/best-practices' },
-          { text: 'FAQ', link: '/essentials/faq' },
         ],
       },
       {

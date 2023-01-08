@@ -6,19 +6,19 @@ Concepts are classes that have methods which are executed before each module is 
 
 Because a lot of functionality is shared between modules, Storefront X has multiple pre-defined concept classes with common functionality. These classes also inherit from each other and this inheritance hierarchy can be seen on the diagram bellow.
 
-![Concept hierarchy](../assets/images/concept-hierarchy.png)
+![Concept hierarchy](/assets/images/concept-hierarchy.png)
 
 ## IoC concept
 
 IoC concept is the most simple and most common concept.
 
-It requires files inside concept directories to use default export.
+It requires files inside concept directories to use `default export`.
 
 ### Extensions
 
-Extensions are files with `.ext.*` suffix. They are placed in the concept directory they interact with (extension modifying mixin is to be placed in the `mixins` directory) and their name has to be the same as the file they extend (except the `.ext` suffix). So `mixins/IsProduct.js` is extended by `mixins/IsProduct.ext.js` and `gql/fragments/Product.js` is extended by `gql/fragments/Product.ext.js`.
+Extensions are files with `.ext.*` suffix. They are placed in the concept directory they interact with (extension modifying mixin has to be placed in the `mixins` directory) and their name has to be the same as the file they extend (except the `.ext.*` suffix). So `mixins/IsProduct.js` is extended by `mixins/IsProduct.ext.js` and `gql/fragments/Product.js` is extended by `gql/fragments/Product.ext.js`.
 
-Extensions are also special. They are special because they do not override each other. If two modules have same extensions with same names, all of the extensions will be applied.
+Extensions are special because they don't override each other. If two modules have same extensions with same names, all of the extensions will be applied.
 
 #### Example
 
@@ -52,8 +52,8 @@ export default (self) => {
 > `module-c/mixins/SomeMixin.ext.js`
 
 ```js
-// bot this and the SomeMixin.ext.js extension from the module-b
-// are applied - overriding does not apply to extension
+// both this and the SomeMixin.ext.js extension from the module-b
+// are applied - overriding doesn't apply to extension
 export default (self) => {
   self.computed.id = function () {
     return 'SomeMixin'
@@ -65,7 +65,7 @@ export default (self) => {
 
 ## Generating concept
 
-Generates only one file. This one generated files re-exports default exports of files inside concept directories as a single, default exported, object. This file is generated inside the `.sfx/` directory and has the same name as the concept directory upon which this concept operates.
+Generates only one file. This one generated file re-exports default exports of files inside concept directories as a single, default exported, object. This file is generated inside the `.sfx/` directory and has the same name as the concept directory upon which this concept operates.
 
 #### Example concept
 
@@ -125,7 +125,7 @@ You can override the `template` getter in your concept to customize how the gene
 #### Example concept
 
 ```js
-//@ts-check
+// @ts-check
 
 import { GeneratingConcept } from '@storefront-x/core'
 
@@ -162,7 +162,7 @@ export default {
 
 ### Separating client/server code
 
-Sometimes you might wish to separate client/server code. This can be done with the `supportsClientServer` getter. If this getter is set to `true`, generating concept will generate two files with `.client` and `.server` suffixes. Both of these files will contain normal source files but `.client` file will also contain source files with the `.client` suffix and vice versa for server.
+Sometimes you might wish to separate client/server code. This can be done with the `supportsClientServer` getter. If this getter is set to `true`, generating concept will generate two files with `.client` and `.server` suffixes. Both of these files will contain normal source files, but `.client` file will also contain source files with the `.client` suffix and vice versa for server.
 
 #### Example concept
 
@@ -240,12 +240,12 @@ console.log(pluginsServer)
 
 ### Generating multiple files
 
-Generating concept can also generate multiple files (one generated file per one source file). This can be achieved by setting the `generateMultipleFiles` getter to true. If done so, the template string will receive a `record` value instead of `records`.
+Generating concept can also generate multiple files (one generated file per one source file). This can be achieved by setting the `generateMultipleFiles` getter to `true`. If done so, the template string will receive a `record` value instead of `records`.
 
 ## Copying concept
 
-Copying concept copies source files to the target directory. This is useful for implementing for example the `Public` concept which exposes static files publicly under URL corresponding to their path/name.
+Copying concept copies source files to the target directory. This is useful for implementing, for example, the `Public` concept which exposes static files publicly under URL corresponding to their path/name.
 
 ## Merging concept
 
-Merging files implements overriding on the basis of objects, not files. So two files with the same name do not override each other but instead, their default exported objects are merged together.
+Merging files implements overriding on the basis of objects, not files. So, two files with the same name do not override each other but instead, their default exported objects are merged together.

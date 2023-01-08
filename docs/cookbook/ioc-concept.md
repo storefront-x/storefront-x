@@ -18,7 +18,7 @@ export default class Foobars extends IocConcept {
 Concept file has to be in JavaScript!
 :::
 
-Now restart the dev server and you should be able to import files in `foobars/` directories of enabled modules via the `#ioc` alias.
+Now, restart the dev server and you should be able to import files in `foobars/` directories of enabled modules via the `#ioc` alias.
 
 > `my-modules/foobars/Baz.ts`
 

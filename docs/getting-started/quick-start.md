@@ -1,6 +1,6 @@
 # Quick Start
 
-In this section we will introduce how to scaffold a Storefront X application on your local machine. The created project will be using a build setup based on Vite and allow us to use Storefront X modules eco-system.
+In this section, we will introduce, how to scaffold a Storefront X application on your local machine. The created project will be using a build setup, based on Vite and allow us to use Storefront X modules eco-system.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ or with Yarn:
 yarn create storefront-x
 ```
 
-This command will install and execute `create storefront-x`, the official Storefront X scaffolding tool. You will be presented with prompts to choose what module configuration you want to scaffold ( we have several module setups based on your back-end solution )
+This command will install and execute `create storefront-x`, the official Storefront X scaffolding tool. You will be presented with prompts to choose what module configuration you want to scaffold (we have several module setups based on your back-end solution).
 
 ```
 ? Target directory » storefront-x-app
@@ -45,10 +45,10 @@ Once the project is created, follow the instructions to install dependencies and
 
 This will create a dev-ready build of your app in the project's [./sfx directory](/essentials/sfx). Behind the scenes Storefront X collects all your files in enabled modules and creates a build directory, we call this process [Bootstrap](/essentials/bootstrap). With each module setup you get a fully functional e-commerce solution with example components.
 
-- The recommended IDE setup is [Visual Studio Code](https://code.visualstudio.com/) + [Volar extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
-- More information about other e-commerce integrations can be found here [Magento](/integrations/magento) or [Shopware](/integrations/shopware)
-- To learn more about the underlying build tool Vite, check out the [Vite docs](https://vitejs.dev/).
-- Storefront X is TypeScript ready. All the modules support autocomplete in your IDE.
+- The recommended IDE setup is [Visual Studio Code](https://code.visualstudio.com/) + [Volar extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- More information about other e-commerce integrations can be found here: [Magento](/integrations/magento) or [Shopware](/integrations/shopware)
+- To learn more about the underlying build tool Vite, check out the [Vite docs](https://vitejs.dev/)
+- Storefront X is TypeScript ready. All the modules support autocomplete in your IDE
 
 When you are ready to ship your app to production, run the following:
 
