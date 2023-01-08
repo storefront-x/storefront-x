@@ -67,7 +67,7 @@ With this import we tell the application exactly what file to import from which 
 import Button from '#ioc/components/Button'
 ```
 
-With this import, we tell the application we want file named `Button` from concept (directory inside module) names `components`. But we aren't specifying exact location from which module this button should be imported.
+With this import, we are telling we want file named Button from concept (directory inside module) named components. But we aren't specifying from which module this button should be imported.
 
 ```
 modules/
