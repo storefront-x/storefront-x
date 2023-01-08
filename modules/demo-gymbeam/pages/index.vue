@@ -51,7 +51,6 @@
 
 <script setup lang="ts">
 import Container from '#ioc/atoms/Container'
-import useI18n from '#ioc/composables/useI18n'
 import SfxCarousel from '#ioc/components/SfxCarousel'
 import ms1 from '#ioc/assets/ms1'
 import ms2 from '#ioc/assets/ms2'
@@ -66,8 +65,6 @@ import mn5 from '#ioc/assets/mn5'
 import mn6 from '#ioc/assets/mn6'
 import mn7 from '#ioc/assets/mn7'
 import mn8 from '#ioc/assets/mn8'
-
-const { t } = useI18n()
 
 const containersSpacingClass = { 'mb-12': true }
 </script>

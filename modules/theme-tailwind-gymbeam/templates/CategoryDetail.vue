@@ -9,19 +9,16 @@
 <script setup lang="ts">
 import Container from '#ioc/atoms/Container'
 import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
-import CategoryInfo from '#ioc/molecules/CategoryInfo'
 import ToCategory from '#ioc/mappers/ToCategory'
 import ToProduct from '#ioc/mappers/ToProduct'
 import useHead from '#ioc/composables/useHead'
 import { computed, PropType } from 'vue'
 import useCategory from '#ioc/composables/useCategory'
 import useCategorySchema from '#ioc/composables/schemaOrg/useCategorySchema'
-import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 
 const ProductListing = hydrateWhenIdle(() => import('#ioc/organisms/ProductListing'))
-const Description = hydrateWhenVisible(() => import('#ioc/atoms/Description'))
 
 const props = defineProps({
   category: {
