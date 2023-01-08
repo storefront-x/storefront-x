@@ -51,7 +51,7 @@ modules/
       product.vue
 ```
 
-If we image that these three modules are loaded in this order (`homepage`, `catalog`, `catalog-cz`), final application will use `product.vue` component from the `catalog-cz` module instead of the `catalog` module. And because concepts are executed during build-time, final application bundle won't contain the `catalog` product component at all. This allows you extreme flexibility while still having performant application with only one restriction - list of enabled modules and their order has to be known during build-time.
+If we imagine that these three modules are loaded in this order (`homepage`, `catalog`, `catalog-cz`), final application will use `product.vue` component from the `catalog-cz` module instead of the `catalog` module. And because concepts are executed during build-time, final application bundle won't contain the `catalog` product component at all. This allows you extreme flexibility while still having performant application with only one restriction - list of enabled modules and their order has to be known during build-time.
 
 ## Inversion of Control
 
@@ -67,7 +67,7 @@ With this import we tell the application exactly what file to import, meaning co
 import Button from '#ioc/components/Button'
 ```
 
-With this import, we are telling we want file named Button from concept (directory inside module) names components. But we aren't specifying from which module this button should be imported.
+With this import, we are telling we want file named Button from concept (directory inside module) named components. But we aren't specifying from which module this button should be imported.
 
 ```
 modules/
