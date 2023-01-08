@@ -79,7 +79,7 @@
       </Container>
     </div>
     <div class="bg-white">
-      <ul class="flex flex-col md:flex-row mr-0 p-0 list-none justify-center store-list py-1">
+      <ul class="mr-0 p-0 list-none text-center store-list py-1">
         <li>
           <a href="https://gymbeam.com/" class="text-sm">
             <span class="desktop-name"> GymBeam.com </span>
@@ -176,7 +176,19 @@ import trustLogo from '#ioc/assets/images/footer_trust'
 
 <style scoped>
 .store-list a:after {
-  @apply w-[1px] h-[10px] 2xl:bg-primary-500 inline-block mx-2 lg:content-[''];
+  @apply w-[1px] h-[10px] bg-primary-500 inline-block mx-2 content-[''];
+}
+
+.store-list a {
+  @apply pr-2;
+}
+
+.store-list li {
+  @apply inline-block;
+}
+
+.store-list li:last-child a {
+  @apply pr-0;
 }
 
 .social-list a {
