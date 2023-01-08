@@ -22,7 +22,7 @@ If none of the pages can be matched, `pages/$404.vue` will be used.
 
 ### Dynamic parameters
 
-Pages can define dynamic parts that will be matched as [route parameters](https://router.vuejs.org/guide/essentials/dynamic-matching.html).
+Pages can define dynamic parts, that will be matched as [route parameters](https://router.vuejs.org/guide/essentials/dynamic-matching.html).
 
 `pages/hello/[name].vue` will match `/hello/Pat`, `hello/Mat` and similar URLs.
 
@@ -45,9 +45,9 @@ pages/
 
 ### Global component
 
-The `$app.vue` component which can be found in the root of the `pages/` directory is global component wrapping around the whole application. It can be used to apply global styles, or add elements that should be visible on every page and every layout (e.g. global banners).
+The `$app.vue` component, which can be found in the root of the `pages/` directory is global component wrapping around the whole application. It can be used for apply global styles, or add elements that should be visible on every page and every layout (e.g. global banners).
 
-By default this component is empty and looks like this:
+By default, this component is empty and looks like this:
 
 ```vue
 <!-- pages/$app.vue -->
@@ -93,7 +93,7 @@ Advanced concept!
 
 ## `RouterLink` component
 
-Re-exports the [`RouterLink`](https://router.vuejs.org/api/#to) component from the `vue-router` library to be accessible via IoC.
+Re-exports the [`RouterLink`](https://router.vuejs.org/api/#to) component from the `vue-router` library, to be accessible via IoC.
 
 :::tip
 The `RouterLink` component is accessible globally without needing to be imported. Importing it over IoC allows for better intellisense support.
@@ -135,7 +135,7 @@ import Footer from '#ioc/components/Footer'
 
 ## `SfxAppOutlet` component
 
-Used in special `$app.vue` page to define where the rest of the app should be rendered.
+Used in special `$app.vue` page, to define where the rest of the app should be rendered.
 
 ### Example
 

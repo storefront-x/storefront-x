@@ -17,7 +17,7 @@ yarn add vite-plugin-pwa
 
 If your module doesn't have `vite.config.js`, create it.
 
-> modules/demo-shopware/vite.config.js
+> `modules/demo-shopware/vite.config.js`
 
 ```js
 import { defineConfig } from 'vite'
@@ -91,11 +91,11 @@ Add images specified in manifest to the public directory inside your module.
 
 ### 4. Override index.html
 
-Because Vite Plugin PWA doesn't inject everything required into the index.html, we need to override it and add it manually.
+Because Vite Plugin PWA doesn't inject everything required into the `index.html`, we need to override it and add it manually.
 
-We will be adding a `apple-touch-icon` link and `theme-color` meta tag.
+We will be adding an `apple-touch-icon` link and a `theme-color` meta tag.
 
-> modules/demo-shopware/base/templates/index.html
+> `modules/demo-shopware/base/templates/index.html`
 
 ```html{10,11}
 <!DOCTYPE html>

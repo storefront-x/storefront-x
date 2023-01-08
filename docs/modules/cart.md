@@ -6,26 +6,26 @@ Module for e-commerce cart. Requires corresponding integration module (e.g. `@st
 
 ## `useCart` composable
 
-Composable for providing presentation logic for cart (prices, taxes, number of items in cart, ...).
+Composable for providing presentation logic for cart (prices, taxes, number of items in cart, etc.).
 
 :::tip
 Override/extend this composable to add presentation functionality to cart.
 :::
 
 :::tip
-Mutating functionality (adding to cart, removing from cart, ...) should be in separate composables/services.
+Mutating functionality (adding to cart, removing from cart, etc.) should be in separate composables/services.
 :::
 
 ## `useCartItem` composable
 
-Composable for providing presentation logic for cart items (price, quantity, ...).
+Composable for providing presentation logic for cart items (price, quantity, etc.).
 
 :::tip
 Override/extend this composable to add presentation functionality to cart items.
 :::
 
 :::tip
-Mutating functionality (updating quantity, ...) should be in separate composables/services.
+Mutating functionality (updating quantity, etc.) should be in separate composables/services.
 :::
 
 ## `injectCartItem` composable
@@ -78,7 +78,7 @@ const cartItem = injectCartItem()
 
 ## `useGetCart` service
 
-Returns full state of cart (items, prices, coupons, ...).
+Returns full state of cart (items, prices, coupons, etc.).
 
 ## `useAddToCart` service
 

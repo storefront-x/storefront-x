@@ -24,13 +24,13 @@ npm run dev
 
 The application should now be running on localhost port 3000 and should look something like this:
 
-![1](../assets/simple-todo-app/1.png)
+![1](/assets/simple-todo-app/1.png)
 
 ## Structure
 
 The generated code structure should look something like this:
 
-![2](../assets/simple-todo-app/2.png)
+![2](/assets/simple-todo-app/2.png)
 
 Storefront X uses only one global configuration file `storefront-x.config.js`, it defines which modules are used and in which order they are compiled during build. Bellow you can see which modules are enabled in our Simple TODO app. As you can see we have four global modules (installed as dependencies from `package.json`) and our only one custom module `demo-blank`. Our application can be made from multiple custom modules, they are placed in the `modules` directory.
 
@@ -127,7 +127,7 @@ Now we have page with links to our todos. These links look like this: `/todo/1`,
 
 First create a `todo` directory inside the `pages` directory and then add `[id].vue` file inside of it. The `[id]` represents parameter called `id` that will match anything.Because it is inside of the `todo` directory, it will match only URLs beginning with `/todo/`.
 
-![3](../assets/simple-todo-app/3.png)
+![3](/assets/simple-todo-app/3.png)
 
 Lets write a simple code to display the ID of the current todo:
 
@@ -174,10 +174,10 @@ Because `route` is reactive object used inside the first function of `useResourc
 
 Our application should now have lis of all todos like this:
 
-![4](../assets/simple-todo-app/4.png)
+![4](/assets/simple-todo-app/4.png)
 
 And detail of one todo like this:
 
-![5](../assets/simple-todo-app/5.png)
+![5](/assets/simple-todo-app/5.png)
 
 We hope that was fun and now you are ready to learn [How it works](/getting-started/how-it-works)
