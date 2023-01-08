@@ -1,5 +1,9 @@
 # How to display data from backend
 
+:::tip
+This is advanced way of fetching data which follows the best practices from Storefront X architecture (mappers, repositories and services). You do NOT need to follow this architecture and you can simply call `fetch` method inside `useResource` like in the [Simple TODO app](/getting-started/simple-todo-app) tutorial.
+:::
+
 ## 1. Create a new mapper
 
 We need mapper to sanitize data returned from backend. We also use mappers to provide use with type information.
@@ -52,7 +56,7 @@ export default () => {
 
 ## 4. Fetch data in a component
 
-When fetching data that should be rendered on the page, we can't call the service normally. We have to call it inside `useAsyncData` composable. If called on the server during server-side rendering, this composable stores fetched data and transfers them to the browser so that browsers has access to the same data and doesn't have to do any additional requests.
+When fetching data that should be rendered on the page, we can't call the service normally. We have to call it inside `useResource` composable. If called on the server during server-side rendering, this composable stores fetched data and transfers them to the browser so that browsers has access to the same data and doesn't have to do any additional requests.
 
 > `pages/todos/[id].vue`
 
@@ -63,12 +67,15 @@ When fetching data that should be rendered on the page, we can't call the servic
 
 <script setup lang="ts">
 import useRoute from '#ioc/composables/useRoute'
-import useAsyncData from '#ioc/composables/useAsyncData'
+import useResource from '#ioc/composables/useResource'
 import useGetTodo from '#ioc/services/useGetTodo'
 
 const route = useRoute()
 const getTodo = useGetTodo()
 
-const { data: todo } = await useAsyncData('todo', () => getTodo(route.params.id as string))
+const { data: todo } = await useResource(
+  () => route.params.id as string,
+  (id) => getTodo(id),
+)
 </script>
 ```

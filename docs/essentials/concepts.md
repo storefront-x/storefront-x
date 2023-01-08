@@ -6,7 +6,7 @@ Concepts are classes that have methods which are executed before each module is 
 
 Because a lot of functionality is shared between modules, Storefront X has multiple pre-defined concept classes with common functionality. These classes also inherit from each other and this inheritance hierarchy can be seen on the diagram bellow.
 
-![Concept hierarchy](../assets/images/concept-hierarchy.png)
+![Concept hierarchy](/assets/images/concept-hierarchy.png)
 
 ## IoC concept
 

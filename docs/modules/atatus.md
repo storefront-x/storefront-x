@@ -12,7 +12,7 @@ Create account, and setup your project on atatus.
 
 ## `ATATUS_RUM_API_KEY` config
 
-You can find Atatus RUM API key in the atatus dashboard when creating project. You need to override it by adding `config/ATATUS_RUM_API_KEY.ts` to your module. To see how overriding works, click [here](../guide/how-it-works.html#overriding).
+You can find Atatus RUM API key in the atatus dashboard when creating project. You need to override it by adding `config/ATATUS_RUM_API_KEY.ts` to your module. To see how overriding works, click [here](/getting-started/how-it-works.html#overriding).
 
 :::warning
 This config variable needs to be overrided, because it doesn't contain any value by default!
