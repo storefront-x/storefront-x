@@ -65,12 +65,12 @@ One more thing that needs to be explained beforehand are `#ioc` imports. Look at
 import Counter from '#ioc/components/Counter'
 ```
 
-As you can see, the `Counter.vue` component is placed inside the `components` directory in the `demo-blank` module. Imports from `#ioc` are imports from global folder generated during build. Storefront X collects all the files from enabled modules and compiles them into `/sfx/ioc` folder, that means `#ioc` import may lead to any of the currently enabled modules (defined in `storefront-x.config.js`). This can be seen in `pages/$layout.vue` where the layout imports the `SfxLayoutOutlet` component, but this component is nowhere to be seen in our application. That is because this component comes from the global `@storefront-x/vue-router` module (installed as dependencies from `package.json`).
+As you can see, the `Counter.vue` component is placed inside the `components` directory in the `demo-blank` module. Imports from `#ioc` are imports from global directory generated during build. Storefront X collects all the files from enabled modules and compiles them into `.sfx/ioc` directory, that means `#ioc` import may lead to any of the currently enabled modules (defined in `storefront-x.config.js`). This can be seen in `pages/$layout.vue` where the layout imports the `SfxLayoutOutlet` component, but this component is nowhere to be seen in our application. That is because this component comes from the global `@storefront-x/vue-router` module (installed as dependencies from `package.json`).
 
 How the `#ioc` import actually works will be explained later. For now you can image that it looks into all of the enabled modules and somehow chooses the module that contains the requested file.
 
 :::tip
-You can check the contents of the `/sfx/ioc` folder to see whats your application made of. It can help you debug and solve issues faster.
+You can check the contents of the `.sfx/ioc` directory to see whats your application made of. It can help you debug and solve issues faster.
 :::
 
 ## Fetching data
