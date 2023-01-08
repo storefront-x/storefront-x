@@ -3,7 +3,7 @@
     <div
       id="minicart-wrapper"
       aria-live="assertive"
-      class="absolute max-w-lg px-4 z-50 inset-y-28 right-0"
+      class="absolute max-w-lg px-4 z-50 inset-y-8 -right-5"
       :class="{ 'min-w-[20em]': cart.items.length === 0 }"
     >
       <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
@@ -99,4 +99,10 @@ cs-CZ:
   moreItemsInMiniCart: Všechny ({0}) produkty uvidíte v detailu košíku
   emptyCart: Váš košík je prázdný
   No cart items icon: Prázdný košík ikona
+sk-SK:
+  subtotal: Medzisúčet
+  cartDetails: Detaily kosiku
+  moreItemsInMiniCart: Všetky ({0}) produkty uvidíte v detaile košíka
+  emptyCart: Váš košík je prázdny
+  No cart items icon: Prázdny košík ikona
 </i18n>

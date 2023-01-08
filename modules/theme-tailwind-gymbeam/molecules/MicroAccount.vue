@@ -1,10 +1,6 @@
 <template>
   <div v-if="!customer.isLoggedIn">
-    <Link
-      :to="localePath('account')"
-      class="flex items-center px-0 py-0.5 text-gray-400 hover:text-gray-500"
-      data-cy="micro-account"
-    >
+    <Link class="flex items-center px-0 py-0.5 text-gray-400 hover:text-gray-500" data-cy="micro-account">
       <img class="w-8 h-7" :src="iconUser" alt="Logo" />
     </Link>
     <div v-if="submenu" class="flex flex-col font-semibold text-gray-800 hidden" data-cy="micro-account">

@@ -12,7 +12,7 @@
     <div v-for="aggregation in filteredAggregations" :key="aggregation.attributeCode" class="block">
       <fieldset class="flex border-b border-primary-500 pb-2 w-full justify-between">
         <div>
-          <legend class="font-bold uppercase text-primary-500 font-sm block w-[150px]">
+          <legend class="font-semibold uppercase text-primary-500 font-[14px] block w-[150px]">
             {{ t(aggregation.label) }}
           </legend>
         </div>

@@ -27,7 +27,7 @@
         <img :src="logo" alt="Logo" class="h-8 w-auto px-4" />
       </Link>
 
-      <div class="flex items-center justify-end">
+      <div class="flex items-center justify-end relative">
         <MicroAccount :submenu="true" class="hidden lg:flex" />
         <MicroSearch class="lg:hidden mr-2" />
         <MicroCart />
