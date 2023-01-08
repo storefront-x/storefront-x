@@ -1,6 +1,6 @@
 # How to display data from backend
 
-### 1. Create new mapper
+## 1. Create a new mapper
 
 We need mapper to sanitize data returned from backend. We also use mappers to provide use with type information.
 
@@ -14,7 +14,7 @@ export default (data: any) => ({
 })
 ```
 
-### 2. Create new repository
+## 2. Create new repository
 
 We need repository for communication with backend. In this repository we can use `fetch` method or some adapter (e.g. `useShopware`). In this example, we will display a todo from the [JSON placeholder](https://jsonplaceholder.typicode.com).
 
@@ -32,9 +32,9 @@ export default () => {
 }
 ```
 
-### 3. Create new service
+## 3. Create a new service
 
-Service wraps repository and adds business logic. A lot of the times there might not be additional business logic so services might be basically empty.
+Service wraps repository and adds business logic. A lot of the times there might not be additional business logic, so services might be basically empty.
 
 > `services/useGetTodo.ts`
 
@@ -50,7 +50,7 @@ export default () => {
 }
 ```
 
-### 4. Fetch data in component
+## 4. Fetch data in a component
 
 When fetching data that should be rendered on the page, we can't call the service normally. We have to call it inside `useAsyncData` composable. If called on the server during server-side rendering, this composable stores fetched data and transfers them to the browser so that browsers has access to the same data and doesn't have to do any additional requests.
 
