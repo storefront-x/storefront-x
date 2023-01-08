@@ -367,22 +367,22 @@
       <div class="basis-3/4 pl-5">
         <CategoryInfo :category="category" />
 
-        <div class="">
-          <ProductFilters :aggregations="aggregations" />
-        </div>
-
         <div aria-labelledby="product-heading" class="mt-6 lg:mt-0 lg:col-span-2 xl:col-span-5">
           <h2 id="product-heading" class="sr-only">Products</h2>
 
           <div
-            class="absolute right-0 top-8 lg:top-[unset] lg:right-[unset] lg:static lg:flex lg:justify-between lg:items-end"
+            class="absolute right-0 top-8 lg:top-[unset] lg:right-[unset] lg:static lg:flex lg:justify-end lg:items-end"
           >
-            <h3 class="hidden lg:block mb-4 text-neutral-600 text-lg font-medium">
-              {{ t('products_found', [totalCount]) }}
-            </h3>
-
             <ProductSort class="mb-4" :title="t(sortedBy)" />
+            <button
+              class="hidden lg:flex px-2 py-1 lg:rounded-none bg-grey-895 font-semibold text-white mb-4 ml-2"
+              @click="isDesktopFiltersOpen = !isDesktopFiltersOpen"
+            >
+              {{ 'Show filters' }}
+            </button>
           </div>
+
+          <ProductFilters :aggregations="aggregations" :is-desktop-filters-open="isDesktopFiltersOpen" />
 
           <div class="grid grid-cols-1 gap-2 sm:gap-0 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3">
             <ProductProvider v-for="(product, i) in products" :key="product.id" :product="product">
@@ -408,7 +408,7 @@ import ToProduct from '#ioc/mappers/ToProduct'
 import ProductSort from '#ioc/molecules/ProductSort'
 import ProductTile from '#ioc/molecules/ProductTile'
 import ProductProvider from '#ioc/providers/ProductProvider'
-import { computed, PropType } from 'vue'
+import { computed, PropType, ref } from 'vue'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 import LoadNext from '#ioc/molecules/LoadNext'
@@ -439,6 +439,8 @@ defineProps({
   },
 })
 
+const isDesktopFiltersOpen = ref(false)
+
 const sortedBy = computed(() => String(route.query.sort ?? 'Best match'))
 </script>
 
@@ -452,6 +454,11 @@ en-US:
   'price,ASC': 'lowest price'
   'price,DESC': 'highest price'
   'products_found': 'Products found: {0}'
+sk-SK:
+  Best match: nejlepší shoda
+  'price,ASC': 'nejlevnějších'
+  'price,DESC': 'nejdražších'
+  'products_found': 'Nalezeno produktů: {0}'
 </i18n>
 
 <style scoped>

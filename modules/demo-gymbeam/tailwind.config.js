@@ -30,6 +30,7 @@ export default {
         grey: {
           855: '#00000073',
           890: '#ececec',
+          895: '#9e9e9e',
         },
       },
     },
