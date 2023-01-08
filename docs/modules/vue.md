@@ -271,7 +271,7 @@ setResponseStatus(404)
 
 ## `hydrateWhenIdle` utils/hydration
 
-A function to wrap dynamically imported components to lazy hydrate then when the browser is idle. More about lazy hydration [here](/general/lazy-components)
+A function to wrap dynamically imported components to lazy hydrate then when the browser is idle. More about lazy hydration [here](/essentials/lazy-components)
 
 ### Example
 
@@ -288,7 +288,7 @@ const MyComponent = hydrateWhenIdle(() => import('#ioc/components/MyComponent'))
 
 ## `hydrateWhenVisible` utils/hydration
 
-A function to wrap dynamically imported components to lazy hydrate then when the component is visible in the browser window. More about lazy hydration [here](/general/lazy-components)
+A function to wrap dynamically imported components to lazy hydrate then when the component is visible in the browser window. More about lazy hydration [here](/essentials/lazy-components)
 
 ### Example
 
