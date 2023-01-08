@@ -57,8 +57,6 @@ import SfxImage from '#ioc/components/SfxImage'
 import SfxMoney from '#ioc/components/SfxMoney'
 import injectProduct from '#ioc/composables/injectProduct'
 import AddToCart from '#ioc/molecules/AddToCart'
-import StockIndicator from '#ioc/atoms/StockIndicator'
-import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import { computed } from 'vue'
 import truncate from '#ioc/utils/string/truncate'
 import useLocalePath from '#ioc/composables/useLocalePath'
@@ -66,56 +64,9 @@ import ProductLabel from '#ioc/atoms/ProductLabel'
 
 const localePath = useLocalePath()
 
-const props = defineProps({
-  preloadImage: {
-    type: Boolean,
-    default: false,
-  },
-  index: {
-    type: Number,
-    default: 0,
-  },
-})
-
 const product = injectProduct()
 
 const shrinkedTitle = computed(() => {
   return truncate(product.name, 65)
-})
-
-const classesBorders = computed(() => {
-  let myClasses = ''
-
-  if (props.index === -1) {
-    return 'border-t'
-  }
-
-  if (props.index === 0) {
-    myClasses = 'border-t border-l'
-    return myClasses
-  } else if (props.index === 1) {
-    myClasses = 'border-t '
-  } else if (props.index === 2) {
-    myClasses = 'border-t sm:border-t-0 xl:border-t '
-  } else if (props.index === 3) {
-    myClasses = 'border-t sm:border-t-0 2xl:border-t '
-  } else {
-    myClasses = 'border-t sm:border-t-0 '
-  }
-
-  if (props.index % 3 === 0 && props.index % 2 !== 0) {
-    myClasses += 'border-l sm:border-l-0 xl:border-l 2xl:border-l-0 '
-  } else if (props.index % 3 === 0 && props.index % 2 === 0) {
-    myClasses += 'border-l 2xl:border-l-0 '
-  } else if (props.index % 2 === 0) {
-    myClasses += 'border-l xl:border-l-0 '
-    if (props.index % 4 === 0) {
-      myClasses += '2xl:border-l '
-    }
-  } else {
-    myClasses += 'border-l sm:border-l-0'
-  }
-
-  return myClasses
 })
 </script>

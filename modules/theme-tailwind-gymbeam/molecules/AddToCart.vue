@@ -26,7 +26,6 @@ import Spinner from '#ioc/atoms/Spinner'
 import injectProduct from '#ioc/composables/injectProduct'
 import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
-import useI18n from '#ioc/composables/useI18n'
 import cartIcon from '#ioc/assets/images/cartWhite'
 
 import useRouter from '#ioc/composables/useRouter'
@@ -40,7 +39,6 @@ const props = defineProps({
   },
 })
 
-const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
 const router = useRouter()
