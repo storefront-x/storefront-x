@@ -10,6 +10,7 @@
     <slot>
       <template v-if="isEnabled">
         <Spinner v-if="isLoading" />
+        <img v-else class="w-8 h-8 whiteCart" :src="cartIcon" alt="Logo" />
       </template>
 
       <img class="w-8 h-8 whiteCart" :src="cartIcon" alt="Logo" />
