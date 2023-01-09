@@ -27,9 +27,9 @@ defineProps({
 
 ## Lazy hydration
 
-Lazy hydration is for components that need to be visible during the initial render, but execution of their logic (mounted, ...) can be delayed to some later time (e.g. when the component is visible).
+Lazy hydration is for components that need to be visible during the initial render, but execution of their logic (mounted, etc.) can be delayed to some later time (e.g. when the component is visible).
 
-In Vue, such components are imported using special [hydration utils](/modules/vue#hydratewhenidle-utils-hydration)
+In Vue, such components are imported using of special [hydration utils](/modules/vue#hydratewhenidle-utils-hydration).
 
 ### Example
 

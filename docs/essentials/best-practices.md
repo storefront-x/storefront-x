@@ -2,7 +2,7 @@
 
 ## Recursive mappers
 
-Sometimes mapper has to cal itself (category containing child categories). Such mapper should import itself from IoC and use this imported value to call itself recursively.
+Sometimes, mapper has to call itself (category containing child categories). Such mappers should import itself from IoC and use this imported value to call itself recursively.
 
 ### Example
 
@@ -19,7 +19,7 @@ export default (data: any) => ({
 ```
 
 :::warning
-Types of recursive mappers cant be inferred by TypeScript. Either the recursive fields has to be typed as any or explicit interface has to be used.
+Types of recursive mappers can't be inferred by TypeScript. Either, the recursive fields have to be typed as any or explicit interface has to be used.
 :::
 
 ## Typing extensions

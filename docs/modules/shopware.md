@@ -6,9 +6,9 @@ This module provides basic functionality for Shopware integration.
 
 ## `magento/dynamicPages/` concept
 
-If we want pretty urls (`/nivea`, `/playstation-5`, ...), we need dynamic pages whose type & content is resolved by the backend.
+If we want to have pretty urls (`/nivea`, `/playstation-5`, etc.), we need dynamic pages whose type & content is resolved by the backend.
 
-This concept is for components representing dynamic pages resolved by the Shopware `/seo-url` endpoint. Their name has to equal to the `routeName` value returned form the endpoint.
+This concept is for components representing dynamic pages resolved by the Shopware `/seo-url` endpoint. Their name has to be equal to the `routeName` value returned from the endpoint.
 
 - `magento/dynamicPages/frontend.detail.page.vue` - renders product
 - `magento/dynamicPages/frontend.navigation.page.vue` - renders category
@@ -57,7 +57,7 @@ export default () => {
 URL of the Shopware instance.
 
 :::warning
-This config variable needs to be overrided because it does not contain any value by default!
+This config variable needs to be overrided, because it doesn't contain any value by default!
 :::
 
 ```ts
@@ -70,10 +70,10 @@ export default 'https://my-store.shopware.com'
 
 Access key to your Shopware instance.
 
-URL of the Shopware instance. You need to Override it by adding `config/SHOPWARE_ACCESS_KEY.ts` to your module. To see how overriding works click [here](../getting-started/how-it-works.html#overriding)
+URL of the Shopware instance. You need to override it by adding `config/SHOPWARE_ACCESS_KEY.ts` to your module. To see how overriding works, click [here](/getting-started/how-it-works.html#overriding).
 
 :::warning
-This config variable needs to be overrided because it does not contain any value by default!
+This config variable needs to be overrided, because it doesn't contain any value by default!
 :::
 
 ```ts
