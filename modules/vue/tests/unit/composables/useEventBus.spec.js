@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { ref } from 'vue'
 import { describe, it, expect } from 'vitest'
-import useEventBus from '#ioc/composables/useEventBus.js'
+import useEventBus from '#ioc/composables/useEventBus'
 
 describe('composables/useEventBus', () => {
   it('works', async () => {

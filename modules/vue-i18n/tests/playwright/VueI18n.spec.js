@@ -45,7 +45,7 @@ test('en translation', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('<h1>Hello, World!</h1>')
+      await expect(page.locator('h1')).toContainText('Hello, World!')
     },
   )
 })

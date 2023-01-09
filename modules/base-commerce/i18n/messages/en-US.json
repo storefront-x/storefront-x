@@ -7,5 +7,14 @@
     "classes": "At least {0} types of characters (uppercase, lowercase, numerals and special characters)",
     "required": "Required",
     "same": "Must be same as {0} field"
+  },
+  "errors": {
+    "title": "Error",
+    "Cannot create a newsletter subscription.": "Cannot create a newsletter subscription.",
+    "Enter a valid email address.": "Enter a valid email address.",
+    "Guests can not subscribe to the newsletter. You must create an account to subscribe.": "Guests can not subscribe to the newsletter. You must create an account to subscribe.",
+    "The account sign-in was incorrect or your account is disabled temporarily.": "The account sign-in was incorrect or your account is disabled temporarily.",
+    "This email address is already subscribed.": "This email address is already subscribed.",
+    "You must specify an email address to subscribe to a newsletter.": "You must specify an email address to subscribe to a newsletter."
   }
 }

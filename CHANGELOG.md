@@ -1,3 +1,41 @@
+## v1.5.1 (2023-01-04)
+
+#### :rocket: Enhancement
+
+- [#258](https://github.com/storefront-x/storefront-x/pull/258) Use ToMagentoImage in ToBrand mapper ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
+## v1.5.0 (2023-01-04)
+
+#### :rocket: Enhancement
+
+- [#257](https://github.com/storefront-x/storefront-x/pull/257) Add ToMagentoImage mapper ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#186](https://github.com/storefront-x/storefront-x/pull/186) Add Minicart ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#248](https://github.com/storefront-x/storefront-x/pull/248) Fix click-through from cart item to product detail on Shopware ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 2
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.4.6 (2023-01-03)
+
+#### :house: Internal
+
+- [#249](https://github.com/storefront-x/storefront-x/pull/249) Update the 'blank' demo ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#247](https://github.com/storefront-x/storefront-x/pull/247) Use TypeScript for IoC generated files ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#244](https://github.com/storefront-x/storefront-x/pull/244) Test create script in pipelines ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.4.5 (2023-01-02)
 
 #### :house: Internal

@@ -36,9 +36,13 @@ export default () => {
     })
 
     return {
-      foreignKey: elements[0]?.foreignKey as string,
-      ident: elements[0]?.routeName as string,
-      seoPath: elements[0]?.seoPathInfo === 'home' ? '' : (('/' + elements[0].seoPathInfo) as string),
+      foreignKey: (elements[0]?.foreignKey as string) ?? null,
+      ident: (elements[0]?.routeName as string) ?? null,
+      seoPath: elements[0]?.seoPathInfo
+        ? elements[0]?.seoPathInfo === 'home'
+          ? '/'
+          : (('/' + elements[0].seoPathInfo) as string)
+        : path,
     }
   }
 }

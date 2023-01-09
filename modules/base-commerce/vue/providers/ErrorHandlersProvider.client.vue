@@ -6,7 +6,9 @@
 import { onErrorCaptured } from 'vue'
 import errorHandlers from '~/.sfx/vue/errorHandlers.client'
 
-const bindedErrorHandlers = Object.values(errorHandlers).map((e) => e())
+const bindedErrorHandlers = Object.values(errorHandlers)
+  .map((e) => e())
+  .reverse()
 
 onErrorCaptured((e) => {
   let wasCaught = false

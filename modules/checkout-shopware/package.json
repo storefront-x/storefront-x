@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/checkout-shopware",
-  "version": "1.4.5",
+  "version": "1.5.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

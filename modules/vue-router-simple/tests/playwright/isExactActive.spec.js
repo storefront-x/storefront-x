@@ -22,7 +22,7 @@ test('is same simple path', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/user/test', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('success')
+      await expect(page.locator('h1')).toContainText('success')
     },
   )
 })
@@ -48,7 +48,7 @@ test('is same path with query', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/user/test?working=true', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('success')
+      await expect(page.locator('h1')).toContainText('success')
     },
   )
 })

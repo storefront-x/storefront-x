@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import { describe, it, expect, vi, beforeAll } from 'vitest'
-import SfxMoney from '#ioc/components/SfxMoney.js'
+import SfxMoney from '#ioc/components/SfxMoney'
 import formatters from '~/.sfx/formatters/money'
 
 // TODO change to vi.mock when new vite released with fix
