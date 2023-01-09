@@ -1,5 +1,5 @@
 <template>
-  <Container class="hidden lg:flex space-x-8">
+  <Container class="hidden lg:flex gap-x-8 flex-wrap">
     <CategoryLink
       v-for="category in catalogStore.menu"
       :key="category.id"
