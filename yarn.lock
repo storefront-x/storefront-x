@@ -3382,6 +3382,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/checkout-magento-px@workspace:modules/checkout-magento-px":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/checkout-magento-px@workspace:modules/checkout-magento-px"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/checkout-magento@workspace:modules/checkout-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/checkout-magento@workspace:modules/checkout-magento"
