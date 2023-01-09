@@ -37,12 +37,14 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const minimumPrice = computed(() => product.value.minimumPrice)
 
-  const breadcrumbs = computed(() => [
-    ...product.value.categories.map((category: any) => ({
-      title: category.name,
-      link: category.url_path,
-    })),
-  ])
+  const breadcrumbs = computed(() =>
+    [
+      ...product.value.categories.map((category: any) => ({
+        title: category.name,
+        link: category.url_path,
+      })),
+    ].slice(0, 4),
+  )
 
   const available = computed(() => product.value.available)
 

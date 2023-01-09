@@ -13,7 +13,7 @@
         <img v-else class="w-8 h-8 whiteCart" :src="cartIcon" alt="Logo" />
       </template>
 
-      <img class="w-8 h-8 whiteCart" :src="cartIcon" alt="Logo" />
+      <img v-else class="w-8 h-8 whiteCart" :src="cartIcon" alt="Logo" />
     </slot>
 
     <CrossSellModal v-if="isCrossSellModalOpen" @close="onClose" />

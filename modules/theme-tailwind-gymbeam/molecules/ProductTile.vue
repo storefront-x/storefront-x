@@ -62,8 +62,14 @@ import truncate from '#ioc/utils/string/truncate'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import ProductLabel from '#ioc/atoms/ProductLabel'
 
-const localePath = useLocalePath()
+defineProps({
+  preloadImage: {
+    type: Boolean,
+    default: false,
+  },
+})
 
+const localePath = useLocalePath()
 const product = injectProduct()
 
 const shrinkedTitle = computed(() => {

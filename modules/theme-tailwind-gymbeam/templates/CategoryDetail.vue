@@ -1,14 +1,11 @@
 <template>
   <Container class="mt-2 mb-8 md:mt-3 md:mb-10">
-    <Breadcrumbs :breadcrumbs="category.breadcrumbs" class="m-0" />
-
     <ProductListing :products="products" :aggregations="aggregations" :total-count="totalCount" :category="category" />
   </Container>
 </template>
 
 <script setup lang="ts">
 import Container from '#ioc/atoms/Container'
-import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import ToCategory from '#ioc/mappers/ToCategory'
 import ToProduct from '#ioc/mappers/ToProduct'
 import useHead from '#ioc/composables/useHead'

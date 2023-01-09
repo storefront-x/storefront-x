@@ -18,6 +18,7 @@ const router = useRouter()
 const { emit } = useEventBus('navigation')
 
 function pendingEvent() {
+  console.log('event')
   emit(true)
 }
 
