@@ -11,7 +11,7 @@
         preload
       />
     </div>
-    <div v-if="hasGallery" ref="gallery" class="w-full mt-5 flex justify-center gap-4">
+    <div v-if="hasGallery" ref="gallery" class="w-full mt-5 flex flex-wrap justify-center gap-4">
       <div v-for="(image, index) in images" :key="image.id" class="shrink-0" @click="select(index)">
         <SfxImage
           :id="image.id"
