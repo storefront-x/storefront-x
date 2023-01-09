@@ -1,14 +1,14 @@
 # Contributing
 
-Thank you for investing your time in contributing to Storefront X! Come and join our [Slack](https://join.slack.com/t/storefront-xworkspace/shared_invite/zt-1dwz7npyd-xjW5y02qUJvznFdnNtqN1Q) where we can chat and give you more help about Storefront X 🙂
+Thank you for investing your time in contributing to Storefront X! Come and join our [Slack](https://join.slack.com/t/storefront-xworkspace/shared_invite/zt-1dwz7npyd-xjW5y02qUJvznFdnNtqN1Q), where we can chat and give you more help about Storefront X 🙂
 
 :::warning
-Due to bug in Yarn be careful to not use any special characters in path.
+Due to the bug in Yarn, be careful to not use any special characters in path.
 :::
 
 ## Repo setup
 
-To hack on Storefront X, you will need to have working local version of the repository.
+To hack on Storefront X, you will have to have working local version of the repository.
 
 ### 1. Requirements
 
@@ -47,17 +47,17 @@ Storefront X uses different sets of modules for different integrations. They are
 
 ## Running tests
 
-For most of the tests to work, Storefront X has to be bootstrapped. This is done automatically when starting the development server or you can run the bootstrap manually using this command:
+For most of the tests to work, Storefront X has to be bootstrapped. This is done automatically, when starting the development server or you can run the bootstrap manually using this command:
 
 ```
 yarn build --onlyBootstrap
 ```
 
-### COre tests
+### Core tests
 
 Storefront X uses [Playwright](https://playwright.dev) for its core functionalities. These tests can be found inside `tests/playwright` directories inside Storefront X modules.
 
-You can run integrations tests using this command:
+You can run integration tests using this command:
 
 ```
 yarn test:playwright
@@ -97,4 +97,4 @@ yarn cypress open
 
 - It's OK to have multiple small commits in your PR. PRs are squashed before merging.
 
-- Make sure pipelines pass!
+- Make sure pipelines will pass!

@@ -15,10 +15,10 @@ export default () => {
     const { data } = await magento.graphql(UrlResolver().with({ url }))
 
     return {
-      id: data.urlResolver.entity_uid ?? String(data.urlResolver.id),
-      type: data.urlResolver.type,
-      relativeUrl: data.urlResolver.relative_url,
-      redirectCode: data.urlResolver.redirectCode,
+      id: data.urlResolver?.entity_uid ?? String(data.urlResolver?.id),
+      type: data.urlResolver?.type ?? '',
+      relativeUrl: data.urlResolver?.relative_url ?? '',
+      redirectCode: data.urlResolver?.redirectCode ?? '',
     }
   }
 }
