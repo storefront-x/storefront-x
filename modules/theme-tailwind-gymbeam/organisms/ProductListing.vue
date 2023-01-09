@@ -3,362 +3,59 @@
     <div class="pt-8 md:pt-4 flex">
       <div class="basis-1/4">
         <nav class="sidebar-navigation bg-grey-890 p-2">
-          <ul class="">
-            <li class="level0 nav-1 category-item first level-top !mt-0">
-              <a href="https://gymbeam.sk/novorocny-vypredaj" class="level-top"><span>Novoročný výpredaj</span></a>
-              <em></em>
-            </li>
-            <li class="level0 nav-2 category-item level-top parent">
-              <a href="https://gymbeam.sk/sportova-vyziva" class="level-top"><span>Športová výživa</span></a>
-              <em></em>
-              <ul class="level0 submenu pl-[10px] inline-block">
-                <li class="level1 nav-2-1 category-item first parent">
-                  <a href="https://gymbeam.sk/3-proteiny"><span>Proteíny</span></a> <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-1-1 category-item first parent">
-                      <a href="https://gymbeam.sk/srvatkovy-whey-protein"><span>Srvátkový whey proteín</span></a>
-                      <em></em>
-                      <ul class="level2 submenu hidden">
-                        <li class="level3 nav-2-1-1-1 category-item first">
-                          <a href="https://gymbeam.sk/proteinove-koncentraty"><span>Proteínové koncentráty</span></a>
-                          <em></em>
-                        </li>
-                        <li class="level3 nav-2-1-1-2 category-item">
-                          <a href="https://gymbeam.sk/proteinove-izolaty"><span>Proteínové izoláty</span></a>
-                          <em></em>
-                        </li>
-                        <li class="level3 nav-2-1-1-3 category-item">
-                          <a href="https://gymbeam.sk/hydrolyzovane-proteiny"><span>Hydrolyzované proteíny</span></a>
-                          <em></em>
-                        </li>
-                        <li class="level3 nav-2-1-1-4 category-item last">
-                          <a href="https://gymbeam.sk/viaczlozkove-srvatkove-proteiny"
-                            ><span>Viaczložkové srvátkové proteíny</span></a
-                          >
-                          <em></em>
+          <ul>
+            <li
+              v-for="c1 in nav"
+              :key="c1.link"
+              class="category-item level-top"
+              :class="{ parent: c1.children.length > 0 }"
+            >
+              <RouterLink :to="c1.link" class="level-top">
+                <span :class="{ 'text-secondary-500': open[c1.link] }">{{ c1.title }}</span>
+              </RouterLink>
+              <em @click="open[c1.link] = !open[c1.link]" />
+
+              <ul class="submenu pl-[10px] inline-block" :class="{ hidden: !open[c1.link] }">
+                <li
+                  v-for="c2 in c1.children"
+                  :key="c2.link"
+                  class="category-item"
+                  :class="{ parent: c2.children.length > 0 }"
+                >
+                  <RouterLink :to="c2.link">
+                    <span :class="{ 'text-secondary-500': open[c2.link] }">{{ c2.title }}</span>
+                  </RouterLink>
+                  <em @click="open[c2.link] = !open[c2.link]" />
+
+                  <ul class="submenu" :class="{ hidden: !open[c2.link] }">
+                    <li
+                      v-for="c3 in c2.children"
+                      :key="c3.link"
+                      class="category-item"
+                      :class="{ parent: c3.children.length > 0 }"
+                    >
+                      <RouterLink :to="c3.link">
+                        <span :class="{ 'text-secondary-500': open[c3.link] }">{{ c3.title }}</span>
+                      </RouterLink>
+                      <em @click="open[c3.link] = !open[c3.link]" />
+
+                      <ul class="submenu" :class="{ hidden: !open[c3.link] }">
+                        <li
+                          v-for="c4 in c3.children"
+                          :key="c4.link"
+                          class="category-item"
+                          :class="{ parent: c4.children.length > 0 }"
+                        >
+                          <RouterLink :to="c4.link">
+                            <span :class="{ 'text-secondary-500': open[c4.link] }">{{ c4.title }}</span>
+                          </RouterLink>
+                          <em @click="open[c4.link] = !open[c4.link]" />
                         </li>
                       </ul>
-                    </li>
-                    <li class="level2 nav-2-1-2 category-item">
-                      <a href="https://gymbeam.sk/viaczlozkovy-protein"><span>Viaczložkový proteín</span></a>
-                      <em></em>
-                    </li>
-                    <li class="level2 nav-2-1-3 category-item">
-                      <a href="https://gymbeam.sk/28-nocne-proteiny"><span>Nočné proteíny</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-1-4 category-item">
-                      <a href="https://gymbeam.sk/proteiny-na-rastlinnej-baze"
-                        ><span>Proteíny na rastlinnej báze </span></a
-                      >
-                      <em></em>
-                    </li>
-                    <li class="level2 nav-2-1-5 category-item">
-                      <a href="https://gymbeam.sk/kolagen"><span>Kolagén</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-1-6 category-item">
-                      <a href="https://gymbeam.sk/34-ladies-protein"><span>Proteíny pre ženy</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-1-7 category-item">
-                      <a href="https://gymbeam.sk/hovadzi-beef-protein"><span>Hovädzie proteíny</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-1-8 category-item">
-                      <a href="https://gymbeam.sk/sojovy-protein"><span>Sójový proteín</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-1-9 category-item">
-                      <a href="https://gymbeam.sk/narast-svalovej-hmoty"><span>Proteíny na rast svalov</span></a>
-                      <em></em>
-                    </li>
-                    <li class="level2 nav-2-1-10 category-item last">
-                      <a href="https://gymbeam.sk/proteiny-ostatne"><span>Proteíny ostatné </span></a> <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-2 category-item parent">
-                  <a href="https://gymbeam.sk/33-spalovace-tukov"><span>Spaľovače tuku</span></a> <em></em>
-                  <ul class="level1 submenu">
-                    <li class="level2 nav-2-2-1 category-item first">
-                      <a href="https://gymbeam.sk/komplexne-spalovace"><span>Komplexné spaľovače</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-2-2 category-item">
-                      <a href="https://gymbeam.sk/l-karnitin"><span>L-Karnitíny</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-2-3 category-item">
-                      <a href="https://gymbeam.sk/termo-spalovace"><span>Termo spaľovače</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-2-4 category-item last">
-                      <a href="https://gymbeam.sk/ostatne-spalovace-tukov"><span>Ostatné spaľovače tukov</span></a>
-                      <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-3 category-item parent">
-                  <a href="https://gymbeam.sk/5-gainery"><span>Gainery a sacharidy</span></a> <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-3-1 category-item first">
-                      <a href="https://gymbeam.sk/gainery"><span>Gainery</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-3-2 category-item">
-                      <a href="https://gymbeam.sk/sacharidy"><span>Pomalé sacharidy</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-3-3 category-item">
-                      <a href="https://gymbeam.sk/rychle-sacharidy"><span>Rýchle sacharidy</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-3-4 category-item">
-                      <a href="https://gymbeam.sk/energeticke-gely"><span>Energetické gély</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-3-5 category-item last">
-                      <a href="https://gymbeam.sk/69-all-in-one"><span>All-in-one</span></a> <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-4 category-item parent">
-                  <a href="https://gymbeam.sk/23-klbova-vyziva"><span>Kĺbová výživa</span></a> <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-4-1 category-item first">
-                      <a href="https://gymbeam.sk/komplexne-klbove-vyzivy"><span>Komplexné kĺbové výživy</span></a>
-                      <em></em>
-                    </li>
-                    <li class="level2 nav-2-4-2 category-item">
-                      <a href="https://gymbeam.sk/kolagenove-klbove-vyzivy"><span>Kolagénové kĺbové výživy</span></a>
-                      <em></em>
-                    </li>
-                    <li class="level2 nav-2-4-3 category-item">
-                      <a href="https://gymbeam.sk/glukozamin"><span>Glukozamín</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-4-4 category-item last">
-                      <a href="https://gymbeam.sk/ostatne-klbove-vyzivy"><span>Ostatné kĺbové výživy</span></a>
-                      <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-5 category-item parent">
-                  <a href="https://gymbeam.sk/aminokyseliny"><span>Aminokyseliny</span></a> <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-5-1 category-item first">
-                      <a href="https://gymbeam.sk/komplexne-aminokyseliny"><span>Komplexné aminokyseliny</span></a>
-                      <em></em>
-                    </li>
-                    <li class="level2 nav-2-5-2 category-item">
-                      <a href="https://gymbeam.sk/42-bcaa"><span>BCAA</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-5-3 category-item">
-                      <a href="https://gymbeam.sk/eaa"><span>EAA</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-5-4 category-item">
-                      <a href="https://gymbeam.sk/107-arginin"><span>Arginín</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-5-5 category-item">
-                      <a href="https://gymbeam.sk/43-glutamin"><span>Glutamín</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-5-6 category-item last">
-                      <a href="https://gymbeam.sk/ostatne-aminokyseliny"><span>Ostatné aminokyseliny</span></a>
-                      <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-6 category-item parent">
-                  <a href="https://gymbeam.sk/vitaminy"><span>Vitamíny</span></a> <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-6-1 category-item first">
-                      <a href="https://gymbeam.sk/komplexne-vitaminy"><span>Multivitamín</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-6-2 category-item">
-                      <a href="https://gymbeam.sk/vitamin-a"><span>Vitamín A</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-6-3 category-item">
-                      <a href="https://gymbeam.sk/vitamin-b"><span>Vitamíny B</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-6-4 category-item">
-                      <a href="https://gymbeam.sk/vitamin-c"><span>Vitamín C</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-6-5 category-item">
-                      <a href="https://gymbeam.sk/vitamin-d"><span>Vitamín D</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-6-6 category-item">
-                      <a href="https://gymbeam.sk/vitamin-e"><span>Vitamín E</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-6-7 category-item last">
-                      <a href="https://gymbeam.sk/ostatne-vitaminy"><span>Ostatné vitamíny</span></a> <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-7 category-item parent">
-                  <a href="https://gymbeam.sk/mineraly-1"><span>Minerály</span></a> <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-7-1 category-item first">
-                      <a href="https://gymbeam.sk/komplexne-mineraly"><span>Multiminerály</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-7-2 category-item">
-                      <a href="https://gymbeam.sk/magnezium"><span>Magnézium</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-7-3 category-item">
-                      <a href="https://gymbeam.sk/vapnik"><span>Vápnik</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-7-4 category-item">
-                      <a href="https://gymbeam.sk/zelezo"><span>Železo</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-7-5 category-item">
-                      <a href="https://gymbeam.sk/zinok"><span>Zinok</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-7-6 category-item">
-                      <a href="https://gymbeam.sk/zma-zmb"><span>ZMA a ZMB</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-7-7 category-item last">
-                      <a href="https://gymbeam.sk/ostatne-mineraly"><span>Ostatné minerály</span></a> <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-8 category-item parent">
-                  <a href="https://gymbeam.sk/zdrave-tuky"><span>Zdravé tuky</span></a> <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-8-1 category-item first">
-                      <a href="https://gymbeam.sk/omega-3-mastne-kyseliny"><span>Omega-3</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-8-2 category-item">
-                      <a href="https://gymbeam.sk/omega-3-6-9"><span>Omega 3-6-9</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-8-3 category-item">
-                      <a href="https://gymbeam.sk/krilovy-olej"><span>Krilový olej </span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-8-4 category-item">
-                      <a href="https://gymbeam.sk/tekuty-rybi-olej"><span>Tekutý rybí olej </span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-8-5 category-item">
-                      <a href="https://gymbeam.sk/cla-a-hca"><span>CLA a HCA</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-8-6 category-item">
-                      <a href="https://gymbeam.sk/lecitin"><span>Lecitín</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-8-7 category-item">
-                      <a href="https://gymbeam.sk/mct-olej"><span>MCT olej</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-8-8 category-item last">
-                      <a href="https://gymbeam.sk/ostatne-zdrave-tuky"><span>Ostatné zdravé tuky</span></a> <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-9 category-item parent">
-                  <a href="https://gymbeam.sk/14-kreatin"><span>Kreatín</span></a> <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-9-1 category-item first">
-                      <a href="https://gymbeam.sk/82-kreatin-monohydrat"><span>Kreatín Monohydrát</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-9-2 category-item">
-                      <a href="https://gymbeam.sk/84-kreatin-ethyl-ester"><span>Kreatín iné formy</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-9-3 category-item last">
-                      <a href="https://gymbeam.sk/viaczlozkovy-kreatin"><span>Viaczložkový kreatín</span></a>
-                      <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-10 category-item parent">
-                  <a href="https://gymbeam.sk/ostatne-doplnky-vyzivy"><span>Ostatné doplnky výživy</span></a>
-                  <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-10-1 category-item first">
-                      <a href="https://gymbeam.sk/probiotika"><span>Probiotiká a tráviace enzýmy</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-2 category-item">
-                      <a href="https://gymbeam.sk/rastlinne-doplnky"><span>Rastlinné doplnky</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-3 category-item">
-                      <a href="https://gymbeam.sk/pre-lepsi-spanok"><span>Pre lepší spánok</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-4 category-item">
-                      <a href="https://gymbeam.sk/proti-krcom"><span>Proti kŕčom </span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-5 category-item">
-                      <a href="https://gymbeam.sk/vlasy-nechty-a-pokozka"><span>Vlasy, nechty a pokožka</span></a>
-                      <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-6 category-item">
-                      <a href="https://gymbeam.sk/nootropika-a-mozog"><span>Nootropiká a mozog </span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-7 category-item">
-                      <a href="https://gymbeam.sk/gaming"><span>Gaming</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-8 category-item">
-                      <a href="https://gymbeam.sk/podpora-pecene"><span>Podpora pečene </span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-9 category-item">
-                      <a href="https://gymbeam.sk/proti-starnutiu"><span>Proti starnutiu</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-10 category-item">
-                      <a href="https://gymbeam.sk/huby"><span>Huby </span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-10-11 category-item last">
-                      <a href="https://gymbeam.sk/ostatne-specialne-doplnky-vyzivy"
-                        ><span>Ostatné špeciálne doplnky výživy </span></a
-                      >
-                      <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-11 category-item parent">
-                  <a href="https://gymbeam.sk/doplnky-vyzivy-podla-ciela"><span>Doplnky výživy podľa cieľa</span></a>
-                  <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-11-1 category-item first">
-                      <a href="https://gymbeam.sk/budovanie-svalovej-hmoty"><span>Budovanie svalovej hmoty</span></a>
-                      <em></em>
-                    </li>
-                    <li class="level2 nav-2-11-2 category-item">
-                      <a href="https://gymbeam.sk/na-chudnutie"><span>Na chudnutie</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-11-3 category-item">
-                      <a href="https://gymbeam.sk/podpora-regeneracie"><span>Podpora regenerácie</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-11-4 category-item">
-                      <a href="https://gymbeam.sk/zlepsenie-vykonu"><span>Zlepšenie výkonu</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-11-5 category-item last">
-                      <a href="https://gymbeam.sk/na-podporu-imunity"><span>Na podporu imunity</span></a> <em></em>
-                    </li>
-                  </ul>
-                </li>
-                <li class="level1 nav-2-12 category-item last parent mb-0">
-                  <a href="https://gymbeam.sk/86-anabolizerystimulanty"><span>Anabolizéry a stimulanty</span></a>
-                  <em></em>
-                  <ul class="level1 submenu hidden">
-                    <li class="level2 nav-2-12-1 category-item first">
-                      <a href="https://gymbeam.sk/21-predtreningove-stimulanty"
-                        ><span>Predtréningové stimulanty</span></a
-                      >
-                      <em></em>
-                    </li>
-                    <li class="level2 nav-2-12-2 category-item">
-                      <a href="https://gymbeam.sk/no-doplnky"><span>NO doplnky</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-12-3 category-item">
-                      <a href="https://gymbeam.sk/66-hmb"><span>HMB</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-12-4 category-item">
-                      <a href="https://gymbeam.sk/37-nahrada-steroidov"><span>Náhrada steroidov</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-12-5 category-item">
-                      <a href="https://gymbeam.sk/kofein"><span>Kofeín</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-12-6 category-item">
-                      <a href="https://gymbeam.sk/beta-alanin"><span>Beta-Alanín</span></a> <em></em>
-                    </li>
-                    <li class="level2 nav-2-12-7 category-item last">
-                      <a href="https://gymbeam.sk/daa"><span>DAA</span></a> <em></em>
                     </li>
                   </ul>
                 </li>
               </ul>
-            </li>
-            <li class="level0 nav-3 category-item level-top parent">
-              <a href="https://gymbeam.sk/zdrave-potraviny" class="level-top"><span>Zdravé potraviny</span></a>
-              <em></em>
-            </li>
-            <li class="level0 nav-4 category-item level-top parent">
-              <a href="https://gymbeam.sk/fitness-oblecenie" class="level-top"><span>Fitness oblečenie</span></a>
-              <em></em>
-            </li>
-            <li class="level0 nav-5 category-item last level-top parent">
-              <a href="https://gymbeam.sk/prislusenstvo" class="level-top"><span>Príslušenstvo</span></a> <em></em>
             </li>
           </ul>
         </nav>
@@ -408,16 +105,16 @@ import ToProduct from '#ioc/mappers/ToProduct'
 import ProductSort from '#ioc/molecules/ProductSort'
 import ProductTile from '#ioc/molecules/ProductTile'
 import ProductProvider from '#ioc/providers/ProductProvider'
-import { computed, PropType, ref, provide } from 'vue'
+import { computed, PropType, reactive, ref, provide, watchEffect } from 'vue'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 import LoadNext from '#ioc/molecules/LoadNext'
-
 import CategoryInfo from '#ioc/molecules/CategoryInfo'
 import ToCategory from '#ioc/mappers/ToCategory'
 
 const ProductFilters = hydrateWhenIdle(() => import('#ioc/molecules/ProductFilters'))
 const Pagination = hydrateWhenVisible(() => import('#ioc/molecules/Pagination'))
+
 const { t } = useI18n()
 const route = useRoute()
 
@@ -438,6 +135,545 @@ defineProps({
     type: Number,
     required: true,
   },
+})
+
+const nav = [
+  {
+    title: 'Novoročný výpredaj',
+    link: '/novorocny-vypredaj',
+    children: [],
+  },
+  {
+    title: 'Športová výživa',
+    link: '/sportova-vyziva',
+    children: [
+      {
+        title: 'Proteíny',
+        link: '/3-proteiny',
+        children: [
+          {
+            title: 'Srvátkový whey proteín',
+            link: '/srvatkovy-whey-protein',
+            children: [
+              {
+                title: 'Proteínové koncentráty',
+                link: '/proteinove-koncentraty',
+                children: [],
+              },
+              {
+                title: 'Proteínové izoláty',
+                link: '/proteinove-izolaty',
+                children: [],
+              },
+              {
+                title: 'Hydrolyzované proteíny',
+                link: '/hydrolyzovane-proteiny',
+                children: [],
+              },
+              {
+                title: 'Viaczložkové srvátkové proteíny',
+                link: '/viaczlozkove-srvatkove-proteiny',
+                children: [],
+              },
+            ],
+          },
+          {
+            title: 'Viaczložkový proteín',
+            link: '/viaczlozkovy-protein',
+            children: [],
+          },
+          {
+            title: 'Nočné proteíny',
+            link: '/28-nocne-proteiny',
+            children: [],
+          },
+          {
+            title: 'Proteíny na rastlinnej báze',
+            link: '/proteiny-na-rastlinnej-baze',
+            children: [],
+          },
+          {
+            title: 'Kolagén',
+            link: '/kolagen',
+            children: [],
+          },
+          {
+            title: 'Proteíny pre ženy',
+            link: '/34-ladies-protein',
+            children: [],
+          },
+          {
+            title: 'Hovädzie proteíny',
+            link: '/hovadzi-beef-protein',
+            children: [],
+          },
+          {
+            title: 'Sójový proteín',
+            link: '/sojovy-protein',
+            children: [],
+          },
+          {
+            title: 'Proteíny na rast svalov',
+            link: '/narast-svalovej-hmoty',
+            children: [],
+          },
+          {
+            title: 'Proteíny ostatné',
+            link: '/proteiny-ostatne',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Spaľovače tuku',
+        link: '/33-spalovace-tukov',
+        children: [
+          {
+            title: 'Komplexné spaľovače',
+            link: '/komplexne-spalovace',
+            children: [],
+          },
+          {
+            title: 'L-Karnitíny',
+            link: '/l-karnitin',
+            children: [],
+          },
+          {
+            title: 'Termo spaľovače',
+            link: '/termo-spalovace',
+            children: [],
+          },
+          {
+            title: 'Ostatné spaľovače tukov',
+            link: '/ostatne-spalovace-tukov',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Gainery a sacharidy',
+        link: '/5-gainery',
+        children: [
+          {
+            title: 'Gainery',
+            link: '/gainery',
+            children: [],
+          },
+          {
+            title: 'Pomalé sacharidy',
+            link: '/sacharidy',
+            children: [],
+          },
+          {
+            title: 'Rýchle sacharidy',
+            link: '/rychle-sacharidy',
+            children: [],
+          },
+          {
+            title: 'Energetické gély',
+            link: '/energeticke-gely',
+            children: [],
+          },
+          {
+            title: 'All-in-one',
+            link: '/69-all-in-one',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Kĺbová výživa',
+        link: '/23-klbova-vyziva',
+        children: [
+          {
+            title: 'Komplexné kĺbové výživy',
+            link: '/komplexne-klbove-vyzivy',
+            children: [],
+          },
+          {
+            title: 'Kolagénové kĺbové výživy',
+            link: '/kolagenove-klbove-vyzivy',
+            children: [],
+          },
+          {
+            title: 'Glukozamín',
+            link: '/glukozamin',
+            children: [],
+          },
+          {
+            title: 'Ostatné kĺbové výživy',
+            link: '/ostatne-klbove-vyzivy',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Aminokyseliny',
+        link: '/aminokyseliny',
+        children: [
+          {
+            title: 'Komplexné aminokyseliny',
+            link: '/komplexne-aminokyseliny',
+            children: [],
+          },
+          {
+            title: 'BCAA',
+            link: '/42-bcaa',
+            children: [],
+          },
+          {
+            title: 'EAA',
+            link: '/eaa',
+            children: [],
+          },
+          {
+            title: 'Arginín',
+            link: '/107-arginin',
+            children: [],
+          },
+          {
+            title: 'Glutamín',
+            link: '/43-glutamin',
+            children: [],
+          },
+          {
+            title: 'Ostatné aminokyseliny',
+            link: '/ostatne-aminokyseliny',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Vitamíny',
+        link: '/vitaminy',
+        children: [
+          {
+            title: 'Multivitamín',
+            link: '/komplexne-vitaminy',
+            children: [],
+          },
+          {
+            title: 'Vitamín A',
+            link: '/vitamin-a',
+            children: [],
+          },
+          {
+            title: 'Vitamíny B',
+            link: '/vitamin-b',
+            children: [],
+          },
+          {
+            title: 'Vitamín C',
+            link: '/vitamin-c',
+            children: [],
+          },
+          {
+            title: 'Vitamín D',
+            link: '/vitamin-d',
+            children: [],
+          },
+          {
+            title: 'Vitamín E',
+            link: '/vitamin-e',
+            children: [],
+          },
+          {
+            title: 'Ostatné vitamíny',
+            link: '/ostatne-vitaminy',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Minerály',
+        link: '/mineraly-1',
+        children: [
+          {
+            title: 'Multiminerály',
+            link: '/komplexne-mineraly',
+            children: [],
+          },
+          {
+            title: 'Magnézium',
+            link: '/magnezium',
+            children: [],
+          },
+          {
+            title: 'Vápnik',
+            link: '/vapnik',
+            children: [],
+          },
+          {
+            title: 'Železo',
+            link: '/zelezo',
+            children: [],
+          },
+          {
+            title: 'Zinok',
+            link: '/zinok',
+            children: [],
+          },
+          {
+            title: 'ZMA a ZMB',
+            link: '/zma-zmb',
+            children: [],
+          },
+          {
+            title: 'Ostatné minerály',
+            link: '/ostatne-mineraly',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Zdravé tuky',
+        link: '/zdrave-tuky',
+        children: [
+          {
+            title: 'Omega-3',
+            link: '/omega-3-mastne-kyseliny',
+            children: [],
+          },
+          {
+            title: 'Omega 3-6-9',
+            link: '/omega-3-6-9',
+            children: [],
+          },
+          {
+            title: 'Krilový olej',
+            link: '/krilovy-olej',
+            children: [],
+          },
+          {
+            title: 'Tekutý rybí olej',
+            link: '/tekuty-rybi-olej',
+            children: [],
+          },
+          {
+            title: 'CLA a HCA',
+            link: '/cla-a-hca',
+            children: [],
+          },
+          {
+            title: 'Lecitín',
+            link: '/lecitin',
+            children: [],
+          },
+          {
+            title: 'MCT olej',
+            link: '/mct-olej',
+            children: [],
+          },
+          {
+            title: 'Ostatné zdravé tuky',
+            link: '/ostatne-zdrave-tuky',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Kreatín',
+        link: '/14-kreatin',
+        children: [
+          {
+            title: 'Kreatín Monohydrát',
+            link: '/82-kreatin-monohydrat',
+            children: [],
+          },
+          {
+            title: 'Kreatín iné formy',
+            link: '/84-kreatin-ethyl-ester',
+            children: [],
+          },
+          {
+            title: 'Viaczložkový kreatín',
+            link: '/viaczlozkovy-kreatin',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Ostatné doplnky výživy',
+        link: '/ostatne-doplnky-vyzivy',
+        children: [
+          {
+            title: 'Probiotiká a tráviace enzýmy',
+            link: '/probiotika',
+            children: [],
+          },
+          {
+            title: 'Rastlinné doplnky',
+            link: '/rastlinne-doplnky',
+            children: [],
+          },
+          {
+            title: 'Pre lepší spánok',
+            link: '/pre-lepsi-spanok',
+            children: [],
+          },
+          {
+            title: 'Proti kŕčom',
+            link: '/proti-krcom',
+            children: [],
+          },
+          {
+            title: 'Vlasy, nechty a pokožka',
+            link: '/vlasy-nechty-a-pokozka',
+            children: [],
+          },
+          {
+            title: 'Nootropiká a mozog',
+            link: '/nootropika-a-mozog',
+            children: [],
+          },
+          {
+            title: 'Gaming',
+            link: '/gaming',
+            children: [],
+          },
+          {
+            title: 'Podpora pečene',
+            link: '/podpora-pecene',
+            children: [],
+          },
+          {
+            title: 'Proti starnutiu',
+            link: '/proti-starnutiu',
+            children: [],
+          },
+          {
+            title: 'Huby',
+            link: '/huby',
+            children: [],
+          },
+          {
+            title: 'Ostatné špeciálne doplnky výživy',
+            link: '/ostatne-specialne-doplnky-vyzivy',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Doplnky výživy podľa cieľa',
+        link: '/doplnky-vyzivy-podla-ciela',
+        children: [
+          {
+            title: 'Budovanie svalovej hmoty',
+            link: '/budovanie-svalovej-hmoty',
+            children: [],
+          },
+          {
+            title: 'Na chudnutie',
+            link: '/na-chudnutie',
+            children: [],
+          },
+          {
+            title: 'Podpora regenerácie',
+            link: '/podpora-regeneracie',
+            children: [],
+          },
+          {
+            title: 'Zlepšenie výkonu',
+            link: '/zlepsenie-vykonu',
+            children: [],
+          },
+          {
+            title: 'Na podporu imunity',
+            link: '/na-podporu-imunity',
+            children: [],
+          },
+        ],
+      },
+      {
+        title: 'Anabolizéry a stimulanty',
+        link: '/86-anabolizerystimulanty',
+        children: [
+          {
+            title: 'Predtréningové stimulanty',
+            link: '/21-predtreningove-stimulanty',
+            children: [],
+          },
+          {
+            title: 'NO doplnky',
+            link: '/no-doplnky',
+            children: [],
+          },
+          {
+            title: 'HMB',
+            link: '/66-hmb',
+            children: [],
+          },
+          {
+            title: 'Náhrada steroidov',
+            link: '/37-nahrada-steroidov',
+            children: [],
+          },
+          {
+            title: 'Kofeín',
+            link: '/kofein',
+            children: [],
+          },
+          {
+            title: 'Beta-Alanín',
+            link: '/beta-alanin',
+            children: [],
+          },
+          {
+            title: 'DAA',
+            link: '/daa',
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Zdravé potraviny',
+    link: '/zdrave-potraviny',
+    children: [],
+  },
+  {
+    title: 'Fitness oblečenie',
+    link: '/fitness-oblecenie',
+    children: [],
+  },
+  {
+    title: 'Príslušenstvo',
+    link: '/prislusenstvo',
+    children: [],
+  },
+]
+
+const open = reactive<Record<string, boolean>>({})
+
+watchEffect(() => {
+  open[route.path] = true
+
+  for (const c1 of nav) {
+    for (const c2 of c1.children) {
+      if (c2.link === route.path) {
+        open[c1.link] = true
+        return
+      }
+
+      for (const c3 of c2.children) {
+        if (c3.link === route.path) {
+          open[c1.link] = true
+          open[c2.link] = true
+          return
+        }
+
+        for (const c4 of c3.children) {
+          if (c4.link === route.path) {
+            open[c1.link] = true
+            open[c2.link] = true
+            open[c3.link] = true
+            return
+          }
+        }
+      }
+    }
+  }
 })
 
 const isDesktopFiltersOpen = ref(false)
@@ -473,7 +709,7 @@ sk-SK:
 }
 
 .sidebar-navigation ul.submenu {
-  @apply pl-2;
+  @apply pl-2 w-full;
 }
 
 .sidebar-navigation a {
