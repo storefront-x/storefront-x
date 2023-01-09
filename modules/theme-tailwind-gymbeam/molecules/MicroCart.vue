@@ -27,16 +27,20 @@
     </div>
     <span
       v-if="cart.itemsTotalQuantity > 0"
-      class="absolute top-0 right-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800"
+      class="absolute -bottom-2 -right-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-secondary-500 text-white"
       data-cy="microcart-quantity"
     >
       {{ cart.itemsTotalQuantity }}
     </span>
   </div>
+  <div>
+    <SfxMoney :money="cart.subtotalIncludingTax" el="dd" class="text-lg font-bold text-gray-900 ml-2 mt-2" />
+  </div>
   <MiniCart v-if="cartStore.isMiniCartVisible" />
 </template>
 
 <script setup lang="ts">
+import SfxMoney from '#ioc/components/SfxMoney'
 import cartIcon from '#ioc/assets/images/cart'
 import Link from '#ioc/atoms/Link'
 import useCart from '#ioc/composables/useCart'

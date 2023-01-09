@@ -34,10 +34,9 @@
         <h3 class="sr-only">Description</h3>
         <div class="links" v-html="product.shortDescriptionHtml" />
       </div>
-
-      <StockIndicator :stock-status="product.available" />
-
-      <div class="sm:flex mb-4">
+      <div v-if="product.available" class="bg-primary-500 text-white font-bold inline px-2 h-6">SKLADOM</div>
+      <div v-else class="bg-primary-500 text-white font-bold inline px-2 h-6">SKLADOM</div>
+      <div class="sm:flex my-4">
         <div class="flex">
           <div class="mt-0 mr-4 sm:mr-16">
             <div>
@@ -45,7 +44,7 @@
 
               <SfxMoney
                 :money="product.finalPrice"
-                class="text-3xl text-black font-bold"
+                class="text-3xl text-secondary-500 font-bold"
                 :class="discounted"
                 data-cy="product-price"
               />
@@ -81,13 +80,11 @@ import Heading from '#ioc/atoms/Heading'
 import ProductQuantityConfigurator from '#ioc/molecules/ProductQuantityConfigurator'
 import AddToCart from '#ioc/molecules/AddToCart'
 import ProductGallery from '#ioc/molecules/ProductGallery'
-import StockIndicator from '#ioc/atoms/StockIndicator'
 import FacebookShare from '#ioc/atoms/FacebookShare'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import injectProduct from '#ioc/composables/injectProduct'
 import { computed, defineAsyncComponent, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
-import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
 
 const ProductBundleOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductBundleOptions'))

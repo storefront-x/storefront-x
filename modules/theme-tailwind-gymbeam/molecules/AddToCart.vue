@@ -10,6 +10,8 @@
   >
     <slot>
       <template v-if="isEnabled && productDetail">
+        <Spinner v-if="isLoading" class="absolute" />
+
         <h6 class="text-white p-0">PŘIDAT DO KOŠÍKA</h6>
         <img class="w-8 h-8 ml-3" :src="cartWhite" alt="Logo" />
       </template>
@@ -25,7 +27,7 @@ import injectProduct from '#ioc/composables/injectProduct'
 import useAddToCart from '#ioc/services/useAddToCart'
 
 import cartWhite from '#ioc/assets/images/cartWhite'
-import cartBlack from '#ioc/assets/images/cart'
+import Spinner from '#ioc/atoms/Spinner'
 import useRouter from '#ioc/composables/useRouter'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import { ref, computed } from 'vue'

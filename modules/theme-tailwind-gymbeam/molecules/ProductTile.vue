@@ -18,7 +18,7 @@
           />
         </RouterLink>
         <div class="absolute bottom-0 left-0">
-          <AddToCart class="relative bg-grey-855 rounded-none !ml-0" />
+          <AddToCart class="relative bg-grey-855 hover:bg-secondary-500 rounded-none !ml-0" />
         </div>
       </div>
 

@@ -1,10 +1,10 @@
 <template>
   <Container class="hidden lg:flex space-x-4">
     <CategoryLink
-      v-for="category in catalogStore.menu"
+      v-for="category in catalogStore.menu.filter((c: any) => c.urlKey !== 'novorocny-vypredaj')"
       :key="category.id"
       :category="category"
-      classes="py-4 text-primary-500 font-bold uppercase text-[17px]"
+      classes="py-4 text-primary-500 font-bold uppercase text-xl"
       color="primary"
       @mouseenter="onMouseEnter(category)"
       @mouseleave="onMouseLeave(category)"
