@@ -1,6 +1,6 @@
 <template>
   <div class="pb-8 text-primary-500 font-semibold">
-    <SfxCarousel :slides="[ms1, ms2, ms3, ms4]" :loop="true">
+    <SfxCarousel :slides="[ms1, ms2, ms3, ms4]" :loop="true" :interval="3000">
       <template #default="{ slide, index }">
         <img :src="slide" :index="index" class="w-full" />
       </template>
