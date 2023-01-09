@@ -18,10 +18,6 @@
               {{ cartItem.product.name }}
             </RouterLink>
           </h3>
-
-          <a class="text-gray-400 hover:text-red-500 hover:cursor-pointer" @click="promptRemoval">
-            <OutlineX />
-          </a>
         </div>
       </div>
       <div class="flex flex-1 items-center justify-between text-sm mt-4">
@@ -74,7 +70,7 @@
         </div>
 
         <div class="flex">
-          <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-lg" />
+          <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-sm text-secondary-500 font-bold" />
         </div>
       </div>
     </div>

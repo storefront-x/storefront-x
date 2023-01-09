@@ -34,7 +34,7 @@
     </span>
   </div>
   <div>
-    <SfxMoney :money="cart.subtotalIncludingTax" el="dd" class="text-lg font-bold text-gray-900 ml-2 mt-2" />
+    <SfxMoney :money="cart.subtotalIncludingTax" el="dd" class="font-bold text-gray-900 ml-2 mt-2 text-[14px]" />
   </div>
   <MiniCart v-if="cartStore.isMiniCartVisible" />
 </template>

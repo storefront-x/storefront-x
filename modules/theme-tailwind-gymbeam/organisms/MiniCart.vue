@@ -3,15 +3,15 @@
     <div
       id="minicart-wrapper"
       aria-live="assertive"
-      class="absolute max-w-lg px-4 z-50 inset-y-8 -right-5"
-      :class="{ 'min-w-[20em]': cart.items.length === 0 }"
+      class="absolute max-w-lg px-4 z-50 inset-y-14 -right-5"
+      :class="{ 'min-w-[15em]': cart.items.length === 0 }"
     >
-      <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+      <div class="bg-white border-2 border-primary-500">
         <div class="flex h-full flex-col overflow-y-hidden shadow-xl">
           <div class="flex-1 overflow-y-hidden py-6 px-4 sm:px-6">
             <div class="mt-0 bg-white">
               <div class="flow-root">
-                <ul role="list" class="-my-6 divide-y divide-gray-200 p-0">
+                <ul role="list" class="-my-6 p-0">
                   <CartItemProvider v-for="cartItem in cart.items.slice(0, 4)" :key="cartItem.id" :cart-item="cartItem">
                     <MiniCartItem />
                   </CartItemProvider>
@@ -31,14 +31,10 @@
             </div>
           </div>
 
-          <div v-if="cart.items.length > 0" class="border-t border-gray-200 py-6 px-4 sm:px-6">
-            <div class="flex justify-between text-base font-medium text-gray-900 items-center">
-              <p>{{ t('subtotal') }}</p>
-              <SfxMoney :money="cart.subtotalIncludingTax" el="dd" class="text-lg font-bold text-gray-900" />
-            </div>
-            <div class="mt-3">
+          <div v-if="cart.items.length > 0" class="py-6 px-4 sm:px-6">
+            <div>
               <Link :to="localePath('checkout')">
-                <Button color="primary" class="w-full">
+                <Button color="primary" class="w-full bg-green-855 rounded-none uppercase">
                   <span>{{ t('cartDetails') }}</span>
                 </Button>
               </Link>
@@ -106,3 +102,28 @@ sk-SK:
   emptyCart: Váš košík je prázdny
   No cart items icon: Prázdny košík ikona
 </i18n>
+
+<style scoped>
+#minicart-wrapper:before {
+  @apply right-[10%] -top-[12px];
+}
+#minicart-wrapper:after {
+  @apply right-[10%] -top-[14px];
+}
+#minicart-wrapper:before,
+#minicart-wrapper:after {
+  @apply absolute h-0 w-0 content-[''] block;
+}
+
+#minicart-wrapper:after {
+  border: 7px solid;
+  border-color: transparent transparent #000;
+  z-index: 98;
+}
+
+#minicart-wrapper:before {
+  border: 7px solid;
+  border-color: transparent transparent #fff;
+  z-index: 99;
+}
+</style>

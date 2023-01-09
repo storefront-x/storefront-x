@@ -72,10 +72,11 @@
           >
             <ProductSort class="mb-4" :title="t(sortedBy)" />
             <button
-              class="hidden lg:flex px-2 py-1 lg:rounded-none bg-grey-895 font-semibold text-white mb-4 ml-2"
+              class="hidden lg:flex px-2 py-1 lg:rounded-none bg-grey-895 font-semibold text-white mb-4 ml-2 items-center"
               @click="isDesktopFiltersOpen = !isDesktopFiltersOpen"
             >
-              Zobraziť filtre
+              <span>Zobraziť filtre</span>
+              <SolidArrowLeft class="-rotate-90 fill-white w-5 h-4" />
             </button>
           </div>
 
@@ -111,6 +112,7 @@ import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 import LoadNext from '#ioc/molecules/LoadNext'
 import CategoryInfo from '#ioc/molecules/CategoryInfo'
 import ToCategory from '#ioc/mappers/ToCategory'
+import SolidArrowLeft from '#ioc/icons/SolidArrowLeft'
 
 const ProductFilters = hydrateWhenIdle(() => import('#ioc/molecules/ProductFilters'))
 const Pagination = hydrateWhenVisible(() => import('#ioc/molecules/Pagination'))

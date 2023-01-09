@@ -22,15 +22,21 @@ export default {
     extend: {
       colors: {
         primary: {
+          default: '#000000',
           500: '#000000',
         },
         secondary: {
+          default: '#f44100',
           500: '#f44100',
         },
         grey: {
           855: '#00000073',
           890: '#ececec',
           895: '#9e9e9e',
+        },
+
+        green: {
+          855: '#8dc63f',
         },
       },
     },

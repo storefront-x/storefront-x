@@ -34,7 +34,7 @@
         <h3 class="sr-only">Description</h3>
         <div class="links" v-html="product.shortDescriptionHtml" />
       </div>
-      <div v-if="product.available" class="bg-primary-500 text-white font-bold inline px-2 h-6">SKLADOM</div>
+      <div v-if="product.available" class="bg-primary-500 text-white font-bold inline px-2 h-6 p-2 my-2">SKLADOM</div>
       <div v-else class="bg-secondary-500 text-white font-bold inline px-2 h-6">NEDOSTUPNE</div>
       <div class="sm:flex my-4">
         <div class="flex">
