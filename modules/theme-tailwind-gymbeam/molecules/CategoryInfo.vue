@@ -3,9 +3,9 @@
     <h1 data-cy="title" class="text-xl mb-0">{{ category.name }}</h1>
     <template v-if="category.description">
       <div :class="extendedDescription ? 'extended' : 'short'" v-html="category.description"></div>
-      <a class="text-secondary-500" href="javascript:void(0)" @click="extendedDescription = !extendedDescription">{{
-        extendedDescription ? 'Zobraziť menej' : 'Zobraziť viac'
-      }}</a>
+      <p class="text-secondary-500 cursor-pointer" @click="extendedDescription = !extendedDescription">
+        {{ extendedDescription ? 'Zobraziť menej' : 'Zobraziť viac' }}
+      </p>
     </template>
   </div>
 </template>

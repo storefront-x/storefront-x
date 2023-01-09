@@ -27,6 +27,7 @@
       <div class="flex flex-1 items-center justify-between text-sm mt-4">
         <div class="flex gap-1 h-8 mr-4">
           <Button
+            aria-label="decrement"
             class="bg-white font-bold px-2 whitespace-nowrap border-transparent shadow-transparent font-bold text-primary-500 hover:bg-gray-50 focus:ring-primary-500"
             @click="onDec"
           >
@@ -51,6 +52,7 @@
             @input="onInput"
           />
           <Button
+            aria-label="increment"
             class="bg-white font-bold px-2 whitespace-nowrap border-transparent shadow-transparent font-bold text-primary-500 hover:bg-gray-50 focus:ring-primary-500"
             @click="onInc"
           >

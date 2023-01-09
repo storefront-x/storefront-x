@@ -1,6 +1,7 @@
 <template>
   <div class="flex gap-1 h-8 mr-4" data-cy="product-quantity-configurator">
     <button
+      aria-label="decrement"
       class="bg-white font-bold px-2 whitespace-nowrap border-transparent shadow-transparent font-bold text-primary-500 hover:bg-gray-50 focus:ring-primary-500"
       :disabled="innerValue === minimum"
       @click.prevent="decrement"
@@ -28,6 +29,7 @@
       @blur="onBlur"
     />
     <button
+      aria-label="increment"
       class="bg-white font-bold px-2 whitespace-nowrap border-transparent shadow-transparent font-bold text-primary-500 hover:bg-gray-50 focus:ring-primary-500"
       @click.prevent="increment"
     >

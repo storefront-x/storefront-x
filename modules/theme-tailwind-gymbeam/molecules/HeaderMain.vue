@@ -28,7 +28,7 @@
       </Link>
 
       <div class="flex items-center justify-end relative">
-        <MicroAccount :submenu="true" class="hidden lg:flex" />
+        <MicroAccount :submenu="false" class="hidden lg:flex" />
         <MicroSearch class="lg:hidden mr-2" />
         <MicroCart />
       </div>
