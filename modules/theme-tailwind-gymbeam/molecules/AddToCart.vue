@@ -3,31 +3,29 @@
     color="secondary"
     :disabled="isLoading"
     data-cy="add-to-cart"
-    class="relative w-full sm:w-auto sm:h-auto mt-4 sm:mt-0 sm:ml-3 text-bold"
+    :class="{ 'px-16': productDetail, 'bg-secondary-500': productDetail }"
+    class="relative w-full sm:w-auto sm:h-auto mt-8 rounded-none sm:mt-0 ml-0 text-bold"
     :data-simple-product="product.isSimpleProduct && !product.isOptionsProduct"
     @click="onAddToCart"
   >
     <slot>
-      <template v-if="isEnabled">
-        <Spinner v-if="isLoading" />
-        <img v-else class="w-8 h-8 whiteCart" :src="cartIcon" alt="Logo" />
+      <template v-if="isEnabled && productDetail">
+        <h6 class="text-white p-0">PŘIDAT DO KOŠÍKA</h6>
+        <img class="w-8 h-8 ml-3" :src="cartWhite" alt="Logo" />
       </template>
 
-      <img v-else class="w-8 h-8 whiteCart" :src="cartIcon" alt="Logo" />
+      <img v-else class="w-8 h-8" :src="cartWhite" alt="Logo" />
     </slot>
-
-    <CrossSellModal v-if="isCrossSellModalOpen" @close="onClose" />
   </Button>
 </template>
 
 <script setup lang="ts">
 import Button from '#ioc/atoms/Button'
-import Spinner from '#ioc/atoms/Spinner'
 import injectProduct from '#ioc/composables/injectProduct'
 import useAddToCart from '#ioc/services/useAddToCart'
-import CrossSellModal from '#ioc/organisms/CrossSellModal'
-import cartIcon from '#ioc/assets/images/cartWhite'
 
+import cartWhite from '#ioc/assets/images/cartWhite'
+import cartBlack from '#ioc/assets/images/cart'
 import useRouter from '#ioc/composables/useRouter'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import { ref, computed } from 'vue'
@@ -37,6 +35,10 @@ const props = defineProps({
     type: Number,
     default: 1,
   },
+  productDetail: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const product = injectProduct()
@@ -45,11 +47,6 @@ const router = useRouter()
 const localePath = useLocalePath()
 
 const isLoading = ref(false)
-const isCrossSellModalOpen = ref(false)
-
-const onClose = () => {
-  isCrossSellModalOpen.value = false
-}
 
 const isEnabled = computed(() => {
   if (product.isConfigurableProduct) {
@@ -78,7 +75,6 @@ const onAddToCart = async () => {
       variantSku: product.variant?.sku,
       options: product.options,
     })
-    isCrossSellModalOpen.value = true
     product.options = []
     delete product.bundle
     product.configuration = {}

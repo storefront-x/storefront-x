@@ -48,7 +48,7 @@
 import Button from '#ioc/atoms/Button'
 import UsesFilters from '#ioc/mixins/UsesFilters'
 import useI18n from '#ioc/composables/useI18n'
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 
 export default defineComponent({
   components: {
@@ -66,8 +66,9 @@ export default defineComponent({
 
   setup() {
     const { t } = useI18n()
-
+    const isDesktopFiltersOpen = inject('$isDesktopFiltersOpen')
     return {
+      isDesktopFiltersOpen,
       t,
     }
   },
@@ -99,6 +100,7 @@ export default defineComponent({
 
       if (!selected) {
         this.addFilter(key, value)
+        this.isDesktopFiltersOpen = false
       } else {
         this.removeFilter(key, value)
       }

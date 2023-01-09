@@ -37,7 +37,7 @@
 
       <StockIndicator :stock-status="product.available" />
 
-      <div class="sm:flex">
+      <div class="sm:flex mb-4">
         <div class="flex">
           <div class="mt-0 mr-4 sm:mr-16">
             <div>
@@ -58,13 +58,9 @@
 
           <ProductQuantityConfigurator @input="onQuantityChange" />
         </div>
-
-        <AddToCart :quantity="quantity" />
       </div>
-
+      <AddToCart :quantity="quantity" :product-detail="true" class="my-4" />
       <GroupedItems v-if="product.groupedItems.length && product.isGroupedProduct" />
-
-      <GiftPanel />
 
       <div class="flex">
         <AddToWishlist :title="t('Add')" />

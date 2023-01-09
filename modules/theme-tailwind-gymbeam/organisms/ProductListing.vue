@@ -408,15 +408,16 @@ import ToProduct from '#ioc/mappers/ToProduct'
 import ProductSort from '#ioc/molecules/ProductSort'
 import ProductTile from '#ioc/molecules/ProductTile'
 import ProductProvider from '#ioc/providers/ProductProvider'
-import { computed, PropType, ref } from 'vue'
+import { computed, PropType, ref, provide } from 'vue'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 import LoadNext from '#ioc/molecules/LoadNext'
-const ProductFilters = hydrateWhenIdle(() => import('#ioc/molecules/ProductFilters'))
-const Pagination = hydrateWhenVisible(() => import('#ioc/molecules/Pagination'))
+
 import CategoryInfo from '#ioc/molecules/CategoryInfo'
 import ToCategory from '#ioc/mappers/ToCategory'
 
+const ProductFilters = hydrateWhenIdle(() => import('#ioc/molecules/ProductFilters'))
+const Pagination = hydrateWhenVisible(() => import('#ioc/molecules/Pagination'))
 const { t } = useI18n()
 const route = useRoute()
 
@@ -440,6 +441,7 @@ defineProps({
 })
 
 const isDesktopFiltersOpen = ref(false)
+provide('$isDesktopFiltersOpen', isDesktopFiltersOpen)
 
 const sortedBy = computed(() => String(route.query.sort ?? 'Best match'))
 </script>

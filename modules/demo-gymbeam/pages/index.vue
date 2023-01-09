@@ -46,6 +46,17 @@
         </div>
       </div>
     </Container>
+    <Container class="mt-2 mb-8 md:mt-3 md:mb-10">
+      <div class="grid grid-cols-1 gap-2 sm:gap-0 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4">
+        <ProductProvider v-for="(product, i) in data.products" :key="product.id" :product="product">
+          <ProductTile :preload-image="i === 0" :index="i" />
+        </ProductProvider>
+      </div>
+    </Container>
+    <Container>
+      <h3 class="font-bold pb-2">BLOG</h3>
+      <img :src="mpBlog" class="w-full" />
+    </Container>
   </div>
 </template>
 
@@ -57,6 +68,7 @@ import ms2 from '#ioc/assets/ms2'
 import ms3 from '#ioc/assets/ms3'
 import ms4 from '#ioc/assets/ms4'
 import iconsMainPage from '#ioc/assets/iconsMainPage'
+import mpBlog from '#ioc/assets/mpBlog'
 import mn1 from '#ioc/assets/mn1'
 import mn2 from '#ioc/assets/mn2'
 import mn3 from '#ioc/assets/mn3'
@@ -65,8 +77,29 @@ import mn5 from '#ioc/assets/mn5'
 import mn6 from '#ioc/assets/mn6'
 import mn7 from '#ioc/assets/mn7'
 import mn8 from '#ioc/assets/mn8'
+import useGetCategoryById from '#ioc/services/useGetCategoryById'
+import useResource from '#ioc/composables/useResource'
+import ProductTile from '#ioc/molecules/ProductTile'
+import ProductProvider from '#ioc/providers/ProductProvider'
+
+const getCategoryById = useGetCategoryById()
 
 const containersSpacingClass = { 'mb-12': true }
+const [data] = await useResource(
+  () => ({
+    id: 'MTc5Nw==',
+    page: 1,
+    pages: 1,
+
+    pageSize: 8,
+  }),
+  (params) =>
+    getCategoryById(params.id, {
+      page: params.page,
+      pages: params.pages,
+      pageSize: params.pageSize,
+    }),
+)
 </script>
 
 <style scoped>
