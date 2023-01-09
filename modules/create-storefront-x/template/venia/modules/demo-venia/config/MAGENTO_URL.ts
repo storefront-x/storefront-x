@@ -1,1 +1,1 @@
-export default 'https://adobecommerce.cloud'
+export default 'https://venia.magento.com'
