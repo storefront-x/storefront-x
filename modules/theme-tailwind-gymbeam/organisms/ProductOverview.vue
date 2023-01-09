@@ -35,7 +35,7 @@
         <div class="links" v-html="product.shortDescriptionHtml" />
       </div>
       <div v-if="product.available" class="bg-primary-500 text-white font-bold inline px-2 h-6">SKLADOM</div>
-      <div v-else class="bg-primary-500 text-white font-bold inline px-2 h-6">SKLADOM</div>
+      <div v-else class="bg-secondary-500 text-white font-bold inline px-2 h-6">NEDOSTUPNE</div>
       <div class="sm:flex my-4">
         <div class="flex">
           <div class="mt-0 mr-4 sm:mr-16">
@@ -58,7 +58,7 @@
           <ProductQuantityConfigurator @input="onQuantityChange" />
         </div>
       </div>
-      <AddToCart :quantity="quantity" :product-detail="true" class="my-4" />
+      <AddToCart v-if="product.available" :quantity="quantity" :product-detail="true" class="my-4" />
       <GroupedItems v-if="product.groupedItems.length && product.isGroupedProduct" />
 
       <div class="flex">
