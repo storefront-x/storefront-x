@@ -41,6 +41,7 @@ export default {
     '@storefront-x/catalog-magento',
     '@storefront-x/catalog-magento-px',
     '@storefront-x/checkout-magento',
+    '@storefront-x/checkout-magento-px',
     '@storefront-x/cms-magento',
     '@storefront-x/customer-magento',
     '@storefront-x/catalog-attributes-magento',
@@ -54,6 +55,7 @@ export default {
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
+    '@storefront-x/theme-tailwind-magento-px',
 
     '@storefront-x/demo-magento',
   ],

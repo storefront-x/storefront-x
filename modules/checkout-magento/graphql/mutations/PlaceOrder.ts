@@ -14,7 +14,6 @@ export default () =>
         .fields({
           order: field({
             order_number: field(),
-            redirect_url: field(),
           }),
         }),
     })
