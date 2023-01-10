@@ -59,5 +59,6 @@ export default {
     '@storefront-x/demo-magento',
     'gtag',
     'gtag-test',
+    'hotjar',
   ],
 }
