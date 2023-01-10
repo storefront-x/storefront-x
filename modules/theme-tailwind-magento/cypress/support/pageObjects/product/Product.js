@@ -6,6 +6,8 @@ export default class Product {
   constructor() {
     this.data = null
 
+    this.type = this.Simple
+
     this.reviewContent = {
       nickname: 'nickname' + uniqueNumber(),
       title: 'Very nice product',

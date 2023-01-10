@@ -2,14 +2,19 @@ import GetProducts from '~/cypress/support/repositories/GetProducts'
 import Product from '~/cypress/support/pageObjects/product/Product'
 import randomNumber from '#ioc/utils/number/random'
 
-function visitRandom(type = Product.Simple) {
+let products = null
+
+function visitRandom(product) {
   return cy.then(() => {
-    if (this._products) {
-      _visitRandom(type)
+    cy.log('asds')
+
+    if (products) {
+      _visitRandom(product.type)
     } else {
-      GetProducts().then((products) => {
-        this._products = products
-        _visitRandom(type)
+      GetProducts().then((_products) => {
+        cy.log('asds')
+        products = _products
+        product.data = _visitRandom(product.type)
       })
     }
   })
@@ -21,16 +26,17 @@ function _visitRandom(type = Product.Simple) {
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    index = randomNumber(0, this._products.length)
-    product = this._products[index]
+    index = randomNumber(0, products.length)
+    product = products[index]
 
     if (product.__typename === type) break
   }
 
-  this.data = product
-  this._products = [...this._products.slice(0, index), ...this._products.slice(index + 1, this._products.length)]
+  products = [...products.slice(0, index), ...products.slice(index + 1, products.length)]
 
   cy.visit(product.url_key + '.html').waitForSfx()
+
+  return product
 }
 
 export default visitRandom

@@ -20,11 +20,11 @@ describe('Product', () => {
   beforeEach(() => {
     product = new Product()
 
-    visitRandom()
+    visitRandom(product)
   })
 
   it('contains product title', () => {
-    getTitle().will('include.text', () => product.data.name)
+    getTitle().should('include.text', product.data.name)
   })
 
   it('contains product price', () => {
