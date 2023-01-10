@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center nowrap whitespace-nowrap overflow-x-auto w-full mb-4" :aria-label="t('Breadcrumbs')">
+  <nav class="flex items-center nowrap whitespace-nowrap overflow-x-auto w-full mb-2" :aria-label="t('Breadcrumbs')">
     <ol role="list" class="flex items-center space-x-1 sm:space-x-4 list-none p-0 mb-0">
       <li>
         <div>
@@ -36,7 +36,6 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue'
-import SolidHome from '#ioc/icons/SolidHome'
 import SolidChevronRight from '#ioc/icons/SolidChevronRight'
 import useI18n from '#ioc/composables/useI18n'
 import ToBreadcrumb from '#ioc/mappers/ToBreadcrumb'

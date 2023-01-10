@@ -20,9 +20,13 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+      },
       colors: {
         primary: {
           default: '#000000',
+          300: '#333333',
           500: '#000000',
         },
         secondary: {

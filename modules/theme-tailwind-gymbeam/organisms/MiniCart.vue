@@ -47,7 +47,6 @@
 </template>
 
 <script setup lang="ts">
-import SfxMoney from '#ioc/components/SfxMoney'
 import Heading from '#ioc/atoms/Heading'
 import useCart from '#ioc/composables/useCart'
 import CartItemProvider from '#ioc/providers/CartItemProvider'

@@ -88,7 +88,6 @@
 import SfxImage from '#ioc/components/SfxImage'
 import SfxMoney from '#ioc/components/SfxMoney'
 import debounce from '#ioc/utils/debounce'
-import OutlineX from '#ioc/icons/OutlineX'
 import injectCartItem from '#ioc/composables/injectCartItem'
 import Button from '#ioc/atoms/Button'
 import Input from '#ioc/atoms/Input'

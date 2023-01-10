@@ -3,7 +3,7 @@
     <p class="sr-only">{{ label }}</p>
     <Label
       :for="`${id}-input`"
-      class="border rounded-none flex items-center justify-center h-full text-sm font-medium uppercase sm:flex-1 cursor-pointer hover:ring-2"
+      class="border rounded-none flex items-center justify-center h-full font-bold text-xs font-medium uppercase sm:flex-1 cursor-pointer hover:ring-2"
       :style="isCircle ? { 'background-color': background, '--tw-ring-color': background } : ''"
       :class="classes"
     >

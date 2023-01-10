@@ -77,9 +77,6 @@ const onAddToCart = async () => {
       variantSku: product.variant?.sku,
       options: product.options,
     })
-    product.options = []
-    delete product.bundle
-    product.configuration = {}
   } finally {
     isLoading.value = false
   }

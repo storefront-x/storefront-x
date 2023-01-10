@@ -2,7 +2,7 @@
   <div class="pb-8 text-primary-500 font-semibold">
     <SfxCarousel :slides="[ms1, ms2, ms3, ms4]" :loop="true" :interval="3000">
       <template #default="{ slide, index }">
-        <img :src="slide" :index="index" class="w-full" />
+        <img :src="slide" :index="index" class="sm:h-96 md:h-full" />
       </template>
       <template #pagination="{ pageIds, currentPage, showPage }">
         <div class="absolute w-full flex justify-center gap-4 bottom-0 p-6">
@@ -21,7 +21,7 @@
     </Container>
     <Container :class="containersSpacingClass">
       <h6 class="font-bold pb-2">Objavte overené produkty podľa vášho cieľa. Chcete:</h6>
-      <div class="grid grid-cols-4 gap-4 text-slate-600">
+      <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-4 text-slate-600">
         <div
           v-for="(item, index) in [
             { img: mn1, label: 'SCHUDNÚŤ', url: '/na-chudnutie' },

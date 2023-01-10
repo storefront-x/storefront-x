@@ -1,5 +1,5 @@
 <template>
-  <Link :to="localePath(category.urlPath)" color="black" class="font-normal hover:underline normal-case text-sm">
+  <Link :to="localePath(category.urlPath)" color="black" class="font-normal hover:underline normal-case text-xs">
     {{ category.name }}
   </Link>
 </template>
