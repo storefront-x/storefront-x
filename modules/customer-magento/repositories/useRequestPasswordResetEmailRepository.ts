@@ -1,5 +1,5 @@
 import useMagento from '#ioc/composables/useMagento'
-import RequestPasswordResetEmail from '../graphql/mutations/RequestPasswordResetEmail'
+import RequestPasswordResetEmail from '#ioc/graphql/mutations/RequestPasswordResetEmail'
 
 export default () => {
   const magento = useMagento()
