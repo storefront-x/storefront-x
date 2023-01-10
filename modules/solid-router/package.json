@@ -1,0 +1,12 @@
+{
+  "name": "@storefront-x/solid-router",
+  "version": "1.0.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@solidjs/router": "^0.5.0"
+  }
+}

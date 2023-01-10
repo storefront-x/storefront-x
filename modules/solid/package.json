@@ -1,0 +1,13 @@
+{
+  "name": "@storefront-x/solid",
+  "version": "1.0.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "solid-js": "^1.6.1",
+    "vite-plugin-solid": "^2.3.10"
+  }
+}

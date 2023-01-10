@@ -41,7 +41,7 @@ export default class Dev extends Core {
         const template = await viteDevServer.transformIndexHtml(url, index)
 
         // Loads entry.server.ts from the .sfx directory
-        const { default: entry } = await viteDevServer.ssrLoadModule('/entry.server.ts')
+        const { default: entry } = await viteDevServer.ssrLoadModule('/entry.server')
 
         const response = await this.handleRequest({
           entry,
