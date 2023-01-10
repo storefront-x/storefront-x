@@ -1,21 +1,12 @@
-import Multicurrency from '~/cypress/support/pageObjects/Multicurrency'
-import Product from '~/cypress/support/pageObjects/Product'
+import selectDifferentCurrency from '~/cypress/support/pageObjects/multicurrency/selectDifferentCurrency'
+import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 
 describe('Multicurrency', () => {
-  /** @type {Multicurrency} */
-  let multicurrency
-
-  /** @type {Product} */
-  let product
-
   beforeEach(() => {
-    multicurrency = new Multicurrency()
-    product = new Product()
-
-    product.visitRandom()
+    visitRandom()
   })
 
   it('allows switching currency', () => {
-    multicurrency.selectDifferentCurrency()
+    selectDifferentCurrency()
   })
 })
