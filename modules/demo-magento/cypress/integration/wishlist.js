@@ -25,7 +25,7 @@ describe('Wishlist', () => {
   beforeEach(() => {
     product = new Product()
 
-    visitRandom()
+    visitRandom(product)
     addToWishlist()
   })
 
@@ -39,7 +39,7 @@ describe('Wishlist', () => {
   it('allows removing from the wishlist', () => {
     expectMicrowishlistQuantity(1)
 
-    visitRandom()
+    visitRandom(product)
     addToWishlist()
 
     gotoWishList()
@@ -57,12 +57,12 @@ describe('Wishlist', () => {
   it('merges wishlist with customer wishlist', () => {
     register(accountCredentials)
 
-    visitRandom()
+    visitRandom(product)
     addToWishlist()
 
     logout()
 
-    visitRandom()
+    visitRandom(product)
     addToWishlist()
 
     login(accountCredentials)

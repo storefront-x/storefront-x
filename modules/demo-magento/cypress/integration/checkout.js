@@ -10,14 +10,19 @@ import checkThankYouPageVisibility from '~/cypress/support/pageObjects/thankYouP
 import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 import addToCart from '~/cypress/support/pageObjects/product/addToCart'
 import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
+import Product from '~/cypress/support/pageObjects/product/Product'
 
 describe('Checkout', () => {
+  /** @type {Product} */
+  let product
+
   beforeEach(() => {
-    addRandomProductToCartAndProceedToCheckout()
+    product = new Product()
+    addRandomProductToCartAndProceedToCheckout(product)
   })
 
-  let addRandomProductToCartAndProceedToCheckout = () => {
-    visitRandom()
+  let addRandomProductToCartAndProceedToCheckout = (product) => {
+    visitRandom(product)
     addToCart()
     continueToCheckout()
   }
