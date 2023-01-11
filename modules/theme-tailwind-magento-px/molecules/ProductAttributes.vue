@@ -20,15 +20,15 @@
             </thead>
             <tbody>
               <tr
-                v-for="attribute in product.attributes"
-                :key="attribute.code"
+                v-for="attribute in attributeExists"
+                :key="attribute?.code"
                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
               >
                 <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {{ attribute.label }}
+                  {{ attribute?.label }}
                 </td>
                 <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                  {{ attribute.valueLabel || '—' }}
+                  {{ attribute?.valueLabel }}
                 </td>
               </tr>
             </tbody>
@@ -42,10 +42,15 @@
 <script setup lang="ts">
 import injectProduct from '#ioc/composables/injectProduct'
 import useI18n from '#ioc/composables/useI18n'
+import { computed } from 'vue'
 
 const { t } = useI18n()
 
 const product = injectProduct()
+
+const attributeExists = computed(() => {
+  return product.attributes.filter((item: any) => (item ? item : null))
+})
 </script>
 
 <i18n lang="yaml">
