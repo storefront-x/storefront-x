@@ -43,7 +43,7 @@ Once the project is created, follow the instructions to install dependencies and
 >   yarn dev
 ```
 
-This will create a dev-ready build of your app in the project's [./sfx directory](/essentials/sfx). Behind the scenes Storefront X collects all your files in enabled modules and creates a build directory, we call this process [Bootstrap](/essentials/bootstrap). With each module setup you get a fully functional e-commerce solution with example components.
+This will create a dev-ready build of your app in the project's [./sfx directory](/essentials/sfx). Behind the scenes Storefront X collects all your files in enabled modules and creates a build directory, we call this process [Bootstrap](/advanced/bootstrap). With each module setup you get a fully functional e-commerce solution with example components.
 
 - The recommended IDE setup is [Visual Studio Code](https://code.visualstudio.com/) + [Volar extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 - More information about other e-commerce integrations can be found here: [Magento](/integrations/magento) or [Shopware](/integrations/shopware)
