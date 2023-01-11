@@ -35,7 +35,7 @@ There are two approaches, how to handle configuration files for different enviro
 1. Create different modules for different environments with configs for said environment.
 2. Use `.env` file and load config values from there.
 
-The first approach si generally recommended because Storefront X relies heavily on modules and overriding between them, so we just leverage that functionality. Sometimes, env variables need to be used (you don't want to commit keys to the repository). Read more [here](/essentials/dotenv).
+The first approach si generally recommended because Storefront X relies heavily on modules and overriding between them, so we just leverage that functionality. Sometimes, env variables need to be used (you don't want to commit keys to the repository). Read more [here](/advanced/dotenv).
 
 ## `public/` concept
 
