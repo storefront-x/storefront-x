@@ -57,8 +57,5 @@ export default {
     '@storefront-x/theme-tailwind-magento',
 
     '@storefront-x/demo-magento',
-    'gtag',
-    'gtag-test',
-    'hotjar',
   ],
 }

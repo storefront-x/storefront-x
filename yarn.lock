@@ -8675,18 +8675,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gtag-test@workspace:modules/gtag-test":
-  version: 0.0.0-use.local
-  resolution: "gtag-test@workspace:modules/gtag-test"
-  languageName: unknown
-  linkType: soft
-
-"gtag@workspace:modules/gtag":
-  version: 0.0.0-use.local
-  resolution: "gtag@workspace:modules/gtag"
-  languageName: unknown
-  linkType: soft
-
 "handlebars@npm:^4.7.7":
   version: 4.7.7
   resolution: "handlebars@npm:4.7.7"
@@ -8854,12 +8842,6 @@ __metadata:
   checksum: 515e69463d123635f70d70656c5ec648951ffc1987f92a87cb4a038e1794bfed833cf87569b358b137ebbc75d992c073ed0408d420c9e5b717c2b4f0a291490c
   languageName: node
   linkType: hard
-
-"hotjar@workspace:modules/hotjar":
-  version: 0.0.0-use.local
-  resolution: "hotjar@workspace:modules/hotjar"
-  languageName: unknown
-  linkType: soft
 
 "html-encoding-sniffer@npm:^3.0.0":
   version: 3.0.0
