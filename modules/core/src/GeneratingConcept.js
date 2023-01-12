@@ -35,8 +35,8 @@ export default class GeneratingConcept extends OverridingConcept {
     /** @type {Record<string, any>} */
     const recordsServer = {}
 
-    if (this.generateMultipleFiles) {
-      await fs.rm(this.dst(), { recursive: true, force: true })
+    if (this.removesDestinationDirectory) {
+      await this.removeFilesFromDirectory()
     }
 
     for (const { module, file } of Object.values(files)) {

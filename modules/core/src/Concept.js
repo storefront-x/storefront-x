@@ -130,6 +130,10 @@ export default class Concept {
     await fs.copyFile(src, dst)
   }
 
+  async removeFilesFromDirectory() {
+    await fs.rm(this.dst(), { recursive: true, force: true })
+  }
+
   /**
    * @param {Module} module
    * @returns {string}
