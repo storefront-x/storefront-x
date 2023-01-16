@@ -5,7 +5,7 @@ export default {
   content: [
     './node_modules/@storefront-x/theme-tailwind/**/*.vue',
     './node_modules/@storefront-x/theme-tailwind-magento/**/*.vue',
-    './node_modules/@storefront-x/demo-magento/**/*.vue',
+    './node_modules/@storefront-x/demo-venia/**/*.vue',
   ],
   plugins: [forms],
   theme: {

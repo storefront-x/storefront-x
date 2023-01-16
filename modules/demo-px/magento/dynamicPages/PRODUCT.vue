@@ -6,13 +6,14 @@
 </template>
 
 <script setup lang="ts">
-import ProductDetail from '#ioc/templates/ProductDetail'
-import useGetProductById from '#ioc/services/useGetProductById'
-import useResource from '#ioc/composables/useResource'
-import ProductProvider from '#ioc/providers/ProductProvider'
 import { defineAsyncComponent } from 'vue'
+import useGetProductById from '#ioc/services/useGetProductById'
+import ProductProvider from '#ioc/providers/ProductProvider'
+import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
+import useResource from '#ioc/composables/useResource'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
+const ProductDetail = hydrateWhenVisible(() => import('#ioc/templates/ProductDetail'))
 
 const props = defineProps({
   id: {
