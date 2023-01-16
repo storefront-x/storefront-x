@@ -23,21 +23,14 @@ describe('Wishlist', () => {
   })
 
   beforeEach(() => {
-    // GetProducts().then((products) => {
     product = new Product()
-
-    //   cy.log(Cypress._.sample(products))
-    //   cy.visit(Cypress._.sample(products.url_key))
-    // })
     visitRandom(product)
     addToWishlist()
-    cy.log(product)
   })
 
   it('allows adding products to the wishlist from product detail page', () => {
     expectMicrowishlistQuantity(1)
     gotoWishList()
-    cy.log(product)
     expectWishlistQuantity(1)
   })
 
@@ -54,7 +47,6 @@ describe('Wishlist', () => {
     visitAgain(product)
 
     getAddToWishlist().click() // Clicking again will remove it from wishlist
-    // cy.pause()
 
     gotoWishList()
 
