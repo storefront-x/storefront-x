@@ -68,6 +68,8 @@ export default class Core {
       res,
       manifest,
       out: {},
+      responseStatus: 200,
+      responseHeaders: { 'Content-Type': 'text/html' },
     }
 
     try {
@@ -81,10 +83,7 @@ export default class Core {
         throw ctx.errorCaptured
       }
 
-      return res
-        .status(ctx.responseStatus || 200)
-        .set({ 'Content-Type': 'text/html' })
-        .end(template)
+      return res.status(ctx.responseStatus).set(ctx.responseHeaders).end(template)
     } catch (e) {
       if (e.__typename === 'Redirect') {
         return res.redirect(e.status, e.url)

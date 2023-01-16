@@ -6,8 +6,11 @@ import IS_SERVER from '#ioc/config/IS_SERVER'
 import useStoreStore from '#ioc/stores/useStoreStore'
 import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 import MagentoError from '#ioc/errors/MagentoError'
+import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import errorHandlers from '~/.sfx/magento/errorHandlers'
 import requestHeaders from '~/.sfx/magento/requestHeaders'
+import postResponseHandlersClient from '~/.sfx/magento/postResponseHandlers.client'
+import postResponseHandlersServer from '~/.sfx/magento/postResponseHandlers.server'
 
 interface Options {
   headers?: object
@@ -19,8 +22,9 @@ const URL = IS_SERVER ? MAGENTO_URL : '/_magento'
 export default () => {
   const storeStore = useStoreStore()
   const currentLocale = useCurrentLocale()
-  const bindedErrorHandlers = Object.values(errorHandlers).map((e) => e())
-  const bindedRequestHeaders = Object.values(requestHeaders).map((h) => h())
+  const bindedErrorHandlers = use(errorHandlers)
+  const bindedRequestHeaders = use(requestHeaders)
+  const bindedPostResponseHandlers = use(IS_CLIENT ? postResponseHandlersClient : postResponseHandlersServer)
 
   const headers = () => {
     const store = currentLocale.value.magentoStore
@@ -39,6 +43,10 @@ export default () => {
 
     const _fetch = async (input: RequestInfo, init: RequestInit) => {
       const response = await fetch(input, init)
+
+      for (const postResponseHandler of bindedPostResponseHandlers) {
+        await postResponseHandler(response)
+      }
 
       if (response.headers.get('content-type') !== 'application/json') {
         throw new Error(await response.text())
@@ -91,3 +99,5 @@ export default () => {
     graphql,
   }
 }
+
+const use = (composables: any) => Object.values(composables).map((use: any) => use())
