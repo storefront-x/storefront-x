@@ -51,7 +51,6 @@ export default defineConfig({
           { text: 'Quick start', link: '/getting-started/quick-start' },
           { text: 'Simple TODO app', link: '/getting-started/simple-todo-app' },
           { text: 'How it works', link: '/getting-started/how-it-works' },
-          { text: 'Why not Nuxt', link: '/getting-started/why-not-nuxt.md' },
           { text: 'Contributing', link: '/contributing' },
         ],
       },
