@@ -3529,12 +3529,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/compare-products-magento@workspace:modules/compare-products-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/compare-products-magento@workspace:modules/compare-products-magento"
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/cookie-script@workspace:modules/cookie-script":
   version: 0.0.0-use.local
   resolution: "@storefront-x/cookie-script@workspace:modules/cookie-script"
@@ -3703,6 +3697,12 @@ __metadata:
   resolution: "@storefront-x/partytown@workspace:modules/partytown"
   dependencies:
     "@builder.io/partytown": ^0.7.3
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/product-comparison-magento@workspace:modules/product-comparison-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/product-comparison-magento@workspace:modules/product-comparison-magento"
   languageName: unknown
   linkType: soft
 
