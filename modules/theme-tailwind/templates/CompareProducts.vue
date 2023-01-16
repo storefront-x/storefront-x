@@ -4,19 +4,12 @@
     <div class="max-w-full">
       <table v-if="compareProducts.items.length">
         <tr>
-          <td class="border-r border-b"></td>
-          <ProductProvider
-            v-for="(item, index) in compareProducts.items"
-            :key="item.product.id"
-            :product="item.product"
-          >
-            <ComparedProductsTile
-              :preload-image="index === 0"
-              :index="index"
-              class="border-b"
-              :class="index === compareProducts.items.length - 1 || 'border-r'"
-            />
-          </ProductProvider>
+          <td></td>
+          <td v-for="(item, index) in compareProducts.items" :key="item.product.id" class="border-r border-b">
+            <ProductProvider :product="item.product">
+              <ProductTile class="border-none w-96" :preload-image="index === 0" :index="index" />
+            </ProductProvider>
+          </td>
         </tr>
         <tr v-for="(attribute, index) in compareProducts.attributes" :key="index">
           <td
@@ -46,7 +39,7 @@
 import ProductProvider from '#ioc/providers/ProductProvider'
 import Container from '#ioc/atoms/Container'
 import Heading from '#ioc/atoms/Heading'
-import ComparedProductsTile from '#ioc/molecules/ComparedProductTile'
+import ProductTile from '#ioc/molecules/ProductTile'
 import useI18n from '#ioc/composables/useI18n'
 import useProductComparison from '#ioc/composables/useProductComparison'
 
