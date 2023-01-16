@@ -23,18 +23,3 @@ jobs:
       storefront-x-config: storefront-x.magento.config.js
       number-of-tests-per-run: 3
       target-directory: cypress/integration
-
-  mxcloud:
-    uses: ./.github/workflows/mxcloud.yml
-    with:
-      storefront-x-config: storefront-x.magento.config.js
-    secrets:
-      MXCLOUD_URL: ${{ secrets.MXCLOUD_URL }}
-      MXCLOUD_AUTH: ${{ secrets.MXCLOUD_AUTH }}
-
-  lighthouse:
-    uses: ./.github/workflows/lighthouse.yml
-    with:
-      storefront-x-config: storefront-x.magento.config.js
-      product-detail-page: tripp-lite-n238-001-yw-keystone-module.html
-      category-page: computers-peripherals.html

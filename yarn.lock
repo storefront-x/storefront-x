@@ -3605,17 +3605,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/demo-shopware@workspace:modules/demo-shopware":
+"@storefront-x/demo-px@workspace:modules/demo-px":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-shopware@workspace:modules/demo-shopware"
+  resolution: "@storefront-x/demo-px@workspace:modules/demo-px"
   dependencies:
     vite-plugin-pwa: ^0.13.3
   languageName: unknown
   linkType: soft
 
-"@storefront-x/demo-venia@workspace:modules/demo-venia":
+"@storefront-x/demo-shopware@workspace:modules/demo-shopware":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-venia@workspace:modules/demo-venia"
+  resolution: "@storefront-x/demo-shopware@workspace:modules/demo-shopware"
   dependencies:
     vite-plugin-pwa: ^0.13.3
   languageName: unknown
