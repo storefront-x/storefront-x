@@ -5,7 +5,7 @@ import getProductFromMinicart from '~/cypress/support/pageObjects/miniCart/getPr
 import addToCart from '~/cypress/support/pageObjects/product/addToCart'
 import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 
-import Product from '~/cypress/support/pageObjects/Product'
+import Product from '~/cypress/support/pageObjects/product/Product'
 
 describe('Minicart', () => {
   /** @type {Product} */
@@ -13,18 +13,16 @@ describe('Minicart', () => {
 
   beforeEach(() => {
     product = new Product()
+    visitRandom(product)
   })
 
   it('open and close minicart without product', () => {
-    cy.visit('/').waitForSfx()
-
     openMinicart()
     checkEmptyMinicart()
     closeMinicart()
   })
 
   it('open and close minicart with product', () => {
-    visitRandom(product)
     addToCart()
 
     openMinicart()

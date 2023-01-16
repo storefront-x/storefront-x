@@ -10,14 +10,20 @@ import checkThankYouPageVisibility from '~/cypress/support/pageObjects/thankYouP
 import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 import addToCart from '~/cypress/support/pageObjects/product/addToCart'
 import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
+import Product from '~/cypress/support/pageObjects/product/Product'
 
 describe('Checkout', () => {
+  /** @type {Product} */
+  let product = null
+  let shippingMethod
+
   beforeEach(() => {
-    addRandomProductToCartAndProceedToCheckout()
+    product = new Product()
+    addRandomProductToCartAndProceedToCheckout(product)
   })
 
-  let addRandomProductToCartAndProceedToCheckout = () => {
-    visitRandom()
+  let addRandomProductToCartAndProceedToCheckout = (product) => {
+    visitRandom(product)
     addToCart()
     continueToCheckout()
   }
@@ -29,9 +35,11 @@ describe('Checkout', () => {
   })
 
   it('finishes checkout process', () => {
-    selectShipping('flatrate_flatrate')
+    shippingMethod = 'flatrate_flatrate'
+
+    selectShipping(shippingMethod)
     selectPayment('checkmo')
-    fillShippingInfo()
+    fillShippingInfo(shippingMethod)
     confirmAgreements()
     placeOrder()
 
@@ -39,9 +47,11 @@ describe('Checkout', () => {
   })
 
   it('accepts credit card payment', () => {
-    selectShipping('flatrate_flatrate')
+    shippingMethod = 'flatrate_flatrate'
+
+    selectShipping(shippingMethod)
     selectPayment('braintree')
-    fillShippingInfo()
+    fillShippingInfo(shippingMethod)
     confirmAgreements()
     placeOrder()
     fillCreditCardInfo()
@@ -50,10 +60,12 @@ describe('Checkout', () => {
   })
 
   it('supports instore pickup', () => {
-    selectShipping('instore_pickup')
+    shippingMethod = 'instore_pickup'
+
+    selectShipping(shippingMethod)
     getInstorePickupLocation().click()
     selectPayment('checkmo')
-    fillShippingInfo()
+    fillShippingInfo(shippingMethod)
     confirmAgreements()
     placeOrder()
 
