@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { buildProject } from '@storefront-x/testing'
 
-test.only('minimal stack', async () => {
+test('minimal stack', async () => {
   await buildProject({
     modules: [
       '@storefront-x/base',
@@ -15,7 +15,7 @@ test.only('minimal stack', async () => {
   })
 })
 
-test.only('with full vue stack', async () => {
+test('with full vue stack', async () => {
   await buildProject({
     modules: [
       '@storefront-x/base',
