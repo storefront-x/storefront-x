@@ -1,3 +1,1 @@
-export default function getCustomerAddress() {
-  return cy.get('[data-cy=customer-address]').first()
-}
+export default () => cy.get('[data-cy=customer-address]').first()

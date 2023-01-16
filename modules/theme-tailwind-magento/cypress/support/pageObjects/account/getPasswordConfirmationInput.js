@@ -1,3 +1,1 @@
-export default function getPasswordConfirmationInput() {
-  return cy.get('input[name=passwordConfirmation]')
-}
+export default () => cy.get('input[name=passwordConfirmation]')

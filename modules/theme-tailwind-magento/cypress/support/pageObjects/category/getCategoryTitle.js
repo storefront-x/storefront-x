@@ -1,3 +1,1 @@
-export default function getCategoryTitle() {
-  return cy.get('[data-cy=title]')
-}
+export default () => cy.get('[data-cy=title]')

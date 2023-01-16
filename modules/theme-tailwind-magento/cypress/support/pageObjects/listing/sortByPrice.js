@@ -1,4 +1,4 @@
-export default function sortByPrice(order) {
+export default (order) => {
   cy.get('#sort button').click()
 
   cy.get(`[data-cy=sort-price-${order}]`).click()

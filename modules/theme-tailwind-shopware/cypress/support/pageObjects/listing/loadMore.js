@@ -1,4 +1,4 @@
-export default function loadMore() {
+export default () => {
   cy.get('[data-cy=product-title]')
     .last()
     .invoke('text')

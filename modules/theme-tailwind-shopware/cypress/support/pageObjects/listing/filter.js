@@ -1,4 +1,4 @@
-export default function filter() {
+export default () => {
   cy.get('[data-cy=product-title]')
     .invoke('text')
     .then((before) => {

@@ -3,7 +3,7 @@ import getPasswordInput from '~/cypress/support/pageObjects/account/getPasswordI
 import getSignInButton from '~/cypress/support/pageObjects/account/getSignInButton'
 import getMicroAccount from '~/cypress/support/pageObjects/account/getMicroAccount'
 
-export default function login(params = {}) {
+export default (params = {}) => {
   cy.visit('/sign-in').waitForSfx()
 
   getEmailInput().type(params.email ?? 'test@test.cz')

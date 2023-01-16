@@ -1,3 +1,1 @@
-export default function getLastNameInput() {
-  return cy.get('input[name=lastName]')
-}
+export default () => cy.get('input[name=lastName]')

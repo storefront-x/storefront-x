@@ -6,7 +6,7 @@ import getLastNameInput from '~/cypress/support/pageObjects/account/getLastNameI
 import getPasswordConfirmationInput from '~/cypress/support/pageObjects/account/getPasswordConfirmationInput'
 import getSignUpButton from '~/cypress/support/pageObjects/account/getSignUpButton'
 
-export default function register(params = {}) {
+export default (params = {}) => {
   cy.visit('/sign-up').waitForSfx()
 
   getFirstNameInput().type(params.firstName)

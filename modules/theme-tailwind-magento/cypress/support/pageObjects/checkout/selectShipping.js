@@ -1,3 +1,1 @@
-export default function selectShipping(code) {
-  cy.get(`[data-shipping-method=${code}]`).click()
-}
+export default (code) => cy.get(`[data-shipping-method=${code}]`).click()

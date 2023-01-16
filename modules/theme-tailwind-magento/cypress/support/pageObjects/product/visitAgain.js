@@ -1,3 +1,7 @@
-export default function visitAgain(data) {
-  return cy.then(() => cy.visit(data.url_key + '.html').waitForSfx())
+export default function visitAgain(product) {
+  cy.log(product)
+  return cy.then(() => {
+    cy.log(product)
+    cy.visit(product.data.url_key + '.html').waitForSfx()
+  })
 }

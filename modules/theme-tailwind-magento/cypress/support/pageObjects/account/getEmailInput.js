@@ -1,3 +1,1 @@
-export default function getEmailInput() {
-  return cy.get('input[name=email]')
-}
+export default () => cy.get('input[name=email]')

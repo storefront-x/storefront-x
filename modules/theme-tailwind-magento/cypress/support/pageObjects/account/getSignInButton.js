@@ -1,3 +1,1 @@
-export default function getSignInButton() {
-  return cy.get('[data-cy=sign-in]')
-}
+export default () => cy.get('[data-cy=sign-in]')

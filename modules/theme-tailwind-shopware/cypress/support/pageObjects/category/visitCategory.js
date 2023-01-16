@@ -1,3 +1,1 @@
-export default function visitCategory(category) {
-  return cy.visit(category).waitForSfx()
-}
+export default (category) => cy.visit(category).waitForSfx()

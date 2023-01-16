@@ -1,3 +1,1 @@
-export default function getPrice() {
-  return cy.get('[data-cy=product-price]')
-}
+export default () => cy.get('[data-cy=product-price]')

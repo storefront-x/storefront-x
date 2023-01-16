@@ -1,4 +1,4 @@
-export default function createNewAddress(params = {}) {
+export default (params = {}) => {
   cy.visit('/account/addresses').waitForSfx()
 
   cy.get('[data-cy=new-address]').click()

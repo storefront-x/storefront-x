@@ -4,7 +4,7 @@ import getTextField from '~/cypress/support/pageObjects/product/getTextField'
 import getNthStar from '~/cypress/support/pageObjects/product/getNthStar'
 import getSubmitReviewButton from '~/cypress/support/pageObjects/product/getSubmitReviewButton'
 
-export default function addReviewData(reviewContent) {
+export default (reviewContent) => {
   getNicknameField().type(reviewContent.nickname)
   getTitleField().type(reviewContent.title)
   getTextField().type(reviewContent.text)

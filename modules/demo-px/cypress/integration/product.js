@@ -63,7 +63,7 @@ describe('Product', () => {
 
   it('allows adding reviews', () => {
     openReviewForm()
-    addReviewData()
+    addReviewData(product.reviewContent)
     expectNotificationReviewConfirm()
   })
 })

@@ -1,3 +1,1 @@
-export default function getReviewTab() {
-  return cy.get('a[name=Reviews]')
-}
+export default () => cy.get('a[name=Reviews]')

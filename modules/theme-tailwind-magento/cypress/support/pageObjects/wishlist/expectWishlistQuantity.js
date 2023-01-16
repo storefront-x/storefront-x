@@ -1,3 +1,1 @@
-export default function expectWishlistQuantity(quantity) {
-  return cy.get('[data-cy=product-title]').should('have.length', quantity)
-}
+export default (quantity) => cy.get('[data-cy=product-title]').should('have.length', quantity)

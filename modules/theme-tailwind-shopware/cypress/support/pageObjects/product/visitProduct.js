@@ -1,3 +1,1 @@
-export default function visitProduct(data) {
-  return cy.visit(data.url_key).waitForSfx()
-}
+export default (data) => cy.visit(data.url_key).waitForSfx()

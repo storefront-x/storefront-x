@@ -1,4 +1,4 @@
-export default function getFirstAddToCart({ product } = {}) {
+export default ({ product } = {}) => {
   const base = '[data-cy=add-to-cart]'
 
   if (product === 'simple') {

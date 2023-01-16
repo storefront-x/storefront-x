@@ -1,4 +1,4 @@
-export default function selectDifferentCurrency() {
+export default () => {
   cy.get('[data-cy=product-price')
     .invoke('text')
     .then((originalPrice) => {

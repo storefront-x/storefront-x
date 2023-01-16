@@ -1,5 +1,3 @@
 import getQuantityDecreaseButton from '~/cypress/support/pageObjects/product/getQuantityDecreaseButton'
 
-export default function decreaseQuantity() {
-  getQuantityDecreaseButton().click()
-}
+export default () => getQuantityDecreaseButton().click()

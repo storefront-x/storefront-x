@@ -1,4 +1,4 @@
-export default function selectDifferentStore() {
+export default () => {
   cy.get('[data-cy=store-switcher]')
     .invoke('text')
     .waitForSfx()

@@ -1,3 +1,1 @@
-export default function getInstorePickupLocation() {
-  return cy.get('[data-cy=instore-pickup-location]').first()
-}
+export default () => cy.get('[data-cy=instore-pickup-location]').first()

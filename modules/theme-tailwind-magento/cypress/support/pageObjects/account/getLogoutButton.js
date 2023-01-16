@@ -1,3 +1,1 @@
-export default function getLogoutButton() {
-  return cy.get('[data-cy=logout]')
-}
+export default () => cy.get('[data-cy=logout]')

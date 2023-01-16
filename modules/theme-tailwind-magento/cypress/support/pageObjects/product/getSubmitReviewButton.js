@@ -1,3 +1,1 @@
-export default function getSubmitReviewButton() {
-  return cy.get('[data-cy=submit-review]')
-}
+export default () => cy.get('[data-cy=submit-review]')

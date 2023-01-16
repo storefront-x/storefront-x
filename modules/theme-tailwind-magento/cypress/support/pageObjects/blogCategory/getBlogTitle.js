@@ -1,3 +1,1 @@
-export default function getBlogPostTitle() {
-  return cy.get('[data-cy=title]')
-}
+export default () => cy.get('[data-cy=title]')

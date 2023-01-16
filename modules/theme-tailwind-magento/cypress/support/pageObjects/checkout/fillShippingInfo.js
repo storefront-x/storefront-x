@@ -1,4 +1,4 @@
-export default function fillShippingInfo() {
+export default () => {
   cy.get('input[name=email]').type('tester@testovic.cz')
   cy.get('input[name=firstName]').type('Tester')
   cy.get('input[name=lastName]').type('Testovič')

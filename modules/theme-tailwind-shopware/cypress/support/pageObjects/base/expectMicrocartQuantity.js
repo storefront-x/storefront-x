@@ -1,3 +1,1 @@
-export default function expectMicrocartQuantity(quantity) {
-  return cy.get('[data-cy=microcart-quantity]').should('contain.text', quantity)
-}
+export default (quantity) => cy.get('[data-cy=microcart-quantity]').should('contain.text', quantity)

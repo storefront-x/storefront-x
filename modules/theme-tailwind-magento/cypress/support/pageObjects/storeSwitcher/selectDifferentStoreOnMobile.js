@@ -1,6 +1,6 @@
 import openHamburgerMenu from '~/cypress/support/pageObjects/hamburgerMenu/openHamburgerMenu'
 
-export default function selectDifferentStoreOnMobile() {
+export default () => {
   openHamburgerMenu()
   cy.get('[data-cy=store-switcher-mobile]')
     .invoke('text')

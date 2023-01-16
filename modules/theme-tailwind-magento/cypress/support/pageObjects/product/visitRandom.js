@@ -6,13 +6,10 @@ let products = null
 
 function visitRandom(product) {
   return cy.then(() => {
-    cy.log('asds')
-
     if (products) {
       _visitRandom(product.type)
     } else {
       GetProducts().then((_products) => {
-        cy.log('asds')
         products = _products
         product.data = _visitRandom(product.type)
       })
@@ -35,8 +32,20 @@ function _visitRandom(type = Product.Simple) {
   products = [...products.slice(0, index), ...products.slice(index + 1, products.length)]
 
   cy.visit(product.url_key + '.html').waitForSfx()
-
   return product
+  // try {
+  //   while (true) {
+  //     index = randomNumber(0, products.length)
+  //     product = products[index]
+
+  //     if (product.__typename === type) break
+  //   }
+
+  //   cy.visit(product.url_key + '.html').waitForSfx()
+  //   return product
+  // } finally {
+  //   // products = [...products.slice(0, index), ...products.slice(index + 1, products.length)]
+  // }
 }
 
 export default visitRandom
