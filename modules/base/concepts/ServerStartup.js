@@ -2,9 +2,9 @@
 
 import { GeneratingConcept } from '@storefront-x/core'
 
-export default class ServerPreload extends GeneratingConcept {
+export default class ServerStartup extends GeneratingConcept {
   get directory() {
-    return 'server/preload'
+    return 'server/startup'
   }
 
   get template() {

@@ -76,7 +76,7 @@ export default class Build extends Core {
             input: [
               path.join(this.buildDir, 'server', 'middleware.ts'),
               path.join(this.buildDir, 'server', 'routes.ts'),
-              path.join(this.buildDir, 'server', 'preload.ts'),
+              path.join(this.buildDir, 'server', 'startup.ts'),
             ],
           },
           ssr: true,

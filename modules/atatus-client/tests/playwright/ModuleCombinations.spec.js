@@ -1,20 +1,18 @@
 import { test } from '@playwright/test'
 import { buildProject } from '@storefront-x/testing'
 
-test('with only vue', async () => {
+test.only('with only vue', async () => {
   await buildProject({
     modules: [
       '@storefront-x/base',
       '@storefront-x/vue',
-      '@storefront-x/sentry-server',
+      '@storefront-x/atatus-client',
       [
         'my-module',
         {
           config: {
-            sentry: {
-              server: {
-                'dsn.ts': `export default 'https://examplePublicKey@o0.ingest.sentry.io/0'`,
-              },
+            'atatus-client': {
+              'ATATUS_RUM_API_KEY.ts': `export default 'key'`,
             },
           },
         },

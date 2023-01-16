@@ -3339,12 +3339,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storefront-x/atatus@workspace:modules/atatus":
+"@storefront-x/atatus-client@workspace:modules/atatus-client":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/atatus@workspace:modules/atatus"
+  resolution: "@storefront-x/atatus-client@workspace:modules/atatus-client"
+  dependencies:
+    atatus-spa: ^4.5.0
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/atatus-server@workspace:modules/atatus-server":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/atatus-server@workspace:modules/atatus-server"
   dependencies:
     atatus-nodejs: ^1.5.5
-    atatus-spa: ^4.5.0
   languageName: unknown
   linkType: soft
 

@@ -19,7 +19,7 @@ export default class Dev extends Core {
 
     const viteDevServer = await vite.createServer(viteConfig)
 
-    await this._loadServerPreload(viteDevServer)
+    await this._loadServerStartup(viteDevServer)
 
     const server = express()
 
@@ -82,8 +82,8 @@ export default class Dev extends Core {
     return server
   }
 
-  async _loadServerPreload(viteDevServer) {
-    await viteDevServer.ssrLoadModule('/server/preload.ts', {
+  async _loadServerStartup(viteDevServer) {
+    await viteDevServer.ssrLoadModule('/server/startup.ts', {
       fixStacktrace: true,
     })
   }
