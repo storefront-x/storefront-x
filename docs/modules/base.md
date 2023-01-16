@@ -166,14 +166,14 @@ POST /bar  # index.html
 Use server routes as proxies to decrease number of DNS requests and to improve caching.
 :::
 
-## `server/preload/` concept
+## `server/startup/` concept
 
-Server preload concepts contains files that are executed once during server startup and as soon as possible. It is useful when needing to register some type of global error handler like [Sentry](https://sentry.io) or [New Relic](https://newrelic.com).
+Server startup concepts contains files that are executed once during server startup and as soon as possible. It is useful when needing to register some type of global error handler like [Sentry](https://sentry.io) or [New Relic](https://newrelic.com).
 
 ### Example
 
 ```ts
-// server/preload/sentry.ts
+// server/startup/sentry.ts
 
 import * as Sentry from '@sentry/node'
 import dsn from '#ioc/config/sentry/server/dsn'
