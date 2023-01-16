@@ -25,9 +25,9 @@ This command will install and execute `create storefront-x`, the official Storef
 ```
 ? Target directory » storefront-x-app
 >   Blank application
-    Shopware integration
+    Magento integration
     Magento integration with additional modules (blog, brands, ...)
-    Magento Venia integration (experimental)
+    Shopware integration
 
 Scaffolding project in ./<your-project-name>...
 
