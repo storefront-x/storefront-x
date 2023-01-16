@@ -59,7 +59,7 @@
           <ProductQuantityConfigurator @input="onQuantityChange" />
         </div>
 
-        <AddToCart class="ml-4" :quantity="quantity" />
+        <AddToCart :quantity="quantity" />
       </div>
 
       <GroupedItems v-if="product.groupedItems.length && product.isGroupedProduct" />

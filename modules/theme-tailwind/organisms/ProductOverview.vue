@@ -31,7 +31,7 @@
           <ProductQuantityConfigurator @input="onQuantityChange" />
         </div>
 
-        <AddToCart class="ml-4" :quantity="quantity" />
+        <AddToCart :quantity="quantity" />
       </div>
       <div class="flex pt-6 mt-6 border-t-2 border-gray-100">
         <AddToWishlist :title="t('Add')" />
