@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 import * as atatus from 'atatus-spa'
-import ATATUS_RUM_API_KEY from '#ioc/config/ATATUS_RUM_API_KEY'
+import ATATUS_RUM_API_KEY from '#ioc/config/atatus-client/ATATUS_RUM_API_KEY'
 
 export default async (app: App) => {
   const prevHandler = app.config.errorHandler

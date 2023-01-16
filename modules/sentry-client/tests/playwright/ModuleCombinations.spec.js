@@ -1,18 +1,21 @@
 import { test } from '@playwright/test'
 import { buildProject } from '@storefront-x/testing'
 
-test('with vue', async () => {
+test('with only vue', async () => {
   await buildProject({
     modules: [
       '@storefront-x/base',
       '@storefront-x/vue',
-      '@storefront-x/google-tag-manager',
-      '@storefront-x/google-tag-manager-partytown',
+      '@storefront-x/sentry-client',
       [
         'my-module',
         {
           config: {
-            'GOOGLE_TAG_MANAGER_ID.ts': `export default 'id'`,
+            sentry: {
+              client: {
+                'dsn.ts': `export default 'key'`,
+              },
+            },
           },
         },
       ],

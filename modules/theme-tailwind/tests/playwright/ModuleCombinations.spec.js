@@ -10,6 +10,22 @@ test('with vue', async () => {
       '@storefront-x/atomic-design',
       '@storefront-x/vue-i18n',
       '@storefront-x/theme-tailwind',
+      [
+        'my-module',
+        {
+          config: {
+            'VUE_I18N_LOCALES.ts': `
+            export default [
+              {
+                name: 'en',
+                locale: 'en-US',
+                prefix: '/',
+              },
+            ]
+          `,
+          },
+        },
+      ],
     ],
   })
 })
