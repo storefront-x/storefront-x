@@ -48,10 +48,10 @@ import Container from '#ioc/atoms/Container'
 import Heading from '#ioc/atoms/Heading'
 import ComparedProductsTile from '#ioc/molecules/ComparedProductTile'
 import useI18n from '#ioc/composables/useI18n'
-import useCompareProducts from '#ioc/composables/useCompareProducts'
+import useProductComparison from '#ioc/composables/useProductComparison'
 
 const { t } = useI18n()
-const compareProducts = useCompareProducts()
+const compareProducts = useProductComparison()
 
 defineProps({
   brand: {

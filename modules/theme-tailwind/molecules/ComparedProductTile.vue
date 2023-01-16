@@ -63,7 +63,7 @@ import SfxImage from '#ioc/components/SfxImage'
 import ReviewStars from '#ioc/atoms/ReviewStars'
 import SfxMoney from '#ioc/components/SfxMoney'
 import OutlineX from '#ioc/icons/OutlineX'
-import userRemoveComparedProducts from '#ioc/services/userRemoveComparedProducts'
+import useRemoveProductFromComparison from '#ioc/services/useRemoveProductFromComparison'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
@@ -73,7 +73,7 @@ import { computed } from 'vue'
 
 const localePath = useLocalePath()
 const product = injectProduct()
-const removeComparedProducts = userRemoveComparedProducts()
+const removeComparedProducts = useRemoveProductFromComparison()
 const showErrorNotification = useShowErrorNotification()
 const showSuccessNotification = useShowSuccessNotification()
 const { t } = useI18n()

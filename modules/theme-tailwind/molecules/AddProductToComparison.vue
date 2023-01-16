@@ -4,7 +4,7 @@
     class="rounded-md flex items-center justify-center"
     :class="classes"
     data-cy="compare-products"
-    @click="addToComparison"
+    @click="AddProductToComparison"
   >
     <span class="sr-only">
       {{ t('compare') }}
@@ -23,7 +23,7 @@ import useI18n from '#ioc/composables/useI18n'
 import ToCompareItem from '#ioc/mappers/ToCompareItem'
 import injectProduct from '#ioc/composables/injectProduct'
 import useAddProductToComparison from '#ioc/services/useAddProductToComparison'
-import useCompareProductsStore from '#ioc/stores/useCompareProductsStore'
+import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 
 defineProps({
@@ -40,11 +40,13 @@ defineProps({
 const { t } = useI18n()
 const addProductToComparison = useAddProductToComparison()
 const showSuccessNotification = useShowSuccessNotification()
-const compareProductsStore = useCompareProductsStore()
+const productComparisonMagentoStore = useProductComparisonMagentoStore()
 const product = injectProduct()
 
 const isSelected = computed(() => {
-  return compareProductsStore.items.some((item: ReturnType<typeof ToCompareItem>) => item.product.sku === product.sku)
+  return productComparisonMagentoStore.items.some(
+    (item: ReturnType<typeof ToCompareItem>) => item.product.sku === product.sku,
+  )
 })
 
 const classes = computed(() => {
@@ -54,7 +56,7 @@ const classes = computed(() => {
   }
 })
 
-const addToComparison = async () => {
+const AddProductToComparison = async () => {
   if (isSelected.value) {
     showSuccessNotification('', t('productAlreadyAdded'))
     return

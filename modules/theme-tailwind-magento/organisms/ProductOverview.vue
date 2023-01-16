@@ -69,7 +69,7 @@
       <div class="flex">
         <AddToWishlist :title="t('Add')" />
         <FacebookShare />
-        <AddToComparison :title="t('Compare')" />
+        <AddProductToComparison :title="t('Compare')" />
       </div>
       <div class="w-full flex mt-4 text-gray-400">
         <p class="mr-1">{{ t('Warranty: 24 months') }} |</p>
@@ -94,7 +94,7 @@ import { computed, defineAsyncComponent, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
-import AddToComparison from '#ioc/molecules/AddToComparison'
+import AddProductToComparison from '#ioc/molecules/AddProductToComparison'
 
 const ProductBundleOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductBundleOptions'))
 const ProductConfigurableOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductConfigurableOptions'))

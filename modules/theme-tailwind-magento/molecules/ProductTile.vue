@@ -52,7 +52,7 @@
       />
     </div>
     <AddToWishlist class="absolute top-3 right-4" :fill-on-hover="true" @click.stop />
-    <AddToComparison class="absolute top-3 right-12" @click.stop />
+    <AddProductToComparison class="absolute top-3 right-12" @click.stop />
     <div class="absolute top-2 left-0 pointer-events-none gap-2 p-3 space-y-1">
       <ProductLabel v-for="(label, i) in product.labels" :key="i" :label="label" />
     </div>
@@ -72,7 +72,7 @@ import { computed } from 'vue'
 import truncate from '#ioc/utils/string/truncate'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import ProductLabel from '#ioc/atoms/ProductLabel'
-import AddToComparison from '#ioc/molecules/AddToComparison'
+import AddProductToComparison from '#ioc/molecules/AddProductToComparison'
 
 const localePath = useLocalePath()
 
