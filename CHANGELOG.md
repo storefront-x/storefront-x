@@ -1,3 +1,20 @@
+## v1.7.0 (2023-01-16)
+
+#### :rocket: Enhancement
+
+- [#269](https://github.com/storefront-x/storefront-x/pull/269) Add Sentry integration ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#246](https://github.com/storefront-x/storefront-x/pull/246) Improve out of stock visualization ([@kubo12312](https://github.com/kubo12312))
+
+#### :memo: Documentation
+
+- [#268](https://github.com/storefront-x/storefront-x/pull/268) Add 'Why not' chapter do documentation ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 3
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.6.0 (2023-01-16)
 
 #### :boom: Breaking Change
