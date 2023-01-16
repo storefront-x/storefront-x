@@ -6,14 +6,14 @@ Module for e-commerce catalog (products and categories). Requires corresponding 
 
 ## `useProduct` composable
 
-Wraps data returned by the `ToProduct` mapper with business logic for displaying products. Is used by [`ProductProvider`](#productprovider-provider).
+Wraps data returned by the `ToProduct` mapper with business logic for displaying products. It is used by [`ProductProvider`](#productprovider-provider).
 
 :::tip
 Override/extend this composable to add functionality to products.
 :::
 
 :::tip
-Mutating functionality (adding to cart, adding to favorites, ...) should be in separate composables/services.
+Mutating functionality (adding to cart, adding to favorites, etc.) should be in separate composables/services.
 :::
 
 ## `injectProduct` composable
@@ -66,19 +66,19 @@ const product = injectProduct()
 
 ## `useGetProductById` service
 
-Service for fetching product by its ID, used for example for product detail.
+Service for fetching product by its ID, used, for example, for product detail.
 
 ## `useGetCategoryById` service
 
-Service for fetching category by its ID. used for example for category detail.
+Service for fetching category by its ID, used, for example, for category detail.
 
 ## `useGetSearchSuggestions` service
 
-Service for fetching search suggestions when customer is typing in search bar.
+Service for fetching search suggestions when customer is typing into search bar.
 
 ## `useGetNavigationMenu` service
 
-Service for fetching navigation menu made from categories which can be used as simple menu instead of complex mega-menu.
+Service for fetching navigation menu, made from categories, which can be used as a simple menu, instead of a complex mega-menu.
 
 :::tip
 This service should be only called inside `serverInit` store action.
@@ -86,7 +86,7 @@ This service should be only called inside `serverInit` store action.
 
 ## `CATALOG_PAGE_SIZE` config
 
-Config value which controls how many products per page to display. If there are more products than specified, pagination appears.
+Config value, which controls how many products per page to display. If there are more products than specified, pagination appears.
 
 ```ts
 // config/CATALOG_PAGE_SIZE.ts

@@ -8,6 +8,14 @@ test('with vue', async () => {
       '@storefront-x/vue',
       '@storefront-x/google-tag-manager',
       '@storefront-x/google-tag-manager-partytown',
+      [
+        'my-module',
+        {
+          config: {
+            'GOOGLE_TAG_MANAGER_ID.ts': `export default 'id'`,
+          },
+        },
+      ],
     ],
   })
 })

@@ -2,7 +2,7 @@
 
 > `@storefront-x/multicurrency`
 
-Module enabling switching between currencies. It uses `SfxCurrencySwitcher` component to switch between currencies which are sourced from the `useMulticurrencyStore` store. Requires corresponding integration module (e.g. `@storefront-x/multicurrency-shopware`).
+Module enables switching between currencies. It uses `SfxCurrencySwitcher` component to switch between currencies, which are sourced from the `useMulticurrencyStore` store. Requires corresponding integration module (e.g. `@storefront-x/multicurrency-shopware`).
 
 ## Requirements
 
@@ -40,4 +40,4 @@ import SfxCurrencySwitcher from '#ioc/components/SfxCurrencySwitcher'
 
 ## `useMulticurrencyStore` store
 
-Store which is used as data source for the `SfxCurrencySwitcher` component.
+Store, which is used as data source for the `SfxCurrencySwitcher` component.

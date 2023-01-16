@@ -19,6 +19,8 @@ export default class Dev extends Core {
 
     const viteDevServer = await vite.createServer(viteConfig)
 
+    await this._loadServerStartup(viteDevServer)
+
     const server = express()
 
     server.disable('x-powered-by')
@@ -78,6 +80,12 @@ export default class Dev extends Core {
     })
 
     return server
+  }
+
+  async _loadServerStartup(viteDevServer) {
+    await viteDevServer.ssrLoadModule('/server/startup.ts', {
+      fixStacktrace: true,
+    })
   }
 
   /**

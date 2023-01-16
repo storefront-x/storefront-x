@@ -2,7 +2,7 @@
 
 > `@storefront-x/graphql`
 
-Storefront X contains powerful builder for GraphQL queries, mutations & fragments. Its syntax is similar to GraphQL text files but has few additions/changes due to limitations of JavaScript.
+Storefront X contains powerful builder for GraphQL queries, mutations & fragments. Its syntax is similar to GraphQL text files, but has few additions/changes due to limitations of JavaScript.
 
 All graphql files are in the `graphql/` directory. Queries, mutations and fragments should be in `graphql/queries/`, `graphql/mutations/` and `graphql/fragments/` subdirectories.
 
@@ -10,7 +10,7 @@ All graphql files are in the `graphql/` directory. Queries, mutations and fragme
 
 > GraphQL documentation about fields [here](https://graphql.org/learn/queries/#fields).
 
-Lets imagine simples GraphQL query:
+Let's imagine simples GraphQL query:
 
 ```graphql
 query {
@@ -22,7 +22,7 @@ query {
 }
 ```
 
-In Storefront X GraphQL builder it is written like this:
+In Storefront X GraphQL builder is written like this:
 
 ```javascript
 import query from '#ioc/graphql/query'
@@ -61,7 +61,7 @@ export default () =>
 
 > GraphQL documentation about arguments [here](https://graphql.org/learn/queries/#arguments).
 
-GraphQL supports arguments which can be used for sorting, searching, filtering, pagination, ... Arguments in GraphQL are added in parentheses like this:
+GraphQL supports arguments which can be used for sorting, searching, filtering, pagination, etc. Arguments in GraphQL are added in parentheses like this:
 
 ```graphql
 query {
@@ -99,7 +99,7 @@ export default () =>
 
 > GraphQL documentation about variables [here](https://graphql.org/learn/queries/#variables).
 
-Generally for GraphQL queries to be useful, they have to be configurable during runtime. This is done using variables, which are first defined in the query and during runtime, specific values can be passed in. Variables are most commonly used in addition with arguments.
+Generally for GraphQL queries to be useful, they have to be configurable during runtime. This is done using variables, which are first defined in the query, and during runtime, specific values can be passed in. Variables are most commonly used in addition with arguments.
 
 Here is an example of GraphQL query with some variables:
 
@@ -141,7 +141,7 @@ export default () =>
     })
 ```
 
-Variables have to start with the dollar sign because they are directly translated to GraphQL query.
+Variables have to start with the dollar sign, because they are directly translated to GraphQL query.
 
 Later, when we know concrete values we want to assign to variables, we use `.with()` method to bind them.
 
@@ -267,7 +267,7 @@ query {
 }
 ```
 
-To achieve this in Storefront X GraphQL build we just need to wrap the fragment in a `fragment` function call. First argument is fragment identifier and second in type upon which it operates.
+To achieve this in Storefront X GraphQL build we just need to wrap the fragment in a `fragment` function call. First argument is fragment identifier and second is type upon which it operates.
 
 ```javascript
 import query from '#ioc/graphql/query'
@@ -324,7 +324,7 @@ export default () =>
 
 ## Executing queries/mutations
 
-The GraphQL builder contains few methods that can help us build the final GraphQL request.
+The GraphQL builder contains few methods, that can help us build the final GraphQL request.
 
 ```typescript
 import objectToQuery from '#ioc/utils/url/objectToQuery'
@@ -357,7 +357,7 @@ const isCacheable = products.isCacheable()
 
 ## Caching
 
-By default, GQL queries are cached. Mutations are never cached. This should be OK for 80% of the cases. But sometimes we want to sacrifice speed for having query results to be 100% up to date. We can do this using the `.cantBeCached()` method which will make the query use POST HTTP method which is not cached.
+By default, GQL queries are cached. Mutations are never cached. This should be OK for 80% of the cases. But sometimes, we want to sacrifice speed for having query results to be 100% up to date. We can do this using the `.cantBeCached()` method, which will make the query using POST HTTP method, which is not cached.
 
 ```javascript
 import query from '#ioc/graphql/query'

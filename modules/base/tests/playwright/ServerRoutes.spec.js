@@ -51,7 +51,7 @@ test('request on different path doesnt invoke server route', async ({ page }) =>
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello, World!')
+      await expect(page.locator('h1')).toContainText('Hello, World!')
     },
   )
 })

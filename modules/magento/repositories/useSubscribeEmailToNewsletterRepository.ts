@@ -7,23 +7,14 @@ export default () => {
   return async (
     email: string,
   ): Promise<{
-    ok: boolean
-    statusText: string
+    status: string
   }> => {
-    try {
-      const {
-        data: { subscribeEmailToNewsletter: response },
-      } = await magento.graphql(SubscribeEmailToNewsletter().with({ email }))
+    const {
+      data: { subscribeEmailToNewsletter: response },
+    } = await magento.graphql(SubscribeEmailToNewsletter().with({ email }))
 
-      return {
-        ok: true,
-        statusText: response.status,
-      }
-    } catch (e: any) {
-      return {
-        ok: false,
-        statusText: e.message,
-      }
+    return {
+      status: response.status,
     }
   }
 }
