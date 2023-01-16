@@ -3,12 +3,11 @@ import useCustomerMagentoStore from '#ioc/stores/useCustomerMagentoStore'
 export default () => {
   const customerMagento = useCustomerMagentoStore()
 
-  return (headers: Record<string, string>): Record<string, string> => {
+  return (request: Request) => {
     const customerId = customerMagento.customerId
 
-    return {
-      ...headers,
-      ...(customerId && { Authorization: `Bearer ${customerId}` }),
+    if (customerId) {
+      request.headers.set('Authorization', `Bearer ${customerId}`)
     }
   }
 }

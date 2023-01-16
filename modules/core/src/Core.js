@@ -3,16 +3,12 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import * as vite from 'vite'
-import fetch from 'node-fetch'
 import consola from 'consola'
 import Module from './Module.js'
 
 /**
  * @typedef {import('@storefront-x/core').Concept} Concept
  */
-
-// Node.js runtime doesn't have fetch method so we polyfill it
-global.fetch = fetch
 
 const logger = consola.withTag('core')
 

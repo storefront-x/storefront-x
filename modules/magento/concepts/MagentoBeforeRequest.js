@@ -2,9 +2,9 @@
 
 import { GeneratingConcept } from '@storefront-x/core'
 
-export default class MagentoPostResponseHandlers extends GeneratingConcept {
+export default class MagentoBeforeRequest extends GeneratingConcept {
   get directory() {
-    return 'magento/postResponseHandlers'
+    return 'magento/beforeRequest'
   }
 
   get supportsClientServer() {

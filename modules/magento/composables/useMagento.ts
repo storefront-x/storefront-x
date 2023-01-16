@@ -8,9 +8,10 @@ import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 import MagentoError from '#ioc/errors/MagentoError'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import errorHandlers from '~/.sfx/magento/errorHandlers'
-import requestHeaders from '~/.sfx/magento/requestHeaders'
-import postResponseHandlersClient from '~/.sfx/magento/postResponseHandlers.client'
-import postResponseHandlersServer from '~/.sfx/magento/postResponseHandlers.server'
+import beforeRequestClient from '~/.sfx/magento/beforeRequest.client'
+import beforeRequestServer from '~/.sfx/magento/beforeRequest.server'
+import afterResponseClient from '~/.sfx/magento/afterResponse.client'
+import afterResponseServer from '~/.sfx/magento/afterResponse.server'
 
 interface Options {
   headers?: object
@@ -23,29 +24,33 @@ export default () => {
   const storeStore = useStoreStore()
   const currentLocale = useCurrentLocale()
   const bindedErrorHandlers = use(errorHandlers)
-  const bindedRequestHeaders = use(requestHeaders)
-  const bindedPostResponseHandlers = use(IS_CLIENT ? postResponseHandlersClient : postResponseHandlersServer)
+  const bindedBeforeRequest = use(IS_CLIENT ? beforeRequestClient : beforeRequestServer)
+  const bindedAfterResponse = use(IS_CLIENT ? afterResponseClient : afterResponseServer)
 
   const headers = () => {
     const store = currentLocale.value.magentoStore
     const selectedCurrencyCode = storeStore.currency?.code ?? ''
 
-    return bindedRequestHeaders.reduce((h, t) => t(h), {
+    return {
       'Content-Type': 'application/json',
       ...(store && { Store: store }),
       ...(selectedCurrencyCode && { 'Content-Currency': selectedCurrencyCode }),
-    })
+    }
   }
 
   const graphql = async (gql: any, opts: Options = {}) => {
     const query = gql.toString()
     const variables = gql.getVariables()
 
-    const _fetch = async (input: RequestInfo, init: RequestInit) => {
-      const response = await fetch(input, init)
+    const _fetch = async (request: Request) => {
+      for (const beforeRequest of bindedBeforeRequest) {
+        await beforeRequest(request)
+      }
 
-      for (const postResponseHandler of bindedPostResponseHandlers) {
-        await postResponseHandler(response)
+      const response = await fetch(request)
+
+      for (const afterResponse of bindedAfterResponse) {
+        await afterResponse(response, request)
       }
 
       if (response.headers.get('content-type') !== 'application/json') {
@@ -77,21 +82,25 @@ export default () => {
         variables: isNonEmptyObject(variables) ? variables : undefined,
       })
 
-      return await _fetch(`${URL + MAGENTO_GRAPHQL_ENDPOINT}?${body}`, {
+      const request = new Request(`${URL}${MAGENTO_GRAPHQL_ENDPOINT}?${body}`, {
         method: 'GET',
         headers: { ...headers(), ...opts.headers },
       })
+
+      return await _fetch(request)
     } else {
       const body = JSON.stringify({
         query,
         variables,
       })
 
-      return await _fetch(URL + MAGENTO_GRAPHQL_ENDPOINT, {
+      const request = new Request(`${URL}${MAGENTO_GRAPHQL_ENDPOINT}`, {
         method: 'POST',
         headers: { ...headers(), ...opts.headers },
         body,
       })
+
+      return await _fetch(request)
     }
   }
 
