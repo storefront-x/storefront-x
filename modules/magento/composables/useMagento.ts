@@ -7,7 +7,7 @@ import useStoreStore from '#ioc/stores/useStoreStore'
 import useCurrentLocale from '#ioc/composables/useCurrentLocale'
 import MagentoError from '#ioc/errors/MagentoError'
 import errorHandlers from '~/.sfx/magento/errorHandlers'
-import useCustomerMagentoStore from '#ioc/stores/useCustomerMagentoStore'
+import requestHeaders from '~/.sfx/magento/requestHeaders'
 
 interface Options {
   headers?: object
@@ -18,21 +18,19 @@ const URL = IS_SERVER ? MAGENTO_URL : '/_magento'
 
 export default () => {
   const storeStore = useStoreStore()
-  const customerMagento = useCustomerMagentoStore()
   const currentLocale = useCurrentLocale()
   const bindedErrorHandlers = Object.values(errorHandlers).map((e) => e())
+  const bindedRequestHeaders = Object.values(requestHeaders).map((h) => h())
 
   const headers = () => {
     const store = currentLocale.value.magentoStore
-    const customerId = customerMagento.customerId
     const selectedCurrencyCode = storeStore.currency?.code ?? ''
 
-    return {
+    return bindedRequestHeaders.reduce((h, t) => t(h), {
       'Content-Type': 'application/json',
       ...(store && { Store: store }),
-      ...(customerId && { Authorization: `Bearer ${customerId}` }),
       ...(selectedCurrencyCode && { 'Content-Currency': selectedCurrencyCode }),
-    }
+    })
   }
 
   const graphql = async (gql: any, opts: Options = {}) => {
