@@ -6,36 +6,43 @@ Wrapper around the [Pinia](https://pinia.vuejs.org) library. Adds server -> clie
 
 ## `stores/` IoC concept
 
-Files exporting Pinia stores. These stores can be imported via IoC and are enhanced by the special `serverInit` action, that is executed in the beginning of every server request.
+Files exporting Pinia stores. These stores can be imported via IoC.
 
-### `serverInit`
+### `serverInit` & `clientInit`
 
-All `serverInit` actions in all stores are executed in parallel, so they are great fit for fetching global data (customer, cart, etc.). It's a good idea to guard them with `IS_SERVER` config to improve tree-shaking.
+Pinia stores in SFX support something called `serverInit` and `clientInit`. They are special files exporting a function which runs during server/client initialization and are very useful for initialization of store data. To create file with this special action, create a file containing `.serverInit` or `.clientInit` suffix.
+
+All `serverInit` & `clientInit` actions in all stores are executed in parallel, so they are great fit for fetching global data (customer, cart, etc.). In addition, `serverInit` actions are never shipped to the client, thus decreasing the bundle size.
+
+These actions do not have any real relation to their corresponding stores. So technically, you can import/use/modify any store in them.
 
 ### Example
 
 ```ts
 // stores/useAwesomeStore.ts
 
-import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('awesome', {
   state: () => ({
     title: '',
   }),
-
-  actions: {
-    async serverInit() {
-      if (IS_CLIENT) return
-
-      const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-      const todo = await response.json()
-
-      this.$patch({ title: todo.title })
-    },
-  },
 })
+```
+
+```ts
+// stores/useAwesomeStore.serverInit.ts
+
+import useAwesomeStore from '#ioc/stores/useAwesomeStore'
+
+export default async () => {
+  const awesomeStore = useAwesomeStore()
+
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+  const todo = await response.json()
+
+  awesomeStore.$patch({ title: todo.title })
+}
 ```
 
 ```vue
