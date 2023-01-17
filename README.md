@@ -13,3 +13,22 @@ Modern e-commerce platform for building performant PWAs with server-side renderi
 ## Contributing
 
 See [Contributing Guide](https://docs.storefrontx.io/contributing.html).
+
+
+## Local install
+
+1. yarn install
+
+2. add  
+```secure: false,``` 
+to
+modules/magento/server/routes/_magento.ts:11
+
+3. Set magento BE URL in modules/demo-magento/config/MAGENTO_URL.ts:1
+``` export default 'https://b2b-cz-master-commerce-core.magexo.cloud/' ```
+
+4. Check modules/demo-magento/config/VUE_I18N_LOCALES.ts:3 with proper store codes
+
+5. yarn build --config storefront-x.magento.config.js
+6. yarn dev --config  storefront-x.magento.config.js
+7. yarn serve

@@ -8,4 +8,5 @@ export default createProxyMiddleware({
     '/_magento': '',
   },
   logLevel: process.env.NODE_ENV === 'test' ? 'silent' : undefined,
+  secure: false,
 })
