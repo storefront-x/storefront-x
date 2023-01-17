@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/vue",
-  "version": "1.5.1",
+  "version": "1.7.0",
   "license": "MIT",
   "type": "module",
   "dependencies": {

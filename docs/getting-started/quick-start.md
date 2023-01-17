@@ -4,7 +4,7 @@ In this section, we will introduce, how to scaffold a Storefront X application o
 
 ## Requirements
 
-- [Node](https://nodejs.org/en/) v16+
+- [Node](https://nodejs.org/en/) v18+
 
 ## Creating your first Storefront X project
 
@@ -25,9 +25,9 @@ This command will install and execute `create storefront-x`, the official Storef
 ```
 ? Target directory » storefront-x-app
 >   Blank application
-    Shopware integration
+    Magento integration
     Magento integration with additional modules (blog, brands, ...)
-    Magento Venia integration (experimental)
+    Shopware integration
 
 Scaffolding project in ./<your-project-name>...
 

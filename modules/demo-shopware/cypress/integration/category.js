@@ -1,45 +1,39 @@
-import Base from '~/cypress/support/pageObjects/Base'
-import Category from '~/cypress/support/pageObjects/Category'
-import Listing from '~/cypress/support/pageObjects/Listing'
+import visitCategory from '~/cypress/support/pageObjects/category/visitCategory'
+import continueShopping from '~/cypress/support/pageObjects/base/continueShopping'
+import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
+import getCategoryTitle from '~/cypress/support/pageObjects/category/getCategoryTitle'
+import sortByPrice from '~/cypress/support/pageObjects/listing/sortByPrice'
+import filter from '~/cypress/support/pageObjects/listing/filter'
+import getFirstAddToCart from '~/cypress/support/pageObjects/listing/getFirstAddToCart'
+
+let categoryName
 
 describe('Category', () => {
-  /** @type {Base} */
-  let base
-
-  /** @type {Category} */
-  let category
-
-  /** @type {Listing} */
-  let listing
-
   beforeEach(() => {
-    base = new Base()
-    category = new Category()
-    listing = new Listing()
-
-    category.visit('Office')
+    categoryName = 'Office'
+    visitCategory(categoryName)
   })
 
   it('contains category title', () => {
-    category.getTitle().will('include.text', () => category.name)
+    getCategoryTitle().will('include.text', () => categoryName)
   })
 
   it('can be sorted by prices in ascending order', () => {
-    listing.sortByPrice('ASC')
+    sortByPrice('ASC')
   })
 
   it('can be sorted by prices in descending order', () => {
-    listing.sortByPrice('DESC')
+    sortByPrice('DESC')
   })
 
   it('can be filtered', () => {
-    listing.filter()
+    filter()
   })
 
   it('allows adding simple products from category detail', () => {
-    listing.getFirstAddToCart({ product: 'simple' }).click().waitForSfx()
-    base.continueShopping()
+    getFirstAddToCart({ product: 'simple' }).click().waitForSfx()
+    continueShopping()
 
-    base.expectMicrocartQuantity(1)
+    expectMicrocartQuantity(1)
   })
 })
