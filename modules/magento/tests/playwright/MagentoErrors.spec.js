@@ -55,9 +55,8 @@ test('magento error handling is working', async ({ page }) => {
               `,
             },
             stores: {
-              'useMagentoStore.ts': `
-                import { defineStore } from 'pinia'
-                export default defineStore('magentoStore', {});
+              'useMagentoStore.serverInit.ts': `
+                export default () => () => {};
               `,
             },
           },
@@ -150,9 +149,8 @@ test('magento error messages translation is working', async ({ page }) => {
               },
             },
             stores: {
-              'useMagentoStore.ts': `
-                import { defineStore } from 'pinia'
-                export default defineStore('magentoStore', {});
+              'useMagentoStore.serverInit.ts': `
+                export default () => () => {}
               `,
             },
           },
