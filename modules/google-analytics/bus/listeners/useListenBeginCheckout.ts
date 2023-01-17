@@ -13,8 +13,6 @@ export default () => {
     }
 
     for (const item of products) {
-      const productBrand = item.product.attributes.find((atr) => atr.code === 'brand')
-
       items.push({
         item_id: item.product.sku,
         item_name: item.product.name,
@@ -23,7 +21,7 @@ export default () => {
           item.product.finalPrice?.value !== item.product.regularPrice?.value
             ? (+item.product.regularPrice.value - +item.product.finalPrice.value) / PRICE_OFFSET
             : 0,
-        item_brand: productBrand?.valueLabel ?? '',
+        item_brand: item.product.brand ?? '',
         item_category: item.product.categories?.at(0)?.name ?? '',
         item_category2: item.product.categories?.at(1)?.name ?? '',
         item_category3: item.product.categories?.at(2)?.name ?? '',

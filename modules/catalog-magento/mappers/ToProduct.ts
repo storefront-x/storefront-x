@@ -8,6 +8,7 @@ import ToGroupedItem from '#ioc/mappers/ToGroupedItem'
 
 export default (data: any) => ({
   __typename: data.__typename ?? '',
+  brand: (data.brand ?? '') as string,
   id: (data.id ?? 0) as number,
   sku: (data.sku ?? '') as string,
   name: (data.name ?? '') as string,

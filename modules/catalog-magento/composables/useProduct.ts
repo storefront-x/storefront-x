@@ -13,6 +13,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const options = ref({} as string[])
 
+  const brand = computed(() => product.value.brand)
+
   const productType = computed(() => product.value.__typename)
 
   const id = computed(() => product.value.id)
@@ -116,6 +118,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     id,
     sku,
     name,
+    brand,
     categories,
     urlKey,
     urlPath,

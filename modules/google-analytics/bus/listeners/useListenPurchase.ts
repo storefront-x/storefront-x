@@ -1,8 +1,8 @@
-import BeginCheckout from '#ioc/bus/events/BeginCheckout'
+import Purchase from '#ioc/bus/events/Purchase'
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 
 export default () => {
-  return ({ products, discounts, subTotal: { currency, value }, coupons }: BeginCheckout) => {
+  return ({ products, discounts, subTotal: { currency, value }, coupons }: Purchase) => {
     const items = []
     let totalDiscount = 0
 
@@ -32,17 +32,13 @@ export default () => {
       })
     }
 
-    dataLayer.push({ ecommerce: null })
-    dataLayer.push({
-      event: 'begin_checkout',
-      ecommerce: {
-        currency,
-        value: (value - totalDiscount) / PRICE_OFFSET,
-        items,
-        coupon: coupons.length ? coupons[0].code : '',
-      },
+    gtag('event', 'purchase', {
+      currency,
+      value: (value - totalDiscount) / PRICE_OFFSET,
+      items,
+      coupon: coupons.length ? coupons[0].code : '',
     })
 
-    console.log('Tag Manager (begin checkout) emit')
+    console.log('Google Tag (purchase) emit')
   }
 }
