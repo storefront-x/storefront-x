@@ -52,7 +52,7 @@
       />
     </div>
     <AddToWishlist class="absolute top-3 right-4" :fill-on-hover="true" @click.stop />
-    <AddProductToComparison class="absolute top-3 right-12" @click.stop />
+    <AddProductToComparison class="absolute top-3 right-12" :fill-on-hover="true" @click.stop />
     <div class="absolute top-2 left-0 pointer-events-none gap-2 p-3 space-y-1">
       <ProductLabel v-for="(label, i) in product.labels" :key="i" :label="label" />
     </div>

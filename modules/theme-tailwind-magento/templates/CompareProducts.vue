@@ -1,32 +1,25 @@
 <template>
-  <Container class="my-8 md:my-10 overflow-x-auto">
-    <Heading class="mb-12" :level="1">{{ t('Compare products') }}</Heading>
-    <div class="max-w-full">
+  <Container class="my-8 md:my-10 sm:mx-2 xl:mx-auto">
+    <Heading :level="1">{{ t('Compare products') }}</Heading>
+    <div class="mt-12 md:overflow-x-auto overflow-x-scroll">
       <table v-if="compareProducts.items.length">
-        <tr>
+        <tr class="border-b">
           <td></td>
-          <td v-for="(item, index) in compareProducts.items" :key="item.product.id" class="border-r border-b">
+          <td v-for="(item, index) in compareProducts.items" :key="item.product.id" class="border-l">
             <ProductProvider :product="item.product">
-              <ProductTile class="border-none w-96" :preload-image="index === 0" :index="index" />
+              <ProductTile class="border-none w-80" :preload-image="index === 0" :index="index" />
             </ProductProvider>
           </td>
         </tr>
-        <tr v-for="(attribute, index) in compareProducts.attributes" :key="index">
-          <td
-            class="border-r align-top p-4 font-medium"
-            :class="index === compareProducts.attributes.length - 1 || 'border-b'"
-          >
+        <tr
+          v-for="(attribute, index) in compareProducts.attributes"
+          :key="index"
+          :class="index === compareProducts.attributes.length - 1 || 'border-b'"
+        >
+          <td class="align-top p-4 font-medium">
             {{ attribute.label }}
           </td>
-          <td
-            v-for="(item, indexAttr) in compareProducts.items"
-            :key="indexAttr"
-            class="align-top p-4"
-            :class="[
-              indexAttr === compareProducts.items.length - 1 || 'border-r',
-              index === compareProducts.attributes.length - 1 || 'border-b',
-            ]"
-          >
+          <td v-for="(item, indexAttr) in compareProducts.items" :key="indexAttr" class="align-top p-4 border-l w-80">
             <span v-html="item.attributes[index].value"></span>
           </td>
         </tr>

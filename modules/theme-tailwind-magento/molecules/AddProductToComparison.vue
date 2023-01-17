@@ -9,7 +9,7 @@
     <span class="sr-only">
       {{ t('compare') }}
     </span>
-    <OutlineScale class="ml-2 mr-1" :fill="isCompared ? 'currentColor' : 'none'" />
+    <OutlineScale class="ml-2 mr-1" :class="outlineClasses" :fill="isCompared ? 'currentColor' : 'none'" />
     <span class="ml-1">
       {{ title }}
     </span>
@@ -25,16 +25,17 @@ import injectProduct from '#ioc/composables/injectProduct'
 import useAddProductToComparison from '#ioc/services/useAddProductToComparison'
 import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
+import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useRemoveProductFromComparison from '#ioc/services/useRemoveProductFromComparison'
 
-defineProps({
+const props = defineProps({
+  fillOnHover: {
+    default: false,
+    type: Boolean,
+  },
   title: {
     type: String,
     default: '',
-  },
-  blackOnHover: {
-    type: Boolean,
-    default: false,
   },
 })
 
@@ -42,6 +43,7 @@ const { t } = useI18n()
 const addProductToComparison = useAddProductToComparison()
 const removeComparedProducts = useRemoveProductFromComparison()
 const showSuccessNotification = useShowSuccessNotification()
+const showErrorNotification = useShowErrorNotification()
 const productComparisonMagentoStore = useProductComparisonMagentoStore()
 const product = injectProduct()
 
@@ -50,11 +52,31 @@ const isCompared = computed(() => {
     (item: ReturnType<typeof ToCompareItem>) => item.product.sku === product.sku,
   )
 })
+const isComparisonListFull = computed(() => {
+  return productComparisonMagentoStore.items.length >= 4
+})
+
+const outlineClasses = computed(() => {
+  return props.fillOnHover
+    ? [
+        'lg:hover:stroke-primary-500',
+        '!w-4',
+        '!h-4',
+        'md:!w-6',
+        'md:!h-6',
+        'transition',
+        'duration-150',
+        'ease-in-out',
+        'lg:hover:scale-125',
+      ]
+    : []
+})
 
 const classes = computed(() => {
   return {
-    'text-gray-400 hover:text-gray-800': !isCompared.value,
-    'text-gray-700 hover:text-gray-800': isCompared.value,
+    'fill-on-hover': props.fillOnHover,
+    'text-primary-500 hover:text-primary-800': isCompared.value,
+    'hover:bg-gray-100': !props.fillOnHover,
   }
 })
 
@@ -62,6 +84,10 @@ const ResolveAddProductToComparison = async () => {
   if (isCompared.value) {
     await removeComparedProducts(product)
     showSuccessNotification('', t('productRemoved'))
+    return
+  }
+  if (isComparisonListFull.value) {
+    showErrorNotification(t('tooManyProducts'))
     return
   }
   await addProductToComparison(product)
@@ -74,8 +100,10 @@ en-US:
   compare: Compare products
   productRemoved: Product has been successfully removed from comparison.
   productAdded: Product has been successfully added.
+  tooManyProducts: You have too many products in comparison. Please remove some.
 cs-CZ:
   compare: Srovnat produkty
   productRemoved: Produkt byl úspěšně odebrán ze srovnání.
   productAdded: Produkt byl úspěšně přidán.
+  tooManyProducts: Máte příliš mnoho produktů ve srovnání, prosím odeberte nějaký.
 </i18n>

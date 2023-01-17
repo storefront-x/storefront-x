@@ -120,6 +120,7 @@
     <div class="flex items-center justify-end px-4">
       <MicroAccount class="lg:flex" />
       <MicroWishlist class="lg:flex" />
+      <MicroCompareProducts class="lg:flex" />
     </div>
   </Drawer>
 </template>
@@ -130,6 +131,7 @@ import mapState from '#ioc/utils/vuePinia/mapState'
 import Drawer from '#ioc/atoms/Drawer'
 import MicroAccount from '#ioc/molecules/MicroAccount'
 import MicroWishlist from '#ioc/molecules/MicroWishlist'
+import MicroCompareProducts from '#ioc/molecules/MicroCompareProducts'
 import Accordion from '#ioc/atoms/Accordion'
 import Link from '#ioc/atoms/Link'
 import CONTACT_EMAIL from '#ioc/config/CONTACT_EMAIL'
@@ -149,6 +151,7 @@ export default defineComponent({
     Drawer,
     MicroAccount,
     MicroWishlist,
+    MicroCompareProducts,
     Link,
     SfxStoreSwitcher,
     Dropdown,
