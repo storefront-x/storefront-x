@@ -1,16 +1,16 @@
 import useCustomerStore from '#ioc/stores/useCustomerStore'
 import useGetCustomer from '#ioc/services/useGetCustomer'
 import useCustomerMagentoStore from '#ioc/stores/useCustomerMagentoStore'
-import useCustomerTokenIdent from '#ioc/composables/useCustomerTokenIdent'
+import useCustomerToken from '#ioc/composables/useCustomerToken'
 
 export default () => {
   const customerStore = useCustomerStore()
   const customerMagentoStore = useCustomerMagentoStore()
   const getCustomer = useGetCustomer()
-  const customerTokenIdent = useCustomerTokenIdent()
+  const customerToken = useCustomerToken()
 
   return async () => {
-    const id = localStorage.getItem(customerTokenIdent)
+    const id = customerToken.get()
 
     customerMagentoStore.$patch({ customerId: id })
 

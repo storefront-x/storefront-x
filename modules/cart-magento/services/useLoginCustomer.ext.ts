@@ -1,15 +1,12 @@
-import useCartTokenIdent from '#ioc/composables/useCartTokenIdent'
+import useCartToken from '#ioc/composables/useCartToken'
 
-export default (useLoginCustomer: any) => {
-  const cartTokenIdent = useCartTokenIdent()
+export default (useLoginCustomer: any) => () => {
+  const cartToken = useCartToken()
+  const loginCustomer = useLoginCustomer()
 
-  return () => {
-    const loginCustomer = useLoginCustomer()
+  return async (...args: any) => {
+    await loginCustomer(...args)
 
-    return async (...args: any) => {
-      await loginCustomer(...args)
-
-      localStorage.removeItem(cartTokenIdent)
-    }
+    cartToken.remove()
   }
 }

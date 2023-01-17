@@ -1,16 +1,16 @@
 import useCartStore from '#ioc/stores/useCartStore'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
 import useGetCart from '#ioc/services/useGetCart'
-import useCartTokenIdent from '#ioc/composables/useCartTokenIdent'
+import useCartToken from '#ioc/composables/useCartToken'
 
 export default () => {
   const cartStore = useCartStore()
   const cartMagentoStore = useCartMagentoStore()
   const getCart = useGetCart()
-  const cartTokenIdent = useCartTokenIdent()
+  const cartToken = useCartToken()
 
   return async () => {
-    const id = localStorage.getItem(cartTokenIdent)
+    const id = cartToken.get()
 
     if (!id) return
 

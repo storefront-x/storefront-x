@@ -1,4 +1,4 @@
-import useCustomerTokenIdent from '#ioc/composables/useCustomerTokenIdent'
+import useCustomerToken from '#ioc/composables/useCustomerToken'
 import CustomerNotAuthorized from '#ioc/errors/CustomerNotAuthorized'
 import useCartStore from '#ioc/stores/useCartStore'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
@@ -9,11 +9,11 @@ export default () => {
   const customerStore = useCustomerStore()
   const cartStore = useCartStore()
   const checkoutStore = useCheckoutStore()
-  const customerTokenIdent = useCustomerTokenIdent()
+  const customerToken = useCustomerToken()
 
   return async (error: any) => {
     if (isAuthorizationError(error)) {
-      localStorage.removeItem(customerTokenIdent)
+      customerToken.remove()
       customerStore.$patch({ customer: null })
       cartStore.$reset()
       checkoutStore.$reset()

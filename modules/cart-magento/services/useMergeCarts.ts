@@ -3,7 +3,7 @@ import useGetCustomerCartId from '#ioc/repositories/useGetCustomerCartIdReposito
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useMergeCartsRepository from '#ioc/repositories/useMergeCartsRepository'
 import useCartStore from '#ioc/stores/useCartStore'
-import useCartTokenIdent from '#ioc/composables/useCartTokenIdent'
+import useCartToken from '#ioc/composables/useCartToken'
 
 export default () => {
   const cartMagentoStore = useCartMagentoStore()
@@ -11,7 +11,7 @@ export default () => {
   const getOrCreateCartId = useGetOrCreateCartId()
   const mergeCarts = useMergeCartsRepository()
   const cartStore = useCartStore()
-  const cartTokenIdent = useCartTokenIdent()
+  const cartToken = useCartToken()
 
   return async () => {
     try {
@@ -23,11 +23,11 @@ export default () => {
       const { cart } = await mergeCarts(sourceCartId, destinationCartId)
       cartStore.$patch({ cart })
 
-      localStorage.setItem(cartTokenIdent, destinationCartId)
+      cartToken.set(destinationCartId)
       cartMagentoStore.$patch({ cartId: destinationCartId })
     } catch (error) {
       cartMagentoStore.$patch({ cartId: null })
-      localStorage.removeItem(cartTokenIdent)
+      cartToken.remove()
       console.warn(error)
     }
   }

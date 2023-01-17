@@ -3,7 +3,7 @@ import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCartStore from '#ioc/stores/useCartStore'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
-import useCartTokenIdent from '#ioc/composables/useCartTokenIdent'
+import useCartToken from '#ioc/composables/useCartToken'
 import { onUnmounted, ref } from 'vue'
 
 export default () => {
@@ -12,7 +12,7 @@ export default () => {
   const getOrCreateCartId = useGetOrCreateCartId()
   const placeOrderRepository = usePlaceOrderRepository()
   const cartMagentoStore = useCartMagentoStore()
-  const cartTokenIdent = useCartTokenIdent()
+  const cartToken = useCartToken()
 
   const isOrderPlaced = ref(false)
 
@@ -29,7 +29,7 @@ export default () => {
 
     const { order } = await placeOrderRepository(id)
 
-    localStorage.removeItem(cartTokenIdent)
+    cartToken.remove()
 
     isOrderPlaced.value = true
 

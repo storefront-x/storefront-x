@@ -1,11 +1,11 @@
-import useCartTokenIdent from '#ioc/composables/useCartTokenIdent'
+import useCartToken from '#ioc/composables/useCartToken'
 import useCreateEmptyCartRepository from '#ioc/repositories/useCreateEmptyCartRepository'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
 
 export default () => {
   const createEmptyCartRepository = useCreateEmptyCartRepository()
   const cartMagentoStore = useCartMagentoStore()
-  const cartTokenIdent = useCartTokenIdent()
+  const cartToken = useCartToken()
 
   return async (): Promise<{
     id: string
@@ -16,7 +16,7 @@ export default () => {
     {
       const { id } = await createEmptyCartRepository()
 
-      localStorage.setItem(cartTokenIdent, id)
+      cartToken.set(id)
 
       cartMagentoStore.$patch({ cartId: id })
 

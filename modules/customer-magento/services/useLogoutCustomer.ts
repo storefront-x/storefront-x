@@ -1,21 +1,21 @@
 import useLogoutCustomerRepository from '#ioc/repositories/useLogoutCustomerRepository'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
-import useCartTokenIdent from '#ioc/composables/useCartTokenIdent'
-import useCustomerTokenIdent from '#ioc/composables/useCustomerTokenIdent'
+import useCartToken from '#ioc/composables/useCartToken'
+import useCustomerToken from '#ioc/composables/useCustomerToken'
 
 export default () => {
   const localePath = useLocalePath()
   const logoutCustomerRepository = useLogoutCustomerRepository()
   const cartMagentoStore = useCartMagentoStore()
-  const cartTokenIdent = useCartTokenIdent()
-  const customerTokenIdent = useCustomerTokenIdent()
+  const cartToken = useCartToken()
+  const customerToken = useCustomerToken()
 
   return async () => {
     await logoutCustomerRepository()
 
-    localStorage.removeItem(cartTokenIdent)
-    localStorage.removeItem(customerTokenIdent)
+    cartToken.remove()
+    customerToken.remove()
 
     cartMagentoStore.$patch({ cartId: '' })
 

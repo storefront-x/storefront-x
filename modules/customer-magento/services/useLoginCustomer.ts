@@ -1,4 +1,4 @@
-import useCustomerTokenIdent from '#ioc/composables/useCustomerTokenIdent'
+import useCustomerToken from '#ioc/composables/useCustomerToken'
 import useLoginCustomerRepository from '#ioc/repositories/useLoginCustomerRepository'
 
 interface Options {
@@ -7,12 +7,12 @@ interface Options {
 
 export default () => {
   const loginCustomerRepository = useLoginCustomerRepository()
-  const customerTokenIdent = useCustomerTokenIdent()
+  const customerToken = useCustomerToken()
 
   return async (email: string, password: string, options: Options = {}) => {
     const { token } = await loginCustomerRepository(email, password)
 
-    localStorage.setItem(customerTokenIdent, token)
+    customerToken.set(token)
 
     if (options.redirect) {
       window.location.href = options.redirect
