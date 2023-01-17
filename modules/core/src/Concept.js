@@ -64,7 +64,9 @@ export default class Concept {
           if (this.recursive) {
             const files = await this.getFiles(res)
 
-            return files.map((file) => path.join(directory, dirent.name, file))
+            return files
+              .filter((file) => !this.ignoredFiles.test(file))
+              .map((file) => path.join(directory, dirent.name, file))
           } else {
             return []
           }
@@ -75,6 +77,10 @@ export default class Concept {
     )
 
     return files.flat().map((file) => file.replace(directory, '').replace(/\\/g, '/').replace(/^\//, ''))
+  }
+
+  get ignoredFiles() {
+    return /README\.md/
   }
 
   /**

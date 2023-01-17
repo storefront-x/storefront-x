@@ -17,6 +17,8 @@ export default class OverridingConcept extends WatchingConcept {
 
     for (const mod of this._mods) {
       for (const file of mod.files) {
+        if (this.ignoredFiles.test(file)) continue
+
         files[file] = {
           module: mod.module,
           file,

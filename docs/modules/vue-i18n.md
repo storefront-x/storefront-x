@@ -10,12 +10,13 @@ It also uses the [@intlify/unplugin-vue-i18n](https://www.npmjs.com/package/@int
 
 The `i18n/messages` concept allows us to add global translation messages. It contains files with names corresponding to the desired locale (`locale` field in `VUE_I18N_LOCALES`). These files default export object with translations.
 
-This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means that multiple `i18n/messages/en-US.json` files are merged together, instead of overridden.
+This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means, that multiple `i18n/messages/en-US.json` files are merged together, instead of overridden.
 
 ### Example
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
+
 import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
@@ -68,16 +69,17 @@ Try to avoid using global messages and instead use `<i18n>` blocks in Vue compon
 
 The `i18n/datetimes` concept allows us to add global datetime formats. It contains files with names corresponding to the desired locale (`locale` field in `VUE_I18N_LOCALES`). These files default export object with formats.
 
-This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means that multiple `i18n/datetimes/en-US.ts` files are merged together, instead of overridden. If you have same keys inside objects, later module key is used.
+This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means, that multiple `i18n/datetimes/en-US.ts` files are merged together, instead of overridden. If you have same keys inside objects, later module key is used.
 
 :::warning
-If you create new datetimes file with new language you must have default key inside exported object. There is a fallback on default key if you dont specify datetime format like "short" etc
+If you create new datetimes file with new language, you must have default key inside exported object. There is a fallback on default key, if you don't specify datetime format like "short", etc.
 :::
 
 ### Example
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
+
 import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
@@ -142,12 +144,13 @@ const { d } = useI18n()
 
 The `i18n/numbers` concept allows us to add global number formats. It contains files with names corresponding to the desired locale (`locale` field in `VUE_I18N_LOCALES`). These files default export object with formats.
 
-This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means that multiple `i18n/numbers/en-US.ts` files are merged together, instead of overridden. If you have same keys inside objects, later module key is used.
+This concept is not overriding on the file bases, but instead overriding on the key bases of objects inside the files. This means, that multiple `i18n/numbers/en-US.ts` files are merged together, instead of overridden. If you have same keys inside objects, later module key is used.
 
 ### Example
 
 ```ts
 // config/VUE_I18N_LOCALES.ts
+
 import Locale from '#ioc/types/vue-i18n/Locale'
 
 export default [
@@ -249,7 +252,7 @@ cs-CZ:
 
 ## `useLocalePath` composable
 
-Used to map route identifiers to concrete routes of the current locale. When the `@storefront-x/i18n` module is enabled, each route now contains locale identifier in it's name so the old route names no longer work.
+Used to map route identifiers to concrete routes of the current locale. When the `@storefront-x/i18n` module is enabled, each route now contains locale identifier in it's name, so the old route names no longer work.
 
 ### Example
 
@@ -267,7 +270,7 @@ const localePath = useLocalePath()
 
 ## Static vs dynamic pages
 
-When targeting the static pages (components found in the `pages/` directory), as a parameter, you can use either the route object like in the example above or string containing the name of the route like this.
+When targeting the static pages (components found in the `pages/` directory) as a parameter, you can use either the route object, like in the example above, or string containing the name of the route like this.
 
 ```typescript
 import useLocalePath from '#ioc/composables/useLocalePath'
@@ -279,7 +282,7 @@ localePath('blog') // pages/blog.vue
 localePath('account/addresses') // account/addresses.vue
 ```
 
-But if the pages is dynamic (resolved from the backend and handled by the `$404.vue` fallback page), use leading slash to indicate that it is an dynamic page.
+But if the pages is dynamic (resolved from the backend and handled by the `$404.vue` fallback page), use leading slash to indicate, that it is a dynamic page.
 
 ```typescript
 import useLocalePath from '#ioc/composables/useLocalePath'
@@ -333,9 +336,9 @@ console.log(currentLocale.value)
 
 Contains array of locales. Each locale has to contain these fields:
 
-- `name` Identifier of the locale. Used for switching locales.
-- `locale` Language. Used in `<i18n />` blocks.
-- `prefix` URL prefix that is added to every page.
+- `name` Identifier of the locale. Used for switching locales
+- `locale` Language. Used in `<i18n />` blocks
+- `prefix` URL prefix that is added to every page
 - `domain` Domain for the locale (optional)
 
 :::tip
@@ -385,12 +388,12 @@ export default [
 ```
 
 :::tip
-The `prefix` can either be set to simple `/` (no prefix in the URL) or can be combined with custom domain (prefix: '/cz', domain: 'my-shop.cz')
+The `prefix` can either be set to simple `/` (no prefix in the URL), or can be combined with custom domain (prefix: '/cz', domain: 'my-shop<area>.cz')
 :::
 
 ## `VUE_I18N_ROUTE_PATHS` config
 
-With this config, you can paths of pages.
+With this config, you can specify paths of pages.
 
 Keys of the exported object correspond with original page URLs you want to remap to different URLs. Keys in those object correspond with locales `name` field in the `VUE_I18N_LOCALES` and values with the new URL.
 
@@ -425,4 +428,4 @@ export default {
 }
 ```
 
-With this setup, the `pages/cart.vue` component will be available on the `/cart` URL in english, or on the `/cz/kosik` URL in czech.
+With this setup, the `pages/cart.vue` component will be available on the `/cart` URL in English, or on the `/cz/kosik` URL in Czech.

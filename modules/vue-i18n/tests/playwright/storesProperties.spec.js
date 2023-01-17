@@ -19,7 +19,6 @@ test('render store properties', async ({ page }) => {
                     name: 'en',
                     locale: 'en-US',
                     prefix: '/',
-                    flag: '/flags/1x1/us.svg',
                     magentoStore: 'b2c_en',
                   },
                   {
@@ -27,7 +26,6 @@ test('render store properties', async ({ page }) => {
                     name: 'cz',
                     locale: 'cs-CZ',
                     prefix: '/cz',
-                    flag: '/flags/1x1/cz.svg',
                     magentoStore: 'b2c_cz',
                   },
               ]
@@ -60,9 +58,9 @@ test('render store properties', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('<h1>English</h1>')
+      await expect(page.locator('h1')).toContainText('English')
       await page.locator('a').click()
-      await expect(await page.content()).toContain('<h1>Czech</h1>')
+      await expect(page.locator('h1')).toContainText('Czech')
     },
   )
 })

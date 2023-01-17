@@ -1,0 +1,12 @@
+{
+  "name": "@storefront-x/demo-px",
+  "version": "1.7.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "vite-plugin-pwa": "^0.13.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/google-analytics",
-  "version": "1.4.5",
+  "version": "1.7.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

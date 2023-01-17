@@ -6,17 +6,13 @@
 <script setup lang="ts">
 import NotFound from '#ioc/templates/NotFound'
 import useUrlResolver from '#ioc/services/useUrlResolver'
-
+import { useAttrs } from 'vue'
 import isArray from '#ioc/utils/isArray'
 
 const urlResover = useUrlResolver()
-const props = defineProps({
-  pathMatch: { type: null, default: null },
-})
+const attrs: any = useAttrs()
 
-const pathMatch = (isArray(props.pathMatch) && props.pathMatch.join('/')) || props.pathMatch
+const pathMatch = (isArray(attrs.pathMatch) && attrs.pathMatch.join('/')) || attrs.pathMatch
 
 const { id, component, relativeUrl } = await urlResover(pathMatch)
 </script>
-
-<style lang="scss" scoped></style>

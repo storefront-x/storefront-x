@@ -167,7 +167,7 @@ In Vue 3, mixins are no longer recommended and composables should be used instea
 Advanced concept!
 :::
 
-Files exporting async function which accepts freshly created instance of the Vue application. They can be used to extend or add global functionality (router, global store, ...) to the Vue application. Second argument is the application context.
+Files exporting async function, which accepts freshly created instance of the Vue application. They can be used to extend or add global functionality (router, global store, etc.) to the Vue application. Second argument is the application context.
 
 ## `vue/providers/` concept
 
@@ -175,7 +175,7 @@ Files exporting async function which accepts freshly created instance of the Vue
 Advanced concept!
 :::
 
-Global components wrapping the whole application. They can be used to provide global functionality or to fetch global data.
+Global components wrapping the whole application. They can be used to provide global functionality, or to fetch global data.
 
 ## `useAsyncData` composable
 
@@ -191,9 +191,9 @@ High level composable used for data fetching and transfer of data from server to
 `useAsyncData` returns reactive object containing these fields:
 
 - `data: Ref<T>` - Vue 3 ref containing data returned from the handler
-- `pending: Ref<boolean>` - Indicator whether the composable is fetching data.
-- `error: Ref<any>` - Contains error thrown by the handler.
-- `refresh: () => Promise<void>` - Function that can be used to re-fetch the data.
+- `pending: Ref<boolean>` - Indicator whether the composable is fetching data
+- `error: Ref<any>` - Vue 3 ref containing error thrown by the handler
+- `refresh: () => Promise<void>` - Function that can be used to re-fetch the data
 
 ### Example
 
@@ -218,7 +218,7 @@ const { data } = await useAsyncData('todo', async () => {
 Wrapper around the [`useCookies`](https://vueuse.org/integrations/usecookies/) composable from the [VueUse](https://vueuse.org) library.
 
 :::warning
-It is recomended to set cookie with path like this
+It is recomended to set cookie with path like this:
 
 ```javascript
 cookies.set('msg', 'Hello, World!', { path: '/' })
@@ -271,7 +271,7 @@ setResponseStatus(404)
 
 ## `hydrateWhenIdle` utils/hydration
 
-A function to wrap dynamically imported components to lazy hydrate then when the browser is idle. More about lazy hydration [here](/general/lazy-components)
+A function to wrap dynamically imported components to lazy hydrate then when the browser is idle. More about lazy hydration [here](/advanced/lazy-components)
 
 ### Example
 
@@ -288,7 +288,7 @@ const MyComponent = hydrateWhenIdle(() => import('#ioc/components/MyComponent'))
 
 ## `hydrateWhenVisible` utils/hydration
 
-A function to wrap dynamically imported components to lazy hydrate then when the component is visible in the browser window. More about lazy hydration [here](/general/lazy-components)
+A function to wrap dynamically imported components to lazy hydrate then when the component is visible in the browser window. More about lazy hydration [here](/advanced/lazy-components)
 
 ### Example
 
@@ -309,7 +309,7 @@ const MyComponent = hydrateWhenVisible(() => import('#ioc/components/MyComponent
 Advanced composable!
 :::
 
-Composable used to get the application context.
+Composable used for get the application context.
 
 ## `useState` composable
 
@@ -317,4 +317,4 @@ Composable used to get the application context.
 Advanced composable!
 :::
 
-Low-level composable used to transfer state from server to client.
+Low-level composable used for transfer state from server to client.

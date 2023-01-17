@@ -45,13 +45,44 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Guide',
+        text: 'Getting started',
         items: [
-          { text: 'Why Storefront X', link: '/guide/why-storefront-x' },
-          { text: 'Getting Started', link: '/guide/getting-started' },
-          { text: 'How it works', link: '/guide/how-it-works' },
-          { text: 'Cookbook', link: '/guide/cookbook' },
+          { text: 'Introduction', link: '/getting-started/introduction' },
+          { text: 'Quick start', link: '/getting-started/quick-start' },
+          { text: 'Simple TODO app', link: '/getting-started/simple-todo-app' },
+          { text: 'How it works', link: '/getting-started/how-it-works' },
           { text: 'Contributing', link: '/contributing' },
+        ],
+      },
+      {
+        text: 'Essentials',
+        items: [
+          { text: 'CLI', link: '/essentials/cli' },
+          { text: 'The .sfx directory', link: '/essentials/sfx' },
+          { text: 'Routing', link: '/essentials/routing' },
+          { text: 'FAQ', link: '/essentials/faq' },
+        ],
+      },
+      {
+        text: 'Advanced',
+        items: [
+          { text: 'Bootstrap', link: '/advanced/bootstrap' },
+          { text: 'Concepts', link: '/advanced/concepts' },
+          { text: 'PWA', link: '/advanced/pwa' },
+          { text: 'Dotenv', link: '/advanced/dotenv' },
+          { text: 'Lazy components', link: '/advanced/lazy-components' },
+          { text: 'Functionalities', link: '/advanced/functionalities' },
+          { text: 'Best practices', link: '/advanced/best-practices' },
+        ],
+      },
+      {
+        text: 'Cookbook',
+        items: [
+          { text: 'Create new module', link: '/cookbook/create-new-module' },
+          { text: 'Override component', link: '/cookbook/override-component' },
+          { text: 'Display data from backend', link: '/cookbook/display-data-from-backend' },
+          { text: 'IOC concept', link: '/cookbook/ioc-concept' },
+          { text: 'Generating concept', link: '/cookbook/generating-concept' },
         ],
       },
       {
@@ -59,22 +90,6 @@ export default defineConfig({
         items: [
           { text: 'Magento', link: '/integrations/magento' },
           { text: 'Shopware', link: '/integrations/shopware' },
-        ],
-      },
-      {
-        text: 'General',
-        items: [
-          { text: 'CLI', link: '/general/cli' },
-          { text: 'Bootstrap', link: '/general/bootstrap' },
-          { text: 'The .sfx directory', link: '/general/sfx' },
-          { text: 'Concepts', link: '/general/concepts' },
-          { text: 'PWA', link: '/general/pwa' },
-          { text: 'Dotenv', link: '/general/dotenv' },
-          { text: 'Lazy components', link: '/general/lazy-components' },
-          { text: 'Functionalities', link: '/general/functionalities' },
-          { text: 'Redirecting', link: '/general/redirecting' },
-          { text: 'Best practices', link: '/general/best-practices' },
-          { text: 'FAQ', link: '/general/faq' },
         ],
       },
       {
@@ -106,6 +121,7 @@ export default defineConfig({
           { text: 'NProgress', link: '/modules/nprogress' },
           { text: 'Atatus', link: '/modules/atatus' },
           { text: 'Basic Auth', link: '/modules/basic-auth' },
+          { text: 'Sentry', link: '/modules/sentry' },
         ],
       },
     ],
