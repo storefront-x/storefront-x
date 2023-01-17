@@ -20,7 +20,7 @@
             </thead>
             <tbody>
               <tr
-                v-for="attribute in attributeExists"
+                v-for="attribute in product.attributes"
                 :key="attribute?.code"
                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
               >
@@ -42,15 +42,10 @@
 <script setup lang="ts">
 import injectProduct from '#ioc/composables/injectProduct'
 import useI18n from '#ioc/composables/useI18n'
-import { computed } from 'vue'
 
 const { t } = useI18n()
 
 const product = injectProduct()
-
-const attributeExists = computed(() => {
-  return product.attributes.filter((item: any) => (item ? item : null))
-})
 </script>
 
 <i18n lang="yaml">
