@@ -1,12 +1,14 @@
 import useGetRobots from '#ioc/services/useGetRobots'
 import useRobotsStore from '#ioc/stores/useRobotsStore'
 
-export default async () => {
+export default () => {
   const robotsStore = useRobotsStore()
 
   const getRobots = useGetRobots()
 
-  const { content } = await getRobots()
+  return async () => {
+    const { content } = await getRobots()
 
-  robotsStore.$patch({ content })
+    robotsStore.$patch({ content })
+  }
 }

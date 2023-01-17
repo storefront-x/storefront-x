@@ -4,18 +4,20 @@ import useGetCurrencies from '#ioc/services/useGetCurrencies'
 import useMulticurrencyStore from '#ioc/stores/useMulticurrencyStore'
 import useStoreStore from '#ioc/stores/useStoreStore'
 
-export default async () => {
+export default () => {
   const cookies = useCookies()
   const storeStore = useStoreStore()
   const multicurrencyStore = useMulticurrencyStore()
   const getCurrencies = useGetCurrencies()
 
-  const code = cookies.get(MULTICURRENCY_COOKIE_NAME)
-  const { currencies } = await getCurrencies()
+  return async () => {
+    const code = cookies.get(MULTICURRENCY_COOKIE_NAME)
+    const { currencies } = await getCurrencies()
 
-  if (code) {
-    storeStore.$patch({ currency: { code } })
+    if (code) {
+      storeStore.$patch({ currency: { code } })
+    }
+
+    multicurrencyStore.$patch({ currencies })
   }
-
-  multicurrencyStore.$patch({ currencies })
 }

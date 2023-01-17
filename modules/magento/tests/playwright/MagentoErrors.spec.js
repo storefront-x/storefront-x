@@ -56,7 +56,7 @@ test('magento error handling is working', async ({ page }) => {
             },
             stores: {
               'useMagentoStore.serverInit.ts': `
-                export default () => {};
+                export default () => () => {};
               `,
             },
           },
@@ -150,7 +150,7 @@ test('magento error messages translation is working', async ({ page }) => {
             },
             stores: {
               'useMagentoStore.serverInit.ts': `
-                export default () => {}
+                export default () => () => {}
               `,
             },
           },

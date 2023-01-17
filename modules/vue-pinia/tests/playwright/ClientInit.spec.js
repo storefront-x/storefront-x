@@ -38,7 +38,9 @@ test('clientInit action', async ({ page }) => {
                 export default () => {
                   const mainStore = useMainStore()
 
-                  mainStore.$patch({ count: 1 })
+                  return () => {
+                    mainStore.$patch({ count: 1 })
+                  }
                 }
               `,
             },
@@ -88,12 +90,14 @@ test('async clientInit action', async ({ page }) => {
               `,
               'useMainStore.clientInit.ts': `
                 import useMainStore from '#ioc/stores/useMainStore'
-                export default async () => {
+                export default () => {
                   const mainStore = useMainStore()
 
-                  await new Promise((resolve) => setTimeout(resolve, 100))
+                  return async () => {
+                    await new Promise((resolve) => setTimeout(resolve, 100))
 
-                  mainStore.$patch({ count: 1 })
+                    mainStore.$patch({ count: 1 })
+                  }
                 }
               `,
             },

@@ -4,16 +4,18 @@ import useStoreStore from '#ioc/stores/useStoreStore'
 import useShopwareStore from '#ioc/stores/useShopwareStore'
 import SHOPWARE_TOKEN_COOKIE_NAME from '#ioc/config/SHOPWARE_TOKEN_COOKIE_NAME'
 
-export default async () => {
+export default () => {
   const cookies = useCookies()
   const storeStore = useStoreStore()
   const shopwareStore = useShopwareStore()
   const getContextRepository = useGetContextRepository()
 
-  const { token, currency } = await getContextRepository()
+  return async () => {
+    const { token, currency } = await getContextRepository()
 
-  shopwareStore.$patch({ token })
-  storeStore.$patch({ currency })
+    shopwareStore.$patch({ token })
+    storeStore.$patch({ currency })
 
-  cookies.set(SHOPWARE_TOKEN_COOKIE_NAME, token, { path: '/' })
+    cookies.set(SHOPWARE_TOKEN_COOKIE_NAME, token, { path: '/' })
+  }
 }

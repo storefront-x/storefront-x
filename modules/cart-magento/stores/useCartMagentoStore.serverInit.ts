@@ -4,18 +4,20 @@ import useGetCart from '#ioc/services/useGetCart'
 import useCookies from '#ioc/composables/useCookies'
 import MAGENTO_CART_COOKIE_NAME from '#ioc/config/MAGENTO_CART_COOKIE_NAME'
 
-export default async () => {
+export default () => {
   const cookies = useCookies()
   const cartStore = useCartStore()
   const cartMagentoStore = useCartMagentoStore()
 
-  const id = cookies.get(MAGENTO_CART_COOKIE_NAME)
+  return async () => {
+    const id = cookies.get(MAGENTO_CART_COOKIE_NAME)
 
-  cartMagentoStore.$patch({ cartId: id })
+    cartMagentoStore.$patch({ cartId: id })
 
-  const getCart = useGetCart()
+    const getCart = useGetCart()
 
-  const cart = await getCart()
+    const cart = await getCart()
 
-  cartStore.$patch(cart)
+    cartStore.$patch(cart)
+  }
 }

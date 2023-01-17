@@ -1,11 +1,13 @@
 import useGetCurrencies from '#ioc/services/useGetCurrencies'
 import useMulticurrencyStore from '#ioc/stores/useMulticurrencyStore'
 
-export default async () => {
+export default () => {
   const multicurrencyStore = useMulticurrencyStore()
   const getCurrencies = useGetCurrencies()
 
-  const { currencies } = await getCurrencies()
+  return async () => {
+    const { currencies } = await getCurrencies()
 
-  multicurrencyStore.$patch({ currencies })
+    multicurrencyStore.$patch({ currencies })
+  }
 }

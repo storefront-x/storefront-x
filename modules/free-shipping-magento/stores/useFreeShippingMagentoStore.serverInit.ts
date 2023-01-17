@@ -1,12 +1,14 @@
 import useGetFreeShippingConfig from '#ioc/services/useGetFreeShippingConfig'
 import useFreeShippingStore from '#ioc/stores/useFreeShippingStore'
 
-export default async () => {
+export default () => {
   const freeShippingStore = useFreeShippingStore()
 
   const getFreeShippingConfig = useGetFreeShippingConfig()
 
-  const freeShippingConfig = await getFreeShippingConfig()
+  return async () => {
+    const freeShippingConfig = await getFreeShippingConfig()
 
-  freeShippingStore.$patch(freeShippingConfig)
+    freeShippingStore.$patch(freeShippingConfig)
+  }
 }

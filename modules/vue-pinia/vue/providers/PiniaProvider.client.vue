@@ -5,15 +5,11 @@
 <script setup>
 import { onMounted } from 'vue'
 
-const clientInits = import.meta.glob('#ioc/stores/*.clientInit.*', { eager: true })
+const inits = import.meta.glob('#ioc/stores/*.clientInit.*', { eager: true })
+
+const bindedInits = Object.values(inits ?? {}).map(({ default: use }) => use())
 
 onMounted(async () => {
-  const loaders = []
-
-  for (const { default: init } of Object.values(clientInits ?? {})) {
-    loaders.push(init())
-  }
-
-  await Promise.all(loaders)
+  await Promise.all(bindedInits.map((init) => init()))
 })
 </script>
