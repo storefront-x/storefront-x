@@ -14,6 +14,42 @@ This concept is for components representing dynamic pages resolved by the Magent
 - `magento/dynamicPages/CATEGORY.vue` - renders category
 - `magento/dynamicPages/CMS_PAGE.vue` - renders cms page
 
+## `magento/beforeRequest/` concept
+
+This concept allows you to hook before every request to Magento. It expects a composable which returns an async function with single parameter `Request`.
+
+### Example
+
+```typescript
+// magento/beforeRequest/useLogEveryRequestUrl.ts
+
+export default () => {
+  // Here you can use other composables
+
+  return async (request: Request) => {
+    console.log(request.url)
+  }
+}
+```
+
+## `magento/afterResponse/` concept
+
+This concept allows you to hook after every response from Magento. It expects a composable which returns an async function with two parameters `Response` and `Request`.
+
+### Example
+
+```typescript
+// magento/afterResponse/useLogEveryResponseUrl.ts
+
+export default () => {
+  // Here you can use other composables
+
+  return async (response: Response, request: Request) => {
+    console.log(response.url)
+  }
+}
+```
+
 ## `useMagento` composable
 
 Used to make API requests to Magento.
