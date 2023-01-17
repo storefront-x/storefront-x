@@ -1,1 +1,1 @@
-export default 'https://b2b-cz-master-commerce-core.magexo.cloud/'
+export default 'https://commerce-vanilla.magexo.cloud/'

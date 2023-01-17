@@ -17,6 +17,7 @@ See [Contributing Guide](https://docs.storefrontx.io/contributing.html).
 
 ## Local install
 
+0. export NODE_TLS_REJECT_UNAUTHORIZED=0
 1. yarn install
 
 2. add  
