@@ -9,12 +9,12 @@ describe('Category', () => {
   beforeEach(() => {
     visitRandomCategory({
       minProducts: 14,
-    }).as('category')
+    })
   })
 
   it('contains category title', () => {
-    cy.get('@category').then((category) => {
-      getCategoryTitle().will('include.text', () => category.data.name)
+    cy.get('@randomCategory').then((category) => {
+      getCategoryTitle().will('include.text', () => category.name)
     })
   })
 

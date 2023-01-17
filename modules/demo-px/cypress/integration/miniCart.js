@@ -1,7 +1,7 @@
-import openMinicart from '~/cypress/support/pageObjects/miniCart/openMinicart'
-import closeMinicart from '~/cypress/support/pageObjects/miniCart/closeMinicart'
-import checkEmptyMinicart from '~/cypress/support/pageObjects/miniCart/checkEmptyMinicart'
-import getProductFromMinicart from '~/cypress/support/pageObjects/miniCart/getProductFromMinicart'
+import openMinicart from '~/cypress/support/pageObjects/minicart/openMinicart'
+import closeMinicart from '~/cypress/support/pageObjects/minicart/closeMinicart'
+import checkEmptyMinicart from '~/cypress/support/pageObjects/minicart/checkEmptyMinicart'
+import getProductFromMinicart from '~/cypress/support/pageObjects/minicart/getProductFromMinicart'
 import addToCart from '~/cypress/support/pageObjects/product/addToCart'
 import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 

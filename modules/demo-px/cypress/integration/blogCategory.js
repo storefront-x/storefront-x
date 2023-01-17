@@ -4,18 +4,19 @@ import visitRandomBlogCategory from '~/cypress/support/pageObjects/blogCategory/
 
 describe('Blog category', () => {
   beforeEach(() => {
-    visitRandomBlogCategory().as('blogCategory')
+    visitRandomBlogCategory()
   })
 
   it('renders its name', () => {
-    cy.get('@blogCategory').then((blogCategory) => {
-      getBlogTitle().will('include.text', () => blogCategory.data.name)
+    cy.get('@randomBlogCategory').then((blogCategory) => {
+      cy.log(blogCategory)
+      getBlogTitle().should('include.text', blogCategory.name)
     })
   })
 
   it('has blog posts', () => {
-    cy.get('@blogCategory').then((blogCategory) => {
-      getBlogPostTiles().will('have.length.at.most', () => blogCategory.data.post_count)
+    cy.get('@randomBlogCategory').then((blogCategory) => {
+      getBlogPostTiles().should('have.length.at.most', blogCategory.post_count)
     })
   })
 })
