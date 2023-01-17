@@ -2,8 +2,8 @@ import BeginCheckout from '#ioc/bus/events/BeginCheckout'
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 
 export default () => {
-  return ({ products, discounts, subTotal: { currency, value }, coupons }: BeginCheckout) => {
-    const items = []
+  return ({ cart: { items, discounts, subtotalIncludingTax, coupons } }: BeginCheckout) => {
+    const products = []
     let totalDiscount = 0
 
     if (discounts.length) {
@@ -12,8 +12,8 @@ export default () => {
       }
     }
 
-    for (const item of products) {
-      items.push({
+    for (const item of items) {
+      products.push({
         item_id: item.product.sku,
         item_name: item.product.name,
         // affiliation: 'Google Merchandise Store',
@@ -36,9 +36,9 @@ export default () => {
     dataLayer.push({
       event: 'begin_checkout',
       ecommerce: {
-        currency,
-        value: (value - totalDiscount) / PRICE_OFFSET,
-        items,
+        currency: subtotalIncludingTax?.currency,
+        value: subtotalIncludingTax?.value && (subtotalIncludingTax.value - totalDiscount) / PRICE_OFFSET,
+        items: products,
         coupon: coupons.length ? coupons[0].code : '',
       },
     })

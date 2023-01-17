@@ -2,9 +2,14 @@ import Purchase from '#ioc/bus/events/Purchase'
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 
 export default () => {
-  return ({ products, discounts, subTotal: { currency, value }, coupons }: Purchase) => {
-    const items = []
+  return ({
+    cart: { items, discounts, subtotalIncludingTax, coupons, taxes },
+    shipping: { shippingMethod },
+    order: { orderNumber },
+  }: Purchase) => {
+    const products = []
     let totalDiscount = 0
+    let totalTax = 0
 
     if (discounts.length) {
       for (const discount of discounts) {
@@ -12,8 +17,14 @@ export default () => {
       }
     }
 
-    for (const item of products) {
-      items.push({
+    if (taxes.length) {
+      for (const tax of taxes) {
+        totalTax += tax.amount.value
+      }
+    }
+
+    for (const item of items) {
+      products.push({
         item_id: item.product.sku,
         item_name: item.product.name,
         // affiliation: 'Google Merchandise Store',
@@ -33,10 +44,13 @@ export default () => {
     }
 
     gtag('event', 'purchase', {
-      currency,
-      value: (value - totalDiscount) / PRICE_OFFSET,
-      items,
+      currency: subtotalIncludingTax?.currency,
+      value: subtotalIncludingTax?.value && (subtotalIncludingTax.value - totalDiscount + totalTax) / PRICE_OFFSET,
+      items: products,
+      shipping: shippingMethod && shippingMethod.priceInclTax.value / PRICE_OFFSET,
+      tax: totalTax && totalTax / PRICE_OFFSET,
       coupon: coupons.length ? coupons[0].code : '',
+      transaction_id: orderNumber,
     })
 
     console.log('Google Tag (purchase) emit')

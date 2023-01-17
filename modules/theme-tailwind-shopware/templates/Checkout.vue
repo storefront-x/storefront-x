@@ -39,12 +39,7 @@ const emitBeginCheckout = useEmitBeginCheckout()
 
 onMounted(() => {
   if (cart.items?.length) {
-    emitBeginCheckout({
-      products: cart.items,
-      subTotal: cart.subtotalIncludingTax,
-      discounts: cart.discounts,
-      coupons: cart.coupons,
-    })
+    emitBeginCheckout({ cart })
   }
 })
 </script>

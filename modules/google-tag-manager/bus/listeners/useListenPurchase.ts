@@ -1,14 +1,25 @@
-import BeginCheckout from '#ioc/bus/events/BeginCheckout'
+import Purchase from '#ioc/bus/events/Purchase'
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 
 export default () => {
-  return ({ cart: { items, discounts, subtotalIncludingTax, coupons } }: BeginCheckout) => {
+  return ({
+    cart: { items, discounts, subtotalIncludingTax, coupons, taxes },
+    shipping: { shippingMethod },
+    order: { orderNumber },
+  }: Purchase) => {
     const products = []
     let totalDiscount = 0
+    let totalTax = 0
 
     if (discounts.length) {
       for (const discount of discounts) {
         totalDiscount += discount.amount.value
+      }
+    }
+
+    if (taxes.length) {
+      for (const tax of taxes) {
+        totalTax += tax.amount.value
       }
     }
 
@@ -32,13 +43,20 @@ export default () => {
       })
     }
 
-    gtag('event', 'begin_checkout', {
-      currency: subtotalIncludingTax?.currency,
-      value: subtotalIncludingTax?.value && (subtotalIncludingTax.value - totalDiscount) / PRICE_OFFSET,
-      items: products,
-      coupon: coupons.length ? coupons[0].code : '',
+    dataLayer.push({ ecommerce: null })
+    dataLayer.push({
+      event: 'purchase',
+      ecommerce: {
+        currency: subtotalIncludingTax?.currency,
+        value: subtotalIncludingTax?.value && (subtotalIncludingTax.value - totalDiscount + totalTax) / PRICE_OFFSET,
+        items: products,
+        shipping: shippingMethod && shippingMethod.priceInclTax.value / PRICE_OFFSET,
+        tax: totalTax && totalTax / PRICE_OFFSET,
+        coupon: coupons.length ? coupons[0].code : '',
+        transaction_id: orderNumber,
+      },
     })
 
-    console.log('Google Tag (begin checkout) emit')
+    console.log('Tag Manager (purchase) emit')
   }
 }

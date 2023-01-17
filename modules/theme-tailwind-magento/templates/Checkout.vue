@@ -49,6 +49,7 @@ import { computed, nextTick, onMounted, ref } from 'vue'
 import useShipping from '#ioc/composables/useShipping'
 import usePayment from '#ioc/composables/usePayment'
 import useEmitBeginCheckout from '#ioc/bus/emitters/useEmitBeginCheckout'
+import useEmitPurchase from '#ioc/bus/emitters/useEmitPurchase'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -61,6 +62,7 @@ const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
 const emitBeginCheckout = useEmitBeginCheckout()
+const emitPurchase = useEmitPurchase()
 
 const step = ref(1)
 
@@ -118,12 +120,7 @@ onMounted(async () => {
   await refreshCheckoutAgreements()
 
   if (cart.items?.length) {
-    emitBeginCheckout({
-      products: cart.items,
-      subTotal: cart.subtotalIncludingTax,
-      discounts: cart.discounts,
-      coupons: cart.coupons,
-    })
+    emitBeginCheckout({ cart })
   }
 })
 
@@ -134,6 +131,8 @@ const onPlaceOrder = async ({ resolve }: any) => {
     await payment.paymentHandler!()
 
     const { order } = await placeOrder()
+
+    emitPurchase({ cart, shipping, order })
 
     if (order.redirectUrl) {
       window.location.href = order.redirectUrl
