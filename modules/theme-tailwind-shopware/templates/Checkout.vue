@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import Container from '#ioc/atoms/Container'
 import Heading from '#ioc/atoms/Heading'
 import ShippingMethods from '#ioc/organisms/ShippingMethods'
@@ -30,7 +31,20 @@ import ContactInformation from '#ioc/organisms/ContactInformation'
 import OrderSummary from '#ioc/organisms/OrderSummary'
 import useCart from '#ioc/composables/useCart'
 import useI18n from '#ioc/composables/useI18n'
+import useEmitBeginCheckout from '#ioc/bus/emitters/useEmitBeginCheckout'
 
 const { t } = useI18n()
 const cart = useCart()
+const emitBeginCheckout = useEmitBeginCheckout()
+
+onMounted(() => {
+  if (cart.items?.length) {
+    emitBeginCheckout({
+      products: cart.items,
+      subTotal: cart.subtotalIncludingTax,
+      discounts: cart.discounts,
+      coupons: cart.coupons,
+    })
+  }
+})
 </script>

@@ -64,6 +64,7 @@ import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useUpdateCartItem from '#ioc/services/useUpdateCartItem'
 import useGetProductById from '#ioc/services/useGetProductById'
 import useRouter from '#ioc/composables/useRouter'
+import useEmitRemoveFromCart from '#ioc/bus/emitters/useEmitRemoveFromCart'
 
 const ConfirmProductRemovalModal = defineAsyncComponent(() => import('#ioc/organisms/ConfirmProductRemovalModal'))
 
@@ -73,6 +74,7 @@ const updateCartItem = useUpdateCartItem()
 const showErrorNotification = useShowErrorNotification()
 const getProductById = useGetProductById()
 const router = useRouter()
+const emitRemoveFromCart = useEmitRemoveFromCart()
 
 const tmpQuantity = ref(cartItem.quantity)
 const isRemoveModalOpen = ref(false)
@@ -118,6 +120,7 @@ const removeItem = async () => {
     isRemoveLoading.value = true
 
     await removeFromCart(cartItem)
+    emitRemoveFromCart({ product: cartItem.product, quantity: cartItem.quantity })
   } catch (e) {
     showErrorNotification(e)
   } finally {

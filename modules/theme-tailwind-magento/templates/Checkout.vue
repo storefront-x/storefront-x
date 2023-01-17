@@ -48,6 +48,7 @@ import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreem
 import { computed, nextTick, onMounted, ref } from 'vue'
 import useShipping from '#ioc/composables/useShipping'
 import usePayment from '#ioc/composables/usePayment'
+import useEmitBeginCheckout from '#ioc/bus/emitters/useEmitBeginCheckout'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -59,6 +60,7 @@ const confirmContactInformation = useConfirmContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
+const emitBeginCheckout = useEmitBeginCheckout()
 
 const step = ref(1)
 
@@ -114,6 +116,15 @@ onMounted(async () => {
   })
 
   await refreshCheckoutAgreements()
+
+  if (cart.items?.length) {
+    emitBeginCheckout({
+      products: cart.items,
+      subTotal: cart.subtotalIncludingTax,
+      discounts: cart.discounts,
+      coupons: cart.coupons,
+    })
+  }
 })
 
 const onPlaceOrder = async ({ resolve }: any) => {

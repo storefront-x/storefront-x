@@ -22,6 +22,7 @@ import injectProduct from '#ioc/composables/injectProduct'
 import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
+import useEmitAddToCart from '#ioc/bus/emitters/useEmitAddToCart'
 import { ref } from 'vue'
 
 const props = defineProps({
@@ -34,6 +35,7 @@ const props = defineProps({
 const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
+const emitAddToCart = useEmitAddToCart()
 
 const loading = ref(false)
 const isCrossSellModalOpen = ref(false)
@@ -48,6 +50,7 @@ const onAddToCart = async () => {
     await addToCart(product, {
       quantity: props.quantity,
     })
+    emitAddToCart({ product, quantity: props.quantity })
     isCrossSellModalOpen.value = true
   } finally {
     loading.value = false

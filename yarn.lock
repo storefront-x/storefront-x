@@ -14001,6 +14001,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"test-analytics@workspace:modules/test-analytics":
+  version: 0.0.0-use.local
+  resolution: "test-analytics@workspace:modules/test-analytics"
+  languageName: unknown
+  linkType: soft
+
+"test-gtm@workspace:modules/test-gtm":
+  version: 0.0.0-use.local
+  resolution: "test-gtm@workspace:modules/test-gtm"
+  languageName: unknown
+  linkType: soft
+
 "text-extensions@npm:^1.0.0":
   version: 1.9.0
   resolution: "text-extensions@npm:1.9.0"
