@@ -147,7 +147,7 @@ Files with [Express](https://expressjs.com) middleware function exported as defa
 ### Example
 
 ```ts
-// server/middleware/foo.ts
+// server/routes/foo.ts
 
 import type { Request, Response } from 'express'
 
@@ -165,6 +165,28 @@ POST /bar  # index.html
 :::tip
 Use server routes as proxies to decrease number of DNS requests and to improve caching.
 :::
+
+## `server/startup/` concept
+
+Server startup concepts contains files that are executed once during server startup and as soon as possible. It is useful when needing to register some type of global error handler like [Sentry](https://sentry.io) or [New Relic](https://newrelic.com).
+
+### Example
+
+```ts
+// server/startup/sentry.ts
+
+import * as Sentry from '@sentry/node'
+import dsn from '#ioc/config/sentry/server/dsn'
+import tracesSampleRate from '#ioc/config/sentry/server/tracesSampleRate'
+
+// Importing @sentry/tracing patches the global hub for tracing to work.
+import '@sentry/tracing'
+
+Sentry.init({
+  dsn,
+  tracesSampleRate,
+})
+```
 
 ## `utils/` IoC concept
 

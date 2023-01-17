@@ -17,6 +17,22 @@ test('with full vue stack', async () => {
       '@storefront-x/vue-i18n',
       '@storefront-x/vue-pinia',
       '@storefront-x/base-commerce',
+      [
+        'my-module',
+        {
+          config: {
+            'VUE_I18N_LOCALES.ts': `
+            export default [
+              {
+                name: 'en',
+                locale: 'en-US',
+                prefix: '/',
+              },
+            ]
+          `,
+          },
+        },
+      ],
     ],
   })
 })

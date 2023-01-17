@@ -3243,12 +3243,115 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storefront-x/atatus@workspace:modules/atatus":
+"@sentry/browser@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/browser@npm:7.30.0"
+  dependencies:
+    "@sentry/core": 7.30.0
+    "@sentry/replay": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    tslib: ^1.9.3
+  checksum: 7c227d944391c27fe1cae32c78e9ea99a24f0bf491297e11ccadcbd848a8ba4a280eb0ad68c9b1d493ed0dde69609916f5ad43bebdee481b3c7564af92641292
+  languageName: node
+  linkType: hard
+
+"@sentry/core@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/core@npm:7.30.0"
+  dependencies:
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    tslib: ^1.9.3
+  checksum: 661a068bbe1afc66668f1808667fec09320b549e8bf06c0a4263398d7bac023a533535073fe469c656ea925d625a5e3fb93dd6535f3226893854b33e7813ab8c
+  languageName: node
+  linkType: hard
+
+"@sentry/node@npm:^7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/node@npm:7.30.0"
+  dependencies:
+    "@sentry/core": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    cookie: ^0.4.1
+    https-proxy-agent: ^5.0.0
+    lru_map: ^0.3.3
+    tslib: ^1.9.3
+  checksum: baa94c4fe7ce01d810847f0fa3ac2c31367b321c25e0c8a706e21f295c7cbe6d0f651b01e2ffce6e6ec6e83696e508f54e270141c784498a34f29678b21f06dc
+  languageName: node
+  linkType: hard
+
+"@sentry/replay@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/replay@npm:7.30.0"
+  dependencies:
+    "@sentry/core": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+  peerDependencies:
+    "@sentry/browser": ">=7.24.0"
+  checksum: da7f545ddad9e7584a155382d210e9f8bf2479651dae1c94196075be5d973ceed1d74d49745377ffd0a736c6e3654da98c36ede67c5c18f6f125c191416bb1f3
+  languageName: node
+  linkType: hard
+
+"@sentry/tracing@npm:^7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/tracing@npm:7.30.0"
+  dependencies:
+    "@sentry/core": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    tslib: ^1.9.3
+  checksum: 475b41e3c9503bd6a00db058050388914f2c04763d7d204527c9b83cfb0af02cde413c3bb9935a300a0ff2fc9e1b100442d55ab6edd9ce535ebc2793ea16111e
+  languageName: node
+  linkType: hard
+
+"@sentry/types@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/types@npm:7.30.0"
+  checksum: be228ae65f8750513371b6692821aa0d92d15354aa9fd7f1f1b497c2a53d20769fd56f89a1516d80e416ab73596609e805a6fae2b51510018338eedf5a0dd260
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/utils@npm:7.30.0"
+  dependencies:
+    "@sentry/types": 7.30.0
+    tslib: ^1.9.3
+  checksum: df99b77706dc38a206ba4a27da2226c73c5a465a39591dde66455a8ca52b070830ad3fa3cbc803d4e45bd0e4e4fad74552f3d92d681a8dd4c95c4733cc9ff4cc
+  languageName: node
+  linkType: hard
+
+"@sentry/vue@npm:^7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/vue@npm:7.30.0"
+  dependencies:
+    "@sentry/browser": 7.30.0
+    "@sentry/core": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    tslib: ^1.9.3
+  peerDependencies:
+    vue: 2.x || 3.x
+  checksum: d9ffd8b5b7c40db0f40a72e698b2a42c11a15e2cfc309b13bdfba10ae76d4b90480c7a09b5abcf0eb79b62fdf6922b124d7fa02e9e4b11369caf564f061dd8df
+  languageName: node
+  linkType: hard
+
+"@storefront-x/atatus-client@workspace:modules/atatus-client":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/atatus@workspace:modules/atatus"
+  resolution: "@storefront-x/atatus-client@workspace:modules/atatus-client"
+  dependencies:
+    atatus-spa: ^4.5.0
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/atatus-server@workspace:modules/atatus-server":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/atatus-server@workspace:modules/atatus-server"
   dependencies:
     atatus-nodejs: ^1.5.5
-    atatus-spa: ^4.5.0
   languageName: unknown
   linkType: soft
 
@@ -3502,17 +3605,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/demo-shopware@workspace:modules/demo-shopware":
+"@storefront-x/demo-px@workspace:modules/demo-px":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-shopware@workspace:modules/demo-shopware"
+  resolution: "@storefront-x/demo-px@workspace:modules/demo-px"
   dependencies:
     vite-plugin-pwa: ^0.13.3
   languageName: unknown
   linkType: soft
 
-"@storefront-x/demo-venia@workspace:modules/demo-venia":
+"@storefront-x/demo-shopware@workspace:modules/demo-shopware":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-venia@workspace:modules/demo-venia"
+  resolution: "@storefront-x/demo-shopware@workspace:modules/demo-shopware"
   dependencies:
     vite-plugin-pwa: ^0.13.3
   languageName: unknown
@@ -3624,6 +3727,24 @@ __metadata:
 "@storefront-x/schema-org@workspace:modules/schema-org":
   version: 0.0.0-use.local
   resolution: "@storefront-x/schema-org@workspace:modules/schema-org"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/sentry-client@workspace:modules/sentry-client":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/sentry-client@workspace:modules/sentry-client"
+  dependencies:
+    "@sentry/tracing": ^7.30.0
+    "@sentry/vue": ^7.30.0
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/sentry-server@workspace:modules/sentry-server":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/sentry-server@workspace:modules/sentry-server"
+  dependencies:
+    "@sentry/node": ^7.30.0
+    "@sentry/tracing": ^7.30.0
   languageName: unknown
   linkType: soft
 
@@ -6292,7 +6413,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:^0.4.0":
+"cookie@npm:^0.4.0, cookie@npm:^0.4.1":
   version: 0.4.2
   resolution: "cookie@npm:0.4.2"
   checksum: a00833c998bedf8e787b4c342defe5fa419abd96b32f4464f718b91022586b8f1bafbddd499288e75c037642493c83083da426c6a9080d309e3bd90fd11baa9b
@@ -10331,6 +10452,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lru_map@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "lru_map@npm:0.3.3"
+  checksum: ca9dd43c65ed7a4f117c548028101c5b6855e10923ea9d1f635af53ad20c5868ff428c364d454a7b57fe391b89c704982275410c3c5099cca5aeee00d76e169a
+  languageName: node
+  linkType: hard
+
 "magic-string@npm:^0.25.0, magic-string@npm:^0.25.7":
   version: 0.25.9
   resolution: "magic-string@npm:0.25.9"
@@ -14208,7 +14336,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.8.1":
+"tslib@npm:^1.8.1, tslib@npm:^1.9.3":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd

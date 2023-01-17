@@ -121,6 +121,7 @@ export default defineConfig({
           { text: 'NProgress', link: '/modules/nprogress' },
           { text: 'Atatus', link: '/modules/atatus' },
           { text: 'Basic Auth', link: '/modules/basic-auth' },
+          { text: 'Sentry', link: '/modules/sentry' },
         ],
       },
     ],
