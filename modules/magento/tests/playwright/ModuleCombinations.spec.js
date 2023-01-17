@@ -11,6 +11,15 @@ test('minimal stack', async () => {
       '@storefront-x/base-commerce',
       '@storefront-x/graphql',
       '@storefront-x/magento',
+      [
+        'my-module',
+        {
+          config: {
+            'MAGENTO_URL.ts': `export default 'http://sample.org'`,
+            'VUE_I18N_LOCALES.ts': `export default []`,
+          },
+        },
+      ],
     ],
   })
 })
@@ -27,6 +36,15 @@ test('with full vue stack', async () => {
       '@storefront-x/base-commerce',
       '@storefront-x/graphql',
       '@storefront-x/magento',
+      [
+        'my-module',
+        {
+          config: {
+            'MAGENTO_URL.ts': `export default 'http://sample.org'`,
+            'VUE_I18N_LOCALES.ts': `export default []`,
+          },
+        },
+      ],
     ],
   })
 })
