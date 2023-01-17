@@ -31,14 +31,17 @@ test('serverInit action', async ({ page }) => {
                   state: () => ({
                     count: 0,
                   }),
-                  actions: {
-                    serverInit: () => {
-                      return {
-                        count: 1
-                      }
-                    }
-                  }
                 })
+              `,
+              'useMainStore.serverInit.ts': `
+                import useMainStore from '#ioc/stores/useMainStore'
+                export default () => {
+                  const mainStore = useMainStore()
+
+                  return () => {
+                    mainStore.$patch({ count: 1 })
+                  }
+                }
               `,
             },
           },
@@ -46,7 +49,8 @@ test('serverInit action', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
+      await page.goto(url)
+      expect(await page.content()).toContain('<button>1</button>')
       await expect(page.locator('button')).toContainText('1')
     },
   )
@@ -82,14 +86,19 @@ test('async serverInit action', async ({ page }) => {
                   state: () => ({
                     count: 0,
                   }),
-                  actions: {
-                    serverInit: async () => {
-                      return {
-                        count: 1
-                      }
-                    }
-                  }
                 })
+              `,
+              'useMainStore.serverInit.ts': `
+                import useMainStore from '#ioc/stores/useMainStore'
+                export default () => {
+                  const mainStore = useMainStore()
+
+                  return async () => {
+                    await new Promise((resolve) => setTimeout(resolve, 100))
+
+                    mainStore.$patch({ count: 1 })
+                  }
+                }
               `,
             },
           },
@@ -97,7 +106,8 @@ test('async serverInit action', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
+      await page.goto(url)
+      expect(await page.content()).toContain('<button>1</button>')
       await expect(page.locator('button')).toContainText('1')
     },
   )

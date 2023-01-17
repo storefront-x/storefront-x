@@ -3,16 +3,12 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import * as vite from 'vite'
-import fetch from 'node-fetch'
 import consola from 'consola'
 import Module from './Module.js'
 
 /**
  * @typedef {import('@storefront-x/core').Concept} Concept
  */
-
-// Node.js runtime doesn't have fetch method so we polyfill it
-global.fetch = fetch
 
 const logger = consola.withTag('core')
 
@@ -68,6 +64,8 @@ export default class Core {
       res,
       manifest,
       out: {},
+      responseStatus: 200,
+      responseHeaders: { 'Content-Type': 'text/html' },
     }
 
     try {
@@ -81,10 +79,7 @@ export default class Core {
         throw ctx.errorCaptured
       }
 
-      return res
-        .status(ctx.responseStatus || 200)
-        .set({ 'Content-Type': 'text/html' })
-        .end(template)
+      return res.status(ctx.responseStatus).set(ctx.responseHeaders).end(template)
     } catch (e) {
       if (e.__typename === 'Redirect') {
         return res.redirect(e.status, e.url)

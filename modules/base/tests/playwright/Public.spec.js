@@ -72,7 +72,7 @@ test('removing files works with HMR', async ({ page }) => {
     async ({ url, rm }) => {
       await rm('my-module/public/robots.txt')
       await page.goto(url + '/robots.txt', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('404')
+      expect(await page.content()).toContain('404')
     },
   )
 })

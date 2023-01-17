@@ -24,7 +24,7 @@
     :to="category.urlPath"
     class="items-center flex text-left ml-2 px-4 py-4 border-t-2 border-gray-50 justify-between"
   >
-    <SfxImage v-if="category.thumbnail" :src-m2="category.thumbnail" class="w-7 h-7" lazy></SfxImage>
+    <SfxImage v-if="category.thumbnail" :src="category.thumbnail" class="w-7 h-7" lazy></SfxImage>
     {{ category.name }}
   </RouterLink>
 </template>

@@ -13,6 +13,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const options = ref({} as string[])
 
+  const productType = computed(() => product.value.__typename)
+
   const id = computed(() => product.value.id)
 
   const sku = computed(() => product.value.sku)
@@ -62,15 +64,15 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const reviews = computed(() => product.value.reviews ?? [])
 
-  const isSimpleProduct = computed(() => product.value.__typename === 'SimpleProduct')
+  const isSimpleProduct = computed(() => productType.value === 'SimpleProduct')
 
   const isOptionsProduct = computed(() => 'options' in product.value && !!product.value.options)
 
-  const isConfigurableProduct = computed(() => product.value.__typename === 'ConfigurableProduct')
+  const isConfigurableProduct = computed(() => productType.value === 'ConfigurableProduct')
 
-  const isBundleProduct = computed(() => product.value.__typename === 'BundleProduct')
+  const isBundleProduct = computed(() => productType.value === 'BundleProduct')
 
-  const isGroupedProduct = computed(() => product.value.__typename === 'GroupedProduct')
+  const isGroupedProduct = computed(() => productType.value === 'GroupedProduct')
 
   const isBundleConfigured = computed(() => isNonEmptyObject(bundle.value))
 
@@ -150,5 +152,6 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isOptionsConfigured,
     groupedItems,
     isGroupedProduct,
+    productType,
   })
 }

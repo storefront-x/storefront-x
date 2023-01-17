@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/base",
-  "version": "1.4.6",
+  "version": "1.7.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

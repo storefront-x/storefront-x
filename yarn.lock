@@ -3243,12 +3243,115 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storefront-x/atatus@workspace:modules/atatus":
+"@sentry/browser@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/browser@npm:7.30.0"
+  dependencies:
+    "@sentry/core": 7.30.0
+    "@sentry/replay": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    tslib: ^1.9.3
+  checksum: 7c227d944391c27fe1cae32c78e9ea99a24f0bf491297e11ccadcbd848a8ba4a280eb0ad68c9b1d493ed0dde69609916f5ad43bebdee481b3c7564af92641292
+  languageName: node
+  linkType: hard
+
+"@sentry/core@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/core@npm:7.30.0"
+  dependencies:
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    tslib: ^1.9.3
+  checksum: 661a068bbe1afc66668f1808667fec09320b549e8bf06c0a4263398d7bac023a533535073fe469c656ea925d625a5e3fb93dd6535f3226893854b33e7813ab8c
+  languageName: node
+  linkType: hard
+
+"@sentry/node@npm:^7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/node@npm:7.30.0"
+  dependencies:
+    "@sentry/core": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    cookie: ^0.4.1
+    https-proxy-agent: ^5.0.0
+    lru_map: ^0.3.3
+    tslib: ^1.9.3
+  checksum: baa94c4fe7ce01d810847f0fa3ac2c31367b321c25e0c8a706e21f295c7cbe6d0f651b01e2ffce6e6ec6e83696e508f54e270141c784498a34f29678b21f06dc
+  languageName: node
+  linkType: hard
+
+"@sentry/replay@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/replay@npm:7.30.0"
+  dependencies:
+    "@sentry/core": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+  peerDependencies:
+    "@sentry/browser": ">=7.24.0"
+  checksum: da7f545ddad9e7584a155382d210e9f8bf2479651dae1c94196075be5d973ceed1d74d49745377ffd0a736c6e3654da98c36ede67c5c18f6f125c191416bb1f3
+  languageName: node
+  linkType: hard
+
+"@sentry/tracing@npm:^7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/tracing@npm:7.30.0"
+  dependencies:
+    "@sentry/core": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    tslib: ^1.9.3
+  checksum: 475b41e3c9503bd6a00db058050388914f2c04763d7d204527c9b83cfb0af02cde413c3bb9935a300a0ff2fc9e1b100442d55ab6edd9ce535ebc2793ea16111e
+  languageName: node
+  linkType: hard
+
+"@sentry/types@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/types@npm:7.30.0"
+  checksum: be228ae65f8750513371b6692821aa0d92d15354aa9fd7f1f1b497c2a53d20769fd56f89a1516d80e416ab73596609e805a6fae2b51510018338eedf5a0dd260
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/utils@npm:7.30.0"
+  dependencies:
+    "@sentry/types": 7.30.0
+    tslib: ^1.9.3
+  checksum: df99b77706dc38a206ba4a27da2226c73c5a465a39591dde66455a8ca52b070830ad3fa3cbc803d4e45bd0e4e4fad74552f3d92d681a8dd4c95c4733cc9ff4cc
+  languageName: node
+  linkType: hard
+
+"@sentry/vue@npm:^7.30.0":
+  version: 7.30.0
+  resolution: "@sentry/vue@npm:7.30.0"
+  dependencies:
+    "@sentry/browser": 7.30.0
+    "@sentry/core": 7.30.0
+    "@sentry/types": 7.30.0
+    "@sentry/utils": 7.30.0
+    tslib: ^1.9.3
+  peerDependencies:
+    vue: 2.x || 3.x
+  checksum: d9ffd8b5b7c40db0f40a72e698b2a42c11a15e2cfc309b13bdfba10ae76d4b90480c7a09b5abcf0eb79b62fdf6922b124d7fa02e9e4b11369caf564f061dd8df
+  languageName: node
+  linkType: hard
+
+"@storefront-x/atatus-client@workspace:modules/atatus-client":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/atatus@workspace:modules/atatus"
+  resolution: "@storefront-x/atatus-client@workspace:modules/atatus-client"
+  dependencies:
+    atatus-spa: ^4.5.0
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/atatus-server@workspace:modules/atatus-server":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/atatus-server@workspace:modules/atatus-server"
   dependencies:
     atatus-nodejs: ^1.5.5
-    atatus-spa: ^4.5.0
   languageName: unknown
   linkType: soft
 
@@ -3382,6 +3485,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/checkout-magento-px@workspace:modules/checkout-magento-px":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/checkout-magento-px@workspace:modules/checkout-magento-px"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/checkout-magento@workspace:modules/checkout-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/checkout-magento@workspace:modules/checkout-magento"
@@ -3444,7 +3553,6 @@ __metadata:
     ejs: ^3.1.8
     express: ^4.18.2
     lodash-es: ^4.17.21
-    node-fetch: ^3.3.0
     open: ^8.4.0
     rollup: ^3.7.3
     rollup-plugin-visualizer: ^5.8.3
@@ -3479,6 +3587,7 @@ __metadata:
   resolution: "@storefront-x/cypress@workspace:modules/cypress"
   dependencies:
     cypress-vite: ^1.2.1
+    cypress-wait-until: ^1.7.2
   languageName: unknown
   linkType: soft
 
@@ -3496,17 +3605,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/demo-shopware@workspace:modules/demo-shopware":
+"@storefront-x/demo-px@workspace:modules/demo-px":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-shopware@workspace:modules/demo-shopware"
+  resolution: "@storefront-x/demo-px@workspace:modules/demo-px"
   dependencies:
     vite-plugin-pwa: ^0.13.3
   languageName: unknown
   linkType: soft
 
-"@storefront-x/demo-venia@workspace:modules/demo-venia":
+"@storefront-x/demo-shopware@workspace:modules/demo-shopware":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-venia@workspace:modules/demo-venia"
+  resolution: "@storefront-x/demo-shopware@workspace:modules/demo-shopware"
   dependencies:
     vite-plugin-pwa: ^0.13.3
   languageName: unknown
@@ -3621,6 +3730,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/sentry-client@workspace:modules/sentry-client":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/sentry-client@workspace:modules/sentry-client"
+  dependencies:
+    "@sentry/tracing": ^7.30.0
+    "@sentry/vue": ^7.30.0
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/sentry-server@workspace:modules/sentry-server":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/sentry-server@workspace:modules/sentry-server"
+  dependencies:
+    "@sentry/node": ^7.30.0
+    "@sentry/tracing": ^7.30.0
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/shopware@workspace:modules/shopware":
   version: 0.0.0-use.local
   resolution: "@storefront-x/shopware@workspace:modules/shopware"
@@ -3661,6 +3788,12 @@ __metadata:
 "@storefront-x/theme-blank@workspace:modules/theme-blank":
   version: 0.0.0-use.local
   resolution: "@storefront-x/theme-blank@workspace:modules/theme-blank"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/theme-tailwind-magento-px@workspace:modules/theme-tailwind-magento-px":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/theme-tailwind-magento-px@workspace:modules/theme-tailwind-magento-px"
   languageName: unknown
   linkType: soft
 
@@ -6280,7 +6413,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:^0.4.0":
+"cookie@npm:^0.4.0, cookie@npm:^0.4.1":
   version: 0.4.2
   resolution: "cookie@npm:0.4.2"
   checksum: a00833c998bedf8e787b4c342defe5fa419abd96b32f4464f718b91022586b8f1bafbddd499288e75c037642493c83083da426c6a9080d309e3bd90fd11baa9b
@@ -6619,13 +6752,6 @@ __metadata:
   version: 2.0.2
   resolution: "data-uri-to-buffer@npm:2.0.2"
   checksum: 152bec5e77513ee253a7c686700a1723246f582dad8b614e8eaaaba7fa45a15c8671ae4b8f4843f4f3a002dae1d3e7a20f852f7d7bdc8b4c15cfe7adfdfb07f8
-  languageName: node
-  linkType: hard
-
-"data-uri-to-buffer@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "data-uri-to-buffer@npm:4.0.0"
-  checksum: a010653869abe8bb51259432894ac62c52bf79ad761d418d94396f48c346f2ae739c46b254e8bb5987bded8a653d467db1968db3a69bab1d33aa5567baa5cfc7
   languageName: node
   linkType: hard
 
@@ -8049,16 +8175,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fetch-blob@npm:^3.1.2, fetch-blob@npm:^3.1.4":
-  version: 3.2.0
-  resolution: "fetch-blob@npm:3.2.0"
-  dependencies:
-    node-domexception: ^1.0.0
-    web-streams-polyfill: ^3.0.3
-  checksum: f19bc28a2a0b9626e69fd7cf3a05798706db7f6c7548da657cbf5026a570945f5eeaedff52007ea35c8bcd3d237c58a20bf1543bc568ab2422411d762dd3d5bf
-  languageName: node
-  linkType: hard
-
 "figures@npm:3.2.0, figures@npm:^3.0.0, figures@npm:^3.2.0":
   version: 3.2.0
   resolution: "figures@npm:3.2.0"
@@ -8210,15 +8326,6 @@ __metadata:
     combined-stream: ^1.0.6
     mime-types: ^2.1.12
   checksum: 10c1780fa13dbe1ff3100114c2ce1f9307f8be10b14bf16e103815356ff567b6be39d70fc4a40f8990b9660012dc24b0f5e1dde1b6426166eb23a445ba068ca3
-  languageName: node
-  linkType: hard
-
-"formdata-polyfill@npm:^4.0.10":
-  version: 4.0.10
-  resolution: "formdata-polyfill@npm:4.0.10"
-  dependencies:
-    fetch-blob: ^3.1.2
-  checksum: 82a34df292afadd82b43d4a740ce387bc08541e0a534358425193017bf9fb3567875dc5f69564984b1da979979b70703aa73dee715a17b6c229752ae736dd9db
   languageName: node
   linkType: hard
 
@@ -10319,6 +10426,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lru_map@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "lru_map@npm:0.3.3"
+  checksum: ca9dd43c65ed7a4f117c548028101c5b6855e10923ea9d1f635af53ad20c5868ff428c364d454a7b57fe391b89c704982275410c3c5099cca5aeee00d76e169a
+  languageName: node
+  linkType: hard
+
 "magic-string@npm:^0.25.0, magic-string@npm:^0.25.7":
   version: 0.25.9
   resolution: "magic-string@npm:0.25.9"
@@ -10848,13 +10962,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-domexception@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "node-domexception@npm:1.0.0"
-  checksum: ee1d37dd2a4eb26a8a92cd6b64dfc29caec72bff5e1ed9aba80c294f57a31ba4895a60fd48347cf17dd6e766da0ae87d75657dfd1f384ebfa60462c2283f5c7f
-  languageName: node
-  linkType: hard
-
 "node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7, node-fetch@npm:^2.x.x":
   version: 2.6.7
   resolution: "node-fetch@npm:2.6.7"
@@ -10866,17 +10973,6 @@ __metadata:
     encoding:
       optional: true
   checksum: 8d816ffd1ee22cab8301c7756ef04f3437f18dace86a1dae22cf81db8ef29c0bf6655f3215cb0cdb22b420b6fe141e64b26905e7f33f9377a7fa59135ea3e10b
-  languageName: node
-  linkType: hard
-
-"node-fetch@npm:^3.3.0":
-  version: 3.3.0
-  resolution: "node-fetch@npm:3.3.0"
-  dependencies:
-    data-uri-to-buffer: ^4.0.0
-    fetch-blob: ^3.1.4
-    formdata-polyfill: ^4.0.10
-  checksum: e9936908d2783d3c48a038e187f8062de294d75ef43ec8ab812d7cbd682be2b67605868758d2e9cad6103706dcfe4a9d21d78f6df984e8edf10e7a5ce2e665f8
   languageName: node
   linkType: hard
 
@@ -13593,7 +13689,6 @@ __metadata:
     "@typescript-eslint/parser": ^5.46.0
     cross-env: ^7.0.3
     cypress: ^9.7.0
-    cypress-wait-until: ^1.7.2
     eslint: ^8.29.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-cypress: ^2.12.1
@@ -14196,7 +14291,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.8.1":
+"tslib@npm:^1.8.1, tslib@npm:^1.9.3":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
@@ -14941,13 +15036,6 @@ __metadata:
   dependencies:
     defaults: ^1.0.3
   checksum: 814e9d1ddcc9798f7377ffa448a5a3892232b9275ebb30a41b529607691c0491de47cba426e917a4d08ded3ee7e9ba2f3fe32e62ee3cd9c7d3bafb7754bd553c
-  languageName: node
-  linkType: hard
-
-"web-streams-polyfill@npm:^3.0.3":
-  version: 3.2.1
-  resolution: "web-streams-polyfill@npm:3.2.1"
-  checksum: b119c78574b6d65935e35098c2afdcd752b84268e18746606af149e3c424e15621b6f1ff0b42b2676dc012fc4f0d313f964b41a4b5031e525faa03997457da02
   languageName: node
   linkType: hard
 

@@ -6,13 +6,11 @@ export default () => {
   return async (
     email: string,
   ): Promise<{
-    statusText: string
-    ok: boolean
+    status: string
   }> => {
-    const { statusText, ok } = await subscribeEmailToNewsletterRepository(email)
+    const { status } = await subscribeEmailToNewsletterRepository(email)
     return {
-      statusText,
-      ok,
+      status,
     }
   }
 }

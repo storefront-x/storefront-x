@@ -25,7 +25,6 @@ import { defineAsyncComponent, shallowRef, toRaw } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
 
 const ProductDescription = defineAsyncComponent(() => import('#ioc/molecules/ProductDescription'))
-const ProductAttributes = defineAsyncComponent(() => import('#ioc/molecules/ProductAttributes'))
 const ProductReviews = defineAsyncComponent(() => import('#ioc/organisms/ProductReviews'))
 
 const { t } = useI18n()
@@ -36,10 +35,6 @@ const tabs = [
   {
     name: t('Detail'),
     component: ProductDescription,
-  },
-  {
-    name: t('Specifications'),
-    component: ProductAttributes,
   },
   {
     name: t('Reviews'),
