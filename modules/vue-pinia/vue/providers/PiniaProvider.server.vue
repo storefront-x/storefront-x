@@ -3,13 +3,13 @@
 </template>
 
 <script setup>
-const stores = import.meta.globEager('#ioc/stores/*')
+const serverInits = import.meta.glob('#ioc/stores/*.serverInit.*', { eager: true })
+
 const loaders = []
-for (const { default: useStore } of Object.values(stores ?? {})) {
-  const store = useStore()
-  if (store.serverInit) {
-    loaders.push(Promise.resolve(store.serverInit()).then((data) => store.$patch(data)))
-  }
+
+for (const { default: serverInit } of Object.values(serverInits ?? {})) {
+  loaders.push(serverInit())
 }
+
 await Promise.all(loaders)
 </script>

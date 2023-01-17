@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('serverInit action', async ({ page }) => {
+test.only('clientInit action', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -33,7 +33,7 @@ test.only('serverInit action', async ({ page }) => {
                   }),
                 })
               `,
-              'useMainStore.serverInit.ts': `
+              'useMainStore.clientInit.ts': `
                 import useMainStore from '#ioc/stores/useMainStore'
                 export default () => {
                   const mainStore = useMainStore()
@@ -48,13 +48,13 @@ test.only('serverInit action', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url)
-      expect(await page.content()).toContain('<button>1</button>')
+      expect(await page.content()).toContain('<button>0</button>')
       await expect(page.locator('button')).toContainText('1')
     },
   )
 })
 
-test.only('async serverInit action', async ({ page }) => {
+test.only('async clientInit action', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -86,7 +86,7 @@ test.only('async serverInit action', async ({ page }) => {
                   }),
                 })
               `,
-              'useMainStore.serverInit.ts': `
+              'useMainStore.clientInit.ts': `
                 import useMainStore from '#ioc/stores/useMainStore'
                 export default async () => {
                   const mainStore = useMainStore()
@@ -103,7 +103,7 @@ test.only('async serverInit action', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url)
-      expect(await page.content()).toContain('<button>1</button>')
+      expect(await page.content()).toContain('<button>0</button>')
       await expect(page.locator('button')).toContainText('1')
     },
   )
