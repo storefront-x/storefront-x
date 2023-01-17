@@ -1,72 +1,74 @@
-import Checkout from '~/cypress/support/pageObjects/Checkout'
-import Product from '~/cypress/support/pageObjects/Product'
-import ThankYouPage from '~/cypress/support/pageObjects/ThankYouPage'
+import getOrderSummaryItems from '~/cypress/support/pageObjects/checkout/getOrderSummaryItems'
+import selectShipping from '~/cypress/support/pageObjects/checkout/selectShipping'
+import selectPayment from '~/cypress/support/pageObjects/checkout/selectPayment'
+import fillShippingInfo from '~/cypress/support/pageObjects/checkout/fillShippingInfo'
+import confirmAgreements from '~/cypress/support/pageObjects/checkout/confirmAgreements'
+import placeOrder from '~/cypress/support/pageObjects/checkout/placeOrder'
+import fillCreditCardInfo from '~/cypress/support/pageObjects/checkout/fillCreditCardInfo'
+import getInstorePickupLocation from '~/cypress/support/pageObjects/checkout/getInstorePickupLocation'
+import checkThankYouPageVisibility from '~/cypress/support/pageObjects/thankYouPage/checkThankYouPageVisibility'
+import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
+import addToCart from '~/cypress/support/pageObjects/product/addToCart'
+import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
+import Product from '~/cypress/support/pageObjects/product/Product'
 
 describe('Checkout', () => {
-  /** @type {Checkout} */
-  let checkout
-
   /** @type {Product} */
-  let product
-
-  /** @type {ThankYouPage} */
-  let thankYouPage
+  let product = null
+  let shippingMethod
 
   beforeEach(() => {
-    checkout = new Checkout()
     product = new Product()
-    thankYouPage = new ThankYouPage()
+    addRandomProductToCartAndProceedToCheckout(product)
   })
 
-  let addRandomProductToCartAndProceedToCheckout = () => {
-    product.visitRandom()
-    product.addToCart()
-    product.continueToCheckout()
+  let addRandomProductToCartAndProceedToCheckout = (product) => {
+    visitRandom(product)
+    addToCart()
+    continueToCheckout()
   }
 
   it('checks that reload wont delete checkout', () => {
-    addRandomProductToCartAndProceedToCheckout()
-
-    checkout.getOrderSummaryItems()
+    getOrderSummaryItems()
     cy.reload().waitForSfx()
-    checkout.getOrderSummaryItems()
+    getOrderSummaryItems()
   })
 
   it('finishes checkout process', () => {
-    addRandomProductToCartAndProceedToCheckout()
+    shippingMethod = 'flatrate_flatrate'
 
-    checkout.selectShipping('flatrate_flatrate')
-    checkout.selectPayment('checkmo')
-    checkout.fillShippingInfo()
-    checkout.confirmAgreements()
-    checkout.placeOrder()
+    selectShipping(shippingMethod)
+    selectPayment('checkmo')
+    fillShippingInfo(shippingMethod)
+    confirmAgreements()
+    placeOrder()
 
-    thankYouPage.isVisible()
+    checkThankYouPageVisibility()
   })
 
   it('accepts credit card payment', () => {
-    addRandomProductToCartAndProceedToCheckout()
+    shippingMethod = 'flatrate_flatrate'
 
-    checkout.selectShipping('flatrate_flatrate')
-    checkout.selectPayment('braintree')
-    checkout.fillShippingInfo()
-    checkout.confirmAgreements()
-    checkout.placeOrder()
-    checkout.fillCreditCardInfo()
+    selectShipping(shippingMethod)
+    selectPayment('braintree')
+    fillShippingInfo(shippingMethod)
+    confirmAgreements()
+    placeOrder()
+    fillCreditCardInfo()
 
-    thankYouPage.isVisible()
+    checkThankYouPageVisibility()
   })
 
   it('supports instore pickup', () => {
-    addRandomProductToCartAndProceedToCheckout()
+    shippingMethod = 'instore_pickup'
 
-    checkout.selectShipping('instore_pickup')
-    checkout.getInstorePickupLocation().click()
-    checkout.selectPayment('checkmo')
-    checkout.fillShippingInfo()
-    checkout.confirmAgreements()
-    checkout.placeOrder()
+    selectShipping(shippingMethod)
+    getInstorePickupLocation().click()
+    selectPayment('checkmo')
+    fillShippingInfo(shippingMethod)
+    confirmAgreements()
+    placeOrder()
 
-    thankYouPage.isVisible()
+    checkThankYouPageVisibility()
   })
 })
