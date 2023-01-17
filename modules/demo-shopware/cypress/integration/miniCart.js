@@ -3,8 +3,9 @@ import closeMinicart from '~/cypress/support/pageObjects/minicart/closeMinicart'
 import checkEmptyMinicart from '~/cypress/support/pageObjects/minicart/checkEmptyMinicart'
 import getProductFromMinicart from '~/cypress/support/pageObjects/minicart/getProductFromMinicart'
 import Product from '~/cypress/support/pageObjects/product/Product'
-import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
+import visitProduct from '~/cypress/support/pageObjects/product/visitProduct'
 import addToCart from '~/cypress/support/pageObjects/product/addToCart'
+import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
 
 describe('Minicart', () => {
   /** @type {Product} */
@@ -23,11 +24,14 @@ describe('Minicart', () => {
   })
 
   it('open and close minicart with product', () => {
-    visitRandom(product)
+    visitProduct(product)
     addToCart()
+    continueToCheckout()
+
+    cy.visit('/').waitForSfx()
 
     openMinicart()
-    getProductFromMinicart().should('include.text', product.data.name)
+    getProductFromMinicart().should('include.text', product.productname)
     closeMinicart()
   })
 })
