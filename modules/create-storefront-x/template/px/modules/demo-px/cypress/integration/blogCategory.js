@@ -1,24 +1,20 @@
-import getBlogTitle from '~/cypress/support/pageObjects/blogCategory/getBlogTitle'
-import getBlogPostTiles from '~/cypress/support/pageObjects/blogCategory/getBlogPostTiles'
-import GetRandomBlogCategory from '~/cypress/support/repositories/GetRandomBlogCategory'
+import BlogCategory from '~/cypress/support/pageObjects/BlogCategory'
 
 describe('Blog category', () => {
+  /** @type {BlogCategory} */
+  let blogCategory = null
+
   beforeEach(() => {
-    GetRandomBlogCategory().as('blogCategory')
-    cy.get('@blogCategory').then((blogCategory) => {
-      cy.visit('/blog/category/' + blogCategory.url_key).waitForSfx()
-    })
+    blogCategory = new BlogCategory()
+
+    blogCategory.visitRandom()
   })
 
   it('renders its name', () => {
-    cy.get('@blogCategory').then((blogCategory) => {
-      getBlogTitle().should('contain', blogCategory.name)
-    })
+    blogCategory.getTitle().will('include.text', () => blogCategory.data.name)
   })
 
   it('has blog posts', () => {
-    cy.get('@blogCategory').then((blogCategory) => {
-      getBlogPostTiles().contains(blogCategory.post_count)
-    })
+    blogCategory.getBlogPostTiles().will('have.length.at.most', () => blogCategory.data.post_count)
   })
 })

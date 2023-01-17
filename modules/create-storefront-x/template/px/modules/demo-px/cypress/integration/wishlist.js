@@ -1,75 +1,80 @@
-import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/Base/expectMicrowishlistQuantity'
-import gotoWishlist from '~/cypress/support/pageObjects/Base/gotoWishlist'
-import expectWishlistQuantity from '~/cypress/support/pageObjects/wishlist/expectWishlistQuantity'
-import AccountCredentials from '~/cypress/support/pageObjects/account/accountCredentials'
-import register from '~/cypress/support/pageObjects/account/register'
-import login from '~/cypress/support/pageObjects/account/login'
-import logout from '~/cypress/support/pageObjects/account/logout'
-
-import Product from '~/cypress/support/pageObjects/product/Product'
-import visitAgain from '~/cypress/support/pageObjects/product/visitAgain'
-import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
-import addToWishlist from '~/cypress/support/pageObjects/product/addToWishlist'
-import getAddToWishlist from '~/cypress/support/pageObjects/product/getAddToWishlist'
+import Base from '~/cypress/support/pageObjects/Base'
+import Wishlist from '~/cypress/support/pageObjects/Wishlist'
+import Product from '~/cypress/support/pageObjects/Product'
+import Account from '~/cypress/support/pageObjects/Account'
 
 describe('Wishlist', () => {
+  /** @type {Base} */
+  let base = null
+
+  /** @type {Wishlist} */
+  let wishlist = null
+
   /** @type {Product} */
   let product = null
 
-  /** @type {AccountCredentials} */
-  let accountCredentials = null
+  /** @type {Account} */
+  let account = null
 
   before(() => {
-    accountCredentials = new AccountCredentials()
+    account = new Account()
   })
 
   beforeEach(() => {
+    base = new Base()
+    wishlist = new Wishlist()
     product = new Product()
-
-    visitRandom()
-    addToWishlist()
   })
 
   it('allows adding products to the wishlist from product detail page', () => {
-    expectMicrowishlistQuantity(1)
-    gotoWishlist()
+    product.visitRandom()
+    product.addToWishlist()
 
-    expectWishlistQuantity(1)
+    base.expectMicrowishlistQuantity(1)
+    base.gotoWishlist()
+
+    wishlist.expectWishlistQuantity(1)
   })
 
   it('allows removing from the wishlist', () => {
-    expectMicrowishlistQuantity(1)
+    product.visitRandom()
+    product.addToWishlist()
 
-    visitRandom()
-    addToWishlist()
+    base.expectMicrowishlistQuantity(1)
 
-    gotoWishlist()
+    product.visitRandom()
+    product.addToWishlist()
 
-    expectWishlistQuantity(2)
+    base.gotoWishlist()
 
-    visitAgain(product)
-    getAddToWishlist().click() // Clicking again will remove it from wishlist
+    wishlist.expectWishlistQuantity(2)
 
-    gotoWishlist()
+    product.visitAgain()
+    product.getAddToWishlist().click() // Clicking again will remove it from wishlist
 
-    expectWishlistQuantity(1)
+    base.gotoWishlist()
+
+    wishlist.expectWishlistQuantity(1)
   })
 
   it('merges wishlist with customer wishlist', () => {
-    register(accountCredentials)
+    product.visitRandom()
+    product.addToWishlist()
 
-    visitRandom()
-    addToWishlist()
+    account.register()
 
-    logout()
+    product.visitRandom()
+    product.addToWishlist()
 
-    visitRandom()
-    addToWishlist()
+    account.logout()
 
-    login(accountCredentials)
+    product.visitRandom()
+    product.addToWishlist()
 
-    gotoWishlist()
+    account.login()
 
-    expectWishlistQuantity(3)
+    base.gotoWishlist()
+
+    wishlist.expectWishlistQuantity(3)
   })
 })

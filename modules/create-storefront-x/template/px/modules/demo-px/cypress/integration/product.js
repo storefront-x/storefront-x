@@ -1,70 +1,61 @@
-import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
-import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/base/expectMicrowishlistQuantity'
-import expectNotificationReviewConfirm from '~/cypress/support/pageObjects/base/expectNotificationReviewConfirm'
-
-import Product from '~/cypress/support/pageObjects/product/Product'
-import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
-import getTitle from '~/cypress/support/pageObjects/product/getTitle'
-import getPrice from '~/cypress/support/pageObjects/product/getPrice'
-import addToCart from '~/cypress/support/pageObjects/product/addToCart'
-import addToWishlist from '~/cypress/support/pageObjects/product/addToWishlist'
-import increaseQuantity from '~/cypress/support/pageObjects/product/increaseQuantity'
-import decreaseQuantity from '~/cypress/support/pageObjects/product/decreaseQuantity'
-import openReviewForm from '~/cypress/support/pageObjects/product/openReviewForm'
-import addReviewData from '~/cypress/support/pageObjects/product/addReviewData'
-import setQuantity from '~/cypress/support/pageObjects/product/setQuantity'
+import Base from '~/cypress/support/pageObjects/Base'
+import Product from '~/cypress/support/pageObjects/Product'
 
 describe('Product', () => {
+  /** @type {Base} */
+  let base
+
   /** @type {Product} */
   let product
 
   beforeEach(() => {
+    base = new Base()
     product = new Product()
 
-    visitRandom()
+    product.visitRandom()
   })
 
   it('contains product title', () => {
-    getTitle().will('include.text', () => product.data.name)
+    product.getTitle().will('include.text', () => product.data.name)
   })
 
   it('contains product price', () => {
-    getPrice().should('not.be.empty')
+    product.getPrice().should('not.be.empty')
   })
 
   it('can be added to cart', () => {
-    addToCart()
+    product.addToCart()
 
-    expectMicrocartQuantity(1)
+    base.expectMicrocartQuantity(1)
   })
 
   it('can be added to wishlist', () => {
-    addToWishlist()
+    product.addToWishlist()
 
-    expectMicrowishlistQuantity(1)
+    base.expectMicrowishlistQuantity(1)
   })
 
   it('allows increasing quantity via buttons', () => {
-    increaseQuantity() // 2
-    increaseQuantity() // 3
-    decreaseQuantity() // 2
+    product.increaseQuantity() // 2
+    product.increaseQuantity() // 3
+    product.decreaseQuantity() // 2
 
-    addToCart()
+    product.addToCart()
 
-    expectMicrocartQuantity(2)
+    base.expectMicrocartQuantity(2)
   })
 
   it('allows setting quantity via input', () => {
-    setQuantity(3)
+    product.setQuantity(3)
 
-    addToCart()
+    product.addToCart()
 
-    expectMicrocartQuantity(3)
+    base.expectMicrocartQuantity(3)
   })
 
   it('allows adding reviews', () => {
-    openReviewForm()
-    addReviewData()
-    expectNotificationReviewConfirm()
+    product.openReviewForm()
+    product.addReviewData()
+    base.expectNotificationReviewConfirm()
   })
 })

@@ -1,42 +1,46 @@
-import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
-import sortByPrice from '~/cypress/support/pageObjects/listing/sortByPrice'
-import filter from '~/cypress/support/pageObjects/listing/filter'
-import getFirstAddToCart from '~/cypress/support/pageObjects/listing/getFirstAddToCart'
-import GetRandomCategory from '~/cypress/support/repositories/GetRandomCategory'
-import getCategoryTitle from '~/cypress/support/pageObjects/category/getCategoryTitle'
+import Base from '~/cypress/support/pageObjects/Base'
+import Category from '~/cypress/support/pageObjects/Category'
+import Listing from '~/cypress/support/pageObjects/Listing'
 
 describe('Category', () => {
-  beforeEach(() => {
-    GetRandomCategory({
-      minProducts: 14,
-    }).as('category')
+  /** @type {Base} */
+  let base
 
-    cy.get('@category').then((category) => {
-      cy.visit(category.url_key + category.url_suffix).waitForSfx()
+  /** @type {Category} */
+  let category
+
+  /** @type {Listing} */
+  let listing
+
+  beforeEach(() => {
+    base = new Base()
+    category = new Category()
+    listing = new Listing()
+
+    category.visitRandom({
+      minProducts: 14,
     })
   })
 
   it('contains category title', () => {
-    cy.get('@category').then((category) => {
-      getCategoryTitle().will('include.text', () => category.name)
-    })
+    category.getTitle().will('include.text', () => category.data.name)
   })
 
   it('can be sorted by prices in ascending order', () => {
-    sortByPrice('ASC')
+    listing.sortByPrice('ASC')
   })
 
   it('can be sorted by prices in descending order', () => {
-    sortByPrice('DESC')
+    listing.sortByPrice('DESC')
   })
 
   it('can be filtered', () => {
-    filter()
+    listing.filter()
   })
 
   it('allows adding simple products from category detail', () => {
-    getFirstAddToCart({ product: 'simple' }).click()
+    listing.getFirstAddToCart({ product: 'simple' }).click()
 
-    expectMicrocartQuantity(1)
+    base.expectMicrocartQuantity(1)
   })
 })

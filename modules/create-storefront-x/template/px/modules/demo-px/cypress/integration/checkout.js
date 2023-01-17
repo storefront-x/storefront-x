@@ -1,67 +1,72 @@
-import getOrderSummaryItems from '~/cypress/support/pageObjects/checkout/getOrderSummaryItems'
-import selectShipping from '~/cypress/support/pageObjects/checkout/selectShipping'
-import selectPayment from '~/cypress/support/pageObjects/checkout/selectPayment'
-import fillShippingInfo from '~/cypress/support/pageObjects/checkout/fillShippingInfo'
-import confirmAgreements from '~/cypress/support/pageObjects/checkout/confirmAgreements'
-import placeOrder from '~/cypress/support/pageObjects/checkout/placeOrder'
-import fillCreditCardInfo from '~/cypress/support/pageObjects/checkout/fillCreditCardInfo'
-import getInstorePickupLocation from '~/cypress/support/pageObjects/checkout/getInstorePickupLocation'
-import checkThankYouPageVisibility from '~/cypress/support/pageObjects/thankYouPage/checkThankYouPageVisibility'
-import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
-import addToCart from '~/cypress/support/pageObjects/product/addToCart'
-import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
-import Product from '~/cypress/support/pageObjects/product/Product'
+import Checkout from '~/cypress/support/pageObjects/Checkout'
+import Product from '~/cypress/support/pageObjects/Product'
+import ThankYouPage from '~/cypress/support/pageObjects/ThankYouPage'
 
 describe('Checkout', () => {
+  /** @type {Checkout} */
+  let checkout
+
   /** @type {Product} */
   let product
 
+  /** @type {ThankYouPage} */
+  let thankYouPage
+
   beforeEach(() => {
+    checkout = new Checkout()
     product = new Product()
-    addRandomProductToCartAndProceedToCheckout(product)
+    thankYouPage = new ThankYouPage()
   })
 
-  let addRandomProductToCartAndProceedToCheckout = (product) => {
-    visitRandom(product)
-    addToCart()
-    continueToCheckout()
+  let addRandomProductToCartAndProceedToCheckout = () => {
+    product.visitRandom()
+    product.addToCart()
+    product.continueToCheckout()
   }
 
   it('checks that reload wont delete checkout', () => {
-    getOrderSummaryItems()
+    addRandomProductToCartAndProceedToCheckout()
+
+    checkout.getOrderSummaryItems()
     cy.reload().waitForSfx()
-    getOrderSummaryItems()
+    checkout.getOrderSummaryItems()
   })
 
   it('finishes checkout process', () => {
-    selectShipping('flatrate_flatrate')
-    selectPayment('checkmo')
-    fillShippingInfo()
-    confirmAgreements()
-    placeOrder()
+    addRandomProductToCartAndProceedToCheckout()
 
-    checkThankYouPageVisibility()
+    checkout.selectShipping('flatrate_flatrate')
+    checkout.selectPayment('checkmo')
+    checkout.fillShippingInfo()
+    checkout.confirmAgreements()
+    checkout.placeOrder()
+
+    thankYouPage.isVisible()
   })
 
   it('accepts credit card payment', () => {
-    selectShipping('flatrate_flatrate')
-    selectPayment('braintree')
-    fillShippingInfo()
-    confirmAgreements()
-    placeOrder()
-    fillCreditCardInfo()
+    addRandomProductToCartAndProceedToCheckout()
 
-    checkThankYouPageVisibility()
+    checkout.selectShipping('flatrate_flatrate')
+    checkout.selectPayment('braintree')
+    checkout.fillShippingInfo()
+    checkout.confirmAgreements()
+    checkout.placeOrder()
+    checkout.fillCreditCardInfo()
+
+    thankYouPage.isVisible()
   })
 
   it('supports instore pickup', () => {
-    selectShipping('instore_pickup')
-    getInstorePickupLocation().click()
-    selectPayment('checkmo')
-    fillShippingInfo()
-    confirmAgreements()
-    placeOrder()
+    addRandomProductToCartAndProceedToCheckout()
 
-    checkThankYouPageVisibility()
+    checkout.selectShipping('instore_pickup')
+    checkout.getInstorePickupLocation().click()
+    checkout.selectPayment('checkmo')
+    checkout.fillShippingInfo()
+    checkout.confirmAgreements()
+    checkout.placeOrder()
+
+    thankYouPage.isVisible()
   })
 })

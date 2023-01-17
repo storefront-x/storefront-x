@@ -1,28 +1,21 @@
-import AccountCredentials from '~/cypress/support/pageObjects/account/AccountCredentials'
-import register from '~/cypress/support/pageObjects/account/register'
-import login from '~/cypress/support/pageObjects/account/login'
-import logout from '~/cypress/support/pageObjects/account/logout'
+import Account from '~/cypress/support/pageObjects/Account'
 
 describe('Account', () => {
-  /** @type {AccountCredentials} */
-  let accountCredentials
+  /** @type {Account} */
+  let account
 
   // We don't want to create new account for every test
   before(() => {
-    accountCredentials = new AccountCredentials()
+    account = new Account()
   })
 
   it('supports registration', () => {
-    register(accountCredentials)
+    account.register()
   })
 
-  it('supports login', () => {
-    login(accountCredentials)
-  })
-
-  it('supports logout', () => {
-    login(accountCredentials)
-    logout(accountCredentials)
+  it('supports login and logout', () => {
+    account.login()
+    account.logout()
   })
 
   it('supports restricted access to account', () => {

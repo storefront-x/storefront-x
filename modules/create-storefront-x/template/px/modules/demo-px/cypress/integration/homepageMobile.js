@@ -1,19 +1,27 @@
-import openHamburgerMenu from '~/cypress/support/pageObjects/hamburgerMenu/openHamburgerMenu'
-import closeHamburgerMenu from '~/cypress/support/pageObjects/hamburgerMenu/closeHamburgerMenu'
-import selectDifferentStoreOnMobile from '~/cypress/support/pageObjects/storeSwitcher/selectDifferentStoreOnMobile'
+import HamburgerMenu from '~/cypress/support/pageObjects/HamburgerMenu'
+import StoreSwitcher from '~/cypress/support/pageObjects/StoreSwitcher'
 
 describe('Homepage', () => {
+  /** @type {HamburgerMenu} */
+  let hamburgerMenu
+
+  /** @type {StoreSwitcher} */
+  let storeSwitcher
+
   beforeEach(() => {
+    hamburgerMenu = new HamburgerMenu()
+    storeSwitcher = new StoreSwitcher()
+
     cy.viewport('iphone-x')
     cy.visit('/').waitForSfx()
   })
 
   it('opens and closes hamburger menu', () => {
-    openHamburgerMenu()
-    closeHamburgerMenu()
+    hamburgerMenu.open()
+    hamburgerMenu.close()
   })
 
   it('switches stores', () => {
-    selectDifferentStoreOnMobile()
+    storeSwitcher.selectDifferentStoreOnMobile()
   })
 })
