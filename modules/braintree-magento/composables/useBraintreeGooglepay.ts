@@ -1,4 +1,4 @@
-import useCheckout from '#ioc/composables/useCheckout'
+import useCart from '#ioc/composables/useCart'
 import useMagento from '#ioc/composables/useMagento'
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 import CreateBraintreeClientToken from '#ioc/graphql/mutations/CreateBraintreeClientToken'
@@ -14,7 +14,7 @@ const GOOGLE_PAY_VERSION = 2
 
 export default (options: Options = {}) => {
   const magento = useMagento()
-  const checkout = useCheckout()
+  const cart = useCart()
 
   let googlePayment: braintree.GooglePayment
   let googlePaymentClient: any
@@ -47,9 +47,9 @@ export default (options: Options = {}) => {
 
     const dataPaymentRequest = await googlePayment.createPaymentDataRequest({
       transactionInfo: {
-        currencyCode: checkout.grandTotal!.currency!,
+        currencyCode: cart.grandTotal!.currency!,
         totalPriceStatus: 'FINAL',
-        totalPrice: (checkout.grandTotal!.value / PRICE_OFFSET).toString(),
+        totalPrice: (cart.grandTotal!.value / PRICE_OFFSET).toString(),
       },
     })
 
