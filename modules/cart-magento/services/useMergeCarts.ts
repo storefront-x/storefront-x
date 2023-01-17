@@ -1,18 +1,17 @@
-import useCookies from '#ioc/composables/useCookies'
-import MAGENTO_CART_COOKIE_NAME from '#ioc/config/MAGENTO_CART_COOKIE_NAME'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
 import useGetCustomerCartId from '#ioc/repositories/useGetCustomerCartIdRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useMergeCartsRepository from '#ioc/repositories/useMergeCartsRepository'
 import useCartStore from '#ioc/stores/useCartStore'
+import useCartTokenIdent from '#ioc/composables/useCartTokenIdent'
 
 export default () => {
-  const cookies = useCookies()
   const cartMagentoStore = useCartMagentoStore()
   const getCustomerCartId = useGetCustomerCartId()
   const getOrCreateCartId = useGetOrCreateCartId()
   const mergeCarts = useMergeCartsRepository()
   const cartStore = useCartStore()
+  const cartTokenIdent = useCartTokenIdent()
 
   return async () => {
     try {
@@ -24,11 +23,11 @@ export default () => {
       const { cart } = await mergeCarts(sourceCartId, destinationCartId)
       cartStore.$patch({ cart })
 
-      cookies.set(MAGENTO_CART_COOKIE_NAME, destinationCartId, { path: '/' })
+      localStorage.setItem(cartTokenIdent, destinationCartId)
       cartMagentoStore.$patch({ cartId: destinationCartId })
     } catch (error) {
-      cartMagentoStore.$patch({ cartId: '' })
-      cookies.remove(MAGENTO_CART_COOKIE_NAME)
+      cartMagentoStore.$patch({ cartId: null })
+      localStorage.removeItem(cartTokenIdent)
       console.warn(error)
     }
   }
