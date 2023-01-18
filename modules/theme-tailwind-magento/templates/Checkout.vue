@@ -49,7 +49,7 @@ import { computed, nextTick, onMounted, ref } from 'vue'
 import useShipping from '#ioc/composables/useShipping'
 import usePayment from '#ioc/composables/usePayment'
 import useEmitBeginCheckout from '#ioc/bus/emitters/useEmitBeginCheckout'
-import useEmitPurchase from '#ioc/bus/emitters/useEmitPurchase'
+import useEmitPlaceOrder from '#ioc/bus/emitters/useEmitPlaceOrder'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -62,7 +62,7 @@ const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
 const emitBeginCheckout = useEmitBeginCheckout()
-const emitPurchase = useEmitPurchase()
+const emitPlaceOrder = useEmitPlaceOrder()
 
 const step = ref(1)
 
@@ -132,7 +132,7 @@ const onPlaceOrder = async ({ resolve }: any) => {
 
     const { order } = await placeOrder()
 
-    emitPurchase({ cart, shipping, order })
+    emitPlaceOrder({ cart, shipping, order })
 
     if (order.redirectUrl) {
       window.location.href = order.redirectUrl

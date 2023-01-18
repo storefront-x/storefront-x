@@ -18,7 +18,7 @@ export default () => {
               product.finalPrice?.value !== product.regularPrice?.value
                 ? (+product.regularPrice.value - +product.finalPrice.value) / PRICE_OFFSET
                 : 0,
-            item_brand: product.brand ?? '',
+            item_brand: product.brand?.name ?? '',
             item_category: product.categories?.at(0)?.name ?? '',
             item_category2: product.categories?.at(1)?.name ?? '',
             item_category3: product.categories?.at(2)?.name ?? '',

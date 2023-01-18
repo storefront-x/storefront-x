@@ -1,9 +1,9 @@
-import RemoveFromCart from '#ioc/bus/events/RemoveFromCart'
+import ViewProduct from '#ioc/bus/events/ViewProduct'
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 
 export default () => {
-  return ({ cartItem: { product, quantity } }: RemoveFromCart) => {
-    gtag('event', 'remove_from_cart', {
+  return ({ product }: ViewProduct) => {
+    gtag('event', 'view_item', {
       currency: product.finalPrice?.currency ?? '',
       value: +product.finalPrice.value / PRICE_OFFSET,
       items: [
@@ -22,13 +22,12 @@ export default () => {
           item_category4: product.categories?.at(3)?.name ?? '',
           item_category5: product.categories?.at(4)?.name ?? '',
           price: +product.regularPrice.value / PRICE_OFFSET,
-          quantity: quantity ?? 1,
         },
       ],
       product_type: product.productType ?? '',
     })
 
-    console.log('Google Tag (remove from cart) emit')
+    console.log('Google Tag (view item) emit')
     console.log({
       currency: product.finalPrice?.currency ?? '',
       value: +product.finalPrice.value / PRICE_OFFSET,
@@ -48,7 +47,6 @@ export default () => {
           item_category4: product.categories?.at(3)?.name ?? '',
           item_category5: product.categories?.at(4)?.name ?? '',
           price: +product.regularPrice.value / PRICE_OFFSET,
-          quantity: quantity ?? 1,
         },
       ],
       product_type: product.productType ?? '',

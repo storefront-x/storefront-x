@@ -14,6 +14,7 @@ export default {
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
     '@storefront-x/nprogress',
+    '@storefront-x/google-tag-manager',
     '@storefront-x/google-analytics',
 
     '@storefront-x/magento',

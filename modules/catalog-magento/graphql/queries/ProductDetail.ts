@@ -13,7 +13,6 @@ export default () =>
         .fields({
           items: field({
             ...Product(),
-            brand: field(),
             related_products: field({
               ...ProductInListing().inline(),
             }),

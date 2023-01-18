@@ -39,7 +39,5 @@ export default {
     '@storefront-x/theme-tailwind-magento',
 
     '@storefront-x/demo-magento',
-    'test-gtm',
-    'test-analytics',
   ],
 }

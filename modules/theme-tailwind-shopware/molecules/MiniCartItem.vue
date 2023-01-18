@@ -120,7 +120,7 @@ const removeItem = async () => {
     isRemoveLoading.value = true
 
     await removeFromCart(cartItem)
-    emitRemoveFromCart({ product: cartItem.product, quantity: cartItem.quantity })
+    emitRemoveFromCart({ cartItem })
   } catch (e) {
     showErrorNotification(e)
   } finally {
