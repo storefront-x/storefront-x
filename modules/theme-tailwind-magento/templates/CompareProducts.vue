@@ -16,7 +16,7 @@
           :key="index"
           :class="index === compareProducts.attributes.length - 1 || 'border-b'"
         >
-          <td class="align-top p-4 font-medium">
+          <td class="align-top p-4 font-medium sticky left-0 bg-gray-100">
             {{ attribute.label }}
           </td>
           <td v-for="(item, indexAttr) in compareProducts.items" :key="indexAttr" class="align-top p-4 border-l w-80">
@@ -34,10 +34,10 @@ import Container from '#ioc/atoms/Container'
 import Heading from '#ioc/atoms/Heading'
 import ProductTile from '#ioc/molecules/ProductTile'
 import useI18n from '#ioc/composables/useI18n'
-import useProductComparison from '#ioc/composables/useProductComparison'
+import useComparison from '#ioc/composables/useComparison'
 
 const { t } = useI18n()
-const compareProducts = useProductComparison()
+const compareProducts = useComparison()
 
 defineProps({
   brand: {
