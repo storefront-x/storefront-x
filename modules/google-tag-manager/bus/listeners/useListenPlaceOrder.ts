@@ -56,7 +56,5 @@ export default () => {
         transaction_id: orderNumber,
       },
     })
-
-    console.log('Tag Manager (purchase) emit')
   }
 }

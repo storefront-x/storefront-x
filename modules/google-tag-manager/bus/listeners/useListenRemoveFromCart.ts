@@ -31,7 +31,5 @@ export default () => {
         product_type: product.productType ?? '',
       },
     })
-
-    console.log('Tag Manager (remove from cart) emit')
   }
 }

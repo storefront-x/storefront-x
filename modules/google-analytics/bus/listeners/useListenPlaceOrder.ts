@@ -53,16 +53,5 @@ export default () => {
       coupon: coupons.length ? coupons[0].code : '',
       transaction_id: orderNumber,
     })
-
-    console.log('Google Tag (purchase) emit')
-    console.log({
-      currency: subtotalIncludingTax?.currency,
-      value: subtotalIncludingTax?.value && (subtotalIncludingTax.value - totalDiscount + totalShipping) / PRICE_OFFSET,
-      items: products,
-      shipping: totalShipping / PRICE_OFFSET,
-      tax: totalTax && totalTax / PRICE_OFFSET,
-      coupon: coupons.length ? coupons[0].code : '',
-      transaction_id: orderNumber,
-    })
   }
 }

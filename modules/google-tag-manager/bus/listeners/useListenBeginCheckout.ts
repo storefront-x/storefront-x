@@ -42,7 +42,5 @@ export default () => {
         coupon: coupons.length ? coupons[0].code : '',
       },
     })
-
-    console.log('Tag Manager (begin checkout) emit')
   }
 }

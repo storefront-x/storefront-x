@@ -38,13 +38,5 @@ export default () => {
       items: products,
       coupon: coupons.length ? coupons[0].code : '',
     })
-
-    console.log('Google Tag (begin checkout) emit')
-    console.log({
-      currency: subtotalIncludingTax?.currency,
-      value: subtotalIncludingTax?.value && (subtotalIncludingTax.value - totalDiscount) / PRICE_OFFSET,
-      items: products,
-      coupon: coupons.length ? coupons[0].code : '',
-    })
   }
 }
