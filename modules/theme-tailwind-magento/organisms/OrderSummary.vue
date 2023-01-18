@@ -39,7 +39,7 @@
           </div>
           <div class="flex items-center justify-between border-t border-gray-200 pt-6">
             <dt class="text-lg font-bold">{{ t('total') }}</dt>
-            <SfxMoney :money="cart.grandTotal" el="dd" class="text-lg font-bold text-gray-900" />
+            <SfxMoney :money="checkout.grandTotal" el="dd" class="text-lg font-bold text-gray-900" />
           </div>
         </dl>
       </div>
