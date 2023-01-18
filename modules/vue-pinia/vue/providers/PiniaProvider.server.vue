@@ -3,13 +3,9 @@
 </template>
 
 <script setup>
-const stores = import.meta.globEager('#ioc/stores/*')
-const loaders = []
-for (const { default: useStore } of Object.values(stores ?? {})) {
-  const store = useStore()
-  if (store.serverInit) {
-    loaders.push(Promise.resolve(store.serverInit()).then((data) => store.$patch(data)))
-  }
-}
-await Promise.all(loaders)
+const inits = import.meta.glob('#ioc/stores/*.serverInit.*', { eager: true })
+
+const bindedInits = Object.values(inits ?? {}).map(({ default: use }) => use())
+
+await Promise.all(bindedInits.map((init) => init()))
 </script>
