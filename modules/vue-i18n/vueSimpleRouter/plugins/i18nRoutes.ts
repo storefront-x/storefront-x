@@ -28,11 +28,11 @@ const getAlias = (route: any, { isLayout = false } = {}) => {
       .replace('\\', '')
       .replace('', '/')
     if (aliasLocale && aliasPrefix) {
-      aliases.push(createRegExp(`${aliasPrefix}${aliasLocale}`), { isLayout })
+      aliases.push(createRegExp(`${aliasPrefix}${aliasLocale}`, { isLayout }))
     } else if (aliasLocale) {
-      aliases.push(createRegExp(`${aliasLocale}`), { isLayout })
+      aliases.push(createRegExp(`${aliasLocale}`, { isLayout }))
     } else if (aliasPrefix) {
-      aliases.push(createRegExp(`${aliasPrefix}${sanitizedRoutePath}`), { isLayout })
+      aliases.push(createRegExp(`${aliasPrefix}${sanitizedRoutePath}`, { isLayout }))
     }
   }
   return aliases
@@ -53,7 +53,7 @@ const getChildren = (route: any): any => {
 }
 
 const createRegExp = (string: string, { isLayout = false } = {}) => {
-  const afterStringMatcher = isLayout ? '(/.*)?$' : '/?$'
+  const afterStringMatcher = isLayout ? '(/.*)?' : '?$'
 
   return new RegExp(`^${string}${afterStringMatcher}`)
 }
