@@ -7,7 +7,7 @@ test('en translation', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -56,7 +56,7 @@ test('navigation loads translations', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -111,7 +111,7 @@ test('navigating to different locale', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -166,7 +166,7 @@ test('navigating to different locale of non-index page', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -225,7 +225,7 @@ test('navigating to different locale of non-index page in deep structure', async
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -287,7 +287,9 @@ test('navigating to different locale of non-index page in deep structure', async
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await page.locator('a').click()
-      expect(await page.content()).toContain('<div id="h1"><div id="h2">Ahoj svět!</div></div>')
+      expect(await page.content()).toContain(
+        '<div id="h1"><div id="h2" pathmatch="cz/folder/test">Ahoj svět!</div></div>',
+      )
       await expect(page.locator('#h2')).toContainText('Ahoj svět!')
     },
   )

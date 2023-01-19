@@ -26,7 +26,7 @@
                   <template #default>
                     <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
                       <li v-for="(pageLink, indexChild) in pageLinkCategory.children" :key="indexChild" class="text-sm">
-                        <Link :to="localePath(t(pageLink.path))" color="gray">
+                        <Link :to="pageLink.path" color="gray">
                           {{ t(pageLink.label) }}
                         </Link>
                       </li>
@@ -45,7 +45,7 @@
 
                 <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
                   <li v-for="(pageLink, indexChild) in pageLinkCategory.children" :key="indexChild" class="text-sm">
-                    <Link :to="localePath(t(pageLink.path))" color="gray" class="hover:underline">
+                    <Link :to="pageLink.path" color="gray" class="hover:underline">
                       {{ t(pageLink.label) }}
                     </Link>
                   </li>
@@ -85,35 +85,36 @@ import useI18n from '#ioc/composables/useI18n'
 import logo from '#ioc/assets/logo'
 import useLocalePath from '#ioc/composables/useLocalePath'
 
+const localePath = useLocalePath()
+const { t } = useI18n()
+
 const pageLinksByCategory = [
   {
     name: 'Useful information',
     children: [
-      { label: 'About us', path: '/about-company' },
-      { label: 'Contact', path: '/contact' },
+      { label: 'About us', path: localePath(t('/about-company')) },
+      { label: 'Contact', path: localePath(t('/contact')) },
     ],
   },
   {
     name: 'Customer service',
     children: [
-      { label: 'Shipping and payment', path: '/shipping-and-payment' },
-      { label: 'Return policy', path: '/return-policy' },
-      { label: 'Terms of service', path: '/terms-of-service' },
-      { label: 'Privacy policy and cookies policy', path: '/privacy-policy-cookie-restriction-mode' },
+      { label: 'Shipping and payment', path: localePath(t('/shipping-and-payment')) },
+      { label: 'Return policy', path: localePath(t('/return-policy')) },
+      { label: 'Terms of service', path: localePath(t('/terms-of-service')) },
+      { label: 'Privacy policy and cookies policy', path: localePath(t('/privacy-policy-cookie-restriction-mode')) },
     ],
   },
   {
     name: 'Account',
     children: [
-      { label: 'Sign in', path: 'sign-in' },
-      { label: 'Sign up', path: 'sign-up' },
-      { label: 'Settings', path: 'account' },
-      { label: 'My orders', path: 'account/orders' },
+      { label: 'Sign in', path: localePath('sign-in') },
+      { label: 'Sign up', path: localePath('sign-up') },
+      { label: 'Settings', path: localePath('account') },
+      { label: 'My orders', path: localePath('account/orders') },
     ],
   },
 ]
-const localePath = useLocalePath()
-const { t } = useI18n()
 </script>
 
 <i18n lang="yaml">

@@ -1,7 +1,8 @@
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
-
-export default (routes: any) => {
+let _isLayout = false
+export default (routes: any, isLayout = false) => {
+  _isLayout = isLayout
   return routes.map((route: any) => ({
     ...route,
     alias: getAlias(route),
@@ -12,13 +13,14 @@ export default (routes: any) => {
 const getAlias = (route: any) => {
   const aliases = []
   const isDynamicRoute = route.name && route.name.includes('[')
-  const aliasLocaleKey = isDynamicRoute ? `/${route.name}` : route.path
+  const aliasLocaleKey = isDynamicRoute ? `/${route.name}` : route.readablePath
   for (const locale of VUE_I18N_LOCALES) {
     const aliasLocale =
       (VUE_I18N_ROUTE_PATHS as any)[aliasLocaleKey]?.[locale.name]?.replace(
         /\[(.+?)\]/g,
         (_: string, $1: string) => `:${$1}(.+)`,
       ) ?? null
+
     const aliasPrefix = locale.prefix === '/' ? null : locale.prefix
     const sanitizedRoutePath = route.path
       .toString()
@@ -51,5 +53,7 @@ const getChildren = (route: any): any => {
 }
 
 const createRegExp = (string: string) => {
-  return new RegExp(`^${string}?$`)
+  const afterStringMatcher = _isLayout ? '(/.*)?' : '?$'
+
+  return new RegExp(`^${string}${afterStringMatcher}`)
 }
