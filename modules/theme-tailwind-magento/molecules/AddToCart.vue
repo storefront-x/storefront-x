@@ -79,7 +79,6 @@ const onAddToCart = async () => {
     isCrossSellModalOpen.value = true
     product.options = []
     delete product.bundle
-    product.configuration = {}
   } finally {
     isLoading.value = false
   }
