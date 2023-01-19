@@ -4,7 +4,7 @@ In this section, we will introduce, how to scaffold a Storefront X application o
 
 ## Requirements
 
-- [Node](https://nodejs.org/en/) v18+
+- [Node](https://nodejs.org/en/) v16+
 
 ## Creating your first Storefront X project
 
