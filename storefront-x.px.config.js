@@ -59,5 +59,6 @@ export default {
     '@storefront-x/theme-tailwind-magento-px',
 
     '@storefront-x/demo-px',
+    'test-config',
   ],
 }
