@@ -1,5 +1,5 @@
 <template>
-  <Form :value="updateFormValue" class="flex flex-col md:flex-row gap-16 mb-4">
+  <Form :value="updateFormValue" class="flex flex-col gap-y-6 mb-4">
     <ProductConfigurableOption
       v-for="configurableOption in product.configurableOptions"
       :key="configurableOption.attributeCode"

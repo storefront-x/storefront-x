@@ -1,5 +1,6 @@
 import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
+import Money from '#ioc/graphql/fragments/Money'
 
 export default (name = 'configurableProduct') =>
   fragment(name, 'ConfigurableProduct', {
@@ -31,6 +32,16 @@ export default (name = 'configurableProduct') =>
           url: field(),
         }),
         attribute_set_id: field(),
+        price_range: field({
+          minimum_price: field({
+            final_price: field({
+              ...Money(),
+            }),
+            regular_price: field({
+              ...Money(),
+            }),
+          }),
+        }),
       }),
       attributes: field({
         label: field(),
