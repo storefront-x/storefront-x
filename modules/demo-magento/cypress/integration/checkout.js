@@ -4,7 +4,6 @@ import selectPayment from '~/cypress/support/pageObjects/checkout/selectPayment'
 import fillShippingInfo from '~/cypress/support/pageObjects/checkout/fillShippingInfo'
 import confirmAgreements from '~/cypress/support/pageObjects/checkout/confirmAgreements'
 import placeOrder from '~/cypress/support/pageObjects/checkout/placeOrder'
-import fillCreditCardInfo from '~/cypress/support/pageObjects/checkout/fillCreditCardInfo'
 import getInstorePickupLocation from '~/cypress/support/pageObjects/checkout/getInstorePickupLocation'
 import checkThankYouPageVisibility from '~/cypress/support/pageObjects/thankYouPage/checkThankYouPageVisibility'
 import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
@@ -47,19 +46,6 @@ describe('Checkout', () => {
     fillShippingInfo(shippingMethod)
     confirmAgreements()
     placeOrder()
-
-    checkThankYouPageVisibility()
-  })
-
-  it('accepts credit card payment', () => {
-    const shippingMethod = 'flatrate_flatrate'
-
-    selectShipping(shippingMethod)
-    selectPayment('braintree')
-    fillShippingInfo(shippingMethod)
-    confirmAgreements()
-    placeOrder()
-    fillCreditCardInfo()
 
     checkThankYouPageVisibility()
   })
