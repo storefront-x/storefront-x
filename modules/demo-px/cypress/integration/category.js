@@ -4,6 +4,7 @@ import visitRandomCategory from '~/cypress/support/pageObjects/category/visitRan
 import sortByPrice from '~/cypress/support/pageObjects/listing/sortByPrice'
 import filter from '~/cypress/support/pageObjects/listing/filter'
 import getFirstAddToCart from '~/cypress/support/pageObjects/listing/getFirstAddToCart'
+import getListProductCount from '~/cypress/support/pageObjects/listing/getListProductCount'
 
 describe('Category', () => {
   beforeEach(() => {
@@ -34,5 +35,9 @@ describe('Category', () => {
     getFirstAddToCart({ product: 'simple' }).click()
 
     expectMicrocartQuantity(1)
+  })
+
+  it('category shows number of products ', () => {
+    getListProductCount().should('not.have.value', 'Product found: {0}')
   })
 })

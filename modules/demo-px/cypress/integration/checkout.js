@@ -11,11 +11,16 @@ import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 import addToCart from '~/cypress/support/pageObjects/product/addToCart'
 import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
 import Product from '~/cypress/support/pageObjects/product/Product'
+import getAddCouponButton from '~/cypress/support/pageObjects/checkout/getAddCouponButton'
+import getCouponCodeInput from '~/cypress/support/pageObjects/checkout/getCouponCodeInput'
+import getApplyCouponButton from '~/cypress/support/pageObjects/checkout/getApplyCouponButton'
+import getAppliedCoupons from '~/cypress/support/pageObjects/checkout/getAppliedCoupons'
+import getRemoveCouponButton from '~/cypress/support/pageObjects/checkout/getRemoveCouponButton'
+import getNotificationToast from '~/cypress/support/pageObjects/base/getNotificationToast'
 
 describe('Checkout', () => {
   /** @type {Product} */
   let product = null
-  let shippingMethod
 
   beforeEach(() => {
     product = new Product()
@@ -35,7 +40,7 @@ describe('Checkout', () => {
   })
 
   it('finishes checkout process', () => {
-    shippingMethod = 'flatrate_flatrate'
+    const shippingMethod = 'flatrate_flatrate'
 
     selectShipping(shippingMethod)
     selectPayment('checkmo')
@@ -47,7 +52,7 @@ describe('Checkout', () => {
   })
 
   it('accepts credit card payment', () => {
-    shippingMethod = 'flatrate_flatrate'
+    const shippingMethod = 'flatrate_flatrate'
 
     selectShipping(shippingMethod)
     selectPayment('braintree')
@@ -60,7 +65,7 @@ describe('Checkout', () => {
   })
 
   it('supports instore pickup', () => {
-    shippingMethod = 'instore_pickup'
+    const shippingMethod = 'instore_pickup'
 
     selectShipping(shippingMethod)
     getInstorePickupLocation().click()
@@ -70,5 +75,21 @@ describe('Checkout', () => {
     placeOrder()
 
     checkThankYouPageVisibility()
+  })
+
+  it('add valid coupon', () => {
+    getAddCouponButton().click()
+    getCouponCodeInput().type('coupon_cypress_test')
+    getApplyCouponButton()
+    getAppliedCoupons().should('have.text', 'coupon_cypress_test')
+    getRemoveCouponButton()
+    getAppliedCoupons().should('not.exist')
+  })
+
+  it('add invalid coupon', () => {
+    getAddCouponButton().click()
+    getCouponCodeInput().type('WrongCoupon')
+    getApplyCouponButton().click()
+    getNotificationToast().should('not.be.empty')
   })
 })
