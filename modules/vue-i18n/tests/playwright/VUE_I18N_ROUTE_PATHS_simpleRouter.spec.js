@@ -7,7 +7,7 @@ test('route paths', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -71,7 +71,7 @@ test('change of locale', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -128,7 +128,7 @@ test('change of locale', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/cart', { waitUntil: 'networkidle' })
       await page.locator('a').click()
-
+      await page.waitForLoadState('networkidle')
       await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
   )
@@ -140,7 +140,7 @@ test('change of page', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -215,7 +215,7 @@ test('change of locale passes query and hash forward', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -278,7 +278,7 @@ test('route paths do not affect absolute paths', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -335,7 +335,7 @@ test('works with route parameters', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -394,7 +394,7 @@ test('works with multiple route parameters', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -453,7 +453,7 @@ test('rendering different locale of non-index page in deep structure', async ({ 
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -474,6 +474,10 @@ test('rendering different locale of non-index page in deep structure', async ({ 
               `,
               'VUE_I18N_ROUTE_PATHS.ts': `
                 export default {
+                  '/folder': {
+                    cz: '/slozka',
+                    en: '/folder',
+                  },
                   '/folder/test': {
                     cz: '/slozka/vyzkouset',
                     en: '/folder/test',
@@ -517,7 +521,9 @@ test('rendering different locale of non-index page in deep structure', async ({ 
     },
     async ({ url }) => {
       await page.goto(url + '/cz/slozka/vyzkouset', { waitUntil: 'networkidle' })
-      expect(await page.content()).toContain('<div id="h1"><div id="h2">Ahoj svět!</div></div>')
+      expect(await page.content()).toContain(
+        '<div id="h1"><div id="h2" pathmatch="cz/slozka/vyzkouset">Ahoj svět!</div></div>',
+      )
       await expect(page.locator('#h2')).toContainText('Ahoj svět!')
     },
   )

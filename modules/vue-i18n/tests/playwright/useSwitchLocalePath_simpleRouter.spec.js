@@ -7,7 +7,7 @@ test('switch locale path', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -71,7 +71,7 @@ test('switch locale to nested page', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -139,7 +139,7 @@ test('switch locale path to default language', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -203,7 +203,7 @@ test('renders domain', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -254,7 +254,7 @@ test('renders domain and prefix', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
