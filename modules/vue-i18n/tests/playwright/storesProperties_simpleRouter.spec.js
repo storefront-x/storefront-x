@@ -35,7 +35,7 @@ test('render store properties', async ({ page }) => {
               'index.vue': `
                   <template>
                     <h1>{{ fullName }}</h1>
-                    <a href="#" @click.prevent="change">click</a>
+                    <button id="switch" @click.prevent="change">click</button>
                   </template>
                   <script setup>
                   import { computed } from 'vue'
@@ -59,7 +59,7 @@ test('render store properties', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('English')
-      await page.locator('a').click()
+      await page.locator('#switch').click()
       await expect(page.locator('h1')).toContainText('Czech')
     },
   )

@@ -134,7 +134,7 @@ test('change of locale', async ({ page }) => {
   )
 })
 
-test.only('change of page', async ({ page }) => {
+test('change of page', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -202,9 +202,8 @@ test.only('change of page', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
+      await page.goto(url + '/cz', { waitUntil: 'networkidle' })
       await page.locator('a').click()
-
       await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
   )

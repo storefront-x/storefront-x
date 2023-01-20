@@ -26,7 +26,7 @@ test('locale path with string param', async ({ page }) => {
               'a.vue': `
                   <template>
                     <h1>a</h1>
-                    <a href="#" @click.prevent="change">click</a>
+                    <button id="switch" @click.prevent="change">click</button>
                   </template>
                   <script setup>
                   import useRouter from '#ioc/composables/useRouter'
@@ -53,7 +53,7 @@ test('locale path with string param', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/a', { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('a')
-      await page.locator('a').click()
+      await page.locator('#switch').click()
       await expect(page.locator('h1')).toContainText('b')
     },
   )
@@ -84,7 +84,7 @@ test('locale path with object param', async ({ page }) => {
               'a.vue': `
                   <template>
                     <h1>a</h1>
-                    <a href="#" @click.prevent="change">click</a>
+                    <button id="switch" @click.prevent="change">click</button>
                   </template>
                   <script setup>
                   import useRouter from '#ioc/composables/useRouter'
@@ -111,7 +111,7 @@ test('locale path with object param', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/a', { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('a')
-      await page.locator('a').click()
+      await page.locator('#switch').click()
       await expect(page.locator('h1')).toContainText('b')
     },
   )

@@ -104,7 +104,7 @@ test('change of locale', async ({ page }) => {
               'cart.vue': `
                 <template>
                   <h1>{{ t('message') }}</h1>
-                  <RouterLink id="link" :to="switchLocalePath('cz')">click</RouterLink>
+                  <a :href="switchLocalePath('cz')">click</a>
                 </template>
                 <script setup>
                 import useI18n from '#ioc/composables/useI18n'
@@ -127,7 +127,7 @@ test('change of locale', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/cart', { waitUntil: 'networkidle' })
-      await page.locator('#link').click()
+      await page.locator('a').click()
 
       await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
@@ -172,7 +172,7 @@ test('change of page', async ({ page }) => {
             pages: {
               'index.vue': `
               <template>
-                <a :href="localePath('cart')">click</a>
+                <RouterLink :to="localePath('cart')">click</RouterLink>
               </template>
               <script setup>
               import useLocalePath from '#ioc/composables/useLocalePath'
@@ -202,7 +202,7 @@ test('change of page', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
+      await page.goto(url + '/cz', { waitUntil: 'networkidle' })
       await page.locator('a').click()
       await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
