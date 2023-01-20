@@ -3598,6 +3598,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/demo-drmax@workspace:modules/demo-drmax":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/demo-drmax@workspace:modules/demo-drmax"
+  dependencies:
+    vite-plugin-pwa: ^0.13.3
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/demo-magento@workspace:modules/demo-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/demo-magento@workspace:modules/demo-magento"
