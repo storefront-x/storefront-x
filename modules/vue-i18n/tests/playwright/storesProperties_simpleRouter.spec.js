@@ -7,7 +7,7 @@ test('render store properties', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',

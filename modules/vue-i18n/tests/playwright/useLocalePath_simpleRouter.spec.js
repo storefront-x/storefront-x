@@ -7,7 +7,7 @@ test('locale path with string param', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -65,7 +65,7 @@ test('locale path with object param', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -123,7 +123,7 @@ test('does not render domain of current locale', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -168,7 +168,7 @@ test('renders prefix but not domain of current locale', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -213,7 +213,7 @@ test('renders domain of different store', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -264,7 +264,7 @@ test('renders prefix and domain of different store', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
