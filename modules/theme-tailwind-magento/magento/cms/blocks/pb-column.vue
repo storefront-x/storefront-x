@@ -6,13 +6,18 @@
   </div>
 </template>
 
-<script>
-import IsPbBlock from '#ioc/mixins/IsPbBlock'
-import IsPbColumn from '#ioc/mixins/IsPbColumn'
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import usePbBlock from '#ioc/composables/cms/usePbBlock'
+import usePbColumn from '#ioc/composables/cms/usePbColumn'
+import { computed } from 'vue'
+
+const props = defineProps({ el: { type: Object, default: null } })
+
+const pbBlock = usePbBlock(props.el)
+const pbColumn = usePbColumn(props.el)
 
 // TODO: These classes are removed by CSS purge. This should be improved.
-const cols = {
+const cols: any = {
   1: 'md:col-span-1',
   2: 'md:col-span-2',
   3: 'md:col-span-3',
@@ -27,23 +32,17 @@ const cols = {
   12: 'md:col-span-12',
 }
 
-export default defineComponent({
-  mixins: [IsPbBlock, IsPbColumn],
+const classes = computed(() => {
+  return ['col-span-12', pbColumn.width ? cols[(12 * pbColumn.width).toFixed()] : `col-md`]
+})
 
-  computed: {
-    classes() {
-      return ['col-span-12', this.width ? cols[(12 * this.width).toFixed()] : `col-md`]
-    },
-
-    styles() {
-      return {
-        ...this.background,
-        ...this.advanced,
-        alignSelf: this.alignSelf,
-        minHeight: this.minHeight,
-        justifyContent: this.justifyContent,
-      }
-    },
-  },
+const styles = computed(() => {
+  return {
+    ...pbBlock.background,
+    ...pbBlock.advanced,
+    alignSelf: pbColumn.alignSelf,
+    minHeight: pbColumn.minHeight,
+    justifyContent: pbColumn.justifyContent,
+  }
 })
 </script>

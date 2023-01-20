@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 data-cy="title">{{ category.name }}</h1>
+    <Description :description="category.description" />
     <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4 xl:grid-cols-6 xl:gap-6 mt-5 mb-5 mb-0">
       <CategoryButton
         v-for="(item, index) in category.children"
@@ -42,6 +43,7 @@ import SolidArrowUpIcon from '#ioc/icons/SolidArrowUp'
 import useI18n from '#ioc/composables/useI18n'
 import { PropType, ref } from 'vue'
 import useCategory from '#ioc/composables/useCategory'
+import Description from '#ioc/atoms/Description'
 
 const { t } = useI18n()
 

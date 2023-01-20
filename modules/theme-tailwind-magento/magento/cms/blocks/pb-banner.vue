@@ -1,58 +1,42 @@
 <template>
   <div class="flex flex-col" :class="classes" :style="styles">
-    <div :style="wrapperStyles">
-      <div class="p-4 max-w-full" v-html="content" />
-      <RouterLink v-if="showButton === 'always'" class="btn btn-primary" :to="localePath(link)">
-        {{ buttonText }}
+    <div :style="{ textAlign: _textAlign }">
+      <div class="p-4 max-w-full" v-html="pbBanner.content" />
+      <RouterLink v-if="pbBanner.showButton === 'always'" class="btn btn-primary" :to="localePath(pbBanner.link)">
+        {{ pbBanner.buttonText }}
       </RouterLink>
     </div>
   </div>
 </template>
 
-<script>
-import IsPbBlock from '#ioc/mixins/IsPbBlock'
-import IsPbBanner from '#ioc/mixins/IsPbBanner'
+<script setup lang="ts">
+import usePbBanner from '#ioc/composables/cms/usePbBanner'
 import useLocalePath from '#ioc/composables/useLocalePath'
-import { defineComponent } from 'vue'
+import { computed } from 'vue'
 
-export default defineComponent({
-  mixins: [IsPbBlock, IsPbBanner],
+const props = defineProps({ el: { type: Object, default: null } })
 
-  setup: () => {
-    const localePath = useLocalePath()
+const localePath = useLocalePath()
+const pbBanner = usePbBanner(props.el)
 
-    return {
-      localePath,
-    }
-  },
+const classes = computed(() => {
+  return {
+    'justify-center': pbBanner.appearance === 'poster',
+  }
+})
 
-  computed: {
-    classes() {
-      return {
-        'justify-center': this.appearance === 'poster',
-      }
-    },
+const styles = computed(() => {
+  return {
+    ...pbBanner.advanced,
+    ...pbBanner.background,
+    minHeight: pbBanner.minHeight,
+  }
+})
 
-    styles() {
-      return {
-        ...this.advanced,
-        ...this.background,
-        minHeight: this.minHeight,
-      }
-    },
-
-    wrapperStyles() {
-      return {
-        textAlign: this._textAlign,
-      }
-    },
-
-    _textAlign() {
-      if (this.appearance === 'collage-left') return 'left'
-      if (this.appearance === 'collage-centered') return 'center'
-      if (this.appearance === 'collage-right') return 'right'
-      return undefined
-    },
-  },
+const _textAlign = computed(() => {
+  if (pbBanner.appearance === 'collage-left') return 'left'
+  if (pbBanner.appearance === 'collage-centered') return 'center'
+  if (pbBanner.appearance === 'collage-right') return 'right'
+  return undefined
 })
 </script>

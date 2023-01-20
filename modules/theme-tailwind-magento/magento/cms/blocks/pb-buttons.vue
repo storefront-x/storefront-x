@@ -4,32 +4,31 @@
   </div>
 </template>
 
-<script>
-import IsPbBlock from '#ioc/mixins/IsPbBlock'
-import IsPbButtons from '#ioc/mixins/IsPbButtons'
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import usePbBlock from '#ioc/composables/cms/usePbBlock'
+import usePbButtons from '#ioc/composables/cms/usePbButtons'
+import { computed } from 'vue'
 
-export default defineComponent({
-  mixins: [IsPbBlock, IsPbButtons],
+const props = defineProps({ el: { type: Object, default: null } })
 
-  computed: {
-    classes() {
-      return {
-        'flex gap-2': true,
-        'flex-row': this.appearance === 'inline',
-        'flex-col': this.appearance === 'stacked',
-        'justify-start': this.advanced.textAlign === 'left',
-        'justify-center': this.advanced.textAlign === 'center',
-        'justify-end': this.advanced.textAlign === 'right',
-      }
-    },
+const pbBlock = usePbBlock(props.el)
+const pbButtons = usePbButtons(props.el)
 
-    styles() {
-      return {
-        ...this.advanced,
-        textAlign: undefined,
-      }
-    },
-  },
+const classes = computed(() => {
+  return {
+    'flex gap-2': true,
+    'flex-row': pbButtons.appearance === 'inline',
+    'flex-col': pbButtons.appearance === 'stacked',
+    'justify-start': pbBlock.advanced.textAlign === 'left',
+    'justify-center': pbBlock.advanced.textAlign === 'center',
+    'justify-end': pbBlock.advanced.textAlign === 'right',
+  }
+})
+
+const styles = computed(() => {
+  return {
+    ...pbBlock.advanced,
+    textAlign: undefined,
+  }
 })
 </script>

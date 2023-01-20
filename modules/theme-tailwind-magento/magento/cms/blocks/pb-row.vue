@@ -4,28 +4,23 @@
   </component>
 </template>
 
-<script>
-import IsPbBlock from '#ioc/mixins/IsPbBlock'
-import IsPbRow from '#ioc/mixins/IsPbRow'
+<script setup lang="ts">
+import usePbRow from '#ioc/composables/cms/usePbRow'
 import Container from '#ioc/atoms/Container'
-import { defineComponent } from 'vue'
+import { computed } from 'vue'
 
-export default defineComponent({
-  mixins: [IsPbBlock, IsPbRow],
+const props = defineProps({ el: { type: Object, default: null } })
 
-  computed: {
-    component() {
-      return this.appearance === 'contained' ? Container : 'div'
-    },
+const pbRow = usePbRow(props.el)
 
-    styles() {
-      return {
-        ...this.background,
-        ...this.advanced,
-        minHeight: this.minHeight,
-        justifyContent: this.justifyContent,
-      }
-    },
-  },
+const component = computed(() => (pbRow.appearance === 'contained' ? Container : 'div'))
+
+const styles = computed(() => {
+  return {
+    ...pbRow.background,
+    ...pbRow.advanced,
+    minHeight: pbRow.minHeight,
+    justifyContent: pbRow.justifyContent,
+  }
 })
 </script>
