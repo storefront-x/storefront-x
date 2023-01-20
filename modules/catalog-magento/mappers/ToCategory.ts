@@ -6,7 +6,7 @@ export default (data: any) => ({
   name: data.name ?? '',
   description: data.description ?? '',
   meta: {
-    title: data.meta_title ?? '',
+    title: data.meta_title ?? data.name,
     description: data.meta_description ?? '',
     keywords: data.meta_keywords ?? '',
   },
