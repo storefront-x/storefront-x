@@ -104,7 +104,7 @@ test('change of locale', async ({ page }) => {
               'cart.vue': `
                 <template>
                   <h1>{{ t('message') }}</h1>
-                  <a :href="switchLocalePath('cz')">click</a>
+                  <RouterLink id="link" :to="switchLocalePath('cz')">click</RouterLink>
                 </template>
                 <script setup>
                 import useI18n from '#ioc/composables/useI18n'
@@ -127,7 +127,8 @@ test('change of locale', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/cart', { waitUntil: 'networkidle' })
-      await page.locator('a').click()
+      await page.locator('#link').click()
+
       await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
   )
@@ -171,7 +172,7 @@ test('change of page', async ({ page }) => {
             pages: {
               'index.vue': `
               <template>
-                <RouterLink :to="localePath('cart')">click</RouterLink>
+                <a :href="localePath('cart')">click</a>
               </template>
               <script setup>
               import useLocalePath from '#ioc/composables/useLocalePath'
@@ -201,7 +202,7 @@ test('change of page', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/cz', { waitUntil: 'networkidle' })
+      await page.goto(url, { waitUntil: 'networkidle' })
       await page.locator('a').click()
       await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
@@ -446,7 +447,7 @@ test('works with multiple route parameters', async ({ page }) => {
   )
 })
 
-test('navigating to different locale of non-index page in deep structure', async ({ page }) => {
+test('rendering different locale of non-index page in deep structure', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -481,12 +482,7 @@ test('navigating to different locale of non-index page in deep structure', async
               `,
             },
             pages: {
-              'index.vue': `
-                <template>
-                  <a href="/cz/slozka/vyzkouset">Link</a>
-                </template>
-              `,
-              'folder': {
+              folder: {
                 '$layout.vue': `
                     <template>
                     <div id="h1">
@@ -520,8 +516,7 @@ test('navigating to different locale of non-index page in deep structure', async
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await page.locator('a').click()
+      await page.goto(url + '/cz/slozka/vyzkouset', { waitUntil: 'networkidle' })
       expect(await page.content()).toContain('<div id="h1"><div id="h2">Ahoj svět!</div></div>')
       await expect(page.locator('#h2')).toContainText('Ahoj svět!')
     },

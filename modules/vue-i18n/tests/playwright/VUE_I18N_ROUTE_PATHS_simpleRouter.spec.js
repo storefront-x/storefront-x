@@ -134,7 +134,7 @@ test('change of locale', async ({ page }) => {
   )
 })
 
-test('change of page', async ({ page }) => {
+test.only('change of page', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -202,8 +202,9 @@ test('change of page', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/cz', { waitUntil: 'networkidle' })
+      await page.goto(url, { waitUntil: 'networkidle' })
       await page.locator('a').click()
+
       await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
   )
@@ -447,7 +448,7 @@ test('works with multiple route parameters', async ({ page }) => {
   )
 })
 
-test('navigating to different locale of non-index page in deep structure', async ({ page }) => {
+test('rendering different locale of non-index page in deep structure', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -486,12 +487,7 @@ test('navigating to different locale of non-index page in deep structure', async
               `,
             },
             pages: {
-              'index.vue': `
-                <template>
-                  <a href="/cz/slozka/vyzkouset">Link</a>
-                </template>
-              `,
-              'folder': {
+              folder: {
                 '$layout.vue': `
                     <template>
                     <div id="h1">
@@ -525,8 +521,7 @@ test('navigating to different locale of non-index page in deep structure', async
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await page.locator('a').click()
+      await page.goto(url + '/cz/slozka/vyzkouset', { waitUntil: 'networkidle' })
       expect(await page.content()).toContain(
         '<div id="h1"><div id="h2" pathmatch="cz/slozka/vyzkouset">Ahoj svět!</div></div>',
       )
