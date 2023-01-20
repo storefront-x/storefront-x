@@ -1,1 +1,1 @@
-export default 'https://be-sfx.demo.magexo.cloud'
+export default 'https://master-vanilla.magexo.cloud'
