@@ -374,3 +374,31 @@ export default () =>
       }),
     })
 ```
+
+## Utilities
+
+### addFields(_query_, _path_, _fields_)
+
+As the name of utility says, you can use `addFields()` utility to additionally include more fields into any GraphQL **query** request.
+
+```javascript
+addFields(query, 'products.items', {
+  rating_summary: field(),
+  review_count: field(),
+  reviews: field()
+    .args({
+      pageSize: CATALOG_REVIEWS_PER_PAGE,
+    })
+    .fields({
+      items: field({
+        ...Review(),
+      }),
+    }),
+})
+
+return query
+```
+
+This function can contains two or three parameters. <br />
+First of all, you have to specify the query itself which will be extended. Then you can, or not, to specify the query path, which will be extended (_if no path will be provided, the root path of query will be used_). The last, you have to specify fileds itself, which you want to include inside your query request. <br />
+Finally, you can, for example, return the query itself, which will now contains original fields and also fields added by `addFields()` function.
