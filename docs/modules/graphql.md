@@ -379,7 +379,7 @@ export default () =>
 
 ### `addFields` utility
 
-As the name of utility says, we can use `addFields()` utility to additionally include more fields into any GraphQL **query**, **fragment** or **mutation** request. This is especially useful for extending existing requests, like we can see on the example bellow: we are extending list of categories with thumbnails, so the final request will contain original fields inside the `CategoryList.ts` file and it also will be extended by thumbnail fields.
+As the name of utility says, we can use `addFields()` utility to additionally include more fields into any GraphQL **query**, **fragment** or **mutation** request. This is especially useful for extending existing requests, like we can see on the example bellow: we are extending list of categories query with thumbnails, so the final request will contain original fields inside the `CategoryList.ts` file and it also will be extended by thumbnail fields.
 
 #### Properties
 
