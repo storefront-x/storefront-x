@@ -3633,9 +3633,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/google-analytics-listeners@workspace:modules/google-analytics-listeners":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-analytics-listeners@workspace:modules/google-analytics-listeners"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/google-analytics@workspace:modules/google-analytics":
   version: 0.0.0-use.local
   resolution: "@storefront-x/google-analytics@workspace:modules/google-analytics"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/google-tag-manager-listeners@workspace:modules/google-tag-manager-listeners":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-tag-manager-listeners@workspace:modules/google-tag-manager-listeners"
   languageName: unknown
   linkType: soft
 
@@ -14083,12 +14095,6 @@ __metadata:
   checksum: cabb50a640d6c2cfb351e4f43dc7bf7436f649755bb83eb78b2cacda426d5e0979bd44e6f92d713f3ca0f0866e322739b9ced888ebbce6508ad872d08de74fcc
   languageName: node
   linkType: hard
-
-"test-config@workspace:modules/test-config":
-  version: 0.0.0-use.local
-  resolution: "test-config@workspace:modules/test-config"
-  languageName: unknown
-  linkType: soft
 
 "text-extensions@npm:^1.0.0":
   version: 1.9.0

@@ -14,8 +14,8 @@ export default {
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
     '@storefront-x/nprogress',
-    '@storefront-x/google-tag-manager',
     '@storefront-x/google-analytics',
+    '@storefront-x/google-analytics-listeners',
 
     '@storefront-x/magento',
 
@@ -59,6 +59,5 @@ export default {
     '@storefront-x/theme-tailwind-magento-px',
 
     '@storefront-x/demo-px',
-    'test-config',
   ],
 }
