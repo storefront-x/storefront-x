@@ -377,28 +377,40 @@ export default () =>
 
 ## Utilities
 
-### addFields(_query_, _path_, _fields_)
+### `addFields` utility
 
-As the name of utility says, you can use `addFields()` utility to additionally include more fields into any GraphQL **query** request.
+As the name of utility says, we can use `addFields()` utility to additionally include more fields into any GraphQL **query**, **fragment** or **mutation** request. This is especially useful for extending existing requests, like we can see on the example bellow: we are extending list of categories with thumbnails, so the final request will contain original fields inside the `CategoryList.ts` file and it also will be extended by thumbnail fields.
 
-```javascript
-addFields(query, 'products.items', {
-  rating_summary: field(),
-  review_count: field(),
-  reviews: field()
-    .args({
-      pageSize: CATALOG_REVIEWS_PER_PAGE,
+#### Properties
+
+- `gql: any` - original GraphQL request which will be extended
+- `path?: string` - hierarchical path in original GraphQL request where fields will be added (optional)
+- `fields: object` - object of additional newly added fields
+
+#### Example
+
+```typescript
+// CategoryList.ext.ts
+
+const CategoryList: Extension =
+  (CategoryList) =>
+  (...args: any[]) => {
+    const self = CategoryList(...args)
+
+    addFields(self, 'categories.items.children', {
+      thumbnail: field(),
     })
-    .fields({
-      items: field({
-        ...Review(),
-      }),
-    }),
-})
 
-return query
+    addFields(self, 'categories.items.children.children', {
+      thumbnail: field(),
+    })
+
+    addFields(self, 'categories.items.children.children.children', {
+      thumbnail: field(),
+    })
+
+    return self
+  }
+
+export default CategoryList
 ```
-
-This function can contains two or three parameters. <br />
-First of all, you have to specify the query itself which will be extended. Then you can, or not, to specify the query path, which will be extended (_if no path will be provided, the root path of query will be used_). The last, you have to specify fileds itself, which you want to include inside your query request. <br />
-Finally, you can, for example, return the query itself, which will now contains original fields and also fields added by `addFields()` function.
