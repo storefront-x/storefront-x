@@ -6,8 +6,8 @@
       :name="tab.name"
       class="h-[50px] flex items-center font-semibold mr-[3px] text-[16px]"
       :classes="{
-        'text-primary-500 border-primary-500 bg-slate-50': toRaw(selected) == tab.component,
-        'text-inherit bg-blue-575 text-blue-560 hover:text-red-555': toRaw(selected) != tab.component,
+        'text-primary-500 border-primary-500 bg-slate-50': toRaw(selected) === tab.component,
+        'text-inherit bg-blue-575 text-blue-560 hover:text-red-555': toRaw(selected) !== tab.component,
       }"
       @click="selected = tab.component"
     >
