@@ -24,6 +24,7 @@ import injectProduct from '#ioc/composables/injectProduct'
 import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
+import useEmitAddToCart from '#ioc/bus/emitters/useEmitAddToCart'
 
 import useRouter from '#ioc/composables/useRouter'
 import useLocalePath from '#ioc/composables/useLocalePath'
@@ -41,6 +42,7 @@ const product = injectProduct()
 const addToCart = useAddToCart()
 const router = useRouter()
 const localePath = useLocalePath()
+const emitAddToCart = useEmitAddToCart()
 
 const isLoading = ref(false)
 const isCrossSellModalOpen = ref(false)
@@ -76,6 +78,7 @@ const onAddToCart = async () => {
       variantSku: product.variant?.sku,
       options: product.options,
     })
+    emitAddToCart({ product, quantity: props.quantity })
     isCrossSellModalOpen.value = true
     product.options = []
     delete product.bundle
