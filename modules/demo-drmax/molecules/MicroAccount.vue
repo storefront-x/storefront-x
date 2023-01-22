@@ -1,0 +1,57 @@
+<template>
+  <div v-if="!customer.isLoggedIn">
+    <Link
+      :to="localePath('account')"
+      class="px-2 bg-white flex items-center justify-center h-[50px] border border-grey-560 cursor-pointer rounded-[5px] ml-[15px]"
+      data-cy="micro-account"
+    >
+      <span class="flex justify-center items-center px-[10px] font-normal text-blue-560">{{ t('Přihlásit') }}</span>
+    </Link>
+  </div>
+
+  <div v-else class="flex flex-col font-semibold text-gray-800" data-cy="micro-account">
+    <span class="whitespace-nowrap font-bold">{{ t('welcome', [customer.fullName]) }}</span>
+    <span class="flex items-center whitespace-nowrap gap-4">
+      <Link class="text-primary-500" :to="localePath('account')">{{ t('My account') }}</Link>
+      <span class="w-px border h-5 border-l-1 border-gray-300 text-bottom" />
+      <Link class="text-primary-500" data-cy="logout" href="javascript:void(0)" @click="onLogout">
+        {{ t('Logout') }}
+      </Link>
+    </span>
+  </div>
+</template>
+
+<script setup lang="ts">
+import Link from '#ioc/atoms/Link'
+import useI18n from '#ioc/composables/useI18n'
+import useLocalePath from '#ioc/composables/useLocalePath'
+import useCustomer from '#ioc/composables/useCustomer'
+import useLogoutCustomer from '#ioc/services/useLogoutCustomer'
+
+defineProps({
+  submenu: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+const { t } = useI18n()
+const localePath = useLocalePath()
+const customer = useCustomer()
+const logout = useLogoutCustomer()
+
+const onLogout = async () => {
+  await logout()
+}
+</script>
+
+<i18n lang="yaml">
+en-US:
+  'welcome': 'Welcome {0}'
+cs-CZ:
+  My account: Můj účet
+  Logout: Odhlásit se
+  'welcome': 'Vítejte, {0}'
+  Sign in: Přihlásit
+  Sign up: Registrovat
+</i18n>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="132px" height="132px" viewBox="0 0 132 132" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>facebook</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.0002 0.6152 131.3842 0.6152 131.3842 132 0.0002 132"></polygon>
+        <polygon id="path-3" points="0.4356 0.4582 58.3606 0.4582 58.3606 112 0.4356 112"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logos/appIcons/facebookIco" transform="translate(-9.000000, -10.000000)">
+            <g id="facebook" transform="translate(9.000000, 9.000000)">
+                <g id="Group-3" transform="translate(0.000000, 0.385000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                    <path d="M117.3022,132.0002 L14.0822,132.0002 C6.3052,132.0002 0.0002,125.6952 0.0002,117.9172 L0.0002,14.6972 C0.0002,6.9202 6.3052,0.6152 14.0822,0.6152 L117.3022,0.6152 C125.0792,0.6152 131.3842,6.9202 131.3842,14.6972 L131.3842,117.9172 C131.3842,125.6952 125.0792,132.0002 117.3022,132.0002" id="Fill-1" fill="#3C5A99" mask="url(#mask-2)"></path>
+                </g>
+                <g id="Group-6" transform="translate(53.000000, 20.385000)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Clip-5"></g>
+                    <path d="M38.0336,112.0002 L38.0336,61.1212 L55.1116,61.1212 L57.6696,41.2922 L38.0336,41.2922 L38.0336,28.6322 C38.0336,22.8912 39.6286,18.9792 47.8606,18.9792 L58.3606,18.9742 L58.3606,1.2402 C56.5446,0.9982 50.3116,0.4582 43.0596,0.4582 C27.9216,0.4582 17.5566,9.6992 17.5566,26.6692 L17.5566,41.2922 L0.4356,41.2922 L0.4356,61.1212 L17.5566,61.1212 L17.5566,112.0002 L38.0336,112.0002 Z" id="Fill-4" fill="#FFFFFF" mask="url(#mask-4)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
