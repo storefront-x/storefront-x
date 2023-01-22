@@ -3837,6 +3837,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/vue-intersection-observer@workspace:modules/vue-intersection-observer":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/vue-intersection-observer@workspace:modules/vue-intersection-observer"
+  dependencies:
+    "@vueuse/core": ^9.11.1
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/vue-pinia@workspace:modules/vue-pinia":
   version: 0.0.0-use.local
   resolution: "@storefront-x/vue-pinia@workspace:modules/vue-pinia"
@@ -4714,6 +4722,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/core@npm:^9.11.1":
+  version: 9.11.1
+  resolution: "@vueuse/core@npm:9.11.1"
+  dependencies:
+    "@types/web-bluetooth": ^0.0.16
+    "@vueuse/metadata": 9.11.1
+    "@vueuse/shared": 9.11.1
+    vue-demi: "*"
+  checksum: c9b4d65d50441d19d452dfebe4e13c8b56a8ea296b31b9cd93b5a52ee1b461c40ebc530415d3869083852eb874c99d5742311fd8bf750d405f4d52a768aebaa3
+  languageName: node
+  linkType: hard
+
 "@vueuse/head@npm:^1.0.22":
   version: 1.0.22
   resolution: "@vueuse/head@npm:1.0.22"
@@ -4781,6 +4801,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/metadata@npm:9.11.1":
+  version: 9.11.1
+  resolution: "@vueuse/metadata@npm:9.11.1"
+  checksum: d4025257dc891b4ae3712a68b881409e7a58517f7b96f8949a74a99cec5e46f202fc2c326765eed9bffc8fbde6417ee737d3c2ac650799dd9e99fa5a7f9c2363
+  languageName: node
+  linkType: hard
+
 "@vueuse/metadata@npm:9.6.0":
   version: 9.6.0
   resolution: "@vueuse/metadata@npm:9.6.0"
@@ -4802,6 +4829,15 @@ __metadata:
     vue:
       optional: true
   checksum: 83a29ec879073100e268863f607b3a8175ac1d70318b85f74907ed69bcf0d538f89b2ccd3c14ac37eab326ec3564e0c1623f1f9af0980516a5617e7f81fdd9bb
+  languageName: node
+  linkType: hard
+
+"@vueuse/shared@npm:9.11.1":
+  version: 9.11.1
+  resolution: "@vueuse/shared@npm:9.11.1"
+  dependencies:
+    vue-demi: "*"
+  checksum: 373a725ba87dd84eec3882cef4dc92706f28b53256f1c23a800444c12de675c71c1773c254def5d9c3096e54b9830154d13540264c1f017770395f04b07d789f
   languageName: node
   linkType: hard
 

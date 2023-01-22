@@ -90,11 +90,9 @@ export default (el: any, index = -1) => {
     return el.querySelector('[data-element="button"]')
   })
 
-  const onIntersectionObserved = () => {
-    isVisible.value = true
-  }
-
-  useIntersectionObserver(el, onIntersectionObserved)
+  useIntersectionObserver(el, ([{ isIntersecting }]) => {
+    isVisible.value = isIntersecting
+  })
 
   return reactive({
     appearance,
