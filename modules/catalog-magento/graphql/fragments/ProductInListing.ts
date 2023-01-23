@@ -10,6 +10,10 @@ export default (name = 'ProductInListing') =>
     id: field(),
     sku: field(),
     name: field(),
+    categories: field({
+      name: field(),
+      url_path: field(),
+    }),
     url_key: field(),
     stock_status: field(),
     price_range: field({
