@@ -27,6 +27,10 @@ describe('HomepageStoreSwitcher', () => {
 
       cy.get('[data-cy=product-title]').first().click().waitForSfx()
       cy.url().should('match', /\/[a-z]{2}\//)
+
+      cy.reload().waitForSfx()
+
+      cy.url().should('match', /\/[a-z]{2}\//)
     })
   })
 })
