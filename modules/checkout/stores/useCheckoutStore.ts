@@ -1,7 +1,6 @@
 import ToCheckoutAgreement from '#ioc/mappers/ToCheckoutAgreement'
 import ToContactInformation from '#ioc/mappers/ToContactInformation'
 import ToCustomerAddress from '#ioc/mappers/ToCustomerAddress'
-import ToMoney from '#ioc/mappers/ToMoney'
 import ToPaymentAddress from '#ioc/mappers/ToPaymentAddress'
 import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
 import ToShippingAddress from '#ioc/mappers/ToShippingAddress'
@@ -10,7 +9,6 @@ import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('checkout', {
   state: () => ({
-    grandTotal: undefined as ReturnType<typeof ToMoney> | undefined,
     contactInformation: null as ReturnType<typeof ToContactInformation> | null,
     paymentMethods: [] as ReturnType<typeof ToPaymentMethod>[],
     shippingMethods: [] as ReturnType<typeof ToShippingMethod>[],

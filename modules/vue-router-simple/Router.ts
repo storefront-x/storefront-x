@@ -99,6 +99,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
               if (matchedParams) {
                 locationToMatch.params = { ...locationToMatch.params, ...matchedParams }
               }
+              locationToMatch.name = route.name
 
               break outer
             }
@@ -114,6 +115,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
           if (matchedParams) {
             locationToMatch.params = { ...locationToMatch.params, ...matchedParams }
           }
+          locationToMatch.name = route.name
           break
         }
       }
@@ -127,6 +129,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
         $pathMatch.value = $currentPath.value.replace(/^\/+/g, '')
       }
     }
+
     $view.value = { layout: _layout, page: _page }
 
     await nextTick()
@@ -201,6 +204,7 @@ export const createRouter = ({ routes, layouts = [] }: { routes: routeRaw[]; lay
 
   $ready.value = true
   const route = reactive({
+    name: computed(() => $history.location.name),
     path: computed(() => $history.location.path),
     fullPath: computed(() => $history.location.fullPath),
     params: computed(() => $history.location.params),

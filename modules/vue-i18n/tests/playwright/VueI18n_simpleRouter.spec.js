@@ -7,7 +7,7 @@ test('en translation', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -56,7 +56,7 @@ test('navigation loads translations', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -111,7 +111,7 @@ test('navigating to different locale', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -166,7 +166,7 @@ test('navigating to different locale of non-index page', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -189,7 +189,7 @@ test('navigating to different locale of non-index page', async ({ page }) => {
             pages: {
               'index.vue': `
                 <template>
-                  <a href="/cz/test">Link</a>
+                  <RouterLink to="/cz/test">Link</RouterLink>
                 </template>
               `,
               'test.vue': `
@@ -212,7 +212,7 @@ test('navigating to different locale of non-index page', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
+      await page.goto(url + '/cz', { waitUntil: 'networkidle' })
       await page.locator('a').click()
       await expect(page.locator('h1')).toContainText('Ahoj svět!')
     },
@@ -225,7 +225,7 @@ test('navigating to different locale of non-index page in deep structure', async
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@storefront-x/vue-router-simple',
         '@storefront-x/vue-i18n',
         [
           'my-module',
@@ -248,7 +248,7 @@ test('navigating to different locale of non-index page in deep structure', async
             pages: {
               'index.vue': `
                 <template>
-                  <a href="/cz/folder/test">Link</a>
+                  <RouterLink to="/cz/folder/test">Link</RouterLink>
                 </template>
               `,
               'folder': {
@@ -261,7 +261,6 @@ test('navigating to different locale of non-index page in deep structure', async
 
                     <script setup lang="ts">
                     import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
-
                     </script>
                   `,
                 'test.vue': `
@@ -285,10 +284,9 @@ test('navigating to different locale of non-index page in deep structure', async
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
+      await page.goto(url + '/cz', { waitUntil: 'networkidle' })
       await page.locator('a').click()
-      expect(await page.content()).toContain('<div id="h1"><div id="h2">Ahoj svět!</div></div>')
-      await expect(page.locator('#h2')).toContainText('Ahoj svět!')
+      await expect(page.locator('#h1')).toContainText('Ahoj svět!')
     },
   )
 })

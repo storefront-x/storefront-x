@@ -6,10 +6,6 @@ The [Sentry](https://sentry.io/welcome/) integration is made from two modules, s
 
 ## Client
 
-:::warning
-The client module should be enabled after all of the client framework modules (e.g. after all of the `vue` modules).
-:::
-
 ### `config/sentry/client/dsn` config
 
 This is the only mandatory config. It has to contain exported string with your DSN from the Sentry dashboard.
