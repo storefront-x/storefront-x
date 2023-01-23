@@ -17,7 +17,7 @@ test('event bus is working', async ({ page }) => {
               events: {
                 'TestEvent1.ts': `
                   export default interface TestEvent1 {
-                    data: string
+                    data: number
                   }
                 `,
               },
@@ -30,7 +30,7 @@ test('event bus is working', async ({ page }) => {
                     const eventBusStore = useEventBusStore()
 
                     return ({ data }: TestEvent1) => {
-                      eventBusStore.count += 1
+                      eventBusStore.count += data
                     }
                   }
                 `,
@@ -50,7 +50,7 @@ test('event bus is working', async ({ page }) => {
 
                   eventBusStore.count = 0
 
-                  emitTestEvent1({ data: '' })
+                  emitTestEvent1({ data: 1 })
                 </script>
               `,
             },
@@ -105,6 +105,65 @@ test('event bus is working', async ({ page }) => {
       await wrapConsole(async () => {
         await page.goto(url, { waitUntil: 'networkidle' })
         await expect(page.locator('#evResTest')).toContainText('3')
+      })
+    },
+  )
+})
+
+test('event bus is working without listeners', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router-simple',
+        '@storefront-x/base-commerce',
+        [
+          'my-module',
+          {
+            bus: {
+              events: {
+                'TestEvent.ts': `
+            export default interface TestEvent {
+              data: number
+            }
+          `,
+              },
+            },
+            pages: {
+              'index.vue': `
+          <template>
+            <p id="evResTest">Emittor was loaded properly.</p>
+          </template>
+          <script setup>
+            import useEmitTestEvent from '#ioc/bus/emitters/useEmitTestEvent'
+
+            const emitTestEvent = useEmitTestEvent()
+
+            emitTestEvent({ data: 1 })
+          </script>
+        `,
+            },
+            config: {
+              'MAGENTO_URL.ts': `export default '/'`,
+              'VUE_I18N_LOCALES.ts': `
+          export default [
+            {
+              name: 'en',
+              locale: 'en-US',
+              prefix: '/',
+            }
+          ]
+        `,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await wrapConsole(async () => {
+        await page.goto(url, { waitUntil: 'networkidle' })
+        await expect(page.locator('#evResTest')).toContainText('Emittor was loaded properly.')
       })
     },
   )
