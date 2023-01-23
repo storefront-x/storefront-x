@@ -11,12 +11,10 @@ import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 import addToCart from '~/cypress/support/pageObjects/product/addToCart'
 import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
 import Product from '~/cypress/support/pageObjects/product/Product'
-import getAddCouponButton from '~/cypress/support/pageObjects/checkout/getAddCouponButton'
-import getCouponCodeInput from '~/cypress/support/pageObjects/checkout/getCouponCodeInput'
-import getApplyCouponButton from '~/cypress/support/pageObjects/checkout/getApplyCouponButton'
 import getAppliedCoupons from '~/cypress/support/pageObjects/checkout/getAppliedCoupons'
-import getRemoveCouponButton from '~/cypress/support/pageObjects/checkout/getRemoveCouponButton'
+import removeCoupon from '~/cypress/support/pageObjects/checkout/removeCoupon'
 import getNotificationToast from '~/cypress/support/pageObjects/base/getNotificationToast'
+import setCoupon from '~/cypress/support/pageObjects/checkout/setCoupon'
 
 describe('Checkout', () => {
   /** @type {Product} */
@@ -78,18 +76,18 @@ describe('Checkout', () => {
   })
 
   it('add valid coupon', () => {
-    getAddCouponButton().click()
-    getCouponCodeInput().type('coupon_cypress_test')
-    getApplyCouponButton()
-    getAppliedCoupons().should('have.text', 'coupon_cypress_test')
-    getRemoveCouponButton()
+    const couponName = 'coupon_cypress_test'
+
+    setCoupon(couponName)
+    getAppliedCoupons().should('have.text', couponName)
+    removeCoupon()
     getAppliedCoupons().should('not.exist')
   })
 
   it('add invalid coupon', () => {
-    getAddCouponButton().click()
-    getCouponCodeInput().type('WrongCoupon')
-    getApplyCouponButton().click()
+    const couponName = 'wrong_coupon_code'
+
+    setCoupon(couponName)
     getNotificationToast().should('not.be.empty')
   })
 })

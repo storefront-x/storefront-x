@@ -1,5 +1,1 @@
-export default (position) =>
-  cy
-    .get('[data-cy=button-remove-coupon]')
-    .eq(position ?? 1)
-    .click()
+export default (position) => cy.get('[data-cy=button-remove-coupon]').eq(position ?? 1)
