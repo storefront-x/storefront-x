@@ -1,8 +1,8 @@
 <template>
   <footer class="bg-gray-50 border-t-4 border-gray-560">
     <Container>
-      <div class="flex items-center">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-0 mt-8 w-[66.66%]">
+      <div class="lg:flex items-center">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-0 mt-4 md:mt-8 w-full lg:w-[66.66%]">
           <div class="footer-section">
             <h3>O Dr.Max</h3>
             <ul>
@@ -29,7 +29,7 @@
               </li>
             </ul>
           </div>
-          <div class="footer-section pl-[22px]">
+          <div class="footer-section lg:pl-[22px]">
             <h3>Obecné</h3>
             <ul>
               <li>
@@ -55,7 +55,7 @@
               </li>
             </ul>
           </div>
-          <div class="footer-section pl-[22px]">
+          <div class="footer-section lg:pl-[22px]">
             <ul>
               <h3>Online nákup</h3>
               <li>
@@ -81,7 +81,7 @@
               </li>
             </ul>
           </div>
-          <div class="footer-section pl-[22px]">
+          <div class="footer-section lg:pl-[22px]">
             <h3>Karta výhod</h3>
             <ul>
               <li>
@@ -102,13 +102,13 @@
             </ul>
           </div>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center md:justify-center overflow-hidden md:overflow-auto">
           <img class="w-auto h-[196px]" :src="trustLogo" alt="Logo" />
-          <img class="w-auto h-[84px]" :src="sellerLogo" alt="Logo" />
+          <img class="w-auto h-[66px] md:h-[84px]" :src="sellerLogo" alt="Logo" />
         </div>
       </div>
       <div class="flex flex-wrap w-full flex-row mb-5">
-        <div class="w-[16.66666%]">
+        <div class="w-full lg:w-[16.66666%] hidden lg:block">
           <h5 class="font-normal text-[14px]">Mobilní aplikace</h5>
           <ul class="list-none m-0 p-0">
             <li>
@@ -118,7 +118,7 @@
             </li>
           </ul>
         </div>
-        <div class="w-[16.66666%]">
+        <div class="w-full lg:w-[16.66666%] hidden lg:block">
           <h5 class="font-normal text-[14px]">Kontaktujte nás</h5>
           <ul class="list-none p-0 m-0 flex">
             <li class="grayscale hover:grayscale-0 transition-opacity duration-200">
@@ -142,7 +142,7 @@
             </li>
           </ul>
         </div>
-        <div>
+        <div class="hidden lg:block">
           <h5 class="font-normal text-[14px]">Seznam portálů</h5>
           <ul class="list-none p-0 m-0 flex items-center">
             <li>
@@ -198,18 +198,18 @@
             </li>
           </ul>
         </div>
-        <div class="flex items-center w-[40.66666%] xl:w-[44.66666%] justify-end">
+        <div class="flex items-center w-full lg:w-[40.66666%] xl:w-[44.66666%] justify-center lg:justify-end">
           <img class="w-auto h-[22px] mt-8" :src="paymentsLogo" alt="Logo" />
         </div>
       </div>
     </Container>
     <div class="border-gray-560 border-t pb-10">
       <Container>
-        <div class="flex items-center py-2 justify-between">
+        <div class="flex items-center py-2 justify-center lg:justify-between">
           <div class="flex items-center">
             <p class="text-[12px]">&copy; 2023 Lékárna Dr. Max. Všechna práva vyhrazena</p>
           </div>
-          <div class="flex items-center">
+          <div class="hidden lg:flex items-center">
             <nav
               aria-label="Rychlé odkazy"
               itemscope="itemscope"
@@ -279,7 +279,7 @@
               </ul>
             </nav>
           </div>
-          <div class="flex items-center">
+          <div class="hidden lg:flex items-center">
             <ul class="list-none m-0 p-0 flex">
               <li>
                 <a
