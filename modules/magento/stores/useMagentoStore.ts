@@ -1,7 +1,7 @@
 import defineStore from '#ioc/utils/vuePinia/defineStore'
 
-export default defineStore('customerMagento', {
+export default defineStore('magento', {
   state: () => ({
-    customerId: '',
+    cacheId: '',
   }),
 })
