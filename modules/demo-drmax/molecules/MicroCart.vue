@@ -3,12 +3,14 @@
     :to="localePath('checkout')"
     class="relative pl-2 text-gray-400 hover:text-gray-500 hover:cursor-pointer lg:hidden"
   >
-    <div
-      class="flex items-center justify-center h-[50px] w-[50px] bg-green-555 border-green-560 text-white relative rounded-[0_5px_5px_0]"
-    >
-      <OutlineShoppingBag class="text-primary-500" />
-    </div>
-    <span class="cart-label" data-cy="microcart-quantity"> 0 {{ cart.itemsTotalQuantity }} </span>
+    <span class="hidden md:flex">
+      <span
+        class="flex items-center justify-center h-[50px] w-[50px] bg-green-555 border-green-560 text-white relative rounded-[0_5px_5px_0]"
+      >
+        <img class="h-[35px] w-[36px]" :src="cartLogo" alt="Logo" />
+      </span>
+      <span class="cart-label" data-cy="microcart-quantity"> 0 {{ cart.itemsTotalQuantity }} </span>
+    </span>
   </Link>
   <div
     role="button"
@@ -27,7 +29,7 @@
     <div
       class="flex items-center justify-center h-[50px] w-[50px] bg-green-555 border-green-560 text-white relative rounded-[0_5px_5px_0]"
     >
-      <OutlineShoppingBag class="text-white" />
+      <img class="h-[35px] w-[36px]" :src="cartLogo" alt="Logo" />
     </div>
   </div>
   <MiniCart v-if="cartStore.isMiniCartVisible" />
@@ -37,9 +39,9 @@
 import Link from '#ioc/atoms/Link'
 import useCart from '#ioc/composables/useCart'
 import useLocalePath from '#ioc/composables/useLocalePath'
-import OutlineShoppingBag from '#ioc/icons/OutlineShoppingBag'
 import useCartStore from '#ioc/stores/useCartStore'
 import { defineAsyncComponent } from 'vue'
+import cartLogo from '#ioc/assets/images/cart'
 
 const MiniCart = defineAsyncComponent(() => import('#ioc/organisms/MiniCart'))
 const cart = useCart()

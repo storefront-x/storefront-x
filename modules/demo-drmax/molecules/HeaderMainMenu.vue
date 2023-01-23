@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-green-565 border-t border-green-570">
+  <div class="bg-green-565 border-t border-green-570 hidden lg:block">
     <Container>
       <div class="flex justify-between">
         <nav

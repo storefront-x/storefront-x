@@ -2,7 +2,7 @@
   <footer class="bg-gray-50 border-t-4 border-gray-560">
     <Container>
       <div class="flex items-center">
-        <div class="grid grid-cols-4 gap-0 mt-8 w-[66.66%]">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-0 mt-8 w-[66.66%]">
           <div class="footer-section">
             <h3>O Dr.Max</h3>
             <ul>

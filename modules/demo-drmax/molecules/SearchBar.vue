@@ -1,6 +1,8 @@
 <template>
   <form class="relative flex-grow" @submit.prevent="onSubmit">
     <div class="w-full relative">
+      <img :src="searchLogo" alt="search icon" class="w-[14px] h-[14px] absolute left-0 top-0 m-[18px_0_12px_12px]" />
+
       <Input
         v-click-outside="close"
         :value="query"
@@ -32,7 +34,7 @@
     <button
       type="submit"
       title="search"
-      class="h-[50px] font-bold no-underline uppercase absolute top-0 right-0 border-none py-[6px] px-[12px] text-blue-560"
+      class="hidden md:block h-[50px] font-bold no-underline uppercase absolute top-0 right-0 border-none py-[6px] px-[12px] text-blue-560"
     >
       {{ 'Hledej' }}
     </button>
@@ -41,7 +43,6 @@
 
 <script setup lang="ts">
 import Input from '#ioc/atoms/Input'
-import SolidSearch from '#ioc/icons/SolidSearch'
 import SolidX from '#ioc/icons/SolidX'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import useI18n from '#ioc/composables/useI18n'
@@ -53,6 +54,7 @@ import vClickOutside from '#ioc/directives/vClickOutside'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import debounce from '#ioc/utils/debounce'
 import { ref, watch } from 'vue'
+import searchLogo from '#ioc/assets/images/search'
 
 defineProps({
   mobile: {
@@ -107,7 +109,7 @@ const onSubmit = () => {
 <i18n lang="yaml">
 cs-CZ:
   Search: Hledej
-  Search for the name of product, category or brand: Zadejte název produktu, kategorii nebo značku
+  Search for the name of product, category or brand: Zadejte název produktu, značku nebo zdravotní problém
   No results found: Žádné výsledky nenalezeny
 </i18n>
 
@@ -116,7 +118,7 @@ cs-CZ:
   box-shadow: inset 0 5px 5px 0 hsl(0deg 0% 86% / 86%);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-  @apply bg-white text-grey-555 block w-full font-normal h-[50px] pr-[70px] rounded-[7px] bg-clip-padding leading-[18px] border-grey-560 py-[6px] px-[10px] text-base;
+  @apply bg-white text-grey-555 block w-full font-normal h-[50px] pr-[70px] pl-[36px] rounded-[7px] bg-clip-padding leading-[18px] border-grey-560 py-[6px] px-[10px] text-base;
 }
 
 .search:focus {

@@ -1,12 +1,14 @@
 <template>
-  <div class="header-top">
+  <div
+    class="border-b-[7px] pt-4 pb-2 md:p-[25px_0_18px] border-white bg-white bg-contain bg-[center_bottom] bg-[url('https://www.drmax.cz/_i/1443285570.jpg?path=https%3A%2F%2Fbackend.drmax.cz%2Fmedia%2Fwysiwyg%2Fbackground-snowflakes.jpg')]"
+  >
     <Container>
       <div class="flex relative items-center justify-between">
         <div class="flex justify-between lg:w-full">
           <div class="hidden mr-2 lg:flex lg:items-center">
             <Link :to="localePath('/')" class="shrink-0 block min-w-[145px]">
               <span class="sr-only">Logo</span>
-              <img class="h-[50px] w-auto" :src="logo" alt="Logo" />
+              <Logo classes="h-[50px] w-auto" />
             </Link>
           </div>
 
@@ -45,6 +47,7 @@ import Container from '#ioc/atoms/Container'
 import Link from '#ioc/atoms/Link'
 import SearchBar from '#ioc/molecules/SearchBar'
 import MicroAccount from '#ioc/molecules/MicroAccount'
+import Logo from '#ioc/atoms/Logo'
 import MicroSearch from '#ioc/molecules/MicroSearch'
 import MicroCart from '#ioc/molecules/MicroCart'
 import OutlineMenu from '#ioc/icons/OutlineMenu'
@@ -62,13 +65,3 @@ const toggleBurger = () => {
   themeTailwindStore.isHamburgerOpened = !isBurgerOpen.value
 }
 </script>
-<style scoped>
-.header-top {
-  background-image: url(https://www.drmax.cz/_i/1443285570.jpg?path=https%3A%2F%2Fbackend.drmax.cz%2Fmedia%2Fwysiwyg%2Fbackground-snowflakes.jpg);
-  background-position: center bottom;
-  background-size: contain;
-  padding: 25px 0 18px;
-  background-color: #fff;
-  border-bottom: 7px solid #fff;
-}
-</style>
