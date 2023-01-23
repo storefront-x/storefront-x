@@ -10,11 +10,14 @@ import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 import addToCart from '~/cypress/support/pageObjects/product/addToCart'
 import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
 import Product from '~/cypress/support/pageObjects/product/Product'
+import getAppliedCoupons from '~/cypress/support/pageObjects/checkout/getAppliedCoupons'
+import getNotificationToast from '~/cypress/support/pageObjects/base/getNotificationToast'
+import removeCoupon from '~/cypress/support/pageObjects/checkout/removeCoupon'
+import setCoupon from '~/cypress/support/pageObjects/checkout/setCoupon'
 
 describe('Checkout', () => {
   /** @type {Product} */
   let product = null
-  let shippingMethod
 
   beforeEach(() => {
     product = new Product()
@@ -34,7 +37,7 @@ describe('Checkout', () => {
   })
 
   it('finishes checkout process', () => {
-    shippingMethod = 'flatrate_flatrate'
+    const shippingMethod = 'flatrate_flatrate'
 
     selectShipping(shippingMethod)
     selectPayment('checkmo')
@@ -46,7 +49,7 @@ describe('Checkout', () => {
   })
 
   it('supports instore pickup', () => {
-    shippingMethod = 'instore_pickup'
+    const shippingMethod = 'instore_pickup'
 
     selectShipping(shippingMethod)
     getInstorePickupLocation().click()
@@ -56,5 +59,21 @@ describe('Checkout', () => {
     placeOrder()
 
     checkThankYouPageVisibility()
+  })
+
+  it('add valid coupon', () => {
+    const couponName = 'coupon_cypress_test'
+
+    setCoupon(couponName)
+    getAppliedCoupons().should('have.text', couponName)
+    removeCoupon()
+    getAppliedCoupons().should('not.exist')
+  })
+
+  it('add invalid coupon', () => {
+    const couponName = 'wrong_coupon_code'
+
+    setCoupon(couponName)
+    getNotificationToast().should('not.be.empty')
   })
 })
