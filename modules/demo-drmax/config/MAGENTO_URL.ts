@@ -1,1 +1,1 @@
-export default 'https://backend.drmax.cz'
+export default 'https://venia.magento.com/'
