@@ -1,12 +1,8 @@
 import selectDifferentStore from '~/cypress/support/pageObjects/storeSwitcher/selectDifferentStore'
-import Product from '~/cypress/support/pageObjects/product/Product'
-import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
+import GetProducts from '~/cypress/support/repositories/GetProducts'
 
 describe('HomepageStoreSwitcher', () => {
-  let product = null
-
   beforeEach(() => {
-    product = new Product()
     cy.visit('/')
   })
 
@@ -15,34 +11,22 @@ describe('HomepageStoreSwitcher', () => {
   })
 
   it('change locale and check url', () => {
-    cy.url().should('not.include', /\/[a-z]{2}\//gm)
+    cy.url().should('not.include', /\/[a-z]{2}\//)
 
     selectDifferentStore()
 
-    cy.url().should('include', /\/[a-z]{2}\//gm)
-    visitRandom(product)
-    cy.url().should('include', /\/[a-z]{2}\//gm + `/${product.data.url_key}`)
+    cy.url().should('match', /\/[a-z]{2}\//)
+    GetProducts().then((products) => {
+      let randomProduct = Cypress._.sample(products)
+      cy.get('[data-cy=input-search-product]').type(randomProduct.name + '{enter}')
+
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(5000) //co s tim? pokud tam nebude, getuju rovnou z predchozi stranky. waitForSfx v tomto pripade nepomaha
+
+      cy.url().should('match', /\/[a-z]{2}\//)
+
+      cy.get('[data-cy=product-title]').first().click().waitForSfx()
+      cy.url().should('match', /\/[a-z]{2}\//)
+    })
   })
 })
-
-//get random product
-//store products url value
-//visit and check url
-//go to homepage
-//change language
-//check url for regexp `\/[a-z](2)\/`
-//visit stored url value with locale prefix
-//check that url contains locale prefix
-
-// describe('Locale', () => {
-//   let product = null
-
-//   beforeEach(() => {
-//     product = new Product()
-//     cy.visit('/').waitForSfx()
-//   })
-
-//   it('change locale and check url', () => {
-//     cy.url().should('not.include', /\/[a-z]{2}\//gm)
-//   })
-// })
