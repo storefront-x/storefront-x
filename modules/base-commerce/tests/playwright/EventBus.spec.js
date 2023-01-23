@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { makeProject, wrapConsole } from '@storefront-x/testing'
 
-test('event bus is working', async ({ page }) => {
+test('event bus with multiple listeners', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -54,18 +54,6 @@ test('event bus is working', async ({ page }) => {
                 </script>
               `,
             },
-            config: {
-              'MAGENTO_URL.ts': `export default '/'`,
-              'VUE_I18N_LOCALES.ts': `
-                export default [
-                  {
-                    name: 'en',
-                    locale: 'en-US',
-                    prefix: '/',
-                  }
-                ]
-              `,
-            },
             stores: {
               'useEventBusStore.ts': `
                 import { defineStore } from 'pinia'
@@ -110,7 +98,7 @@ test('event bus is working', async ({ page }) => {
   )
 })
 
-test('event bus is working without listeners', async ({ page }) => {
+test('event bus without listeners', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -124,37 +112,28 @@ test('event bus is working without listeners', async ({ page }) => {
             bus: {
               events: {
                 'TestEvent.ts': `
-            export default interface TestEvent {
-              data: number
-            }
-          `,
+                  export default interface TestEvent {
+                    data: number
+                  }
+                `,
               },
             },
             pages: {
               'index.vue': `
-          <template>
-            <p id="evResTest">Emittor was loaded properly.</p>
-          </template>
-          <script setup>
-            import useEmitTestEvent from '#ioc/bus/emitters/useEmitTestEvent'
+                <template>
+                  <p id="evResTest">{{ text }}</p>
+                </template>
+                <script setup>
+                  import useEmitTestEvent from '#ioc/bus/emitters/useEmitTestEvent'
+                  import { ref } from 'vue'
 
-            const emitTestEvent = useEmitTestEvent()
+                  const emitTestEvent = useEmitTestEvent()
+                  const text = ref('')
 
-            emitTestEvent({ data: 1 })
-          </script>
-        `,
-            },
-            config: {
-              'MAGENTO_URL.ts': `export default '/'`,
-              'VUE_I18N_LOCALES.ts': `
-          export default [
-            {
-              name: 'en',
-              locale: 'en-US',
-              prefix: '/',
-            }
-          ]
-        `,
+                  emitTestEvent({ data: 1 })
+                  text.value = 'It works!'
+                </script>
+              `,
             },
           },
         ],
@@ -163,7 +142,7 @@ test('event bus is working without listeners', async ({ page }) => {
     async ({ url }) => {
       await wrapConsole(async () => {
         await page.goto(url, { waitUntil: 'networkidle' })
-        await expect(page.locator('#evResTest')).toContainText('Emittor was loaded properly.')
+        await expect(page.locator('#evResTest')).toContainText('It works!')
       })
     },
   )
