@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-b-[7px] pt-4 pb-2 md:p-[25px_0_18px] border-white bg-white bg-contain bg-[center_bottom] bg-[url('https://www.drmax.cz/_i/1443285570.jpg?path=https%3A%2F%2Fbackend.drmax.cz%2Fmedia%2Fwysiwyg%2Fbackground-snowflakes.jpg')]"
+    class="border-b-[7px] pt-4 pb-2 lg:p-[25px_0_18px] border-white bg-white bg-contain bg-[center_bottom] bg-[url('https://www.drmax.cz/_i/1443285570.jpg?path=https%3A%2F%2Fbackend.drmax.cz%2Fmedia%2Fwysiwyg%2Fbackground-snowflakes.jpg')]"
   >
     <Container>
       <div class="flex relative items-center justify-between">

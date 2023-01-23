@@ -34,7 +34,7 @@
     <button
       type="submit"
       title="search"
-      class="hidden md:block h-[50px] font-bold no-underline uppercase absolute top-0 right-0 border-none py-[6px] px-[12px] text-blue-560"
+      class="hidden lg:block h-[50px] font-bold no-underline uppercase absolute top-0 right-0 border-none py-[6px] px-[12px] text-blue-560"
     >
       {{ 'Hledej' }}
     </button>

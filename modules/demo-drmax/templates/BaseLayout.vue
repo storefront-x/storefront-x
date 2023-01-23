@@ -1,7 +1,7 @@
 <template>
   <Header />
   <HamburgerMenu v-if="hamburgerStatus" @close="closeHamburger" />
-  <main class="mt-[138px] md:mt-0">
+  <main class="mt-[138px] md:mt-[70px] lg:mt-0">
     <SfxLayoutOutlet />
   </main>
   <Footer />

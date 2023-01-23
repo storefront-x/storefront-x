@@ -3,7 +3,7 @@
     :to="localePath('checkout')"
     class="relative pl-2 text-gray-400 hover:text-gray-500 hover:cursor-pointer lg:hidden"
   >
-    <span class="hidden md:flex">
+    <span class="hidden lg:flex">
       <span
         class="flex items-center justify-center h-[50px] w-[50px] bg-green-555 border-green-560 text-white relative rounded-[0_5px_5px_0]"
       >

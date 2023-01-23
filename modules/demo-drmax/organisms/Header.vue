@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white fixed top-0 md:static z-20 left-0 right-0 md:pb-0">
+  <header class="bg-white fixed top-0 md:static z-20 left-0 right-0 lg:pb-0">
     <HeaderMain />
     <HeaderMainMenu />
     <HeaderMenu />
