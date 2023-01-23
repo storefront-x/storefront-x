@@ -11,7 +11,7 @@ describe('HomepageStoreSwitcher', () => {
   })
 
   it('change locale and check url', () => {
-    cy.url().should('not.include', /\/[a-z]{2}\//)
+    cy.url().should('not.match', /\/[a-z]{2}\//)
 
     selectDifferentStore()
 

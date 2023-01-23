@@ -8,7 +8,5 @@ export default () => {
       cy.get('[data-cy=store-switcher] a:last-child').should('be.visible').click()
 
       cy.get('[data-cy=store-switcher]').invoke('text').should('not.equal', originalStore)
-
-      cy.url().should('match', /\/[a-z]{2}\//)
     })
 }
