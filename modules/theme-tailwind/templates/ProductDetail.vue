@@ -28,6 +28,8 @@ import Heading from '#ioc/atoms/Heading'
 import useI18n from '#ioc/composables/useI18n'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import useProductSchema from '#ioc/composables/schemaOrg/useProductSchema'
+import useEmitViewProduct from '#ioc/bus/emitters/useEmitViewProduct'
+import { onMounted } from 'vue'
 
 const ProductDetailTabs = hydrateWhenVisible(() => import('#ioc/organisms/ProductDetailTabs'))
 const ProductCarousel = hydrateWhenVisible(() => import('#ioc/organisms/ProductCarousel'))
@@ -35,7 +37,13 @@ const ProductCarousel = hydrateWhenVisible(() => import('#ioc/organisms/ProductC
 const { t } = useI18n()
 const product = injectProduct()
 
+const emitViewProduct = useEmitViewProduct()
+
 useProductSchema(product)
+
+onMounted(() => {
+  emitViewProduct({ product })
+})
 
 useHead({
   title: product.meta.title,

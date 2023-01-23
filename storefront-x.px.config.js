@@ -15,6 +15,7 @@ export default {
     '@storefront-x/schema-org',
     '@storefront-x/nprogress',
     '@storefront-x/google-analytics',
+    '@storefront-x/google-analytics-listeners',
 
     '@storefront-x/magento',
 
