@@ -17,7 +17,7 @@ const ProductDetail = hydrateWhenVisible(() => import('#ioc/templates/ProductDet
 
 const props = defineProps({
   id: {
-    type: String,
+    type: Number,
     required: true,
   },
   relativeUrl: {
@@ -29,7 +29,7 @@ const props = defineProps({
 const getProductById = useGetProductById()
 
 const [data] = await useResource(
-  () => props.relativeUrl.replace(/\.html$/, ''),
+  () => props.id,
   (id) => getProductById(id),
 )
 </script>

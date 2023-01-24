@@ -6,10 +6,14 @@
 
     <div class="mt-10 sm:px-0 sm:mt-16 lg:mt-0">
       <Heading :level="1" data-cy="title">{{ product.name }}</Heading>
-
+      <p class="font-light">{{ product.label }}</p>
+      <div class="flex">
+        <p class="mr-2">Značka:</p>
+        <p class="uppercase font-semibold text-blue-560">{{ product.brandName }}</p>
+      </div>
       <div class="mt-4">
         <h3 class="sr-only">Description</h3>
-        <div>{{ product?.meta?.metaDescription || '' }}</div>
+        <div v-html="product?.meta?.description || ''"></div>
       </div>
 
       <StockIndicator :stock-status="product.available" />

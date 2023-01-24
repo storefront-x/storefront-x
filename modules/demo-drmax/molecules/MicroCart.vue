@@ -22,9 +22,7 @@
       class="flex items-center font-bold px-[12px] bg-white border-r-0 rounded-[5px_0_0_5px] border-grey-565 border"
       data-cy="microcart-quantity"
     >
-      {{ cart.itemsTotalQuantity }}
-
-      <span v-if="cart.itemsTotalQuantity === 0" class="pl-1">Kč</span>
+      <SfxMoney :money="cart.subtotalIncludingTax" el="dd" />
     </span>
     <div
       class="flex items-center justify-center h-[50px] w-[50px] bg-green-555 border-green-560 text-white relative rounded-[0_5px_5px_0]"
@@ -42,6 +40,7 @@ import useLocalePath from '#ioc/composables/useLocalePath'
 import useCartStore from '#ioc/stores/useCartStore'
 import { defineAsyncComponent } from 'vue'
 import cartLogo from '#ioc/assets/images/cart'
+import SfxMoney from '#ioc/components/SfxMoney'
 
 const MiniCart = defineAsyncComponent(() => import('#ioc/organisms/MiniCart'))
 const cart = useCart()

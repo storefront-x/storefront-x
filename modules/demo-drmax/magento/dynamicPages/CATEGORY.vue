@@ -21,7 +21,7 @@ const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
 const props = defineProps({
   id: {
-    type: String,
+    type: Number,
     required: true,
   },
   relativeUrl: {

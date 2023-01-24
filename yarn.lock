@@ -3630,6 +3630,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/elastic-search@workspace:modules/elastic-search":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/elastic-search@workspace:modules/elastic-search"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento"

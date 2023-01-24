@@ -11,6 +11,7 @@ export default {
     '@storefront-x/base-commerce',
     '@storefront-x/atomic-design',
     '@storefront-x/graphql',
+    '@storefront-x/elastic-search',
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
 
@@ -30,7 +31,7 @@ export default {
     '@storefront-x/cms-magento',
     '@storefront-x/customer-magento',
     '@storefront-x/multicurrency-magento',
-    '@storefront-x/product-reviews-magento',
+    // '@storefront-x/product-reviews-magento',
     '@storefront-x/wishlist-magento',
 
     '@storefront-x/theme-tailwind',

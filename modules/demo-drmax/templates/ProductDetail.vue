@@ -1,6 +1,6 @@
 <template>
   <Container class="mt-2 mb-8 md:mt-3 md:mb-10">
-    <Breadcrumbs :breadcrumbs="product.breadcrumbs" />
+    <Breadcrumbs :breadcrumbs="[...product.breadcrumbs, { title: product.brandName, link: product.urlKey }]" />
     <ProductOverview />
     <div class="w-full flex justify-between">
       <p class="text-[20px] font-semibold">O produktu</p>
