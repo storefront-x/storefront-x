@@ -95,9 +95,11 @@ test('redirect works on client', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/a', { waitUntil: 'networkidle' })
-      await page.locator('a').click()
-      await expect(page.locator('h1')).toContainText('C')
+      await wrapConsole(async () => {
+        await page.goto(url + '/a', { waitUntil: 'networkidle' })
+        await page.locator('a').click()
+        await expect(page.locator('h1')).toContainText('C')
+      })
     },
   )
 })

@@ -58,6 +58,7 @@ import { defineAsyncComponent, ref, watch } from 'vue'
 import useRemoveFromCart from '#ioc/services/useRemoveFromCart'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useUpdateCartItem from '#ioc/services/useUpdateCartItem'
+import useEmitRemoveFromCart from '#ioc/bus/emitters/useEmitRemoveFromCart'
 
 const ConfirmProductRemovalModal = defineAsyncComponent(() => import('#ioc/organisms/ConfirmProductRemovalModal'))
 
@@ -65,6 +66,7 @@ const cartItem = injectCartItem()
 const removeFromCart = useRemoveFromCart()
 const updateCartItem = useUpdateCartItem()
 const showErrorNotification = useShowErrorNotification()
+const emitRemoveFromCart = useEmitRemoveFromCart()
 
 const tmpQuantity = ref(cartItem.quantity)
 const isRemoveModalOpen = ref(false)
@@ -110,6 +112,7 @@ const removeItem = async () => {
     isRemoveLoading.value = true
 
     await removeFromCart(cartItem)
+    emitRemoveFromCart({ cartItem })
   } catch (e) {
     showErrorNotification(e)
   } finally {

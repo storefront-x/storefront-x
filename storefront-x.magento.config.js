@@ -13,6 +13,7 @@ export default {
     '@storefront-x/graphql',
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
+    '@storefront-x/nprogress',
 
     '@storefront-x/cart',
     '@storefront-x/catalog',

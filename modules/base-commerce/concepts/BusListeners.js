@@ -13,15 +13,11 @@ export default class BusListeners extends MergingConcept {
   async execute(files) {
     /** @type {Record<string, any>} */
     const records = {}
-
-    let id = 0
-    let currentFileName = ''
+    const existingFiles = []
 
     for (const { module, file } of Object.values(files)) {
-      if (currentFileName !== file) {
-        id = 0
-        currentFileName = file
-      }
+      const id = existingFiles.filter((val) => val === file).length
+      existingFiles.push(file)
 
       const filewithoutExt = file.replace(/\.\w+$/, '').replace(/\\/g, '')
 
@@ -36,8 +32,6 @@ export default class BusListeners extends MergingConcept {
       } else {
         records[record.ident].push(record)
       }
-
-      id++
     }
 
     for (const item of Object.keys(records)) {

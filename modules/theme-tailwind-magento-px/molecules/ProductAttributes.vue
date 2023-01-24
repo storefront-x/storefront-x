@@ -28,7 +28,7 @@
                   {{ attribute.label }}
                 </td>
                 <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                  {{ attribute.valueLabel || '—' }}
+                  {{ attribute.valueLabel }}
                 </td>
               </tr>
             </tbody>

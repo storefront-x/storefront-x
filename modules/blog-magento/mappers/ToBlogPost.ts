@@ -13,7 +13,7 @@ export default (data: any) => ({
   postThumbnail: ToMagentoImage(useOriginalImage(data.post_thumbnail ?? '')),
   listThumbnail: ToMagentoImage(useOriginalImage(data.list_thumbnail ?? '')),
   meta: {
-    title: data.meta_title ?? '',
+    title: data.meta_title ?? data.title,
     description: data.meta_description ?? '',
   },
 })
