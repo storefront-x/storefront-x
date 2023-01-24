@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import usePbBanner from '#ioc/composables/cms/usePbBanner'
 import useLocalePath from '#ioc/composables/useLocalePath'
-import { computed, PropType, ref, toRef } from 'vue'
+import { computed, PropType, ref } from 'vue'
 import vIntersectionObserver from '#ioc/directives/vIntersectionObserver'
 
 const props = defineProps({
@@ -31,7 +31,7 @@ const props = defineProps({
 const isVisible = ref(props.index === 0)
 
 const localePath = useLocalePath()
-const pbBanner = usePbBanner(toRef(props, 'el'), isVisible)
+const pbBanner = usePbBanner(props.el)
 
 const classes = computed(() => {
   return {
@@ -40,9 +40,11 @@ const classes = computed(() => {
 })
 
 const styles = computed(() => {
+  const background = isVisible.value ? pbBanner.background : ''
+
   return {
     ...pbBanner.advanced,
-    ...pbBanner.background,
+    ...background,
     minHeight: pbBanner.minHeight,
   }
 })

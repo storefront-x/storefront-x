@@ -1,11 +1,11 @@
-import { computed, reactive, Ref } from 'vue'
+import { computed, reactive } from 'vue'
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 
-export default (el: Ref<HTMLElement>, isVisible: Ref<boolean>) => {
-  const pbBlock = usePbBlock(el.value)
+export default (el: HTMLElement) => {
+  const pbBlock = usePbBlock(el)
 
   const appearance = computed(() => {
-    return pbBlock.getAppearance(el.value)
+    return pbBlock.getAppearance(el)
   })
 
   const minHeight = computed(() => {
@@ -25,7 +25,7 @@ export default (el: Ref<HTMLElement>, isVisible: Ref<boolean>) => {
   })
 
   const showButton = computed(() => {
-    return el.value.getAttribute('data-show-button')
+    return el.getAttribute('data-show-button')
   })
 
   const buttonText = computed(() => {
@@ -33,58 +33,54 @@ export default (el: Ref<HTMLElement>, isVisible: Ref<boolean>) => {
   })
 
   const showOverlay = computed(() => {
-    return el.value.getAttribute('data-show-overlay')
+    return el.getAttribute('data-show-overlay')
   })
 
   const background = computed(() => {
-    if (!isVisible.value) return {}
-
     const background = pbBlock.getBackground(wrapperElement.value)
 
     return {
       ...background,
-      backgroundImage: isVisible.value ? background.backgroundImage : '',
+      backgroundImage: background.backgroundImage,
     }
   })
 
   const mobileBackground = computed(() => {
-    if (!isVisible.value) return {}
-
     const background = pbBlock.getBackground(wrapperElement.value)
 
     return {
       ...background,
-      backgroundImage: isVisible.value ? background.backgroundImage : '',
+      backgroundImage: background.backgroundImage,
     }
   })
 
   const advanced = computed(() => {
     return {
-      ...pbBlock.getPadding(el.value),
-      ...pbBlock.getMargin(el.value),
+      ...pbBlock.getPadding(el),
+      ...pbBlock.getMargin(el),
       ...pbBlock.getBorder(wrapperElement.value),
       ...pbBlock.getTextAlign(wrapperElement.value),
     }
   })
 
   const wrapperElement = computed(() => {
-    return el.value.querySelector<HTMLElement>('[data-element="wrapper"]')
+    return el.querySelector<HTMLElement>('[data-element="wrapper"]')
   })
 
   const contentElement = computed(() => {
-    return el.value.querySelector<HTMLElement>('[data-element="content"]')
+    return el.querySelector<HTMLElement>('[data-element="content"]')
   })
 
   const overlayElement = computed(() => {
-    return el.value.querySelector<HTMLElement>('[data-element="overlay"]')
+    return el.querySelector<HTMLElement>('[data-element="overlay"]')
   })
 
   const linkElement = computed(() => {
-    return el.value.querySelector<HTMLElement>('a[data-element="link"]')
+    return el.querySelector<HTMLElement>('a[data-element="link"]')
   })
 
   const buttonElement = computed(() => {
-    return el.value.querySelector<HTMLElement>('[data-element="button"]')
+    return el.querySelector<HTMLElement>('[data-element="button"]')
   })
 
   return reactive({
