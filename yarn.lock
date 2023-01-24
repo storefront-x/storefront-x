@@ -3880,7 +3880,6 @@ __metadata:
     "@vitejs/plugin-vue": ^4.0.0
     "@vue/test-utils": ^2.2.6
     "@vueuse/components": ^9.11.1
-    "@vueuse/core": ^9.11.1
     "@vueuse/integrations": ^9.6.0
     universal-cookie: ^4.0.4
     vue: ^3.2.45
@@ -4708,7 +4707,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:9.11.1, @vueuse/core@npm:^9.11.1":
+"@vueuse/core@npm:9.11.1":
   version: 9.11.1
   resolution: "@vueuse/core@npm:9.11.1"
   dependencies:
