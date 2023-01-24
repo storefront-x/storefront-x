@@ -19,7 +19,7 @@ If we want emit something, we must have an event created for it. This event is d
 Let's look on the example below:
 
 ```ts
-// ViewProduct.ts
+// my-module/bus/events/ViewProduct.ts
 
 import useProduct from '#ioc/composables/useProduct'
 
@@ -44,7 +44,7 @@ We can use (add) as many listeners as we want.
 Let's look on the example, which will use the `ViewProduct` event from example above:
 
 ```ts{3,7}
-// useListenViewProduct.ts
+// my-module/bus/listeners/useListenViewProduct.ts
 
 import ViewProduct from '#ioc/bus/events/ViewProduct'
 import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
@@ -93,7 +93,7 @@ In the background, while we are building our application, SFX will go through al
 Let's look at the implementation of event and listener we created above, in the `ProductDetail.vue` component:
 
 ```vue{6,10,13}
-// ProductDetail.vue
+// my-module/templates/ProductDetail.vue
 
 <template>...</template>
 <script setup>
