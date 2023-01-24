@@ -1,6 +1,6 @@
 # Event Bus
 
-We can emit any type of event to services we choose using the `bus` concept. Bus concept can contain these directorys (we will go through in the next sections):
+We can emit any type of event to services we choose using the `bus` concept. Bus concept can contain these directories (we will go through them in the next sections):
 
 - `events` - contains types of input parameters for emit function (eg. `ViewProduct.ts`)
 - `listeners` - contains code, which will be called after emit function is run, for example it can send a gtag event to Google Analytics (eg. `useListenViewProduct.ts`)
