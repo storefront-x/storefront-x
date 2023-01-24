@@ -1,11 +1,13 @@
-import useMagentoStore from '#ioc/stores/useMagentoStore'
+import useCookies from '#ioc/composables/useCookies'
 
 export default () => {
-  const magentoStore = useMagentoStore()
+  const cookies = useCookies()
 
   return async (req: Request) => {
-    if (magentoStore.cacheId) {
-      req.headers.set('X-Magento-Cache-Id', magentoStore.cacheId)
+    const storedCacheId = cookies.get('magentoCacheId')
+
+    if (storedCacheId) {
+      req.headers.set('X-Magento-Cache-Id', storedCacheId)
     }
   }
 }
