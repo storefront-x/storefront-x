@@ -90,4 +90,23 @@ describe('Checkout', () => {
     setCoupon(couponName)
     getNotificationToast().should('not.be.empty')
   })
+
+  it('place two orders', () => {
+    const shippingMethod = 'flatrate_flatrate'
+
+    selectShipping(shippingMethod)
+    selectPayment('checkmo')
+    fillShippingInfo(shippingMethod)
+    confirmAgreements()
+    placeOrder()
+    checkThankYouPageVisibility()
+
+    addRandomProductToCartAndProceedToCheckout(product)
+    selectShipping(shippingMethod)
+    selectPayment('checkmo')
+    fillShippingInfo(shippingMethod)
+    confirmAgreements()
+    placeOrder()
+    checkThankYouPageVisibility()
+  })
 })
