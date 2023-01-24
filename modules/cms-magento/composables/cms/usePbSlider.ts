@@ -1,8 +1,12 @@
 import { computed, reactive } from 'vue'
 
-export default (el: any) => {
+export default (el: HTMLElement) => {
   const slides = computed(() => {
-    return [...el.childNodes]
+    const childNodes = []
+    for (const child of el.childNodes as any) {
+      childNodes.push(child)
+    }
+    return childNodes
   })
 
   const autoplay = computed(() => {
@@ -10,7 +14,7 @@ export default (el: any) => {
   })
 
   const autoplaySpeed = computed(() => {
-    return parseInt(el.getAttribute('data-autoplay-speed'))
+    return parseInt(el.getAttribute('data-autoplay-speed') ?? '')
   })
 
   const fade = computed(() => {

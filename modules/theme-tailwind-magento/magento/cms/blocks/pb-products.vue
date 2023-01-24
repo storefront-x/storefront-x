@@ -7,11 +7,11 @@ import useGetProductsByIds from '#ioc/services/useGetProductsByIds'
 import usePbProducts from '#ioc/composables/cms/usePbProducts'
 import useResource from '#ioc/composables/useResource'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 
 const ProductCarousel = hydrateWhenVisible(() => import('#ioc/organisms/ProductCarousel'))
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
 const pbProducts = usePbProducts(props.el)
 const getProductsByIds = useGetProductsByIds()

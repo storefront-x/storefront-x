@@ -34,10 +34,10 @@ import usePbBlock from '#ioc/composables/cms/usePbBlock'
 import usePbSlider from '#ioc/composables/cms/usePbSlider'
 import OutlineChevronLeft from '#ioc/icons/OutlineChevronLeft'
 import OutlineChevronRight from '#ioc/icons/OutlineChevronRight'
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 import Slide from './pb-slide.vue'
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
 const pbSlider = usePbSlider(props.el)
 const pbBlock = usePbBlock(props.el)

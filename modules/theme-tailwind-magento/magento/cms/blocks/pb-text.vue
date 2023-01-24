@@ -3,11 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 import usePbText from '#ioc/composables/cms/usePbText'
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
 const pbText = usePbText(props.el)
 const pbBlock = usePbBlock(props.el)

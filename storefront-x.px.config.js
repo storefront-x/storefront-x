@@ -15,7 +15,6 @@ export default {
     '@storefront-x/schema-org',
     '@storefront-x/nprogress',
     '@storefront-x/google-analytics',
-    '@storefront-x/vue-intersection-observer',
 
     '@storefront-x/magento',
 

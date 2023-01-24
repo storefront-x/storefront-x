@@ -1,34 +1,34 @@
 import { computed, reactive } from 'vue'
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 
-export default (el: any) => {
+export default (el: HTMLElement) => {
   const pbBlock = usePbBlock(el)
 
   const advanced = computed(() => {
     return {
       ...pbBlock.getAdvanced(el),
-      ...pbBlock.getAdvanced(_wrapperNode.value),
+      ...pbBlock.getAdvanced(wrapperNode.value),
     }
   })
 
   const src = computed(() => {
-    return _videoNode.value.getAttribute('src')
+    return videoNode.value?.getAttribute('src')
   })
 
   const autoplay = computed(() => {
-    return _videoNode.value.getAttribute('autoplay') === 'true'
+    return videoNode.value?.getAttribute('autoplay') === 'true'
   })
 
   const muted = computed(() => {
-    return _videoNode.value.getAttribute('muted') === 'true'
+    return videoNode.value?.getAttribute('muted') === 'true'
   })
 
-  const _wrapperNode = computed(() => {
-    return el.querySelector('[data-element=wrapper]')
+  const wrapperNode = computed(() => {
+    return el.querySelector<HTMLElement>('[data-element=wrapper]')
   })
 
-  const _videoNode = computed(() => {
-    return el.querySelector('[data-element=video]')
+  const videoNode = computed(() => {
+    return el.querySelector<HTMLElement>('[data-element=video]')
   })
 
   return reactive({
@@ -36,5 +36,7 @@ export default (el: any) => {
     src,
     autoplay,
     muted,
+    wrapperNode,
+    videoNode,
   })
 }

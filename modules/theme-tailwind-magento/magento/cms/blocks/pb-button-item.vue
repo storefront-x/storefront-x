@@ -1,5 +1,5 @@
 <template>
-  <a :href="pbButtonItem.link" :class="classes">
+  <a :href="pbButtonItem.link ?? ''" :class="classes">
     <Button :color="color">
       {{ pbButtonItem.content }}
     </Button>
@@ -10,14 +10,14 @@
 import Button from '#ioc/atoms/Button'
 import usePbButtonItem from '#ioc/composables/cms/usePbButtonItem'
 import usePbButtons from '#ioc/composables/cms/usePbButtons'
-import { computed, getCurrentInstance } from 'vue'
+import { computed, getCurrentInstance, PropType } from 'vue'
 
 const instance = getCurrentInstance()
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
 const pbButtonItem = usePbButtonItem(props.el)
-const pbButtons = usePbButtons(instance?.parent?.props.el)
+const pbButtons = usePbButtons(instance?.parent?.props.el as HTMLElement)
 
 const classes = computed(() => {
   return {

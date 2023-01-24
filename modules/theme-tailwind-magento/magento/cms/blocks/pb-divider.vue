@@ -9,7 +9,7 @@ import usePbBlock from '#ioc/composables/cms/usePbBlock'
 import usePbDivider from '#ioc/composables/cms/usePbDivider'
 import { computed } from 'vue'
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
 const pbBlock = usePbBlock(props.el)
 const pbDivider = usePbDivider(props.el)

@@ -1,7 +1,7 @@
 import { computed, reactive } from 'vue'
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 
-export default (el: any) => {
+export default (el: HTMLElement) => {
   const pbBlock = usePbBlock(el)
 
   const appearance = computed(() => {

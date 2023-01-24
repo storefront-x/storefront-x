@@ -1,7 +1,7 @@
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 import { computed, reactive } from 'vue'
 
-export default (el: any) => {
+export default (el: HTMLElement) => {
   const pbBlock = usePbBlock(el)
 
   const minHeight = computed(() => {
@@ -13,15 +13,15 @@ export default (el: any) => {
   })
 
   const background = computed(() => {
-    return pbBlock.getBackground(_innerElement.value)
+    return pbBlock.getBackground(innerElement.value)
   })
 
   const advanced = computed(() => {
-    return pbBlock.getAdvanced(_innerElement.value)
+    return pbBlock.getAdvanced(innerElement.value)
   })
 
-  const _innerElement = computed(() => {
-    return appearance.value === 'contained' ? el.querySelector('[data-element="inner"]') : el
+  const innerElement = computed(() => {
+    return appearance.value === 'contained' ? el.querySelector<HTMLElement>('[data-element="inner"]') : el
   })
 
   const appearance = computed(() => {
@@ -34,5 +34,6 @@ export default (el: any) => {
     background,
     advanced,
     appearance,
+    innerElement,
   })
 }

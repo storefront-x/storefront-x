@@ -6,9 +6,9 @@
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 import usePbImage from '#ioc/composables/cms/usePbImage'
 import SfxImage from '#ioc/components/SfxImage'
-import { computed, h } from 'vue'
+import { computed, h, PropType } from 'vue'
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
 const pbBlock = usePbBlock(props.el)
 const pbImage = usePbImage(props.el)

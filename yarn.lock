@@ -3837,14 +3837,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/vue-intersection-observer@workspace:modules/vue-intersection-observer":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/vue-intersection-observer@workspace:modules/vue-intersection-observer"
-  dependencies:
-    "@vueuse/core": ^9.11.1
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/vue-pinia@workspace:modules/vue-pinia":
   version: 0.0.0-use.local
   resolution: "@storefront-x/vue-pinia@workspace:modules/vue-pinia"
@@ -3874,6 +3866,8 @@ __metadata:
   dependencies:
     "@vitejs/plugin-vue": ^4.0.0
     "@vue/test-utils": ^2.2.6
+    "@vueuse/components": ^9.11.1
+    "@vueuse/core": ^9.11.1
     "@vueuse/integrations": ^9.6.0
     universal-cookie: ^4.0.4
     vue: ^3.2.45
@@ -4690,6 +4684,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/components@npm:^9.11.1":
+  version: 9.11.1
+  resolution: "@vueuse/components@npm:9.11.1"
+  dependencies:
+    "@vueuse/core": 9.11.1
+    "@vueuse/shared": 9.11.1
+    vue-demi: "*"
+  checksum: 3f9e9de85209739f16e8f09bad3560233661f5486154fc992c2eaaa12744b50bf6bd7a1d37cfb731b08056a6544992b4ffe796a4ccdab0c53b8b67568fff2388
+  languageName: node
+  linkType: hard
+
+"@vueuse/core@npm:9.11.1, @vueuse/core@npm:^9.11.1":
+  version: 9.11.1
+  resolution: "@vueuse/core@npm:9.11.1"
+  dependencies:
+    "@types/web-bluetooth": ^0.0.16
+    "@vueuse/metadata": 9.11.1
+    "@vueuse/shared": 9.11.1
+    vue-demi: "*"
+  checksum: c9b4d65d50441d19d452dfebe4e13c8b56a8ea296b31b9cd93b5a52ee1b461c40ebc530415d3869083852eb874c99d5742311fd8bf750d405f4d52a768aebaa3
+  languageName: node
+  linkType: hard
+
 "@vueuse/core@npm:9.6.0":
   version: 9.6.0
   resolution: "@vueuse/core@npm:9.6.0"
@@ -4719,18 +4736,6 @@ __metadata:
     vue:
       optional: true
   checksum: 4f19874884d246e724562051143f27e18d7e7aefb941d4417e785027b87a895aea7ed51f3c9d6c1af219ea33d41cc1e0fcba113b72922ce6057a518cb0b83572
-  languageName: node
-  linkType: hard
-
-"@vueuse/core@npm:^9.11.1":
-  version: 9.11.1
-  resolution: "@vueuse/core@npm:9.11.1"
-  dependencies:
-    "@types/web-bluetooth": ^0.0.16
-    "@vueuse/metadata": 9.11.1
-    "@vueuse/shared": 9.11.1
-    vue-demi: "*"
-  checksum: c9b4d65d50441d19d452dfebe4e13c8b56a8ea296b31b9cd93b5a52ee1b461c40ebc530415d3869083852eb874c99d5742311fd8bf750d405f4d52a768aebaa3
   languageName: node
   linkType: hard
 

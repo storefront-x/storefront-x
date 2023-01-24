@@ -7,9 +7,9 @@
 <script setup lang="ts">
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 import usePbButtons from '#ioc/composables/cms/usePbButtons'
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement> as PropType<HTMLElement>, default: null } })
 
 const pbBlock = usePbBlock(props.el)
 const pbButtons = usePbButtons(props.el)

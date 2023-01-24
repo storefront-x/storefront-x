@@ -1,6 +1,6 @@
 import { computed, reactive } from 'vue'
 
-export default (el: any) => {
+export default (el: HTMLElement) => {
   const width = computed(() => {
     const width = parseFloat(el.style.width)
 

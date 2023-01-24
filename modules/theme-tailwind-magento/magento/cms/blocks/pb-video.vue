@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 import usePbVideo from '#ioc/composables/cms/usePbVideo'
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
 const pbVideo = usePbVideo(props.el)
 

@@ -1,25 +1,26 @@
 import { computed, reactive } from 'vue'
 
-export default (el: any) => {
+export default (el: HTMLElement) => {
   const color = computed(() => {
-    return _lineElement.value.style.borderColor
+    return lineElement.value?.style.borderColor
   })
 
   const thickness = computed(() => {
-    return _lineElement.value.style.borderWidth
+    return lineElement.value?.style.borderWidth
   })
 
   const width = computed(() => {
-    return _lineElement.value.style.width
+    return lineElement.value?.style.width
   })
 
-  const _lineElement = computed(() => {
-    return el.querySelector('[data-element=line]')
+  const lineElement = computed(() => {
+    return el.querySelector<HTMLElement>('[data-element=line]')
   })
 
   return reactive({
     color,
     thickness,
     width,
+    lineElement,
   })
 }

@@ -9,9 +9,9 @@
 <script setup lang="ts">
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 import usePbColumn from '#ioc/composables/cms/usePbColumn'
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
 const pbBlock = usePbBlock(props.el)
 const pbColumn = usePbColumn(props.el)

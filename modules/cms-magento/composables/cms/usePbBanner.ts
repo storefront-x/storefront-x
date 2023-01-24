@@ -1,48 +1,45 @@
-import useIntersectionObserver from '#ioc/composables/useIntersectionObserver'
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, Ref } from 'vue'
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 
-export default (el: any, index = -1) => {
-  const pbBlock = usePbBlock(el)
-
-  const isVisible = ref(index === 0)
+export default (el: Ref<HTMLElement>, isVisible: Ref<boolean>) => {
+  const pbBlock = usePbBlock(el.value)
 
   const appearance = computed(() => {
-    return pbBlock.getAppearance(el)
+    return pbBlock.getAppearance(el.value)
   })
 
   const minHeight = computed(() => {
-    if (appearance.value === 'poster') return _overlayElement.value.style.minHeight
+    if (appearance.value === 'poster') return overlayElement.value?.style.minHeight
     // collage-left
     // collage-centered
     // collage-right
-    return _wrapperElement.value.style.minHeight
+    return wrapperElement.value?.style.minHeight
   })
 
   const content = computed(() => {
-    return pbBlock.getInnerHtml(_contentElement.value)
+    return pbBlock.getInnerHtml(contentElement.value)
   })
 
   const link = computed(() => {
-    return _linkElement.value?.getAttribute('href')
+    return linkElement.value?.getAttribute('href')
   })
 
   const showButton = computed(() => {
-    return el.getAttribute('data-show-button')
+    return el.value.getAttribute('data-show-button')
   })
 
   const buttonText = computed(() => {
-    return pbBlock.getTextContent(_buttonElement.value)
+    return pbBlock.getTextContent(buttonElement.value)
   })
 
   const showOverlay = computed(() => {
-    return el.getAttribute('data-show-overlay')
+    return el.value.getAttribute('data-show-overlay')
   })
 
   const background = computed(() => {
     if (!isVisible.value) return {}
 
-    const background = pbBlock.getBackground(_wrapperElement.value)
+    const background = pbBlock.getBackground(wrapperElement.value)
 
     return {
       ...background,
@@ -53,7 +50,7 @@ export default (el: any, index = -1) => {
   const mobileBackground = computed(() => {
     if (!isVisible.value) return {}
 
-    const background = pbBlock.getBackground(_wrapperElement.value)
+    const background = pbBlock.getBackground(wrapperElement.value)
 
     return {
       ...background,
@@ -63,35 +60,31 @@ export default (el: any, index = -1) => {
 
   const advanced = computed(() => {
     return {
-      ...pbBlock._getPadding(el),
-      ...pbBlock._getMargin(el),
-      ...pbBlock._getBorder(_wrapperElement.value),
-      ...pbBlock._getTextAlign(_wrapperElement.value),
+      ...pbBlock.getPadding(el.value),
+      ...pbBlock.getMargin(el.value),
+      ...pbBlock.getBorder(wrapperElement.value),
+      ...pbBlock.getTextAlign(wrapperElement.value),
     }
   })
 
-  const _wrapperElement = computed(() => {
-    return el.querySelector('[data-element="wrapper"]')
+  const wrapperElement = computed(() => {
+    return el.value.querySelector<HTMLElement>('[data-element="wrapper"]')
   })
 
-  const _contentElement = computed(() => {
-    return el.querySelector('[data-element="content"]')
+  const contentElement = computed(() => {
+    return el.value.querySelector<HTMLElement>('[data-element="content"]')
   })
 
-  const _overlayElement = computed(() => {
-    return el.querySelector('[data-element="overlay"]')
+  const overlayElement = computed(() => {
+    return el.value.querySelector<HTMLElement>('[data-element="overlay"]')
   })
 
-  const _linkElement = computed(() => {
-    return el.querySelector('a[data-element="link"]')
+  const linkElement = computed(() => {
+    return el.value.querySelector<HTMLElement>('a[data-element="link"]')
   })
 
-  const _buttonElement = computed(() => {
-    return el.querySelector('[data-element="button"]')
-  })
-
-  useIntersectionObserver(el, ([{ isIntersecting }]) => {
-    isVisible.value = isIntersecting
+  const buttonElement = computed(() => {
+    return el.value.querySelector<HTMLElement>('[data-element="button"]')
   })
 
   return reactive({
@@ -105,5 +98,10 @@ export default (el: any, index = -1) => {
     buttonText,
     showOverlay,
     mobileBackground,
+    wrapperElement,
+    contentElement,
+    overlayElement,
+    linkElement,
+    buttonElement,
   })
 }

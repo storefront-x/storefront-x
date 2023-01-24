@@ -7,9 +7,9 @@
 <script setup lang="ts">
 import usePbRow from '#ioc/composables/cms/usePbRow'
 import Container from '#ioc/atoms/Container'
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 
-const props = defineProps({ el: { type: Object, default: null } })
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
 const pbRow = usePbRow(props.el)
 

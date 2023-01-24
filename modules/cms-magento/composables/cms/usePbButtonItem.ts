@@ -1,7 +1,7 @@
 import { computed, reactive } from 'vue'
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 
-export default (el: any) => {
+export default (el: HTMLElement) => {
   const pbBlock = usePbBlock(el)
 
   const content = computed(() => {
@@ -9,24 +9,24 @@ export default (el: any) => {
   })
 
   const link = computed(() => {
-    if (!_linkElement.value) return '#'
+    if (!linkElement.value) return '#'
 
-    return _linkElement.value.getAttribute('href')
+    return linkElement.value.getAttribute('href')
   })
 
   const type = computed(() => {
-    if (_linkElement.value.classList.contains('pagebuilder-button-primary')) {
+    if (linkElement.value?.classList.contains('pagebuilder-button-primary')) {
       return 'primary'
-    } else if (_linkElement.value.classList.contains('pagebuilder-button-secondary')) {
+    } else if (linkElement.value?.classList.contains('pagebuilder-button-secondary')) {
       return 'secondary'
-    } else if (_linkElement.value.classList.contains('pagebuilder-button-link')) {
+    } else if (linkElement.value?.classList.contains('pagebuilder-button-link')) {
       return 'link'
     } else {
       return undefined
     }
   })
 
-  const _linkElement = computed(() => {
+  const linkElement = computed(() => {
     return el.querySelector('[data-element="link"]') ?? el.querySelector('[data-element="empty_link"]')
   })
 
@@ -34,5 +34,6 @@ export default (el: any) => {
     content,
     link,
     type,
+    linkElement,
   })
 }
