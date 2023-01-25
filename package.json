@@ -16,7 +16,7 @@
     "test:unit": "npx vitest run",
     "test:playwright": "npx playwright test",
     "lint": "npx eslint --ext .js,.ts,.vue .",
-    "lint:prod": "cross-env NODE_ENV=production eslint --ext .js,.ts,.vue .",
+    "lint:prod": "cross-env NODE_ENV=production npx eslint --ext .js,.ts,.vue .",
     "dev": "sfx dev",
     "build": "sfx build",
     "serve": "sfx serve",
