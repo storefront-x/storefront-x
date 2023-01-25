@@ -15,7 +15,6 @@
   "scripts": {
     "test:unit": "npx vitest run",
     "test:playwright": "npx playwright test",
-    "test:playwright:install": "npx playwright install chromium && playwright test",
     "lint": "npx eslint --ext .js,.ts,.vue .",
     "lint:prod": "cross-env NODE_ENV=production eslint --ext .js,.ts,.vue .",
     "dev": "sfx dev",
