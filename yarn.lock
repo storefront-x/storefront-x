@@ -3587,6 +3587,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/cypress@workspace:modules/cypress"
   dependencies:
+    cypress: ^9.7.0
     cypress-vite: ^1.2.1
     cypress-wait-until: ^1.7.2
   languageName: unknown
@@ -3790,11 +3791,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/testing@workspace:modules/testing":
+"@storefront-x/testing@*, @storefront-x/testing@workspace:modules/testing":
   version: 0.0.0-use.local
   resolution: "@storefront-x/testing@workspace:modules/testing"
   dependencies:
+    "@playwright/test": 1.25.2
     get-port: ^6.1.2
+    jsdom: ^20.0.3
+    vitest: ^0.25.7
   languageName: unknown
   linkType: soft
 
@@ -3830,6 +3834,26 @@ __metadata:
     cssnano: ^5.1.14
     postcss: ^8.4.20
     tailwindcss: ^3.2.4
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/tooling@*, @storefront-x/tooling@workspace:modules/tooling":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/tooling@workspace:modules/tooling"
+  dependencies:
+    "@types/yargs": ^17.0.17
+    "@typescript-eslint/eslint-plugin": ^5.46.0
+    "@typescript-eslint/parser": ^5.46.0
+    eslint: ^8.29.0
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-cypress: ^2.12.1
+    eslint-plugin-prettier: ^4.2.1
+    eslint-plugin-vue: ^9.8.0
+    husky: ^8.0.2
+    lint-staged: ^13.1.0
+    prettier: ^2.8.1
+    typescript: ^4.9.4
+    vitepress: ^1.0.0-draft.8
   languageName: unknown
   linkType: soft
 
@@ -13739,26 +13763,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "storefront-x@workspace:."
   dependencies:
-    "@playwright/test": 1.25.2
     "@storefront-x/core": "*"
-    "@types/yargs": ^17.0.17
-    "@typescript-eslint/eslint-plugin": ^5.46.0
-    "@typescript-eslint/parser": ^5.46.0
+    "@storefront-x/testing": "*"
+    "@storefront-x/tooling": "*"
     cross-env: ^7.0.3
-    cypress: ^9.7.0
-    eslint: ^8.29.0
-    eslint-config-prettier: ^8.5.0
-    eslint-plugin-cypress: ^2.12.1
-    eslint-plugin-prettier: ^4.2.1
-    eslint-plugin-vue: ^9.8.0
-    husky: ^8.0.2
-    jsdom: ^20.0.3
     lerna: ^6.1.0
-    lint-staged: ^13.1.0
-    prettier: ^2.8.1
-    typescript: ^4.9.4
-    vitepress: ^1.0.0-draft.8
-    vitest: ^0.25.7
   languageName: unknown
   linkType: soft
 

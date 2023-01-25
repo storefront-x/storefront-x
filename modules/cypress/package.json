@@ -7,6 +7,7 @@
     "access": "public"
   },
   "dependencies": {
+    "cypress": "^9.7.0",
     "cypress-vite": "^1.2.1",
     "cypress-wait-until": "^1.7.2"
   }
