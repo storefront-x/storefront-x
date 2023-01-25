@@ -19,12 +19,8 @@ on:
       storefront-x-config:
         description: 'Storefront X config file'
         required: true
-        type: choice
+        type: string
         default: 'storefront-x.px.config.js'
-        options:
-          - 'storefront-x.px.config.js'
-          - 'storefront-x.magento.config.js'
-          - 'storefront-x.shopware.config.js'
       dot-env:
         description: '.env file contents'
         required: true
