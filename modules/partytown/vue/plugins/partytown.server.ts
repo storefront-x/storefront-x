@@ -3,20 +3,20 @@ import fs from 'fs/promises'
 import { join } from 'node:path'
 import { libDirPath } from '@builder.io/partytown/utils'
 import usePartytownConfig from '#ioc/config/PARTYTOWN_CONFIG'
+import IS_DEVELOPMENT from '#ioc/config/IS_DEVELOPMENT'
 
 let partytownSnippet: string | undefined = undefined
 
 export const after = async (app: App, ctx?: any) => {
   const { debug, forward } = usePartytownConfig()
+  const libPath = IS_DEVELOPMENT ? libDirPath() + '/' : ''
 
   if (!partytownSnippet) {
     const data = await fs.readFile(join(libDirPath(), './partytown.js'), 'utf-8')
     partytownSnippet = data
   }
 
-  const partytownConfig = `partytown = { debug: ${debug}, forward: ${JSON.stringify(forward)}, lib: "${
-    libDirPath() + '/'
-  }" }`
+  const partytownConfig = `partytown = { debug: ${debug}, forward: ${JSON.stringify(forward)}, lib: "${libPath}" }`
 
   ctx.out.partytown = (html: string) =>
     html.replace(

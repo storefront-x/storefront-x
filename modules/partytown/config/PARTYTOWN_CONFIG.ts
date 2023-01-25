@@ -6,7 +6,7 @@ interface Partytown {
 
 export default (): Partytown => {
   return {
-    debug: true,
+    debug: false,
     forward: [],
     add(...args: string[]) {
       this.forward.push(...args)
