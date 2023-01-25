@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-green-565 border-t border-green-570 hidden lg:block">
+  <div class="bg-green-565 border-t border-b border-green-570 hidden lg:block">
     <Container>
       <div class="flex justify-between">
         <nav
@@ -71,7 +71,7 @@ import Container from '#ioc/atoms/Container'
 }
 
 .menubar a {
-  @apply text-blue-560 bg-transparent p-[12px] block font-semibold text-[14px] min-h-[1px] transition-colors duration-200 hover:bg-green-575;
+  @apply text-blue-560 bg-transparent p-[12px] py-[6px] block font-semibold text-[14px] min-h-[1px] transition-colors duration-200 hover:bg-green-575;
 }
 
 .menubar a.active {

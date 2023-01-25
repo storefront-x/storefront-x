@@ -1,9 +1,8 @@
 import ToCategoryElastic from '#ioc/mappers/ToCategoryElastic'
 import ToProductElastic from '#ioc/mappers/ToProductElastic'
-
 import ToAggregation from '#ioc/mappers/ToAggregation'
-
 import Query from '#ioc/utils/elasticSearch/Query'
+
 interface CategoryOptions {
   page?: number
   pageSize?: number

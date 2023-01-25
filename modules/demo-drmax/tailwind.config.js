@@ -32,7 +32,7 @@ export default {
           600: '#4BAA28',
           700: '#4BAA28',
           800: '#4BAA28',
-          900: '#4BAA28',
+          900: '#2D7A11',
         },
         secondary: colors.white,
         blue: {
@@ -56,6 +56,7 @@ export default {
           575: '#d2e8d0',
         },
         red: {
+          400: '#e4012c',
           555: '#af0023',
         },
       },

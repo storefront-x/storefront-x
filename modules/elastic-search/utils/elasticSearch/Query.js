@@ -72,7 +72,7 @@ export default class Query {
    * Creates new query for mega menus only
    */
   static megaMenus() {
-    return new Query('mega_menu')
+    return new Query('mega_menu').index('drmax_frontend_megamenu_1')
   }
 
   /**

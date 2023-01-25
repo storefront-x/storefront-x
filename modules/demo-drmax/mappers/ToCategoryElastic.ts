@@ -4,18 +4,20 @@ import ToMagentoImage from '#ioc/mappers/ToMagentoImage'
 export default (data: any) => ({
   id: data.id ?? 0,
   urlKey: data.url_path,
-  name: data.name ?? '',
+  name: data.name ?? data.title,
   description: data.description ?? '',
   meta: {
     title: data.meta_title ?? data.name,
     description: data.meta_description ?? '',
     keywords: data.meta_keywords ?? '',
   },
-  imageUrl: ToMagentoImage(data.image.startsWith('/') ? data.image : '/media/catalog/category/' + data.image) as string,
+  imageUrl: ToMagentoImage(
+    data.image?.startsWith('/') ? data.image : '/media/catalog/category/' + data.image,
+  ) as string,
   thumbnailUrl: ToMagentoImage(
-    data.image.startsWith('/') ? data.image : '/media/catalog/category/' + data.image,
+    data.image?.startsWith('/') ? data.image : '/media/catalog/category/' + data.image,
   ) as string,
   breadcrumbs: [],
   productsTotalCount: data.products?.total_count ?? 0,
-  children: (data.children_data ?? []).map(ToCategoryElastic),
+  children: (data.children_data ?? data.items).map(ToCategoryElastic),
 })
