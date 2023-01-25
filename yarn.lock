@@ -3648,9 +3648,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/google-analytics-listeners@workspace:modules/google-analytics-listeners":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-analytics-listeners@workspace:modules/google-analytics-listeners"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/google-analytics@workspace:modules/google-analytics":
   version: 0.0.0-use.local
   resolution: "@storefront-x/google-analytics@workspace:modules/google-analytics"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/google-tag-manager-listeners@workspace:modules/google-tag-manager-listeners":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-tag-manager-listeners@workspace:modules/google-tag-manager-listeners"
   languageName: unknown
   linkType: soft
 

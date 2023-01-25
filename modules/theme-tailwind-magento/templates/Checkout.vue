@@ -48,6 +48,8 @@ import useRefreshCheckoutAgreements from '#ioc/services/useRefreshCheckoutAgreem
 import { computed, nextTick, onMounted, ref } from 'vue'
 import useShipping from '#ioc/composables/useShipping'
 import usePayment from '#ioc/composables/usePayment'
+import useEmitBeginCheckout from '#ioc/bus/emitters/useEmitBeginCheckout'
+import useEmitPlaceOrder from '#ioc/bus/emitters/useEmitPlaceOrder'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -59,6 +61,8 @@ const confirmContactInformation = useConfirmContactInformation()
 const placeOrder = usePlaceOrder()
 const showErrorNotification = useShowErrorNotification()
 const refreshCheckoutAgreements = useRefreshCheckoutAgreements()
+const emitBeginCheckout = useEmitBeginCheckout()
+const emitPlaceOrder = useEmitPlaceOrder()
 
 const step = ref(1)
 
@@ -114,6 +118,10 @@ onMounted(async () => {
   })
 
   await refreshCheckoutAgreements()
+
+  if (cart.items?.length) {
+    emitBeginCheckout({ cart })
+  }
 })
 
 const onPlaceOrder = async ({ resolve }: any) => {
@@ -123,6 +131,8 @@ const onPlaceOrder = async ({ resolve }: any) => {
     await payment.paymentHandler!()
 
     const { order } = await placeOrder()
+
+    emitPlaceOrder({ cart, shipping, order })
 
     if (order.redirectUrl) {
       window.location.href = order.redirectUrl

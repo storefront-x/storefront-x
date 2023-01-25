@@ -1,24 +1,25 @@
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 import VUE_I18N_ROUTE_PATHS from '#ioc/config/VUE_I18N_ROUTE_PATHS'
 
-export default (routes: any) => {
+export default (routes: any, { isLayout = false } = {}) => {
   return routes.map((route: any) => ({
     ...route,
-    alias: getAlias(route),
+    alias: getAlias(route, { isLayout }),
     children: getChildren(route),
   }))
 }
 
-const getAlias = (route: any) => {
+const getAlias = (route: any, { isLayout = false } = {}) => {
   const aliases = []
   const isDynamicRoute = route.name && route.name.includes('[')
-  const aliasLocaleKey = isDynamicRoute ? `/${route.name}` : route.path
+  const aliasLocaleKey = isDynamicRoute ? `/${route.name}` : route.readablePath
   for (const locale of VUE_I18N_LOCALES) {
     const aliasLocale =
       (VUE_I18N_ROUTE_PATHS as any)[aliasLocaleKey]?.[locale.name]?.replace(
         /\[(.+?)\]/g,
         (_: string, $1: string) => `:${$1}(.+)`,
       ) ?? null
+
     const aliasPrefix = locale.prefix === '/' ? null : locale.prefix
     const sanitizedRoutePath = route.path
       .toString()
@@ -27,15 +28,16 @@ const getAlias = (route: any) => {
       .replace('\\', '')
       .replace('', '/')
     if (aliasLocale && aliasPrefix) {
-      aliases.push(createRegExp(`${aliasPrefix}${aliasLocale}`))
+      aliases.push(createRegExp(`${aliasPrefix}${aliasLocale}`, { isLayout }))
     } else if (aliasLocale) {
-      aliases.push(createRegExp(`${aliasLocale}`))
+      aliases.push(createRegExp(`${aliasLocale}`, { isLayout }))
     } else if (aliasPrefix) {
-      aliases.push(createRegExp(`${aliasPrefix}${sanitizedRoutePath}`))
+      aliases.push(createRegExp(`${aliasPrefix}${sanitizedRoutePath}`, { isLayout }))
     }
   }
   return aliases
 }
+
 const getChildren = (route: any): any => {
   const newChildren = []
 
@@ -50,6 +52,8 @@ const getChildren = (route: any): any => {
   return newChildren
 }
 
-const createRegExp = (string: string) => {
-  return new RegExp(`^${string}?$`)
+const createRegExp = (string: string, { isLayout = false } = {}) => {
+  const afterStringMatcher = isLayout ? '(/.*)?' : '?$'
+
+  return new RegExp(`^${string}${afterStringMatcher}`)
 }
