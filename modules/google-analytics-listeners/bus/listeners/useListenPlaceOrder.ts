@@ -44,7 +44,7 @@ export default () => {
       })
     }
 
-    gtag('event', 'purchase', {
+    window.gtag('event', 'purchase', {
       currency: subtotalIncludingTax?.currency,
       value: subtotalIncludingTax?.value && (subtotalIncludingTax.value - totalDiscount + totalShipping) / PRICE_OFFSET,
       items: products,

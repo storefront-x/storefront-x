@@ -3,8 +3,8 @@ import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 
 export default () => {
   return ({ cartItem: { product, quantity } }: RemoveFromCart) => {
-    dataLayer.push({ ecommerce: null })
-    dataLayer.push({
+    window.dataLayer.push({ ecommerce: null })
+    window.dataLayer.push({
       event: 'remove_from_cart',
       ecommerce: {
         currency: product.finalPrice?.currency ?? '',

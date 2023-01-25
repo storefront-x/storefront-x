@@ -32,8 +32,8 @@ export default () => {
       })
     }
 
-    dataLayer.push({ ecommerce: null })
-    dataLayer.push({
+    window.dataLayer.push({ ecommerce: null })
+    window.dataLayer.push({
       event: 'begin_checkout',
       ecommerce: {
         currency: subtotalIncludingTax?.currency,

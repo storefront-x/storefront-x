@@ -32,7 +32,7 @@ export default () => {
       })
     }
 
-    gtag('event', 'begin_checkout', {
+    window.gtag('event', 'begin_checkout', {
       currency: subtotalIncludingTax?.currency,
       value: subtotalIncludingTax?.value && (subtotalIncludingTax.value - totalDiscount) / PRICE_OFFSET,
       items: products,

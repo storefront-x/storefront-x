@@ -3,7 +3,7 @@ import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 
 export default () => {
   return ({ product }: ViewProduct) => {
-    gtag('event', 'view_item', {
+    window.gtag('event', 'view_item', {
       currency: product.finalPrice?.currency ?? '',
       value: +product.finalPrice.value / PRICE_OFFSET,
       items: [

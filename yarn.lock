@@ -1491,12 +1491,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@builder.io/partytown@npm:^0.7.3":
-  version: 0.7.3
-  resolution: "@builder.io/partytown@npm:0.7.3"
+"@builder.io/partytown@npm:^0.7.5":
+  version: 0.7.5
+  resolution: "@builder.io/partytown@npm:0.7.5"
   bin:
     partytown: bin/partytown.cjs
-  checksum: 9af26db19a2af91b77636ef31b3e8656698904cef0b20d13d05191f88584adf36fba9046229b5cbf674819c633c44d312b92b7c4e748703edd6ad22682a26a5c
+  checksum: 2b49a6eff5f1016f6b720d02c50d1ee05d91ba55ec2cd565f2b78ff16a06ef6aa1d51a5f66744d5358347e1d57ce02953d78be935e552585cd1c237a8f56c7d3
   languageName: node
   linkType: hard
 
@@ -3709,7 +3709,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/partytown@workspace:modules/partytown"
   dependencies:
-    "@builder.io/partytown": ^0.7.3
+    "@builder.io/partytown": ^0.7.5
   languageName: unknown
   linkType: soft
 
