@@ -5,7 +5,7 @@
         v-for="(category, index) in catalogStore.menu"
         :key="category.id"
         :category="category"
-        classes="px-2 py-[4px] text-white text-center text-[14px] font-medium hover:underline hover:bg-primary-900"
+        classes="px-2 py-[4px] text-white text-center text-[14px] font-medium hover:no-underline hover:bg-primary-900"
         :class="{
           'bg-red-400': index === 0 || index + 1 === catalogStore.menu.length,
           'hover:bg-red-555': index === 0 || index + 1 === catalogStore.menu.length,
@@ -29,17 +29,13 @@ import { ref, watch } from 'vue'
 import FlyoutMenu from '#ioc/molecules/FlyoutMenu'
 import debounce from '#ioc/utils/debounce'
 import useRoute from '#ioc/composables/useRoute'
-
 const catalogStore = useCatalogStore()
 const route = useRoute()
-
 const selectedCategory = ref()
 const timeout = ref()
-
 watch(route, () => {
   selectedCategory.value = null
 })
-
 const onMouseEnter = (category: any) => {
   if (!selectedCategory.value) {
     timeout.value = setTimeout(() => {
@@ -49,7 +45,6 @@ const onMouseEnter = (category: any) => {
     selectedCategory.value = category
   }
 }
-
 const removeTimeout = () => {
   if (!timeout.value) return
   clearTimeout(timeout.value)
