@@ -1,10 +1,17 @@
 <template>
-  <div v-if="categories?.length"
-    class="absolute bg-white inset-x-0 z-20 border-b-2 border-grey-560 shadow-2xl mt-[20px]">
+  <div
+    v-if="categories?.length"
+    class="absolute bg-white inset-x-0 z-20 border-b-2 border-grey-560 shadow-2xl mt-[20px]"
+  >
     <Container class="relative flex py-8">
       <div class="w-full grid grid-cols-4 gap-y-10">
-        <FlyoutMenuSubCategory v-for="category in categories" :key="category.id" :category="category"
-          classes="py-4 text-primary-500 font-semibold" color="blue" />
+        <FlyoutMenuSubCategory
+          v-for="category in categories"
+          :key="category.id"
+          :category="category"
+          classes="py-4 text-primary-500 font-semibold"
+          color="blue"
+        />
       </div>
     </Container>
   </div>

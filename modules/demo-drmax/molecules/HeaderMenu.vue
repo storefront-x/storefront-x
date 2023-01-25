@@ -1,9 +1,16 @@
 <template>
   <div class="bg-primary-500 border-b-[3px] border-green-560">
     <Container class="hidden lg:flex flex-wrap">
-      <CategoryLink v-for="category in catalogStore.menu" :key="category.id" :category="category"
-        classes="py-4 font-semibold px-2.5 rounded-md hover:bg-green-560" color="white"
-        @mouseenter="onMouseEnter(category)" @mouseleave="onMouseLeave(category)" @mouseout="removeTimeout">
+      <CategoryLink
+        v-for="category in catalogStore.menu"
+        :key="category.id"
+        :category="category"
+        classes="py-4 font-semibold px-2.5 rounded-md hover:bg-green-560"
+        color="white"
+        @mouseenter="onMouseEnter(category)"
+        @mouseleave="onMouseLeave(category)"
+        @mouseout="removeTimeout"
+      >
         <FlyoutMenu v-if="selectedCategory === category" :categories="category.children" />
       </CategoryLink>
     </Container>

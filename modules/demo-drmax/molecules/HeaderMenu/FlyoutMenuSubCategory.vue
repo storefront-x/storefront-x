@@ -2,9 +2,13 @@
   <div>
     <div class="flex items-center">
       <Link :to="localePath(category.urlPath)" color="blue" class="font-bold flex items-center hover:underline">
-      <SfxImage v-if="category.thumbnailUrl" class="mr-2" :src="category.thumbnailUrl"
-        class-img="h-12 w-12 font-normal rounded-full border-1"></SfxImage>
-      {{ category.name }}
+        <SfxImage
+          v-if="category.thumbnailUrl"
+          class="mr-2"
+          :src="category.thumbnailUrl"
+          class-img="h-12 w-12 font-normal rounded-full border-1"
+        ></SfxImage>
+        {{ category.name }}
       </Link>
     </div>
 

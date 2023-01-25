@@ -41,7 +41,6 @@
 
 <script setup lang="ts">
 import Input from '#ioc/atoms/Input'
-import SolidSearch from '#ioc/icons/SolidSearch'
 import SolidX from '#ioc/icons/SolidX'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import useI18n from '#ioc/composables/useI18n'
