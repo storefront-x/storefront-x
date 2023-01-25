@@ -7,10 +7,10 @@ export default () => {
     const resCacheId = res.headers.get('X-Magento-Cache-Id')
 
     if (resCacheId) {
-      const storedCacheId = cookies.get('magentoCacheId')
+      const storedCacheId = cookies.get('X-Magento-Cache-Id')
 
       if (storedCacheId !== resCacheId) {
-        cookies.set('magentoCacheId', resCacheId)
+        cookies.set('X-Magento-Cache-Id', resCacheId)
       }
     }
   }
