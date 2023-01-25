@@ -47,6 +47,7 @@ export default {
           560: '#dcdcdc',
           565: '#d6d6d6',
           570: '#fbfbfb',
+          575: '#f0f0f0',
         },
         green: {
           555: '#4baa28',
@@ -54,6 +55,8 @@ export default {
           565: '#f1f7ef',
           570: '#d1e8d0',
           575: '#d2e8d0',
+          580: '#64a016',
+          585: '#78be20',
         },
         red: {
           400: '#e4012c',

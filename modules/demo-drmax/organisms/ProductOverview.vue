@@ -18,24 +18,28 @@
 
       <StockIndicator :stock-status="product.available" />
 
-      <div class="sm:flex border border-grey-560 rounded-[7px] bg-grey-570 p-[24px]">
-        <div class="flex">
+      <div class="sm:flex border border-grey-560 rounded-[7px] bg-grey-570 p-[24px] sm:justify-between">
+        <div class="flex justify-center sm:justify-start">
           <div class="mt-0 mr-4 sm:mr-16">
             <div>
               <h2 class="sr-only">{{ t('Product information') }}</h2>
 
-              <SfxMoney :money="product.finalPrice" class="text-3xl text-black font-bold" data-cy="product-price" />
+              <SfxMoney
+                :money="product.finalPrice"
+                class="text-3xl text-black font-bold text-red-555"
+                data-cy="product-price"
+              />
             </div>
 
             <div v-if="product.isOnSale" class="mt-1">
               <SfxMoney :money="product.regularPrice" class="line-through text-slate-400" data-cy="product-price" />
             </div>
           </div>
-
-          <ProductQuantityConfigurator @input="onQuantityChange" />
         </div>
-
-        <AddToCart :quantity="quantity" />
+        <div class="flex justify-end sm:items-center mt-4 sm:mt-0">
+          <ProductQuantityConfigurator @input="onQuantityChange" />
+          <AddToCart :quantity="quantity" class="!mt-0 !h-[40px] sm:ml-2" />
+        </div>
       </div>
     </div>
   </div>
