@@ -7,7 +7,6 @@ on:
         required: true
         type: string
       dot-env:
-        required: true
         type: string
         default: ''
     secrets:
