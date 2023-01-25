@@ -13,6 +13,7 @@ export default {
     '@storefront-x/graphql',
     '@storefront-x/elastic-search',
     '@storefront-x/cypress',
+    '@storefront-x/nprogress',
     '@storefront-x/schema-org',
 
     '@storefront-x/cart',
@@ -21,7 +22,6 @@ export default {
     '@storefront-x/cms',
     '@storefront-x/customer',
     '@storefront-x/multicurrency',
-    '@storefront-x/product-reviews',
     '@storefront-x/wishlist',
 
     '@storefront-x/magento',
@@ -31,7 +31,6 @@ export default {
     '@storefront-x/cms-magento',
     '@storefront-x/customer-magento',
     '@storefront-x/multicurrency-magento',
-    // '@storefront-x/product-reviews-magento',
     '@storefront-x/wishlist-magento',
 
     '@storefront-x/theme-tailwind',

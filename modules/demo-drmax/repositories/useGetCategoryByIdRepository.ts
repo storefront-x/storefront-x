@@ -23,17 +23,18 @@ export default () => {
   }> => {
     const category = await Query.categories().where('id', id).first()
 
-    const products = await Query.products()
+    const { items: products, total } = await Query.products()
       .whereIn('category_ids', id)
+      .whereIn('drmax_pim_status', 'Available')
       .sort('final_price', sort.split('price,').pop())
       .from((page - 1) * pageSize)
-      .get(pageSize)
+      .paginate(pageSize)
 
     return {
       category: ToCategoryElastic(category) ?? {},
       products: products.map(ToProductElastic) ?? [],
       aggregations: [],
-      totalCount: products.length ?? 0,
+      totalCount: total.value,
     }
   }
 }

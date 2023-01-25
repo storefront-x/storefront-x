@@ -22,7 +22,7 @@
       class="flex items-center font-bold px-[12px] bg-white border-r-0 rounded-[5px_0_0_5px] border-grey-565 border"
       data-cy="microcart-quantity"
     >
-      <SfxMoney :money="cart.subtotalIncludingTax" el="dd" />
+      <SfxMoney :money="cart.subtotalIncludingTax ?? { value: 0 }" el="dd" />
     </span>
     <div
       class="flex items-center justify-center h-[50px] w-[50px] bg-green-555 border-green-560 text-white relative rounded-[0_5px_5px_0]"
