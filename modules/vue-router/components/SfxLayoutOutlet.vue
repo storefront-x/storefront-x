@@ -1,20 +1,22 @@
 <template>
   <RouterView v-slot="{ Component: resolved, route }">
-    <Suspense @pending="pendingEvent(true)" @resolve="resolveEvent(false)">
+    <Suspense @pending="pendingEvent" @resolve="resolveEvent">
       <Component :is="resolved" :key="route.fullPath" />
     </Suspense>
   </RouterView>
 </template>
 
 <script setup lang="ts">
-import useEmitNavigation from '#ioc/bus/emitters/useEmitNavigation'
+import useEmitNavigationStart from '#ioc/bus/emitters/useEmitNavigationStart'
+import useEmitNavigationEnd from '#ioc/bus/emitters/useEmitNavigationEnd'
 
-const emitNavigation = useEmitNavigation()
+const emitNavigationStart = useEmitNavigationStart()
+const emitNavigationEnd = useEmitNavigationEnd()
 
-function pendingEvent(isLoading: boolean) {
-  emitNavigation({ isLoading })
+function pendingEvent() {
+  emitNavigationStart({})
 }
-function resolveEvent(isLoading: boolean) {
-  emitNavigation({ isLoading })
+function resolveEvent() {
+  emitNavigationEnd({})
 }
 </script>
