@@ -1,5 +1,5 @@
 <template>
-  <Suspense @pending="pendingEvent" @resolve="resolveEvent">
+  <Suspense @pending="pendingEvent(true)" @resolve="resolveEvent(false)">
     <InnerSfxLayout
       :key="router.$pathMatch"
       :layout="router.$view.layout.component"
@@ -10,18 +10,17 @@
 
 <script setup lang="ts">
 import useRouter from '#ioc/composables/useRouter'
-import useEventBus from '#ioc/composables/useEventBus'
+import useEmitNavigation from '#ioc/bus/emitters/useEmitNavigation'
 import InnerSfxLayout from '#ioc/components/InnerSfxLayout'
 
 const router = useRouter()
+const emitNavigation = useEmitNavigation()
 
-const { emit } = useEventBus('navigation')
-
-function pendingEvent() {
-  emit(true)
+function pendingEvent(isLoading: boolean) {
+  emitNavigation({ isLoading })
 }
 
-function resolveEvent() {
-  emit(false)
+function resolveEvent(isLoading: boolean) {
+  emitNavigation({ isLoading })
 }
 </script>
