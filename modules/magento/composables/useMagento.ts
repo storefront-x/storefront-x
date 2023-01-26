@@ -41,6 +41,7 @@ export default () => {
   const graphql = async (gql: any, opts: Options = {}) => {
     const query = gql.toString()
     const variables = gql.getVariables()
+    const name = Object.keys(gql._fields)[0]
 
     const _fetch = async (request: Request) => {
       for (const beforeRequest of bindedBeforeRequest) {
@@ -50,7 +51,7 @@ export default () => {
       const response = await fetch(request)
 
       for (const afterResponse of bindedAfterResponse) {
-        await afterResponse(response, request)
+        await afterResponse(response, request, name)
       }
 
       if (response.headers.get('content-type') !== 'application/json') {
