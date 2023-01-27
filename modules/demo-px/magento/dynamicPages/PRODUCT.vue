@@ -27,7 +27,7 @@ const props = defineProps({
 })
 
 const getProductById = useGetProductById()
-console.log(props.id)
+
 const [data] = await useResource(
   () => props.id,
   (id) => getProductById(id),
