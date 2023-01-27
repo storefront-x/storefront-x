@@ -27,9 +27,9 @@ const props = defineProps({
 })
 
 const getProductById = useGetProductById()
-
+console.log(props.id)
 const [data] = await useResource(
-  () => props.relativeUrl.replace(/\.html$/, ''),
+  () => props.id,
   (id) => getProductById(id),
 )
 </script>

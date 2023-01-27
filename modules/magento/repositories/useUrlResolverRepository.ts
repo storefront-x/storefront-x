@@ -7,7 +7,8 @@ export default () => {
   return async (
     url: string,
   ): Promise<{
-    id: string
+    entityUid: string
+    id: number
     type: any
     relativeUrl: string
     redirectCode: number
@@ -15,7 +16,8 @@ export default () => {
     const { data } = await magento.graphql(UrlResolver().with({ url }))
 
     return {
-      id: data.urlResolver?.entity_uid ?? String(data.urlResolver?.id),
+      entityUid: data.urlResolver?.entity_uid,
+      id: data.urlResolver?.id,
       type: data.urlResolver?.type ?? '',
       relativeUrl: data.urlResolver?.relative_url ?? '',
       redirectCode: data.urlResolver?.redirectCode ?? '',

@@ -14,10 +14,10 @@ export default () =>
           items: field({
             ...Product(),
             related_products: field({
-              ...ProductInListing().inline(),
+              ...ProductInListing(),
             }),
             upsell_products: field({
-              ...ProductInListing().inline(),
+              ...ProductInListing(),
             }),
           }),
         }),

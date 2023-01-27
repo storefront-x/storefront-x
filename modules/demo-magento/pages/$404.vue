@@ -1,5 +1,5 @@
 <template>
-  <Component :is="component" v-if="component" :id="id" :relative-url="relativeUrl" />
+  <Component :is="component" v-if="component" :id="id" :entity-uid="entityUid" :relative-url="relativeUrl" />
   <NotFound v-else />
 </template>
 
@@ -14,5 +14,5 @@ const attrs: any = useAttrs()
 
 const pathMatch = (isArray(attrs.pathMatch) && attrs.pathMatch.join('/')) || attrs.pathMatch
 
-const { id, component, relativeUrl } = await urlResover(pathMatch)
+const { id, entityUid, component, relativeUrl } = await urlResover(pathMatch)
 </script>
