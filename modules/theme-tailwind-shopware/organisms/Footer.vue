@@ -34,25 +34,25 @@
                   <template #default>
                     <ul role="list" class="mt-6 pl-0 space-y-6 list-none">
                       <li class="text-sm">
-                        <Link :to="t('/sign-in')" color="gray">
+                        <Link :to="localePath('sign-in')" color="gray">
                           {{ t('Sign in') }}
                         </Link>
                       </li>
 
                       <li class="text-sm">
-                        <Link :to="t('/sign-up')" color="gray">
+                        <Link :to="localePath('sign-up')" color="gray">
                           {{ t('Sign up') }}
                         </Link>
                       </li>
 
                       <li class="text-sm">
-                        <Link :to="t('/account')" color="gray">
+                        <Link :to="localePath('account')" color="gray">
                           {{ t('Settings') }}
                         </Link>
                       </li>
 
                       <li class="text-sm">
-                        <Link :to="t('/account/orders')" color="gray">
+                        <Link :to="localePath('account/orders')" color="gray">
                           {{ t('My orders') }}
                         </Link>
                       </li>
@@ -89,8 +89,10 @@ import Accordion from '#ioc/atoms/Accordion'
 import BackToTop from '#ioc/molecules/BackToTop'
 import useI18n from '#ioc/composables/useI18n'
 import logo from '#ioc/assets/logo'
+import useLocalePath from '#ioc/composables/useLocalePath'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 </script>
 
 <i18n lang="yaml">
@@ -119,8 +121,4 @@ cs-CZ:
   shipping-and-payment: doprava-a-platba
   privacy-policy: ochrana-osobnich-udaju
   cookies-policy: zasady-souboru-cookies
-  sign-up: registrovat
-  /sign-in: prihlasit
-  account: account
-  account/orders: ucet/objednavky
 </i18n>

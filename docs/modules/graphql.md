@@ -374,3 +374,43 @@ export default () =>
       }),
     })
 ```
+
+## Utilities
+
+### `addFields` utility
+
+As the name of utility says, we can use `addFields()` utility to additionally include more fields into any GraphQL **query**, **fragment** or **mutation** request. This is especially useful for extending existing requests, like we can see on the example bellow: we are extending list of categories query with thumbnails, so the final request will contain original fields inside the `CategoryList.ts` file and it also will be extended by thumbnail fields.
+
+#### Properties
+
+- `gql: any` - original GraphQL request which will be extended
+- `path?: string` - hierarchical path in original GraphQL request where fields will be added (optional)
+- `fields: object` - object of additional newly added fields
+
+#### Example
+
+```typescript
+// CategoryList.ext.ts
+
+const CategoryList: Extension =
+  (CategoryList) =>
+  (...args: any[]) => {
+    const self = CategoryList(...args)
+
+    addFields(self, 'categories.items.children', {
+      thumbnail: field(),
+    })
+
+    addFields(self, 'categories.items.children.children', {
+      thumbnail: field(),
+    })
+
+    addFields(self, 'categories.items.children.children.children', {
+      thumbnail: field(),
+    })
+
+    return self
+  }
+
+export default CategoryList
+```
