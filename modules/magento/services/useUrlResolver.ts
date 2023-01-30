@@ -10,7 +10,7 @@ export default () => {
 
   return async (
     resolvePath: string,
-  ): Promise<{ entityUid: string; id: number; component: any; relativeUrl: string }> => {
+  ): Promise<{ entityUid: string; /**@deprecated */ id: string; component: any; relativeUrl: string }> => {
     const [data] = await useResource(
       () => resolvePath,
       (routePath) => urlResolverRepository(routePath),

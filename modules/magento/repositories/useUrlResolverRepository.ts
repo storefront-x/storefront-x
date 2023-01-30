@@ -8,7 +8,8 @@ export default () => {
     url: string,
   ): Promise<{
     entityUid: string
-    id: number
+    /**@deprecated */
+    id: string
     type: any
     relativeUrl: string
     redirectCode: number
@@ -17,7 +18,7 @@ export default () => {
 
     return {
       entityUid: data.urlResolver?.entity_uid,
-      id: data.urlResolver?.id,
+      id: String(data.urlResolver?.id),
       type: data.urlResolver?.type ?? '',
       relativeUrl: data.urlResolver?.relative_url ?? '',
       redirectCode: data.urlResolver?.redirectCode ?? '',
