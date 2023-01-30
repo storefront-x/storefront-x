@@ -80,9 +80,23 @@ List of all available features:
 You can extend vanilla integration with free SFX modules:
 - [Braintree](https://github.com/storefront-x/magento-module-sfx-google-pay-braintree)
 - [Product Attriutes](https://github.com/storefront-x/magento-module-product-attributes-graph-ql)
+- [Product Alerts](https://github.com/storefront-x/magento-module-product-alerts-graphql)
 - [Store config](https://github.com/storefront-x/magento-module-sfx-store-config)
 - [Customer](https://github.com/storefront-x/magento-module-customer-graph-ql-extended)
 - [Reset password email](https://github.com/storefront-x/magento-module-email-url-extended)
+
+To install and enable SFX Magento modules use:
+```
+// Install metapackage
+composer require storefront-x/sfx_core
+
+// Enable module
+magento module:enable StorefrontX_SfxStoreConfig StorefrontX_ProductAlertsGraphQl StorefrontX_ProductAttributesGraphQl Store
+frontX_SfxGooglePayBraintree StorefrontX_EmailURLExtended StorefrontX_StoreConfigGQL
+
+// Upgrade magento
+magento setup:upgrade
+```
 
 ## Full-featured Magento
 
