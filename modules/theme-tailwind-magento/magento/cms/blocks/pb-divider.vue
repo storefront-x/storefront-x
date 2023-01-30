@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 import usePbDivider from '#ioc/composables/cms/usePbDivider'
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 
 const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 

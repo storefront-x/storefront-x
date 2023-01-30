@@ -1,1 +1,1 @@
-export default 'https://master-commerce-core.magexo.cloud'
+export default 'https://be-sfx.demo.magexo.cloud'
