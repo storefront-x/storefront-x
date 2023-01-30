@@ -10,18 +10,19 @@
 
 <script setup lang="ts">
 import useRouter from '#ioc/composables/useRouter'
-import useEventBus from '#ioc/composables/useEventBus'
+import useEmitNavigationStart from '#ioc/bus/emitters/useEmitNavigationStart'
+import useEmitNavigationEnd from '#ioc/bus/emitters/useEmitNavigationEnd'
 import InnerSfxLayout from '#ioc/components/InnerSfxLayout'
 
 const router = useRouter()
-
-const { emit } = useEventBus('navigation')
+const emitNavigationStart = useEmitNavigationStart()
+const emitNavigationEnd = useEmitNavigationEnd()
 
 function pendingEvent() {
-  emit(true)
+  emitNavigationStart({})
 }
 
 function resolveEvent() {
-  emit(false)
+  emitNavigationEnd({})
 }
 </script>
