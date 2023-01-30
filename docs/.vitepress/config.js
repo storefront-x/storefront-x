@@ -72,6 +72,7 @@ export default defineConfig({
           { text: 'Dotenv', link: '/advanced/dotenv' },
           { text: 'Lazy components', link: '/advanced/lazy-components' },
           { text: 'Functionalities', link: '/advanced/functionalities' },
+          { text: 'Event Bus', link: '/advanced/event-bus' },
           { text: 'Best practices', link: '/advanced/best-practices' },
         ],
       },
