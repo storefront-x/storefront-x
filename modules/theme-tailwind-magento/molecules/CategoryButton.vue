@@ -7,10 +7,10 @@
       <SfxImage
         v-if="hasImage"
         class="mr-2"
-        :height="24"
-        :width="24"
+        :height="150"
+        :width="150"
         :src="category.thumbnailUrl"
-        class-img="h-6 w-6 rounded-full border-1"
+        class-img="rounded-full border-1"
         fit="contain"
         :alt="category.name"
       />
