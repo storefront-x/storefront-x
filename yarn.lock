@@ -3640,6 +3640,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/google-analytics-partytown@workspace:modules/google-analytics-partytown":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/google-analytics-partytown@workspace:modules/google-analytics-partytown"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/google-analytics@workspace:modules/google-analytics":
   version: 0.0.0-use.local
   resolution: "@storefront-x/google-analytics@workspace:modules/google-analytics"

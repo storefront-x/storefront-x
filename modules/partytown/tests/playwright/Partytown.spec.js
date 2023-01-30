@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test('Google Analytics script with Partytown enabled', async ({ page }) => {
+test('Partytown scripts loaded properly', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -9,7 +9,6 @@ test('Google Analytics script with Partytown enabled', async ({ page }) => {
         '@storefront-x/vue',
         '@storefront-x/vue-router-simple',
         '@storefront-x/partytown',
-        '@storefront-x/google-analytics',
         [
           'my-module',
           {
@@ -20,16 +19,15 @@ test('Google Analytics script with Partytown enabled', async ({ page }) => {
                 </template>
               `,
             },
-            config: { googleAnalytics: { 'GOOGLE_ANALYTICS_ID.ts': `export default 'G-TESTER'` } },
           },
         ],
       ],
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(
-        page.locator('head script[src="https://www.googletagmanager.com/gtag/js?id=G-TESTER"]'),
-      ).toHaveAttribute('type', 'text/partytown-x')
+      const pageContent = await page.content()
+      await expect(pageContent).toContain(`<script type="text/javascript">partytown = { debug: false, forward: [],`)
+      await expect(pageContent).toContain(`<script type="text/javascript">/* Partytown 0.7.5 - MIT builder.io */`)
     },
   )
 })
