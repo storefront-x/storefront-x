@@ -6,11 +6,26 @@ on:
       storefront-x-config:
         required: true
         type: string
+      dot-env:
+        type: string
+        default: ''
     secrets:
       MXCLOUD_URL:
         required: true
       MXCLOUD_AUTH:
         required: true
+  workflow_dispatch:
+    inputs:
+      storefront-x-config:
+        description: 'Storefront X config file'
+        required: true
+        type: string
+        default: 'storefront-x.px.config.js'
+      dot-env:
+        description: '.env file contents'
+        required: true
+        type: string
+        default: 'SFX_MAGENTO_URL=https://be-sfx.demo.magexo.cloud'
 
 env:
   REGISTRY: ghcr.io
@@ -22,6 +37,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Generate .env file
+        run: echo '${{ inputs.dot-env }}' > .env
 
       - name: Log in to the Container registry
         uses: docker/login-action@v2

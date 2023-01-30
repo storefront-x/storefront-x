@@ -1,12 +1,11 @@
-import useCookies from '#ioc/composables/useCookies'
+import useCartToken from '#ioc/composables/useCartToken'
 import useCreateEmptyCartRepository from '#ioc/repositories/useCreateEmptyCartRepository'
-import MAGENTO_CART_COOKIE_NAME from '#ioc/config/MAGENTO_CART_COOKIE_NAME'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
 
 export default () => {
-  const cookies = useCookies()
   const createEmptyCartRepository = useCreateEmptyCartRepository()
   const cartMagentoStore = useCartMagentoStore()
+  const cartToken = useCartToken()
 
   return async (): Promise<{
     id: string
@@ -16,7 +15,8 @@ export default () => {
 
     {
       const { id } = await createEmptyCartRepository()
-      cookies.set(MAGENTO_CART_COOKIE_NAME, id, { path: '/' })
+
+      cartToken.set(id)
 
       cartMagentoStore.$patch({ cartId: id })
 

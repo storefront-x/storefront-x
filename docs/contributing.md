@@ -13,7 +13,7 @@ To hack on Storefront X, you will have to have working local version of the repo
 ### 1. Requirements
 
 - [Git](https://git-scm.com/)
-- [Node.js v18+](https://nodejs.org/en/)
+- [Node.js v16+](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/getting-started/install)
 
 > You can install Yarn using `npm i -g yarn` command.

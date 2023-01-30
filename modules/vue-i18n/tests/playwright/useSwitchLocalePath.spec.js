@@ -31,7 +31,7 @@ test('switch locale path', async ({ page }) => {
               'index.vue': `
                   <template>
                     <h1>{{ t('message') }}</h1>
-                    <p @click="change">click</p>
+                    <button id="switch" @click.prevent="change">click</button>
                   </template>
                   <script setup>
                   import useI18n from '#ioc/composables/useI18n'
@@ -59,7 +59,7 @@ test('switch locale path', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('hello')
-      await page.locator('p').click()
+      await page.locator('#switch').click()
       await expect(page.locator('h1')).toContainText('ahoj')
     },
   )
@@ -97,7 +97,7 @@ test('switch locale to nested page', async ({ page }) => {
                   'test.vue': `
                     <template>
                       <h1>{{ t('message') }}</h1>
-                      <p @click="change">click</p>
+                      <button id="switch" @click.prevent="change">click</button>
                     </template>
                     <script setup>
                     import useI18n from '#ioc/composables/useI18n'
@@ -127,7 +127,7 @@ test('switch locale to nested page', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/a/b/test', { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('hello')
-      await page.locator('p').click()
+      await page.locator('#switch').click()
       await expect(page.locator('h1')).toContainText('ahoj')
     },
   )
@@ -163,7 +163,7 @@ test('switch locale path to default language', async ({ page }) => {
               'test.vue': `
                       <template>
                         <h1>{{ t('message') }}</h1>
-                        <p @click="change">click</p>
+                        <button id="switch" @click.prevent="change">click</button>
                       </template>
                       <script setup>
                       import useI18n from '#ioc/composables/useI18n'
@@ -191,7 +191,7 @@ test('switch locale path to default language', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/cz/test', { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('ahoj')
-      await page.locator('p').click()
+      await page.locator('#switch').click()
       await expect(page.locator('h1')).toContainText('hello')
     },
   )

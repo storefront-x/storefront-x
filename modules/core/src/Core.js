@@ -4,6 +4,7 @@ import path from 'node:path'
 import fs from 'node:fs/promises'
 import * as vite from 'vite'
 import consola from 'consola'
+import fetch, { Headers, Request, Response } from 'node-fetch'
 import Module from './Module.js'
 
 /**
@@ -11,6 +12,15 @@ import Module from './Module.js'
  */
 
 const logger = consola.withTag('core')
+
+if (!global.fetch) {
+  logger.log('Using node-fetch polyfill')
+
+  global.fetch = fetch
+  global.Headers = Headers
+  global.Request = Request
+  global.Response = Response
+}
 
 export default class Core {
   /**

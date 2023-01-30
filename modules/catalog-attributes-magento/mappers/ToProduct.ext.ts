@@ -8,7 +8,9 @@ interface Attributes {
 const ToProduct: Extension<Attributes> = (ToProduct) => (data) => {
   const product = ToProduct(data)
 
-  product.attributes = data.sfx_attributes?.map(ToProductAttribute) ?? []
+  const filteredAttributes = data.sfx_attributes?.filter((item: any) => item.value && item) ?? []
+
+  product.attributes = filteredAttributes?.map(ToProductAttribute) ?? []
 
   return product
 }

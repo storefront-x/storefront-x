@@ -1,3 +1,45 @@
+## v1.8.0 (2023-01-25)
+
+#### :boom: Breaking Change
+
+- [#272](https://github.com/storefront-x/storefront-x/pull/272) Refactor serverInit & clientInit store actions ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :rocket: Enhancement
+
+- [#290](https://github.com/storefront-x/storefront-x/pull/290) Add support for X-Magento-Cache-Id ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#279](https://github.com/storefront-x/storefront-x/pull/279) Add basic analytics events ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#286](https://github.com/storefront-x/storefront-x/pull/286) Add fallback for meta titles ([@fajmanm](https://github.com/fajmanm))
+- [#233](https://github.com/storefront-x/storefront-x/pull/233) Improve product detail page of configurable products ([@kubo12312](https://github.com/kubo12312))
+- [#271](https://github.com/storefront-x/storefront-x/pull/271) Add support for Magento cache tags ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#266](https://github.com/storefront-x/storefront-x/pull/266) Hide empty product attributes ([@kubo12312](https://github.com/kubo12312))
+- [#273](https://github.com/storefront-x/storefront-x/pull/273) Fix grand total price in order summary ([@kubo12312](https://github.com/kubo12312))
+
+#### :memo: Documentation
+
+- [#293](https://github.com/storefront-x/storefront-x/pull/293) Add Event Bus documentation ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### :house: Internal
+
+- [#296](https://github.com/storefront-x/storefront-x/pull/296) Add build on demand ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#292](https://github.com/storefront-x/storefront-x/pull/292) Add test for two orders ([@xvyslo05](https://github.com/xvyslo05))
+- [#282](https://github.com/storefront-x/storefront-x/pull/282) Add Cypress test for coupons ([@xvyslo05](https://github.com/xvyslo05))
+- [#267](https://github.com/storefront-x/storefront-x/pull/267) Add PR template ([@kubo12312](https://github.com/kubo12312))
+- [#281](https://github.com/storefront-x/storefront-x/pull/281) Add node-fetch polyfill ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#227](https://github.com/storefront-x/storefront-x/pull/227) Refactor Cypress tests ([@xvyslo05](https://github.com/xvyslo05))
+- [#272](https://github.com/storefront-x/storefront-x/pull/272) Refactor serverInit & clientInit store actions ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 6
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+- [@xvyslo05](https://github.com/xvyslo05)
+
 ## v1.7.0 (2023-01-16)
 
 #### :rocket: Enhancement
@@ -7,7 +49,7 @@
 
 #### :memo: Documentation
 
-- [#268](https://github.com/storefront-x/storefront-x/pull/268) Add 'Why not' chapter do documentation ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#268](https://github.com/storefront-x/storefront-x/pull/268) Add 'Why not' chapter to documentation ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
 
 #### Committers: 3
 
