@@ -1,13 +1,14 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test('Google analytics script and correct ID in head', async ({ page }) => {
+test('Google Analytics script with Partytown enabled', async ({ page }) => {
   await makeProject(
     {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
         '@storefront-x/vue-router-simple',
+        '@storefront-x/partytown',
         '@storefront-x/google-analytics',
         [
           'my-module',
@@ -26,9 +27,9 @@ test('Google analytics script and correct ID in head', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      expect(await page.content()).toContain(
-        '<script async="" type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-TESTER"></script>',
-      )
+      await expect(
+        page.locator('head script[src="https://www.googletagmanager.com/gtag/js?id=G-TESTER"]'),
+      ).toHaveAttribute('type', 'text/partytown-x')
     },
   )
 })
