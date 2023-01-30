@@ -14,9 +14,6 @@ export default {
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
     '@storefront-x/nprogress',
-    '@storefront-x/partytown',
-    '@storefront-x/google-analytics',
-    '@storefront-x/google-analytics-listeners',
 
     '@storefront-x/magento',
 

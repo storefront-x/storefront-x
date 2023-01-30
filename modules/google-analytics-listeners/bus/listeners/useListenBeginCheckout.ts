@@ -29,7 +29,7 @@ export default () => {
         item_category5: item.product.categories?.at(4)?.name ?? '',
         price: item.product.regularPrice
           ? +item.product.regularPrice.value / PRICE_OFFSET
-          : +item.price?.value / PRICE_OFFSET,
+          : +item.price.value / PRICE_OFFSET,
         quantity: item.quantity ?? 1,
       })
     }
