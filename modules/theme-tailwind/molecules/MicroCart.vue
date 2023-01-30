@@ -9,13 +9,15 @@
     >
       <OutlineShoppingBag class="text-primary-500" />
     </div>
-    <span
-      v-if="cart.itemsTotalQuantity > 0"
-      class="absolute top-0 right-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800"
-      data-cy="microcart-quantity"
-    >
-      {{ cart.itemsTotalQuantity }}
-    </span>
+    <ClientOnly>
+      <span
+        v-if="cart.itemsTotalQuantity > 0"
+        class="absolute top-0 right-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800"
+        data-cy="microcart-quantity"
+      >
+        {{ cart.itemsTotalQuantity }}
+      </span>
+    </ClientOnly>
   </Link>
   <div
     role="button"
@@ -29,13 +31,15 @@
     >
       <OutlineShoppingBag class="text-primary-500" />
     </div>
-    <span
-      v-if="cart.itemsTotalQuantity > 0"
-      class="absolute top-0 right-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800"
-      data-cy="microcart-quantity"
-    >
-      {{ cart.itemsTotalQuantity }}
-    </span>
+    <ClientOnly>
+      <span
+        v-if="cart.itemsTotalQuantity > 0"
+        class="absolute top-0 right-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800"
+        data-cy="microcart-quantity"
+      >
+        {{ cart.itemsTotalQuantity }}
+      </span>
+    </ClientOnly>
   </div>
   <MiniCart v-if="cartStore.isMiniCartVisible" />
 </template>
@@ -47,6 +51,7 @@ import useI18n from '#ioc/composables/useI18n'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import OutlineShoppingBag from '#ioc/icons/OutlineShoppingBag'
 import useCartStore from '#ioc/stores/useCartStore'
+import ClientOnly from '#ioc/components/ClientOnly'
 import { defineAsyncComponent } from 'vue'
 
 const MiniCart = defineAsyncComponent(() => import('#ioc/organisms/MiniCart'))
