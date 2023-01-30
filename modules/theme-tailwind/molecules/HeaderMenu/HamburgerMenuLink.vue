@@ -5,7 +5,7 @@
   >
     <template #heading>
       <div class="items-center flex text-left">
-        <SfxImage v-if="category.thumbnailUrl" :src="category.thumbnailUrl" class="w-7 h-7" lazy></SfxImage>
+        <SfxImage v-if="category.thumbnailUrl" :height="28" :width="28" :src="category.thumbnailUrl" lazy></SfxImage>
         <span class="ml-2">
           {{ category.name }}
         </span>
@@ -24,7 +24,14 @@
     :to="category.urlPath"
     class="items-center flex text-left ml-2 px-4 py-4 border-t-2 border-gray-50 justify-between"
   >
-    <SfxImage v-if="category.thumbnail" :src="category.thumbnail" class="w-7 h-7" lazy></SfxImage>
+    <SfxImage
+      v-if="category.thumbnailUrl"
+      :src="category.thumbnailUrl"
+      :height="28"
+      :width="28"
+      class="w-7 h-7"
+      lazy
+    ></SfxImage>
     {{ category.name }}
   </RouterLink>
 </template>
