@@ -12,13 +12,12 @@
       />
     </div>
     <div v-if="hasGallery" ref="gallery" class="w-full mt-5 grid grid-cols-4 sm:grid-cols-5 gap-4">
-      <div v-for="(image, index) in images" :key="image.id" class="shrink-0" @click="select(index)">
+      <div v-for="image in images" :key="image.id" class="shrink-0">
         <SfxImage
           :id="image.id"
           :src="image.url"
           :alt="product.name"
           class-img="object-center object-cover rounded-lg border-2 transition hover:transition-all  hover:border-primary-600 hover:cursor-pointer"
-          :class="index === selected && 'border-primary-600'"
           :lazy="true"
           :width="96"
           :height="96"
@@ -35,7 +34,6 @@ import SfxImage from '#ioc/components/SfxImage'
 import { computed, ref } from 'vue'
 import SfxLightbox from '#ioc/components/SfxLightbox'
 
-const selected = ref(0)
 const gallery = ref(null)
 
 const product = injectProduct()
@@ -44,9 +42,5 @@ const hasGallery = computed(() => {
   return images?.value?.length > 1
 })
 
-const images = computed(() => product?.mediaGallery?.filter((e: any) => e.url !== product.thumbnailUrl))
-
-const select = (index: number) => {
-  selected.value = index
-}
+const images = computed(() => product?.mediaGallery)
 </script>
