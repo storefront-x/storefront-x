@@ -5,7 +5,7 @@ export default <T extends Store, R>(store: T, check: () => boolean, callback: ()
 
   return new Promise<R>((resolve, reject) => {
     setTimeout(() => {
-      console.error(new Error('waitForStore timed out after 5s'))
+      console.error(new Error(`waitForStore @${store.$id} timed out after 5s`))
       resolve(null as R)
     }, 5000)
 

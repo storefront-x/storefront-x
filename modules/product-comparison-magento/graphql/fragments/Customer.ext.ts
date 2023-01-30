@@ -18,6 +18,10 @@ export default (self: any) => {
             value: field(),
           }),
         }),
+        attributes: field({
+          code: field(),
+          label: field(),
+        }),
       }),
     })
 
