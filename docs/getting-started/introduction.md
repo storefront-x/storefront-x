@@ -16,12 +16,6 @@ With Storefront X, you will get solid architecture for your project. It will all
 
 ## Why not Nuxt?
 
-Our aim is to be an e-commerce framework. Our goal is modularity and speed. Through our long standing experience with Nuxt, we came to understand, that complex projects need modular architecture, full control of build packages and ability to have multiple build configurations from one repository ( e.g. diferent frontends in diferent countries ).
-
-### What is similar?
-
-Storefront X is the same as Nuxt, both are server-side rendered applications. Our framework also uses folder enforced structure, so you can work with `pages` directory as you would work in Nuxt. We also use Vue as our component application framework, but unlike Nuxt, Storefront X can work with other frameworks like React or SolidJS.
-
-### Where we see our advantage?
-
-We've taken the folder abstraction from Nuxt and taken it a step further. Because a complex e-commerce solution needs to work in a multiverse of frontend versions, we added another level of abstraction in the form of modules. For this abstraction to work with small build bundles, we don't import things directly from modules, but from the abstraction folder created at build time. That way we can override, extend and change behaviour with each new module, without code refactoring in existing modules.
+::: warning
+Information about this topic has been moved and can be found in the section: [SFX vs. Nuxt](/getting-started/sfx-vs-nuxt).
+:::
