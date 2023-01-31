@@ -318,3 +318,59 @@ Advanced composable!
 :::
 
 Low-level composable used for transfer state from server to client.
+
+## `<ClientOnly>` component
+
+::: info
+For users coming from Nuxt 3, it is important to note that while the functionality of the `ClientOnly` component described in this documentation is similar to the Nuxt 3 `<ClientOnly>` component, it may differ in implementation and usage.
+:::
+
+ClientOnly **renders its content only on the client side**. It is useful for components that can't be rendered on the server side (like third-party widgets).
+
+It is important to note that the content inside the `<ClientOnly>` component will not be rendered on the server-side, what means that the content will be visible only after the page is loaded, which can cause SEO issues if the content is important. It is recommended to use the `<ClientOnly>` component only for components that do not have a significant impact on SEO.
+
+However, in some cases, using `<ClientOnly>` might be the only solution to resolve the issue with the component not working on the server-side. If this is the case, it's important to weigh the trade-off between the potential SEO impact and the necessity to resolve the issue with the component. It's also recommended to carefully monitor the performance of the site after implementing `<ClientOnly>` to ensure it doesn't negatively affect the user experience.
+
+::: tip
+We have to import the `<ClientOnly>` component from `#ioc/components/ClientOnly`, because it is located inside `components` concept of the `vue` module.
+:::
+
+### Example usage
+
+```vue{2,4,7}
+<template>
+  <ClientOnly>
+    <MyComponent />
+  </ClientOnly>
+</template>
+
+<script setup>
+import ClientOnly from '#ioc/components/ClientOnly'
+import MyComponent from '#ioc/components/MyComponent'
+</script>
+```
+
+`MyComponent` will be rendered only on the client side. <br />
+It will not be rendered on the server side and visible in the HTML source code.
+
+### Fallback content
+
+If our component is not rendered on the server side, we can provide a fallback content using the `#fallback` slot. Everything inside the `#fallback` slot will be rendered on the server side and it will be visible until the component is loaded on the client side.
+
+```vue
+<template>
+  <ClientOnly>
+    <MyComponent />
+    <template #fallback>
+      <p>Loading...</p>
+    </template>
+  </ClientOnly>
+</template>
+
+<script setup>
+import ClientOnly from '#ioc/components/ClientOnly'
+import MyComponent from '#ioc/components/MyComponent'
+</script>
+```
+
+`Loading...` string will be rendered on the server side and it will be visible until the `MyComponent` is fully loaded on the client side. Then the component will be rendered instead of the fallback content.
