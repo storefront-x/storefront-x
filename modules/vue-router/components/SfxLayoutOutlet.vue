@@ -7,14 +7,16 @@
 </template>
 
 <script setup lang="ts">
-import useEventBus from '#ioc/composables/useEventBus'
+import useEmitNavigationStart from '#ioc/bus/emitters/useEmitNavigationStart'
+import useEmitNavigationEnd from '#ioc/bus/emitters/useEmitNavigationEnd'
 
-const { emit } = useEventBus('navigation')
+const emitNavigationStart = useEmitNavigationStart()
+const emitNavigationEnd = useEmitNavigationEnd()
 
 function pendingEvent() {
-  emit(true)
+  emitNavigationStart({})
 }
 function resolveEvent() {
-  emit(false)
+  emitNavigationEnd({})
 }
 </script>

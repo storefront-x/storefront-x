@@ -7,12 +7,17 @@
     <div class="mt-8 bg-gray-50 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="py-8 px-4 sm:rounded-lg sm:px-10">
         <SfxForm class="space-y-6" @submit="updatePassword">
-          <FormInput name="email" type="email" :label="t('Email')" validators="required|email" />
-
+          <FormInput name="email" type="email" :label="t('email')" validators="required|email" />
           <FormInput
             name="newPassword"
             type="password"
-            :label="t('Confirm new password')"
+            :label="t('newPassword')"
+            validators="required|min:8|classes:3"
+          />
+          <FormInput
+            name="newPasswordRepeat"
+            type="password"
+            :label="t('newPasswordRepeat')"
             validators="required|same:newPassword"
           />
 
@@ -24,7 +29,7 @@
               :loading="isPasswordLoading"
               :disabled="isPasswordLoading"
             >
-              {{ t('Change password') }}
+              {{ t('changePassword') }}
             </Button>
           </div>
         </SfxForm>
@@ -35,7 +40,6 @@
 
 <script setup lang="ts">
 import useI18n from '#ioc/composables/useI18n'
-import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import useResetCustomerPassword from '#ioc/services/useResetCustomerPassword'
 import SfxForm from '#ioc/components/SfxForm'
@@ -48,7 +52,6 @@ import { ref } from 'vue'
 const { t } = useI18n()
 
 const resetCustomerPassword = useResetCustomerPassword()
-const showErrorNotification = useShowErrorNotification()
 const showSuccessNotification = useShowSuccessNotification()
 const route = useRoute()
 const isPasswordLoading = ref(false)
@@ -59,9 +62,7 @@ const updatePassword = async (data: any) => {
 
     await resetCustomerPassword(data.email, data.newPassword, route.query.token as string)
 
-    showSuccessNotification('', t('Password successfully updated'))
-  } catch (e) {
-    showErrorNotification(e)
+    showSuccessNotification('', t('passwordUpdated'))
   } finally {
     isPasswordLoading.value = false
   }
@@ -69,9 +70,16 @@ const updatePassword = async (data: any) => {
 </script>
 
 <i18n lang="yaml">
+en-US:
+  newPassword: New password
+  newPasswordRepeat: Repeat new password
+  changePassword: Change password
+  email: Your email
+  passwordUpdated: Your password was changed
 cs-CZ:
-  Password: Heslo
-  Email: Email
-  Confirm new password: Potvrďte nové heslo
-  Reset password: Změnit heslo
+  newPassword: Nové heslo
+  newPasswordRepeat: Zopakujte nové heslo
+  changePassword: Změnit heslo
+  email: Váš email
+  passwordUpdated: Vaše heslo bylo změněno
 </i18n>
