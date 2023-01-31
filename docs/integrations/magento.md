@@ -85,7 +85,7 @@ You can extend vanilla integration with free SFX modules:
 - [Customer](https://github.com/storefront-x/magento-module-customer-graph-ql-extended)
 - [Reset password email](https://github.com/storefront-x/magento-module-email-url-extended)
 
-To install and enable SFX Magento modules use:
+### To install and enable SFX Magento modules use:
 #### Install metapackage
 ```
 composer require storefront-x/sfx_core
