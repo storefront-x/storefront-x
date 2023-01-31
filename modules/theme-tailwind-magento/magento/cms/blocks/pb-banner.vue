@@ -19,12 +19,10 @@ const props = defineProps({
   el: {
     type: Object as PropType<HTMLElement>,
     default: null,
-    required: true,
   },
   index: {
     type: Number,
     default: -1,
-    required: true,
   },
 })
 

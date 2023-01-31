@@ -16,6 +16,6 @@ const getCmsDynamicBlockById = useGetCmsDynamicBlockById()
 const pbDynamicBlock = usePbDynamicBlock(props.el)
 
 const { data } = await useAsyncData(`getCMSDynamicBlock_${pbDynamicBlock.blockId}`, () =>
-  getCmsDynamicBlockById(pbDynamicBlock.blockId),
+  getCmsDynamicBlockById(pbDynamicBlock.blockId ?? ''),
 )
 </script>
