@@ -28,7 +28,7 @@ test('Google Tag Manager script with Partytown enabled', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(page.locator('head script[type="text/partytown-x"]')).toContainText(
+      await expect(page.locator('head script[type="text/partytown"]')).toContainText(
         `(window,document,'script','dataLayer','G-TESTER')`,
       )
       await expect(page.locator('head')).toContainText(`forward: ["dataLayer.push"]`)

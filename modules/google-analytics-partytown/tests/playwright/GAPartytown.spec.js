@@ -30,7 +30,7 @@ test('Google Analytics script with Partytown enabled', async ({ page }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(
         page.locator('head script[src="https://www.googletagmanager.com/gtag/js?id=G-TESTER"]'),
-      ).toHaveAttribute('type', 'text/partytown-x')
+      ).toHaveAttribute('type', 'text/partytown')
       await expect(page.locator('head')).toContainText(`forward: ["gtag"]`)
     },
   )
