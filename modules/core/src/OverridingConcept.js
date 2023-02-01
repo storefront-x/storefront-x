@@ -28,4 +28,8 @@ export default class OverridingConcept extends WatchingConcept {
 
     return files
   }
+
+  get removesDestinationDirectory() {
+    return false
+  }
 }

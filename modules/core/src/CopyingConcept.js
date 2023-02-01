@@ -1,7 +1,6 @@
 //@ts-check
 
 import path from 'node:path'
-import fs from 'node:fs/promises'
 import OverridingConcept from './OverridingConcept.js'
 
 /**
@@ -14,7 +13,7 @@ export default class CopyingConcept extends OverridingConcept {
    */
   async execute(files) {
     if (this.removesDestinationDirectory) {
-      await fs.rm(this.dst(), { recursive: true, force: true })
+      await this.purgeDst()
     }
 
     for (const { module, file } of Object.values(files)) {
