@@ -6,7 +6,7 @@ import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 export default async (req: any, res: any) => {
   const store = getStoreFromUrl(req.hostname, req.url, VUE_I18N_LOCALES)
 
-  const _urls = []
+  const _urls = [] as any
 
   for (const module of Object.values(modules)) {
     _urls.push(module({ store }))
