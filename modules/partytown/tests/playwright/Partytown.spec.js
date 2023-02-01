@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('Partytown scripts loaded properly', async ({ page }) => {
+test('Partytown scripts loaded properly', async ({ page }) => {
   await makeProject(
     {
       modules: [
