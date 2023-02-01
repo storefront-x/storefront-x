@@ -95,7 +95,7 @@ export default class Serve extends Core {
     const { default: routes } = await import(href)
 
     for (const [path, route] of Object.entries(routes)) {
-      server.use(`/${path}`, route)
+      server.use(`/${path.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}?`)}`, route)
     }
   }
 }

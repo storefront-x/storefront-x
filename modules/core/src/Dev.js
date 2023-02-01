@@ -132,7 +132,9 @@ export default class Dev extends Core {
         })
 
         for (const [path, route] of Object.entries(routes)) {
-          if (typeof route === 'function') router.use(`/${path}`, route)
+          if (typeof route === 'function') {
+            router.use(`/${path.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}?`)}`, route)
+          }
         }
       } catch (e) {
         consola.error('Could not load server routes:', e)
