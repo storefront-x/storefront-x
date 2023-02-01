@@ -136,7 +136,7 @@ export default class Concept {
     await fs.copyFile(src, dst)
   }
 
-  async removeFilesFromDirectory() {
+  async purgeDst() {
     await fs.rm(this.dst(), { recursive: true, force: true })
   }
 

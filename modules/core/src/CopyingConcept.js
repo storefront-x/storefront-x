@@ -13,7 +13,7 @@ export default class CopyingConcept extends OverridingConcept {
    */
   async execute(files) {
     if (this.removesDestinationDirectory) {
-      await this.removeFilesFromDirectory()
+      await this.purgeDst()
     }
 
     for (const { module, file } of Object.values(files)) {

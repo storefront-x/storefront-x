@@ -36,7 +36,7 @@ export default class GeneratingConcept extends OverridingConcept {
     const recordsServer = {}
 
     if (this.removesDestinationDirectory) {
-      await this.removeFilesFromDirectory()
+      await this.purgeDst()
     }
 
     for (const { module, file } of Object.values(files)) {
