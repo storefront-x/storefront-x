@@ -11,11 +11,11 @@
 
 Vite is a frontend build tool designed for **fast and efficient development**. It uses an in-memory file system, incremental builds, dynamic imports, a fast development server, and parallel processing to provide fast build times and real-time updates. Vite is also designed to be modular and compatible with popular libraries and frameworks, making it a versatile choice for frontend development.
 
-We integrated Vite inside Storefront X due to its focus on speed and efficiency, which greatly improves the development experience and speeds up the time to market for any kind of project.
+We integrated Vite into Storefront X due to its focus on speed and efficiency, which greatly improves the development experience and speeds up the time to market for any kind of project.
 
 ## Benefits of Vite
 
-Let's look on some of the benefits, why we decided to use Vite in Storefront X, instead of other build tools like Webpack or Rollup.
+Let's look at some of the benefits, why we decided to use Vite in Storefront X, instead of other build tools like Webpack or Rollup.
 
 All of the benefits below are part of the Storefront X core.
 
@@ -61,7 +61,7 @@ The benefits of tree-shaking include:
 Vite is designed to be modular, allowing developers to easily choose only the features they need and reduce the size of their build. This feature is necessary for [modules](/getting-started/how-it-works.html#modules) to work.
 
 ::: tip
-You can find more information about modules in the [How It Works](/getting-started/how-it-works.html#modules) section.
+You can find more information about modules in the [How it works](/getting-started/how-it-works.html#modules) section.
 :::
 
 ### Compatibility
