@@ -50,8 +50,14 @@ const main = async () => {
 
   switch (responses.integration) {
     case 'px':
+      console.log(
+        'To learn more, visit the documentation: https://docs.storefrontx.io/integrations/magento.html#full-featured-magento',
+      )
+      break
     case 'magento':
-      console.log('To learn more, visit the documentation: https://docs.storefrontx.io/integrations/magento.html')
+      console.log(
+        'To learn more, visit the documentation: https://docs.storefrontx.io/integrations/magento.html#vanilla-magento',
+      )
       console.log('')
       break
 
@@ -103,8 +109,8 @@ async function getResponses() {
           message: 'Pick a demo application',
           choices: [
             { title: 'Blank application', value: 'blank' },
-            { title: 'Magento integration', value: 'magento' },
-            { title: 'Magento integration with additional modules (blog, brands, ...)', value: 'px' },
+            { title: 'Vanilla Magento integration', value: 'magento' },
+            { title: 'Full-featured Magento', value: 'px' },
             { title: 'Shopware integration', value: 'shopware' },
           ],
         },
