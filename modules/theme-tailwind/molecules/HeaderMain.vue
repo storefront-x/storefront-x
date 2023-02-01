@@ -28,9 +28,8 @@
       </Link>
 
       <div class="flex items-center justify-end">
-        <ClientOnly>
-          <MicroCompareProducts class="hidden lg:flex mr-2" />
-        </ClientOnly>
+        <MicroCompareProducts class="hidden lg:flex mr-2" />
+
         <MicroWishlist class="hidden lg:flex mr-2" />
         <MicroAccount :submenu="true" class="hidden lg:flex mr-2" />
         <MicroSearch class="lg:hidden mr-2" />
@@ -55,7 +54,6 @@ import OutlineMenu from '#ioc/icons/OutlineMenu'
 import OutlineX from '#ioc/icons/OutlineX'
 import logo from '#ioc/assets/logo'
 import useLocalePath from '#ioc/composables/useLocalePath'
-import ClientOnly from '#ioc/components/ClientOnly'
 
 const localePath = useLocalePath()
 

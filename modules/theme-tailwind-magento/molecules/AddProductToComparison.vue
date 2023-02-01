@@ -23,10 +23,10 @@ import useI18n from '#ioc/composables/useI18n'
 import ToCompareItem from '#ioc/mappers/ToCompareItem'
 import injectProduct from '#ioc/composables/injectProduct'
 import useAddProductToComparison from '#ioc/services/useAddProductToComparison'
-import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useRemoveProductFromComparison from '#ioc/services/useRemoveProductFromComparison'
+import useComparison from '#ioc/composables/useComparison'
 
 const props = defineProps({
   fillOnHover: {
@@ -44,16 +44,14 @@ const addProductToComparison = useAddProductToComparison()
 const removeComparedProducts = useRemoveProductFromComparison()
 const showSuccessNotification = useShowSuccessNotification()
 const showErrorNotification = useShowErrorNotification()
-const productComparisonMagentoStore = useProductComparisonMagentoStore()
 const product = injectProduct()
+const comparison = useComparison()
 
 const isCompared = computed(() => {
-  return productComparisonMagentoStore.items.some(
-    (item: ReturnType<typeof ToCompareItem>) => item.product.sku === product.sku,
-  )
+  return comparison.items.some((item: ReturnType<typeof ToCompareItem>) => item.product.sku === product.sku)
 })
 const isComparisonListFull = computed(() => {
-  return productComparisonMagentoStore.items.length >= 4
+  return comparison.items.length >= 4
 })
 
 const outlineClasses = computed(() => {

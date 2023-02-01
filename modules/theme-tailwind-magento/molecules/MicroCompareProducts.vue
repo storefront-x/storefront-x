@@ -1,6 +1,6 @@
 <template>
   <Link
-    v-if="productComparisonMagentoStore.items.length"
+    v-if="comparison.items.length"
     :to="localePath('compare-products')"
     class="relative mr-0 p-2 text-gray-400 hover:text-gray-500"
     data-cy="micro-compare-products"
@@ -10,11 +10,10 @@
       <OutlineScale stroke-width="2" class="text-primary-500" />
     </div>
     <span
-      v-if="productComparisonMagentoStore.items.length"
       class="absolute top-0 right-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800"
       data-cy="micro-compare-products"
     >
-      {{ productComparisonMagentoStore.items.length }}
+      {{ comparison.items.length }}
     </span>
   </Link>
 </template>
@@ -24,12 +23,12 @@ import Link from '#ioc/atoms/Link'
 import OutlineScale from '#ioc/icons/OutlineScale'
 import useI18n from '#ioc/composables/useI18n'
 import useLocalePath from '#ioc/composables/useLocalePath'
-import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
+import useComparison from '#ioc/composables/useComparison'
 
 const { t } = useI18n()
+const comparison = useComparison()
 
 const localePath = useLocalePath()
-const productComparisonMagentoStore = useProductComparisonMagentoStore()
 </script>
 
 <i18n lang="yaml">
