@@ -1,4 +1,5 @@
 export default (self: any) => {
-  self.add('gtag')
+  self.forward.push('gtag')
+
   return self
 }

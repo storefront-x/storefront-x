@@ -1,7 +1,6 @@
+import IS_DEVELOPMENT from '#ioc/config/IS_DEVELOPMENT'
+
 export default {
-  debug: false,
+  debug: IS_DEVELOPMENT,
   forward: [] as string[],
-  add(...args: string[]) {
-    this.forward.push(...args)
-  },
 }

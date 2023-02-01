@@ -1,4 +1,5 @@
 export default (self: any) => {
-  self.add('dataLayer.push')
+  self.forward.push('dataLayer.push')
+
   return self
 }
