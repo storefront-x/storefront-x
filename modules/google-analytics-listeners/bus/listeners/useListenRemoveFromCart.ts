@@ -3,12 +3,12 @@ import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 
 export default () => {
   return ({ cartItem: { product, quantity } }: RemoveFromCart) => {
-    gtag('event', 'remove_from_cart', {
+    window.gtag('event', 'remove_from_cart', {
       currency: product.finalPrice?.currency ?? '',
       value: +product.finalPrice.value / PRICE_OFFSET,
       items: [
         {
-          item_id: product.sku,
+          item_id: product.sku ?? product.id,
           item_name: product.name,
           // affiliation: 'Google Merchandise Store',
           discount:
@@ -21,7 +21,7 @@ export default () => {
           item_category3: product.categories?.at(2)?.name ?? '',
           item_category4: product.categories?.at(3)?.name ?? '',
           item_category5: product.categories?.at(4)?.name ?? '',
-          price: +product.regularPrice.value / PRICE_OFFSET,
+          price: product.regularPrice && +product.regularPrice.value / PRICE_OFFSET,
           quantity: quantity ?? 1,
         },
       ],
