@@ -1,6 +1,6 @@
 # Introduction
 
-You are reading the documentation for Storefront X e-commerce modular framework.
+You are reading the documentation for Storefront X e-commerce modular framework. Test
 
 Our main goal as developers is sustainability for complex projects, coupled with great developer experience supported by a large test-suite. Storefront X is made from the ground up to achieve this goal. We designed a framework with highly modular architecture, in which everything can be extended, overridden or changed. This allows Storefront X to provide application authors with a ton of functionality, while never limiting or slowing down the application development.
 
