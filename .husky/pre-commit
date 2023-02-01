@@ -1,6 +1,12 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+<<COMMENT
+LC_ALL=C is used to ensure that the locale-related behavior of the system is set to a standard, portable locale. 
+When working with Git hooks, some tools and scripts may behave differently based on the locale setting. 
+By setting LC_ALL=C, you can ensure that the behavior of these tools and scripts is consistent and predictable, 
+regardless of the locale of the system they are run on.
+COMMENT
 LC_ALL=C
 
 yarn lint-staged
