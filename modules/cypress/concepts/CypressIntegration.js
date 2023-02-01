@@ -14,6 +14,10 @@ export default class CypressIntegration extends GeneratingConcept {
     return true
   }
 
+  get removesDestinationDirectory() {
+    return true
+  }
+
   dst() {
     return path.join(this.core.rootDir, this.directory)
   }
