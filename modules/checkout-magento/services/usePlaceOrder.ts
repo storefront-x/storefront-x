@@ -2,7 +2,6 @@ import usePlaceOrderRepository from '#ioc/repositories/usePlaceOrderRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCartStore from '#ioc/stores/useCartStore'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
-import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
 import useCartToken from '#ioc/composables/useCartToken'
 import { onUnmounted, ref } from 'vue'
 
@@ -11,7 +10,6 @@ export default () => {
   const checkoutStore = useCheckoutStore()
   const getOrCreateCartId = useGetOrCreateCartId()
   const placeOrderRepository = usePlaceOrderRepository()
-  const cartMagentoStore = useCartMagentoStore()
   const cartToken = useCartToken()
 
   const isOrderPlaced = ref(false)
@@ -20,7 +18,6 @@ export default () => {
     if (isOrderPlaced.value) {
       cartStore.$reset()
       checkoutStore.$reset()
-      cartMagentoStore.$reset()
     }
   })
 
