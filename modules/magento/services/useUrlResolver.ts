@@ -8,7 +8,9 @@ export default () => {
   const urlResolverRepository = useUrlResolverRepository()
   const localePath = useLocalePath()
 
-  return async (resolvePath: string): Promise<{ id: string; component: any; relativeUrl: string }> => {
+  return async (
+    resolvePath: string,
+  ): Promise<{ entityUid: string; /**@deprecated */ id: string; component: any; relativeUrl: string }> => {
     const [data] = await useResource(
       () => resolvePath,
       (routePath) => urlResolverRepository(routePath),
@@ -19,6 +21,7 @@ export default () => {
     }
 
     return {
+      entityUid: data.value.entityUid,
       id: data.value.id,
       component: dynamicPages[data.value.type as keyof typeof dynamicPages] ?? null,
       relativeUrl: data.value.relativeUrl,
