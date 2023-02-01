@@ -1,11 +1,14 @@
 {
   "name": "@storefront-x/testing",
-  "version": "1.8.0",
+  "version": "1.9.1",
   "license": "MIT",
   "type": "module",
   "main": "./index.js",
   "dependencies": {
-    "get-port": "^6.1.2"
+    "@playwright/test": "1.25.2",
+    "get-port": "^6.1.2",
+    "jsdom": "^20.0.3",
+    "vitest": "^0.25.7"
   },
   "publishConfig": {
     "access": "public"

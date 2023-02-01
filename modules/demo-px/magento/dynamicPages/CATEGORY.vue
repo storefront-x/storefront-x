@@ -20,7 +20,7 @@ import { defineAsyncComponent } from 'vue'
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
 const props = defineProps({
-  id: {
+  entityUid: {
     type: String,
     required: true,
   },
@@ -35,7 +35,7 @@ const getCategoryById = useGetCategoryById()
 
 const [data] = await useResource(
   () => ({
-    id: props.id,
+    id: props.entityUid,
     page: Number(route.query.page ?? 1),
     pages: Number(route.query.pages ?? 1),
     sort: route.query.sort as string,

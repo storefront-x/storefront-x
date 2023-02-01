@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 18
       - run: yarn install --immutable --immutable-cache
-      - run: yarn playwright install chromium
+      - run: npx playwright install chromium
       - run: yarn test:playwright --forbid-only
   docs:
     runs-on: ubuntu-latest
