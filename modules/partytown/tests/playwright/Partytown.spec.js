@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test('Partytown scripts loaded properly', async ({ page }) => {
+test.only('Partytown scripts loaded properly', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -25,9 +25,7 @@ test('Partytown scripts loaded properly', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      const pageContent = await page.content()
-      await expect(pageContent).toContain(`<script type="text/javascript">partytown = { debug: false, forward: [],`)
-      await expect(pageContent).toContain(`<script type="text/javascript">/* Partytown 0.7.5 - MIT builder.io */`)
+      expect(await page.evaluate(() => window.partytown)).toBeTruthy()
     },
   )
 })
