@@ -5,7 +5,7 @@
     <BrandInfo :brand="brand" />
 
     <Prose v-if="brand.image || brand.description">
-      <SfxImage v-if="brand.image" :src-m2="brand.image" class-img="px-32" />
+      <SfxImage v-if="brand.image" :src="brand.image" :width="48" :height="48" class-img="px-32" />
       <div v-html="brand.description" />
     </Prose>
 

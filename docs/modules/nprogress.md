@@ -8,7 +8,7 @@ NProgress adds progress bar between navigation in your app.
 
 ## `NPROGRESS_BAR_COLOR` config
 
-You can overwrite default color of progress bar here.
+You can override default color of progress bar here.
 
 ```ts
 // config/NPROGRESS_BAR_COLOR.ts
@@ -18,7 +18,7 @@ export default '${YOUR BAR COLOR HERE}'
 
 ## `NPROGRESS_BAR_HEIGHT` config
 
-You can overwrite default height of progress bar here.
+You can override default height of progress bar here.
 
 ```ts
 // config/NPROGRESS_BAR_HEIGHT.ts

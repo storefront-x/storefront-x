@@ -6,10 +6,6 @@ on:
       - main
   pull_request:
 
-concurrency:
-  group: core-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   playwright:
     strategy:
@@ -38,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        integration: [magento, shopware, venia]
+        integration: [magento, shopware, px]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v3
@@ -53,7 +49,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        integration: [magento, shopware, venia]
+        integration: [magento, shopware, px]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v3

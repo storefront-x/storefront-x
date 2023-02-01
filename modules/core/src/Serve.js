@@ -7,6 +7,8 @@ import Core from './Core.js'
 
 export default class Serve extends Core {
   async createServer() {
+    await this._loadServerStartup()
+
     const template = await fs.readFile(path.join(this.distDir, 'client', 'index.html'), { encoding: 'utf-8' })
 
     const { default: entry } = await import(
@@ -63,6 +65,12 @@ export default class Serve extends Core {
     })
 
     return server
+  }
+
+  async _loadServerStartup() {
+    const { href } = url.pathToFileURL(path.join(this.distDir, 'server', 'startup.js'))
+
+    await import(href)
   }
 
   /**

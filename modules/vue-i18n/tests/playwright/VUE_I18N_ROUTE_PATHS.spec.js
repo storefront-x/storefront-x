@@ -60,7 +60,7 @@ test('route paths', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url + '/cz/kosik', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('<h1>Hello, Košíku!</h1>')
+      await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
   )
 })
@@ -128,6 +128,7 @@ test('change of locale', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/cart', { waitUntil: 'networkidle' })
       await page.locator('a').click()
+
       await expect(page.locator('h1')).toContainText('Hello, Košíku!')
     },
   )
@@ -442,6 +443,82 @@ test('works with multiple route parameters', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url + '/bob/1', { waitUntil: 'networkidle' })
       await expect(page.locator('h1')).toContainText('/cz/joe/1')
+    },
+  )
+})
+
+test('rendering different locale of non-index page in deep structure', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        '@storefront-x/vue-i18n',
+        [
+          'my-module',
+          {
+            config: {
+              'VUE_I18N_LOCALES.ts': `export default [
+                {
+                  name: 'en',
+                  locale: 'en-US',
+                  prefix: '/',
+                },
+                {
+                  name: 'cz',
+                  locale: 'cs-CZ',
+                  prefix: '/cz',
+                },
+              ]
+              `,
+              'VUE_I18N_ROUTE_PATHS.ts': `
+                export default {
+                  '/folder/test': {
+                    cz: '/slozka/vyzkouset',
+                    en: '/folder/test',
+                  },
+                }
+              `,
+            },
+            pages: {
+              folder: {
+                '$layout.vue': `
+                    <template>
+                    <div id="h1">
+                      <SfxLayoutOutlet />
+                    </div>
+                    </template>
+
+                    <script setup lang="ts">
+                    import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
+
+                    </script>
+                  `,
+                'test.vue': `
+                  <template>
+                    <div id="h2">{{ t('message') }}</div>
+                  </template>
+                  <script setup>
+                  import useI18n from '#ioc/composables/useI18n'
+
+                  const { t } = useI18n()
+                  </script>
+                  <i18n lang="yaml">
+                  cs-CZ:
+                    message: Ahoj svět!
+                  </i18n>
+                `,
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/cz/slozka/vyzkouset', { waitUntil: 'networkidle' })
+      expect(await page.content()).toContain('<div id="h1"><div id="h2">Ahoj svět!</div></div>')
+      await expect(page.locator('#h2')).toContainText('Ahoj svět!')
     },
   )
 })

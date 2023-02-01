@@ -1,19 +1,18 @@
-import useCookies from '#ioc/composables/useCookies'
-import MAGENTO_CART_COOKIE_NAME from '#ioc/config/MAGENTO_CART_COOKIE_NAME'
 import usePlaceOrderRepository from '#ioc/repositories/usePlaceOrderRepository'
 import useGetOrCreateCartId from '#ioc/services/useGetOrCreateCartId'
 import useCartStore from '#ioc/stores/useCartStore'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 import useCartMagentoStore from '#ioc/stores/useCartMagentoStore'
+import useCartToken from '#ioc/composables/useCartToken'
 import { onUnmounted, ref } from 'vue'
 
 export default () => {
-  const cookies = useCookies()
   const cartStore = useCartStore()
   const checkoutStore = useCheckoutStore()
   const getOrCreateCartId = useGetOrCreateCartId()
   const placeOrderRepository = usePlaceOrderRepository()
   const cartMagentoStore = useCartMagentoStore()
+  const cartToken = useCartToken()
 
   const isOrderPlaced = ref(false)
 
@@ -30,7 +29,7 @@ export default () => {
 
     const { order } = await placeOrderRepository(id)
 
-    cookies.remove(MAGENTO_CART_COOKIE_NAME)
+    cartToken.remove()
 
     isOrderPlaced.value = true
 

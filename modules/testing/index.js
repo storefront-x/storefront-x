@@ -1,7 +1,7 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import getPort from 'get-port'
-import { Build, Dev } from '@storefront-x/core'
+import { Build, Dev, Serve } from '@storefront-x/core'
 
 export const makeProject = async (config, callback) => {
   await makeTempDir(async (dir) => {
@@ -71,7 +71,7 @@ export const makeProject = async (config, callback) => {
   })
 }
 
-export const buildProject = async (config) => {
+export const buildProject = async (config, callback = () => undefined) => {
   await makeTempDir(async (dir) => {
     for (const pkg of config.modules) {
       if (typeof pkg === 'string') continue
@@ -93,6 +93,28 @@ export const buildProject = async (config) => {
 
     await build.bootstrap()
     await build.build()
+    const serverPort = await getPort()
+    const host = 'localhost'
+
+    const serve = new Serve({ dir }, { host, port: serverPort })
+
+    const app = await serve.createServer()
+
+    const server = await new Promise((resolve) => {
+      const server = app.listen(serverPort, () => {
+        resolve(server)
+      })
+    })
+
+    const url = `http://${host}:${serverPort}`
+
+    try {
+      await callback({
+        url,
+      })
+    } finally {
+      await server.close()
+    }
   })
 }
 

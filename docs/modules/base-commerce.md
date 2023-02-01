@@ -6,23 +6,23 @@ This module contains general concepts, components, utilities, functionalities an
 
 ### Data-flow
 
-This module contains multiple concepts establishing general data-flow in Storefront X applications. `repositories/`, `mappers/` and `services/`. Detailed documentation of these concepts can be found later on this page, but generally they work like this:
+This module contains multiple concepts establishing general data-flow in Storefront X applications: `repositories/`, `mappers/` and `services/`. Detailed documentation of these concepts can be found later on this page, but generally they work like this:
 
-**Repositories** are responsible for communication with backend. Their job is to abstract away the implementation logic so they are safe to use and maintain mostly the same interface between backend integrations - repository for fetching products from Magento should have same interface as repository for fetching products from Shopware. They can be found in integration-specific modules (`catalog-magento`, `catalog-shopware`, ...).
+**Repositories** are responsible for communication with backend. Their job is to abstract away the implementation logic, so they are safe to use and maintain mostly the same interface between backend integrations - repository for fetching products from Magento should have same interface as repository for fetching products from Shopware. They can be found in integration-specific modules (`catalog-magento`, `catalog-shopware`, etc.).
 
-**Mappers** are responsible from mapping data between Storefront X and backend integrations. Because different backends return different data, but Storefront X needs data in certain shape, we use mappers to transform data returned from backend to data acceptable by Storefront X. Most of the times they are used by repositories. They can be found in integration-specific modules (`catalog-magento`, `catalog-shopware`, ...).
+**Mappers** are responsible for mapping data between Storefront X and backend integrations. Because different backends return different data, but Storefront X needs data in certain shape, we use mappers to transform data returned from backend to data acceptable by Storefront X. Most of the times, they are used by repositories. They can be found in integration-specific modules (`catalog-magento`, `catalog-shopware`, etc.).
 
-**Services** wrap repositories with business and application logic. For example when logging-in the user, log-in user only does the network request retrieving customer token. Log-in service will use this token, store it in cookies and reload the application.
+**Services** wrap repositories with business and application logic. For example, when logging-in the user, logged-in user only does the network request retrieving customer token. Log-in service will use this token, store it in cookies and reload the application.
 
 :::tip
-Use server routes as proxies to decrease number of DNS requests and improve caching.
+Use server routes as proxies to decrease number of DNS requests and to improve caching.
 :::
 
 ## `formatters/money/` concept
 
-Money formatters are responsible for rendering money. Their file name matches the currency they are formatting (`EUR.ts`, `USD.ts`, `CZK.ts`) and they export function which accepts numerical value that needs to be formatted.
+Money formatters are responsible for rendering money. Their file name matches the currency they are formatting (`EUR.ts`, `USD.ts`, `CZK.ts`), and they export function which accepts numerical value that needs to be formatted.
 
-Formatters are not manually imported anywhere. Instead they are used by the [`SfxMoney`](#sfxmoney-component) component.
+Formatters are not manually imported anywhere. Instead, they are used by the [`SfxMoney`](#sfxmoney-component) component.
 
 ### Example
 
@@ -45,6 +45,7 @@ IoC concept containing GraphQL fragments.
 
 ```ts
 // gql/fragments/Product.ts
+
 import { fragment, field } from '@storefront-x/base-commerce/adapters/GraphQL'
 
 export default (name = 'product') =>
@@ -63,6 +64,7 @@ IoC concept containing GraphQL mutations.
 
 ```ts
 // gql/mutations/CreateEmptyCart.ts
+
 import { mutation, field } from '@storefront-x/base-commerce/adapters/GraphQL'
 
 export default () =>
@@ -73,12 +75,13 @@ export default () =>
 
 ## `gql/queries/` IoC concept
 
-IoC concept containing GraphQL mutations.
+IoC concept containing GraphQL queries.
 
 ### Example
 
 ```ts
 // gql/queries/Product.ts
+
 import { query, field } from '@storefront-x/base-commerce/adapters/GraphQL'
 import Cart from '#ioc/gql/fragments/Cart'
 
@@ -104,7 +107,7 @@ IoC concept for mappers.
 
 ## `providers/` IoC concept
 
-Providers are used when sharing non-global data/logic between multiple components where prop drilling and composables would be too expensive. Product is great example because it can appear multiple times on one page (local data) but is used by a lot of components (ProductTile, AddToCart, ...).
+Providers are used when sharing non-global data/logic between multiple components where prop drilling and composables would be too expensive. Product is great example, because it can appear multiple times on one page (local data), but it is used by a lot of components (ProductTile, AddToCart, etc.).
 
 ### Example
 
@@ -167,9 +170,9 @@ const product = injectProduct()
 
 ## `repositories/` IoC concept
 
-Repositories are composables (higher-order functions). First function is synchronous and contains calls to other composables. It returns second, asynchronous, function which is responsible for actual communication with backend.
+Repositories are composables (higher-order functions). First function is synchronous and contains calls to other composables. It returns second, asynchronous, function which is responsible for the actual communication with a backend.
 
-It is a good idea to return object from the asynchronous function to allow for additional values to be returned in the future.
+It is a good idea to return object from the asynchronous function, to allow for additional values to be returned in a future.
 
 ### Example
 
@@ -200,7 +203,7 @@ export default () => {
 
 ## `validators/` concept
 
-Validators are function accepting value they are validating. They are not manually imported but instead indirectly used by the [`SfxInput`](#sfxinput-component) component.
+Validators are functions accepting value they are validating. They are not manually imported, but instead, indirectly used by the [`SfxInput`](#sfxinput-component) component.
 
 ### Example
 
@@ -234,7 +237,7 @@ import SfxInput from '#ioc/components/SfxInput'
 
 ### Arguments
 
-Validators can also accept arguments. They are coma separated and are separated by colon after validator identifier.
+Validators can also accept arguments. They are comma separated, and they are separated by colon after validator identifier.
 
 ```js
 // validators/between.js
@@ -284,7 +287,7 @@ const onSubmit = ({ firstName, lastName }) => {
 
 ## `SfxImage` component
 
-Component for lazy loading and resizing images. `SfxImage` uses image resizer on the server to compress and resize images to improve loading speed.
+Component for lazy loading and resizing images. `SfxImage` uses image resizer on the server to compress and resize images, to improve loading speed.
 
 ### Example
 
@@ -300,7 +303,7 @@ import SfxImage from '#ioc/components/SfxImage'
 
 ## `SfxInput` component
 
-Component used in `SfxForm`. It is recommended to create your own input component with styles and better markup which will extend functionality from `SfxInput`.
+Component used in `SfxForm`. It is recommended to create your own input component with styles and better markup, which will extend functionality from `SfxInput`.
 
 ### Example
 
@@ -379,7 +382,7 @@ export default {
 
 ## `SfxMoney` component
 
-Component for rendering money. It either renders money directly into an element set by the `el` prop (`<span>` by default) or you can provide it with default slot and render provided HTML.
+Component for rendering money. It either renders money directly into an element set by the `el` prop (`<span>` by default), or you can provide it with default slot and render provided HTML.
 
 ### Simple usage
 
@@ -415,7 +418,7 @@ const product = injectProduct()
 
 ## `useBlockBodyFromScrolling` composable
 
-Blocks HTML body from scrolling when component in which this composable is used is mounted. When component is unmounted, body scroll is unblocked.
+Blocks HTML body from scrolling, when component, in which this composable is used, is mounted. When component is unmounted, body scroll is unblocked.
 
 :::tip
 Useful in modals, drawers and other pop-up style components.
@@ -441,7 +444,7 @@ useBlockBodyFromScrolling()
 </script>
 ```
 
-## `useNotifications` composables
+## `useNotifications` composable
 
 Returns list of all currently visible notifications. Should be used by component responsible for drawing list of notifications.
 
@@ -484,7 +487,7 @@ const onClick = async () => {
 
 ## `useHideNotification` composable
 
-Composable for hiding notifications. Should be used by component responsible fro drawing single notification.
+Composable for hiding notifications. Should be used by component responsible for drawing single notification.
 
 ## `useShowSuccessNotification` composable
 
@@ -494,60 +497,13 @@ Helper composable for displaying success notifications.
 
 Helper composable for displaying caught errors.
 
-## `useEventBus` composable
-
-Helper composable for emiting and listening to global events.
-
-### Example
-
-```vue
-<!-- components/emitter.vue -->
-
-<template>
-  <Button @click="globalEmit">Emit</Button>
-</template>
-
-<script setup lang="ts">
-import useEventBus from '#ioc/composables/useEventBus'
-
-const { emit } = useEventBus('test') // name your events properly
-
-function globalEmit() {
-  emit('foo')
-}
-</script>
-```
-
-```vue
-<!-- components/listener.vue -->
-
-<template>
-  <div>
-    {{ eventPayload }}
-  </div>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import useEventBus from '#ioc/composables/useEventBus'
-
-const { listen } = useEventBus('test')
-
-const eventPayload = ref()
-
-listen((value) => {
-  eventPayload.value = value
-})
-</script>
-```
-
 ## `CACHE_ID` config
 
 :::warning
 Advanced config!
 :::
 
-Every Storefront X request contains `CACHE_ID` so by changing it, every request will bypass existing cache, fetch new data and cache them. Because `CACHE_ID` is tied to every request, changing it will cause higher server load for a brief time due to higher cache miss rate until all of the requests are cached again.
+Every Storefront X request contains `CACHE_ID`, so by changing it, every request will bypass existing cache, fetch new data and cache them. Because `CACHE_ID` is tied to every request, changing it will cause higher server load for a brief time due to higher cache miss rate, until all of the requests are cached again.
 
 ## `PRICE_OFFSET` config
 
@@ -555,4 +511,4 @@ Every Storefront X request contains `CACHE_ID` so by changing it, every request 
 Advanced config!
 :::
 
-Storefront X doesn't store money as float but instead as natural numbers. `PRICE_OFFSET` is used as multiplier of every money value coming from backend so that values like 1.99, 2.5 are instead represented as 199 and 250.
+Storefront X doesn't store money as float, but instead as natural numbers. `PRICE_OFFSET` is used as multiplier of every money value coming from backend, so that values like 1.99, 2.5 are instead represented as 199 and 250.

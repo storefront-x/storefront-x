@@ -4,6 +4,9 @@ import { layouts, routes } from '~/.sfx/pages'
 
 export default async (app: App, ctx: any) => {
   const router = createRouter({ routes, layouts })
+
+  ctx.$router = router
+
   await router.push(ctx.req.url)
 
   app.use(router)

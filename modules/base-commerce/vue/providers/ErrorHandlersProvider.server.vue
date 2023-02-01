@@ -8,7 +8,9 @@ import errorHandlers from '~/.sfx/vue/errorHandlers.server'
 import useContext from '#ioc/composables/useContext'
 
 const ctx = useContext()
-const bindedErrorHandlers = Object.values(errorHandlers).map((e) => e())
+const bindedErrorHandlers = Object.values(errorHandlers)
+  .map((e) => e())
+  .reverse()
 
 onErrorCaptured((e) => {
   let wasCaught = false

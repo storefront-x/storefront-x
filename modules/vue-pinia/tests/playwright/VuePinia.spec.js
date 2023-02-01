@@ -50,7 +50,7 @@ test('server-side global state management', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('<button>1</button>')
+      await expect(page.locator('button')).toContainText('1')
     },
   )
 })

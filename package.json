@@ -37,7 +37,6 @@
     "@typescript-eslint/parser": "^5.46.0",
     "cross-env": "^7.0.3",
     "cypress": "^9.7.0",
-    "cypress-wait-until": "^1.7.2",
     "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",

@@ -1,3 +1,133 @@
+## v1.8.0 (2023-01-25)
+
+#### :boom: Breaking Change
+
+- [#272](https://github.com/storefront-x/storefront-x/pull/272) Refactor serverInit & clientInit store actions ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :rocket: Enhancement
+
+- [#290](https://github.com/storefront-x/storefront-x/pull/290) Add support for X-Magento-Cache-Id ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#279](https://github.com/storefront-x/storefront-x/pull/279) Add basic analytics events ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#286](https://github.com/storefront-x/storefront-x/pull/286) Add fallback for meta titles ([@fajmanm](https://github.com/fajmanm))
+- [#233](https://github.com/storefront-x/storefront-x/pull/233) Improve product detail page of configurable products ([@kubo12312](https://github.com/kubo12312))
+- [#271](https://github.com/storefront-x/storefront-x/pull/271) Add support for Magento cache tags ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#266](https://github.com/storefront-x/storefront-x/pull/266) Hide empty product attributes ([@kubo12312](https://github.com/kubo12312))
+- [#273](https://github.com/storefront-x/storefront-x/pull/273) Fix grand total price in order summary ([@kubo12312](https://github.com/kubo12312))
+
+#### :memo: Documentation
+
+- [#293](https://github.com/storefront-x/storefront-x/pull/293) Add Event Bus documentation ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### :house: Internal
+
+- [#296](https://github.com/storefront-x/storefront-x/pull/296) Add build on demand ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#292](https://github.com/storefront-x/storefront-x/pull/292) Add test for two orders ([@xvyslo05](https://github.com/xvyslo05))
+- [#282](https://github.com/storefront-x/storefront-x/pull/282) Add Cypress test for coupons ([@xvyslo05](https://github.com/xvyslo05))
+- [#267](https://github.com/storefront-x/storefront-x/pull/267) Add PR template ([@kubo12312](https://github.com/kubo12312))
+- [#281](https://github.com/storefront-x/storefront-x/pull/281) Add node-fetch polyfill ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#227](https://github.com/storefront-x/storefront-x/pull/227) Refactor Cypress tests ([@xvyslo05](https://github.com/xvyslo05))
+- [#272](https://github.com/storefront-x/storefront-x/pull/272) Refactor serverInit & clientInit store actions ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 6
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+- [@xvyslo05](https://github.com/xvyslo05)
+
+## v1.7.0 (2023-01-16)
+
+#### :rocket: Enhancement
+
+- [#269](https://github.com/storefront-x/storefront-x/pull/269) Add Sentry integration ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#246](https://github.com/storefront-x/storefront-x/pull/246) Improve out of stock visualization ([@kubo12312](https://github.com/kubo12312))
+
+#### :memo: Documentation
+
+- [#268](https://github.com/storefront-x/storefront-x/pull/268) Add 'Why not' chapter to documentation ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 3
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.6.0 (2023-01-16)
+
+#### :boom: Breaking Change
+
+- [#245](https://github.com/storefront-x/storefront-x/pull/245) Improve vanilla Magento integration ([@kubo12312](https://github.com/kubo12312))
+
+#### :rocket: Enhancement
+
+- [#245](https://github.com/storefront-x/storefront-x/pull/245) Improve vanilla Magento integration ([@kubo12312](https://github.com/kubo12312))
+- [#226](https://github.com/storefront-x/storefront-x/pull/226) Add option to reset forgotten password via an email ([@JaroslavSku](https://github.com/JaroslavSku))
+- [#228](https://github.com/storefront-x/storefront-x/pull/228) Handle Magento's newsletter errors ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### :memo: Documentation
+
+- [#265](https://github.com/storefront-x/storefront-x/pull/265) Add Routing page to the documentation ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#261](https://github.com/storefront-x/storefront-x/pull/261) Fix typos and and improve texts in documentation ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#262](https://github.com/storefront-x/storefront-x/pull/262) Improve documentation for Simple todo app and Cookbook ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#260](https://github.com/storefront-x/storefront-x/pull/260) Improve introduction and quick start documentation pages ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#255](https://github.com/storefront-x/storefront-x/pull/255) Add documentation for creation of simple TODO app ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :house: Internal
+
+- [#270](https://github.com/storefront-x/storefront-x/pull/270) Update demo templates ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#259](https://github.com/storefront-x/storefront-x/pull/259) Use page.locator in Playwright tests ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 5
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [@JaroslavSku](https://github.com/JaroslavSku)
+
+## v1.5.1 (2023-01-04)
+
+#### :rocket: Enhancement
+
+- [#258](https://github.com/storefront-x/storefront-x/pull/258) Use ToMagentoImage in ToBrand mapper ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
+## v1.5.0 (2023-01-04)
+
+#### :rocket: Enhancement
+
+- [#257](https://github.com/storefront-x/storefront-x/pull/257) Add ToMagentoImage mapper ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#186](https://github.com/storefront-x/storefront-x/pull/186) Add Minicart ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#248](https://github.com/storefront-x/storefront-x/pull/248) Fix click-through from cart item to product detail on Shopware ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 2
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.4.6 (2023-01-03)
+
+#### :house: Internal
+
+- [#249](https://github.com/storefront-x/storefront-x/pull/249) Update the 'blank' demo ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#247](https://github.com/storefront-x/storefront-x/pull/247) Use TypeScript for IoC generated files ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#244](https://github.com/storefront-x/storefront-x/pull/244) Test create script in pipelines ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.4.5 (2023-01-02)
 
 #### :house: Internal
