@@ -1,17 +1,27 @@
 import type { App } from 'vue'
-import fs from 'fs'
+import fs from 'fs/promises'
 import { join } from 'node:path'
 import { libDirPath } from '@builder.io/partytown/utils'
+import PartytownConfig from '#ioc/config/partytown/config'
+import IS_DEVELOPMENT from '#ioc/config/IS_DEVELOPMENT'
+
+let partytownSnippet: string | undefined = undefined
 
 export const after = async (app: App, ctx?: any) => {
-  const partyTownSnippet = fs.readFileSync(join(libDirPath(), './partytown.js'), 'utf-8')
-  const partyTownConfig = `partytown = { debug: false, forward: [], lib: "'${libDirPath()}'" }`
+  const { debug, forward } = PartytownConfig
+  const libPath = IS_DEVELOPMENT ? libDirPath() + '/' : ''
 
-  ctx.out.partyTown = (html: string) =>
+  if (!partytownSnippet) {
+    partytownSnippet = await fs.readFile(join(libDirPath(), './partytown.js'), 'utf-8')
+  }
+
+  const partytownConfig = `partytown = { debug: ${debug}, forward: ${JSON.stringify(forward)}, lib: "${libPath}" }`
+
+  ctx.out.partytown = (html: string) =>
     html.replace(
       '<head>',
       `<head>\n
-      <script type="application/javascript">${partyTownConfig}</script>\n
-      <script type="application/javascript">${partyTownSnippet}</script>`,
+      <script type="text/javascript">${partytownConfig}</script>\n
+      <script type="text/javascript">${partytownSnippet}</script>`,
     )
 }

@@ -1,15 +1,12 @@
-import useCookies from '#ioc/composables/useCookies'
-import MAGENTO_CART_COOKIE_NAME from '#ioc/config/MAGENTO_CART_COOKIE_NAME'
+import useCartToken from '#ioc/composables/useCartToken'
 
-export default (useLoginCustomer: any) => {
-  return () => {
-    const loginCustomer = useLoginCustomer()
-    const cookies = useCookies()
+export default (useLoginCustomer: any) => () => {
+  const cartToken = useCartToken()
+  const loginCustomer = useLoginCustomer()
 
-    return async (...args: any) => {
-      await loginCustomer(...args)
+  return async (...args: any) => {
+    await loginCustomer(...args)
 
-      cookies.remove(MAGENTO_CART_COOKIE_NAME)
-    }
+    cartToken.remove()
   }
 }
