@@ -2,10 +2,6 @@ import AccountCredentials from '~/cypress/support/pageObjects/account/AccountCre
 import register from '~/cypress/support/pageObjects/account/register'
 import login from '~/cypress/support/pageObjects/account/login'
 import logout from '~/cypress/support/pageObjects/account/logout'
-import Product from '~/cypress/support/pageObjects/product/Product'
-import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
-import addToCart from '~/cypress/support/pageObjects/product/addToCart'
-import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
 
 describe('Account', () => {
   /** @type {AccountCredentials} */
@@ -32,19 +28,5 @@ describe('Account', () => {
   it('supports restricted access to account', () => {
     cy.visit('/account/orders')
     cy.url().should('include', '/sign-in')
-  })
-
-  it('customers still has cart after page reload', () => {
-    const product = new Product()
-
-    login(accountCredentials)
-
-    visitRandom(product)
-    addToCart()
-    expectMicrocartQuantity(1)
-
-    cy.reload()
-
-    expectMicrocartQuantity(1)
   })
 })

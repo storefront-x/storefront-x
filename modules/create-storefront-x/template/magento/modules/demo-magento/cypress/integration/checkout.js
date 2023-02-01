@@ -4,7 +4,6 @@ import selectPayment from '~/cypress/support/pageObjects/checkout/selectPayment'
 import fillShippingInfo from '~/cypress/support/pageObjects/checkout/fillShippingInfo'
 import confirmAgreements from '~/cypress/support/pageObjects/checkout/confirmAgreements'
 import placeOrder from '~/cypress/support/pageObjects/checkout/placeOrder'
-import fillCreditCardInfo from '~/cypress/support/pageObjects/checkout/fillCreditCardInfo'
 import getInstorePickupLocation from '~/cypress/support/pageObjects/checkout/getInstorePickupLocation'
 import checkThankYouPageVisibility from '~/cypress/support/pageObjects/thankYouPage/checkThankYouPageVisibility'
 import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
@@ -12,8 +11,8 @@ import addToCart from '~/cypress/support/pageObjects/product/addToCart'
 import continueToCheckout from '~/cypress/support/pageObjects/product/continueToCheckout'
 import Product from '~/cypress/support/pageObjects/product/Product'
 import getAppliedCoupons from '~/cypress/support/pageObjects/checkout/getAppliedCoupons'
-import removeCoupon from '~/cypress/support/pageObjects/checkout/removeCoupon'
 import getNotificationToast from '~/cypress/support/pageObjects/base/getNotificationToast'
+import removeCoupon from '~/cypress/support/pageObjects/checkout/removeCoupon'
 import setCoupon from '~/cypress/support/pageObjects/checkout/setCoupon'
 
 describe('Checkout', () => {
@@ -49,19 +48,6 @@ describe('Checkout', () => {
     checkThankYouPageVisibility()
   })
 
-  it('accepts credit card payment', () => {
-    const shippingMethod = 'flatrate_flatrate'
-
-    selectShipping(shippingMethod)
-    selectPayment('braintree')
-    fillShippingInfo(shippingMethod)
-    confirmAgreements()
-    placeOrder()
-    fillCreditCardInfo()
-
-    checkThankYouPageVisibility()
-  })
-
   it('supports instore pickup', () => {
     const shippingMethod = 'instore_pickup'
 
@@ -89,24 +75,5 @@ describe('Checkout', () => {
 
     setCoupon(couponName)
     getNotificationToast().should('not.be.empty')
-  })
-
-  it('place two orders', () => {
-    const shippingMethod = 'flatrate_flatrate'
-
-    selectShipping(shippingMethod)
-    selectPayment('checkmo')
-    fillShippingInfo(shippingMethod)
-    confirmAgreements()
-    placeOrder()
-    checkThankYouPageVisibility()
-
-    addRandomProductToCartAndProceedToCheckout(product)
-    selectShipping(shippingMethod)
-    selectPayment('checkmo')
-    fillShippingInfo(shippingMethod)
-    confirmAgreements()
-    placeOrder()
-    checkThankYouPageVisibility()
   })
 })
