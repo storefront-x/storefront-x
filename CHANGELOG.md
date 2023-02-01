@@ -1,3 +1,35 @@
+## v1.9.0 (2023-02-01)
+
+#### :rocket: Enhancement
+
+- [#297](https://github.com/storefront-x/storefront-x/pull/297) Add tooling module ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#305](https://github.com/storefront-x/storefront-x/pull/305) Add support for "get product by ID" query ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#299](https://github.com/storefront-x/storefront-x/pull/299) Improve Partytown support ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#310](https://github.com/storefront-x/storefront-x/pull/310) Add static pages to the sitemap ([@kubo12312](https://github.com/kubo12312))
+- [#276](https://github.com/storefront-x/storefront-x/pull/276) Initialize cart on the client ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#316](https://github.com/storefront-x/storefront-x/pull/316) Fix checkout not loading for signed in customers ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#314](https://github.com/storefront-x/storefront-x/pull/314) Fix timeout in waitForStore ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#313](https://github.com/storefront-x/storefront-x/pull/313) Fix checkout hydration error ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#308](https://github.com/storefront-x/storefront-x/pull/308) Fix gallery for product variants to respect variant image ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#306](https://github.com/storefront-x/storefront-x/pull/306) Fixe reset password pages for native Magento ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :house: Internal
+
+- [#250](https://github.com/storefront-x/storefront-x/pull/250) Purge old Cypress files during bootstrap ([@kubo12312](https://github.com/kubo12312))
+- [#312](https://github.com/storefront-x/storefront-x/pull/312) Limit allowed branch names ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#301](https://github.com/storefront-x/storefront-x/pull/301) Disable Google analytics on demos ([@kubo12312](https://github.com/kubo12312))
+- [#303](https://github.com/storefront-x/storefront-x/pull/303) Use bus concept for route navigation events ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### Committers: 4
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.8.0 (2023-01-25)
 
 #### :boom: Breaking Change
@@ -38,7 +70,7 @@
 - Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
 - Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
 - Martin Fajman ([@fajmanm](https://github.com/fajmanm))
-- [@xvyslo05](https://github.com/xvyslo05)
+- Robin Vysloužil ([@xvyslo05](https://github.com/xvyslo05))
 
 ## v1.7.0 (2023-01-16)
 
@@ -250,4 +282,4 @@
 
 - Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
 - Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
-- [@xvyslo05](https://github.com/xvyslo05)
+- Robin Vysloužil ([@xvyslo05](https://github.com/xvyslo05))
