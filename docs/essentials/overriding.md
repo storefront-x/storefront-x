@@ -1,16 +1,16 @@
 # Overriding
 
-Overriding in SFX is a process when the file with the same name from one module will be used instead of another one. This is useful when you want to change the default behaviour of the original file without modifying it. For example, you want to change the default template of the component or change the default behaviour of the service.
+Overriding in Storefront-x enables you to change visual or functional behaviour of one module with another module, without modifing original files. Imagine, you want to change the default template of the component or change the default behaviour of the service in some common-module, overriding is perfect match for you.
 
 ::: tip
-Overriding can be managed in the `storefront-x.*.config.js` file based on the position of imported module. File from later imported module will be used instead of the file from earlier imported module. If only one module is imported, the file from this module will be used.
+Overriding rules are managed in the `storefront-x.config.js` file based on the position of imported module. File from later module will be used instead of the file from earlier module. If only one module is imported, the file from this module is used.
 :::
 
-Overriding is one of pillars of SFX. Basic information about overriding can be found in the [How it works](/getting-started/how-it-works#overriding) section.
+Overriding is one cool things about Storefront-x. Basic information about overriding can be found in the [How it works](/getting-started/how-it-works#overriding) section.
 
 ## How to override?
 
-Imagine, we have a `module-a` with `components` concept inside it that provides a component. We want to change the default behaviour of this component. The best way, how to do that, is to override the component.
+Imagine, we have a `module-a` with `Logo.vue` component in `/components` concept folder. In basic setup this logo is just a logo, but with `module-b` enabled this logo should lead to homepage as link. The best way, how to do that, is to override the component.
 
 ```vue
 // module-a/components/Logo.vue
@@ -24,7 +24,7 @@ import logo from '#ioc/assets/logo'
 </script>
 ```
 
-We can make it by creating a `components` concept inside a `module-b` and put a new component with the same name there.
+We can achieve it by creating a `components` concept folder inside a `module-b` and put a new component file with the same name there.
 
 ```vue
 // module-b/components/Logo.vue
@@ -40,7 +40,7 @@ import logo from '#ioc/assets/logo'
 </script>
 ```
 
-Finally, we import `module-b` after `module-a` in the `storefront-x.*.config.js` file.
+Finally, we need to use `module-b` after `module-a` in the `storefront-x.config.js` file.
 
 ```js
 // storefront-x.*.config.js
@@ -62,9 +62,7 @@ Vice versa, if we import `module-b` before `module-a`, the component from `modul
 
 ### Nested files
 
-The example above uses direct child of `components` concept. But, that is not a limitation, we can also override nested files. We just have to preserve the same path to the file in a new module. Let's look at the example.
-
-::: code-group
+The example above uses direct child of `components` concept.That is not a limitation, we can also override nested files. We just have to preserve the same path to the file in a new module. Let's look at the example.
 
 ```ts [module-a/.../GOOGLE_ANALYTICS_ID.ts]
 // module-a/config/googleAnalytics/GOOGLE_ANALYTICS_ID.ts
@@ -78,11 +76,9 @@ export default 'G-0123456789'
 export default 'G-9876543210'
 ```
 
-:::
-
 Google Analytics ID is located in the `config` concept and `googleAnalytics` folder. So, we have to create the same path in the `module-b` and put the new file there.
 
-Then, if we import `module-b` after `module-a` in the `storefront-x.*.config.js` file, the `GOOGLE_ANALYTICS_ID` from `module-b` will be used instead of the `GOOGLE_ANALYTICS_ID` from `module-a`.
+Then, if we use `module-b` after `module-a` in the `storefront-x.config.js` file, the `GOOGLE_ANALYTICS_ID` from `module-b` will be used instead of the `GOOGLE_ANALYTICS_ID` from `module-a`.
 
 You can find another practical example of overriding in the Cookbook section: [Override component](/cookbook/override-component).
 
@@ -90,12 +86,12 @@ You can find another practical example of overriding in the Cookbook section: [O
 
 There are many concepts that support overriding. The most common ones are:
 
-- base
 - components
 - composables
 - pages
 - templates
 - services
+- repositories
 - stores
 - config
 - atoms
@@ -106,7 +102,7 @@ There are many concepts that support overriding. The most common ones are:
 - graphql
 - mappers
 - providers
-- repositories
 - tests
 - cypress
 - errors
+- i18n
