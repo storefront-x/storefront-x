@@ -1,12 +1,30 @@
 import useCartStore from '#ioc/stores/useCartStore'
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref, onMounted } from 'vue'
 
 export default () => {
+  const isMounted = ref(false)
+
+  onMounted(() => {
+    isMounted.value = true
+  })
+
   const cartStore = useCartStore()
 
-  const items = computed(() => cartStore.cart?.items ?? [])
+  const isLoaded = computed(() => {
+    if (!isMounted.value) return false
+
+    return cartStore.cart !== undefined
+  })
+
+  const items = computed(() => {
+    if (!isMounted.value) return []
+
+    return cartStore.cart?.items ?? []
+  })
 
   const itemsTotalQuantity = computed(() => {
+    if (!isMounted.value) return 0
+
     let itemsTotalQuantity = 0
 
     for (const item of items.value) {
@@ -16,17 +34,38 @@ export default () => {
     return itemsTotalQuantity
   })
 
-  const subtotalIncludingTax = computed(() => cartStore.cart?.prices.subtotalIncludingTax)
+  const subtotalIncludingTax = computed(() => {
+    if (!isMounted.value) return null
 
-  const taxes = computed(() => cartStore.cart?.prices.taxes ?? [])
+    return cartStore.cart?.prices.subtotalIncludingTax ?? null
+  })
 
-  const discounts = computed(() => cartStore.cart?.prices.discounts ?? [])
+  const taxes = computed(() => {
+    if (!isMounted.value) return []
 
-  const coupons = computed(() => cartStore.cart?.coupons ?? [])
+    return cartStore.cart?.prices.taxes ?? []
+  })
 
-  const grandTotal = computed(() => cartStore.cart?.prices.grandTotal)
+  const discounts = computed(() => {
+    if (!isMounted.value) return []
+
+    return cartStore.cart?.prices.discounts ?? []
+  })
+
+  const coupons = computed(() => {
+    if (!isMounted.value) return []
+
+    return cartStore.cart?.coupons ?? []
+  })
+
+  const grandTotal = computed(() => {
+    if (!isMounted.value) return null
+
+    return cartStore.cart?.prices.grandTotal ?? null
+  })
 
   return reactive({
+    isLoaded,
     items,
     itemsTotalQuantity,
     subtotalIncludingTax,
