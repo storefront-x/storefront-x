@@ -1,7 +1,6 @@
 import RemoveProductsFromCompareList from '#ioc/graphql/mutations/RemoveProductsFromCompareList'
 import useMagento from '#ioc/composables/useMagento'
-import ToCompareItem from '#ioc/mappers/ToCompareItem'
-import ToCompareAttribute from '#ioc/mappers/ToCompareAttribute'
+import ToCompareList from '#ioc/mappers/ToCompareList'
 
 export default () => {
   const magento = useMagento()
@@ -10,8 +9,7 @@ export default () => {
     const { data } = await magento.graphql(RemoveProductsFromCompareList().with({ input }))
 
     return {
-      attributes: data.removeProductsFromCompareList.attributes.map(ToCompareAttribute) ?? [],
-      items: data.removeProductsFromCompareList.items.map(ToCompareItem) ?? [],
+      compareList: ToCompareList(data.removeProductsFromCompareList),
     }
   }
 }

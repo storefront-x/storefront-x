@@ -5,6 +5,7 @@ import Product from '#ioc/graphql/fragments/Product'
 export default (name = 'compareList') =>
   fragment(name, 'CompareList', {
     uid: field(),
+    item_count: field(),
     attributes: field({
       code: field(),
       label: field(),

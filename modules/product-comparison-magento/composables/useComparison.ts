@@ -18,16 +18,28 @@ export default () => {
     return true
   })
 
-  const items = computed(() => {
-    if (!wasHydrated.value) return []
-    return productComparisonMagentoStore.items ?? []
+  const comparisonListId = computed(() => {
+    if (!wasHydrated.value) return ''
+    return productComparisonMagentoStore?.compareList?.comparisonListId ?? ''
   })
 
-  const attributes = computed(() => productComparisonMagentoStore.attributes ?? [])
+  const itemCount = computed(() => {
+    if (!wasHydrated.value) return 0
+    return productComparisonMagentoStore?.compareList?.itemCount ?? 0
+  })
+
+  const items = computed(() => {
+    if (!wasHydrated.value) return []
+    return productComparisonMagentoStore?.compareList?.items ?? []
+  })
+
+  const attributes = computed(() => productComparisonMagentoStore?.compareList?.attributes ?? [])
 
   return reactive({
     _wasHydrated: readonly(wasHydrated),
     isLoaded,
+    comparisonListId,
+    itemCount,
     items,
     attributes,
   })

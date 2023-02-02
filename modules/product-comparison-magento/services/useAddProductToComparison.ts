@@ -4,28 +4,30 @@ import useAddProductsToCompareListRepository from '#ioc/repositories/useAddProdu
 import useCustomer from '#ioc/composables/useCustomer'
 import useCreateCompareList from '#ioc/services/useCreateCompareList'
 import useComparisonListLocaleId from '#ioc/composables/useComparisonListLocaleId'
+import useComparison from '#ioc/composables/useComparison'
 
 export default () => {
   const productComparisonMagentoStore = useProductComparisonMagentoStore()
   const addProductsToCompareListRepository = useAddProductsToCompareListRepository()
   const comparisonListLocaleId = useComparisonListLocaleId()
   const customer = useCustomer()
+  const comparison = useComparison()
   const createCompareList = useCreateCompareList()
 
   return async (product: ReturnType<typeof useProduct>) => {
-    if (!productComparisonMagentoStore.comparisonListId) {
+    if (!comparison.comparisonListId) {
       const { comparisonListId } = await createCompareList()
 
-      productComparisonMagentoStore.comparisonListId = comparisonListId
+      productComparisonMagentoStore.$patch({ compareList: { comparisonListId } })
       if (!customer.isLoggedIn) {
         comparisonListLocaleId.set(comparisonListId)
       }
     }
     const { compareList } = await addProductsToCompareListRepository({
       products: [product.id],
-      uid: productComparisonMagentoStore.comparisonListId,
+      uid: comparison.comparisonListId,
     })
 
-    productComparisonMagentoStore.$patch(compareList)
+    productComparisonMagentoStore.$patch({ compareList })
   }
 }

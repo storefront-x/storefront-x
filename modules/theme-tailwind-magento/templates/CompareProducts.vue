@@ -25,6 +25,9 @@
             </td>
           </tr>
         </table>
+        <Heading v-else :level="3" class="text-center">
+          {{ t('noCompareProducts') }}
+        </Heading>
       </template>
       <Heading v-else :level="3" class="text-center">
         {{ t('comparisonLoading') }}
@@ -56,7 +59,9 @@ defineProps({
 en-US:
   compareProducts: Compare Products
   comparisonLoading: Your comparison list is loading.
+  noCompareProducts: You have no products to compare.
 cs-CZ:
   compareProducts: Srovnání produktů
   comparisonLoading: Vaše srovnání se načítá.
+  noCompareProducts: Nemáte žádné produkty k srovnání.
 </i18n>
