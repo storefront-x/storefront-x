@@ -79,7 +79,7 @@ describe('Checkout', () => {
     const couponName = 'coupon_cypress_test'
 
     setCoupon(couponName)
-    getAppliedCoupons().should('have.text', couponName)
+    getAppliedCoupons().last().should('have.text', couponName)
     removeCoupon()
     getAppliedCoupons().should('not.exist')
   })

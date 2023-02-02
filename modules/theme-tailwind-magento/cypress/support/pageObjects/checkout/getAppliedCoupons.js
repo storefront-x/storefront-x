@@ -1,1 +1,1 @@
-export default () => cy.get('[data-cy=applied-coupons]').last()
+export default () => cy.get('[data-cy=applied-coupons]')
