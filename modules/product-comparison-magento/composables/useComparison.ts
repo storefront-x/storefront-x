@@ -15,25 +15,25 @@ export default () => {
   const isLoaded = computed(() => {
     if (!wasHydrated.value) return false
 
-    return true
+    return productComparisonMagentoStore.compareList !== undefined
   })
 
   const comparisonListId = computed(() => {
     if (!wasHydrated.value) return ''
-    return productComparisonMagentoStore?.compareList?.comparisonListId ?? ''
+    return productComparisonMagentoStore.compareList?.comparisonListId ?? ''
   })
 
   const itemCount = computed(() => {
     if (!wasHydrated.value) return 0
-    return productComparisonMagentoStore?.compareList?.itemCount ?? 0
+    return productComparisonMagentoStore.compareList?.itemCount ?? 0
   })
 
   const items = computed(() => {
     if (!wasHydrated.value) return []
-    return productComparisonMagentoStore?.compareList?.items ?? []
+    return productComparisonMagentoStore.compareList?.items ?? []
   })
 
-  const attributes = computed(() => productComparisonMagentoStore?.compareList?.attributes ?? [])
+  const attributes = computed(() => productComparisonMagentoStore.compareList?.attributes ?? [])
 
   return reactive({
     _wasHydrated: readonly(wasHydrated),

@@ -1,7 +1,7 @@
 <template>
   <a
     :href="`https://www.facebook.com/sharer/sharer.php?u=${location}`"
-    class="flex ml-2 mr-2 text-gray-400 cursor-pointer no-underline hover:bg-gray-100"
+    class="flex ml-2 mr-4 text-gray-400 cursor-pointer no-underline hover:bg-gray-100"
     target="_blank"
   >
     <OutlineArrowShare class="ml-2 mr-1 text-gray-400" /> {{ t('Share') }}

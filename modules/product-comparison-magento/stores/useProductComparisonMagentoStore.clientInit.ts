@@ -24,7 +24,9 @@ export default () => {
         if (localeStorageId) {
           const { compareList } = await getCompareListById(localeStorageId)
           productComparisonMagentoStore.$patch({ compareList })
+          return
         }
+        productComparisonMagentoStore.$patch({ compareList: null })
       },
     )
   }
