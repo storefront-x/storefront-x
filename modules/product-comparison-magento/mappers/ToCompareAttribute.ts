@@ -1,3 +1,3 @@
 export default (data: any) => ({
-  label: data.label ?? '',
+  label: data?.label ?? '',
 })

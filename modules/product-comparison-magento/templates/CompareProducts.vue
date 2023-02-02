@@ -46,13 +46,6 @@ import useComparison from '#ioc/composables/useComparison'
 
 const { t } = useI18n()
 const comparison = useComparison()
-
-defineProps({
-  brand: {
-    type: Object,
-    default: () => ({}),
-  },
-})
 </script>
 
 <i18n lang="yaml">

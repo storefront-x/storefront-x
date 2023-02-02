@@ -7,6 +7,7 @@ export default {
     './node_modules/@storefront-x/theme-tailwind-magento/**/*.vue',
     './node_modules/@storefront-x/theme-tailwind-magento-px/**/*.vue',
     './node_modules/@storefront-x/demo-magento/**/*.vue',
+    './node_modules/@storefront-x/product-comparison-magento/**/*.vue',
   ],
   plugins: [forms],
   theme: {

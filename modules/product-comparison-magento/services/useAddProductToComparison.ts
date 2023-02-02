@@ -16,11 +16,11 @@ export default () => {
 
   return async (product: ReturnType<typeof useProduct>) => {
     if (!comparison.comparisonListId) {
-      const { comparisonListId } = await createCompareList()
+      const { compareList } = await createCompareList()
 
-      productComparisonMagentoStore.$patch({ compareList: { comparisonListId } })
+      productComparisonMagentoStore.$patch({ compareList })
       if (!customer.isLoggedIn) {
-        comparisonListLocaleId.set(comparisonListId)
+        comparisonListLocaleId.set(comparison.comparisonListId)
       }
     }
     const { compareList } = await addProductsToCompareListRepository({

@@ -8,7 +8,7 @@ interface Attributes {
 const ToCustomer: Extension<Attributes> = (ToCustomer) => (data) => {
   const customer = ToCustomer(data)
 
-  customer.compareList = ToCompareList(data.compare_list)
+  customer.compareList = ToCompareList(data?.compare_list ?? {})
 
   return customer
 }

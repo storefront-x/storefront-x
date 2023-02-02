@@ -1,30 +1,16 @@
-import field from '#ioc/graphql/field'
 import addFields from '#ioc/utils/graphql/addFields'
-import Product from '#ioc/graphql/fragments/Product'
+import CompareList from '#ioc/graphql/fragments/CompareList'
+import field from '#ioc/graphql/field'
+import Extension from '#ioc/types/base/Extension'
 
-export default (self: any) => {
-  return () => {
-    const fragment = self()
-    addFields(fragment, {
-      compare_list: field({
-        uid: field(),
-        items: field({
-          uid: field(),
-          product: field({
-            ...Product(),
-          }),
-          attributes: field({
-            code: field(),
-            value: field(),
-          }),
-        }),
-        attributes: field({
-          code: field(),
-          label: field(),
-        }),
-      }),
-    })
+const Customer: Extension = (Customer) => () => {
+  const self = Customer()
 
-    return fragment
-  }
+  addFields(self, {
+    compare_list: field({ ...CompareList() }),
+  })
+
+  return self
 }
+
+export default Customer
