@@ -27,8 +27,6 @@ import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotificat
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import useRemoveProductFromComparison from '#ioc/services/useRemoveProductFromComparison'
 import useComparison from '#ioc/composables/useComparison'
-import useGetCompareListById from '#ioc/services/useGetCompareListById'
-import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
 
 const props = defineProps({
   fillOnHover: {
@@ -48,11 +46,12 @@ const showSuccessNotification = useShowSuccessNotification()
 const showErrorNotification = useShowErrorNotification()
 const product = injectProduct()
 const comparison = useComparison()
-const getCompareListById = useGetCompareListById()
-const productComparisonMagentoStore = useProductComparisonMagentoStore()
 
 const isCompared = computed(() => {
   return comparison.items.some((item: ReturnType<typeof ToCompareItem>) => item.product.sku === product.sku)
+})
+const isComparisonListFull = computed(() => {
+  return comparison.items.length >= 4
 })
 
 const outlineClasses = computed(() => {
@@ -85,13 +84,9 @@ const ResolveAddProductToComparison = async () => {
     showSuccessNotification('', t('productRemoved'))
     return
   }
-  if (comparison.comparisonListId) {
-    const { compareList } = await getCompareListById(comparison.comparisonListId)
-    productComparisonMagentoStore.$patch({ compareList })
-    if (comparison.items.length > 4) {
-      showErrorNotification(t('tooManyProducts'))
-      return
-    }
+  if (isComparisonListFull.value) {
+    showErrorNotification(t('tooManyProducts'))
+    return
   }
   await addProductToComparison(product)
   showSuccessNotification('', t('productAdded'))
