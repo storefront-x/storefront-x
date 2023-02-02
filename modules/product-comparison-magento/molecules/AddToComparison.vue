@@ -3,7 +3,7 @@
     type="button"
     class="rounded-md flex items-center justify-center"
     :class="classes"
-    data-cy="compare-products"
+    data-cy="add-to-comparison"
     @click="ResolveAddProductToComparison"
   >
     <span class="sr-only">

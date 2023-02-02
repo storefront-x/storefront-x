@@ -3,7 +3,7 @@
     v-if="comparison.items.length"
     :to="localePath('compare-products')"
     class="relative mr-0 p-2 text-gray-400 hover:text-gray-500"
-    data-cy="micro-compare-products"
+    data-cy="micro-comparelist-button"
   >
     <span class="sr-only">{{ t('Compare') }}</span>
     <div class="rounded-lg border-2 p-2 border-none border-gray-100 lg:border-solid hover:bg-gray-100">
@@ -11,7 +11,7 @@
     </div>
     <span
       class="absolute top-0 right-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800"
-      data-cy="micro-compare-products"
+      data-cy="micro-comparelist-quantity"
     >
       {{ comparison.items.length }}
     </span>
