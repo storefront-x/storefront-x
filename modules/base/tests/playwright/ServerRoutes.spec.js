@@ -62,25 +62,15 @@ test('server route with path prefix', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-i18n',
         [
           'my-module',
           {
-            config: {
-              'VUE_I18N_LOCALES.ts': `export default [
-                  {
-                    name: 'sk',
-                    locale: 'sk-SK',
-                    prefix: '/sk',
-                  },
-                ]
-                `,
-            },
             server: {
               routes: {
                 '[prefix]': {
                   'hello.js': `export default (req, res) => res.send(req.baseUrl)`,
                 },
+                'hello.js': `export default (req, res) => res.send(req.baseUrl)`,
               },
             },
           },

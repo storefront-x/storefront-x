@@ -1,6 +1,7 @@
 import { routes } from '~/.sfx/pages'
+import localeRoutes from '~/.sfx/sitemap/localeRoutes'
 
-export default async () => {
+export default async ({ store }: any) => {
   const urls = []
 
   for (const routeParent of routes) {
@@ -9,7 +10,14 @@ export default async () => {
         continue
       }
 
-      urls.push({ loc: routeChild.path })
+      for (const localeRoute of Object.values(localeRoutes)) {
+        const localePath = localeRoute(store.name, routeChild.path)
+        if (localePath) {
+          urls.push({ loc: localePath })
+        } else {
+          urls.push({ loc: routeChild.path })
+        }
+      }
     }
   }
 
