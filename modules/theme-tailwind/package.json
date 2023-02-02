@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/theme-tailwind",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "license": "MIT",
   "type": "module",
   "dependencies": {
