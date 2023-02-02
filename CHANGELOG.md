@@ -1,3 +1,24 @@
+## v1.9.2 (2023-02-02)
+
+#### :rocket: Enhancement
+
+- [#319](https://github.com/storefront-x/storefront-x/pull/319) Add removeFields GraphQL util ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#318](https://github.com/storefront-x/storefront-x/pull/318) Add NProgress to optimizeDeps ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :memo: Documentation
+
+- [#300](https://github.com/storefront-x/storefront-x/pull/300) Improve docs for create script ([@kubo12312](https://github.com/kubo12312))
+- [#309](https://github.com/storefront-x/storefront-x/pull/309) Add docs and tests for the ClientOnly component ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### Committers: 3
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+
 ## v1.9.0 (2023-02-01)
 
 #### :rocket: Enhancement
