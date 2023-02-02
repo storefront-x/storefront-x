@@ -19,7 +19,7 @@
       "#ioc/*": ["./.sfx/ioc/*"],
       "~/*": ["./*"]
     },
-    "types": ["node", "cypress", "vitest/globals"]
+    "types": ["node", "cypress", "vitest/globals", "cypress-wait-until"]
   },
   "include": ["modules/**/*", "cypress/**/*", ".sfx/**/*"],
   "exclude": [".sfx/vite"]
