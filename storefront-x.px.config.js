@@ -53,6 +53,7 @@ export default {
     '@storefront-x/catalog-labels-magento',
     '@storefront-x/robots-magento',
     '@storefront-x/sitemap-magento',
+    '@storefront-x/product-alerts-magento-px',
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',

@@ -3713,6 +3713,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/product-alerts-magento-px@workspace:modules/product-alerts-magento-px":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/product-alerts-magento-px@workspace:modules/product-alerts-magento-px"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento"

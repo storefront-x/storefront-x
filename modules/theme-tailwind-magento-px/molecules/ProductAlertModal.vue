@@ -12,8 +12,6 @@
 
       <FormCheckbox name="isPriceLower" class="mb-3" :label="t('When the price drops below')" />
 
-      <FormInput name="price" type="number" class="w-full text-left shadow-transparent border-0 mb-3" />
-
       <FormInput
         name="email"
         type="email"
@@ -44,10 +42,10 @@ import injectProduct from '#ioc/composables/injectProduct'
 const { t } = useI18n()
 const product = injectProduct()
 
-const emit = defineEmits(['create', 'close'])
+const emit = defineEmits(['submit', 'close'])
 
 const onSubmit = (data: any) => {
-  emit('create', { ...data })
+  emit('submit', { ...data })
 }
 
 const onClose = () => {

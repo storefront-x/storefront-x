@@ -66,10 +66,10 @@
 
       <GiftPanel />
 
-      <div class="flex">
+      <div class="flex space-x-2">
         <AddToWishlist :title="t('Add')" />
         <FacebookShare />
-        <ProductAlerts />
+        <ProductAlerts v-if="customer.isLoggedIn" />
       </div>
       <div class="w-full flex mt-4 text-gray-400">
         <p class="mr-1">{{ t('Warranty: 24 months') }} |</p>
@@ -95,6 +95,7 @@ import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
 import ProductAlerts from '#ioc/molecules/ProductAlerts'
+import useCustomer from '#ioc/composables/useCustomer'
 
 const ProductBundleOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductBundleOptions'))
 const ProductConfigurableOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductConfigurableOptions'))
@@ -103,6 +104,7 @@ const GroupedItems = defineAsyncComponent(() => import('#ioc/molecules/GroupedIt
 
 const { t } = useI18n()
 const product = injectProduct()
+const customer = useCustomer()
 
 const quantity = ref(1)
 

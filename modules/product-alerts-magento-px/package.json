@@ -1,0 +1,9 @@
+{
+    "name": "@storefront-x/product-alerts-magento-px",
+    "version": "1.8.0",
+    "license": "MIT",
+    "type": "module",
+    "publishConfig": {
+        "access": "public"
+    }
+}

@@ -66,7 +66,7 @@
 
       <GiftPanel />
 
-      <div class="flex">
+      <div class="flex space-x-2">
         <AddToWishlist :title="t('Add')" />
         <FacebookShare />
       </div>
