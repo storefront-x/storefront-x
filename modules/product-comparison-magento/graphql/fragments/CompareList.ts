@@ -3,21 +3,23 @@ import fragment from '#ioc/graphql/fragment'
 import Product from '#ioc/graphql/fragments/Product'
 
 export default (name = 'compareList') =>
-  fragment(name, 'CompareList', {
-    uid: field(),
-    item_count: field(),
-    attributes: field({
-      code: field(),
-      label: field(),
-    }),
-    items: field({
+  fragment(name, 'CompareList')
+    .cantBeCached()
+    .fields({
       uid: field(),
-      product: field({
-        ...Product(),
-      }),
+      item_count: field(),
       attributes: field({
         code: field(),
-        value: field(),
+        label: field(),
       }),
-    }),
-  })
+      items: field({
+        uid: field(),
+        product: field({
+          ...Product(),
+        }),
+        attributes: field({
+          code: field(),
+          value: field(),
+        }),
+      }),
+    })

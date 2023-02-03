@@ -60,10 +60,6 @@ describe('Comparison', () => {
     register(accountCredentials)
 
     visitRandom(product)
-
-    expectMicroCompareListQuantity(0)
-
-    visitRandom(product)
     addToComparison()
 
     gotoCompareList()
@@ -75,21 +71,22 @@ describe('Comparison', () => {
   it('allows removing from compare list as logged in user', () => {
     login(accountCredentials)
 
-    expectMicroCompareListQuantity(0)
-
     visitRandom(product)
     addToComparison()
 
     gotoCompareList()
 
-    expectMicroCompareListQuantity(1)
-    expectCompareListQuantity(1)
+    expectMicroCompareListQuantity(2)
+    expectCompareListQuantity(2)
 
     visitAgain(product)
 
     getAddToComparison().click() // Clicking again will remove it from wishlist
 
-    expectMicroCompareListQuantity(0)
+    gotoCompareList()
+
+    expectMicroCompareListQuantity(1)
+    expectCompareListQuantity(1)
   })
 
   it('allows adding up to 4 products to the compare list', () => {
@@ -98,22 +95,31 @@ describe('Comparison', () => {
     visitRandom(product)
     addToComparison()
 
+    gotoCompareList()
     expectMicroCompareListQuantity(2)
+    expectCompareListQuantity(2)
 
     visitRandom(product)
     addToComparison()
 
+    gotoCompareList()
     expectMicroCompareListQuantity(3)
+    expectCompareListQuantity(3)
 
     visitRandom(product)
     addToComparison()
 
+    gotoCompareList()
     expectMicroCompareListQuantity(4)
+    expectCompareListQuantity(4)
 
     visitRandom(product)
     addToComparison()
 
     getNotificationError().should('be.visible')
+
+    gotoCompareList()
     expectMicroCompareListQuantity(4)
+    expectCompareListQuantity(4)
   })
 })
