@@ -8,9 +8,7 @@ Overriding works in a file-based manner, so basically any file (page, component,
 Overriding rules are managed in the `storefront-x.config.js` file based on the position of imported module. The file from a later module will be used instead of the file from an earlier module. If only one module is imported, the file from that module will be used.
 :::
 
-Because of how overriding works, you can revert to the default setup at any time by disabling the module.
-
-Overriding is a cool thing in Storefront X. Basic information about overriding can be found in the [How it works](/getting-started/how-it-works#overriding) section.
+Overriding is one of the primary feature that allows Storefront X to be extremely flexible and performant at the same time.
 
 ## How to override?
 
