@@ -10,7 +10,7 @@ export default () => {
     const products = []
     let totalDiscount = 0
     let totalTax = 0
-    const totalShipping = shippingMethod?.priceInclTax.value ?? 0
+    const totalShipping = shippingMethod?.priceInclTax?.value ?? 0
 
     if (discounts.length) {
       for (const discount of discounts) {
@@ -26,7 +26,7 @@ export default () => {
 
     for (const item of items) {
       products.push({
-        item_id: item.product.sku,
+        item_id: item.product.sku ?? item.product.id,
         item_name: item.product.name,
         // affiliation: 'Google Merchandise Store',
         discount:
@@ -39,12 +39,14 @@ export default () => {
         item_category3: item.product.categories?.at(2)?.name ?? '',
         item_category4: item.product.categories?.at(3)?.name ?? '',
         item_category5: item.product.categories?.at(4)?.name ?? '',
-        price: +item.product.regularPrice.value / PRICE_OFFSET,
+        price: item.product.regularPrice
+          ? +item.product.regularPrice.value / PRICE_OFFSET
+          : +item.price.value / PRICE_OFFSET,
         quantity: item.quantity ?? 1,
       })
     }
 
-    gtag('event', 'purchase', {
+    window.gtag('event', 'purchase', {
       currency: subtotalIncludingTax?.currency,
       value: subtotalIncludingTax?.value && (subtotalIncludingTax.value - totalDiscount + totalShipping) / PRICE_OFFSET,
       items: products,
