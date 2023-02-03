@@ -2,8 +2,8 @@
 
 import { GeneratingConcept } from '@storefront-x/core'
 
-export default class SitemapLocales extends GeneratingConcept {
+export default class SitemapPrefixes extends GeneratingConcept {
   get directory() {
-    return 'sitemap/locales'
+    return 'sitemap/prefixes'
   }
 }

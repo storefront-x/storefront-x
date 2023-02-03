@@ -6,7 +6,13 @@ export default (url: string) => {
 
   const codes = VUE_I18N_LOCALES.map((configItem: any) => configItem.name)
 
-  return VUE_I18N_LOCALES[getIndexOfCodeFromUrl(url.replace(/^\//, ''), codes)]
+  const store = VUE_I18N_LOCALES[getIndexOfCodeFromUrl(url.replace(/^\//, ''), codes)]
+
+  return {
+    name: store.name,
+    prefix: store.prefix,
+    storeCode: store.magentoStore ?? '',
+  }
 }
 
 const getIndexOfCodeFromUrl = (url: string, matches: any) => {

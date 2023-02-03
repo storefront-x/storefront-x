@@ -4,8 +4,8 @@ import SITEMAP_URL_TEMPLATE from '#ioc/config/SITEMAP_URL_TEMPLATE'
 
 const compiled = template(SITEMAP_URL_TEMPLATE)
 
-export default async ({ store }: any) => {
-  const sitemap = await fetchSitemap(store.magentoStore)
+export default async (storeCode: string) => {
+  const sitemap = await fetchSitemap(storeCode)
 
   const urls = []
 

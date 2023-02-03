@@ -1,8 +1,8 @@
 import isEmpty from '#ioc/utils/isEmpty'
 import { routes } from '~/.sfx/pages'
-import localeRoutes from '~/.sfx/sitemap/localeRoutes'
+import transformators from '~/.sfx/sitemap/transformators'
 
-export default async ({ store }: any) => {
+export default async (_: string, name: string) => {
   const newRoutes = routes.slice(0, -1)
 
   const urls = []
@@ -10,11 +10,11 @@ export default async ({ store }: any) => {
   for (const route of newRoutes) {
     if (route.name === 'index') continue
 
-    if (isEmpty(localeRoutes)) {
+    if (isEmpty(transformators)) {
       urls.push({ loc: route.readablePath })
     } else {
-      for (const localeRoute of Object.values(localeRoutes)) {
-        const localePath = localeRoute(store.name, route.readablePath)
+      for (const transformator of Object.values(transformators)) {
+        const localePath = transformator(name, route.readablePath)
 
         if (localePath) {
           urls.push({ loc: localePath })
