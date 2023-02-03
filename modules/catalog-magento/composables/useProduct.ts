@@ -78,7 +78,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const mediaGallery = computed(() => {
     if (variant.value?.mediaGallery?.length > 0) {
-      return variant.value?.mediaGallery
+      return [...variant.value.mediaGallery, ...product.value.mediaGallery]
     }
     return product.value.mediaGallery || []
   })
@@ -147,8 +147,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
         if (configuration[key] !== value) {
           continue out
         }
+        return product
       }
-      return product
     }
 
     return {}

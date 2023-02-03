@@ -4,10 +4,19 @@ export default <T extends Store, R>(store: T, check: () => boolean, callback: ()
   if (check()) return callback()
 
   return new Promise<R>((resolve, reject) => {
+    let hasTimedOut = false
+
+    const timeout = setTimeout(() => {
+      hasTimedOut = true
+      console.error(new Error(`waitForStore(${store.$id}) timed out after 5s`))
+      resolve(null as R)
+    }, 5000)
+
     const unsubscribe = store.$subscribe(async () => {
-      if (!check()) {
-        return
-      }
+      if (!check()) return
+      if (hasTimedOut) return
+
+      clearTimeout(timeout)
 
       try {
         const r = await callback()

@@ -23,8 +23,12 @@
         <OrderSummary bottom class="mt-10 lg:mt-0" />
       </div>
 
-      <Heading v-else :level="3" class="text-center">
+      <Heading v-else-if="cart.isLoaded" :level="3" class="text-center">
         {{ t('Your cart is empty') }}
+      </Heading>
+
+      <Heading v-else :level="3" class="text-center">
+        {{ t('Your cart is loading') }}
       </Heading>
     </div>
   </div>

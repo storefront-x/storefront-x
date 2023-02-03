@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/google-analytics-partytown",
+  "version": "1.9.2",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}

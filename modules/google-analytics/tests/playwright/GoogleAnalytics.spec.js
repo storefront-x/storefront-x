@@ -27,7 +27,7 @@ test('Google analytics script and correct ID in head', async ({ page }) => {
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       expect(await page.content()).toContain(
-        '<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TESTER"></script>',
+        '<script async="" type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-TESTER"></script>',
       )
     },
   )

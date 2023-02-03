@@ -35,6 +35,10 @@ export default class GeneratingConcept extends OverridingConcept {
     /** @type {Record<string, any>} */
     const recordsServer = {}
 
+    if (this.removesDestinationDirectory) {
+      await this.purgeDst()
+    }
+
     for (const { module, file } of Object.values(files)) {
       const filewithoutExt = file.replace(/\.\w+$/, '').replace(/\\/g, '')
 
