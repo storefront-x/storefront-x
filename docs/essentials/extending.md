@@ -10,9 +10,7 @@ You have to meet a few conditions before extending is possible:
 - Extension files must have `.ext.*` suffix at the end of their filename
 
 ::: info Example of creating extension file
-`module-a/mappers/ToProduct.ts` is extended by `module-b/mappers/ToProduct.ext.ts`
-
-`module-a/graphql/fragments/Product.ts` is extended by `module-b/graphql/fragments/Product.ext.ts`.
+`module-a/mappers/ToProduct.ts` is extended by `module-b/mappers/ToProduct.ext.ts`, `module-a/graphql/fragments/Product.ts` is extended by `module-b/graphql/fragments/Product.ext.ts`.
 :::
 
 ::: warning
@@ -45,10 +43,10 @@ export default (data: any) => ({
 ```
 
 ::: info
-As we can see, the original file exports a function which takes one parameter (data) and returns a mapped object.
+As we can see, the original file exports a function which takes one parameter (data to be mapped) and returns a mapped object.
 :::
 
-We want to add to that key/value pairs with our module-b. So, we create the same concept (folder structure) and the same file (with `.ext.ts` suffix) in a new module.
+We want to add to that key/value pairs new property with our `module-b`. So, we create the same concept (folder structure) and the same file (with `.ext.ts` suffix) in a new module.
 
 ```ts
 // module-b/mappers/ToProduct.ext.ts
@@ -71,7 +69,7 @@ const ToProduct: Extension<Labels> = (ToProduct) => (data) => {
 export default ToProduct
 ```
 
-As you can see the extension is a function, which takes one parameter `ToProduct` that is the original mapper and returns a function which gets one parameter `data` that is the data recieved by mapper. Inside we can do some stuff with original object (add `labels` property). Similar to the original mapper, mapped object is returned at the end.
+Extensions are simple functions with one input parameter: the thing they are extending. In this case it is the `ToProduct` mapper. Extensions need to return something that can be used same way as the thing they are extending. In this case, `ToProduct` mapper is a function that takes one argument (data) and returns object representing the product, this extension thus returns function with data input argument and mapped product as a result. Between that, we can do some stuff with the original data (eg. add `labels` property).
 
 ### Example of using extensions in services concept
 
