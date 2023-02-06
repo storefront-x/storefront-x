@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('redirect all pages to cookie-auth page', async ({ page }) => {
+test('redirect all pages to cookie-auth page', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -29,7 +29,7 @@ test.only('redirect all pages to cookie-auth page', async ({ page }) => {
   )
 })
 
-test.only('working login with credentials', async ({ page }) => {
+test('working login with credentials', async ({ page }) => {
   await makeProject(
     {
       modules: [
