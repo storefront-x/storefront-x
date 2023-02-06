@@ -31,11 +31,11 @@ modules/
 
 In project like this above, application will have three pages. `/` handled by the `index.vue` component, `/category` handled by the `category.vue` component and `/product` handled by the `product.vue` component. It doesn't matter that they came from two different modules. If both of these modules are enabled, final application will have pages from all of them.
 
-Pages isn't the only concept. In Storefront X, there are concepts for basically anything and you are welcome to add a new ones.
+Pages isn't the only concept. In Storefront X, there are concepts for basically anything and you are welcome to add new ones.
 
 ## Overriding
 
-Again, concepts alone aren't that awesome. What makes them awesome is a one crucial thing. **If one concept encounters multiple files with same name in different modules, it will use the file from later loaded module.** This is why order of loaded modules is important. Later modules have higher priority and win over the modules loaded before them.
+Again, concepts alone aren't that awesome. What makes them awesome is one crucial thing. **If one concept encounters multiple files with the same name in different modules, it will use the file from later loaded module.** This is why order of loaded modules is important. Later modules have higher priority and win over the modules loaded before them.
 
 ```
 modules/
@@ -79,9 +79,9 @@ modules/
       Button.vue
 ```
 
-We can now have for example module containing christmas themed components. By enabling this module and building the application, we now have christmas themed application without need to editing existing functional components.
+We can now have for example a module containing christmas themed components. By enabling this module and building the application, we now have christmas themed application without need to editing existing functional components.
 
-This is such a powerful pattern, that inversion of control concept is the most used concept in Storefront X. Next to components it can be also used for composables, utility functions, mixins, config, icons, static assets, directives, global stores and many more.
+This is such a powerful pattern, that inversion of control concept is the most used concept in Storefront X. Next to components, it can be also used for composables, utility functions, mixins, config, icons, static assets, directives, global stores and many more.
 
 :::warning
 Inversion of Control works with default export. So every file handled by such concept has to contain only one thing and it has to be default-exported.
@@ -111,7 +111,7 @@ export default {
 }
 ```
 
-Now we want to create extension that adds another computed to it.
+Now we want to create an extension that adds another computed to it.
 
 ```js
 // mixins/SomeMixin.ext.js
