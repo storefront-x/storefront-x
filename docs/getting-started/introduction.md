@@ -16,7 +16,7 @@ With Storefront X, you will get solid architecture for your project. It will all
 
 ## Why not Nuxt?
 
-Our aim is to be an e-commerce framework. Our goal is modularity and speed. Through our long standing experience with Nuxt, we came to understand, that complex projects need modular architecture, full control of build packages and ability to have multiple build configurations from one repository ( e.g. diferent frontends in diferent countries ).
+Our aim is to be an e-commerce framework. Our goal is modularity and speed. Through our long-standing experience with Nuxt, we came to understand, that complex projects need modular architecture, full control of build packages and ability to have multiple build configurations from one repository ( e.g. different frontends in different countries ).
 
 ### What is similar?
 
