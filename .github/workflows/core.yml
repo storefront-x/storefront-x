@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "modules/**/*"
   pull_request:
 
 jobs:
@@ -51,12 +53,15 @@ jobs:
       matrix:
         integration: [magento, shopware, px]
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: modules
     steps:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
       - run: |
-          npm create storefront-x@latest -y -- --directory=app --integration=${{ matrix.integration }}
+          node create-storefront-x -y -- --directory=app --integration=${{ matrix.integration }}
           cd app
           npm install
           npm run build
