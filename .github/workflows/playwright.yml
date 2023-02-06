@@ -35,11 +35,12 @@ jobs:
         name: Set Chunk IDs
         # get the number of elements from the above array as an array of indexes
         run: echo "test-chunk-ids=$(echo '${{ steps['set-test-chunks'].outputs['test-chunks'] }}' | jq -cM 'to_entries | map(.key)')" >> $GITHUB_OUTPUT
-  test:
+
+  test-ubuntu:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: ubuntu-latest
         chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
     runs-on: ${{ matrix.os }}
     needs:
@@ -53,6 +54,31 @@ jobs:
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
       - run: npx playwright test $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text' | tr ',' ' ') --forbid-only
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+  test-windows:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: windows-latest
+        chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
+    runs-on: ${{ matrix.os }}
+    needs:
+      - setup
+    name: chunk ${{ matrix.chunk }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: yarn install --immutable --immutable-cache
+      - run: npx playwright install chromium
+      - run: powershell -Command "& {$out = $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text'); $out = $out.Replace(',', ' '); & npx playwright test $out --forbid-only}"
       - uses: actions/upload-artifact@v3
         if: always()
         with:
