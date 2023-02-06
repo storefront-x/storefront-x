@@ -3815,12 +3815,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/theme-blank@workspace:modules/theme-blank":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/theme-blank@workspace:modules/theme-blank"
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/theme-tailwind-magento-px@workspace:modules/theme-tailwind-magento-px":
   version: 0.0.0-use.local
   resolution: "@storefront-x/theme-tailwind-magento-px@workspace:modules/theme-tailwind-magento-px"
