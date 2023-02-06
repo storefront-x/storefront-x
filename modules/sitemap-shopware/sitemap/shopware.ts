@@ -5,7 +5,7 @@ import pkgGzip from 'node-gzip'
 const { ungzip } = pkgGzip
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async (store?: any) => {
+export default async () => {
   const sitemap = await fetchSitemap()
 
   const urls = []
