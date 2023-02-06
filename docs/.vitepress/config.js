@@ -124,7 +124,7 @@ export default defineConfig({
           { text: 'Google Tag Manager', link: '/modules/google-tag-manager' },
           { text: 'NProgress', link: '/modules/nprogress' },
           { text: 'Atatus', link: '/modules/atatus' },
-          { text: 'Basic Auth', link: '/modules/basic-auth' },
+          { text: 'Cookie Auth', link: '/modules/cookie-auth' },
           { text: 'Sentry', link: '/modules/sentry' },
         ],
       },

@@ -3385,12 +3385,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/basic-auth@workspace:modules/basic-auth":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/basic-auth@workspace:modules/basic-auth"
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/blog-magento@workspace:modules/blog-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/blog-magento@workspace:modules/blog-magento"
@@ -3533,6 +3527,12 @@ __metadata:
 "@storefront-x/cms@workspace:modules/cms":
   version: 0.0.0-use.local
   resolution: "@storefront-x/cms@workspace:modules/cms"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/cookie-auth@workspace:modules/cookie-auth":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/cookie-auth@workspace:modules/cookie-auth"
   languageName: unknown
   linkType: soft
 
