@@ -22,7 +22,7 @@ jobs:
     with:
       storefront-x-config: storefront-x.px.config.js
       number-of-tests-per-run: 3
-      target-directory: cypress/integration
+      target-directory: cypress/e2e
 
   mxcloud:
     uses: ./.github/workflows/mxcloud.yml

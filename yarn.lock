@@ -3594,8 +3594,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/cypress@workspace:modules/cypress"
   dependencies:
-    cypress: ^9.7.0
-    cypress-vite: ^1.2.1
+    cypress: ^12.5.1
+    cypress-vite: ^1.3.0
     cypress-wait-until: ^1.7.2
   languageName: unknown
   linkType: soft
@@ -6575,14 +6575,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress-vite@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "cypress-vite@npm:1.2.1"
+"cypress-vite@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "cypress-vite@npm:1.3.0"
   dependencies:
     debug: ^4.3.4
   peerDependencies:
-    vite: ^2.9.0 || ^3.0.0
-  checksum: 08180bdbfad0fe21a8158d1df5f15fda7faa0b487d8bb4551b45bece70fb2eabb1d76195e216e02b0f87aaad2a02d50752163b5cf66f264df4f14bb647722f7a
+    vite: ^2.9.0 || ^3.0.0 || ^4.0.0
+  checksum: c58c1b05ce0fa7f19be1f9f0263d0ce5c43f6772443e7eae6c30184a309083212ba67aed1c3435ef9fc7ce2b5f576441af4758c53304095cfd8eb3b20ba5a875
   languageName: node
   linkType: hard
 
@@ -6593,9 +6593,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^9.7.0":
-  version: 9.7.0
-  resolution: "cypress@npm:9.7.0"
+"cypress@npm:^12.5.1":
+  version: 12.5.1
+  resolution: "cypress@npm:12.5.1"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -6616,7 +6616,7 @@ __metadata:
     dayjs: ^1.10.4
     debug: ^4.3.2
     enquirer: ^2.3.6
-    eventemitter2: ^6.4.3
+    eventemitter2: 6.4.7
     execa: 4.1.0
     executable: ^4.1.1
     extract-zip: 2.0.1
@@ -6641,7 +6641,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 45df7c85bc7ec2e187153ff2b98bf5106d2313d70e2367a5742b5269a9e82d3fdd730d5bbc32ac8da72aeb120a52f9384c2ba4e2fc86b532f68440f22d700fc9
+  checksum: acea08c933084bbdffe8e0d8f24ecdc3be52731824f09cf2e720c974a153d808f5af1c665d977e46f171e275c590065aeadf729022d1338a6a424e5ec8b119af
   languageName: node
   linkType: hard
 
@@ -7623,7 +7623,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter2@npm:^6.4.3":
+"eventemitter2@npm:6.4.7":
   version: 6.4.7
   resolution: "eventemitter2@npm:6.4.7"
   checksum: 1b36a77e139d6965ebf3a36c01fa00c089ae6b80faa1911e52888f40b3a7057b36a2cc45dcd1ad87cda3798fe7b97a0aabcbb8175a8b96092a23bb7d0f039e66
