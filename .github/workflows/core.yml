@@ -43,7 +43,7 @@ jobs:
           node-version: 18
       - run: |
           yarn
-          node create-storefront-x --directory=app --integration=${{ matrix.integration }}
+          node modules/create-storefront-x --directory=app --integration=${{ matrix.integration }}
           cd app
           yarn install
           yarn build
@@ -53,9 +53,6 @@ jobs:
       matrix:
         integration: [magento, shopware, px]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./modules
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -63,7 +60,7 @@ jobs:
           node-version: 18
       - run: |
           npm install
-          node create-storefront-x -y -- --directory=app --integration=${{ matrix.integration }}
+          node modules/create-storefront-x -y -- --directory=app --integration=${{ matrix.integration }}
           cd app
           npm install
           npm run build
