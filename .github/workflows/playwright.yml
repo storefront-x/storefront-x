@@ -72,4 +72,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: $array = '${{ needs.setup.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; npx playwright test ($array.Split("`n")[$index] -split ',') -join ' ' --forbid-only
+      - run: $array = ConvertFrom-Json '${{ needs.setup.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; npx playwright test ($array[$index] -split ',') -join ' ' --forbid-only
