@@ -10,6 +10,7 @@ import queryToObject from '#ioc/utils/url/queryToObject'
 import fromBase64 from '#ioc/utils/string/fromBase64'
 import toBase64 from '#ioc/utils/string/toBase64'
 import allowInDevelopment from '#ioc/config/cookieAuth/allowInDevelopment'
+import fallbackHeaderName from '#ioc/config/cookieAuth/fallbackHeaderName'
 
 interface User {
   username: string
@@ -26,15 +27,18 @@ const users: User = credentials
 const getRemoteIp = (req: Request) => req.headers['x-forwarded-for'] || req.socket.remoteAddress
 
 const serverMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const cookies = getCookies(req)
-
   const ip = getRemoteIp(req) as string
   if (ipWhitelist.includes(ip)) {
     once(`Cookie auth disabled for ${ip} based on IP whitelist`, logger.log)
     return next()
   }
 
-  const [_username, _password] = fromBase64(cookies.get(cookieName) || '').split(':')
+  const cookie = getCookies(req).get(cookieName)
+  const header = req.get(fallbackHeaderName)
+
+  const encoded = cookie || header || ''
+
+  const [_username, _password] = fromBase64(encoded).split(':')
 
   const username = (_username ?? '').trim()
   const password = (_password ?? '').trim()

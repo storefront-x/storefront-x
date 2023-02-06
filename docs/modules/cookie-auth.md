@@ -28,7 +28,7 @@ export default 'user1:password1'
 
 ## Styling the login form
 
-If you don't like a visual look of cookie-auth page, you can override it in your module with `pages/cookie-auth/index.vue`. Here is the default implementation:
+If you don't like a visual look of cookie auth page, you can override it in your module with `pages/cookie-auth/index.vue`. Here is the default implementation:
 
 ```vue
 <template>
@@ -45,11 +45,33 @@ import redirectUrl from '#ioc/config/cookieAuth/redirectUrl'
 </script>
 ```
 
+## Bypass with custom header
+
+If for some reason you can't use cookies, you can use custom header to bypass the cookie auth. By default, this header is name `X-SFX-Cookie-Auth` and as its value, it also accepts base 64 encoded `username:password` pair.
+
+```sh
+curl -H "X-SFX-Cookie-Auth: dXNlcjpwYXNzd29yZAo=" http://localhost:3000/
+```
+
 ## Configuration
+
+### `cookieAuth/credentials` config
+
+This config controls credentials used for signing in.
+
+:::warning
+This config needs to be overrided, because it doesn't contain any value by default!
+:::
+
+```ts
+// config/cookieAuth/credentials.ts
+
+export default 'username:password'
+```
 
 ### `cookieAuth/allowInDevelopment` config
 
-This config controls if the cookie-auth functionality is enabled during development.
+This config controls if the cookie auth functionality is enabled during development.
 
 :::info
 This config is optional. Default value is `false`
@@ -101,4 +123,18 @@ This config is optional.
 // config/cookieAuth/ipWhitelist.ts
 
 export default ['192.168.0.9']
+```
+
+### `cookieAuth/fallbackHeaderName` config
+
+This config contains name of the header which can be used to bypass cookie auth.
+
+:::info
+This config is optional.
+:::
+
+```ts
+// config/cookieAuth/fallbackHeaderName.ts
+
+export default 'X-SFX-Cookie-Auth'
 ```
