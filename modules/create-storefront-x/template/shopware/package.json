@@ -14,7 +14,9 @@
     "serve": "sfx serve"
   },
   "dependencies": {
-    "@storefront-x/core": "^1.0.0"
+    "@storefront-x/core": "^1.0.0",
+    "@storefront-x/testing": "^1.0.0",
+    "@storefront-x/tooling": "^1.0.0"
   },
   "devDependencies": {
     "@storefront-x/base": "^1.0.0",

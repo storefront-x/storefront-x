@@ -10,7 +10,7 @@
         :height="150"
         :width="150"
         :src="category.thumbnailUrl"
-        class-img="rounded-full border-1"
+        class-img="h-6 w-6 rounded-full border-1"
         fit="contain"
         :alt="category.name"
       />
