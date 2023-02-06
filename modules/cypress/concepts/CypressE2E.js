@@ -3,7 +3,7 @@ import { GeneratingConcept } from '@storefront-x/core'
 
 export default class CypressIntegration extends GeneratingConcept {
   get directory() {
-    return 'cypress/integration'
+    return 'cypress/e2e'
   }
 
   get extension() {
