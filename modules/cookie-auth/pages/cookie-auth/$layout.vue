@@ -1,7 +1,5 @@
 <template>
-  <main class="mt-[66px] md:mt-0">
-    <SfxLayoutOutlet />
-  </main>
+  <SfxLayoutOutlet />
 </template>
 
 <script setup lang="ts">
