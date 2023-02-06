@@ -29,7 +29,6 @@
 
       <div class="flex items-center justify-end">
         <MicroComparison class="hidden lg:flex mr-2" />
-
         <MicroWishlist class="hidden lg:flex mr-2" />
         <MicroAccount :submenu="true" class="hidden lg:flex mr-2" />
         <MicroSearch class="lg:hidden mr-2" />
