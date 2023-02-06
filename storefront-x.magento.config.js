@@ -22,6 +22,7 @@ export default {
     '@storefront-x/customer',
     '@storefront-x/multicurrency',
     '@storefront-x/product-reviews',
+    '@storefront-x/product-comparison',
     '@storefront-x/wishlist',
 
     '@storefront-x/magento',
