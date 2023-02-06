@@ -1,33 +1,13 @@
-import useGetCompareListById from '#ioc/services/useGetCompareListById'
-import useCustomerStore from '#ioc/stores/useCustomerStore'
-import waitForStore from '#ioc/utils/vuePinia/waitForStore'
 import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
-import useComparisonListLocaleId from '#ioc/composables/useComparisonListLocaleId'
+import useGetCompareList from '#ioc/services/useGetCompareList'
 
 export default () => {
   const productComparisonMagentoStore = useProductComparisonMagentoStore()
-  const comparisonListLocaleId = useComparisonListLocaleId()
-  const getCompareListById = useGetCompareListById()
-  const customerStore = useCustomerStore()
+  const getCompareList = useGetCompareList()
 
   return async () => {
-    await waitForStore(
-      customerStore,
-      () => customerStore.customer !== undefined,
-      async () => {
-        if (customerStore.customer) {
-          const { compareList } = customerStore.customer
-          productComparisonMagentoStore.$patch({ compareList })
-          return
-        }
-        const localeStorageId = comparisonListLocaleId.get()
-        if (localeStorageId) {
-          const { compareList } = await getCompareListById(localeStorageId)
-          productComparisonMagentoStore.$patch({ compareList })
-          return
-        }
-        productComparisonMagentoStore.$patch({ compareList: null })
-      },
-    )
+    const { compareList } = await getCompareList()
+
+    productComparisonMagentoStore.$patch({ compareList })
   }
 }

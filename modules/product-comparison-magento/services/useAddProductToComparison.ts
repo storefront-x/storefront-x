@@ -3,13 +3,13 @@ import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMa
 import useAddProductsToCompareListRepository from '#ioc/repositories/useAddProductsToCompareListRepository'
 import useCustomer from '#ioc/composables/useCustomer'
 import useCreateCompareList from '#ioc/services/useCreateCompareList'
-import useComparisonListLocaleId from '#ioc/composables/useComparisonListLocaleId'
+import useCompareListId from '#ioc/composables/useCompareListId'
 import useComparison from '#ioc/composables/useComparison'
 
 export default () => {
   const productComparisonMagentoStore = useProductComparisonMagentoStore()
   const addProductsToCompareListRepository = useAddProductsToCompareListRepository()
-  const comparisonListLocaleId = useComparisonListLocaleId()
+  const compareListId = useCompareListId()
   const customer = useCustomer()
   const comparison = useComparison()
   const createCompareList = useCreateCompareList()
@@ -20,7 +20,7 @@ export default () => {
 
       productComparisonMagentoStore.$patch({ compareList })
       if (!customer.isLoggedIn) {
-        comparisonListLocaleId.set(comparison.comparisonListId)
+        compareListId.set(comparison.comparisonListId)
       }
     }
     const { compareList } = await addProductsToCompareListRepository({
