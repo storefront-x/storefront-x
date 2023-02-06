@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "modules/**/*"
   pull_request:
 
 jobs:
@@ -39,11 +37,13 @@ jobs:
         integration: [magento, shopware, px]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
       - run: |
-          yarn create storefront-x --directory=app --integration=${{ matrix.integration }}
+          yarn
+          node create-storefront-x --directory=app --integration=${{ matrix.integration }}
           cd app
           yarn install
           yarn build
@@ -55,12 +55,14 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: modules
+        working-directory: ./modules
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
       - run: |
+          npm install
           node create-storefront-x -y -- --directory=app --integration=${{ matrix.integration }}
           cd app
           npm install
