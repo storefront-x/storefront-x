@@ -1,1 +1,1 @@
-export default () => cy.get('[data-cy=applied-coupons]')
+export default () => cy.get('[data-cy=applied-coupons]:visible')
