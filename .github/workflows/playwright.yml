@@ -21,12 +21,6 @@ jobs:
       test-chunk-ids: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'yarn'
-        name: Install app
-      - run: yarn install --immutable --immutable-cache
       - id: set-test-chunks
         name: Set Chunks
         # get all spec files from the target-directory directory, group them to be at most number-of-tests-per-run (xargs -n...) at a time and transform them to json
@@ -72,4 +66,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: $array = ConvertFrom-Json '${{ needs.setup.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; npx playwright test ($array[$index] -split ',') -join ' ' --forbid-only
+      - run: $array = ConvertFrom-Json '${{ needs.setup.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; $tests = ($array[$index] -split ',') -join ' '; $code = "npx playwright test $tests --forbid-only"; Invoke-Expression $code
