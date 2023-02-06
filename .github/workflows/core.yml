@@ -45,7 +45,7 @@ jobs:
           yarn install
           node modules/create-storefront-x --directory=app --integration=${{ matrix.integration }}
           cd app
-          yarn install .
+          yarn
           yarn build
   create-script-with-npm:
     strategy:
