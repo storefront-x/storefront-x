@@ -145,8 +145,21 @@ yargs(hideBin(process.argv))
         })
       } catch (e) {
         consola.error(e)
-
         process.exit(1)
+      }
+    },
+  })
+  .command({
+    command: 'make',
+    description: 'Create new module',
+    handler: async (argv) => {
+      try {
+        const { default: Make } = await import('./src/Make.js')
+        const make = new Make(argv)
+        await make.createModule()
+      } catch (e) {
+        consola.error(e)
+        process.exit(0)
       }
     },
   })
