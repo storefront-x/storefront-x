@@ -9,4 +9,9 @@
 
 <script setup lang="ts">
 import redirectUrl from '#ioc/config/cookieAuth/redirectUrl'
+import useSetResponseStatus from '#ioc/composables/useSetResponseStatus'
+
+const setResponseStatus = useSetResponseStatus()
+
+setResponseStatus(401)
 </script>
