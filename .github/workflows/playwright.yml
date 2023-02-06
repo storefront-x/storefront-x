@@ -76,7 +76,7 @@ jobs:
           node-version: 18
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: powershell -Command "& {$out = $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text'); $out = $out.Replace(',', ' '); Set-Variable -Name out -Value $out; & npx playwright test $out --forbid-only}"
+      - run: $out = $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text'); $out = $out.Replace(',', ' '); & npx playwright test $out --forbid-only
       - uses: actions/upload-artifact@v3
         if: always()
         with:
