@@ -51,7 +51,6 @@ export default defineConfig({
           { text: 'Quick start', link: '/getting-started/quick-start' },
           { text: 'Simple TODO app', link: '/getting-started/simple-todo-app' },
           { text: 'How it works', link: '/getting-started/how-it-works' },
-          { text: 'Vite in SFX', link: '/getting-started/vite-in-sfx' },
           { text: 'Contributing', link: '/contributing' },
         ],
       },

@@ -25,3 +25,34 @@ Storefront X is the same as Nuxt, both are server-side rendered applications. Ou
 ### Where we see our advantage?
 
 We've taken the folder abstraction from Nuxt and taken it a step further. Because a complex e-commerce solution needs to work in a multiverse of frontend versions, we added another level of abstraction in the form of modules. For this abstraction to work with small build bundles, we don't import things directly from modules, but from the abstraction folder created at build time. That way we can override, extend and change behaviour with each new module, without code refactoring in existing modules.
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+
+## Why we use Vite?
+
+<div style="width: 80px">
+
+![Vite](/assets/images/vite-logo.svg)
+
+</div>
+</div>
+
+Vite is a fast and efficient frontend build tool that offers improved development experience and quicker time-to-market. It uses an in-memory file system, incremental builds, dynamic imports, a fast development server, and parallel processing to achieve fast build times and real-time updates. Vite is compatible with the Vue framework, and is designed to be modular, allowing for easy customization. We chose Vite for Storefront X because of its speed, efficiency, and modularity, which greatly improves the development experience and speeds up the time to market for any kind of project. Vite also supports modern web standards, hot module reloading, tree-shaking and provides developers with flexibility to use any frontend library or framework they choose.
+
+Vite is a great choice for Storefront X, because it focuses on speed, efficiency, and modularity that we needed to build a fast and responsive framework.
+
+### Speed
+
+In Storefront X we are focusing primarily on speed. Vite provides fast development server, incremental builds (when only files that have changed are rebuilt) and dynamic imports (which allow for faster loading of modules).
+
+### Modular Design
+
+Vite takes a modular approach, allowing developers to choose only the features they need and reducing the size of the final build. This is desirable for Storefront X, because our goal is to minimize the size of the framework and make it easy to customize.
+
+::: tip
+You can find more information about modules in the [How it works](/getting-started/how-it-works.html#modules) section.
+:::
+
+### Compatibility
+
+Vite is compatible with a wide range of modern JavaScript features, including ES6 modules, and works seamlessly with popular libraries and frameworks, such as React and Vue, which is useful if you choose another JS framework for your project.
