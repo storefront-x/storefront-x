@@ -6,7 +6,7 @@ const locales: Locale[] = [
     name: 'en',
     locale: 'en-US',
     prefix: '/',
-    languageId: 'asd',
+    languageId: '2fbb5fe2e29a4d70aa5854ce7ce3e20b',
   },
   {
     fullName: 'Czech',
