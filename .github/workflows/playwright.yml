@@ -50,6 +50,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
       - run: npx playwright test $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text' | tr ',' ' ') --forbid-only
@@ -74,9 +75,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: $out = $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text'); $out = $out.Replace(',', ' '); & npx playwright test $out --forbid-only
+      - run: npx playwright test $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}]' | tr ',' ' ') --forbid-only
       - uses: actions/upload-artifact@v3
         if: always()
         with:
