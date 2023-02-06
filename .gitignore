@@ -44,8 +44,6 @@ sw.*
 
 # Vitepress build output
 docs/.vitepress/dist
-
-# Vitepress build output
 docs/.vitepress/cache
 
 .npmrc
