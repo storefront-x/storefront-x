@@ -16,7 +16,7 @@ const useGetProductComparison = <T extends () => () => any>(useGetProductCompari
               compareList: customerStore.customer.compareList,
             }
           } else {
-            return getCompareList()
+            return getProductComparison()
           }
         },
       )
