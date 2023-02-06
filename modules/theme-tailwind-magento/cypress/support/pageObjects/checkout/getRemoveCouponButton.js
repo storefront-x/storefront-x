@@ -1,1 +1,1 @@
-export default (position) => cy.get('[data-cy=button-remove-coupon]').eq(position ?? 1)
+export default (position) => cy.get('[data-cy=button-remove-coupon]:visible').eq(position ?? 0)

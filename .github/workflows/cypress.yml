@@ -10,7 +10,7 @@ on:
         default: 3
         type: number
       target-directory:
-        default: cypress/integration
+        default: cypress/e2e
         type: string
 
 jobs:

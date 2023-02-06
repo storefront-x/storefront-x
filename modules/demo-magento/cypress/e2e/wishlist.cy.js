@@ -1,5 +1,5 @@
 import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/base/expectMicrowishlistQuantity'
-import gotoWishList from '~/cypress/support/pageObjects/base/gotoWishList'
+import goToWishlist from '~/cypress/support/pageObjects/base/goToWishlist'
 import expectWishlistQuantity from '~/cypress/support/pageObjects/wishlist/expectWishlistQuantity'
 import AccountCredentials from '~/cypress/support/pageObjects/account/AccountCredentials'
 import register from '~/cypress/support/pageObjects/account/register'
@@ -30,7 +30,7 @@ describe('Wishlist', () => {
 
   it('allows adding products to the wishlist from product detail page', () => {
     expectMicrowishlistQuantity(1)
-    gotoWishList()
+    goToWishlist()
     expectWishlistQuantity(1)
   })
 
@@ -40,7 +40,7 @@ describe('Wishlist', () => {
     visitRandom(product)
     addToWishlist()
 
-    gotoWishList()
+    goToWishlist()
 
     expectWishlistQuantity(2)
 
@@ -48,7 +48,7 @@ describe('Wishlist', () => {
 
     getAddToWishlist().click() // Clicking again will remove it from wishlist
 
-    gotoWishList()
+    goToWishlist()
 
     expectWishlistQuantity(1)
   })
@@ -66,7 +66,7 @@ describe('Wishlist', () => {
 
     login(accountCredentials)
 
-    gotoWishList()
+    goToWishlist()
 
     expectWishlistQuantity(3)
   })
