@@ -55,13 +55,13 @@ const serverMiddleware = (req: Request, res: Response, next: NextFunction) => {
         res.cookie(cookieName, toBase64(`${username}:${password}`))
         return res.redirect('/')
       } else {
-        return res.redirect(redirectUrl)
+        return res.redirect(302, redirectUrl)
       }
     })
   } else {
     if (req.url.includes(redirectUrl)) return next()
 
-    return res.redirect(redirectUrl)
+    return res.redirect(302, redirectUrl)
   }
 }
 
