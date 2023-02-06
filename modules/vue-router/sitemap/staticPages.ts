@@ -1,8 +1,6 @@
 import { routes } from '~/.sfx/pages'
 
-export default async ({ store }: any) => {
-  const storePrefix = store.prefix
-
+export default async () => {
   const urls = []
 
   for (const routeParent of routes) {
@@ -11,8 +9,7 @@ export default async ({ store }: any) => {
         continue
       }
 
-      const routePath = routeChild.path.replace('/', '')
-      urls.push({ loc: storePrefix + routePath })
+      urls.push({ loc: routeChild.path })
     }
   }
 
