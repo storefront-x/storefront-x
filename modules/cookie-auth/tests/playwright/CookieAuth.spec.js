@@ -87,7 +87,7 @@ test('returns status code 401 Unauthorized', async () => {
     async ({ url }) => {
       await wrapConsole(async () => {
         const responseWithoutRedirecting = await fetch(url, { redirect: 'manual' })
-        expect(responseWithoutRedirecting.status).toEqual(301)
+        expect(responseWithoutRedirecting.status).toEqual(302)
         const response = await fetch(url, { waitUntil: 'networkidle' })
         expect(response.status).toEqual(401)
       })
