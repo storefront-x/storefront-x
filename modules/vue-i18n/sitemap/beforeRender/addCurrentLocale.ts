@@ -10,6 +10,7 @@ export default (options: Options) => {
   const locale = VUE_I18N_LOCALES[getIndexOfCodeFromUrl(options.path.replace(/^\//, ''), codes)]
 
   options.locale = locale
+  options.prefix = locale.prefix
 }
 
 const getIndexOfCodeFromUrl = (url: string, matches: any) => {
