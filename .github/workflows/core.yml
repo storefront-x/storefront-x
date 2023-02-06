@@ -34,16 +34,17 @@ jobs:
       - id: set-test-chunks
         name: Set Chunks
         # get all spec files from the target-directory directory, group them to be at most number-of-tests-per-run (xargs -n...) at a time and transform them to json
-        run: echo "::set-output name=test-chunks::$(find ${{inputs.target-directory}} -type f -name "*.js" | xargs -n${{inputs.number-of-tests-per-run}} | tr ' ' ',' | jq -R . | jq -s -cM .)"
+        run: echo "test-chunks=$(find ${{inputs.target-directory}} -type f -name "*.js" | xargs -n${{inputs.number-of-tests-per-run}} | tr ' ' ',' | jq -R . | jq -s -cM .)" >> $GITHUB_OUTPUT
       - id: set-test-chunk-ids
         name: Set Chunk IDs
         # get the number of elements from the above array as an array of indexes
-        run: echo "::set-output name=test-chunk-ids::$(echo '${{ steps['set-test-chunks'].outputs['test-chunks'] }}' | jq -cM 'to_entries | map(.key)')"
+        run: echo "test-chunk-ids=$(echo '${{ steps['set-test-chunks'].outputs['test-chunks'] }}' | jq -cM 'to_entries | map(.key)')" >> $GITHUB_OUTPUT
   playwright:
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
+        chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
     runs-on: ${{ matrix.os }}
     needs:
       - setup
@@ -55,7 +56,6 @@ jobs:
           node-version: 18
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: yarn cypress run --browser chrome --spec $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
       - run: npx playwright test $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text') --forbid-only
       - uses: actions/upload-artifact@v3
         if: always()
