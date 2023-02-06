@@ -1,7 +1,6 @@
-import Options from '#ioc/types/sitemap/Options'
 import { routes } from '~/.sfx/pages'
 
-export default async (options: Options) => {
+export default async () => {
   const newRoutes = routes.slice(0, -1)
 
   const urls = []
