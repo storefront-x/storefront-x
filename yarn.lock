@@ -3733,6 +3733,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/product-comparison@workspace:modules/product-comparsion":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/product-comparison@workspace:modules/product-comparsion"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento"

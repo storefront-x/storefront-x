@@ -2,6 +2,7 @@ import useCreateCompareListRepository from '#ioc/repositories/useCreateCompareLi
 
 export default () => {
   const createComparelistRepository = useCreateCompareListRepository()
+
   return async () => {
     return await createComparelistRepository()
   }

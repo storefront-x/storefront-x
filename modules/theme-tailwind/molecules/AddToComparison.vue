@@ -41,7 +41,7 @@ const props = defineProps({
 
 const { t } = useI18n()
 const addProductToComparison = useAddProductToComparison()
-const removeComparedProducts = useRemoveProductFromComparison()
+const removeProductFromComparison = useRemoveProductFromComparison()
 const showSuccessNotification = useShowSuccessNotification()
 const showErrorNotification = useShowErrorNotification()
 const product = injectProduct()
@@ -80,15 +80,18 @@ const classes = computed(() => {
 
 const ResolveAddProductToComparison = async () => {
   if (isCompared.value) {
-    await removeComparedProducts(product)
+    await removeProductFromComparison(product)
     showSuccessNotification('', t('productRemoved'))
     return
   }
+
   if (isComparisonListFull.value) {
     showErrorNotification(t('tooManyProducts'))
     return
   }
+
   await addProductToComparison(product)
+
   showSuccessNotification('', t('productAdded'))
 }
 </script>

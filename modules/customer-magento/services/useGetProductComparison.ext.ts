@@ -1,9 +1,9 @@
 import useCustomerStore from '#ioc/stores/useCustomerStore'
 import waitForStore from '#ioc/utils/vuePinia/waitForStore'
 
-const useGetCompareList = <T extends () => () => any>(useGetCompareList: T): T =>
+const useGetProductComparison = <T extends () => () => any>(useGetProductComparison: T): T =>
   (() => {
-    const getCompareList = useGetCompareList()
+    const getProductComparison = useGetProductComparison()
     const customerStore = useCustomerStore()
 
     return () =>
@@ -22,4 +22,4 @@ const useGetCompareList = <T extends () => () => any>(useGetCompareList: T): T =
       )
   }) as any
 
-export default useGetCompareList
+export default useGetProductComparison

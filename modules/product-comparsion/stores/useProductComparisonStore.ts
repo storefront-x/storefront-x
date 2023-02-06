@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import ToCompareList from '#ioc/mappers/ToCompareList'
 
-export default defineStore('compareProducts', {
+export default defineStore('productComparsion', {
   state: () => ({
     compareList: undefined as ReturnType<typeof ToCompareList> | undefined | null,
   }),

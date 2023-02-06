@@ -1,33 +1,28 @@
 import useProduct from '#ioc/composables/useProduct'
-import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
+import useProductComparisonStore from '#ioc/stores/useProductComparisonStore'
 import useAddProductsToCompareListRepository from '#ioc/repositories/useAddProductsToCompareListRepository'
-import useCustomer from '#ioc/composables/useCustomer'
-import useCreateCompareList from '#ioc/services/useCreateCompareList'
+import useCreateProductComparison from '#ioc/services/useCreateProductComparison'
 import useCompareListId from '#ioc/composables/useCompareListId'
-import useComparison from '#ioc/composables/useComparison'
 
 export default () => {
-  const productComparisonMagentoStore = useProductComparisonMagentoStore()
-  const addProductsToCompareListRepository = useAddProductsToCompareListRepository()
+  const productComparisonStore = useProductComparisonStore()
+  const reateProductComparison = useCreateProductComparison()
   const compareListId = useCompareListId()
-  const customer = useCustomer()
-  const comparison = useComparison()
-  const createCompareList = useCreateCompareList()
+  const addProductsToCompareListRepository = useAddProductsToCompareListRepository()
 
   return async (product: ReturnType<typeof useProduct>) => {
-    if (!comparison.comparisonListId) {
-      const { compareList } = await createCompareList()
+    if (!productComparisonStore.compareList?.id) {
+      const productComparison = await reateProductComparison()
 
-      productComparisonMagentoStore.$patch({ compareList })
-      if (!customer.isLoggedIn) {
-        compareListId.set(comparison.comparisonListId)
-      }
+      productComparisonStore.$patch(productComparison)
+      compareListId.set(productComparison.compareList.id)
     }
-    const { compareList } = await addProductsToCompareListRepository({
+
+    const productComparison = await addProductsToCompareListRepository({
       products: [product.id],
-      uid: comparison.comparisonListId,
+      uid: productComparisonStore.compareList?.id,
     })
 
-    productComparisonMagentoStore.$patch({ compareList })
+    productComparisonStore.$patch(productComparison)
   }
 }

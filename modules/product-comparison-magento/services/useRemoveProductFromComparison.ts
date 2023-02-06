@@ -1,19 +1,17 @@
 import useProduct from '#ioc/composables/useProduct'
-import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
+import useProductComparisonStore from '#ioc/stores/useProductComparisonStore'
 import useDeleteProductsFromCompareListRepository from '#ioc/repositories/useDeleteProductsFromCompareListRepository'
-import useComparison from '#ioc/composables/useComparison'
 
 export default () => {
-  const productComparisonMagentoStore = useProductComparisonMagentoStore()
+  const productComparisonStore = useProductComparisonStore()
   const deleteProductsFromCompareListRepository = useDeleteProductsFromCompareListRepository()
-  const comparison = useComparison()
 
   return async (product: ReturnType<typeof useProduct>) => {
-    const { compareList } = await deleteProductsFromCompareListRepository({
+    const productComparison = await deleteProductsFromCompareListRepository({
       products: [product.id],
-      uid: comparison.comparisonListId,
+      uid: productComparisonStore.compareList?.id,
     })
 
-    productComparisonMagentoStore.$patch({ compareList })
+    productComparisonStore.$patch(productComparison)
   }
 }

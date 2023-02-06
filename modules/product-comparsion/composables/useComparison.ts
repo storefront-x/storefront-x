@@ -1,4 +1,4 @@
-import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
+import useProductComparisonStore from '#ioc/stores/useProductComparisonStore'
 import { computed, reactive, ref, onMounted, readonly } from 'vue'
 
 export default () => {
@@ -10,35 +10,35 @@ export default () => {
     wasHydrated.value = true
   })
 
-  const productComparisonMagentoStore = useProductComparisonMagentoStore()
+  const productComparisonStore = useProductComparisonStore()
 
   const isLoaded = computed(() => {
     if (!wasHydrated.value) return false
 
-    return productComparisonMagentoStore.compareList !== undefined
-  })
-
-  const comparisonListId = computed(() => {
-    if (!wasHydrated.value) return ''
-    return productComparisonMagentoStore.compareList?.comparisonListId ?? ''
+    return productComparisonStore.compareList !== undefined
   })
 
   const itemCount = computed(() => {
     if (!wasHydrated.value) return 0
-    return productComparisonMagentoStore.compareList?.itemCount ?? 0
+
+    return productComparisonStore.compareList?.itemCount ?? 0
   })
 
   const items = computed(() => {
     if (!wasHydrated.value) return []
-    return productComparisonMagentoStore.compareList?.items ?? []
+
+    return productComparisonStore.compareList?.items ?? []
   })
 
-  const attributes = computed(() => productComparisonMagentoStore.compareList?.attributes ?? [])
+  const attributes = computed(() => {
+    if (!wasHydrated.value) return []
+
+    return productComparisonStore.compareList?.attributes ?? []
+  })
 
   return reactive({
     _wasHydrated: readonly(wasHydrated),
     isLoaded,
-    comparisonListId,
     itemCount,
     items,
     attributes,

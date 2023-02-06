@@ -1,13 +1,13 @@
-import useProductComparisonMagentoStore from '#ioc/stores/useProductComparisonMagentoStore'
-import useGetCompareList from '#ioc/services/useGetCompareList'
+import useProductComparisonStore from '#ioc/stores/useProductComparisonStore'
+import useGetProductComparison from '#ioc/services/useGetProductComparison'
 
 export default () => {
-  const productComparisonMagentoStore = useProductComparisonMagentoStore()
-  const getCompareList = useGetCompareList()
+  const productComparisonMagentoStore = useProductComparisonStore()
+  const getProductComparison = useGetProductComparison()
 
   return async () => {
-    const { compareList } = await getCompareList()
+    const productComparsion = await getProductComparison()
 
-    productComparisonMagentoStore.$patch({ compareList })
+    productComparisonMagentoStore.$patch(productComparsion)
   }
 }

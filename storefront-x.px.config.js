@@ -30,6 +30,7 @@ export default {
     '@storefront-x/product-reviews',
     '@storefront-x/wishlist',
     '@storefront-x/catalog-labels',
+    '@storefront-x/product-comparison',
     '@storefront-x/robots',
     '@storefront-x/sitemap',
 
