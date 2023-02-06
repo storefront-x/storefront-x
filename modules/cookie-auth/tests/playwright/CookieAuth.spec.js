@@ -94,3 +94,40 @@ test('returns status code 401 Unauthorized', async () => {
     },
   )
 })
+
+test('fallback with header', async ({ browser }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        '@storefront-x/cookie-auth',
+        [
+          'my-module',
+          {
+            pages: {
+              'index.vue': `<template><h1>BEHIND AUTH</h1></template>`,
+            },
+            config: {
+              'IS_PRODUCTION.ts': `export default true`,
+              'cookieAuth': {
+                'credentials.ts': `export default 'user:password'`,
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      const page = await browser.newPage({
+        extraHTTPHeaders: {
+          'X-SFX-Cookie-Auth': 'dXNlcjpwYXNzd29yZAo=',
+        },
+      })
+
+      await page.goto(url, { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('BEHIND AUTH')
+    },
+  )
+})
