@@ -1,20 +1,22 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test('redirect all pages to basic-auth page', async ({ page }) => {
+test('redirect all pages to cookie-auth page', async ({ page }) => {
   await makeProject(
     {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
         '@storefront-x/vue-router',
-        '@storefront-x/basic-auth',
+        '@storefront-x/cookie-auth',
         [
           'my-module',
           {
             config: {
               'IS_PRODUCTION.ts': `export default true`,
-              'BASIC_AUTH.ts': `export default 'test:test'`,
+              'cookieAuth': {
+                'credentials.ts': `export default 'test:test'`,
+              },
             },
           },
         ],
@@ -34,7 +36,7 @@ test('working login with credentials', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         '@storefront-x/vue-router',
-        '@storefront-x/basic-auth',
+        '@storefront-x/cookie-auth',
         [
           'my-module',
           {
@@ -43,7 +45,9 @@ test('working login with credentials', async ({ page }) => {
             },
             config: {
               'IS_PRODUCTION.ts': `export default true`,
-              'BASIC_AUTH.ts': `export default 'test:pass'`,
+              'cookieAuth': {
+                'credentials.ts': `export default 'test:pass'`,
+              },
             },
           },
         ],
