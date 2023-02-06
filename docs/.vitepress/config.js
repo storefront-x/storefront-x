@@ -52,6 +52,7 @@ export default defineConfig({
           { text: 'Simple TODO app', link: '/getting-started/simple-todo-app' },
           { text: 'How it works', link: '/getting-started/how-it-works' },
           { text: 'Contributing', link: '/contributing' },
+          { text: 'SFX vs. Nuxt', link: '/getting-started/sfx-vs-nuxt' },
         ],
       },
       {
