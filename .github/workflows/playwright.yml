@@ -40,9 +40,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ubuntu-latest
         chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     needs:
       - setup
     name: chunk ${{ matrix.chunk }}
@@ -65,9 +64,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: windows-latest
         chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     needs:
       - setup
     name: chunk ${{ matrix.chunk }}
