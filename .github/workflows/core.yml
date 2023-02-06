@@ -42,7 +42,7 @@ jobs:
         with:
           node-version: 18
       - run: |
-          yarn
+          yarn install
           node modules/create-storefront-x --directory=app --integration=${{ matrix.integration }}
           cd app
           yarn install
