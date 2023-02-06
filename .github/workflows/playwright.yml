@@ -54,12 +54,6 @@ jobs:
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
       - run: npx playwright test $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text' | tr ',' ' ') --forbid-only
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
 
   test-windows:
     strategy:
@@ -78,10 +72,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: npx playwright test $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}]' | tr ',' ' ') --forbid-only
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+      - run: $array = '${{ needs.setup.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; npx playwright test ($array.Split("`n")[$index] -split ',') -join ' ' --forbid-only
