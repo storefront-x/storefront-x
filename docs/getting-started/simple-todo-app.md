@@ -109,7 +109,7 @@ const [data] = await useResource(
 
 For data fetching, we use the `useResource` composable. It comes from the `@storefront-x/vue` module so it can be imported with the `#ioc` import.
 
-The `useResource` composable takes two function as parameters. First function is responsible for gathering the input for the actual fetching logic in the second function. This needs to be separated so we can safely re-execute the first function to know if the input changed without re-executing the second function which would cause unnecessary network request. Thi first function uses [Vue.js watcher](https://vuejs.org/guide/essentials/watchers.html) so you can use refs, reactives or composables inside to make the data fetching reactive. How this is done, will be shown later.
+The `useResource` composable takes two functions as parameters. The first function is responsible for gathering the input for the actual fetching logic in the second function. This needs to be separated so we can safely re-execute the first function to know if the input changed without re-executing the second function which would cause unnecessary network request. The first function uses [Vue.js watcher](https://vuejs.org/guide/essentials/watchers.html) so you can use refs, reactives or composables inside to make the data fetching reactive. How this is done, will be shown later.
 
 The second function of `useResource` composable takes output of the first function as input and fetches the data. This function is called only when needed, to minimize number of network requests (for example data fetched on the server side during server side rendering won't be re-fetched on the client side).
 
@@ -123,9 +123,9 @@ The `useResource` composable is meant for downloading data. If you want to send 
 
 ## New pages
 
-Now we have page with links to our todos. These links look like this: `/todo/1`, `/todo/2`, `/todo/3`, ... If you clink on these links now, the 404 page will be displayed because we aren't handling this pages yet. Because we don't know all of the IDs during build, and we would like to handle all of these pages in one component, we will use parametrized page component.
+Now we have page with links to our todos. These links look like this: `/todo/1`, `/todo/2`, `/todo/3`, ... If you click on these links now, the 404 page will be displayed because we aren't handling this pages yet. Because we don't know all of the IDs during build, and we would like to handle all of these pages in one component, we will use parametrized page component.
 
-First create a `todo` directory inside the `pages` directory and then add `[id].vue` file inside of it. The `[id]` represents parameter called `id` that will match anything.Because it is inside of the `todo` directory, it will match only URLs beginning with `/todo/`.
+First create a `todo` directory inside the `pages` directory and then add `[id].vue` file inside of it. The `[id]` represents parameter called `id` that will match anything. Because it is inside of the `todo` directory, it will match only URLs beginning with `/todo/`.
 
 ![3](/assets/simple-todo-app/3.png)
 
@@ -147,7 +147,7 @@ const route = useRoute()
 
 The `useRoute` composable is the same as the `useRoute` composable from the [Vue Router](https://router.vuejs.org) library, but because it's provided by the `@storefront-x/vue-router` module, it is imported using the `#ioc` import. It returns information about the current route. And because this is parametrized route, with parameter named `id`, we can get the value of that parameter with `route.params.id`.
 
-Ofcourse we would like to download and show detail of the todo. We do that using the `useResource` composable.
+Of course we would like to download and show detail of the todo. We do that using the `useResource` composable.
 
 ```vue
 <!-- pages/todo/[id].vue -->
@@ -170,9 +170,9 @@ const [data] = await useResource(
 </script>
 ```
 
-Because `route` is reactive object used inside the first function of `useResource` composable, when the `id` route parameter changes, the fetcher (second function of `useResource`) will be automatically re-executed.
+Because `route` is a reactive object used inside the first function of `useResource` composable, when the `id` route parameter changes, the fetcher (the second function of `useResource`) will be automatically re-executed.
 
-Our application should now have lis of all todos like this:
+Our application should now have a list of all todos like this:
 
 ![4](/assets/simple-todo-app/4.png)
 

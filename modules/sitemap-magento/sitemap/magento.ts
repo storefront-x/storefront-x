@@ -1,11 +1,12 @@
 import template from 'lodash/template'
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
 import SITEMAP_URL_TEMPLATE from '#ioc/config/SITEMAP_URL_TEMPLATE'
+import Options from '#ioc/types/sitemap/Options'
 
 const compiled = template(SITEMAP_URL_TEMPLATE)
 
-export default async ({ store }: any) => {
-  const sitemap = await fetchSitemap(store.magentoStore)
+export default async (options: Options) => {
+  const sitemap = await fetchSitemap(options.locale.magentoStore)
 
   const urls = []
 

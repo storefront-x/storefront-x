@@ -1,8 +1,6 @@
-import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
-
 export default class SitemapRenderer {
-  withStore(store) {
-    this._store = store
+  prefix(prefix) {
+    this._prefix = prefix
 
     return this
   }
@@ -49,7 +47,7 @@ export default class SitemapRenderer {
   }
 
   _getUrlPrefix() {
-    if (this._store.name === VUE_I18N_LOCALES[0].name) return ''
-    return `/${this._store.name}`
+    if (this._prefix === '/') return ''
+    return `${this._prefix}`
   }
 }
