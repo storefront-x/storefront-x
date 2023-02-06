@@ -3,13 +3,13 @@
 Modules in Storefront X are NPM packages. So they require `package.json` a need to be importable by their identifier. For local development, easiest way is to leverage monorepo functionalities. In root `package.json` file, the `workspaces` fields specifies which directories are scanned for NPM packages. By default, it is a `modules` directory.
 
 ## With command
-You can use our own command `yarn/npm make` to create new module and `package.json`. You will be presented with prompts to choose directory, vendor name, module name, description and module access. 
+You can use our own command `yarn/npm make` to create new module and `package.json`. You will be presented with prompts to choose directory, module name, license, description and module access. 
 ```
-? Module directory » ./modules
-? Vendor name (e.g. storefront-x) »
+? Module directory » modules
 ? Module name »
+? License » UNLICENSED
 ? Module description »
-? Choose if module is private or public »
+? Should this module be publishable to NPM? »
 >   Private
     Public
 ```

@@ -6,6 +6,7 @@ import yargs from 'yargs'
 import consola from 'consola'
 import { hideBin } from 'yargs/helpers'
 import * as dotenv from 'dotenv'
+import makeModule from './make/module.js'
 
 dotenv.config()
 
@@ -150,16 +151,14 @@ yargs(hideBin(process.argv))
     },
   })
   .command({
-    command: 'make',
+    command: 'make module',
     description: 'Create new module',
-    handler: async (argv) => {
+    handler: async () => {
       try {
-        const { default: Make } = await import('./src/Make.js')
-        const make = new Make(argv)
-        await make.createModule()
+        await makeModule()
       } catch (e) {
         consola.error(e)
-        process.exit(0)
+        process.exit(1)
       }
     },
   })
