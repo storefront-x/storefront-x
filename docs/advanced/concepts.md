@@ -16,52 +16,7 @@ It requires files inside concept directories to use `default export`.
 
 ### Extensions
 
-Extensions are files with `.ext.*` suffix. They are placed in the concept directory they interact with (extension modifying mixin has to be placed in the `mixins` directory) and their name has to be the same as the file they extend (except the `.ext.*` suffix). So `mixins/IsProduct.js` is extended by `mixins/IsProduct.ext.js` and `gql/fragments/Product.js` is extended by `gql/fragments/Product.ext.js`.
-
-Extensions are special because they don't override each other. If two modules have same extensions with same names, all of the extensions will be applied.
-
-#### Example
-
-> `module-a/mixins/SomeMixin.js`
-
-```js
-export default {
-  computed: {
-    title() {
-      return `Hello, SomeMixin!`
-    },
-  },
-}
-```
-
-> `module-b/mixins/SomeMixin.ext.js`
-
-```js
-// 'self' is the mixin we are extending
-export default (self) => {
-  self.computed.description = function () {
-    return 'description for SomeMixin!'
-  }
-
-  // extensions return value that will be used
-  // instead of default-export from the original file
-  return self
-}
-```
-
-> `module-c/mixins/SomeMixin.ext.js`
-
-```js
-// both this and the SomeMixin.ext.js extension from the module-b
-// are applied - overriding doesn't apply to extension
-export default (self) => {
-  self.computed.id = function () {
-    return 'SomeMixin'
-  }
-
-  return self
-}
-```
+More information about this functionality can be found [here](/essentials/extending).
 
 ## Generating concept
 
