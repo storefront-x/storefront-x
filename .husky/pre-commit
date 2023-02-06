@@ -1,4 +1,23 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn lint-staged
+<<COMMENT
+LC_ALL=C is used to ensure that the locale-related behavior of the system is set to a standard, portable locale.
+When working with Git hooks, some tools and scripts may behave differently based on the locale setting.
+By setting LC_ALL=C, you can ensure that the behavior of these tools and scripts is consistent and predictable,
+regardless of the locale of the system they are run on.
+COMMENT
+LC_ALL=C
+
+npx lint-staged
+
+local_branch="$(git rev-parse --abbrev-ref HEAD)"
+valid_branch_regex="^[a-z0-9-]+$"
+
+if [[ ! $local_branch =~ $valid_branch_regex ]]
+then
+	echo "Error: Invalid branch name. Branch names can only contain lowercase letters, numbers, and dashes. Your commit will be rejected. You have to rename your branch to a valid name and try again."
+	exit 1
+fi
+
+exit 0

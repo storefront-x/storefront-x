@@ -11,9 +11,11 @@ import Breadcrumbs from '#ioc/molecules/Breadcrumbs'
 import ProductOverview from '#ioc/organisms/ProductOverview'
 import injectProduct from '#ioc/composables/injectProduct'
 import useHead from '#ioc/composables/useHead'
-import { computed } from 'vue'
+import useEmitViewProduct from '#ioc/bus/emitters/useEmitViewProduct'
+import { computed, onMounted } from 'vue'
 
 const product = injectProduct()
+const emitViewProduct = useEmitViewProduct()
 
 useHead({
   title: computed(() => product.meta.title),
@@ -23,5 +25,9 @@ useHead({
       content: computed(() => product.meta.description),
     },
   ],
+})
+
+onMounted(() => {
+  emitViewProduct({ product })
 })
 </script>

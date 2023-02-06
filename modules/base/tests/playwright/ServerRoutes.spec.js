@@ -55,3 +55,33 @@ test('request on different path doesnt invoke server route', async ({ page }) =>
     },
   )
 })
+
+test('server route with path prefix', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            server: {
+              routes: {
+                '[prefix]': {
+                  'hello.js': `export default (req, res) => res.send(req.baseUrl)`,
+                },
+                'hello.js': `export default (req, res) => res.send(req.baseUrl)`,
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/sk/hello', { waitUntil: 'networkidle' })
+      await expect(await page.locator('body')).toHaveText('/sk/hello')
+      await page.goto(url + '/hello', { waitUntil: 'networkidle' })
+      await expect(await page.locator('body')).toHaveText('/hello')
+    },
+  )
+})

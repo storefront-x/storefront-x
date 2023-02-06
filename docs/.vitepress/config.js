@@ -61,6 +61,8 @@ export default defineConfig({
           { text: 'CLI', link: '/essentials/cli' },
           { text: 'The .sfx directory', link: '/essentials/sfx' },
           { text: 'Routing', link: '/essentials/routing' },
+          { text: 'Overriding', link: '/essentials/overriding' },
+          { text: 'Extending', link: '/essentials/extending' },
           { text: 'FAQ', link: '/essentials/faq' },
         ],
       },

@@ -3,15 +3,15 @@ import PRICE_OFFSET from '#ioc/config/PRICE_OFFSET'
 
 export default () => {
   return ({ product }: ViewProduct) => {
-    dataLayer.push({ ecommerce: null })
-    dataLayer.push({
+    window.dataLayer.push({ ecommerce: null })
+    window.dataLayer.push({
       event: 'view_item',
       ecommerce: {
         currency: product.finalPrice?.currency ?? '',
         value: +product.finalPrice.value / PRICE_OFFSET,
         items: [
           {
-            item_id: product.sku,
+            item_id: product.sku ?? product.id,
             item_name: product.name,
             // affiliation: 'Google Merchandise Store',
             discount:
@@ -24,7 +24,7 @@ export default () => {
             item_category3: product.categories?.at(2)?.name ?? '',
             item_category4: product.categories?.at(3)?.name ?? '',
             item_category5: product.categories?.at(4)?.name ?? '',
-            price: +product.regularPrice.value / PRICE_OFFSET,
+            price: product.regularPrice && +product.regularPrice.value / PRICE_OFFSET,
           },
         ],
         product_type: product.productType ?? '',
