@@ -41,4 +41,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: npx playwright test --shard=$((matrix.chunk + 1))/${{ inputs.number-of-tests-per-run }} --forbid-only
+      - run: npx playwright test --shard=${{ matrix.chunk }}/${{ inputs.number-of-tests-per-run }} --forbid-only
