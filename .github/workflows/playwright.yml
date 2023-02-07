@@ -28,9 +28,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: $RUNNER_OS-yarn-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            $RUNNER_OS-yarn-
+            ${{ runner.os }}-yarn-
 
 
   set-chunks:
@@ -73,7 +73,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: $RUNNER_OS-yarn-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: npx playwright install chromium
       - run: |
           if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
