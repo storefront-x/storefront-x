@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/cookie-auth",
+  "version": "1.9.2",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}
