@@ -62,7 +62,7 @@ jobs:
     needs:
       - set-chunks
       - yarn-install
-    name: chunk ${{ matrix.chunk }} - $RUNNER_OS
+    name: chunk ${{ matrix.chunk }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
