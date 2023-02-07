@@ -61,6 +61,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs:
       - set-chunks
+      - yarn-install
     name: chunk ${{ matrix.chunk }} - $RUNNER_OS
     steps:
       - uses: actions/checkout@v3
