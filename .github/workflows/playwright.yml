@@ -8,13 +8,20 @@ on:
         type: number
 
 jobs:
+  setup: # This job is needed to set the matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix-array: ${{ steps.generate-matrix-array.outputs.matrix-array }}
+    steps:
+      - id: generate-matrix-array
+        run: echo "matrix-array=$(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')" >> $GITHUB_OUTPUT
+
   test:
-    env:
-      count-arr: echo "$(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')"
+    needs: setup
     strategy:
       fail-fast: false
       matrix:
-        count: ${{ fromJSON(env.count-arr) }}
+        count: ${{ fromJSON(needs.setup.outputs.matrix-array) }}
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: test ${{ matrix.count }}
