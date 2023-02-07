@@ -11,7 +11,7 @@ export default async () => {
   fs.mkdirSync(dst)
 
   let packageFile = {
-    name: `@${responses.moduleName}`,
+    name: `${responses.moduleName}`,
     version: '0.0.0',
     license: responses.license,
     type: 'module',
@@ -45,7 +45,7 @@ export default async () => {
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
 
-  consola.log(`Add your module @${responses.moduleName} to your storefront-x config file and then run: \n`)
+  consola.log(`Add your module ${responses.moduleName} to your storefront-x config file and then run: \n`)
 
   switch (pkgManager) {
     case 'yarn':
@@ -72,7 +72,7 @@ const getResponses = async () => {
         {
           type: (_, { directory } = {}) => {
             if (!fs.existsSync(path.join(directory))) {
-              fs.mkdir(directory)
+              fs.mkdirSync(directory)
             }
             return null
           },

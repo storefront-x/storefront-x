@@ -151,8 +151,13 @@ yargs(hideBin(process.argv))
     },
   })
   .command({
-    command: 'make module',
+    command: 'make',
     description: 'Create new module',
+    builder: (yargs) => {
+      yargs.option('module', {
+        type: 'string',
+      })
+    },
     handler: async () => {
       try {
         await makeModule()
