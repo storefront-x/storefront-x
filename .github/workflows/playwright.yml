@@ -18,7 +18,6 @@ jobs:
       # json string with ids to use in the next job matrix depending on how many elements are in the above array, eg: [0,1]
       test-chunk-ids: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
     steps:
-      - uses: actions/checkout@v3
       - id: set-test-chunk-ids
         name: Set Chunk IDs
         run: echo "test-chunk-ids=$(echo "[$(seq -s , 1 ${{ inputs.number-of-tests-per-run }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')" >> $GITHUB_OUTPUT
