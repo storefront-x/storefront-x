@@ -10,14 +10,14 @@ on:
 jobs:
   test:
     env:
-      count: $(echo [$(seq -s, 1 ${{inputs.number-of-shard}})])
+      COUNT: $(echo [$(seq -s, 1 ${{inputs.number-of-shard}})])
     strategy:
       fail-fast: false
       matrix:
-        count: ${{ env.count }}
+        count: $COUNT
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
-    name: test ${{ matrix.MATRIX_INDEX }}
+    name: test ${{ matrix.count }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -26,4 +26,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: npx playwright test --shard=${{ matrix.MATRIX_INDEX }}/${{ matrix.MATRIX_SIZE }} --forbid-only
+      - run: npx playwright test --shard=${{ matrix.count }}/${{ inputs.number-of-shard }} --forbid-only
