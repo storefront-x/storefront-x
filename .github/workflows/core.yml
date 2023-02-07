@@ -47,7 +47,7 @@ jobs:
           cd ../app
           npx yarn install --modules-folder ../modules
           npx yarn run build
-  create-script-with-npm3:
+  create-script-with-npm1:
     strategy:
       fail-fast: false
       matrix:
@@ -59,17 +59,16 @@ jobs:
         with:
           node-version: 18
       - run: |
+          npm install
           cd modules/create-storefront-x
           npm install
           node index.js -y -- --directory=../../app --integration=${{ matrix.integration }}
           cd ../../app
-          for dir in $(ls -d ../modules/*/ | sed 's/^..\/modules\///' | sed 's#/$##' | awk -F/ '{print $1}'); do
-            if [ "${dir}" != "create-storefront-x" ]; then
-              cd ../modules/$dir
-              npm link
-              cd ../../app
-              npm link "@storefront-x/${dir}"
-            fi
+          for dep in $(grep -Eo '"@storefront-x\/[a-zA-Z0-9-]+"' package.json | sed -E 's/[^a-zA-Z0-9-]//g' | sed 's/storefront-x//g'); do
+            cd ../modules/$dep
+            npm link
+            cd ../../app
+            npm link "@storefront-x/${dep}"
           done
           npm install
           npm run build
