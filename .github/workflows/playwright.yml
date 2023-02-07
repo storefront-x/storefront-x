@@ -15,30 +15,24 @@ jobs:
     runs-on: ubuntu-latest
     name: setup
     outputs:
-      # will contain a json string with an array of n elements, each being a string of spec files delimited by ,
-      test-chunks: ${{ steps['set-test-chunks'].outputs['test-chunks'] }}
       # json string with ids to use in the next job matrix depending on how many elements are in the above array, eg: [0,1]
       test-chunk-ids: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
     steps:
       - uses: actions/checkout@v3
-      - id: set-test-chunks
-        name: Set Chunks
-        # get all spec files from the target-directory directory, group them to be at most number-of-tests-per-run (xargs -n...) at a time and transform them to json
-        run: echo "test-chunks=$(find ${{inputs.target-directory}} -type f -name "*.js" | xargs -n${{inputs.number-of-tests-per-run}} | tr ' ' ',' | jq -R . | jq -s -cM .)" >> $GITHUB_OUTPUT
       - id: set-test-chunk-ids
         name: Set Chunk IDs
-        # get the number of elements from the above array as an array of indexes
-        run: echo "test-chunk-ids=$(echo '${{ steps['set-test-chunks'].outputs['test-chunks'] }}' | jq -cM 'to_entries | map(.key)')" >> $GITHUB_OUTPUT
+        run: echo "test-chunk-ids=$(seq 1 ${{inputs.number-of-tests-per-run}})" >> $GITHUB_OUTPUT
 
-  test-ubuntu:
+  test:
     strategy:
       fail-fast: false
       matrix:
         chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
-    runs-on: ubuntu-latest
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     needs:
       - setup
-    name: chunk ${{ matrix.chunk }} - ubuntu
+    name: chunk ${{ matrix.chunk }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -47,23 +41,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: npx playwright test $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text' | tr ',' ' ') --forbid-only
-
-  test-windows:
-    strategy:
-      fail-fast: false
-      matrix:
-        chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
-    runs-on: windows-latest
-    needs:
-      - setup
-    name: chunk ${{ matrix.chunk }} - windows
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'yarn'
-      - run: yarn install --immutable --immutable-cache
-      - run: npx playwright install chromium
-      - run: $array = ConvertFrom-Json '${{ needs.setup.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; $tests = ($array[$index] -split ',') -join ' '; $code = "npx playwright test $tests --forbid-only"; Invoke-Expression $code
+      - run: npx playwright test --shard=${{ matrix.chunk }}/${{inputs.number-of-tests-per-run}} --forbid-only
