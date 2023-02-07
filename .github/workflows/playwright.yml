@@ -8,7 +8,7 @@ on:
         type: number
 
 env:
-  COUNT: $(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')
+  COUNT: $(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }})]")
 
 jobs:
   test:
