@@ -24,17 +24,17 @@ export default async () => {
     }
   }
 
-  if (responses.access === 'private') {
-    packageFile = {
-      ...packageFile,
-      private: true,
-    }
-  } else {
+  if (responses.isPpublishable) {
     packageFile = {
       ...packageFile,
       publishConfig: {
         access: 'public',
       },
+    }
+  } else {
+    packageFile = {
+      ...packageFile,
+      private: true,
     }
   }
 
@@ -109,14 +109,12 @@ const getResponses = async () => {
           message: 'Module description',
         },
         {
-          type: 'select',
-          name: 'access',
+          type: 'toggle',
+          name: 'isPpublishable',
           message: 'Should this module be publishable to NPM?',
-          choices: [
-            { title: 'Private', value: 'private' },
-            { title: 'Public', value: 'public' },
-          ],
-          initial: 0,
+          initial: false,
+          active: 'yes',
+          inactive: 'no',
         },
       ],
       {
@@ -126,7 +124,7 @@ const getResponses = async () => {
       },
     )
   } catch (e) {
-    consola.error(e)
+    consola.error(e.message)
     process.exit(1)
   }
 }
