@@ -94,7 +94,7 @@ import { computed, defineAsyncComponent, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
-import ProductAlerts from '#ioc/molecules/ProductAlerts'
+import ProductAlerts from '#ioc/molecules/productAlerts/ProductAlerts'
 import useCustomer from '#ioc/composables/useCustomer'
 
 const ProductBundleOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductBundleOptions'))

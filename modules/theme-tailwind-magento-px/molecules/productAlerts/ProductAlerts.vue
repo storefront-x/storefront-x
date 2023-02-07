@@ -11,18 +11,18 @@
 <script setup lang="ts">
 import OutlineBellRinging from '#ioc/icons/OutlineBellRinging'
 import useI18n from '#ioc/composables/useI18n'
-import ProductAlertModal from '#ioc/molecules/ProductAlertModal'
+import ProductAlertModal from '#ioc/molecules/productAlerts/ProductAlertModal'
 import { ref } from 'vue'
 import injectProduct from '#ioc/composables/injectProduct'
-import useCustomerNotifyInStock from '#ioc/services/useCustomerNotifyInStock'
-import useCustomerNotifyPriceDrops from '#ioc/services/useCustomerNotifyPriceDrops'
+import useNotifyInStock from '#ioc/services/productAlerts/useNotifyInStock'
+import useNotifyPriceDrops from '#ioc/services/productAlerts/useNotifyPriceDrops'
 import useShowSuccessNotification from '#ioc/composables/useShowSuccessNotification'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 
 const { t } = useI18n()
 const product = injectProduct()
-const customerNotifyInStock = useCustomerNotifyInStock()
-const customerNotifyPriceDrops = useCustomerNotifyPriceDrops()
+const notifyInStock = useNotifyInStock()
+const notifyPriceDrops = useNotifyPriceDrops()
 const showSuccessNotification = useShowSuccessNotification()
 const showErrorNotification = useShowErrorNotification()
 
@@ -39,11 +39,11 @@ const onNew = () => {
 const onSubmit = async (data: any) => {
   try {
     if (data.isAvailable) {
-      await customerNotifyInStock(String(product.id))
+      await notifyInStock(String(product.id))
     }
 
     if (data.isPriceLower) {
-      await customerNotifyPriceDrops(String(product.id))
+      await notifyPriceDrops(String(product.id))
     }
 
     modalOpen.value = false

@@ -1,4 +1,4 @@
-import CustomerNotifyInStock from '#ioc/graphql/mutations/CustomerNotifyInStock'
+import NotifyPriceDrops from '#ioc/graphql/mutations/productAlerts/NotifyPriceDrops'
 import useMagento from '#ioc/composables/useMagento'
 
 export default () => {
@@ -6,7 +6,7 @@ export default () => {
 
   return async (productId: string) => {
     await magento.graphql(
-      CustomerNotifyInStock().with({
+      NotifyPriceDrops().with({
         productId,
       }),
     )
