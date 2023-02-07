@@ -51,11 +51,7 @@ jobs:
 
 
   set-chunks:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     name: set chunks
     outputs:
       # will contain a json string with an array of n elements, each being a string of spec files delimited by ,
@@ -97,26 +93,26 @@ jobs:
       - run: npx playwright install chromium
       - run: npx playwright test $(echo '${{ needs.set-chunks.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text' | tr ',' ' ') --forbid-only
 
-    test-windows:
-      strategy:
-        fail-fast: false
-        matrix:
-          chunk: ${{fromJSON(needs.set-chunks.outputs['test-chunk-ids'])}}
-      runs-on: windows-latest
-      needs:
-        - set-chunks
-        - yarn-install-windows
-      name: chunk ${{ matrix.chunk }}
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            node-version: 18
-            cache: 'yarn'
-        - name: Restore yarn cache
-          uses: actions/cache@v3
-          with:
-            path: node_modules
-            key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-        - run: npx playwright install chromium
-        - run: $array = ConvertFrom-Json '${{ needs.set-chunks.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; $tests = ($array[$index] -split ',') -join ' '; $code = "npx playwright test $tests --forbid-only"; Invoke-Expression $code
+  test-windows:
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: ${{fromJSON(needs.set-chunks.outputs['test-chunk-ids'])}}
+    runs-on: windows-latest
+    needs:
+      - set-chunks
+      - yarn-install-windows
+    name: chunk ${{ matrix.chunk }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Restore yarn cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+      - run: npx playwright install chromium
+      - run: $array = ConvertFrom-Json '${{ needs.set-chunks.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; $tests = ($array[$index] -split ',') -join ' '; $code = "npx playwright test $tests --forbid-only"; Invoke-Expression $code
