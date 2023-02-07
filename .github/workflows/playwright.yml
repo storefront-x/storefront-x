@@ -51,7 +51,11 @@ jobs:
 
 
   set-chunks:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     name: set chunks
     outputs:
       # will contain a json string with an array of n elements, each being a string of spec files delimited by ,
