@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        count: $COUNT
+        count: $( $COUNT )
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: test ${{ matrix.count }}
