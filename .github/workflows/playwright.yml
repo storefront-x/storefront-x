@@ -11,27 +11,16 @@ on:
         type: string
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    name: setup
-    outputs:
-      # json string with ids to use in the next job matrix depending on how many elements are in the above array, eg: [0,1]
-      test-chunk-ids: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
-    steps:
-      - id: set-test-chunk-ids
-        name: Set Chunk IDs
-        run: echo "test-chunk-ids=$(echo "[$(seq -s , 1 ${{ inputs.number-of-tests-per-run }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')" >> $GITHUB_OUTPUT
-
   test:
     strategy:
       fail-fast: false
       matrix:
-        chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
+        count: $(echo '[$(seq -s , 1 ${{ inputs.number-of-tests-per-run }})]' | jq -c '.')
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     needs:
       - setup
-    name: chunk ${{ matrix.chunk }}
+    name: test ${{ env.MATRIX_INDEX }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -40,4 +29,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: npx playwright test --shard=${{ matrix.chunk }}/${{ inputs.number-of-tests-per-run }} --forbid-only
+      - run: npx playwright test --shard=${{ env.MATRIX_INDEX }}/${{ env.MATRIX_SIZE }} --forbid-only
