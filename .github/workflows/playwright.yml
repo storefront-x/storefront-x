@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        count: ${{ fromJSON($COUNT) }}
+        count: ${{ fromJSON(env.COUNT) }}
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: test ${{ matrix.count }}
