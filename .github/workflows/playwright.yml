@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs:
       - setup
-    name: test ${{ env.MATRIX_INDEX }}
+    name: test ${{ matrix.MATRIX_INDEX }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -29,4 +29,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: npx playwright install chromium
-      - run: npx playwright test --shard=${{ env.MATRIX_INDEX }}/${{ env.MATRIX_SIZE }} --forbid-only
+      - run: npx playwright test --shard=${{ matrix.MATRIX_INDEX }}/${{ matrix.MATRIX_SIZE }} --forbid-only
