@@ -7,13 +7,15 @@ on:
         default: 3
         type: number
 
+env:
+  COUNT: $(echo "[$(seq -s , 1 ${{ inputs.number-of-tests-per-run }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')
+
 jobs:
   test:
-
     strategy:
       fail-fast: false
       matrix:
-        count: ($(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)' | jq -r '.[]'))
+        count: ${{ fromJSON($COUNT) }}
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: test ${{ matrix.count }}
