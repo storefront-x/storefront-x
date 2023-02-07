@@ -14,8 +14,8 @@ jobs:
       matrix-array: ${{ steps.generate-matrix-array.outputs.matrix-array }}
     steps:
       - id: generate-matrix-array
+        # This code generates a string of numbers separated by commas and enclosed in square brackets.
         run: echo "matrix-array=$(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }})]" | jq -cM 'map(tonumber)')" >> $GITHUB_OUTPUT
-#        run: echo "matrix-array=$(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')" >> $GITHUB_OUTPUT
 
   test:
     needs: setup
