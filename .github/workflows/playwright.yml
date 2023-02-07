@@ -56,10 +56,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        chunk: ${{fromJSON(needs.setup.outputs['test-chunk-ids'])}}
+        chunk: ${{fromJSON(needs.set-chunks.outputs['test-chunk-ids'])}}
     runs-on: ${{ matrix.os }}
     needs:
-      - setup
+      - set-chunks
     name: chunk ${{ matrix.chunk }} - ${{ runner.os }}
     steps:
       - uses: actions/checkout@v3
@@ -75,7 +75,7 @@ jobs:
       - run: npx playwright install chromium
       - run: |
           if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
-            npx playwright test $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text' | tr ',' ' ') --forbid-only
+            npx playwright test $(echo '${{ needs.set-chunks.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text' | tr ',' ' ') --forbid-only
           else
-            $array = ConvertFrom-Json '${{ needs.setup.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; $tests = ($array[$index] -split ',') -join ' '; $code = "npx playwright test $tests --forbid-only"; Invoke-Expression $code
+            $array = ConvertFrom-Json '${{ needs.set-chunks.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; $tests = ($array[$index] -split ',') -join ' '; $code = "npx playwright test $tests --forbid-only"; Invoke-Expression $code
           fi
