@@ -1,3 +1,37 @@
+## v1.10.0 (2023-02-07)
+
+#### :rocket: Enhancement
+
+- [#325](https://github.com/storefront-x/storefront-x/pull/325) Add 'sfx make' command ([@kubo12312](https://github.com/kubo12312))
+- [#330](https://github.com/storefront-x/storefront-x/pull/330) Add header bypass to cookie-auth ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#324](https://github.com/storefront-x/storefront-x/pull/324) Refactor cookie auth ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#320](https://github.com/storefront-x/storefront-x/pull/320) Upgrade Cypress to v12.5 ([@kubo12312](https://github.com/kubo12312))
+- [#315](https://github.com/storefront-x/storefront-x/pull/315) Add support for locales to sitemap ([@kubo12312](https://github.com/kubo12312))
+- [#322](https://github.com/storefront-x/storefront-x/pull/322) Add support for type extensions ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#331](https://github.com/storefront-x/storefront-x/pull/331) Fix ServiceWorker caching ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#329](https://github.com/storefront-x/storefront-x/pull/329) Make cookie-auth return non 200 statuses ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :memo: Documentation
+
+- [#327](https://github.com/storefront-x/storefront-x/pull/327) Fix typos in the documentation ([@MartinaRandulova](https://github.com/MartinaRandulova))
+- [#317](https://github.com/storefront-x/storefront-x/pull/317) Add Vite section to the docs ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#307](https://github.com/storefront-x/storefront-x/pull/307) Improve Overriding and Extending documentation sections ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### :house: Internal
+
+- [#323](https://github.com/storefront-x/storefront-x/pull/323) Fix casing of goToWishlist ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 5
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Martina Randulová ([@MartinaRandulova](https://github.com/MartinaRandulova))
+
 ## v1.9.2 (2023-02-02)
 
 #### :rocket: Enhancement
