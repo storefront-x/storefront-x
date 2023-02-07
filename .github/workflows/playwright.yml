@@ -9,10 +9,12 @@ on:
 
 jobs:
   test:
+    env:
+      count: $(echo [$(seq -s, 1 ${{inputs.number-of-shard}})])
     strategy:
       fail-fast: false
       matrix:
-        count: $(echo [$(seq -s, 1 ${{inputs.number-of-shard}})])
+        count: ${{ env.count }}
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: test ${{ matrix.MATRIX_INDEX }}
