@@ -42,13 +42,12 @@ jobs:
         with:
           node-version: 18
       - run: |
-          yarn install
-          node modules/create-storefront-x --directory=app --integration=${{ matrix.integration }}
-          cd app
-          > yarn.lock
-          YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
-          yarn build
-  create-script-with-npm:
+          cd modules/create-storefront-x
+          npx yarn create storefront-x -y -- --directory=../app --integration=${{ matrix.integration }}
+          cd ../app
+          npx yarn install --modules-folder ../modules
+          npx yarn run build
+  create-script-with-local-modules:
     strategy:
       fail-fast: false
       matrix:
@@ -60,8 +59,12 @@ jobs:
         with:
           node-version: 18
       - run: |
+          cd modules/create-storefront-x
           npm install
-          node modules/create-storefront-x -y -- --directory=app --integration=${{ matrix.integration }}
+          npm link
+          cd ../..
+          npm create storefront-x -y -- --directory=app --integration=${{ matrix.integration }}
           cd app
+          npm link @storefront-x
           npm install
           npm run build
