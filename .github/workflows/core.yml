@@ -64,10 +64,12 @@ jobs:
           node index.js -y -- --directory=../../app --integration=${{ matrix.integration }}
           cd ../../app
           for dir in $(ls -d ../modules/*/ | sed 's/^..\/modules\///' | sed 's#/$##' | awk -F/ '{print $1}'); do
-            cd ../modules/$dir
-            npm link
-            cd ../../app
-            npm link "@storefront-x/${dir}"
+            if [ "${dir}" != "create-storefront-x" ]; then
+              cd ../modules/$dir
+              npm link
+              cd ../../app
+              npm link "@storefront-x/${dir}"
+            fi
           done
           npm install
           npm run build
