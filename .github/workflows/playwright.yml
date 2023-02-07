@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       number-of-tests-per-run:
-        default: 3
+        default: 10
         type: number
       target-directory:
         default: modules/**/tests/playwright
