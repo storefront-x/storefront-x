@@ -6,6 +6,7 @@ const config = {
   globalTeardown: './tests/playwright/globalTeardown.js',
   retries: 2,
   testMatch: 'modules/**/tests/playwright/*.spec.js',
+  fullyParallel: true,
 }
 
 export default config

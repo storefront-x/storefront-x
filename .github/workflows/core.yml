@@ -10,7 +10,7 @@ jobs:
   playwright:
     uses: ./.github/workflows/playwright.yml
     with:
-      number-of-tests-per-run: 3
+      number-of-tests-per-run: 10
       target-directory: modules/**/tests/playwright
   docs:
     runs-on: ubuntu-latest
