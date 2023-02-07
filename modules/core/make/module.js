@@ -24,7 +24,7 @@ export default async () => {
     }
   }
 
-  if (responses.isPpublishable) {
+  if (responses.isPublishable) {
     packageFile = {
       ...packageFile,
       publishConfig: {
@@ -110,7 +110,7 @@ const getResponses = async () => {
         },
         {
           type: 'toggle',
-          name: 'isPpublishable',
+          name: 'isPublishable',
           message: 'Should this module be publishable to NPM?',
           initial: false,
           active: 'yes',
