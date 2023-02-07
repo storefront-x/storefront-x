@@ -30,7 +30,7 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: yarn docs:build
-  create-script-with-yarn:
+  create-script-with-local-modules-yarn:
     strategy:
       fail-fast: false
       matrix:
@@ -47,7 +47,7 @@ jobs:
           cd ../app
           npx yarn install --modules-folder ../modules
           npx yarn run build
-  create-script-with-local-modules:
+  create-script-with-npm3:
     strategy:
       fail-fast: false
       matrix:
@@ -61,10 +61,13 @@ jobs:
       - run: |
           cd modules/create-storefront-x
           npm install
-          npm link
-          cd ../..
-          npm create storefront-x -y -- --directory=app --integration=${{ matrix.integration }}
-          cd app
-          npm link @storefront-x
+          node index.js -y -- --directory=../../app --integration=${{ matrix.integration }}
+          cd ../../app
+          for dir in $(ls -d ../modules/*/ | sed 's/^..\/modules\///' | sed 's#/$##' | awk -F/ '{print $1}'); do
+            cd ../modules/$dir
+            npm link
+            cd ../../app
+            npm link "@storefront-x/${dir}"
+          done
           npm install
           npm run build
