@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        count: ${{ fromJSON(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }})]") }}
+        count: ${{ fromJSON(echo "$(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')") }}
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: test ${{ matrix.count }}
