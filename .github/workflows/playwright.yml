@@ -21,6 +21,17 @@ jobs:
       test-chunk-ids: ${{ steps['set-test-chunk-ids'].outputs['test-chunk-ids'] }}
     steps:
       - uses: actions/checkout@v3
+      - name: Cache node_modules
+        if: steps.yarn.outputs.cache-hit != 'true'
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install dependencies
+        if: steps.yarn.outputs.cache-hit != 'true'
+        run: yarn install --immutable --immutable-cache
       - id: set-test-chunks
         name: Set Chunks
         # get all spec files from the target-directory directory, group them to be at most number-of-tests-per-run (xargs -n...) at a time and transform them to json
@@ -45,7 +56,11 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
-      - run: yarn install --immutable --immutable-cache
+      - name: Restore cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: npx playwright install chromium
       - run: npx playwright test $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text' | tr ',' ' ') --forbid-only
 
@@ -64,6 +79,10 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
-      - run: yarn install --immutable --immutable-cache
+      - name: Restore cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: npx playwright install chromium
       - run: $array = ConvertFrom-Json '${{ needs.setup.outputs['test-chunks'] }}'; $index = ${{ matrix.chunk }}; $tests = ($array[$index] -split ',') -join ' '; $code = "npx playwright test $tests --forbid-only"; Invoke-Expression $code
