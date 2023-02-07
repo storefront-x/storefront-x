@@ -9,10 +9,12 @@ on:
 
 jobs:
   test:
+    env:
+      count-arr: echo "$(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')"
     strategy:
       fail-fast: false
       matrix:
-        count: ${{ fromJSON(echo "$(echo "[$(seq -s , 1 ${{ inputs.number-of-shard }} | tr '\n' ',' | sed 's/,$//')]" | jq -cM 'map(tonumber)')") }}
+        count: ${{ fromJSON(${{ env.count-arr }}) }}
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: test ${{ matrix.count }}
