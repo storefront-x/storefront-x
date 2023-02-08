@@ -27,7 +27,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}
-          key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
+          key: ${{ runner.os }}-checkout-${{ hashFiles('**') }}
 
   playwright:
     strategy:
@@ -44,7 +44,7 @@ jobs:
         id: restore-cache
         with:
           path: ${{ github.workspace }}
-          key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
+          key: ${{ runner.os }}-checkout-${{ hashFiles('**') }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -61,7 +61,7 @@ jobs:
         id: restore-cache
         with:
           path: ${{ github.workspace }}
-          key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
+          key: ${{ runner.os }}-checkout-${{ hashFiles('**') }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
