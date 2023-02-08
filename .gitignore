@@ -42,8 +42,9 @@ sw.*
 !.yarn/sdks
 !.yarn/versions
 
-# Vitepress build output
+# Vitepress
 docs/.vitepress/dist
+docs/.vitepress/cache
 
 .npmrc
 

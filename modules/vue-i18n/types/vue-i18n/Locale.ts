@@ -3,5 +3,4 @@ export default interface Locale {
   locale: string
   prefix: string
   domain?: string
-  [x: string]: any
 }

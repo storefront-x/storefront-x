@@ -13,42 +13,27 @@
     "./modules/*"
   ],
   "scripts": {
-    "test:unit": "vitest run",
-    "test:playwright": "playwright test",
-    "test:playwright:install": "playwright install chromium && playwright test",
-    "lint": "eslint --ext .js,.ts,.vue .",
-    "lint:prod": "cross-env NODE_ENV=production eslint --ext .js,.ts,.vue .",
+    "test:unit": "npx vitest run",
+    "test:playwright": "npx playwright test",
+    "lint": "npx eslint --ext .js,.ts,.vue .",
+    "lint:prod": "cross-env NODE_ENV=production npx eslint --ext .js,.ts,.vue .",
     "dev": "sfx dev",
     "build": "sfx build",
     "serve": "sfx serve",
-    "cypress:open": "cypress open",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "postinstall": "husky install"
+    "make": "sfx make",
+    "cypress": "npx cypress",
+    "docs:dev": "npx vitepress dev docs",
+    "docs:build": "npx vitepress build docs",
+    "docs:serve": "npx vitepress serve docs",
+    "postinstall": "npx husky install"
   },
   "dependencies": {
     "@storefront-x/core": "*"
   },
   "devDependencies": {
-    "@playwright/test": "1.25.2",
-    "@types/yargs": "^17.0.17",
-    "@typescript-eslint/eslint-plugin": "^5.46.0",
-    "@typescript-eslint/parser": "^5.46.0",
+    "@storefront-x/testing": "*",
+    "@storefront-x/tooling": "*",
     "cross-env": "^7.0.3",
-    "cypress": "^9.7.0",
-    "eslint": "^8.29.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.8.0",
-    "husky": "^8.0.2",
-    "jsdom": "^20.0.3",
-    "lerna": "^6.1.0",
-    "lint-staged": "^13.1.0",
-    "prettier": "^2.8.1",
-    "typescript": "^4.9.4",
-    "vitepress": "^1.0.0-draft.8",
-    "vitest": "^0.25.7"
+    "lerna": "^6.1.0"
   }
 }

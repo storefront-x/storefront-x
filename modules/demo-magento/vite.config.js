@@ -18,11 +18,11 @@ export default defineConfig({
         navigateFallback: null,
         runtimeCaching: [
           {
-            urlPattern: /_i/,
+            urlPattern: /\/_i\//,
             handler: 'CacheFirst',
           },
           {
-            urlPattern: /_magento/,
+            urlPattern: /\/_magento\//,
             handler: 'NetworkFirst',
           },
         ],
