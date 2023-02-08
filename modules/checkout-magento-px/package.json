@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/checkout-magento-px",
-  "version": "1.10.1",
+  "version": "1.10.2",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
