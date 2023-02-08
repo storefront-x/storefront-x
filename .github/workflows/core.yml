@@ -14,22 +14,18 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: checkout (${{ matrix.os }})
-    outputs:
-      path: ${{ steps.checkout.outputs.path }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         # with:
         #   submodules: 'recursive'
-        id: checkout
       - name: Cache checkout
         uses: actions/cache@v3
         with:
-          path: |
-            ${{ steps.checkout.outputs.path }}/.git
-          key: ${{ runner.os }}-git-${{ hashFiles('**/.gitmodules') }}
+          path: $GITHUB_WORKSPACE
+          key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
           restore-keys: |
-            ${{ runner.os }}-git-
+            ${{ runner.os }}-checkout-
 
   # yarn:
   #   strategy:
@@ -54,10 +50,11 @@ jobs:
     needs: [checkout]
     name: playwright shard ${{ matrix.count }} (${{ matrix.os }})
     steps:
-      - name: Use cached checkout
-        uses: actions/checkout@v3
+      - name: Restore cached checkout
+        uses: actions/cache@v3
         with:
-          path: ${{ needs.checkout.outputs.path }}
+          path: $GITHUB_WORKSPACE
+          key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
