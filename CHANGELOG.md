@@ -1,3 +1,13 @@
+## v1.10.2 (2023-02-08)
+
+#### :rocket: Enhancement
+
+- [#336](https://github.com/storefront-x/storefront-x/pull/336) Add relatedProducts to composables ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.10.1 (2023-02-08)
 
 #### :rocket: Enhancement
