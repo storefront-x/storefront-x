@@ -8,9 +8,23 @@ on:
 
 jobs:
   playwright:
-    uses: ./.github/workflows/playwright.yml
-    with:
-      number-of-shard: 3
+    strategy:
+      fail-fast: false
+      matrix:
+        count: [1, 2, 3]
+        os: [ ubuntu-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
+    name: test ${{ matrix.count }} (${{ matrix.os }})
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - run: yarn install --immutable --immutable-cache
+      - run: npx playwright install chromium
+      - run: npx playwright test --shard=${{ matrix.count }}/3 --forbid-only
+
   docs:
     runs-on: ubuntu-latest
     steps:
