@@ -53,5 +53,6 @@ jobs:
             cd ../../app
             npm link "@storefront-x/${dep}"
           done
+          npm install ./modules/demo-${{ matrix.integration }}
           npm install
           npm run build
