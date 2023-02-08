@@ -28,6 +28,8 @@ jobs:
           key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
           restore-keys: |
             ${{ runner.os }}-checkout-
+      - run: ls $GITHUB_WORKSPACE
+      - run: pwd
 
   # yarn:
   #   strategy:
@@ -58,7 +60,8 @@ jobs:
         with:
           path: $GITHUB_WORKSPACE
           key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
-      - run: cd $GITHUB_WORKSPACE
+      - run: ls $GITHUB_WORKSPACE
+      - run: pwd
       - uses: actions/setup-node@v3
         with:
           node-version: 18
