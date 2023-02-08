@@ -54,9 +54,11 @@ jobs:
     steps:
       - name: Restore cached checkout
         uses: actions/cache@v3
+        id: restore-cache
         with:
           path: $GITHUB_WORKSPACE
           key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
+      - run: cd $GITHUB_WORKSPACE
       - uses: actions/setup-node@v3
         with:
           node-version: 18
