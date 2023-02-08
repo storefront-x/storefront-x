@@ -30,7 +30,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const meta = computed(() => product.value.meta)
 
-  const crossSellProducts = computed(() => product.value.crossSellProducts)
+  const relatedProducts = computed(() => product.value.relatedProducts)
 
   const isOnSale = computed(() => finalPrice.value.value < regularPrice.value.value)
 
@@ -50,6 +50,6 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isOnSale,
     images,
     meta,
-    crossSellProducts,
+    relatedProducts,
   })
 }

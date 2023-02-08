@@ -28,7 +28,7 @@ export default (data: any) => ({
   },
   images: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
   mediaGallery: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
-  crossSellProducts: (data.related_products ?? []).map(ToProduct),
+  relatedProducts: (data.related_products ?? []).map(ToProduct),
   upsellProducts: (data.upsell_products ?? []).map(ToProduct),
   bundleItems: (data.items ?? []).map(ToBundleItem(data.price_range?.minimum_price?.final_price?.currency)),
   configurableOptions: (data.configurable_options ?? []).map(ToConfigurableOption),

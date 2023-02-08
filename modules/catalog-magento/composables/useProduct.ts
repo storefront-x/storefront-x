@@ -52,7 +52,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const images = computed(() => product.value.images ?? [])
 
-  const crossSellProducts = computed(() => product.value.crossSellProducts)
+  const relatedProducts = computed(() => product.value.relatedProducts)
 
   const upsellProducts = computed(() => product.value.upsellProducts)
 
@@ -187,7 +187,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isBundleProduct,
     isOptionsProduct,
     mediaGallery,
-    crossSellProducts,
+    relatedProducts,
     upsellProducts,
     bundleItems,
     minimumPrice,
