@@ -17,15 +17,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          path: ${{ github.workspace }}
-        # with:
-        #   submodules: 'recursive'
       - name: Cache checkout
         uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}
-          key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
+          key: ${{ runner.os }}-checkout-${{ hashFiles('*.{js,json,md,yml,lock}') }}
           restore-keys: |
             ${{ runner.os }}-checkout-
 
