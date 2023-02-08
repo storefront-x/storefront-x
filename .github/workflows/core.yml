@@ -18,20 +18,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          path: $GITHUB_WORKSPACE
+          path: ${{ github.workspace }}
         # with:
         #   submodules: 'recursive'
       - name: Cache checkout
         uses: actions/cache@v3
         with:
-          path: $GITHUB_WORKSPACE
+          path: ${{ github.workspace }}
           key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
           restore-keys: |
             ${{ runner.os }}-checkout-
-      - run: echo ${{ github.workspace }}
-      - run: echo $GITHUB_WORKSPACE
-      - run: pwd
-      - run: pwd
 
   # yarn:
   #   strategy:
@@ -60,11 +56,10 @@ jobs:
         uses: actions/cache@v3
         id: restore-cache
         with:
-          path: $GITHUB_WORKSPACE
+          path: ${{ github.workspace }}
           key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
-      - run: echo ${{ github.workspace }}
-      - run: echo $GITHUB_WORKSPACE
-      - run: pwd
+          restore-keys: |
+            ${{ runner.os }}-checkout-
       - uses: actions/setup-node@v3
         with:
           node-version: 18
