@@ -3,7 +3,7 @@ import ToMoney from '#ioc/mappers/ToMoney'
 
 export default (data: any) => ({
   ...toProduct(data),
-  relatedProducts: ((data.crossSell ?? []) as any[]).map(toProduct),
+  crossSellProducts: ((data.crossSell ?? []) as any[]).map(toProduct),
 })
 
 const toProduct = (data: any) => ({
