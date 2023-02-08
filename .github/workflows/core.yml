@@ -7,16 +7,57 @@ on:
   pull_request:
 
 jobs:
+  checkout:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    name: checkout (${{ matrix.os }})
+    outputs:
+      path: ${{ steps.checkout.outputs.path }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        # with:
+        #   submodules: 'recursive'
+        id: checkout
+      - name: Cache checkout
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ steps.checkout.outputs.path }}/.git
+          key: ${{ runner.os }}-git-${{ hashFiles('**/.gitmodules') }}
+          restore-keys: |
+            ${{ runner.os }}-git-
+
+  # yarn:
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest]
+  #   runs-on: ${{ matrix.os }}
+  #   name: yarn install (${{ matrix.os }})
+  #   needs:
+  #     - checkout
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+
   playwright:
     strategy:
       fail-fast: false
       matrix:
         count: [1, 2, 3]
-        os: [ ubuntu-latest, windows-latest ]
+        os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    needs: [checkout]
     name: playwright shard ${{ matrix.count }} (${{ matrix.os }})
     steps:
-      - uses: actions/checkout@v3
+      - name: Use cached checkout
+        uses: actions/checkout@v3
+        with:
+          path: ${{ needs.checkout.outputs.path }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -35,6 +76,7 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: yarn docs:build
+
   create-script-with-yarn:
     strategy:
       fail-fast: false
@@ -50,6 +92,7 @@ jobs:
           cd app
           yarn install
           yarn build
+
   create-script-with-npm:
     strategy:
       fail-fast: false
