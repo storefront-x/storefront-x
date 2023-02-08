@@ -73,6 +73,7 @@ const outlineClasses = computed(() => {
 const classes = computed(() => {
   return {
     'fill-on-hover': props.fillOnHover,
+    'text-gray-400 hover:text-gray-500': !isCompared.value,
     'text-primary-500 hover:text-primary-800': isCompared.value,
     'hover:bg-gray-100': !props.fillOnHover,
   }
