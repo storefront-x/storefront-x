@@ -23,6 +23,9 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache
+      - name: Clear cache for non-existing restore key
+        run: |
+          npx @actions/cache@v2 rm -k ${{ runner.os }}-checkout-
       - name: Cache workspace
         uses: actions/cache@v3
         with:
