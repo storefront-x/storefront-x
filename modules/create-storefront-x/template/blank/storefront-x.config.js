@@ -6,6 +6,6 @@ export default {
     '@storefront-x/vue-router',
     '@storefront-x/vue-head',
 
-    'demo-blank',
+    './modules/demo-blank',
   ],
 }

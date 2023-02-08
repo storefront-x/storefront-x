@@ -30,24 +30,7 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: yarn docs:build
-  create-script-with-local-modules-yarn:
-    strategy:
-      fail-fast: false
-      matrix:
-        integration: [magento, shopware, px]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: |
-          cd modules/create-storefront-x
-          npx yarn create storefront-x -y -- --directory=../app --integration=${{ matrix.integration }}
-          cd ../app
-          npx yarn install --modules-folder ../modules
-          npx yarn run build
-  create-script-with-npm1:
+  create-script-with-npm-locale:
     strategy:
       fail-fast: false
       matrix:

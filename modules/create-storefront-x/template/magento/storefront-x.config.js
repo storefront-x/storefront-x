@@ -37,6 +37,6 @@ export default {
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
 
-    'demo-magento',
+    './modules/demo-magento',
   ],
 }
