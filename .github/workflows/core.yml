@@ -58,8 +58,6 @@ jobs:
         with:
           path: ${{ github.workspace }}
           key: ${{ runner.os }}-checkout-${{ hashFiles('**/*.{js,json,md,yml,lock}') }}
-          restore-keys: |
-            ${{ runner.os }}-checkout-
       - uses: actions/setup-node@v3
         with:
           node-version: 18
