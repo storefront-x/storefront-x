@@ -52,13 +52,8 @@ jobs:
             cd $dir
             npm link
             json=$(<package.json)
-            module=$(echo "$json" | grep ' "name": ')
-            while read -r m; do
-              name=$(echo "$m" | sed -n 's/^.*"name": "\(.*\)",/\1/p')
-
-              echo "$name"
-              modules+=($name)
-            done <<< "$module"
+            module=$(echo "$json" | grep -oP '"name": "\K[^"]+')
+            modules+=($module)
             cd ../..
           done
           cd ../app
