@@ -26,7 +26,9 @@ jobs:
         id: cache-nodemodules
         uses: actions/cache/restore@v3
         with:
-          path: node_modules
+          path: |
+            node_modules
+            ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -37,7 +39,9 @@ jobs:
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         uses: actions/cache/save@v3
         with:
-          path: node_modules
+          path: |
+            node_modules
+            ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -60,7 +64,9 @@ jobs:
       - name: Restore cached node_modules
         uses: actions/cache@v3
         with:
-          path: node_modules
+          path: |
+            node_modules
+            ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - name: Run Playwright tests - shard ${{ matrix.count }} of 3
         run: |
@@ -80,7 +86,9 @@ jobs:
         uses: actions/cache@v3
         id: restore-cache
         with:
-          path: node_modules
+          path: |
+            node_modules
+            ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: yarn docs:build
 
