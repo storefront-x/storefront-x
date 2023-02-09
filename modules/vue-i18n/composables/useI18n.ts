@@ -5,7 +5,12 @@ export default () => {
 
   const d = i18n.d
   //@ts-ignore
-  i18n.d = (a, b = 'default', ...args) => d(a, b, ...args)
+  i18n.d = (a, b = 'default', ...args) => {
+    if (a === null) {
+      return ''
+    }
+    return d(a, b, ...args)
+  }
 
   return i18n
 }
