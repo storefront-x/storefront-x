@@ -36,6 +36,6 @@ export default {
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-shopware',
 
-    './modules/demo-shopware',
+    'demo-shopware',
   ],
 }

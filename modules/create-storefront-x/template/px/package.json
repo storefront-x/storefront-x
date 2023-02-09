@@ -5,6 +5,9 @@
   "description": "My Storefront X Application",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "./modules/*"
+  ],
   "scripts": {
     "dev": "sfx dev",
     "build": "sfx build",
