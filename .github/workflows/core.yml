@@ -7,13 +7,11 @@ on:
   pull_request:
 
 jobs:
-  # This job is used to cache the yarn dependencies which can be used by all other jobs
+  # This job will cache yarn dependencies when they already not exist in cache. If exists, it will restore them
   # without having to install them in each job (which takes a lot of time)
-  # It is stored by hash of the yarn.lock file, so it will be invalidated if the dependencies change
-  # if not, it will be restored from cache (also in other workflows)
+  # They are stored by hash of the yarn.lock file, so they will be invalidated if the dependencies themselves change
   yarn:
     strategy:
-      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
