@@ -10,10 +10,10 @@
       <ProductCarousel class="mt-8" :products="product?.upsellProducts" />
     </section>
 
-    <section v-if="product?.crossSellProducts?.length" class="mt-8 border-t border-gray-200 pt-8 sm:px-0">
+    <section v-if="product?.relatedProducts?.length" class="mt-8 border-t border-gray-200 pt-8 sm:px-0">
       <Heading :level="2">{{ t('Related products') }}</Heading>
 
-      <ProductCarousel class="mt-8" :products="product?.crossSellProducts" />
+      <ProductCarousel class="mt-8" :products="product?.relatedProducts" />
     </section>
   </Container>
 </template>

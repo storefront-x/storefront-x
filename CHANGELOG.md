@@ -1,3 +1,43 @@
+## v1.10.3 (2023-02-09)
+
+#### :bug: Bug Fix
+
+- [#339](https://github.com/storefront-x/storefront-x/pull/339) Fix urlSuffix on Product and Category ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.10.2 (2023-02-08)
+
+#### :rocket: Enhancement
+
+- [#336](https://github.com/storefront-x/storefront-x/pull/336) Add relatedProducts to composables ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.10.1 (2023-02-08)
+
+#### :rocket: Enhancement
+
+- [#334](https://github.com/storefront-x/storefront-x/pull/334) Add bad-credentials status to failed cookie auth redirect ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#335](https://github.com/storefront-x/storefront-x/pull/335) Move brand field to the Product fragment extension ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#332](https://github.com/storefront-x/storefront-x/pull/332) Fix TypeScript aliases for modules in node_modules ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :house: Internal
+
+- [#326](https://github.com/storefront-x/storefront-x/pull/326) Shard Playwright tests ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### Committers: 2
+
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.10.0 (2023-02-07)
 
 #### :rocket: Enhancement

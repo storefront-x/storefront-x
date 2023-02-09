@@ -59,7 +59,7 @@ const serverMiddleware = (req: Request, res: Response, next: NextFunction) => {
         res.cookie(cookieName, toBase64(`${username}:${password}`))
         return res.redirect('/')
       } else {
-        return res.redirect(302, redirectUrl)
+        return res.redirect(302, redirectUrl + '?status=bad-credentials')
       }
     })
   } else {
