@@ -126,6 +126,7 @@ export default defineConfig({
           { text: 'Atatus', link: '/modules/atatus' },
           { text: 'Cookie Auth', link: '/modules/cookie-auth' },
           { text: 'Sentry', link: '/modules/sentry' },
+          { text: 'Runtime Config', link: '/modules/runtime-config' },
         ],
       },
     ],

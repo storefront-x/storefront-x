@@ -3753,6 +3753,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/runtime-config@workspace:modules/runtime-config":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/runtime-config@workspace:modules/runtime-config"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/schema-org@workspace:modules/schema-org":
   version: 0.0.0-use.local
   resolution: "@storefront-x/schema-org@workspace:modules/schema-org"
