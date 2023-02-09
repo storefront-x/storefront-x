@@ -1,5 +1,6 @@
 import query from '#ioc/graphql/query'
 import field from '#ioc/graphql/field'
+import CategoryTree from '#ioc/graphql/fragments/CategoryTree'
 
 export default () =>
   query().fields({
@@ -7,20 +8,11 @@ export default () =>
       items: field({
         id: field(),
         children: field({
-          id: field(),
-          name: field(),
-          url_path: field(),
-          image: field(),
+          ...CategoryTree(),
           children: field({
-            id: field(),
-            name: field(),
-            url_path: field(),
-            image: field(),
+            ...CategoryTree(),
             children: field({
-              id: field(),
-              name: field(),
-              url_path: field(),
-              image: field(),
+              ...CategoryTree(),
             }),
           }),
         }),

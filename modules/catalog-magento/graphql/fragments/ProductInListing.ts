@@ -13,8 +13,10 @@ export default (name = 'ProductInListing') =>
     categories: field({
       name: field(),
       url_path: field(),
+      url_suffix: field(),
     }),
     url_key: field(),
+    url_suffix: field(),
     stock_status: field(),
     price_range: field({
       minimum_price: field({
