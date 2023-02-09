@@ -2,7 +2,7 @@ import { computed, reactive } from 'vue'
 
 export default (el: HTMLElement) => {
   const src = computed(() => {
-    return desktopImageElement.value?.getAttribute('src')?.replace('{{', '').replace('}}', '')
+    return desktopImageElement.value?.getAttribute('src')
   })
 
   const alt = computed(() => {
