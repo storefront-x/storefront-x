@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Cache node_modules
+      - name: Restore node_modules from cache
         id: cache-nodemodules
         uses: actions/cache/restore@v3
         with:
@@ -35,7 +35,7 @@ jobs:
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: yarn install --immutable --immutable-cache
-      - name: Save Primes
+      - name: Save node_modules to cache
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         uses: actions/cache/save@v3
         with:
