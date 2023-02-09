@@ -14,11 +14,13 @@ export default (name = 'product') =>
     sku: field(),
     name: field(),
     url_key: field(),
+    url_suffix: field(),
     stock_status: field(),
     only_x_left_in_stock: field(),
     categories: field({
       name: field(),
       url_path: field(),
+      url_suffix: field(),
     }),
     price_range: field({
       minimum_price: field({
