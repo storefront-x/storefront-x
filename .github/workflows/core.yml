@@ -28,6 +28,7 @@ jobs:
         with:
           path: ${{ github.workspace }}
           key: ${{ runner.os }}-workspace-${{ hashFiles('**') }}
+          restore-keys: []
 
   playwright:
     strategy:
@@ -49,7 +50,8 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
-      - run: |
+      - name: Run tests - shard ${{ matrix.count }}/3
+        run: |
           npx playwright install chromium
           npx playwright test --shard=${{ matrix.count }}/3 --forbid-only
 
