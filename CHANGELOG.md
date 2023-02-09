@@ -1,3 +1,13 @@
+## v1.10.3 (2023-02-09)
+
+#### :bug: Bug Fix
+
+- [#339](https://github.com/storefront-x/storefront-x/pull/339) Fix urlSuffix on Product and Category ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.10.2 (2023-02-08)
 
 #### :rocket: Enhancement
