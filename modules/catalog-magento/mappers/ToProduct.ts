@@ -14,7 +14,6 @@ export default (data: any) => ({
   name: (data.name ?? '') as string,
   categories: (data.categories ?? []).map(ToCategory),
   urlKey: (data.url_key ?? '') as string,
-  urlPath: (data.url_path ?? '') as string,
   urlSuffix: (data.url_suffix ?? '') as string,
   thumbnailUrl: (data.thumbnail?.url ?? '') as string,
   descriptionHtml: (data.description?.html ?? '') as string,

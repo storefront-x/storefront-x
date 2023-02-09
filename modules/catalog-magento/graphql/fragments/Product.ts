@@ -14,7 +14,6 @@ export default (name = 'product') =>
     sku: field(),
     name: field(),
     url_key: field(),
-    url_path: field(),
     url_suffix: field(),
     stock_status: field(),
     only_x_left_in_stock: field(),
