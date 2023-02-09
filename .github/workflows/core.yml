@@ -7,13 +7,17 @@ on:
   pull_request:
 
 jobs:
-  checkout:
+  # This job is used to cache the yarn dependencies which can be used by all other jobs
+  # without having to install them in each job (which takes a lot of time)
+  # It is stored by hash of the yarn.lock file, so it will be invalidated if the dependencies change
+  # if not, it will be restored from cache (also in other workflows)
+  yarn:
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
-    name: checkout & yarn (${{ matrix.os }})
+    name: yarn install (${{ matrix.os }})
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,12 +27,13 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache
-      - name: Cache workspace
+      - name: Cache node_modules
         uses: actions/cache@v3
         with:
-          path: ${{ github.workspace }}
-          key: ${{ runner.os }}-workspace-${{ hashFiles('**') }}
-          restore-keys: []
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
   playwright:
     strategy:
@@ -37,15 +42,16 @@ jobs:
         count: [1, 2, 3]
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
-    needs: [checkout]
+    needs: [yarn]
     name: playwright shard ${{ matrix.count }} (${{ matrix.os }})
     steps:
-      - name: Restore cached workspace
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Restore cached node_modules
         uses: actions/cache@v3
-        id: restore-cache
         with:
-          path: ${{ github.workspace }}
-          key: ${{ runner.os }}-workspace-${{ hashFiles('**') }}
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -57,14 +63,16 @@ jobs:
 
   docs:
     runs-on: ubuntu-latest
-    needs: [checkout]
+    needs: [yarn]
     steps:
-      - name: Restore cached workspace
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Restore cached node_modules
         uses: actions/cache@v3
         id: restore-cache
         with:
-          path: ${{ github.workspace }}
-          key: ${{ runner.os }}-workspace-${{ hashFiles('**') }}
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
