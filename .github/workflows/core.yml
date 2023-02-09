@@ -90,6 +90,7 @@ jobs:
             node_modules
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+      - run: ls ~
       - run: yarn docs:build
 
   create-script-with-yarn:
