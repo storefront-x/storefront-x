@@ -23,12 +23,11 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache
-      - run: npx playwright install chromium
       - name: Cache workspace
         uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}
-          key: ${{ runner.os }}-checkout-${{ hashFiles('**') }}
+          key: ${{ runner.os }}-workspace-${{ hashFiles('**') }}
 
   playwright:
     strategy:
@@ -45,12 +44,14 @@ jobs:
         id: restore-cache
         with:
           path: ${{ github.workspace }}
-          key: ${{ runner.os }}-checkout-${{ hashFiles('**') }}
+          key: ${{ runner.os }}-workspace-${{ hashFiles('**') }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'yarn'
-      - run: npx playwright test --shard=${{ matrix.count }}/3 --forbid-only
+      - run: |
+          npx playwright install chromium
+          npx playwright test --shard=${{ matrix.count }}/3 --forbid-only
 
   docs:
     runs-on: ubuntu-latest
@@ -61,7 +62,7 @@ jobs:
         id: restore-cache
         with:
           path: ${{ github.workspace }}
-          key: ${{ runner.os }}-checkout-${{ hashFiles('**') }}
+          key: ${{ runner.os }}-workspace-${{ hashFiles('**') }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
