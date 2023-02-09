@@ -31,7 +31,7 @@ function _visitRandom(type = Product.Simple) {
 
   products = [...products.slice(0, index), ...products.slice(index + 1, products.length)]
 
-  cy.visit(product.url_key + '.html').waitForSfx()
+  cy.visit(product.url_key + product.url_suffix).waitForSfx()
 
   return product
 }
