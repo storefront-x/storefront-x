@@ -22,7 +22,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const urlKey = computed(() => product.value.urlKey)
 
-  const urlPath = computed(() => '/' + urlKey.value + product.value.urlSuffix)
+  const urlPath = computed(() => '/' + product.value.urlPath + product.value.urlSuffix)
 
   const descriptionHtml = computed(() => product.value.descriptionHtml)
 
