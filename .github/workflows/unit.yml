@@ -15,7 +15,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
-      - run: yarn install --immutable --immutable-cache
+      - name: Restore cached node_modules
+        uses: actions/cache/restore@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: yarn build --config ${{ inputs.storefront-x-config }} --onlyBootstrap
       - run: yarn test:unit

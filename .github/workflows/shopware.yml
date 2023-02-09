@@ -7,17 +7,52 @@ on:
   pull_request:
 
 jobs:
+  # This job will cache yarn dependencies when they already not exist in cache. If exists, it will restore them
+  # without having to install them in each job (which takes a lot of time)
+  # They are stored by hash of the yarn.lock file, so they will be invalidated if the dependencies themselves change
+  yarn:
+    runs-on: ubuntu-latest
+    name: yarn install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Restore node_modules from cache
+        id: cache-nodemodules
+        uses: actions/cache/restore@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install dependencies
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+        run: yarn install --immutable --immutable-cache
+      - name: Save node_modules to cache
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
   lint:
+    needs: [yarn]
     uses: ./.github/workflows/lint.yml
     with:
       storefront-x-config: storefront-x.shopware.config.js
 
   unit:
+    needs: [yarn]
     uses: ./.github/workflows/unit.yml
     with:
       storefront-x-config: storefront-x.shopware.config.js
 
   cypress:
+    needs: [yarn]
     uses: ./.github/workflows/cypress.yml
     with:
       storefront-x-config: storefront-x.shopware.config.js
@@ -25,6 +60,7 @@ jobs:
       target-directory: cypress/e2e
 
   lighthouse:
+    needs: [yarn]
     uses: ./.github/workflows/lighthouse.yml
     with:
       storefront-x-config: storefront-x.shopware.config.js
