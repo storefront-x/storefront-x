@@ -9,8 +9,6 @@ on:
 jobs:
   yarn:
     uses: ./.github/workflows/yarn.yml
-    with:
-      os: '["ubuntu-latest"]'
 
   lint:
     needs: [yarn]

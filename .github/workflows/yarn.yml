@@ -1,31 +1,12 @@
 name: yarn
 
-on:
-  workflow_call:
-    inputs:
-      os:
-        required: true
-        type: string
-
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    outputs:
-      os: ${{ steps.set-os.outputs.os }}
-    steps:
-      - id: set-os
-        run: echo "os=${{ inputs.os }}" >> $GITHUB_OUTPUT
-
   # This job will cache yarn dependencies when they already not exist in cache. If exists, it will restore them
   # without having to install them in each job (which takes a lot of time)
   # They are stored by hash of the yarn.lock file, so they will be invalidated if the dependencies themselves change
   yarn:
-    needs: [setup]
-    strategy:
-      matrix:
-        os: ${{ fromJSON(needs.setup.outputs.os) }}
-    runs-on: ${{ matrix.os }}
-    name: yarn install (${{ matrix.os }})
+    runs-on: ubuntu-latest
+    name: yarn install
     steps:
       - name: Checkout
         uses: actions/checkout@v3
