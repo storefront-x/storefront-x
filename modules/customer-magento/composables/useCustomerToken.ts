@@ -9,7 +9,7 @@ export default () => {
 
   return {
     get: () => cookies.get(ident),
-    set: (value: string) => cookies.set(ident, value),
+    set: (value: string) => cookies.set(ident, value, { path: '/' }),
     remove: () => cookies.remove(ident),
   }
 }
