@@ -42,6 +42,8 @@ jobs:
         with:
           node-version: 18
       - run: |
+          yarn install
+
           cp -rf modules/create-storefront-x ../create-storefront-x
           cd ../create-storefront-x
           npm install
@@ -51,12 +53,18 @@ jobs:
           modules=()
           for dir in $(ls -d modules/*/)
           do
-            cd $dir
-            npm link
-            json=$(<package.json)
-            module=$(echo "$json" | grep -oP '"name": "\K[^"]+')
-            modules+=("$module")
-            cd ../..
+            if [ "$dir" = "modules/create-storefront-x/" ]
+            then
+              echo Skipping $dir
+            else
+              echo Linking $dir
+              cd $dir
+              npm link
+              json=$(<package.json)
+              module=$(echo "$json" | grep -oP '"name": "\K[^"]+')
+              modules+=("$module")
+              cd ../..
+            fi
           done
 
           cd ../app
