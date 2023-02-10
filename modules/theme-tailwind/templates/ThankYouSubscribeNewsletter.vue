@@ -11,13 +11,16 @@
 import Container from '#ioc/atoms/Container'
 import useI18n from '#ioc/composables/useI18n'
 import useRoute from '#ioc/composables/useRoute'
-import useConfirmSubscribeToNewsletter from '#ioc/services/useConfirmSubscribeToNewsletter'
+import useConfirmSubscriptionToNewsletter from '#ioc/services/useConfirmSubscriptionToNewsletter'
+import { onMounted } from 'vue'
 
 const { t } = useI18n()
 const route = useRoute()
-const confirmSubscribeToNewsletter = useConfirmSubscribeToNewsletter()
+const confirmSubscriptionToNewsletter = useConfirmSubscriptionToNewsletter()
 
-await confirmSubscribeToNewsletter({ id: route.params.id, code: route.params.code })
+onMounted(async () => {
+  await confirmSubscriptionToNewsletter({ id: route.params.id, code: route.params.code })
+})
 </script>
 
 <i18n lang="yaml">
