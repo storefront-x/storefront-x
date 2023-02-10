@@ -11,10 +11,10 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      os: ${{ steps.set-os.outputs.os }}
     steps:
-      - id: set-matrix
-        run: echo "matrix=${{ inputs.os }}" >> $GITHUB_OUTPUT
+      - id: set-os
+        run: echo "os=${{ inputs.os }}" >> $GITHUB_OUTPUT
 
   # This job will cache yarn dependencies when they already not exist in cache. If exists, it will restore them
   # without having to install them in each job (which takes a lot of time)
@@ -23,7 +23,7 @@ jobs:
     needs: [setup]
     strategy:
       matrix:
-        os: ${{ fromJSON(needs.setup.outputs.matrix) }}
+        os: ${{ fromJSON(needs.setup.outputs.os) }}
     runs-on: ${{ matrix.os }}
     name: yarn install (${{ matrix.os }})
     steps:
