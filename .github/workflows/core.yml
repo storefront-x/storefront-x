@@ -30,7 +30,7 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable --immutable-cache
       - run: yarn docs:build
-  create-script-with-npm-locale:
+  create-script-with-npm:
     strategy:
       fail-fast: false
       matrix:
@@ -46,21 +46,22 @@ jobs:
           cd ../create-storefront-x
           npm install
           node index.js -y -- --directory=../app --integration=${{ matrix.integration }}
+
           cd ../storefront-x
           modules=()
-          for dir in $(ls -d modules/*/); do
+          for dir in $(ls -d modules/*/)
+          do
             cd $dir
             npm link
             json=$(<package.json)
             module=$(echo "$json" | grep -oP '"name": "\K[^"]+')
-            modules+=($module)
+            modules+=("$module")
             cd ../..
           done
+
           cd ../app
-          for module in "${modules[@]}" 
-          do
-            echo $module
-            npm link $module
-          done
+
+          npm link ${modules[@]}
+
           npm install
           npm run build
