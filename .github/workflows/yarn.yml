@@ -20,10 +20,10 @@ jobs:
   # without having to install them in each job (which takes a lot of time)
   # They are stored by hash of the yarn.lock file, so they will be invalidated if the dependencies themselves change
   yarn:
-    needs: setup
+    needs: [setup]
     strategy:
       matrix:
-        os: ${{fromJson(needs.setup.outputs.matrix)}}
+        os: ${{ fromJSON(needs.setup.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
     name: yarn install (${{ matrix.os }})
     steps:
