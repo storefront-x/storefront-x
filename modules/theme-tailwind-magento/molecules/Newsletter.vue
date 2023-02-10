@@ -62,10 +62,10 @@ const onSubmitNewsletter = async ({ newsletter }: { newsletter: string }) => {
 
     if (status === 'SUBSCRIBED') {
       showSuccessNotification(t('subscribedTitle'), t('thankYou'))
+      subscribed.value = true
     } else if (status === 'NOT_ACTIVE') {
       showSuccessNotification(t('confirmationRequired'), t('confirmationDesc'))
     }
-    subscribed.value = true
   } finally {
     loading.value = false
   }
