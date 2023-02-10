@@ -10,7 +10,7 @@ jobs:
   yarn:
     uses: ./.github/workflows/yarn.yml
     with:
-      os: [ubuntu-latest, windows-latest]
+      os: ubuntu-latest,windows-latest
 
   playwright:
     strategy:
