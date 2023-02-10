@@ -1,5 +1,8 @@
 name: yarn
 
+on:
+  workflow_call:
+
 jobs:
   # This job will cache yarn dependencies when they already not exist in cache. If exists, it will restore them
   # without having to install them in each job (which takes a lot of time)
