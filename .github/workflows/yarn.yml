@@ -14,7 +14,7 @@ jobs:
   yarn:
     strategy:
       matrix:
-        os: ${{ inputs.os }}
+        os: ${{ inputs.os.split(',') }}
     runs-on: ${{ matrix.os }}
     name: yarn install (${{ matrix.os }})
     steps:
