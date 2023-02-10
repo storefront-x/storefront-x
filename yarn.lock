@@ -3712,6 +3712,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/newsletter-magento@workspace:modules/newsletter-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/newsletter-magento@workspace:modules/newsletter-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/nprogress@workspace:modules/nprogress":
   version: 0.0.0-use.local
   resolution: "@storefront-x/nprogress@workspace:modules/nprogress"
