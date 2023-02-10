@@ -10,7 +10,7 @@ export default () => {
       const storedCacheId = cookies.get('X-Magento-Cache-Id')
 
       if (storedCacheId !== resCacheId) {
-        cookies.set('X-Magento-Cache-Id', resCacheId)
+        cookies.set('X-Magento-Cache-Id', resCacheId, { path: '/' })
       }
     }
   }
