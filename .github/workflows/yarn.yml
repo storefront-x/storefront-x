@@ -2,12 +2,18 @@ name: yarn
 
 on:
   workflow_call:
+    inputs:
+      os:
+        default: ubuntu-latest
+        required: true
+        type: string
 
 jobs:
   # This job will cache yarn dependencies when they already not exist in cache. If exists, it will restore them
   # without having to install them in each job (which takes a lot of time)
   # They are stored by hash of the yarn.lock file, so they will be invalidated if the dependencies themselves change
   yarn:
+    runs-on: ${{ inputs.os }}
     name: yarn install
     steps:
       - name: Checkout
