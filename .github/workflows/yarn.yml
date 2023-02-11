@@ -8,7 +8,7 @@ jobs:
   # without having to install them in each job (which takes a lot of time)
   # They are stored by hash of the yarn.lock file, so they will be invalidated if the dependencies themselves change
   yarn:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     name: yarn install
     steps:
       - name: Checkout
