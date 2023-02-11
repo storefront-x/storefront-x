@@ -9,9 +9,7 @@ on:
 jobs:
   yarn:
     uses: ./.github/workflows/yarn.yml
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
 
   lint:
     needs: [yarn]
