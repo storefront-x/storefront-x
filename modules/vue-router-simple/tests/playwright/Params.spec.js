@@ -54,3 +54,29 @@ test('navigating to named route with params', async ({ page }) => {
     },
   )
 })
+
+test('params are matched between / /', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router-simple',
+        [
+          'my-module',
+          {
+            pages: {
+              '[hello]': {
+                'index.vue': `<template><h1>Hello, {{ $route.params.hello }}!</h1></template>`,
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/hello/', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('Hello, hello!')
+    },
+  )
+})

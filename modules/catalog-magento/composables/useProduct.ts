@@ -1,12 +1,9 @@
 import ToProduct from '#ioc/mappers/ToProduct'
-import useCatalogMagentoStore from '#ioc/stores/useCatalogMagentoStore'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import isNullish from '#ioc/utils/isNullish'
 import { computed, reactive, Ref, ref } from 'vue'
 
 export default (product: Ref<ReturnType<typeof ToProduct>>) => {
-  const catalogMagentoStore = useCatalogMagentoStore()
-
   const bundle = ref({} as any)
 
   const configuration = reactive({} as any)
@@ -25,7 +22,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const urlKey = computed(() => product.value.urlKey)
 
-  const urlPath = computed(() => '/' + urlKey.value + catalogMagentoStore.productUrlSuffix)
+  const urlPath = computed(() => '/' + urlKey.value + product.value.urlSuffix)
 
   const descriptionHtml = computed(() => product.value.descriptionHtml)
 
@@ -42,7 +39,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   const breadcrumbs = computed(() => [
     ...product.value.categories.map((category: any) => ({
       title: category.name,
-      link: category.url_path + catalogMagentoStore.productUrlSuffix,
+      link: category.urlPath + category.urlSuffix,
     })),
   ])
 
@@ -51,6 +48,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   const isOnSale = computed(() => finalPrice.value.value < regularPrice.value.value)
 
   const images = computed(() => product.value.images ?? [])
+
+  const relatedProducts = computed(() => product.value.relatedProducts)
 
   const crossSellProducts = computed(() => product.value.crossSellProducts)
 
@@ -187,6 +186,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isBundleProduct,
     isOptionsProduct,
     mediaGallery,
+    relatedProducts,
     crossSellProducts,
     upsellProducts,
     bundleItems,

@@ -1,3 +1,38 @@
+## v1.11.0 (2023-02-10)
+
+#### :rocket: Enhancement
+
+- [#343](https://github.com/storefront-x/storefront-x/pull/343) Support newsletter double opt-in trough email link ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#344](https://github.com/storefront-x/storefront-x/pull/344) Fix cookies to be set on root path ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#340](https://github.com/storefront-x/storefront-x/pull/340) Fix i18n datetimes to not crash with null ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.10.3 (2023-02-09)
+
+#### :bug: Bug Fix
+
+- [#339](https://github.com/storefront-x/storefront-x/pull/339) Fix urlSuffix on Product and Category ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.10.2 (2023-02-08)
+
+#### :rocket: Enhancement
+
+- [#336](https://github.com/storefront-x/storefront-x/pull/336) Add relatedProducts to composables ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.10.1 (2023-02-08)
 
 #### :rocket: Enhancement

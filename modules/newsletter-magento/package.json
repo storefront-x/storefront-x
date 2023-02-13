@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/newsletter-magento",
+  "version": "1.11.0",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -53,6 +53,7 @@ export default {
     '@storefront-x/product-comparison-magento',
     '@storefront-x/robots-magento',
     '@storefront-x/sitemap-magento',
+    '@storefront-x/newsletter-magento',
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',

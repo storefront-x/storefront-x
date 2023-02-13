@@ -3712,6 +3712,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/newsletter-magento@workspace:modules/newsletter-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/newsletter-magento@workspace:modules/newsletter-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/nprogress@workspace:modules/nprogress":
   version: 0.0.0-use.local
   resolution: "@storefront-x/nprogress@workspace:modules/nprogress"
@@ -3762,6 +3768,12 @@ __metadata:
 "@storefront-x/robots@workspace:modules/robots":
   version: 0.0.0-use.local
   resolution: "@storefront-x/robots@workspace:modules/robots"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/runtime-config@workspace:modules/runtime-config":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/runtime-config@workspace:modules/runtime-config"
   languageName: unknown
   linkType: soft
 

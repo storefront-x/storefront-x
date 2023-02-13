@@ -7,17 +7,25 @@ on:
   pull_request:
 
 jobs:
+  yarn:
+    uses: ./.github/workflows/yarn.yml
+    with:
+      os: ubuntu-latest
+
   lint:
+    needs: [yarn]
     uses: ./.github/workflows/lint.yml
     with:
       storefront-x-config: storefront-x.magento.config.js
 
   unit:
+    needs: [yarn]
     uses: ./.github/workflows/unit.yml
     with:
       storefront-x-config: storefront-x.magento.config.js
 
   cypress:
+    needs: [yarn]
     uses: ./.github/workflows/cypress.yml
     with:
       storefront-x-config: storefront-x.magento.config.js

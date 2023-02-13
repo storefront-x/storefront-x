@@ -14,7 +14,7 @@ import Module from './Module.js'
 const logger = consola.withTag('core')
 
 if (!global.fetch) {
-  logger.log('Using node-fetch polyfill')
+  if (process.env.NODE_ENV !== 'test') logger.log('Using node-fetch polyfill')
 
   global.fetch = fetch
   global.Headers = Headers

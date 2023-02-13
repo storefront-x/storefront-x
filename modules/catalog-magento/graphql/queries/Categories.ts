@@ -1,5 +1,6 @@
 import query from '#ioc/graphql/query'
 import field from '#ioc/graphql/field'
+import CategoryTree from '#ioc/graphql/fragments/CategoryTree'
 
 export default () =>
   query()
@@ -11,10 +12,7 @@ export default () =>
         .args({ filters: { parent_id: { eq: '$id' } } })
         .fields({
           items: field({
-            __typename: field(),
-            name: field(),
-            url_key: field(),
-            url_suffix: field(),
+            ...CategoryTree(),
             products: field({
               total_count: field(),
             }),

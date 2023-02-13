@@ -35,6 +35,7 @@ export default {
     '@storefront-x/product-reviews-magento',
     '@storefront-x/product-comparison-magento',
     '@storefront-x/wishlist-magento',
+    '@storefront-x/newsletter-magento',
 
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
