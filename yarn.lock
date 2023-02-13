@@ -3830,9 +3830,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/test-module@workspace:modules/testModule":
+"@storefront-x/test-module@workspace:modules/test-module":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/test-module@workspace:modules/testModule"
+  resolution: "@storefront-x/test-module@workspace:modules/test-module"
   languageName: unknown
   linkType: soft
 
