@@ -26,7 +26,7 @@ export default () => {
   ) => {
     const { id } = await getOrCreateCartId()
 
-    let response = null
+    let response
 
     if (isNonEmptyObject(bundle)) {
       response = await addBundleProductToCartRepository(id, product, { quantity, bundle })
