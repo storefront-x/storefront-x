@@ -62,7 +62,7 @@ jobs:
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: yarn docs:build
-  create-script-with-yarn:
+  create-script-with-npm:
     strategy:
       fail-fast: false
       matrix:
@@ -73,23 +73,36 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v6
       - run: |
           yarn install
-
           cp -rf modules/create-storefront-x ../create-storefront-x
           cd ../create-storefront-x
-          yarn install
+          npm install
           node index.js -y -- --directory=../app --integration=${{ matrix.integration }}
+          cd ../storefront-x
+          modules=()
+          for dir in $(ls -d modules/*/)
+          do
+            if [ "$dir" = "modules/create-storefront-x/" ] || [ "$dir" = "modules/demo-magento/" ] || [ "$dir" = "modules/demo-shopware/" ] || [ "$dir" = "modules/demo-px/" ]
+            then
+              echo Skipping $dir
+            else
+              echo Linking $dir
+              cd $dir
+              npm link
+              json=$(<package.json)
+              module=$(echo "$json" | grep -oP '"name": "\K[^"]+')
+              modules+=("$module")
+              cd ../..
+            fi
+          done
 
           cd ../app
+          cd /modules/demo-${{ matrix.integration }}
+          npm link
+          modules+=("demo-${{ matrix.integration }}")
 
-          file=package.json
-          contents=$(cat "$file")
-          contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.now.sh/storefront-x/storefront-x/modules/\1?${{ steps.branch-name.outputs.current_branch }}"#g')
-          echo "$contents" > "$file"
+          npm link ${modules[@]}
 
-          yarn install
-          yarn build
+          npm install
+          npm run build
