@@ -6,6 +6,9 @@ on:
       storefront-x-config:
         required: true
         type: string
+      only-bootstrap:
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -24,7 +27,7 @@ jobs:
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn build --config storefront-x.${{inputs.storefront-x-config}}.config.js
+        run: yarn build --config storefront-x.${{inputs.storefront-x-config}}.config.js --onlyBootstrap ${{inputs.only-bootstrap}}
       - name: Remove old build cache
         uses: snnaplab/delete-branch-cache-action@v1
         with:
