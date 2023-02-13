@@ -16,10 +16,19 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Remove unused cache
-        uses: skjolber/tidy-cache-github-action@v1
+      - name: Restore cached node_modules
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn build --config storefront-x.${{inputs.storefront-x-config}}.config.js
+      - name: Remove old build cache
+        uses: snnaplab/delete-branch-cache-action@v1
+        with:
+          key: ${{ runner.os }}-sfx-${{inputs.storefront-x-config}}
       - name: Save built .sfx directory to cache
         uses: actions/cache/save@v3
         with:
