@@ -99,6 +99,8 @@ jobs:
                 }
               }'
             
+            echo $?
+            
             if [ $? -ne 0 ]; then
               echo "Deploying request failed, retrying in 20 seconds ..."
               sleep 20
