@@ -50,6 +50,7 @@
     "@storefront-x/wishlist-magento": "^1.0.0",
     "@storefront-x/newsletter-magento": "^1.0.0",
     "@storefront-x/theme-tailwind": "^1.0.0",
-    "@storefront-x/theme-tailwind-magento": "^1.0.0"
+    "@storefront-x/theme-tailwind-magento": "^1.0.0",
+    "@storefront-x/test-module": "^1.0.0"
   }
 }

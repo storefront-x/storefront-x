@@ -73,6 +73,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v6
       - run: |
           yarn install
 
@@ -85,7 +88,7 @@ jobs:
 
           file=package.json
           contents=$(cat "$file")
-          contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.now.sh/storefront-x/storefront-x/modules/\1?main"#g')
+          contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.now.sh/storefront-x/storefront-x/modules/\1?$steps.branch-name.outputs.current_branch"#g')
           echo "$contents" > "$file"
 
           yarn install
