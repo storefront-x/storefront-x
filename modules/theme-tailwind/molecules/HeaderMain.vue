@@ -28,6 +28,7 @@
       </Link>
 
       <div class="flex items-center justify-end">
+        <MicroComparison class="hidden lg:flex mr-2" />
         <MicroWishlist class="hidden lg:flex mr-2" />
         <MicroAccount :submenu="true" class="hidden lg:flex mr-2" />
         <MicroSearch class="lg:hidden mr-2" />
@@ -47,6 +48,7 @@ import MicroWishlist from '#ioc/molecules/MicroWishlist'
 import MicroAccount from '#ioc/molecules/MicroAccount'
 import MicroSearch from '#ioc/molecules/MicroSearch'
 import MicroCart from '#ioc/molecules/MicroCart'
+import MicroComparison from '#ioc/molecules/MicroComparison'
 import OutlineMenu from '#ioc/icons/OutlineMenu'
 import OutlineX from '#ioc/icons/OutlineX'
 import logo from '#ioc/assets/logo'

@@ -69,6 +69,7 @@
       <div class="flex">
         <AddToWishlist :title="t('Add')" />
         <FacebookShare />
+        <AddToComparison :title="t('Compare')" />
       </div>
       <div class="w-full flex mt-4 text-gray-400">
         <p class="mr-1">{{ t('Warranty: 24 months') }} |</p>
@@ -93,6 +94,7 @@ import { computed, defineAsyncComponent, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
+import AddToComparison from '#ioc/molecules/AddToComparison'
 
 const ProductBundleOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductBundleOptions'))
 const ProductConfigurableOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductConfigurableOptions'))
@@ -129,4 +131,5 @@ cs-CZ:
   'Warranty: 24 months': 'Záruka: 24 měsíců'
   'Product information': 'Informace o produktu'
   'Add': 'Oblíbený'
+  'Compare': 'Srovnat'
 </i18n>

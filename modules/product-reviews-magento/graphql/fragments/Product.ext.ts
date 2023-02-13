@@ -6,6 +6,7 @@ export default (self: any) => {
     const fragment = self()
     addFields(fragment, {
       rating_summary: field(),
+      review_count: field(),
     })
 
     return fragment

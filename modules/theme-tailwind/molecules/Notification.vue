@@ -1,6 +1,7 @@
 <template>
   <div
     class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden"
+    :data-cy="`notification-type-${notification.level}`"
   >
     <div class="p-4">
       <div class="flex justify-between items-center">
