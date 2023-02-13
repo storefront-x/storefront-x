@@ -34,7 +34,11 @@ jobs:
             node_modules
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-      - run: yarn build --config ${{inputs.storefront-x-config}} --onlyBootstrap
+      - name: Restore cached .sfx directory
+        uses: actions/cache/restore@v3
+        with:
+          path: .sfx
+          key: ${{ runner.os }}-sfx-${{inputs.storefront-x-config}}
       - id: set-test-chunks
         name: Set Chunks
         # get all spec files from the target-directory directory, group them to be at most number-of-tests-per-run (xargs -n...) at a time and transform them to json
@@ -65,7 +69,11 @@ jobs:
             node_modules
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-      - run: yarn build --config ${{inputs.storefront-x-config}}
+      - name: Restore cached .sfx directory
+        uses: actions/cache/restore@v3
+        with:
+          path: .sfx
+          key: ${{ runner.os }}-sfx-${{inputs.storefront-x-config}}
       - run: yarn serve &
       - run: yarn cypress run --browser chrome --spec $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')
       - uses: actions/upload-artifact@v3

@@ -1,4 +1,4 @@
-name: Lint
+name: Yarn build
 
 on:
   workflow_call:
@@ -8,23 +8,20 @@ on:
         type: string
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
+    name: build
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Restore cached node_modules
-        uses: actions/cache/restore@v3
-        with:
-          path: |
-            node_modules
-            ~/.cache/Cypress
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-      - name: Restore cached .sfx directory
-        uses: actions/cache/restore@v3
+      - name: Remove unused cache
+        uses: skjolber/tidy-cache-github-action@v1
+      - name: Install dependencies
+        run: yarn build --config storefront-x.${{inputs.storefront-x-config}}.config.js
+      - name: Save built .sfx directory to cache
+        uses: actions/cache/save@v3
         with:
           path: .sfx
           key: ${{ runner.os }}-sfx-${{inputs.storefront-x-config}}
-      - run: yarn lint:prod

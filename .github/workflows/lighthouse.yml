@@ -29,7 +29,11 @@ jobs:
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: npm install -g @lhci/cli@0.9.x
-      - run: yarn build --config ${{ inputs.storefront-x-config }}
+      - name: Restore cached .sfx directory
+        uses: actions/cache/restore@v3
+        with:
+          path: .sfx
+          key: ${{ runner.os }}-sfx-${{inputs.storefront-x-config}}
       - run: >
           lhci collect --startServerCommand "yarn serve --compression"
           --url http://localhost:3000
