@@ -62,7 +62,7 @@ jobs:
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: yarn docs:build
-  create-script-with-npm:
+  create-script-with-yarn:
     strategy:
       fail-fast: false
       matrix:
@@ -78,30 +78,15 @@ jobs:
 
           cp -rf modules/create-storefront-x ../create-storefront-x
           cd ../create-storefront-x
-          npm install
+          yarn install
           node index.js -y -- --directory=../app --integration=${{ matrix.integration }}
-
-          cd ../storefront-x
-          modules=()
-          for dir in $(ls -d modules/*/)
-          do
-            if [ "$dir" = "modules/create-storefront-x/" ]
-            then
-              echo Skipping $dir
-            else
-              echo Linking $dir
-              cd $dir
-              npm link
-              json=$(<package.json)
-              module=$(echo "$json" | grep -oP '"name": "\K[^"]+')
-              modules+=("$module")
-              cd ../..
-            fi
-          done
 
           cd ../app
 
-          npm link ${modules[@]}
+          file=package.json
+          contents=$(cat "$file")
+          contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.now.sh/storefront-x/storefront-x/modules/\1?main"#g')
+          echo "$contents" > "$file"
 
-          npm install
-          npm run build
+          yarn install
+          yarn build
