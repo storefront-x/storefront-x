@@ -79,7 +79,7 @@ jobs:
         shell: bash
         # ${{ secrets.MXCLOUD_AUTH }}
         run: |
-          DEPLOY_SUCCESS=false
+          ENV_DEPLOY_SUCCESS=false
 
           for i in $(seq 1 3); do
             echo "Deploying '${{ steps.branch-name.outputs.current_branch }}' - attempt no. ${i}"
@@ -99,19 +99,20 @@ jobs:
                   "BUILD_TAG": "${{ steps.branch-name.outputs.current_branch }}",
                   "CI_REPOSITORY": "${{ env.IMAGE_NAME }}"
                 }
-              }'
+              }' \
+            || (ENV_DEPLOY_SUCCESS=false)
 
-            if [ $? -ne 0 ]; then
+            if [ "$ENV_DEPLOY_SUCCESS" != true ]; then
               echo "Deploying request failed, retrying in 20 seconds ..."
               sleep 20
               continue
-            else
-              DEPLOY_SUCCESS=true
-              break
             fi
+            
+            ENV_DEPLOY_SUCCESS=true
+            break
           done
 
-          if [ "$DEPLOY_SUCCESS" != true ]; then
+          if [ "$ENV_DEPLOY_SUCCESS" != true ]; then
             echo "Deployment failed after 3 attempts, exiting"
             exit 1
           fi
