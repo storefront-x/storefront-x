@@ -77,7 +77,6 @@ jobs:
         uses: tj-actions/branch-names@v6
       - name: Deploy to MxCloud
         shell: bash
-        # ${{ secrets.MXCLOUD_AUTH }}
         run: |
           ENV_DEPLOY_SUCCESS=false
 
@@ -85,7 +84,7 @@ jobs:
             echo "Deploying '${{ steps.branch-name.outputs.current_branch }}' - attempt no. ${i}"
             
             curl --fail-with-body -L --max-time 120 --retry 5 --request POST '${{ secrets.MXCLOUD_URL }}/api/env/deploy' \
-              --header 'Authorization: Basic bad:auth' \
+              --header 'Authorization: Basic ${{ secrets.MXCLOUD_AUTH }}' \
               --header 'Content-Type: application/json' \
               --data-raw '{
                 "git_project": "storefront-x",
