@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/product-comparison-magento",
+  "version": "1.1.0",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}
