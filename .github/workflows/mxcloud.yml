@@ -79,8 +79,8 @@ jobs:
         shell: bash
         # ${{ secrets.MXCLOUD_AUTH }}
         run: |
-          echo "Deploying '${{ steps.branch-name.outputs.current_branch }}' - attempt no. ${i}"
-          curl --fail-with-body -L --max-time 120 --retry 3 --retry-delay 20 --request POST '${{ secrets.MXCLOUD_URL }}/api/env/deploy' \
+          echo "Deploying '${{ steps.branch-name.outputs.current_branch }}'"
+          curl --fail-with-body -L --max-time 120 --retry 3 --retry-delay 20 --retry-all-errors --request POST '${{ secrets.MXCLOUD_URL }}/api/env/deploy' \
             --header 'Authorization: Basic bad:auth' \
             --header 'Content-Type: application/json' \
             --data-raw '{
