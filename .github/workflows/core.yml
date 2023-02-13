@@ -61,7 +61,7 @@ jobs:
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: yarn docs:build
-  create-script-with-yarn:
+  create-script-with-npm:
     strategy:
       fail-fast: false
       matrix:
@@ -86,5 +86,5 @@ jobs:
           contents=$(cat "$file")
           contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.now.sh/storefront-x/storefront-x/modules/\1?${{ steps.branch-name.outputs.current_branch }}"#g')
           echo "$contents" > "$file"
-          yarn install
-          yarn build
+          npm install
+          npm run build
