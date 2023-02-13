@@ -7,8 +7,8 @@ export default defineConfig({
     baseUrl: 'http://localhost:3000/',
     viewportWidth: 1280,
     viewportHeight: 768,
-    video: false,
-    screenshotOnRunFailure: false,
+    video: true,
+    screenshotOnRunFailure: true,
     supportFile: 'cypress/support/index.ts',
     defaultCommandTimeout: 10000,
     retries: {
