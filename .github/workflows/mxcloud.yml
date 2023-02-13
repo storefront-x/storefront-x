@@ -103,6 +103,9 @@ jobs:
             || (ENV_DEPLOY_SUCCESS=false)
 
             if [ "$ENV_DEPLOY_SUCCESS" != true ]; then
+              if [ $i -eq 3 ]; then
+                break
+              fi
               echo "Deploying request failed, retrying in 20 seconds ..."
               sleep 20
               continue
