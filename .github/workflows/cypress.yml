@@ -37,7 +37,9 @@ jobs:
       - name: Restore cached .sfx directory
         uses: actions/cache/restore@v3
         with:
-          path: .sfx
+          path: |
+            .sfx
+            cypress
           key: ${{ runner.os }}-sfx-${{inputs.storefront-x-config}}
       - id: set-test-chunks
         name: Set Chunks
@@ -72,7 +74,9 @@ jobs:
       - name: Restore cached .sfx directory
         uses: actions/cache/restore@v3
         with:
-          path: .sfx
+          path: |
+            .sfx
+            cypress
           key: ${{ runner.os }}-sfx-${{inputs.storefront-x-config}}
       - run: yarn serve &
       - run: yarn cypress run --browser chrome --spec $(echo '${{ needs.setup.outputs['test-chunks'] }}' | jq -cMr '.[${{ matrix.chunk }}] | @text')

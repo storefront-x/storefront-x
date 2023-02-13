@@ -32,5 +32,7 @@ jobs:
       - name: Save built .sfx directory to cache
         uses: actions/cache/save@v3
         with:
-          path: .sfx
+          path: |
+            .sfx
+            cypress
           key: ${{ runner.os }}-sfx-${{inputs.storefront-x-config}}

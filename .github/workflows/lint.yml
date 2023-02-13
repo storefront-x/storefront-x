@@ -25,6 +25,8 @@ jobs:
       - name: Restore cached .sfx directory
         uses: actions/cache/restore@v3
         with:
-          path: .sfx
+          path: |
+            .sfx
+            cypress
           key: ${{ runner.os }}-sfx-${{inputs.storefront-x-config}}
       - run: yarn lint:prod
