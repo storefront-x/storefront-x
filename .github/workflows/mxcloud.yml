@@ -97,8 +97,13 @@ jobs:
                   "BUILD_TAG": "${{ steps.branch-name.outputs.current_branch }}",
                   "CI_REPOSITORY": "${{ env.IMAGE_NAME }}"
                 }
-              }' \
-              || (echo "Deploying request failed, retrying in 20 seconds ..." && sleep 20 && continue)
+              }'
+            
+            if [ $? -ne 0 ]; then
+              echo "Deploying request failed, retrying in 20 seconds ..."
+              sleep 20
+              continue
+            fi
             
             ENV_DEPLOY_SUCCESS=true
             break
