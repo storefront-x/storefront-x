@@ -7,34 +7,62 @@ on:
   pull_request:
 
 jobs:
+  yarn-ubuntu:
+    uses: ./.github/workflows/yarn.yml
+    with:
+      os: ubuntu-latest
+
+  yarn-windows:
+    uses: ./.github/workflows/yarn.yml
+    with:
+      os: windows-latest
+
   playwright:
     strategy:
       fail-fast: false
       matrix:
         count: [1, 2, 3]
-        os: [ ubuntu-latest, windows-latest ]
+        os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    needs: [yarn-ubuntu, yarn-windows]
     name: playwright shard ${{ matrix.count }} (${{ matrix.os }})
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
-      - run: yarn install --immutable --immutable-cache
-      - run: npx playwright install chromium
-      - run: npx playwright test --shard=${{ matrix.count }}/3 --forbid-only
+      - name: Restore cached node_modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+      - name: Run Playwright tests - shard ${{ matrix.count }} of 3
+        run: |
+          npx playwright install chromium
+          npx playwright test --shard=${{ matrix.count }}/3 --forbid-only
 
   docs:
     runs-on: ubuntu-latest
+    needs: [yarn-ubuntu]
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
-      - run: yarn install --immutable --immutable-cache
+      - name: Restore cached node_modules
+        uses: actions/cache@v3
+        id: restore-cache
+        with:
+          path: |
+            node_modules
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: yarn docs:build
+
   create-script-with-yarn:
     strategy:
       fail-fast: false
@@ -50,6 +78,7 @@ jobs:
           cd app
           yarn install
           yarn build
+
   create-script-with-npm:
     strategy:
       fail-fast: false
