@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { makeProject, wrapConsole } from '@storefront-x/testing'
 
-test.only('event bus with single listener', async ({ page }) => {
+test('event bus with single listener', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -77,7 +77,7 @@ test.only('event bus with single listener', async ({ page }) => {
   )
 })
 
-test.only('event bus with multiple listeners', async ({ page }) => {
+test('event bus with multiple listeners', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -174,7 +174,7 @@ test.only('event bus with multiple listeners', async ({ page }) => {
   )
 })
 
-test.only('event bus without listeners', async ({ page }) => {
+test('event bus without listeners', async ({ page }) => {
   await makeProject(
     {
       modules: [
