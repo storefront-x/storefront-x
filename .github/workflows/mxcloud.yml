@@ -98,7 +98,7 @@ jobs:
                   "CI_REPOSITORY": "${{ env.IMAGE_NAME }}"
                 }
               }' \
-              || (ENV_DEPLOY_SUCCESS=false)
+            || (ENV_DEPLOY_SUCCESS=false)
 
             if [ $? -eq 0 ]; then
               ENV_DEPLOY_SUCCESS=true
