@@ -30,6 +30,7 @@ export default {
     '@storefront-x/product-reviews',
     '@storefront-x/wishlist',
     '@storefront-x/catalog-labels',
+    '@storefront-x/product-comparison',
     '@storefront-x/robots',
     '@storefront-x/sitemap',
 
@@ -49,6 +50,7 @@ export default {
     '@storefront-x/product-reviews-magento',
     '@storefront-x/wishlist-magento',
     '@storefront-x/catalog-labels-magento',
+    '@storefront-x/product-comparison-magento',
     '@storefront-x/robots-magento',
     '@storefront-x/sitemap-magento',
     '@storefront-x/newsletter-magento',
