@@ -40,12 +40,12 @@ export default defineConfig({
         // like image resizer or server proxy
         runtimeCaching: [
           {
-            urlPattern: /_i/,
+            urlPattern: /\/_i\//,
             handler: 'CacheFirst',
           },
           {
-            urlPattern: /_shopware/,
-            handler: 'StaleWhileRevalidate',
+            urlPattern: /\/_magento\//,
+            handler: 'NetworkFirst',
           },
         ],
       },

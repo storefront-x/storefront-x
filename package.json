@@ -20,6 +20,7 @@
     "dev": "sfx dev",
     "build": "sfx build",
     "serve": "sfx serve",
+    "make": "sfx make",
     "cypress": "npx cypress",
     "docs:dev": "npx vitepress dev docs",
     "docs:build": "npx vitepress build docs",

@@ -5,14 +5,16 @@ import ToConfigurableOption from '#ioc/mappers/ToConfigurableOption'
 import ToVariant from '#ioc/mappers/ToVariant'
 import ToOptions from '#ioc/mappers/ToOptions'
 import ToGroupedItem from '#ioc/mappers/ToGroupedItem'
+import ToCategory from '#ioc/mappers/ToCategory'
 
 export default (data: any) => ({
   __typename: data.__typename ?? '',
   id: (data.id ?? 0) as number,
   sku: (data.sku ?? '') as string,
   name: (data.name ?? '') as string,
-  categories: data.categories ?? [],
+  categories: (data.categories ?? []).map(ToCategory),
   urlKey: (data.url_key ?? '') as string,
+  urlSuffix: (data.url_suffix ?? '') as string,
   thumbnailUrl: (data.thumbnail?.url ?? '') as string,
   descriptionHtml: (data.description?.html ?? '') as string,
   shortDescriptionHtml: (data.short_description?.html ?? '') as string,
@@ -28,7 +30,8 @@ export default (data: any) => ({
   },
   images: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
   mediaGallery: (data.media_gallery ?? []).filter((item: any) => !item.disabled),
-  crossSellProducts: (data.related_products ?? []).map(ToProduct),
+  relatedProducts: (data.related_products ?? []).map(ToProduct),
+  crossSellProducts: (data.crosssell_products ?? []).map(ToProduct),
   upsellProducts: (data.upsell_products ?? []).map(ToProduct),
   bundleItems: (data.items ?? []).map(ToBundleItem(data.price_range?.minimum_price?.final_price?.currency)),
   configurableOptions: (data.configurable_options ?? []).map(ToConfigurableOption),

@@ -3559,9 +3559,11 @@ __metadata:
     dotenv: ^16.0.3
     ejs: ^3.1.8
     express: ^4.18.2
+    kolorist: ^1.7.0
     lodash-es: ^4.17.21
     node-fetch: ^3.3.0
     open: ^8.4.0
+    prompts: ^2.4.2
     rollup: ^3.7.3
     rollup-plugin-visualizer: ^5.8.3
     vite: ^4.0.0
@@ -3710,6 +3712,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/newsletter-magento@workspace:modules/newsletter-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/newsletter-magento@workspace:modules/newsletter-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/nprogress@workspace:modules/nprogress":
   version: 0.0.0-use.local
   resolution: "@storefront-x/nprogress@workspace:modules/nprogress"
@@ -3748,6 +3756,12 @@ __metadata:
 "@storefront-x/robots@workspace:modules/robots":
   version: 0.0.0-use.local
   resolution: "@storefront-x/robots@workspace:modules/robots"
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/runtime-config@workspace:modules/runtime-config":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/runtime-config@workspace:modules/runtime-config"
   languageName: unknown
   linkType: soft
 
@@ -9773,6 +9787,13 @@ __metadata:
   version: 1.6.0
   resolution: "kolorist@npm:1.6.0"
   checksum: 4d898b782ceaaac3a51d9820a13563fcd0ed516d5493374a0e04ceda93ed4d74f9e267e8da5fb4453e508099b9f6b22e38ac1bff92fdc227081f460c003401c0
+  languageName: node
+  linkType: hard
+
+"kolorist@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "kolorist@npm:1.7.0"
+  checksum: 0eb64d22a204be11ddd7d2017525bf2603de38b15c571f79d6f0c5f1c869b8adfd40c3aa71c12e0cfe5496c25b2bbe891267cbc11f5b3fbc858d74ae79bac293
   languageName: node
   linkType: hard
 

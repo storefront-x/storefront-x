@@ -1,3 +1,92 @@
+## v1.11.0 (2023-02-10)
+
+#### :rocket: Enhancement
+
+- [#343](https://github.com/storefront-x/storefront-x/pull/343) Support newsletter double opt-in trough email link ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#344](https://github.com/storefront-x/storefront-x/pull/344) Fix cookies to be set on root path ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#340](https://github.com/storefront-x/storefront-x/pull/340) Fix i18n datetimes to not crash with null ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.10.3 (2023-02-09)
+
+#### :bug: Bug Fix
+
+- [#339](https://github.com/storefront-x/storefront-x/pull/339) Fix urlSuffix on Product and Category ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.10.2 (2023-02-08)
+
+#### :rocket: Enhancement
+
+- [#336](https://github.com/storefront-x/storefront-x/pull/336) Add relatedProducts to composables ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.10.1 (2023-02-08)
+
+#### :rocket: Enhancement
+
+- [#334](https://github.com/storefront-x/storefront-x/pull/334) Add bad-credentials status to failed cookie auth redirect ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#335](https://github.com/storefront-x/storefront-x/pull/335) Move brand field to the Product fragment extension ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#332](https://github.com/storefront-x/storefront-x/pull/332) Fix TypeScript aliases for modules in node_modules ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :house: Internal
+
+- [#326](https://github.com/storefront-x/storefront-x/pull/326) Shard Playwright tests ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### Committers: 2
+
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.10.0 (2023-02-07)
+
+#### :rocket: Enhancement
+
+- [#325](https://github.com/storefront-x/storefront-x/pull/325) Add 'sfx make' command ([@kubo12312](https://github.com/kubo12312))
+- [#330](https://github.com/storefront-x/storefront-x/pull/330) Add header bypass to cookie-auth ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#324](https://github.com/storefront-x/storefront-x/pull/324) Refactor cookie auth ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#320](https://github.com/storefront-x/storefront-x/pull/320) Upgrade Cypress to v12.5 ([@kubo12312](https://github.com/kubo12312))
+- [#315](https://github.com/storefront-x/storefront-x/pull/315) Add support for locales to sitemap ([@kubo12312](https://github.com/kubo12312))
+- [#322](https://github.com/storefront-x/storefront-x/pull/322) Add support for type extensions ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#331](https://github.com/storefront-x/storefront-x/pull/331) Fix ServiceWorker caching ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#329](https://github.com/storefront-x/storefront-x/pull/329) Make cookie-auth return non 200 statuses ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :memo: Documentation
+
+- [#327](https://github.com/storefront-x/storefront-x/pull/327) Fix typos in the documentation ([@MartinaRandulova](https://github.com/MartinaRandulova))
+- [#317](https://github.com/storefront-x/storefront-x/pull/317) Add Vite section to the docs ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#307](https://github.com/storefront-x/storefront-x/pull/307) Improve Overriding and Extending documentation sections ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### :house: Internal
+
+- [#323](https://github.com/storefront-x/storefront-x/pull/323) Fix casing of goToWishlist ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 5
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Martina Randulová ([@MartinaRandulova](https://github.com/MartinaRandulova))
+
 ## v1.9.2 (2023-02-02)
 
 #### :rocket: Enhancement

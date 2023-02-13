@@ -19,6 +19,7 @@ export default () =>
           id: field(),
           name: field(),
           url_path: field(),
+          url_suffix: field(),
           image: field(),
           description: field(),
           breadcrumbs: field({
@@ -29,6 +30,7 @@ export default () =>
             id: field(),
             name: field(),
             url_path: field(),
+            url_suffix: field(),
             products: field({
               total_count: field(),
             }),

@@ -32,6 +32,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const crossSellProducts = computed(() => product.value.crossSellProducts)
 
+  const relatedProducts = computed(() => product.value.relatedProducts)
+
   const isOnSale = computed(() => finalPrice.value.value < regularPrice.value.value)
 
   return reactive({
@@ -51,5 +53,6 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     images,
     meta,
     crossSellProducts,
+    relatedProducts,
   })
 }

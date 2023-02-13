@@ -1,6 +1,6 @@
 import ToCategory from '#ioc/mappers/ToCategory'
-import useCatalogMagentoStore from '#ioc/stores/useCatalogMagentoStore'
 import { computed, reactive, Ref } from 'vue'
+import useCatalogMagentoStore from '#ioc/stores/useCatalogMagentoStore'
 
 export default (category: Ref<ReturnType<typeof ToCategory>>) => {
   const catalogMagentoStore = useCatalogMagentoStore()
@@ -11,7 +11,7 @@ export default (category: Ref<ReturnType<typeof ToCategory>>) => {
 
   const description = computed(() => category.value.description)
 
-  const urlPath = computed(() => '/' + category.value.urlKey + catalogMagentoStore.categoryUrlSuffix)
+  const urlPath = computed(() => '/' + category.value.urlPath + category.value.urlSuffix)
 
   const children = computed(() => category.value.children ?? [])
 
@@ -23,7 +23,7 @@ export default (category: Ref<ReturnType<typeof ToCategory>>) => {
     category.value.breadcrumbs.map((breadcrumb: any) => {
       return {
         title: breadcrumb.title,
-        link: breadcrumb.link + '.html',
+        link: breadcrumb.link + catalogMagentoStore.categoryUrlSuffix,
       }
     }),
   )

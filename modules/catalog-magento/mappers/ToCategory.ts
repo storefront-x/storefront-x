@@ -2,7 +2,9 @@ import ToCategory from '#ioc/mappers/ToCategory'
 
 export default (data: any) => ({
   id: data.id ?? 0,
-  urlKey: data.url_path,
+  urlKey: data.url_key,
+  urlPath: data.url_path,
+  urlSuffix: (data.url_suffix ?? '') as string,
   name: data.name ?? '',
   description: data.description ?? '',
   meta: {

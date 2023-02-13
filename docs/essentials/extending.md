@@ -37,7 +37,7 @@ export default (data: any) => ({
   sku: (data.sku ?? '') as string,
   name: (data.name ?? '') as string,
   finalPrice: ToMoney(data.price_range?.minimum_price?.final_price ?? {}),
-  crossSellProducts: (data.related_products ?? []).map(ToProduct),
+  relatedProducts: (data.related_products ?? []).map(ToProduct),
   // ...
 })
 ```
