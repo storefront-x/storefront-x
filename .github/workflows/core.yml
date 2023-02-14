@@ -88,7 +88,7 @@ jobs:
           contents=$(cat "$file")
           contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.vercel.app/storefront-x/storefront-x/modules/\1?${{ steps.branch-name.outputs.current_branch }}"#g')
           echo "$contents" > "$file"
-      - name: Use the reusable workflow
+      - name: Retry install if fail
         uses: nick-fields/retry@v2
         with:
           max_attempts: 3
@@ -96,5 +96,4 @@ jobs:
           timeout_seconds: 5
           command: |
             yarn install
-
-      - run: yarn build
+            yarn build
