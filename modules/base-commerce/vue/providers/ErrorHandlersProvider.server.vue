@@ -13,21 +13,16 @@ const bindedErrorHandlers = Object.values(errorHandlers)
   .reverse()
 
 onErrorCaptured((e) => {
-  let wasCaught = false
-
   for (const errorHandler of bindedErrorHandlers) {
     try {
       errorHandler(e)
-      wasCaught = true
+      // Prevent propagation
+      return false
     } catch {
       continue
     }
   }
-  if (wasCaught) {
-    return false
-  } else {
-    ctx.errorCaptured = e
-    return true
-  }
+
+  ctx.errorCaptured = e
 })
 </script>

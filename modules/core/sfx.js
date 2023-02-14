@@ -33,6 +33,8 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
+        consola.wrapAll()
+
         const config = await loadConfig(argv.config)
         const { default: Dev } = await import('./src/Dev.js')
 
