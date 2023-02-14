@@ -38,6 +38,7 @@
     "@storefront-x/customer": "^1.0.0",
     "@storefront-x/multicurrency": "^1.0.0",
     "@storefront-x/product-reviews": "^1.0.0",
+    "@storefront-x/product-comparison": "^1.0.0",
     "@storefront-x/wishlist": "^1.0.0",
     "@storefront-x/magento": "^1.0.0",
     "@storefront-x/cart-magento": "^1.0.0",
@@ -47,10 +48,10 @@
     "@storefront-x/customer-magento": "^1.0.0",
     "@storefront-x/multicurrency-magento": "^1.0.0",
     "@storefront-x/product-reviews-magento": "^1.0.0",
+    "@storefront-x/product-comparison-magento": "^1.0.0",
     "@storefront-x/wishlist-magento": "^1.0.0",
     "@storefront-x/newsletter-magento": "^1.0.0",
     "@storefront-x/theme-tailwind": "^1.0.0",
-    "@storefront-x/theme-tailwind-magento": "^1.0.0",
-    "@storefront-x/test-module": "^1.0.0"
+    "@storefront-x/theme-tailwind-magento": "^1.0.0"
   }
 }
