@@ -85,7 +85,7 @@ jobs:
           cd ../app
           file=package.json
           contents=$(cat "$file")
-          contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.now.sh/storefront-x/storefront-x/modules/\1?${{ steps.branch-name.outputs.current_branch }}"#g')
+          contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.vercel.app/storefront-x/storefront-x/modules/\1?${{ steps.branch-name.outputs.current_branch }}"#g')
           echo "$contents" > "$file"
           yarn install
           yarn build
