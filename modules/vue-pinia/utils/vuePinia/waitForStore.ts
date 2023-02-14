@@ -1,7 +1,4 @@
-import consola from 'consola'
 import { Store } from 'pinia'
-
-const logger = consola.withTag('vue-pinia')
 
 export default <T extends Store, R>(store: T, check: () => boolean, callback: () => Promise<R>) => {
   if (check()) return callback()
@@ -11,7 +8,7 @@ export default <T extends Store, R>(store: T, check: () => boolean, callback: ()
 
     const timeout = setTimeout(() => {
       hasTimedOut = true
-      logger.error(`waitForStore(${store.$id}) timed out after 5s`)
+      console.error(`waitForStore(${store.$id}) timed out after 5s`)
       resolve(null as R)
     }, 5000)
 
