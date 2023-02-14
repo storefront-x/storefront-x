@@ -1,18 +1,5 @@
-<template>
-  <Banner :el="el" :index="index" />
-</template>
-<script setup lang="ts">
-import { PropType } from 'vue'
+<script>
 import Banner from './pb-banner.vue'
 
-defineProps({
-  el: {
-    type: Object as PropType<HTMLElement>,
-    default: null,
-  },
-  index: {
-    type: Number,
-    default: -1,
-  },
-})
+export default Banner
 </script>

@@ -1,18 +1,21 @@
 <template>
-  <div :style="styles" v-html="pbText.innerHtml" />
+  <div :style="styles" v-html="innerHtml" />
 </template>
 
-<script setup lang="ts">
-import { computed, PropType } from 'vue'
-import usePbText from '#ioc/composables/cms/usePbText'
-import usePbBlock from '#ioc/composables/cms/usePbBlock'
+<script>
+import IsPbBlock from '#ioc/mixins/IsPbBlock'
+import IsPbText from '#ioc/mixins/IsPbText'
+import { defineComponent } from 'vue'
 
-const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
+export default defineComponent({
+  mixins: [IsPbBlock, IsPbText],
 
-const pbText = usePbText(props.el)
-const pbBlock = usePbBlock(props.el)
-
-const styles = computed(() => {
-  return { ...pbBlock.advanced }
+  computed: {
+    styles() {
+      return {
+        ...this.advanced,
+      }
+    },
+  },
 })
 </script>

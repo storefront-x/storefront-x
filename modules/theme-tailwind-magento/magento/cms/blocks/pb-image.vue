@@ -1,48 +1,55 @@
-<template>
-  <render />
-</template>
-
-<script setup lang="ts">
-import usePbBlock from '#ioc/composables/cms/usePbBlock'
-import usePbImage from '#ioc/composables/cms/usePbImage'
+<script>
+import IsPbBlock from '#ioc/mixins/IsPbBlock'
+import IsPbImage from '#ioc/mixins/IsPbImage'
 import SfxImage from '#ioc/components/SfxImage'
-import { computed, h, PropType } from 'vue'
+import { defineComponent, h } from 'vue'
 
-const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
+export default defineComponent({
+  mixins: [IsPbBlock, IsPbImage],
 
-const pbBlock = usePbBlock(props.el)
-const pbImage = usePbImage(props.el)
+  computed: {
+    styles() {
+      return {
+        ...this.advanced,
+      }
+    },
 
-const styles = computed(() => {
-  return { ...pbBlock.advanced }
+    opts() {
+      return {
+        path: this.image,
+      }
+    },
+  },
+
+  methods: {
+    imageFragment() {
+      const img = h(SfxImage, {
+        src: this.src,
+        alt: this.alt,
+        lazy: true,
+        title: this.title,
+        class: '',
+        style: this.styles,
+      })
+
+      if (this.caption) {
+        return h('figure', [img, h('figcaption', [this.caption])])
+      }
+
+      return img
+    },
+  },
+
+  render(h) {
+    if (!this.src) return null
+
+    if (this.link) {
+      return h('RouterLink', { props: { to: this.link, newWindow: this.openInNewTab } }, [this.imageFragment(h)])
+    } else {
+      return this.imageFragment(h)
+    }
+  },
 })
-
-const imageFragment = () => {
-  const img = h(SfxImage, {
-    src: pbImage.src,
-    alt: pbImage.alt,
-    lazy: true,
-    title: pbImage.title,
-    class: '',
-    style: styles.value,
-  })
-
-  if (pbImage.caption) {
-    return h('figure', [img, h('figcaption', [pbImage.caption])])
-  }
-
-  return img
-}
-
-const render = () => {
-  if (!pbImage.src) return null
-
-  if (pbImage.link) {
-    return h('RouterLink', { props: { to: pbImage.link, newWindow: pbImage.openInNewTab } }, [imageFragment()])
-  } else {
-    return imageFragment()
-  }
-}
 </script>
 
 <style scoped>

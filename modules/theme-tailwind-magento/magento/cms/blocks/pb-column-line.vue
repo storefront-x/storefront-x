@@ -5,3 +5,13 @@
     </div>
   </div>
 </template>
+
+<script>
+import IsPbBlock from '#ioc/mixins/IsPbBlock'
+import IsPbColumn from '#ioc/mixins/IsPbColumn'
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  mixins: [IsPbBlock, IsPbColumn],
+})
+</script>

@@ -1,24 +1,25 @@
 <template>
-  <div class="py-4" :style="pbBlock.advanced">
+  <div class="py-4" :style="advanced">
     <div class="inline-block" :style="styles" />
   </div>
 </template>
 
-<script setup lang="ts">
-import usePbBlock from '#ioc/composables/cms/usePbBlock'
-import usePbDivider from '#ioc/composables/cms/usePbDivider'
-import { computed, PropType } from 'vue'
+<script>
+import IsPbBlock from '#ioc/mixins/IsPbBlock'
+import IsPbDivider from '#ioc/mixins/IsPbDivider'
+import { defineComponent } from 'vue'
 
-const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
+export default defineComponent({
+  mixins: [IsPbBlock, IsPbDivider],
 
-const pbBlock = usePbBlock(props.el)
-const pbDivider = usePbDivider(props.el)
-
-const styles = computed(() => {
-  return {
-    height: pbDivider.thickness,
-    backgroundColor: pbDivider.color,
-    width: pbDivider.width,
-  }
+  computed: {
+    styles() {
+      return {
+        height: this.thickness,
+        backgroundColor: this.color,
+        width: this.width,
+      }
+    },
+  },
 })
 </script>

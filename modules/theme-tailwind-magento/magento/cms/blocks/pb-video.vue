@@ -1,22 +1,21 @@
 <template>
-  <iframe
-    :src="pbVideo.src"
-    :autoplay="pbVideo.autoplay"
-    :muted="pbVideo.muted"
-    class="w-full aspect-video"
-    :style="styles"
-  />
+  <iframe :src="src" :autoplay="autoplay" :muted="muted" class="w-full aspect-video" :style="styles" />
 </template>
 
-<script setup lang="ts">
-import { computed, PropType } from 'vue'
-import usePbVideo from '#ioc/composables/cms/usePbVideo'
+<script>
+import IsPbBlock from '#ioc/mixins/IsPbBlock'
+import IsPbVideo from '#ioc/mixins/IsPbVideo'
+import { defineComponent } from 'vue'
 
-const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
+export default defineComponent({
+  mixins: [IsPbBlock, IsPbVideo],
 
-const pbVideo = usePbVideo(props.el)
-
-const styles = computed(() => {
-  return { ...pbVideo.advanced }
+  computed: {
+    styles() {
+      return {
+        ...this.advanced,
+      }
+    },
+  },
 })
 </script>
