@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "@vueuse/components": "^9.11.1",
     "@vueuse/integrations": "^9.6.0",
     "universal-cookie": "^4.0.4",
     "vue": "^3.2.45"

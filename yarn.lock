@@ -3936,6 +3936,7 @@ __metadata:
   dependencies:
     "@vitejs/plugin-vue": ^4.0.0
     "@vue/test-utils": ^2.2.6
+    "@vueuse/components": ^9.11.1
     "@vueuse/integrations": ^9.6.0
     universal-cookie: ^4.0.4
     vue: ^3.2.45
@@ -4630,6 +4631,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/components@npm:^9.11.1":
+  version: 9.12.0
+  resolution: "@vueuse/components@npm:9.12.0"
+  dependencies:
+    "@vueuse/core": 9.12.0
+    "@vueuse/shared": 9.12.0
+    vue-demi: "*"
+  checksum: 23ded6a35a42e6a6d3d6b2127edf3cf85513bbe9afcb46741d9c3ddf1fd9ee17b255fb1d2377cae4a458a131717d1b96da97428d3638a5173aea9d1c8cd442d3
+  languageName: node
+  linkType: hard
+
+"@vueuse/core@npm:9.12.0, @vueuse/core@npm:^9.12.0":
+  version: 9.12.0
+  resolution: "@vueuse/core@npm:9.12.0"
+  dependencies:
+    "@types/web-bluetooth": ^0.0.16
+    "@vueuse/metadata": 9.12.0
+    "@vueuse/shared": 9.12.0
+    vue-demi: "*"
+  checksum: bbbbd0a60f3cbda8e116c721f67319af42247af607d997e58d1f860660148ecbf58f90b8b3f38c6ecf87bc37a1a330b280050d883d79579ed72abf3b286b88cb
+  languageName: node
+  linkType: hard
+
 "@vueuse/core@npm:9.6.0":
   version: 9.6.0
   resolution: "@vueuse/core@npm:9.6.0"
@@ -4639,18 +4663,6 @@ __metadata:
     "@vueuse/shared": 9.6.0
     vue-demi: "*"
   checksum: 2831931d71824f6a02f49cc42bc454a59a24b83a29e7902bbd9fce7e814947d466dbced2dad364c51a352c387869a6a44f2e38bd2ec2b38989158377dc7730d6
-  languageName: node
-  linkType: hard
-
-"@vueuse/core@npm:^9.12.0":
-  version: 9.12.0
-  resolution: "@vueuse/core@npm:9.12.0"
-  dependencies:
-    "@types/web-bluetooth": ^0.0.16
-    "@vueuse/metadata": 9.12.0
-    "@vueuse/shared": 9.12.0
-    vue-demi: "*"
-  checksum: bbbbd0a60f3cbda8e116c721f67319af42247af607d997e58d1f860660148ecbf58f90b8b3f38c6ecf87bc37a1a330b280050d883d79579ed72abf3b286b88cb
   languageName: node
   linkType: hard
 

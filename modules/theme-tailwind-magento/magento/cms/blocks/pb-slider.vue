@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SfxCarousel :slides="slides" :style="styles" :loop="true">
+    <SfxCarousel :slides="pbSlider.slides" :style="styles" :loop="true">
       <template #default="{ slide, index }">
         <Slide :el="slide" :index="index" />
       </template>
@@ -13,13 +13,13 @@
         </button>
       </template>
       <template #pagination="{ pageIds, currentPage, showPage }">
-        <div v-if="showDots" class="absolute w-full flex justify-center gap-4 bottom-0 p-4">
+        <div v-if="pbSlider.showDots" class="absolute w-full flex justify-center gap-4 bottom-0 p-4">
           <button
             v-for="pageId in pageIds"
             :key="pageId"
             class="w-4 h-4 rounded-full border cursor-pointer"
             :class="currentPage === pageId ? 'bg-black border-gray-700' : 'bg-white border-gray-300'"
-            :aria-label="currentPage"
+            :aria-label="String(currentPage)"
             @click="showPage(pageId)"
           />
         </div>
@@ -28,31 +28,21 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import SfxCarousel from '#ioc/components/SfxCarousel'
+import usePbBlock from '#ioc/composables/cms/usePbBlock'
+import usePbSlider from '#ioc/composables/cms/usePbSlider'
 import OutlineChevronLeft from '#ioc/icons/OutlineChevronLeft'
 import OutlineChevronRight from '#ioc/icons/OutlineChevronRight'
+import { computed, PropType } from 'vue'
 import Slide from './pb-slide.vue'
-import IsPbBlock from '#ioc/mixins/IsPbBlock'
-import IsPbSlider from '#ioc/mixins/IsPbSlider'
-import { defineComponent } from 'vue'
 
-export default defineComponent({
-  components: {
-    SfxCarousel,
-    OutlineChevronLeft,
-    OutlineChevronRight,
-    Slide,
-  },
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
-  mixins: [IsPbBlock, IsPbSlider],
+const pbSlider = usePbSlider(props.el)
+const pbBlock = usePbBlock(props.el)
 
-  computed: {
-    styles() {
-      return {
-        ...this.advanced,
-      }
-    },
-  },
+const styles = computed(() => {
+  return { ...pbBlock.advanced }
 })
 </script>
