@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn install --immutable --immutable-cache
+RUN yarn install --immutable
 
 RUN yarn build --config $SFX_CONFIG
 
