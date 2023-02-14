@@ -8,7 +8,7 @@ import useResource from '#ioc/composables/useResource'
 import CmsPage from '#ioc/templates/CmsPage'
 
 const props = defineProps({
-  id: {
+  entityUid: {
     type: String,
     required: true,
   },
@@ -17,7 +17,7 @@ const props = defineProps({
 const getCmsPageById = useGetCmsPageById()
 
 const [data] = await useResource(
-  () => props.id,
+  () => props.entityUid,
   (id) => getCmsPageById(id),
 )
 </script>
