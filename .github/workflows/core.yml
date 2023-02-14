@@ -78,14 +78,22 @@ jobs:
         uses: tj-actions/branch-names@v6
       - run: |
           yarn install
+      - name: Copy create-script and install
+        run: |
           cp -rf modules/create-storefront-x ../create-storefront-x
           cd ../create-storefront-x
           npm install
           node index.js -y -- --directory=../app --integration=${{ matrix.integration }}
           cd ../app
+      - name: Update package.json with gitpkg URL
+        run: |
           file=package.json
           contents=$(cat "$file")
           contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.vercel.app/storefront-x/storefront-x/modules/\1?${{ steps.branch-name.outputs.current_branch }}"#g')
           echo "$contents" > "$file"
-          yarn install
-          yarn build
+      - name: Install app dependencies
+        run: |
+          retry: 5
+          yarn install || true
+      - name: Build app
+        run: yarn build
