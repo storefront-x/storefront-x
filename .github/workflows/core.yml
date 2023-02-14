@@ -61,7 +61,7 @@ jobs:
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: yarn docs:build
-  create-script-with-npm:
+  create-script-with-yarn:
     strategy:
       fail-fast: false
       matrix:
@@ -78,22 +78,23 @@ jobs:
         uses: tj-actions/branch-names@v6
       - run: |
           yarn install
-      - name: Copy create-script and install
-        run: |
           cp -rf modules/create-storefront-x ../create-storefront-x
           cd ../create-storefront-x
           npm install
           node index.js -y -- --directory=../app --integration=${{ matrix.integration }}
           cd ../app
-      - name: Update package.json with gitpkg URL
-        run: |
+
           file=package.json
           contents=$(cat "$file")
           contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.vercel.app/storefront-x/storefront-x/modules/\1?${{ steps.branch-name.outputs.current_branch }}"#g')
           echo "$contents" > "$file"
-      - name: Install app dependencies
-        run: |
-          retry: 5
-          yarn install || true
-      - name: Build app
-        run: yarn build
+      - name: Use the reusable workflow
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 3
+          retry_on: any
+          timeout_seconds: 5
+          command: |
+            yarn install
+
+      - run: yarn build
