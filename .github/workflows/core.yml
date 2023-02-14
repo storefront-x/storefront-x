@@ -88,6 +88,17 @@ jobs:
           contents=$(cat "$file")
           contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "https://gitpkg.vercel.app/storefront-x/storefront-x/modules/\1?${{ steps.branch-name.outputs.current_branch }}"#g')
           echo "$contents" > "$file"
-          
-          yarn install --network-timeout 1000000
+          set -e
+          max_retries=3
+          retries=0
+          until yarn install; do
+            exit_code=$?
+            if [ $exit_code -eq 504 ] && [ $retries -lt $max_retries ]; then
+              retries=$((retries+1))
+              echo "Retrying yarn install (attempt $retries/$max_retries)..."
+            else
+              echo "yarn install failed with exit code $exit_code, no retries left."
+              exit $exit_code
+            fi
+          done
           yarn build
