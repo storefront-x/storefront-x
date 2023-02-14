@@ -8,6 +8,8 @@ export default () => {
 
   return function handleMagentoError(error: any) {
     if (error instanceof MagentoError) {
+      console.error(error)
+
       showErrorNotification({
         name: t('errors.title'),
         message: te(`errors["${error.message}"]`) ? t(`errors["${error.message}"]`) : error.message,

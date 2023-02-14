@@ -167,3 +167,62 @@ test('magento error messages translation is working', async ({ page }) => {
     },
   )
 })
+
+test('magento error is logged to console', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-i18n',
+        '@storefront-x/vue-pinia',
+        '@storefront-x/base-commerce',
+        '@storefront-x/graphql',
+        '@storefront-x/magento',
+        [
+          'my-module',
+          {
+            pages: {
+              'index.vue': `
+                <template>
+                  <h1>Hello, World!</h1>
+                </template>
+              `,
+            },
+            config: {
+              'MAGENTO_URL.ts': `export default '/'`,
+              'VUE_I18N_LOCALES.ts': `
+                export default [
+                  {
+                    name: 'en',
+                    locale: 'en-US',
+                    prefix: '/',
+                  }
+                ]
+              `,
+            },
+            composables: {
+              'useMagento.ts': `export default () => ({ graphql: () => null })`,
+            },
+            stores: {
+              'useMagentoStore.serverInit.ts': `
+                import MagentoError from '#ioc/errors/MagentoError'
+                export default () => async () => {
+                  throw new MagentoError({message: 'test error'})
+                }
+              `,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      const { errors } = await wrapConsole(async () => {
+        await page.goto(url, { waitUntil: 'networkidle' })
+      })
+
+      expect(errors).toContain('test error')
+    },
+  )
+})
