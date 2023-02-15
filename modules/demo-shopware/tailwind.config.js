@@ -1,28 +1,29 @@
 import colors from 'tailwindcss/colors.js'
 import forms from '@tailwindcss/forms'
-import { readdir } from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 import { argv } from 'node:process'
 
 const getTailwindContent = async (source) => {
-  const runningConfig = argv.find((arg) => arg.startsWith('storefront-x'))?.split('.')[1] || ''
-  const dir = (await readdir(source, { withFileTypes: true })) || []
-  return dir
-    .filter((dirent) => dirent.name.match(/^(theme-tailwind|demo)/))
-    .filter((dirent) =>
-      runningConfig === 'px'
-        ? dirent.name === 'theme-tailwind' ||
-          dirent.name === 'theme-tailwind-magento' ||
-          dirent.name === `demo-${runningConfig}` ||
-          dirent.name.endsWith(runningConfig)
-        : dirent.name === 'theme-tailwind' ||
-          dirent.name === `demo-${runningConfig}` ||
-          dirent.name.endsWith(runningConfig),
-    )
-    .sort((a, b) => (a.name.includes('theme') && !b.name.includes('theme-') ? -1 : 1))
-    .map((dirent) => `${source}${dirent.name}/**/*.vue`)
+  const configIndex = argv.findIndex((arg) => arg === '--config')
+  const runningConfig = configIndex !== -1 ? argv[configIndex + 1] : 'storefront-x.config.js'
+  try {
+    const configFile = await readFile(`./${runningConfig}`, { encoding: 'utf8' })
+    const modules = configFile
+      ?.replace(/^export default\s*|\s/g, '')
+      ?.replaceAll(`'`, '')
+      ?.split('modules:[')[1]
+      ?.split(']')[0]
+      ?.split(',')
+      ?.filter(Boolean)
+      ?.map((module) => `${source}${module}/**/*.vue`)
+
+    return modules || []
+  } catch (e) {
+    return []
+  }
 }
 
-const content = await getTailwindContent('./node_modules/@storefront-x/')
+const content = await getTailwindContent('./node_modules/')
 
 export default {
   content,
