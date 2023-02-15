@@ -3,6 +3,7 @@
   "version": "1.11.0",
   "license": "MIT",
   "type": "module",
+  "main": "index.js",
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "cssnano": "^5.1.14",
