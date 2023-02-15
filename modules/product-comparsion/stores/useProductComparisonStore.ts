@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
 import ToCompareList from '#ioc/mappers/ToCompareList'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 
 export default defineStore('productComparsion', {
   state: () => ({

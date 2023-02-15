@@ -56,7 +56,7 @@ test('event bus with single listener', async ({ page }) => {
             },
             stores: {
               'useEventBusStore.ts': `
-                import { defineStore } from 'pinia'
+                import defineStore from '#ioc/utils/vuePinia/defineStore'
                 export default defineStore('eventBusStore', {
                   state: () => ({
                     count: 0
@@ -132,7 +132,7 @@ test('event bus with multiple listeners', async ({ page }) => {
             },
             stores: {
               'useEventBusStore.ts': `
-                import { defineStore } from 'pinia'
+                import defineStore from '#ioc/utils/vuePinia/defineStore'
                 export default defineStore('eventBusStore', {
                   state: () => ({
                     count: 0
