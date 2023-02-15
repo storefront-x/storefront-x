@@ -3,7 +3,6 @@ name: Deploy docs to Pages
 on:
   push:
     branches: ['main']
-  pull_request:
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -11,11 +10,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-
-# # Allow one concurrent deployment
-# concurrency:
-#   group: "pages"
-#   cancel-in-progress: true
 
 jobs:
   deploy:
@@ -31,7 +25,18 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Restore node_modules from cache
+        id: cache-nodemodules
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: Install dependencies
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: yarn install --immutable
       - name: Build docs
         run: yarn docs:build
