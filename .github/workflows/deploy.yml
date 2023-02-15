@@ -13,7 +13,13 @@ permissions:
   id-token: write
 
 jobs:
+  yarn:
+    uses: ./.github/workflows/yarn.yml
+    with:
+      os: ubuntu-latest
+
   deploy:
+    needs: [yarn]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -26,19 +32,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Restore node_modules from cache
-        id: cache-nodemodules
+      - name: Restore cached node_modules
         uses: actions/cache/restore@v3
         with:
           path: |
             node_modules
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Install dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: yarn install --immutable
       - name: Build docs
         run: yarn docs:build
       - name: Upload artifact
