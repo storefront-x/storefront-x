@@ -1,12 +1,10 @@
 {
-  "name": "@storefront-x/demo-magento",
-  "version": "1.12.1",
-  "license": "MIT",
+  "name": "demo-magento",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "private": true,
   "type": "module",
   "dependencies": {
     "vite-plugin-pwa": "^0.13.3"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
