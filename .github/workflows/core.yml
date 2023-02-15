@@ -75,9 +75,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v6
       - run: |
           yarn install
           cp -rf modules/create-storefront-x ../create-storefront-x
