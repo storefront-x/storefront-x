@@ -1,0 +1,1 @@
+./modules/create-storefront-x/template/px/storefront-x.config.js

@@ -1,0 +1,1 @@
+./modules/create-storefront-x/template/magento/storefront-x.config.js
