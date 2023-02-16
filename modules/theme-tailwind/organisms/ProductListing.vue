@@ -18,11 +18,7 @@
           <ProductSort class="mb-4" :title="t(sortedBy)" />
         </div>
 
-        <div class="grid grid-cols-1 gap-2 sm:gap-0 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-          <ProductProvider v-for="(product, i) in products" :key="product.id" :product="product">
-            <ProductTile :preload-image="i === 0" :index="i" />
-          </ProductProvider>
-        </div>
+        <ProductGrid :products="products" />
 
         <div class="flex justify-between items-center mt-8">
           <Pagination :total="totalCount" class="my-8" />
@@ -39,8 +35,7 @@ import useI18n from '#ioc/composables/useI18n'
 import useRoute from '#ioc/composables/useRoute'
 import ToProduct from '#ioc/mappers/ToProduct'
 import ProductSort from '#ioc/molecules/ProductSort'
-import ProductTile from '#ioc/molecules/ProductTile'
-import ProductProvider from '#ioc/providers/ProductProvider'
+import ProductGrid from '#ioc/molecules/ProductGrid'
 import { computed, PropType } from 'vue'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
