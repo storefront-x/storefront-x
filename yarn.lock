@@ -3711,9 +3711,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/product-comparison@workspace:modules/product-comparsion":
+"@storefront-x/product-comparison@workspace:modules/product-comparison":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/product-comparison@workspace:modules/product-comparsion"
+  resolution: "@storefront-x/product-comparison@workspace:modules/product-comparison"
   languageName: unknown
   linkType: soft
 
