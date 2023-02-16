@@ -1,4 +1,4 @@
-name: Performance audit
+name: Lighthouse
 
 on:
   workflow_call:
