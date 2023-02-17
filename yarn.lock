@@ -3602,36 +3602,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/demo-blank@workspace:modules/demo-blank":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-blank@workspace:modules/demo-blank"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/demo-magento@workspace:modules/demo-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-magento@workspace:modules/demo-magento"
-  dependencies:
-    vite-plugin-pwa: ^0.13.3
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/demo-px@workspace:modules/demo-px":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-px@workspace:modules/demo-px"
-  dependencies:
-    vite-plugin-pwa: ^0.13.3
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/demo-shopware@workspace:modules/demo-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/demo-shopware@workspace:modules/demo-shopware"
-  dependencies:
-    vite-plugin-pwa: ^0.13.3
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento"
@@ -3741,9 +3711,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/product-comparison@workspace:modules/product-comparsion":
+"@storefront-x/product-comparison@workspace:modules/product-comparison":
   version: 0.0.0-use.local
-  resolution: "@storefront-x/product-comparison@workspace:modules/product-comparsion"
+  resolution: "@storefront-x/product-comparison@workspace:modules/product-comparison"
   languageName: unknown
   linkType: soft
 
@@ -6879,6 +6849,36 @@ __metadata:
   checksum: a51744d9b53c164ba9c0492471a1a2ffa0b6727451bdc89e31627fdf4adda9d51277cfcbfb20f0a6f08ccb3c436f341df3e92631a3440226d93a8971724771fd
   languageName: node
   linkType: hard
+
+"demo-blank@workspace:modules/demo-blank":
+  version: 0.0.0-use.local
+  resolution: "demo-blank@workspace:modules/demo-blank"
+  languageName: unknown
+  linkType: soft
+
+"demo-magento@workspace:modules/demo-magento":
+  version: 0.0.0-use.local
+  resolution: "demo-magento@workspace:modules/demo-magento"
+  dependencies:
+    vite-plugin-pwa: ^0.13.3
+  languageName: unknown
+  linkType: soft
+
+"demo-px@workspace:modules/demo-px":
+  version: 0.0.0-use.local
+  resolution: "demo-px@workspace:modules/demo-px"
+  dependencies:
+    vite-plugin-pwa: ^0.13.3
+  languageName: unknown
+  linkType: soft
+
+"demo-shopware@workspace:modules/demo-shopware":
+  version: 0.0.0-use.local
+  resolution: "demo-shopware@workspace:modules/demo-shopware"
+  dependencies:
+    vite-plugin-pwa: ^0.12.4
+  languageName: unknown
+  linkType: soft
 
 "depd@npm:2.0.0":
   version: 2.0.0
@@ -12878,6 +12878,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rollup@npm:^2.75.7":
+  version: 2.79.1
+  resolution: "rollup@npm:2.79.1"
+  dependencies:
+    fsevents: ~2.3.2
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    rollup: dist/bin/rollup
+  checksum: 6a2bf167b3587d4df709b37d149ad0300692cc5deb510f89ac7bdc77c8738c9546ae3de9322b0968e1ed2b0e984571f5f55aae28fa7de4cfcb1bc5402a4e2be6
+  languageName: node
+  linkType: hard
+
 "rollup@npm:^3.7.0, rollup@npm:^3.7.3":
   version: 3.7.3
   resolution: "rollup@npm:3.7.3"
@@ -14536,6 +14550,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vite-plugin-pwa@npm:^0.12.4":
+  version: 0.12.8
+  resolution: "vite-plugin-pwa@npm:0.12.8"
+  dependencies:
+    debug: ^4.3.4
+    fast-glob: ^3.2.11
+    pretty-bytes: ^6.0.0
+    rollup: ^2.75.7
+    workbox-build: ^6.5.3
+    workbox-window: ^6.5.3
+  peerDependencies:
+    vite: ^2.0.0 || ^3.0.0-0
+    workbox-build: ^6.4.0
+    workbox-window: ^6.4.0
+  checksum: a7ea6c4ec29eace2931f8b37e51506c33ad73eb3dd9153958c9fec8137a21059eeed2e9455ba851de4829540dbd920590c4395d99c23b1cdb8c69c468a293535
+  languageName: node
+  linkType: hard
+
 "vite-plugin-pwa@npm:^0.13.3":
   version: 0.13.3
   resolution: "vite-plugin-pwa@npm:0.13.3"
@@ -14956,7 +14988,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-build@npm:^6.5.4":
+"workbox-build@npm:^6.5.3, workbox-build@npm:^6.5.4":
   version: 6.5.4
   resolution: "workbox-build@npm:6.5.4"
   dependencies:
@@ -15117,7 +15149,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-window@npm:6.5.4, workbox-window@npm:^6.5.4":
+"workbox-window@npm:6.5.4, workbox-window@npm:^6.5.3, workbox-window@npm:^6.5.4":
   version: 6.5.4
   resolution: "workbox-window@npm:6.5.4"
   dependencies:
