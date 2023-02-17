@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.ref != 'refs/heads/main' && github.workflow'-'github.event.pull_request.number || github.ref }}
+  group: ${{ github.ref != 'refs/heads/main' && github.workflow }}-${{github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
