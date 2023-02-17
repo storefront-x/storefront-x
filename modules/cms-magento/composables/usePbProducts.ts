@@ -7,7 +7,7 @@ export default (el: any) => {
     return els.map((form: any) => form.getAttribute('data-product-sku'))
   })
 
-  const type = computed(() => el.getAttribute('data-appearance'))
+  const type = computed<'carousel' | 'grid'>(() => el.getAttribute('data-appearance'))
 
   return reactive({
     skus,
