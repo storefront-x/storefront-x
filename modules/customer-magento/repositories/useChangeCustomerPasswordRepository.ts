@@ -14,7 +14,7 @@ export default () => {
     const { data } = await magento.graphql(ChangeCustomerPassword().with({ currentPassword, newPassword }))
 
     return {
-      customer: data.changeCustomerPassword.customer ? ToCustomer(data.changeCustomerPassword.customer) : null,
+      customer: data.changeCustomerPassword ? ToCustomer(data.changeCustomerPassword) : null,
     }
   }
 }

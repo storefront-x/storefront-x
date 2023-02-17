@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  yarn-ubuntu:
+    uses: ./.github/workflows/yarn.yml
+    with:
+      os: ubuntu-latest
+  create-script-with-yarn-release:
+    strategy:
+      fail-fast: false
+      matrix:
+        integration: [magento, shopware, px]
+    runs-on: ubuntu-latest
+    needs: [yarn-ubuntu]
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: |
+          yarn create storefront-x --directory=app --integration=${{ matrix.integration }}
+          cd app
+          yarn install
+          yarn build
+  create-script-with-npm-release:
+    strategy:
+      fail-fast: false
+      matrix:
+        integration: [magento, shopware, px]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: |
+          npm create storefront-x@latest -y -- --directory=app --integration=${{ matrix.integration }}
+          cd app
+          npm install
+          npm run build
