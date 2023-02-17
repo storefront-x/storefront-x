@@ -5,7 +5,7 @@ on:
     types: [published]
 
 concurrency:
-  group: ${{ github.ref != 'refs/heads/main' && github.workflow + '-' + github.ref }}
+  group: ${{ github.ref != 'refs/heads/main' && github.ref }}
   cancel-in-progress: true
 
 jobs:
