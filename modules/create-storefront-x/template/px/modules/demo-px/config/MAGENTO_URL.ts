@@ -1,1 +1,1 @@
-export default import.meta.env.SFX_MAGENTO_URL ?? 'https://f-px-1477-comm-core.magexo.cloud'
+export default import.meta.env.SFX_MAGENTO_URL ?? 'https://be-sfx.demo.magexo.cloud'
