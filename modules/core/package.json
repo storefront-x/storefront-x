@@ -27,6 +27,7 @@
     "rollup": "^3.7.3",
     "rollup-plugin-visualizer": "^5.8.3",
     "vite": "^4.0.0",
+    "workbox-build": "^6.5.4",
     "yargs": "^17.6.2",
     "youch": "^3.2.2"
   },

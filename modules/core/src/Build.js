@@ -1,9 +1,12 @@
 import path from 'node:path'
+import { writeFile } from 'node:fs/promises'
+import consola from 'consola'
 import * as vite from 'vite'
 import open from 'open'
 import cssnano from 'cssnano'
 import { visualizer } from 'rollup-plugin-visualizer'
 import Core from './Core.js'
+import { generateSW } from 'workbox-build'
 
 export default class Build extends Core {
   async build() {
@@ -26,10 +29,7 @@ export default class Build extends Core {
           },
           plugins: [
             //@ts-ignore
-            analyze &&
-              visualizer({
-                filename: path.join(this.distDir, 'client', 'stats.html'),
-              }),
+            analyze && visualizer({ filename: path.join(this.distDir, 'client', 'stats.html') }),
           ],
         },
       },
@@ -88,5 +88,35 @@ export default class Build extends Core {
         },
       }),
     )
+
+    await this.buildServiceWorker()
+  }
+
+  async buildServiceWorker() {
+    consola.info('Generating manifest & service worker...')
+
+    const runtimeCaching = []
+
+    const { default: manifest } = await import(path.join(this.buildDir, 'ioc', 'sw', 'manifest.js'))
+    await writeFile(path.join(this.distDir, 'client', 'manifest.webmanifest'), JSON.stringify(manifest))
+
+    consola.success('Manifest generated')
+
+    try {
+      const { default: runtimeCaches } = await import(path.join(this.buildDir, 'ioc', 'sw', 'runtimeCaches.js'))
+      runtimeCaching.push(...runtimeCaches)
+    } finally {
+      await generateSW({
+        globDirectory: `${path.join(this.distDir, 'client')}`,
+        globPatterns: ['**/*.{js,css,ico,png,svg,jpg,webmanifest}'],
+        navigateFallback: null,
+        skipWaiting: true,
+        clientsClaim: true,
+        runtimeCaching,
+        swDest: `${path.join(this.distDir, 'client')}/sw.js`,
+      })
+    }
+
+    consola.success('Service worker generated')
   }
 }

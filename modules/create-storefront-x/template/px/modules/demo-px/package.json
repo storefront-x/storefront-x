@@ -3,8 +3,5 @@
   "version": "0.0.0",
   "license": "UNLICENSED",
   "private": true,
-  "type": "module",
-  "dependencies": {
-    "vite-plugin-pwa": "^0.13.3"
-  }
+  "type": "module"
 }
