@@ -7,7 +7,7 @@ on:
   pull_request:
 
 concurrency:
-  group: ${{ github.workflow }}-${{github.ref }}-${{ matrix.os || matrix.integration || '' }}-${{ github.job }}
+  group: ${{ github.workflow }}-${{github.ref }}-${{ matrix.integration || '' }}-${{ github.job }}
   cancel-in-progress: ${{ github.sha != github.event.before }}
 
 jobs:
