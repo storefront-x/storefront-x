@@ -13,10 +13,6 @@ on:
         required: true
         type: string
 
-concurrency:
-  group: ${{ github.workflow }}-${{github.ref }}-${{ github.job }}
-  cancel-in-progress: ${{ github.sha != github.event.before }}
-
 jobs:
   lighthouseci:
     runs-on: ubuntu-latest

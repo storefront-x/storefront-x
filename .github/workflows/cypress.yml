@@ -13,10 +13,6 @@ on:
         default: cypress/e2e
         type: string
 
-concurrency:
-  group: ${{ github.workflow }}-${{github.ref }}-${{ github.job }}
-  cancel-in-progress: ${{ github.sha != github.event.before }}
-
 jobs:
   setup:
     runs-on: ubuntu-latest

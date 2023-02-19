@@ -27,10 +27,6 @@ on:
         type: string
         default: 'SFX_MAGENTO_URL=https://be-sfx.demo.magexo.cloud'
 
-concurrency:
-  group: ${{ github.workflow }}-${{github.ref }}-${{ github.job }}
-  cancel-in-progress: ${{ github.sha != github.event.before }}
-
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
