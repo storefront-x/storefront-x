@@ -6,9 +6,6 @@ export default class ServiceWorker extends IocConcept {
     const loaders = []
 
     for (const { module, file, extensions } of Object.values(files)) {
-      if (file === 'manifest.js' && module.meta.name === '@storefront-x/base') {
-        throw new Error(`Override ${path.join(this.directory, file)}`)
-      }
       if (!file) continue
 
       const fileWithoutExt = file.replace(/\.\w+$/, '')

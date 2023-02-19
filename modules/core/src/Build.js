@@ -98,6 +98,9 @@ export default class Build extends Core {
     const runtimeCaching = []
 
     const { default: manifest } = await import(path.join(this.buildDir, 'ioc', 'sw', 'manifest.js'))
+    if (!manifest) {
+      throw new Error(`Override ${path.join('sw', 'manifest.js')}`)
+    }
     await writeFile(path.join(this.distDir, 'client', 'manifest.webmanifest'), JSON.stringify(manifest))
 
     consola.success('Manifest generated')
