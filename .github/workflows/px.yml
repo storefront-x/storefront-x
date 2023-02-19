@@ -8,7 +8,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{github.ref }}-${{ github.job }}
-  cancel-in-progress: ${{ github.sha != github.event.before }}
+  cancel-in-progress: ${{ github.sha != github.event.before && github.ref != 'refs/heads/main' }}
 
 jobs:
   yarn:

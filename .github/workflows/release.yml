@@ -6,7 +6,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{github.ref }}-${{ matrix.integration }}-${{ github.job }}
-  cancel-in-progress: ${{ github.sha != github.event.before }}
+  cancel-in-progress: ${{ github.sha != github.event.before && github.ref != 'refs/heads/main' }}
 
 jobs:
   yarn-ubuntu:
