@@ -1,3 +1,3 @@
-import { useRoute } from 'vue-router'
+import { inject } from 'vue'
 
-export default useRoute
+export default () => inject('_route')

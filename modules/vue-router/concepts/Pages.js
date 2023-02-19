@@ -202,10 +202,6 @@ import <%= guard.ident %> from '<%= guard.component %>'
 
 export const routes = Object.values(plugins).reduce((routes, plugin) => plugin(routes), [
   <%_ for (const page of pages) { _%>
-  {
-    path: '<%= page.path %>',
-    component: () => import('<%= page.component %>'),
-    children: [
     <%_ for (const child of Object.values(page.children).sort((a, b) => a.priority - b.priority)) { _%>
       {
         name: <%- child.name ? "'" + child.name + "'" : 'undefined' %>,
@@ -215,8 +211,6 @@ export const routes = Object.values(plugins).reduce((routes, plugin) => plugin(r
         <%- child.beforeEnter ?  'beforeEnter: '  + child.beforeEnter + ',' : '' %>
       },
     <%_ } _%>
-    ],
-  },
   <%_ } _%>
 ])
 `
