@@ -5,6 +5,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "vite-plugin-pwa": "^0.13.3"
+    "vite-plugin-pwa": "^0.14.4"
   }
 }
