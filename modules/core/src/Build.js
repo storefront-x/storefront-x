@@ -100,12 +100,12 @@ export default class Build extends Core {
     try {
       const { default: manifest } = await import(path.join(this.buildDir, 'ioc', 'sw', 'manifest.js'))
       if (!manifest) {
-        throw new Error('Manifest not found')
+        consola.info('Manifest not found')
+      } else {
+        await writeFile(path.join(this.distDir, 'client', 'manifest.webmanifest'), JSON.stringify(manifest))
+        consola.success('Manifest generated')
       }
-      await writeFile(path.join(this.distDir, 'client', 'manifest.webmanifest'), JSON.stringify(manifest))
-      consola.success('Manifest generated')
     } catch (e) {
-      consola.error(e.message)
       // Do nothing
     }
 
