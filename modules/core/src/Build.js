@@ -97,13 +97,17 @@ export default class Build extends Core {
 
     const runtimeCaching = []
 
-    const { default: manifest } = await import(path.join(this.buildDir, 'ioc', 'sw', 'manifest.js'))
-    if (!manifest) {
-      throw new Error(`Override ${path.join('sw', 'manifest.js')}`)
+    try {
+      const { default: manifest } = await import(path.join(this.buildDir, 'ioc', 'sw', 'manifest.js'))
+      if (!manifest) {
+        throw new Error('Manifest not found')
+      }
+      await writeFile(path.join(this.distDir, 'client', 'manifest.webmanifest'), JSON.stringify(manifest))
+      consola.success('Manifest generated')
+    } catch (e) {
+      consola.error(e.message)
+      // Do nothing
     }
-    await writeFile(path.join(this.distDir, 'client', 'manifest.webmanifest'), JSON.stringify(manifest))
-
-    consola.success('Manifest generated')
 
     try {
       const { default: runtimeCaches } = await import(path.join(this.buildDir, 'ioc', 'sw', 'runtimeCaches.js'))
