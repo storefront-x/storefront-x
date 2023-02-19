@@ -5,7 +5,7 @@ on:
     types: [published]
 
 concurrency:
-  group: ${{ github.ref != 'refs/heads/main' && github.workflow }}-${{github.event.pull_request.number || github.ref }}-${{ matrix.os || matrix.integration || '' }}-${{ github.job }}
+  group: ${{ github.ref != 'refs/heads/main' && github.workflow }}-${{github.event.pull_request.number || github.ref }}-${{ matrix.integration }}-${{ github.job }}
   cancel-in-progress: true
 
 jobs:
