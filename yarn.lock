@@ -2577,18 +2577,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-replace@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@rollup/plugin-replace@npm:4.0.0"
-  dependencies:
-    "@rollup/pluginutils": ^3.1.0
-    magic-string: ^0.25.7
-  peerDependencies:
-    rollup: ^1.20.0 || ^2.0.0
-  checksum: b61701e612661a46da06ca88f390c3839b586708abc0329a476411b90aa8ac59fe94437ede4c3fe53fea268b3054ea9d7d4ee851d7bd0cb7a5f06906002067cb
-  languageName: node
-  linkType: hard
-
 "@rollup/pluginutils@npm:^3.1.0":
   version: 3.1.0
   resolution: "@rollup/pluginutils@npm:3.1.0"
@@ -6169,8 +6157,6 @@ __metadata:
 "demo-magento@workspace:modules/demo-magento":
   version: 0.0.0-use.local
   resolution: "demo-magento@workspace:modules/demo-magento"
-  dependencies:
-    vite-plugin-pwa: ^0.13.3
   languageName: unknown
   linkType: soft
 
@@ -6183,8 +6169,6 @@ __metadata:
 "demo-shopware@workspace:modules/demo-shopware":
   version: 0.0.0-use.local
   resolution: "demo-shopware@workspace:modules/demo-shopware"
-  dependencies:
-    vite-plugin-pwa: ^0.12.4
   languageName: unknown
   linkType: soft
 
@@ -7191,7 +7175,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.11, fast-glob@npm:^3.2.12, fast-glob@npm:^3.2.5, fast-glob@npm:^3.2.9":
+"fast-glob@npm:^3.2.12, fast-glob@npm:^3.2.5, fast-glob@npm:^3.2.9":
   version: 3.2.12
   resolution: "fast-glob@npm:3.2.12"
   dependencies:
@@ -11717,13 +11701,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-bytes@npm:^6.0.0":
-  version: 6.1.0
-  resolution: "pretty-bytes@npm:6.1.0"
-  checksum: cca3be45a299a28d1d3d95056ac709b8aeb01540aae7d906ed674c076b5f4b48cb6bf118f172d486c17e47b092a00e827b7f69608bc731ca35ca6f8d93e130f1
-  languageName: node
-  linkType: hard
-
 "printable-characters@npm:^1.0.42":
   version: 1.0.42
   resolution: "printable-characters@npm:1.0.42"
@@ -12465,7 +12442,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.43.1, rollup@npm:^2.75.7, rollup@npm:^2.79.0":
+"rollup@npm:^2.43.1":
   version: 2.79.1
   resolution: "rollup@npm:2.79.1"
   dependencies:
@@ -14110,43 +14087,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-pwa@npm:^0.12.4":
-  version: 0.12.8
-  resolution: "vite-plugin-pwa@npm:0.12.8"
-  dependencies:
-    debug: ^4.3.4
-    fast-glob: ^3.2.11
-    pretty-bytes: ^6.0.0
-    rollup: ^2.75.7
-    workbox-build: ^6.5.3
-    workbox-window: ^6.5.3
-  peerDependencies:
-    vite: ^2.0.0 || ^3.0.0-0
-    workbox-build: ^6.4.0
-    workbox-window: ^6.4.0
-  checksum: a7ea6c4ec29eace2931f8b37e51506c33ad73eb3dd9153958c9fec8137a21059eeed2e9455ba851de4829540dbd920590c4395d99c23b1cdb8c69c468a293535
-  languageName: node
-  linkType: hard
-
-"vite-plugin-pwa@npm:^0.13.3":
-  version: 0.13.3
-  resolution: "vite-plugin-pwa@npm:0.13.3"
-  dependencies:
-    "@rollup/plugin-replace": ^4.0.0
-    debug: ^4.3.4
-    fast-glob: ^3.2.11
-    pretty-bytes: ^6.0.0
-    rollup: ^2.79.0
-    workbox-build: ^6.5.4
-    workbox-window: ^6.5.4
-  peerDependencies:
-    vite: ^3.1.0
-    workbox-build: ^6.5.4
-    workbox-window: ^6.5.4
-  checksum: be1e8699e2fb4fea98454d20c8df4bcbd828aecb2b714a1251405fde4dc9ac9c95520b33fdfc1a3d91d51f9d920501d93f57f4f0a2f1361ba38785c86e4756a4
-  languageName: node
-  linkType: hard
-
 "vite@npm:^3.0.0 || ^4.0.0, vite@npm:^4.0.0, vite@npm:^4.0.4":
   version: 4.1.2
   resolution: "vite@npm:4.1.2"
@@ -14524,7 +14464,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-build@npm:^6.5.3, workbox-build@npm:^6.5.4":
+"workbox-build@npm:^6.5.4":
   version: 6.5.4
   resolution: "workbox-build@npm:6.5.4"
   dependencies:
@@ -14685,7 +14625,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-window@npm:6.5.4, workbox-window@npm:^6.5.3, workbox-window@npm:^6.5.4":
+"workbox-window@npm:6.5.4, workbox-window@npm:^6.5.4":
   version: 6.5.4
   resolution: "workbox-window@npm:6.5.4"
   dependencies:
