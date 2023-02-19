@@ -28,8 +28,8 @@ on:
         default: 'SFX_MAGENTO_URL=https://be-sfx.demo.magexo.cloud'
 
 concurrency:
-  group: ${{ github.workflow }}-${{github.event.pull_request.number || github.ref }}-${{ github.job }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{github.ref }}-${{ github.job }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 env:
   REGISTRY: ghcr.io
