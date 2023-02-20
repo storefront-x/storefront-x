@@ -99,7 +99,7 @@ export default class Build extends Core {
         swDest: `${path.join(this.distDir, 'client')}/sw.js`,
       })
     } catch (e) {
-      // Nothing to do
+      // Do nothing
     }
   }
 }

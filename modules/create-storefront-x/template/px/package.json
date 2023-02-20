@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@storefront-x/base": "^1.0.0",
+    "@storefront-x/service-worker": "^1.0.0",
     "@storefront-x/vue": "^1.0.0",
     "@storefront-x/vue-router": "^1.0.0",
     "@storefront-x/vue-head": "^1.0.0",
