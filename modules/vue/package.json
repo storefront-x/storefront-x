@@ -6,14 +6,14 @@
   "dependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
     "@vueuse/components": "^9.11.1",
-    "@vueuse/integrations": "^9.6.0",
+    "@vueuse/integrations": "^9.13.0",
     "universal-cookie": "^4.0.4",
-    "vue": "^3.2.45"
+    "vue": "^3.2.47"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@vue/test-utils": "^2.2.6"
+    "@vue/test-utils": "^2.2.10"
   }
 }

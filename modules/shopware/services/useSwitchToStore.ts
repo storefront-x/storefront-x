@@ -9,7 +9,7 @@ export default () => {
   const localePath = useLocalePath()
   const cookies = useCookies()
 
-  return async (store: typeof VUE_I18N_LOCALES[0]) => {
+  return async (store: (typeof VUE_I18N_LOCALES)[0]) => {
     const { token } = await setLanguageRepository(store.languageId)
 
     cookies.set(SHOPWARE_TOKEN_COOKIE_NAME, token, { path: '/' })

@@ -4,7 +4,7 @@ import IS_SERVER from '#ioc/config/IS_SERVER'
 import once from '#ioc/utils/once'
 import runtimeConfig from '~/.sfx/runtime/config'
 
-export default <Key extends keyof typeof runtimeConfig>(key: Key): typeof runtimeConfig[Key] => {
+export default <Key extends keyof typeof runtimeConfig>(key: Key): (typeof runtimeConfig)[Key] => {
   const obj = IS_SERVER ? runtimeConfig : window.$runtimeConfig
 
   if (IS_DEVELOPMENT && !(key in obj)) {

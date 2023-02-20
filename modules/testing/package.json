@@ -8,7 +8,7 @@
     "@playwright/test": "1.25.2",
     "get-port": "^6.1.2",
     "jsdom": "^20.0.3",
-    "vitest": "^0.25.7"
+    "vitest": "^0.28.5"
   },
   "publishConfig": {
     "access": "public"
