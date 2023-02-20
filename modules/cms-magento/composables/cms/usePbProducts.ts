@@ -7,7 +7,10 @@ export default (el: HTMLElement) => {
     return els.map((form: any) => form.getAttribute('data-product-sku'))
   })
 
+  const type = computed(() => el.getAttribute('data-appearance') as 'carousel' | 'grid')
+
   return reactive({
     skus,
+    type,
   })
 }
