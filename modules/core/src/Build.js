@@ -98,7 +98,7 @@ export default class Build extends Core {
     const runtimeCaching = []
 
     try {
-      const { default: manifest } = await import(path.resolve(this.buildDir, 'ioc', 'sw', 'manifest.js'))
+      const { default: manifest } = await import(path.join('file://', this.buildDir, 'ioc', 'sw', 'manifest.js'))
       if (!manifest) {
         consola.info('Manifest not found')
       } else {
@@ -110,7 +110,9 @@ export default class Build extends Core {
     }
 
     try {
-      const { default: runtimeCaches } = await import(path.resolve(this.buildDir, 'ioc', 'sw', 'runtimeCaches.js'))
+      const { default: runtimeCaches } = await import(
+        path.join('file://', this.buildDir, 'ioc', 'sw', 'runtimeCaches.js')
+      )
       runtimeCaching.push(...runtimeCaches)
     } finally {
       await generateSW({
