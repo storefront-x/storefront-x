@@ -6481,17 +6481,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"demo-magento@workspace:modules/demo-magento~main":
+"demo-blank@workspace:modules/demo-blank":
   version: 0.0.0-use.local
-  resolution: "demo-magento@workspace:modules/demo-magento~main"
+  resolution: "demo-blank@workspace:modules/demo-blank"
+  languageName: unknown
+  linkType: soft
+
+"demo-magento@workspace:modules/demo-magento":
+  version: 0.0.0-use.local
+  resolution: "demo-magento@workspace:modules/demo-magento"
   dependencies:
     vite-plugin-pwa: ^0.14.4
   languageName: unknown
   linkType: soft
 
-"demo-px@workspace:modules/demo-px~main":
+"demo-px@workspace:modules/demo-px":
   version: 0.0.0-use.local
-  resolution: "demo-px@workspace:modules/demo-px~main"
+  resolution: "demo-px@workspace:modules/demo-px"
   dependencies:
     vite-plugin-pwa: ^0.14.4
   languageName: unknown
