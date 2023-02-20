@@ -7,7 +7,7 @@ test('handleRequest to catch error and return status 500', async () => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         [
           'my-module',
           {

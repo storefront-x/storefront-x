@@ -37,9 +37,9 @@ test('$app component with outlet', async ({ page }) => {
           {
             pages: {
               '$app.vue': `
-                <template>hello from <SfxAppOutlet /></template>
+                <template>hello from <SfxLayoutOutlet /></template>
                 <script setup>
-                import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
+                import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
                 </script>
               `,
               'index.vue': `<template>page</template>`,

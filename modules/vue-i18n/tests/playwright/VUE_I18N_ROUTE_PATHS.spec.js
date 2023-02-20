@@ -486,12 +486,12 @@ test('rendering different locale of non-index page in deep structure', async ({ 
                 '$layout.vue': `
                     <template>
                     <div id="h1">
-                      <SfxLayoutOutlet />
+                      <SfxPageOutlet />
                     </div>
                     </template>
 
                     <script setup lang="ts">
-                    import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
+                    import SfxPageOutlet from '#ioc/components/SfxPageOutlet'
 
                     </script>
                   `,
