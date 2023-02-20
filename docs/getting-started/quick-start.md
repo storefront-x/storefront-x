@@ -27,7 +27,6 @@ This command will install and execute `create storefront-x`, the official Storef
 >   Blank application
     Vanilla Magento integration
     Full-featured Magento
-    Shopware integration
 
 Scaffolding project in ./<your-project-name>...
 
@@ -46,7 +45,7 @@ Once the project is created, follow the instructions to install dependencies and
 This will create a dev-ready build of your app in the project's [./sfx directory](/essentials/sfx). Behind the scenes Storefront X collects all your files in enabled modules and creates a build directory, we call this process [Bootstrap](/advanced/bootstrap). With each module setup you get a fully functional e-commerce solution with example components.
 
 - The recommended IDE setup is [Visual Studio Code](https://code.visualstudio.com/) + [Volar extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-- More information about other e-commerce integrations can be found here: [Magento](/integrations/magento) or [Shopware](/integrations/shopware)
+- More information about other e-commerce integrations can be found here: [Magento](/integrations/magento)
 - To learn more about the underlying build tool Vite, check out the [Vite docs](https://vitejs.dev/)
 - Storefront X is TypeScript ready. All the modules support autocomplete in your IDE
 

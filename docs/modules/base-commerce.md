@@ -8,9 +8,9 @@ This module contains general concepts, components, utilities, functionalities an
 
 This module contains multiple concepts establishing general data-flow in Storefront X applications: `repositories/`, `mappers/` and `services/`. Detailed documentation of these concepts can be found later on this page, but generally they work like this:
 
-**Repositories** are responsible for communication with backend. Their job is to abstract away the implementation logic, so they are safe to use and maintain mostly the same interface between backend integrations - repository for fetching products from Magento should have same interface as repository for fetching products from Shopware. They can be found in integration-specific modules (`catalog-magento`, `catalog-shopware`, etc.).
+**Repositories** are responsible for communication with backend. Their job is to abstract away the implementation logic, so they are safe to use and maintain mostly the same interface between backend integrations. They can be found in integration-specific modules (`catalog-magento`, etc.).
 
-**Mappers** are responsible for mapping data between Storefront X and backend integrations. Because different backends return different data, but Storefront X needs data in certain shape, we use mappers to transform data returned from backend to data acceptable by Storefront X. Most of the times, they are used by repositories. They can be found in integration-specific modules (`catalog-magento`, `catalog-shopware`, etc.).
+**Mappers** are responsible for mapping data between Storefront X and backend integrations. Because different backends return different data, but Storefront X needs data in certain shape, we use mappers to transform data returned from backend to data acceptable by Storefront X. Most of the times, they are used by repositories. They can be found in integration-specific modules (`catalog-magento`, etc.).
 
 **Services** wrap repositories with business and application logic. For example, when logging-in the user, logged-in user only does the network request retrieving customer token. Log-in service will use this token, store it in cookies and reload the application.
 
@@ -177,25 +177,30 @@ It is a good idea to return object from the asynchronous function, to allow for 
 ### Example
 
 ```ts
-// repositories/useGetProductsByIds.ts
+// repositories/useGetProductByIdRepository.ts
 
-import useShopware from '#ioc/composables/useShopware'
+import ProductDetail from '#ioc/graphql/queries/ProductDetail'
+import useMagento from '#ioc/composables/useMagento'
 import ToProduct from '#ioc/mappers/ToProduct'
 
 export default () => {
-  const shopware = useShopware()
+  const magento = useMagento()
 
   return async (
-    ids: string[],
+    id: string,
   ): Promise<{
-    products: ReturnType<typeof ToProduct>[]
+    product: ReturnType<typeof ToProduct>
   }> => {
-    const response = await shopware.post(`/product`, {
-      ids: ids,
-    })
+    const {
+      data: { products },
+    } = await magento.graphql(
+      ProductDetail().with({
+        urlKey: id,
+      }),
+    )
 
     return {
-      products: response.elements.map(ToProduct),
+      product: ToProduct(products?.items?.find((item: any) => item.url_key === id) || []),
     }
   }
 }

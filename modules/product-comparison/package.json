@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/product-comparison",
+  "version": "1.13.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -7,7 +7,7 @@ test('event bus with single listener', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/vue-pinia',
         '@storefront-x/base-commerce',
         [
@@ -56,7 +56,7 @@ test('event bus with single listener', async ({ page }) => {
             },
             stores: {
               'useEventBusStore.ts': `
-                import { defineStore } from 'pinia'
+                import defineStore from '#ioc/utils/vuePinia/defineStore'
                 export default defineStore('eventBusStore', {
                   state: () => ({
                     count: 0
@@ -83,7 +83,7 @@ test('event bus with multiple listeners', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/vue-pinia',
         '@storefront-x/base-commerce',
         [
@@ -132,7 +132,7 @@ test('event bus with multiple listeners', async ({ page }) => {
             },
             stores: {
               'useEventBusStore.ts': `
-                import { defineStore } from 'pinia'
+                import defineStore from '#ioc/utils/vuePinia/defineStore'
                 export default defineStore('eventBusStore', {
                   state: () => ({
                     count: 0
@@ -180,7 +180,7 @@ test('event bus without listeners', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/base-commerce',
         [
           'my-module',

@@ -1,13 +1,12 @@
 import colors from 'tailwindcss/colors.js'
 import forms from '@tailwindcss/forms'
+import useGetTailwindContent from '@storefront-x/theme-tailwind'
+
+const getTailwindContent = useGetTailwindContent()
+const content = await getTailwindContent()
 
 export default {
-  content: [
-    './node_modules/@storefront-x/theme-tailwind/**/*.vue',
-    './node_modules/@storefront-x/theme-tailwind-magento/**/*.vue',
-    './node_modules/@storefront-x/theme-tailwind-magento-px/**/*.vue',
-    './modules/demo-px/**/*.vue',
-  ],
+  content,
   plugins: [forms],
   theme: {
     extend: {

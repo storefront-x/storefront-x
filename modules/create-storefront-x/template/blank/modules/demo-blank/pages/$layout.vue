@@ -1,8 +1,8 @@
 <template>
   <Logo />
-  <SfxLayoutOutlet />
+  <SfxPageOutlet />
 </template>
 
 <script setup lang="ts">
-import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
+import SfxPageOutlet from '#ioc/components/SfxPageOutlet'
 </script>

@@ -2,7 +2,7 @@
 
 > `@storefront-x/catalog`
 
-Module for e-commerce catalog (products and categories). Requires corresponding integration module (e.g. `@storefront-x/catalog-shopware`) which provides mappers, repositories and integration specific services.
+Module for e-commerce catalog (products and categories). Requires corresponding integration module (e.g. `@storefront-x/catalog-magento`) which provides mappers, repositories and integration specific services.
 
 ## `useProduct` composable
 

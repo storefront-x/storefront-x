@@ -1,13 +1,13 @@
 {
   "name": "@storefront-x/sentry-server",
-  "version": "1.11.0",
+  "version": "1.13.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@sentry/node": "^7.30.0",
-    "@sentry/tracing": "^7.30.0"
+    "@sentry/node": "^7.38.0",
+    "@sentry/tracing": "^7.38.0"
   }
 }

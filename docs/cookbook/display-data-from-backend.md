@@ -20,7 +20,7 @@ export default (data: any) => ({
 
 ## 2. Create new repository
 
-We need repository for communication with backend. In this repository we can use `fetch` method or some adapter (e.g. `useShopware`). In this example, we will display a todo from the [JSON placeholder](https://jsonplaceholder.typicode.com).
+We need repository for communication with backend. In this repository we can use `fetch` method or some adapter (e.g. `useMagento`). In this example, we will display a todo from the [JSON placeholder](https://jsonplaceholder.typicode.com).
 
 > `repositories/useGetTodoRepository.ts`
 

@@ -1,14 +1,14 @@
 {
   "name": "create-storefront-x",
-  "version": "1.11.0",
+  "version": "1.13.1",
   "type": "module",
   "bin": "index.js",
   "main": "index.js",
   "dependencies": {
     "fs-extra": "^11.1.0",
-    "kolorist": "^1.6.0",
+    "kolorist": "^1.7.0",
     "prompts": "^2.4.2",
-    "yargs": "^17.6.2"
+    "yargs": "^17.7.0"
   },
   "publishConfig": {
     "access": "public"

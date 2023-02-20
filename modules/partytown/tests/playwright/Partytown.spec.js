@@ -7,7 +7,7 @@ test('Partytown scripts loaded properly', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/partytown',
         [
           'my-module',

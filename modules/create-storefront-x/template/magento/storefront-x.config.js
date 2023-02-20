@@ -3,7 +3,7 @@ export default {
     '@storefront-x/base',
 
     '@storefront-x/vue',
-    '@storefront-x/vue-router-simple',
+    '@storefront-x/vue-router',
     '@storefront-x/vue-head',
     '@storefront-x/vue-i18n',
     '@storefront-x/vue-pinia',
@@ -22,6 +22,7 @@ export default {
     '@storefront-x/customer',
     '@storefront-x/multicurrency',
     '@storefront-x/product-reviews',
+    '@storefront-x/product-comparison',
     '@storefront-x/wishlist',
 
     '@storefront-x/magento',
@@ -32,6 +33,7 @@ export default {
     '@storefront-x/customer-magento',
     '@storefront-x/multicurrency-magento',
     '@storefront-x/product-reviews-magento',
+    '@storefront-x/product-comparison-magento',
     '@storefront-x/wishlist-magento',
     '@storefront-x/newsletter-magento',
 

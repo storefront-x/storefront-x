@@ -1,3 +1,71 @@
+## v1.13.1 (2023-02-20)
+
+#### :bug: Bug Fix
+
+- [#364](https://github.com/storefront-x/storefront-x/pull/364) Remove old usePbProducts composable ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
+## v1.13.0 (2023-02-20)
+
+#### :boom: Breaking Change
+
+- [#363](https://github.com/storefront-x/storefront-x/pull/363) Remove Shopware integration ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :rocket: Enhancement
+
+- [#355](https://github.com/storefront-x/storefront-x/pull/355) Add support for PageBuilder dynamic blocks ([@kubo12312](https://github.com/kubo12312))
+- [#358](https://github.com/storefront-x/storefront-x/pull/358) Add support for Product Grid in PB product component ([@fajmanm](https://github.com/fajmanm))
+
+#### :bug: Bug Fix
+
+- [#362](https://github.com/storefront-x/storefront-x/pull/362) Fix double fetching in vue-router ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#357](https://github.com/storefront-x/storefront-x/pull/357) Fix data mapping for password reset ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### :house: Internal
+
+- [#359](https://github.com/storefront-x/storefront-x/pull/359) Cancel old workflows ([@kubo12312](https://github.com/kubo12312))
+- [#361](https://github.com/storefront-x/storefront-x/pull/361) Upgrade deps ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#354](https://github.com/storefront-x/storefront-x/pull/354) Use symlinks for demo modules ([@kubo12312](https://github.com/kubo12312))
+- [#353](https://github.com/storefront-x/storefront-x/pull/353) Improve testing of create-script module ([@kubo12312](https://github.com/kubo12312))
+- [#356](https://github.com/storefront-x/storefront-x/pull/356) Publish docs on GitHub Pages ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### Committers: 4
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+
+## v1.12.0 (2023-02-15)
+
+#### :rocket: Enhancement
+
+- [#349](https://github.com/storefront-x/storefront-x/pull/349) Log MagentoError in dev mode ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#198](https://github.com/storefront-x/storefront-x/pull/198) Implement product comparison ([@JaroslavSku](https://github.com/JaroslavSku))
+- [#346](https://github.com/storefront-x/storefront-x/pull/346) Add option to set Sentry environment ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#341](https://github.com/storefront-x/storefront-x/pull/341) Add support for runtime config ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#351](https://github.com/storefront-x/storefront-x/pull/351) Fix CMS pages in demo/px ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :house: Internal
+
+- [#348](https://github.com/storefront-x/storefront-x/pull/348) Retry MxCloud deploy on failure ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#338](https://github.com/storefront-x/storefront-x/pull/338) Create Cypress videos and screenshots for failed tests ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#345](https://github.com/storefront-x/storefront-x/pull/345) Dead-code eliminate bus emitters without listeners ([@DaDlugosch](https://github.com/DaDlugosch))
+- [#337](https://github.com/storefront-x/storefront-x/pull/337) Set common build step for GitHub CI workflows ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### Committers: 4
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [@JaroslavSku](https://github.com/JaroslavSku)
+
 ## v1.11.0 (2023-02-10)
 
 #### :rocket: Enhancement

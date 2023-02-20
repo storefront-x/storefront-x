@@ -6,6 +6,10 @@ on:
       - main
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{github.ref }}-${{ github.job }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 jobs:
   yarn-ubuntu:
     uses: ./.github/workflows/yarn.yml
@@ -67,30 +71,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        integration: [magento, shopware, px]
+        integration: [magento, px]
     runs-on: ubuntu-latest
+    needs: [yarn-ubuntu]
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
       - run: |
-          yarn create storefront-x --directory=app --integration=${{ matrix.integration }}
-          cd app
+          yarn install
+          cp -rf modules/create-storefront-x ../create-storefront-x
+          cd ../create-storefront-x
+          npm install
+          node index.js -y -- --directory=../app --integration=${{ matrix.integration }}
+          cd ../app
+
+          file=package.json
+          contents=$(cat "$file")
+          contents=$(echo "$contents" | sed 's#"@storefront-x/\([a-zA-Z0-9-]*\)": "^[0-9.]*"#"@storefront-x/\1": "file:../storefront-x/modules/\1"#g')
+          echo "$contents" > "$file"
+
           yarn install
           yarn build
-
-  create-script-with-npm:
-    strategy:
-      fail-fast: false
-      matrix:
-        integration: [magento, shopware, px]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: |
-          npm create storefront-x@latest -y -- --directory=app --integration=${{ matrix.integration }}
-          cd app
-          npm install
-          npm run build

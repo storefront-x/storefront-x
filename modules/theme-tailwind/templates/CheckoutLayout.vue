@@ -1,12 +1,12 @@
 <template>
   <CheckoutHeader />
-  <SfxLayoutOutlet />
+  <SfxPageOutlet />
   <Footer />
   <Notifications />
 </template>
 
 <script setup lang="ts">
-import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
+import SfxPageOutlet from '#ioc/components/SfxPageOutlet'
 import CheckoutHeader from '#ioc/organisms/CheckoutHeader'
 import Footer from '#ioc/organisms/Footer'
 import Notifications from '#ioc/organisms/Notifications'

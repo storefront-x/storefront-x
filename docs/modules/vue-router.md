@@ -53,11 +53,11 @@ By default, this component is empty and looks like this:
 <!-- pages/$app.vue -->
 
 <template>
-  <SfxAppOutlet />
+  <SfxLayoutOutlet />
 </template>
 
 <script setup lang="ts">
-import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
+import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 </script>
 ```
 
@@ -111,7 +111,7 @@ import RouterLink from '#ioc/components/RouterLink'
 </script>
 ```
 
-## `SfxLayoutOutlet` component
+## `SfxPageOutlet` component
 
 Used in layouts to define where the page should be rendered.
 
@@ -122,18 +122,18 @@ Used in layouts to define where the page should be rendered.
 
 <template>
   <Header />
-  <SfxLayoutOutlet />
+  <SfxPageOutlet />
   <Footer />
 </template>
 
 <script setup lang="ts">
-import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
+import SfxPageOutlet from '#ioc/components/SfxPageOutlet'
 import Header from '#ioc/components/Header'
 import Footer from '#ioc/components/Footer'
 </script>
 ```
 
-## `SfxAppOutlet` component
+## `SfxLayoutOutlet` component
 
 Used in special `$app.vue` page, to define where the rest of the app should be rendered.
 
@@ -144,11 +144,11 @@ Used in special `$app.vue` page, to define where the rest of the app should be r
 
 <template>
   <div>Global banner!</div>
-  <SfxAppOutlet />
+  <SfxLayoutOutlet />
 </template>
 
 <script setup lang="ts">
-import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
+import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 import '#ioc/assets/style' // global style
 </script>
 ```
