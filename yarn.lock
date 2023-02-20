@@ -3367,9 +3367,9 @@ __metadata:
   resolution: "@storefront-x/vue@workspace:modules/vue"
   dependencies:
     "@vitejs/plugin-vue": ^4.0.0
-    "@vue/test-utils": ^2.2.6
+    "@vue/test-utils": ^2.2.10
     "@vueuse/components": ^9.11.1
-    "@vueuse/integrations": ^9.6.0
+    "@vueuse/integrations": ^9.13.0
     universal-cookie: ^4.0.4
     vue: ^3.2.47
   languageName: unknown
@@ -4228,7 +4228,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/server-renderer@npm:3.2.47":
+"@vue/server-renderer@npm:3.2.47, @vue/server-renderer@npm:^3.0.1":
   version: 3.2.47
   resolution: "@vue/server-renderer@npm:3.2.47"
   dependencies:
@@ -4251,6 +4251,26 @@ __metadata:
   version: 3.2.47
   resolution: "@vue/shared@npm:3.2.47"
   checksum: 0aa711dc9160fa0e476e6e94eea4e019398adf2211352d0e4a672cfb6b65b104bbd5d234807d1c091107bdc0f5d818d0f12378987eb7861d39be3aa9f6cd6e3e
+  languageName: node
+  linkType: hard
+
+"@vue/test-utils@npm:^2.2.10":
+  version: 2.3.0
+  resolution: "@vue/test-utils@npm:2.3.0"
+  dependencies:
+    "@vue/compiler-dom": ^3.0.1
+    "@vue/server-renderer": ^3.0.1
+    js-beautify: 1.14.6
+  peerDependencies:
+    "@vue/compiler-dom": ^3.0.1
+    "@vue/server-renderer": ^3.0.1
+    vue: ^3.0.1
+  dependenciesMeta:
+    "@vue/compiler-dom":
+      optional: true
+    "@vue/server-renderer":
+      optional: true
+  checksum: a7a2a4cae63b4bc0ba4c927266b6dd8eb347715465140ddfda8196911dfa9efba37e56fa4f3b8a2789ed997cd8ccf1aa5f331c21671ae156bcfad59920ff6f34
   languageName: node
   linkType: hard
 
@@ -4277,9 +4297,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:9.6.0":
-  version: 9.6.0
-  resolution: "@vueuse/core@npm:9.6.0"
+"@vueuse/core@npm:9.13.0":
+  version: 9.13.0
+  resolution: "@vueuse/core@npm:9.13.0"
   dependencies:
     "@types/web-bluetooth": ^0.0.16
     "@vueuse/metadata": 9.13.0
@@ -4289,9 +4309,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/head@npm:^1.0.22":
-  version: 1.0.22
-  resolution: "@vueuse/head@npm:1.0.22"
+"@vueuse/head@npm:^1.0.26":
+  version: 1.0.26
+  resolution: "@vueuse/head@npm:1.0.26"
   dependencies:
     "@unhead/dom": ^1.0.22
     "@unhead/schema": ^1.0.22
