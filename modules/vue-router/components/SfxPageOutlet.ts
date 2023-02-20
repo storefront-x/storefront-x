@@ -1,30 +1,39 @@
 /* eslint-disable vue/require-prop-types */
 /* eslint-disable vue/one-component-per-file */
 
+import useEmitNavigationEnd from '#ioc/bus/emitters/useEmitNavigationEnd'
+import useEmitNavigationStart from '#ioc/bus/emitters/useEmitNavigationStart'
 import { computed, defineComponent, h, provide, reactive, Suspense } from 'vue'
 import { RouterView } from 'vue-router'
 
 export default defineComponent({
   name: 'SfxPageOutlet',
   setup: () => {
-    return () =>
-      h(
-        RouterView,
-        {},
-        {
-          default: (slot: any) => {
-            const key = slot.route.path
+    const emitNavigationStart = useEmitNavigationStart()
+    const emitNavigationEnd = useEmitNavigationEnd()
 
-            return h(
-              Suspense,
-              {},
-              {
-                default: () => h(SfxRouteProvider, { key, pageKey: key, component: slot.Component, route: slot.route }),
-              },
-            )
-          },
+    const onPending = () => emitNavigationStart({})
+    const onResolve = () => emitNavigationEnd({})
+
+    const _default = (slot: any) =>
+      h(
+        Suspense,
+        {
+          onPending,
+          onResolve,
+        },
+        {
+          default: () =>
+            h(SfxRouteProvider, {
+              key: slot.route.path,
+              pageKey: slot.route.path,
+              component: slot.Component,
+              route: slot.route,
+            }),
         },
       )
+
+    return () => h(RouterView, {}, { default: _default })
   },
 })
 
