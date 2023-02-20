@@ -2894,12 +2894,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/cart-shopware@workspace:modules/cart-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/cart-shopware@workspace:modules/cart-shopware"
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/cart@workspace:modules/cart":
   version: 0.0.0-use.local
   resolution: "@storefront-x/cart@workspace:modules/cart"
@@ -2936,12 +2930,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/catalog-shopware@workspace:modules/catalog-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/catalog-shopware@workspace:modules/catalog-shopware"
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/catalog@workspace:modules/catalog":
   version: 0.0.0-use.local
   resolution: "@storefront-x/catalog@workspace:modules/catalog"
@@ -2960,12 +2948,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/checkout-shopware@workspace:modules/checkout-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/checkout-shopware@workspace:modules/checkout-shopware"
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/checkout@workspace:modules/checkout":
   version: 0.0.0-use.local
   resolution: "@storefront-x/checkout@workspace:modules/checkout"
@@ -2977,12 +2959,6 @@ __metadata:
   resolution: "@storefront-x/cms-magento@workspace:modules/cms-magento"
   dependencies:
     happy-dom: ^8.5.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/cms-shopware@workspace:modules/cms-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/cms-shopware@workspace:modules/cms-shopware"
   languageName: unknown
   linkType: soft
 
@@ -3039,12 +3015,6 @@ __metadata:
 "@storefront-x/customer-magento@workspace:modules/customer-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/customer-magento@workspace:modules/customer-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/customer-shopware@workspace:modules/customer-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/customer-shopware@workspace:modules/customer-shopware"
   languageName: unknown
   linkType: soft
 
@@ -3129,12 +3099,6 @@ __metadata:
 "@storefront-x/multicurrency-magento@workspace:modules/multicurrency-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/multicurrency-magento@workspace:modules/multicurrency-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/multicurrency-shopware@workspace:modules/multicurrency-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/multicurrency-shopware@workspace:modules/multicurrency-shopware"
   languageName: unknown
   linkType: soft
 
@@ -3233,26 +3197,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storefront-x/shopware@workspace:modules/shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/shopware@workspace:modules/shopware"
-  dependencies:
-    http-proxy-middleware: ^2.0.6
-  languageName: unknown
-  linkType: soft
-
 "@storefront-x/sitemap-magento@workspace:modules/sitemap-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/sitemap-magento@workspace:modules/sitemap-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/sitemap-shopware@workspace:modules/sitemap-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/sitemap-shopware@workspace:modules/sitemap-shopware"
-  dependencies:
-    "@types/node-gzip": ^1.1.0
-    node-gzip: ^1.1.2
   languageName: unknown
   linkType: soft
 
@@ -3282,12 +3229,6 @@ __metadata:
 "@storefront-x/theme-tailwind-magento@workspace:modules/theme-tailwind-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/theme-tailwind-magento@workspace:modules/theme-tailwind-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/theme-tailwind-shopware@workspace:modules/theme-tailwind-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/theme-tailwind-shopware@workspace:modules/theme-tailwind-shopware"
   languageName: unknown
   linkType: soft
 
@@ -3372,12 +3313,6 @@ __metadata:
 "@storefront-x/wishlist-magento@workspace:modules/wishlist-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/wishlist-magento@workspace:modules/wishlist-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/wishlist-shopware@workspace:modules/wishlist-shopware":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/wishlist-shopware@workspace:modules/wishlist-shopware"
   languageName: unknown
   linkType: soft
 
@@ -3635,15 +3570,6 @@ __metadata:
   version: 1.2.2
   resolution: "@types/minimist@npm:1.2.2"
   checksum: b8da83c66eb4aac0440e64674b19564d9d86c80ae273144db9681e5eeff66f238ade9515f5006ffbfa955ceff8b89ad2bd8ec577d7caee74ba101431fb07045d
-  languageName: node
-  linkType: hard
-
-"@types/node-gzip@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@types/node-gzip@npm:1.1.0"
-  dependencies:
-    "@types/node": "*"
-  checksum: f5dea1b31a0b9a9ab28ed5ba8ba95e22cbc679bafc3db7d5baff83b00a334c5c074f318b1e0b37cd73d3f44241ea94a6d234c5bbcba09ed7ad8bfd059636543e
   languageName: node
   linkType: hard
 
@@ -6572,14 +6498,6 @@ __metadata:
 "demo-px@workspace:modules/demo-px":
   version: 0.0.0-use.local
   resolution: "demo-px@workspace:modules/demo-px"
-  dependencies:
-    vite-plugin-pwa: ^0.14.4
-  languageName: unknown
-  linkType: soft
-
-"demo-shopware@workspace:modules/demo-shopware":
-  version: 0.0.0-use.local
-  resolution: "demo-shopware@workspace:modules/demo-shopware"
   dependencies:
     vite-plugin-pwa: ^0.14.4
   languageName: unknown
@@ -10702,13 +10620,6 @@ __metadata:
   bin:
     node-gyp: bin/node-gyp.js
   checksum: 1437fa4a879b5b9010604128e8da8609b57c66034262087539ee04a8b764b8436af2be01bab66f8fc729a3adba2dcc21b10a32b9f552696c3fa8cd657d134fc4
-  languageName: node
-  linkType: hard
-
-"node-gzip@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "node-gzip@npm:1.1.2"
-  checksum: 5cefff1ff68fa3279dec3c7e92b0ff93ab4763cfb585985d25d937cf781a42eb78975c7555abf49f2325b45a8cdf19b48bed50eeab23f3630018869572def46b
   languageName: node
   linkType: hard
 
