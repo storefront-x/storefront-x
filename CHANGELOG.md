@@ -1,3 +1,13 @@
+## v1.13.1 (2023-02-20)
+
+#### :bug: Bug Fix
+
+- [#364](https://github.com/storefront-x/storefront-x/pull/364) Remove old usePbProducts composable ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.13.0 (2023-02-20)
 
 #### :boom: Breaking Change
