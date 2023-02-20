@@ -6,10 +6,10 @@ Storefront X supports PWA functionalities via the [Vite Plugin PWA](https://vite
 
 ### 1. Install Vite Plugin PWA
 
-Install the [Vite Plugin PWA](https://vite-plugin-pwa.netlify.app) in module representing your instance/implementation. As an example, we will use the `demo-shopware` module.
+Install the [Vite Plugin PWA](https://vite-plugin-pwa.netlify.app) in module representing your instance/implementation. As an example, we will use the `demo-magento` module.
 
 ```
-cd modules/demo-shopware
+cd modules/demo-magento
 yarn add vite-plugin-pwa
 ```
 
@@ -17,7 +17,7 @@ yarn add vite-plugin-pwa
 
 If your module doesn't have `vite.config.js`, create it.
 
-> `modules/demo-shopware/vite.config.js`
+> `modules/demo-magento/vite.config.js`
 
 ```js
 import { defineConfig } from 'vite'
@@ -54,7 +54,7 @@ export default defineConfig({
         start_url: '/',
         name: 'Storefront X',
         short_name: 'Storefront X',
-        description: 'Storefront X with Shopware integration',
+        description: 'Storefront X with Magento integration',
         theme_color: '#FB923C',
         icons: [
           {
@@ -95,7 +95,7 @@ Because Vite Plugin PWA doesn't inject everything required into the `index.html`
 
 We will be adding an `apple-touch-icon` link and a `theme-color` meta tag.
 
-> `modules/demo-shopware/base/templates/index.html`
+> `modules/demo-magento/base/templates/index.html`
 
 ```html{10,11}
 <!DOCTYPE html>

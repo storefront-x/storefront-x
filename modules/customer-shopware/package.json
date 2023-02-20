@@ -1,9 +1,0 @@
-{
-  "name": "@storefront-x/customer-shopware",
-  "version": "1.12.1",
-  "license": "MIT",
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  }
-}

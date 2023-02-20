@@ -91,10 +91,7 @@ export default defineConfig({
       },
       {
         text: 'Integrations',
-        items: [
-          { text: 'Magento', link: '/integrations/magento' },
-          { text: 'Shopware', link: '/integrations/shopware' },
-        ],
+        items: [{ text: 'Magento', link: '/integrations/magento' }],
       },
       {
         text: 'Modules',
@@ -107,7 +104,6 @@ export default defineConfig({
           { text: 'Vue Pinia', link: '/modules/vue-pinia' },
           { text: 'Base Commerce', link: '/modules/base-commerce' },
           { text: 'Magento', link: '/modules/magento' },
-          { text: 'Shopware', link: '/modules/shopware' },
           { text: 'Atomic Design', link: '/modules/atomic-design' },
           { text: 'GraphQL', link: '/modules/graphql' },
           { text: 'Multicurrency', link: '/modules/multicurrency' },
@@ -115,8 +111,6 @@ export default defineConfig({
           { text: 'Cart', link: '/modules/cart' },
           { text: 'Checkout', link: '/modules/checkout' },
           { text: 'Customer', link: '/modules/customer' },
-          { text: 'Customer Shopware', link: '/modules/customer-shopware' },
-          { text: 'CMS Shopware', link: '/modules/cms-shopware' },
           { text: 'Wishlist', link: '/modules/wishlist' },
           { text: 'Theme Tailwind', link: '/modules/theme-tailwind' },
           { text: 'Cookie Script', link: '/modules/cookie-script' },
