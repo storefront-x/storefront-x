@@ -1,9 +1,8 @@
 import colors from 'tailwindcss/colors.js'
 import forms from '@tailwindcss/forms'
-import useGetTailwindContent from '@storefront-x/theme-tailwind'
+import { generateTailwindContent } from '@storefront-x/theme-tailwind'
 
-const getTailwindContent = useGetTailwindContent()
-const content = await getTailwindContent()
+const content = await generateTailwindContent()
 
 export default {
   content,
