@@ -2,7 +2,7 @@
 
 > `@storefront-x/cart`
 
-Module for e-commerce cart. Requires corresponding integration module (e.g. `@storefront-x/cart-shopware`) which provides mappers, repositories and integration specific services.
+Module for e-commerce cart. Requires corresponding integration module (e.g. `@storefront-x/cart-magento`) which provides mappers, repositories and integration specific services.
 
 ## `useCart` composable
 

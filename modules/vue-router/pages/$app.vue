@@ -1,7 +1,7 @@
 <template>
-  <SfxAppOutlet />
+  <SfxLayoutOutlet />
 </template>
 
 <script setup lang="ts">
-import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
+import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 </script>

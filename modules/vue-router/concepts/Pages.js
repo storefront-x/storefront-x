@@ -210,7 +210,6 @@ export const routes = Object.values(plugins).reduce((routes, plugin) => plugin(r
       {
         name: <%- child.name ? "'" + child.name + "'" : 'undefined' %>,
         path: '<%= child.path %>',
-        props:true,
         component: () => import('<%= child.component %>'),
         <%- child.beforeEnter ?  'beforeEnter: '  + child.beforeEnter + ',' : '' %>
       },

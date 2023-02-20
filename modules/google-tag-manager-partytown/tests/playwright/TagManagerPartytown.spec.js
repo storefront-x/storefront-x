@@ -7,7 +7,7 @@ test('Google Tag Manager script with Partytown enabled', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/partytown',
         '@storefront-x/google-tag-manager',
         '@storefront-x/google-tag-manager-partytown',

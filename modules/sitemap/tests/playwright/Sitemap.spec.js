@@ -7,7 +7,7 @@ test('sitemap with locale prefix', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         '@storefront-x/vue-pinia',
         '@storefront-x/sitemap',
@@ -53,7 +53,7 @@ test('sitemap with translated routes', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         '@storefront-x/sitemap',
         [

@@ -7,7 +7,7 @@ test('event bus with single listener', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/vue-pinia',
         '@storefront-x/base-commerce',
         [
@@ -83,7 +83,7 @@ test('event bus with multiple listeners', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/vue-pinia',
         '@storefront-x/base-commerce',
         [
@@ -180,7 +180,7 @@ test('event bus without listeners', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/base-commerce',
         [
           'my-module',

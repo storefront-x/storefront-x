@@ -61,11 +61,6 @@ const main = async () => {
       console.log('')
       break
 
-    case 'shopware':
-      console.log('To learn more, visit the documentation: https://docs.storefrontx.io/integrations/shopware.html')
-      console.log('')
-      break
-
     case 'blank':
       console.log('To learn more, visit the documentation: https://docs.storefrontx.io')
       console.log('')
@@ -111,7 +106,6 @@ async function getResponses() {
             { title: 'Blank application', value: 'blank' },
             { title: 'Vanilla Magento integration', value: 'magento' },
             { title: 'Full-featured Magento', value: 'px' },
-            { title: 'Shopware integration', value: 'shopware' },
           ],
         },
       ],

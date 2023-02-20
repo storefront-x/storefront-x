@@ -7,7 +7,7 @@ test('Google Analytics script with Partytown enabled', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/partytown',
         '@storefront-x/google-analytics',
         '@storefront-x/google-analytics-partytown',

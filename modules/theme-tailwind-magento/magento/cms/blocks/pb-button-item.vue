@@ -1,36 +1,33 @@
 <template>
-  <a :href="link" :class="classes">
+  <a :href="pbButtonItem.link ?? ''" :class="classes">
     <Button :color="color">
-      {{ content }}
+      {{ pbButtonItem.content }}
     </Button>
   </a>
 </template>
 
-<script>
+<script setup lang="ts">
 import Button from '#ioc/atoms/Button'
-import IsPbBlock from '#ioc/mixins/IsPbBlock'
-import IsPbButtonItem from '#ioc/mixins/IsPbButtonItem'
-import { defineComponent } from 'vue'
+import usePbButtonItem from '#ioc/composables/cms/usePbButtonItem'
+import usePbButtons from '#ioc/composables/cms/usePbButtons'
+import { computed, getCurrentInstance, PropType } from 'vue'
 
-export default defineComponent({
-  components: {
-    Button,
-  },
+const instance = getCurrentInstance()
 
-  mixins: [IsPbBlock, IsPbButtonItem],
+const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
-  computed: {
-    classes() {
-      return {
-        'flex-grow-1': this.$parent.sameWidth,
-        'flex-grow-0': !this.$parent.sameWidth,
-      }
-    },
+const pbButtonItem = usePbButtonItem(props.el)
+const pbButtons = usePbButtons(instance?.parent?.props.el as HTMLElement)
 
-    color() {
-      if (this.type === 'primary') return 'primary'
-      return 'light'
-    },
-  },
+const classes = computed(() => {
+  return {
+    'flex-grow-1': pbButtons.sameWidth,
+    'flex-grow-0': !pbButtons.sameWidth,
+  }
+})
+
+const color = computed(() => {
+  if (pbButtonItem.type === 'primary') return 'primary'
+  return 'light'
 })
 </script>

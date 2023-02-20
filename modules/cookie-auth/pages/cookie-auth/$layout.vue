@@ -1,9 +1,9 @@
 <template>
-  <SfxLayoutOutlet />
+  <SfxPageOutlet />
 </template>
 
 <script setup lang="ts">
-import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
+import SfxPageOutlet from '#ioc/components/SfxPageOutlet'
 import useSetResponseStatus from '#ioc/composables/useSetResponseStatus'
 
 const setResponseStatus = useSetResponseStatus()

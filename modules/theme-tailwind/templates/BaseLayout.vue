@@ -2,7 +2,7 @@
   <Header />
   <HamburgerMenu v-if="hamburgerStatus" @close="closeHamburger" />
   <main class="mt-[66px] md:mt-0">
-    <SfxLayoutOutlet />
+    <SfxPageOutlet />
   </main>
   <Footer />
   <Notifications />
@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, ref, watch } from 'vue'
 import useRoute from '#ioc/composables/useRoute'
-import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
+import SfxPageOutlet from '#ioc/components/SfxPageOutlet'
 import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'

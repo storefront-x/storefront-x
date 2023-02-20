@@ -7,7 +7,7 @@ test('sets correct response status', async () => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         [
           'my-module',
           {

@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 gap-2 sm:gap-0 sm:grid-cols-2 xl:grid-cols-5">
+  <div class="grid grid-cols-1 gap-2 sm:gap-0 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
     <ProductProvider v-for="(product, i) in products" :key="product.id" :product="product">
       <ProductTile :preload-image="i === 0" :index="i" grid-borders />
     </ProductProvider>
