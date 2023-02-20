@@ -5,7 +5,7 @@ import { computed, defineComponent, h, provide, reactive, Suspense } from 'vue'
 import { RouterView } from 'vue-router'
 
 export default defineComponent({
-  name: 'SfxAppOutlet',
+  name: 'SfxPageOutlet',
   setup: () => {
     return () =>
       h(
@@ -19,7 +19,7 @@ export default defineComponent({
               Suspense,
               {},
               {
-                default: () => h(RouterProvider, { key, pageKey: key, component: slot.Component, route: slot.route }),
+                default: () => h(SfxRouteProvider, { key, pageKey: key, component: slot.Component, route: slot.route }),
               },
             )
           },
@@ -28,8 +28,8 @@ export default defineComponent({
   },
 })
 
-const RouterProvider = defineComponent({
-  name: 'RouteProvider',
+const SfxRouteProvider = defineComponent({
+  name: 'SfxRouteProvider',
   props: ['pageKey', 'component', 'route'],
   setup: (props) => {
     // Prevent reactivity when the page will be rerendered in a different suspense fork
