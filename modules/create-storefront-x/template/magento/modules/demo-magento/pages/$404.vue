@@ -14,7 +14,5 @@ const urlResover = useUrlResolver()
 
 const pathMatch = isArray(route.params.pathMatch) ? route.params.pathMatch.join('/') : route.params.pathMatch ?? '/'
 
-console.log(pathMatch)
-
 const { id, entityUid, component, relativeUrl } = await urlResover(pathMatch)
 </script>
