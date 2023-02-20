@@ -45,11 +45,11 @@ By default, this component is empty and looks like this:
 <!-- pages/$app.vue -->
 
 <template>
-  <SfxAppOutlet />
+  <SfxLayoutOutlet />
 </template>
 
 <script setup lang="ts">
-import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
+import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 </script>
 ```
 
@@ -79,7 +79,7 @@ import RouterLink from '#ioc/components/RouterLink'
 The `RouterLink` component is accessible globally without needing to be imported. Importing it over IoC allows for better intellisense support.
 :::
 
-## `SfxLayoutOutlet` component
+## `SfxPageOutlet` component
 
 Used in layouts to define where the page should be rendered.
 
@@ -90,18 +90,18 @@ Used in layouts to define where the page should be rendered.
 
 <template>
   <Header />
-  <SfxLayoutOutlet />
+  <SfxPageOutlet />
   <Footer />
 </template>
 
 <script setup lang="ts">
-import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
+import SfxPageOutlet from '#ioc/components/SfxPageOutlet'
 import Header from '#ioc/components/Header'
 import Footer from '#ioc/components/Footer'
 </script>
 ```
 
-## `SfxAppOutlet` component
+## `SfxLayoutOutlet` component
 
 Used in special `$app.vue` page, to define where the rest of the app should be rendered.
 
@@ -112,11 +112,11 @@ Used in special `$app.vue` page, to define where the rest of the app should be r
 
 <template>
   <div>Global banner!</div>
-  <SfxAppOutlet />
+  <SfxLayoutOutlet />
 </template>
 
 <script setup lang="ts">
-import SfxAppOutlet from '#ioc/components/SfxAppOutlet'
+import SfxLayoutOutlet from '#ioc/components/SfxLayoutOutlet'
 import '#ioc/assets/style' // global style
 </script>
 ```
@@ -179,29 +179,29 @@ const onClick = () => {
 
 ## $404
 
-This is our custom page component to handle all the unmatched routes. Typically it is used to match unknown paths like products or categories from catalog. You will recieve `router.$pathMatch` as prop passed from `SfxLayoutOutlet.vue`, containing matched path. You can use it for example in `urlResolver` to get copoment to render.
+This is our custom page component to handle all the unmatched routes. Typically it is used to match unknown paths like products or categories from catalog.
 
 ### Example
 
 ```vue
 <!-- pages/$404.vue -->
 <template>
-  <Component :is="component" v-if="component" :id="id" :relative-url="relativeUrl" />
+  <Component :is="component" v-if="component" :id="id" />
   <NotFound v-else />
 </template>
 
 <script setup lang="ts">
 import NotFound from '#ioc/templates/NotFound'
+import useRoute from '#ioc/composables/useRoute'
 import useUrlResolver from '#ioc/services/useUrlResolver'
-
 import isArray from '#ioc/utils/isArray'
 
+const route = useRoute()
 const urlResover = useUrlResolver()
-const props = defineProps({
-  pathMatch: { type: String, required: true },
-})
 
-const { id, component, relativeUrl } = await urlResover(pathMatch)
+const pathMatch = isArray(route.params.pathMatch) ? route.params.pathMatch.join('/') : route.params.pathMatch ?? '/'
+
+const { id, component } = await urlResover(pathMatch)
 </script>
 ```
 

@@ -7,7 +7,7 @@ test('magento error handling is working', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         '@storefront-x/vue-pinia',
         '@storefront-x/base-commerce',
@@ -78,7 +78,7 @@ test('magento error messages translation is working', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         '@storefront-x/vue-pinia',
         '@storefront-x/base-commerce',
@@ -174,7 +174,7 @@ test('magento error is logged to console', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/vue-i18n',
         '@storefront-x/vue-pinia',
         '@storefront-x/base-commerce',

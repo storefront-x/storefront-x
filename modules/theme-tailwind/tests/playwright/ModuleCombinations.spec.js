@@ -6,7 +6,7 @@ test('with vue', async () => {
     modules: [
       '@storefront-x/base',
       '@storefront-x/vue',
-      '@storefront-x/vue-router-simple',
+      '@storefront-x/vue-router',
       '@storefront-x/atomic-design',
       '@storefront-x/vue-i18n',
       '@storefront-x/theme-tailwind',

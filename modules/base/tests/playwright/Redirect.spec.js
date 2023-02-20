@@ -7,7 +7,7 @@ test('redirect is working', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         [
           'my-module',
           {
@@ -39,7 +39,7 @@ test('redirect results in proper redirect code', async () => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         [
           'my-module',
           {
@@ -71,7 +71,7 @@ test('redirect works on client', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         [
           'my-module',
           {

@@ -7,7 +7,7 @@ test('Google analytics script and correct ID in head', async ({ page }) => {
       modules: [
         '@storefront-x/base',
         '@storefront-x/vue',
-        '@storefront-x/vue-router-simple',
+        '@storefront-x/vue-router',
         '@storefront-x/google-analytics',
         [
           'my-module',

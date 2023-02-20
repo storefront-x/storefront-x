@@ -38,9 +38,3 @@ test('with vue-router', async () => {
     modules: ['@storefront-x/base', '@storefront-x/vue', '@storefront-x/vue-router', '@storefront-x/sitemap'],
   })
 })
-
-test('with vue-router-simple', async () => {
-  await buildProject({
-    modules: ['@storefront-x/base', '@storefront-x/vue', '@storefront-x/vue-router-simple', '@storefront-x/sitemap'],
-  })
-})
