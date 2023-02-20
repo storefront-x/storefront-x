@@ -3362,6 +3362,7 @@ __metadata:
   dependencies:
     "@vitejs/plugin-vue": ^4.0.0
     "@vue/test-utils": ^2.2.10
+    "@vueuse/components": ^9.11.1
     "@vueuse/integrations": ^9.13.0
     universal-cookie: ^4.0.4
     vue: ^3.2.47
@@ -4221,7 +4222,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/server-renderer@npm:3.2.47":
+"@vue/server-renderer@npm:3.2.47, @vue/server-renderer@npm:^3.0.1":
   version: 3.2.47
   resolution: "@vue/server-renderer@npm:3.2.47"
   dependencies:
@@ -4248,18 +4249,45 @@ __metadata:
   linkType: hard
 
 "@vue/test-utils@npm:^2.2.10":
-  version: 2.2.10
-  resolution: "@vue/test-utils@npm:2.2.10"
+  version: 2.3.0
+  resolution: "@vue/test-utils@npm:2.3.0"
   dependencies:
     "@vue/compiler-dom": ^3.0.1
+    "@vue/server-renderer": ^3.0.1
     js-beautify: 1.14.6
   peerDependencies:
     "@vue/compiler-dom": ^3.0.1
+    "@vue/server-renderer": ^3.0.1
     vue: ^3.0.1
   dependenciesMeta:
     "@vue/compiler-dom":
       optional: true
-  checksum: f16a912765c44655063ee6eee19a85b22410d2668dc3df3c560ce6a9344b96e03b3a2eb4daa70c2745c395e654d5a790902f20f5600b42c56fbc6927f4ec71d5
+    "@vue/server-renderer":
+      optional: true
+  checksum: a7a2a4cae63b4bc0ba4c927266b6dd8eb347715465140ddfda8196911dfa9efba37e56fa4f3b8a2789ed997cd8ccf1aa5f331c21671ae156bcfad59920ff6f34
+  languageName: node
+  linkType: hard
+
+"@vueuse/components@npm:^9.11.1":
+  version: 9.12.0
+  resolution: "@vueuse/components@npm:9.12.0"
+  dependencies:
+    "@vueuse/core": 9.12.0
+    "@vueuse/shared": 9.12.0
+    vue-demi: "*"
+  checksum: 23ded6a35a42e6a6d3d6b2127edf3cf85513bbe9afcb46741d9c3ddf1fd9ee17b255fb1d2377cae4a458a131717d1b96da97428d3638a5173aea9d1c8cd442d3
+  languageName: node
+  linkType: hard
+
+"@vueuse/core@npm:9.12.0, @vueuse/core@npm:^9.12.0":
+  version: 9.12.0
+  resolution: "@vueuse/core@npm:9.12.0"
+  dependencies:
+    "@types/web-bluetooth": ^0.0.16
+    "@vueuse/metadata": 9.12.0
+    "@vueuse/shared": 9.12.0
+    vue-demi: "*"
+  checksum: bbbbd0a60f3cbda8e116c721f67319af42247af607d997e58d1f860660148ecbf58f90b8b3f38c6ecf87bc37a1a330b280050d883d79579ed72abf3b286b88cb
   languageName: node
   linkType: hard
 
@@ -4272,18 +4300,6 @@ __metadata:
     "@vueuse/shared": 9.13.0
     vue-demi: "*"
   checksum: 2b19d8ec4305f6c65650813c0fa9c15af6b322fc253ad656eb1c4bc8d7617a2ddd46a46d7ea359c4cdc5a5724aa5fc152fa7a3816ed6ebeaec4f7e58defb7153
-  languageName: node
-  linkType: hard
-
-"@vueuse/core@npm:^9.12.0":
-  version: 9.12.0
-  resolution: "@vueuse/core@npm:9.12.0"
-  dependencies:
-    "@types/web-bluetooth": ^0.0.16
-    "@vueuse/metadata": 9.12.0
-    "@vueuse/shared": 9.12.0
-    vue-demi: "*"
-  checksum: bbbbd0a60f3cbda8e116c721f67319af42247af607d997e58d1f860660148ecbf58f90b8b3f38c6ecf87bc37a1a330b280050d883d79579ed72abf3b286b88cb
   languageName: node
   linkType: hard
 
