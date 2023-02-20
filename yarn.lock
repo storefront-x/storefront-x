@@ -2856,8 +2856,6 @@ __metadata:
 "@storefront-x/base@workspace:modules/base":
   version: 0.0.0-use.local
   resolution: "@storefront-x/base@workspace:modules/base"
-  dependencies:
-    workbox-window: ^6.5.4
   languageName: unknown
   linkType: soft
 
@@ -3245,6 +3243,14 @@ __metadata:
   dependencies:
     "@sentry/node": ^7.38.0
     "@sentry/tracing": ^7.38.0
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/service-worker@workspace:modules/service-worker":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/service-worker@workspace:modules/service-worker"
+  dependencies:
+    workbox-window: ^6.5.4
   languageName: unknown
   linkType: soft
 

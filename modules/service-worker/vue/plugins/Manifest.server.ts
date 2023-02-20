@@ -6,7 +6,7 @@ export const after = async (app: App, ctx?: any) => {
     return
   }
 
-  ctx.out.serviceWorker = (html: string) =>
+  ctx.out.manifest = (html: string) =>
     html.replace(
       '<head>',
       `<head>\n

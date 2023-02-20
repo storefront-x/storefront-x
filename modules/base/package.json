@@ -5,8 +5,5 @@
   "type": "module",
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "workbox-window": "^6.5.4"
   }
 }

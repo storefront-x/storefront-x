@@ -1,6 +1,4 @@
 import path from 'node:path'
-import { writeFile } from 'node:fs/promises'
-import consola from 'consola'
 import * as vite from 'vite'
 import open from 'open'
 import cssnano from 'cssnano'
@@ -89,43 +87,19 @@ export default class Build extends Core {
       }),
     )
 
-    await this.buildServiceWorker()
-  }
-
-  async buildServiceWorker() {
-    consola.info('Generating manifest & service worker...')
-
-    const runtimeCaching = []
-
     try {
-      const { default: manifest } = await import('file://' + path.join(this.buildDir, 'ioc', 'sw', 'manifest.js'))
-      if (!manifest) {
-        consola.info('Manifest not found')
-      } else {
-        await writeFile(path.join(this.distDir, 'client', 'manifest.webmanifest'), JSON.stringify(manifest))
-        consola.success('Manifest generated')
-      }
-    } catch (e) {
-      // Do nothing
-    }
-
-    try {
-      const { default: runtimeCaches } = await import(
-        'file://' + path.join(this.buildDir, 'ioc', 'sw', 'runtimeCaches.js')
-      )
-      runtimeCaching.push(...runtimeCaches)
-    } finally {
+      const { default: runtimeCache } = await import('file://' + path.join(this.buildDir, 'runtimeCache.js'))
       await generateSW({
         globDirectory: `${path.join(this.distDir, 'client')}`,
-        globPatterns: ['**/*.{js,css,ico,png,svg,jpg,webmanifest}'],
+        globPatterns: ['**/*.{js,css,ico,png,svg,jpg}'],
         navigateFallback: null,
         skipWaiting: true,
         clientsClaim: true,
-        runtimeCaching,
+        runtimeCaching: Object.values(runtimeCache),
         swDest: `${path.join(this.distDir, 'client')}/sw.js`,
       })
+    } catch (e) {
+      // Do nothing
     }
-
-    consola.success('Service worker generated')
   }
 }
