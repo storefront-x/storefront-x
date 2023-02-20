@@ -12,7 +12,7 @@ import isArray from '#ioc/utils/isArray'
 const route = useRoute()
 const urlResover = useUrlResolver()
 
-const pathMatch = isArray(route.params.pathMatch) ? route.params.pathMatch.join('/') : route.params.pathMatch
+const pathMatch = isArray(route.params.pathMatch) ? route.params.pathMatch.join('/') : route.params.pathMatch ?? '/'
 
 const { id, entityUid, component, relativeUrl } = await urlResover(pathMatch)
 </script>
