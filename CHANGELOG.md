@@ -1,3 +1,34 @@
+## v1.13.0 (2023-02-20)
+
+#### :boom: Breaking Change
+
+- [#363](https://github.com/storefront-x/storefront-x/pull/363) Remove Shopware integration ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :rocket: Enhancement
+
+- [#355](https://github.com/storefront-x/storefront-x/pull/355) Add support for PageBuilder dynamic blocks ([@kubo12312](https://github.com/kubo12312))
+- [#358](https://github.com/storefront-x/storefront-x/pull/358) Add support for Product Grid in PB product component ([@fajmanm](https://github.com/fajmanm))
+
+#### :bug: Bug Fix
+
+- [#362](https://github.com/storefront-x/storefront-x/pull/362) Fix double fetching in vue-router ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#357](https://github.com/storefront-x/storefront-x/pull/357) Fix data mapping for password reset ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### :house: Internal
+
+- [#359](https://github.com/storefront-x/storefront-x/pull/359) Cancel old workflows ([@kubo12312](https://github.com/kubo12312))
+- [#361](https://github.com/storefront-x/storefront-x/pull/361) Upgrade deps ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#354](https://github.com/storefront-x/storefront-x/pull/354) Use symlinks for demo modules ([@kubo12312](https://github.com/kubo12312))
+- [#353](https://github.com/storefront-x/storefront-x/pull/353) Improve testing of create-script module ([@kubo12312](https://github.com/kubo12312))
+- [#356](https://github.com/storefront-x/storefront-x/pull/356) Publish docs on GitHub Pages ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### Committers: 4
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Jakub Rosina ([@kubo12312](https://github.com/kubo12312))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+
 ## v1.12.0 (2023-02-15)
 
 #### :rocket: Enhancement
