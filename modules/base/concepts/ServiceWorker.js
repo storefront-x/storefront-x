@@ -39,7 +39,7 @@ export default class ServiceWorker extends IocConcept {
   }
 
   getPathForFile(module, file) {
-    return path.join('file://', module.join(this.directory, file).replace(/\.ts$/, '').replace(/\\/g, '/'))
+    return 'file://' + module.join(this.directory, file).replace(/\.ts$/, '').replace(/\\/g, '/')
   }
 
   get directory() {
