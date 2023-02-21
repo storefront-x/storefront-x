@@ -20,7 +20,7 @@ export default class ServiceWorkerRuntimeCache extends GeneratingConcept {
   }
 
   async afterBuild() {
-    const { default: runtimeCache } = await import(path.join(this.dst(), 'runtimeCache.js'))
+    const { default: runtimeCache } = await import('file://' + path.join(this.dst(), 'runtimeCache.js'))
 
     await generateSW({
       globDirectory: `${path.join(this.core.distDir, 'client')}`,
