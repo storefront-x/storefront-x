@@ -1,6 +1,6 @@
 import { GeneratingConcept } from '@storefront-x/core'
 
-export default class RuntimeCache extends GeneratingConcept {
+export default class ServiceWorkerRuntimeCache extends GeneratingConcept {
   get extension() {
     return 'js'
   }
@@ -10,6 +10,6 @@ export default class RuntimeCache extends GeneratingConcept {
   }
 
   get directory() {
-    return 'runtimeCache'
+    return 'serviceWorker/runtimeCache'
   }
 }

@@ -88,7 +88,9 @@ export default class Build extends Core {
     )
 
     try {
-      const { default: runtimeCache } = await import('file://' + path.join(this.buildDir, 'runtimeCache.js'))
+      const { default: runtimeCache } = await import(
+        'file://' + path.join(this.buildDir, 'serviceWorker', 'runtimeCache.js')
+      )
       await generateSW({
         globDirectory: `${path.join(this.distDir, 'client')}`,
         globPatterns: ['**/*.{js,css,ico,png,svg,jpg}'],
