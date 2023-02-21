@@ -1,7 +1,6 @@
 export default {
   modules: [
     '@storefront-x/base',
-    '@storefront-x/service-worker',
 
     '@storefront-x/vue',
     '@storefront-x/vue-router',
@@ -15,6 +14,8 @@ export default {
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
     '@storefront-x/nprogress',
+    '@storefront-x/service-worker',
+    '@storefront-x/web-app-manifest',
 
     '@storefront-x/magento',
 

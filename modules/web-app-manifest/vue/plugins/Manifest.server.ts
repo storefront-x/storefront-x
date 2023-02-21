@@ -6,7 +6,7 @@ export const after = async (app: App, ctx?: any) => {
     return
   }
 
-  ctx.out.manifest = (html: string) =>
+  ctx.out.webAppManifest = (html: string) =>
     html.replace(
       '<head>',
       `<head>\n

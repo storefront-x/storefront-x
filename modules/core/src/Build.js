@@ -4,7 +4,6 @@ import open from 'open'
 import cssnano from 'cssnano'
 import { visualizer } from 'rollup-plugin-visualizer'
 import Core from './Core.js'
-import { generateSW } from 'workbox-build'
 
 export default class Build extends Core {
   async build() {
@@ -87,21 +86,8 @@ export default class Build extends Core {
       }),
     )
 
-    try {
-      const { default: runtimeCache } = await import(
-        'file://' + path.join(this.buildDir, 'serviceWorker', 'runtimeCache.js')
-      )
-      await generateSW({
-        globDirectory: `${path.join(this.distDir, 'client')}`,
-        globPatterns: ['**/*.{js,css,ico,png,svg,jpg}'],
-        navigateFallback: null,
-        skipWaiting: true,
-        clientsClaim: true,
-        runtimeCaching: Object.values(runtimeCache),
-        swDest: `${path.join(this.distDir, 'client')}/sw.js`,
-      })
-    } catch (e) {
-      // Do nothing
+    for (const concept of this.concepts) {
+      await concept.afterBuild()
     }
   }
 }
