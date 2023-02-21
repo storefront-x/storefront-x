@@ -24,7 +24,7 @@ test('web app manifest meta link is present in the html', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      const response = await page.goto(url, { waitUntil: 'networkidle' })
+      const response = await page.goto(url)
       expect(await response.text()).toContain('<link rel="manifest" href="/manifest.webmanifest">')
     },
   )
@@ -53,7 +53,7 @@ test('web app manifest route returns json response with schema', async ({ page }
       ],
     },
     async ({ url }) => {
-      const response = await page.goto(url + '/manifest.webmanifest', { waitUntil: 'networkidle' })
+      const response = await page.goto(url + '/manifest.webmanifest')
       const json = await response.json()
       expect(json.$schema).toEqual('https://json.schemastore.org/web-manifest-combined.json')
     },
@@ -87,7 +87,7 @@ test('overriding fields of manifest', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      const response = await page.goto(url + '/manifest.webmanifest', { waitUntil: 'networkidle' })
+      const response = await page.goto(url + '/manifest.webmanifest')
       const json = await response.json()
       expect(json.$schema).toEqual('schema')
       expect(json.name).toEqual('name')
