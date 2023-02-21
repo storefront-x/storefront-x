@@ -1,5 +1,11 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject, buildProject } from '@storefront-x/testing'
+
+test('module combinations with base, vue & vue-router', async () => {
+  await buildProject({
+    modules: ['@storefront-x/base', '@storefront-x/vue', '@storefront-x/vue-router', '@storefront-x/web-app-manifest'],
+  })
+})
 
 test('web app manifest meta link is present in the html', async ({ page }) => {
   await makeProject(
@@ -91,6 +97,39 @@ test('overriding fields of manifest', async ({ page }) => {
       const json = await response.json()
       expect(json.$schema).toEqual('schema')
       expect(json.name).toEqual('name')
+    },
+  )
+})
+
+test('rendering of theme-color meta tag', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        '@storefront-x/web-app-manifest',
+        [
+          'my-module',
+          {
+            pages: {
+              'index.vue': `
+                <template>
+                  <h1>Hello, World!</h1>
+                </template>
+              `,
+            },
+            webAppManifest: {
+              'theme_color.ts': `export default '#test'`,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      const response = await page.goto(url)
+      const html = await response.text()
+      expect(html).toContain(`<meta name="theme-color" content="#test" />`)
     },
   )
 })
