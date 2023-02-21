@@ -121,6 +121,7 @@ export default defineConfig({
           { text: 'Sentry', link: '/modules/sentry' },
           { text: 'Runtime Config', link: '/modules/runtime-config' },
           { text: 'Service Worker', link: '/modules/service-worker' },
+          { text: 'Web App Manifest', link: '/modules/web-app-manifest' },
         ],
       },
     ],
