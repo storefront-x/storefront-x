@@ -16,7 +16,7 @@ export default class ServiceWorkerRuntimeCache extends GeneratingConcept {
   }
 
   getPathForFile(module, file) {
-    return module.join(this.directory, file).replace(/\.ts$/, '').replace(/\\/g, '/')
+    return 'file://' + module.join(this.directory, file).replace(/\.ts$/, '').replace(/\\/g, '/')
   }
 
   async afterBuild() {
