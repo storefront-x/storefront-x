@@ -71,7 +71,6 @@ export default defineConfig({
         items: [
           { text: 'Bootstrap', link: '/advanced/bootstrap' },
           { text: 'Concepts', link: '/advanced/concepts' },
-          { text: 'PWA', link: '/advanced/pwa' },
           { text: 'Dotenv', link: '/advanced/dotenv' },
           { text: 'Lazy components', link: '/advanced/lazy-components' },
           { text: 'Functionalities', link: '/advanced/functionalities' },
@@ -121,6 +120,7 @@ export default defineConfig({
           { text: 'Cookie Auth', link: '/modules/cookie-auth' },
           { text: 'Sentry', link: '/modules/sentry' },
           { text: 'Runtime Config', link: '/modules/runtime-config' },
+          { text: 'Service Worker', link: '/modules/service-worker' },
         ],
       },
     ],
