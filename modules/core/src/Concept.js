@@ -43,6 +43,8 @@ export default class Concept {
 
   async after() {}
 
+  async afterBuild() {}
+
   /**
    * Returns simple paths of files inside the directory
    * Recursivity is controlled with recursive getter

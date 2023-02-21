@@ -26,10 +26,7 @@ export default class Build extends Core {
           },
           plugins: [
             //@ts-ignore
-            analyze &&
-              visualizer({
-                filename: path.join(this.distDir, 'client', 'stats.html'),
-              }),
+            analyze && visualizer({ filename: path.join(this.distDir, 'client', 'stats.html') }),
           ],
         },
       },
@@ -88,5 +85,9 @@ export default class Build extends Core {
         },
       }),
     )
+
+    for (const concept of this.concepts) {
+      await concept.afterBuild()
+    }
   }
 }

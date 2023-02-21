@@ -14,6 +14,8 @@ export default {
     '@storefront-x/cypress',
     '@storefront-x/schema-org',
     '@storefront-x/nprogress',
+    '@storefront-x/service-worker',
+    '@storefront-x/web-app-manifest',
 
     '@storefront-x/magento',
 
