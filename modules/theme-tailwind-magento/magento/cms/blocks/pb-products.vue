@@ -1,6 +1,4 @@
 <template>
-  <ProductCarousel v-if="products.length" :products="products" />
-
   <div v-if="pbProducts.type === 'carousel'">
     <ProductCarousel v-if="products.length" :products="products" />
   </div>
