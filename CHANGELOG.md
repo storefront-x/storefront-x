@@ -1,3 +1,18 @@
+## v1.14.0 (2023-02-22)
+
+#### :rocket: Enhancement
+
+- [#360](https://github.com/storefront-x/storefront-x/pull/360) Improve PWA functionalities ([@DaDlugosch](https://github.com/DaDlugosch))
+
+#### :bug: Bug Fix
+
+- [#365](https://github.com/storefront-x/storefront-x/pull/365) Fix duplicated carousel in pb-products ([@fajmanm](https://github.com/fajmanm))
+
+#### Committers: 2
+
+- Damian Dlugosch ([@DaDlugosch](https://github.com/DaDlugosch))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+
 ## v1.13.1 (2023-02-20)
 
 #### :bug: Bug Fix
