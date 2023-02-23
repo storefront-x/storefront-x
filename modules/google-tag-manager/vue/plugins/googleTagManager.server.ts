@@ -6,7 +6,7 @@ export const after = async (app: App, ctx?: any) => {
   ctx.out.googleTagManager = (html: string) =>
     html.replace(
       '<head>',
-      `<head>\n<script type='${GOOGLE_TAG_MANAGER_SCRIPT_TYPE}'>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      `<head>\n<script async type='${GOOGLE_TAG_MANAGER_SCRIPT_TYPE}'>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
