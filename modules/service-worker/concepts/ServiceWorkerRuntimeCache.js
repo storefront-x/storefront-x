@@ -23,6 +23,8 @@ export default class ServiceWorkerRuntimeCache extends GeneratingConcept {
     const { default: runtimeCache } = await import('file://' + path.join(this.dst(), 'runtimeCache.js'))
 
     await generateSW({
+      globDirectory: `${path.join(this.core.distDir, 'client')}`,
+      globPatterns: ['**/*.{js,css}'],
       navigateFallback: null,
       skipWaiting: true,
       clientsClaim: true,

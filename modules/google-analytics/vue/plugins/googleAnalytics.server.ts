@@ -8,7 +8,7 @@ export const after = async (app: App, ctx?: any) => {
       '<head>',
       `<head>
       <script async type="${GOOGLE_ANALYTICS_SCRIPT_TYPE}" src="https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}"></script>
-      <script async type="${GOOGLE_ANALYTICS_SCRIPT_TYPE}">
+      <script type="${GOOGLE_ANALYTICS_SCRIPT_TYPE}">
         window.dataLayer = window.dataLayer || [];
         window.gtag = function gtag(){window.dataLayer.push(arguments);}
         gtag('js', new Date());
