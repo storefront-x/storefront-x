@@ -134,4 +134,49 @@ describe('graphql/mutation', () => {
 
     expect(m.isCacheable()).toEqual(false)
   })
+
+  it('can have name', () => {
+    const q = mutation()
+      .name('Products')
+      .fields({
+        product: field({
+          sku: field(),
+        }),
+      })
+
+    expect(q.toString()).toEqual('mutation Products{product{sku}}')
+  })
+
+  it('can have name and variables', () => {
+    const q = mutation()
+      .name('Products')
+      .variables({ $search: 'String!' })
+      .fields({
+        products: field().args({ search: '$search' }).fields({
+          sku: field(),
+        }),
+      })
+
+    expect(q.toString()).toEqual('mutation Products($search:String!){products(search:$search){sku}}')
+  })
+
+  it('can have name passed as argument before fields', () => {
+    const q = mutation('Products', {
+      product: field({
+        sku: field(),
+      }),
+    })
+
+    expect(q.toString()).toEqual('mutation Products{product{sku}}')
+  })
+
+  it('can have name passed as single argument', () => {
+    const q = mutation('Products').fields({
+      product: field({
+        sku: field(),
+      }),
+    })
+
+    expect(q.toString()).toEqual('mutation Products{product{sku}}')
+  })
 })
