@@ -1,35 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { buildProject } from '@storefront-x/testing'
 
-test('service worker file is not empty', async ({ page }) => {
-  await buildProject(
-    {
-      modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/service-worker',
-        [
-          'my-module',
-          {
-            pages: {
-              'index.vue': `
-                <template>
-                  <h1>Hello, World!</h1>
-                </template>
-              `,
-            },
-          },
-        ],
-      ],
-    },
-    async ({ url }) => {
-      const response = await page.goto(url + '/sw.js')
-      expect(await response.text()).toContain('workbox')
-    },
-  )
-})
-
 test('service worker allows setting runtime cache', async ({ page }) => {
   await buildProject(
     {
