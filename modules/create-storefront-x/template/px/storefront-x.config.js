@@ -16,6 +16,7 @@ export default {
     '@storefront-x/nprogress',
     '@storefront-x/service-worker',
     '@storefront-x/web-app-manifest',
+    ...(process.env.NODE_ENV === 'development' ? ['@storefront-x/request-profiler'] : []),
 
     '@storefront-x/magento',
 

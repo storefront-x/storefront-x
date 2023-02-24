@@ -1,4 +1,7 @@
+import consola from 'consola'
 import type { App } from 'vue'
+
+const logger = consola.withTag('request-profiler')
 
 export const after = async (app: App, ctx: any) => {
   let first = Infinity
@@ -11,8 +14,8 @@ export const after = async (app: App, ctx: any) => {
     if (longestName < gql._name.length) longestName = gql._name.length
   }
 
-  console.log('')
-  console.log(`SSR request profile for URL "${ctx.req.url}", total time: ${last - first}ms`)
+  logger.log('')
+  logger.log(`SSR request profile for URL "${ctx.req.url}", total time: ${last - first}ms`)
 
   for (const [gql, opts] of ctx.requestProfiler.entries()) {
     const ms = opts.to - opts.from
@@ -23,8 +26,8 @@ export const after = async (app: App, ctx: any) => {
     const stringBefore = new Array(percentStart).join(' ')
     const stringAfter = new Array(percentEnd - percentStart).join('-')
 
-    console.log(gql._name.padEnd(longestName, ' '), `${ms}ms`.padStart(7, ' '), stringBefore + stringAfter)
+    logger.log(gql._name.padEnd(longestName, ' '), `${ms}ms`.padStart(7, ' '), stringBefore + stringAfter)
   }
 
-  console.log('')
+  logger.log('')
 }
