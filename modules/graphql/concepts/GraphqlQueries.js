@@ -21,12 +21,13 @@ export default class GraphqlQueries extends IocConcept {
 
       const fileWithoutExt = file.replace(/\.\w+$/, '')
       const filePath = this.getPathForFile(module, file)
+      const gqlName = fileWithoutExt.replace(/[-/.]/g, '_')
 
       if (extensions.length === 0) {
         loaders.push(
           this.writeFile(
             path.join(this.dst(), `${fileWithoutExt}.ts`),
-            `import self from '${filePath}'\nexport default () => self().name('${fileWithoutExt}')\n`,
+            `import self from '${filePath}'\nexport default () => self().name('${gqlName}')\n`,
           ),
         )
       } else {
@@ -39,7 +40,7 @@ export default class GraphqlQueries extends IocConcept {
         for (let i = extensions.length - 1; i >= 0; i--) {
           content += `ext${i}(`
         }
-        content += `() => self().name('${fileWithoutExt}')`
+        content += `() => self().name('${gqlName}')`
         for (let i = extensions.length - 1; i >= 0; i--) {
           content += `)`
         }
