@@ -67,7 +67,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - run: yarn docs:build
 
-  create-script-with-yarn:
+  create-script:
     strategy:
       fail-fast: false
       matrix:
