@@ -31,7 +31,9 @@ test('web app manifest meta link is present in the html', async ({ page }) => {
     },
     async ({ url }) => {
       const response = await page.goto(url)
-      expect(await response.text()).toContain('<link rel="manifest" href="/manifest.webmanifest">')
+      expect(await response.text()).toContain(
+        '<link rel="manifest" crossorigin="use-credentials" href="/manifest.webmanifest">',
+      )
     },
   )
 })
