@@ -44,13 +44,19 @@ export default () => {
 
     const _fetch = async (request: Request) => {
       for (const beforeRequest of bindedBeforeRequest) {
-        await beforeRequest(request)
+        await beforeRequest(request, {
+          gql,
+          opts,
+        })
       }
 
       const response = await fetch(request)
 
       for (const afterResponse of bindedAfterResponse) {
-        await afterResponse(response, request)
+        await afterResponse(response, request, {
+          gql,
+          opts,
+        })
       }
 
       if (response.headers.get('content-type') !== 'application/json') {
