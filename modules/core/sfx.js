@@ -33,7 +33,7 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
-        process.env.NODE_ENV = 'development'
+        if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development'
 
         consola.wrapAll()
 
@@ -80,7 +80,7 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
-        process.env.NODE_ENV = 'production'
+        if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production'
 
         const config = await loadConfig(argv.config)
 
@@ -127,7 +127,7 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
-        process.env.NODE_ENV = 'production'
+        if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production'
 
         for (const require of argv.require ?? []) {
           await import(require)
