@@ -93,4 +93,5 @@ jobs:
           echo "$contents" > "$file"
 
           yarn install
-          yarn build
+          NODE_ENV=development yarn build
+          NODE_ENV=production yarn build
