@@ -19,9 +19,14 @@ import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import _404 from '#ioc/assets/images/404'
 import useSetResponseStatus from '#ioc/composables/useSetResponseStatus'
+import useHead from '#ioc/composables/useHead'
 
 const { t } = useI18n()
 const setResponseStatus = useSetResponseStatus()
+
+useHead({
+  title: t('Page not found'),
+})
 
 setResponseStatus(404)
 </script>
@@ -30,4 +35,5 @@ setResponseStatus(404)
 cs-CZ:
   Unfortunately, we couldn't find this page: Tuto stránku jsme bohužel nenašli
   Go back home: Zpět na úvod
+  Page not found: Stránka nenalezena
 </i18n>
