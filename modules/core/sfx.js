@@ -33,6 +33,8 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
+        process.env.NODE_ENV = 'development'
+
         consola.wrapAll()
 
         const config = await loadConfig(argv.config)
@@ -125,11 +127,11 @@ yargs(hideBin(process.argv))
     },
     handler: async (argv) => {
       try {
+        process.env.NODE_ENV = 'production'
+
         for (const require of argv.require ?? []) {
           await import(require)
         }
-
-        process.env.NODE_ENV = 'production'
 
         const start = Date.now()
 
