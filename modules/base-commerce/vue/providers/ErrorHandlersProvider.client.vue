@@ -10,6 +10,21 @@ const bindedErrorHandlers = Object.values(errorHandlers)
   .map((e) => e())
   .reverse()
 
+window.addEventListener('unhandledrejection', (e) => {
+  let wasCaught = false
+
+  for (const errorHandler of bindedErrorHandlers) {
+    try {
+      errorHandler(e.reason)
+      wasCaught = true
+    } catch {
+      continue
+    }
+  }
+
+  if (wasCaught) e.preventDefault()
+})
+
 onErrorCaptured((e) => {
   let wasCaught = false
 
