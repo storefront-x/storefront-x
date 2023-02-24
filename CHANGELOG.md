@@ -1,3 +1,28 @@
+## v1.15.1 (2023-02-24)
+
+#### :rocket: Enhancement
+
+- [#374](https://github.com/storefront-x/storefront-x/pull/374) Improve typing of useResource ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#372](https://github.com/storefront-x/storefront-x/pull/372) Move error handling to top level error handlers ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#371](https://github.com/storefront-x/storefront-x/pull/371) Handle unhandledrejection events ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#370](https://github.com/storefront-x/storefront-x/pull/370) Error notifications no longer hide automatically ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#375](https://github.com/storefront-x/storefront-x/pull/375) Fix typing of useRoute ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :memo: Documentation
+
+- [#373](https://github.com/storefront-x/storefront-x/pull/373) Add docs for request profiler ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :house: Internal
+
+- [#369](https://github.com/storefront-x/storefront-x/pull/369) Improve create script testing ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.15.0 (2023-02-24)
 
 #### :rocket: Enhancement
