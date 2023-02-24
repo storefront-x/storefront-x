@@ -139,4 +139,49 @@ describe('graphql/query', () => {
 
     expect(q.isCacheable()).toEqual(false)
   })
+
+  it('can have name', () => {
+    const q = query()
+      .name('Products')
+      .fields({
+        product: field({
+          sku: field(),
+        }),
+      })
+
+    expect(q.toString()).toEqual('query Products{product{sku}}')
+  })
+
+  it('can have name and variables', () => {
+    const q = query()
+      .name('Products')
+      .variables({ $search: 'String!' })
+      .fields({
+        products: field().args({ search: '$search' }).fields({
+          sku: field(),
+        }),
+      })
+
+    expect(q.toString()).toEqual('query Products($search:String!){products(search:$search){sku}}')
+  })
+
+  it('can have name passed as argument before fields', () => {
+    const q = query('Products', {
+      product: field({
+        sku: field(),
+      }),
+    })
+
+    expect(q.toString()).toEqual('query Products{product{sku}}')
+  })
+
+  it('can have name passed as single argument', () => {
+    const q = query('Products').fields({
+      product: field({
+        sku: field(),
+      }),
+    })
+
+    expect(q.toString()).toEqual('query Products{product{sku}}')
+  })
 })

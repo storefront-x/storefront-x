@@ -2,8 +2,12 @@
 
 import { IocConcept } from '@storefront-x/core'
 
-export default class GqlFragments extends IocConcept {
+export default class Graphql extends IocConcept {
   get directory() {
     return 'graphql'
+  }
+
+  get recursive() {
+    return false
   }
 }

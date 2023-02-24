@@ -6,9 +6,22 @@ import isFunction from '#ioc/utils/isFunction'
 
 export class Gql {
   constructor() {
+    this._name = ''
     this._fields = {}
     this._fragments = {}
     this._isCacheable = true
+  }
+
+  /**
+   * Sets the name
+   *
+   * @param {string} name
+   * @returns {this}
+   */
+  name(name) {
+    this._name = name
+
+    return this
   }
 
   /**
@@ -94,7 +107,6 @@ export class Field extends Gql {
   constructor(arg1, arg2) {
     super()
 
-    this._name = ''
     this._alias = ''
     this._args = {}
 
@@ -185,14 +197,19 @@ export class Field extends Gql {
 }
 
 export class Request extends Gql {
-  constructor(arg) {
+  constructor(arg1, arg2) {
     super()
 
     this._variables = {}
     this._bindings = {}
 
-    if (isObject(arg)) {
-      this.fields(arg)
+    if (isObject(arg1)) {
+      this.fields(arg1)
+    } else if (isString(arg1)) {
+      this.name(arg1)
+      if (isObject(arg2)) {
+        this.fields(arg2)
+      }
     }
   }
 
@@ -216,6 +233,11 @@ export class Request extends Gql {
     }
 
     return this
+  }
+
+  _stringifyName() {
+    if (!this._name) return ''
+    return ` ${this._name}`
   }
 
   _stringifyVariables() {
@@ -270,11 +292,12 @@ export class Request extends Gql {
    * @returns {string}
    */
   toString() {
+    const name = this._stringifyName()
     const variables = this._stringifyVariables()
     const fields = this._stringifyFields()
     const fragments = this._stringifyFragments()
 
-    return `${variables}${fields}${fragments}`
+    return `${name}${variables}${fields}${fragments}`
   }
 
   _dump() {
