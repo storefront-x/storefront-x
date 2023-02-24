@@ -12,6 +12,7 @@ export const after = async (app: App, ctx: any) => {
   }
 
   console.log('')
+  console.log(`SSR request profile for URL "${ctx.req.url}", total time: ${last - first}ms`)
 
   for (const [gql, opts] of ctx.requestProfiler.entries()) {
     const ms = opts.to - opts.from
