@@ -6,9 +6,9 @@ export default () => {
 
   return async (err: any) => {
     if (isString(err)) {
-      showNotification(undefined, err, 'ERROR')
+      showNotification(undefined, err, 'ERROR', { timeout: 0 })
     } else {
-      showNotification(err.name, err.message, 'ERROR')
+      showNotification(err.name, err.message, 'ERROR', { timeout: 0 })
     }
   }
 }

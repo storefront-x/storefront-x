@@ -17,8 +17,10 @@ export default () => {
 
     notificationStore.$patch({ notifications: [...notificationStore.notifications, newNotification] })
 
-    setTimeout(() => {
-      hideNotification(newNotification)
-    }, timeout)
+    if (timeout) {
+      setTimeout(() => {
+        hideNotification(newNotification)
+      }, timeout)
+    }
   }
 }
