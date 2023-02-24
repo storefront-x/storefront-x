@@ -122,6 +122,7 @@ export default defineConfig({
           { text: 'Runtime Config', link: '/modules/runtime-config' },
           { text: 'Service Worker', link: '/modules/service-worker' },
           { text: 'Web App Manifest', link: '/modules/web-app-manifest' },
+          { text: 'Request Profiler', link: '/modules/request-profiler' },
         ],
       },
     ],
