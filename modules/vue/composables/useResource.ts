@@ -3,10 +3,17 @@ import useState from '#ioc/composables/useState'
 import IS_SERVER from '#ioc/config/IS_SERVER'
 import { ref, watch } from 'vue'
 
-export default async <T, U>(source: () => U, fetcher: (source: U) => T): Promise<[any]> => {
-  const response = ref<T>()
+async function useResource<T>(source: () => T): Promise<[T]>
+async function useResource<T, U>(source: () => U, fetcher?: (source: U) => T): Promise<[T]>
+async function useResource(source: any, fetcher?: any) {
+  if (!fetcher) {
+    fetcher = source
+    source = () => undefined
+  }
+
+  const response = ref()
   const id = useId()
-  const state = useState<T | null | undefined>(id, () => undefined)
+  const state = useState<any>(id, () => undefined)
 
   const promise = new Promise<[any]>((resolve) => {
     watch(
@@ -35,3 +42,5 @@ export default async <T, U>(source: () => U, fetcher: (source: U) => T): Promise
 
   return promise
 }
+
+export default useResource
