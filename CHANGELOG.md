@@ -1,3 +1,16 @@
+## v1.15.0 (2023-02-24)
+
+#### :rocket: Enhancement
+
+- [#368](https://github.com/storefront-x/storefront-x/pull/368) Add request-profiler module ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#366](https://github.com/storefront-x/storefront-x/pull/366) Improve performance by removing blocking scripts and SW asset caching ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#367](https://github.com/storefront-x/storefront-x/pull/367) Add names to GraphQL requests ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 2
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.14.0 (2023-02-22)
 
 #### :rocket: Enhancement
