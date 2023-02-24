@@ -1,9 +1,7 @@
 <template>
-  <div v-if="cmsData">
-    <slot name="above" />
-    <SfxMagentoCmsPage :cms-page="data.cmsBlock" />
-    <slot name="bellow" />
-  </div>
+  <slot v-if="cmsData" name="above" />
+  <SfxMagentoCmsPage v-if="cmsData" :cms-page="data.cmsBlock" />
+  <slot v-if="cmsData" name="bellow" />
 </template>
 
 <script setup lang="ts">
