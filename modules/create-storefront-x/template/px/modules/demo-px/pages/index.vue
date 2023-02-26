@@ -23,16 +23,13 @@
     </div>
 
     <Container :class="containersSpacingClass">
-      <BlogGrid :blog-posts="data.blogPosts" />
+      <BlogGrid />
     </Container>
   </div>
 </template>
 
 <script setup lang="ts">
-import useGetBlogPosts from '#ioc/services/useGetBlogPosts'
 import Container from '#ioc/atoms/Container'
-import useAsyncData from '#ioc/composables/useAsyncData'
-import useRoute from '#ioc/composables/useRoute'
 import useI18n from '#ioc/composables/useI18n'
 import Rocket from '#ioc/icons/custom/Rocket'
 import Gears from '#ioc/icons/custom/Gears'
@@ -46,11 +43,7 @@ const CategoryPreviews = hydrateWhenVisible(() => import('#ioc/molecules/Categor
 const ReviewShowreel = hydrateWhenVisible(() => import('#ioc/molecules/ReviewShowreel'))
 const BlogGrid = hydrateWhenVisible(() => import('#ioc/molecules/BlogGrid'))
 
-const getBlogPosts = useGetBlogPosts()
-const route = useRoute()
 const { t } = useI18n()
-
-const { data } = await useAsyncData('blogPosts', () => getBlogPosts('ALL', undefined, Number(route.query.page || 1)))
 
 const containersSpacingClass = { 'mb-12': true }
 const usps = [

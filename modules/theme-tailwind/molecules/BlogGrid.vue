@@ -9,7 +9,7 @@
       </p>
     </div>
     <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      <BlogPostTile v-for="blogPost in blogPosts" :key="blogPost.id" :blog-post="blogPost" />
+      <BlogPostTile v-for="blogPost in data.blogPosts" :key="blogPost.id" :blog-post="blogPost" />
     </div>
   </div>
 </template>
@@ -18,15 +18,13 @@
 import Heading from '#ioc/atoms/Heading'
 import BlogPostTile from '#ioc/molecules/BlogPostTile'
 import useI18n from '#ioc/composables/useI18n'
+import useGetBlogPosts from '#ioc/services/useGetBlogPosts'
+import useResource from '#ioc/composables/useResource'
 
 const { t } = useI18n()
+const getBlogPosts = useGetBlogPosts()
 
-defineProps({
-  blogPosts: {
-    required: true,
-    type: Array,
-  },
-})
+const [data] = await useResource(() => getBlogPosts())
 </script>
 
 <i18n lang="yaml">

@@ -1,17 +1,17 @@
 import useId from '#ioc/composables/useId'
 import useState from '#ioc/composables/useState'
 import IS_SERVER from '#ioc/config/IS_SERVER'
-import { ref, watch } from 'vue'
+import { shallowRef, watch } from 'vue'
 
-async function useResource<T>(source: () => T): Promise<[T]>
-async function useResource<T, U>(source: () => U, fetcher?: (source: U) => T): Promise<[T]>
+async function useResource<T>(source: () => Promise<T>): Promise<[T]>
+async function useResource<T, U>(source: () => U, fetcher?: (source: U) => Promise<T>): Promise<[T]>
 async function useResource(source: any, fetcher?: any) {
   if (!fetcher) {
     fetcher = source
     source = () => undefined
   }
 
-  const response = ref()
+  const response = shallowRef()
   const id = useId()
   const state = useState<any>(id, () => undefined)
 
