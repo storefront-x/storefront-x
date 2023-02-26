@@ -33,7 +33,7 @@ export default class Core {
 
     this.viteConfig = vite.mergeConfig(
       vite.defineConfig({
-        cacheDir: path.resolve(this.buildDir, '.vite'),
+        cacheDir: path.resolve(this.rootDir, '.vite'),
         envDir: this.rootDir,
         envPrefix: 'SFX_',
         publicDir: false,
