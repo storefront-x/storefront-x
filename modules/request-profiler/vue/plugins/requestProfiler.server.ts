@@ -1,3 +1,5 @@
+import verbose from '#ioc/config/requestProfiler/verbose'
+import isEmpty from '#ioc/utils/isEmpty'
 import consola from 'consola'
 import type { App } from 'vue'
 
@@ -23,10 +25,17 @@ export const after = async (app: App, ctx: any) => {
     const percentStart = Math.round(((opts.from - first) / (last - first)) * 100)
     const percentEnd = Math.round(((opts.to - first) / (last - first)) * 100)
 
-    const stringBefore = new Array(percentStart).join(' ')
-    const stringAfter = new Array(percentEnd - percentStart).join('-')
+    const stringBefore = new Array(percentStart + 1).join(' ')
+    const stringLine = new Array(percentEnd - percentStart + 1).join('-')
+    const stringAfter = new Array(100 - percentEnd + 1).join(' ')
 
-    logger.log(gql._name.padEnd(longestName, ' '), `${ms}ms`.padStart(7, ' '), stringBefore + stringAfter)
+    logger.log(
+      gql._name.padEnd(longestName, ' '),
+      `${ms}ms`.padStart(7, ' '),
+      '|' + stringBefore + stringLine + stringAfter + '|',
+    )
+
+    if (verbose && !isEmpty(gql._bindings)) logger.log(` - ${JSON.stringify(gql._bindings)}`)
   }
 
   logger.log('')
