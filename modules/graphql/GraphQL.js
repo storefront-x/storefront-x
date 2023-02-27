@@ -320,23 +320,6 @@ export class Request extends Gql {
  */
 export class Query extends Request {
   /**
-   * Executes and fetches the current query
-   * Returned objects has keys based on the names of top level fields
-   *
-   * Usage:
-   *
-   * const productsQuery = query({
-   *   products: field({
-   *     id: field(),
-   *   })
-   * })
-   *
-   * const { products } = await productsQuery.fetch(ctx);
-   *
-   * @param {any} ctx Nuxt.js context
-   * @returns {Promise.<Object.<string, any>>}
-   */
-  /**
    * @returns {Query}
    */
   clone() {
