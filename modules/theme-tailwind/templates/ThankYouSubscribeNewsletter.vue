@@ -19,7 +19,10 @@ const route = useRoute()
 const confirmSubscriptionToNewsletter = useConfirmSubscriptionToNewsletter()
 
 onMounted(async () => {
-  await confirmSubscriptionToNewsletter({ id: route.params.id, code: route.params.code })
+  await confirmSubscriptionToNewsletter({
+    id: String(route.params.id),
+    code: String(route.params?.code ?? '').replace('/', ''),
+  })
 })
 </script>
 
