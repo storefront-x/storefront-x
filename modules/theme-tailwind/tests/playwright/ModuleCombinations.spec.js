@@ -8,6 +8,7 @@ test('with vue', async () => {
       '@storefront-x/vue',
       '@storefront-x/vue-router',
       '@storefront-x/atomic-design',
+      '@storefront-x/vue-head',
       '@storefront-x/vue-i18n',
       '@storefront-x/theme-tailwind',
       [
