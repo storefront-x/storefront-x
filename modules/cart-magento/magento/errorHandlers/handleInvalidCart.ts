@@ -1,13 +1,10 @@
 import CartResetted from '#ioc/errors/CartResetted'
+import isInvalidCart from '#ioc/utils/graphql/isInvalidCart'
 
 export default () => {
-  const errorMessages = ['Could not find a cart with ID', `The cart isn't active`]
-
   return async (error: any) => {
-    for (const message of errorMessages) {
-      if (error.message?.includes(message)) {
-        throw new CartResetted()
-      }
+    if (isInvalidCart(error)) {
+      throw new CartResetted(error.message)
     }
   }
 }

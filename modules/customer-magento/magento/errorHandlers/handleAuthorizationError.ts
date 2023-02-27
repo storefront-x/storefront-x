@@ -4,7 +4,7 @@ import isAuthorizationError from '#ioc/utils/graphql/isAuthorizationError'
 export default () => {
   return async (error: any) => {
     if (isAuthorizationError(error)) {
-      throw new CustomerNotAuthorized()
+      throw new CustomerNotAuthorized(error.message)
     }
   }
 }
