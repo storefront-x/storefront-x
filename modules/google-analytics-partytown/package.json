@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/google-analytics-partytown",
-  "version": "1.15.1",
+  "version": "1.15.2",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
