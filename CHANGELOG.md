@@ -1,3 +1,27 @@
+## v1.15.2 (2023-02-28)
+
+#### :rocket: Enhancement
+
+- [#380](https://github.com/storefront-x/storefront-x/pull/380) Optimize fetching of BlogGrid on HP ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#382](https://github.com/storefront-x/storefront-x/pull/382) Add support for verbose request profiler ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#377](https://github.com/storefront-x/storefront-x/pull/377) Add messages to thrown errors ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#386](https://github.com/storefront-x/storefront-x/pull/386) Fix async attr in cookie script ([@fajmanm](https://github.com/fajmanm))
+- [#383](https://github.com/storefront-x/storefront-x/pull/383) Fix Newsletter double-opt-in to work with vue-router ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :house: Internal
+
+- [#385](https://github.com/storefront-x/storefront-x/pull/385) Disable CSS code splitting ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#381](https://github.com/storefront-x/storefront-x/pull/381) Move Vite cache to the root directory ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 3
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+
 ## v1.15.1 (2023-02-24)
 
 #### :rocket: Enhancement
