@@ -1,3 +1,1 @@
-export default () => {
-  return cy.get('[data-cy=minicart-item] h3 a')
-}
+export default (position) => cy.get('[data-cy=minicart-item]').eq(position ?? 0)
