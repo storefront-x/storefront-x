@@ -6,8 +6,8 @@ import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 import continueShopping from '~/cypress/support/pageObjects/product/continueShopping'
 import setProductQuantityInputFromMinicart from '~/cypress/support/pageObjects/minicart/setProductQuantityInputFromMinicart'
 import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
-import increaseQuantityMinicart from '~/cypress/support/pageObjects/minicart/increaseQuantityMinicart'
-import decreaseQuantityMinicart from '~/cypress/support/pageObjects/minicart/decreaseQuantityMinicart'
+import increaseProductQuantityFromMinicart from '~/cypress/support/pageObjects/minicart/increaseProductQuantityFromMinicart'
+import decreaseProductQuantityFromMinicart from '~/cypress/support/pageObjects/minicart/decreaseProductQuantityFromMinicart'
 
 import Product from '~/cypress/support/pageObjects/product/Product'
 
@@ -60,7 +60,7 @@ describe('Minicart', () => {
     addToCart()
     continueShopping()
     openMinicart()
-    increaseQuantityMinicart()
+    increaseProductQuantityFromMinicart()
     quantity++
     closeMinicart()
 
@@ -82,7 +82,7 @@ describe('Minicart', () => {
     expectMicrocartQuantity(quantity)
 
     openMinicart()
-    decreaseQuantityMinicart()
+    decreaseProductQuantityFromMinicart()
     quantity--
     closeMinicart()
 
