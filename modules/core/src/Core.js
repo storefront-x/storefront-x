@@ -68,40 +68,24 @@ export default class Core {
   /**
    * @param {any} opts
    */
-  async handleRequest({ entry, template, req, res, manifest }) {
+  async handleRequest({ event, entry, template, manifest }) {
     const ctx = {
-      req,
-      res,
-      manifest,
+      event,
+      manifest: manifest ?? {},
       out: {},
-      responseStatus: 200,
-      responseHeaders: { 'Content-Type': 'text/html' },
     }
 
-    try {
-      await entry(ctx)
+    await entry(ctx)
 
-      for (const out of Object.values(ctx.out)) {
-        template = await out(template)
-      }
-
-      if (ctx.errorCaptured) {
-        throw ctx.errorCaptured
-      }
-
-      return res.status(ctx.responseStatus).set(ctx.responseHeaders).end(template)
-    } catch (e) {
-      if (e.__typename === 'Redirect') {
-        return res.redirect(e.status, e.url)
-      } else if (process.env.NODE_ENV === 'production') {
-        // TODO: Move this if to the Serve class
-        console.error(e)
-
-        return res.status(500).set({ 'Content-Type': 'text/html' }).end(template)
-      } else {
-        throw e
-      }
+    for (const out of Object.values(ctx.out)) {
+      template = await out(template)
     }
+
+    if (ctx.errorCaptured) {
+      throw ctx.errorCaptured
+    }
+
+    return template
   }
 
   /**

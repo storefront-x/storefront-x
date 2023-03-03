@@ -1,6 +1,8 @@
 import path from 'node:path'
+import http from 'node:http'
 import fs from 'node:fs/promises'
 import getPort from 'get-port'
+import { toNodeListener } from 'h3'
 import { Build, Dev, Serve } from '@storefront-x/core'
 
 export const makeProject = async (config, callback) => {
@@ -37,7 +39,7 @@ export const makeProject = async (config, callback) => {
     const app = await dev.createServer()
 
     const server = await new Promise((resolve) => {
-      const server = app.listen(serverPort, () => {
+      const server = http.createServer(toNodeListener(app)).listen(serverPort, () => {
         resolve(server)
       })
     })

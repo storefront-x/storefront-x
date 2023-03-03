@@ -1,7 +1,6 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import url from 'node:url'
-import express from 'express'
 import consola from 'consola'
 import Core from './Core.js'
 
@@ -18,8 +17,6 @@ export default class Serve extends Core {
     const manifest = JSON.parse(
       await fs.readFile(path.join(this.distDir, 'client', 'ssr-manifest.json'), { encoding: 'utf-8' }),
     )
-
-    const server = express()
 
     server.disable('x-powered-by')
 

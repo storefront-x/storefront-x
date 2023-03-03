@@ -1,11 +1,12 @@
 import verbose from '#ioc/config/requestProfiler/verbose'
 import isEmpty from '#ioc/utils/isEmpty'
+import Context from '#ioc/types/base/Context'
 import consola from 'consola'
 import type { App } from 'vue'
 
 const logger = consola.withTag('request-profiler')
 
-export const after = async (app: App, ctx: any) => {
+export const after = async (app: App, ctx: Context) => {
   let first = Infinity
   let last = -Infinity
   let longestName = 0
@@ -17,7 +18,7 @@ export const after = async (app: App, ctx: any) => {
   }
 
   logger.log('')
-  logger.log(`SSR request profile for URL "${ctx.req.url}", total time: ${last - first}ms`)
+  logger.log(`SSR request profile for URL "${ctx.event.path}", total time: ${last - first}ms`)
 
   for (const [gql, opts] of ctx.requestProfiler.entries()) {
     const ms = opts.to - opts.from
