@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/debug-tools",
+  "version": "1.15.2",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}
