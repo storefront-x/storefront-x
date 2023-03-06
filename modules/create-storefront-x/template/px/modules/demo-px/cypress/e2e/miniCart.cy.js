@@ -8,6 +8,10 @@ import setProductQuantityInputFromMinicart from '~/cypress/support/pageObjects/m
 import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
 import increaseProductQuantityFromMinicart from '~/cypress/support/pageObjects/minicart/increaseProductQuantityFromMinicart'
 import decreaseProductQuantityFromMinicart from '~/cypress/support/pageObjects/minicart/decreaseProductQuantityFromMinicart'
+import removeProductFromMinicart from '~/cypress/support/pageObjects/minicart/removeProductFromMinicart'
+import keepProductInCheckoutFromRemovalModal from '~/cypress/support/pageObjects/minicart/keepProductInCheckoutFromRemovalModal'
+import getProductTitleFromMinicart from '~/cypress/support/pageObjects/minicart/getProductTitleFromMinicart'
+import removeProductFromCheckoutFromRemovalModal from '~/cypress/support/pageObjects/minicart/removeProductFromCheckoutFromRemovalModal'
 
 import Product from '~/cypress/support/pageObjects/product/Product'
 
@@ -30,10 +34,8 @@ describe('Minicart', () => {
     const quantity = 1
 
     addToCart()
-
     openMinicart()
     closeMinicart()
-
     expectMicrocartQuantity(quantity)
 
     cy.reload()
@@ -63,7 +65,6 @@ describe('Minicart', () => {
     increaseProductQuantityFromMinicart()
     quantity++
     closeMinicart()
-
     expectMicrocartQuantity(quantity)
 
     cy.reload()
@@ -78,17 +79,70 @@ describe('Minicart', () => {
     openMinicart()
     setProductQuantityInputFromMinicart(quantity)
     closeMinicart()
-
     expectMicrocartQuantity(quantity)
 
     openMinicart()
     decreaseProductQuantityFromMinicart()
     quantity--
     closeMinicart()
-
     expectMicrocartQuantity(quantity)
 
     cy.reload()
     expectMicrocartQuantity(quantity)
+  })
+
+  it('remove product from minicart', () => {
+    addToCart()
+    continueShopping()
+    openMinicart()
+    removeProductFromMinicart()
+    removeProductFromCheckoutFromRemovalModal()
+
+    cy.reload().waitForSfx()
+    openMinicart()
+    checkEmptyMinicart()
+  })
+
+  it('remove product from minicart, but in modal say to keep it', () => {
+    const quantity = 1
+
+    addToCart()
+    continueShopping()
+    openMinicart()
+    removeProductFromMinicart()
+    keepProductInCheckoutFromRemovalModal()
+
+    cy.reload().waitForSfx()
+    expectMicrocartQuantity(quantity)
+    openMinicart()
+    getProductTitleFromMinicart().should('contain', product.data.name)
+  })
+
+  it('set quantity to 0 to remove the product, then remove it', () => {
+    addToCart()
+    continueShopping()
+    openMinicart()
+    decreaseProductQuantityFromMinicart()
+    removeProductFromCheckoutFromRemovalModal()
+
+    cy.reload().waitForSfx()
+    openMinicart()
+    checkEmptyMinicart()
+  })
+
+  it('set quantity to 0 to remove the product, then keep it', () => {
+    const quantity = 1
+
+    addToCart()
+    continueShopping()
+    openMinicart()
+    decreaseProductQuantityFromMinicart()
+    keepProductInCheckoutFromRemovalModal()
+    expectMicrocartQuantity(quantity)
+
+    cy.reload().waitForSfx()
+    expectMicrocartQuantity(quantity)
+    openMinicart()
+    getProductTitleFromMinicart().should('contain', product.data.name)
   })
 })
