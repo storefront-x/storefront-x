@@ -32,7 +32,7 @@ if (props.cmsPage.meta.keywords) {
   })
 }
 useHead({
-  title: props.cmsPage.meta.title,
+  title: props.cmsPage.meta.title || props.cmsPage.title,
   meta: metaData,
 })
 </script>
