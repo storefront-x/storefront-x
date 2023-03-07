@@ -8,7 +8,6 @@ export default () => {
 
     if (cacheControl?.includes('no-cache')) {
       ctx.responseHeaders['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-      return
     }
 
     const xMagentoTags = response.headers.get('X-Magento-Tags')
