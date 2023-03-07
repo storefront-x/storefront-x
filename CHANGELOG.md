@@ -1,3 +1,18 @@
+## v1.15.3 (2023-03-07)
+
+#### :rocket: Enhancement
+
+- [#387](https://github.com/storefront-x/storefront-x/pull/387) Add Cypress tests for microcart ([@xvyslo05](https://github.com/xvyslo05))
+
+#### :house: Internal
+
+- [#391](https://github.com/storefront-x/storefront-x/pull/391) Don't remove Magento tags on no-cache ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 2
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Robin Vysloužil ([@xvyslo05](https://github.com/xvyslo05))
+
 ## v1.15.2 (2023-02-28)
 
 #### :rocket: Enhancement
