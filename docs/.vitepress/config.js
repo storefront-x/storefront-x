@@ -123,6 +123,7 @@ export default defineConfig({
           { text: 'Service Worker', link: '/modules/service-worker' },
           { text: 'Web App Manifest', link: '/modules/web-app-manifest' },
           { text: 'Request Profiler', link: '/modules/request-profiler' },
+          { text: 'Debug Tools', link: '/modules/debug-tools' },
         ],
       },
     ],

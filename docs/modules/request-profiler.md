@@ -49,6 +49,10 @@ ProductList              440ms |                                                
 
 ## Development only
 
+:::warning
+This module should be enabled only in development.
+:::
+
 To enable this module only in development, you can condition it in your SFX config file like this:
 
 ```js
