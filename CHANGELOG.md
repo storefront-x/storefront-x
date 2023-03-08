@@ -1,3 +1,17 @@
+## v1.16.0 (2023-03-08)
+
+#### :rocket: Enhancement
+
+- [#389](https://github.com/storefront-x/storefront-x/pull/389) Add debug tools ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#392](https://github.com/storefront-x/storefront-x/pull/392) Allow vite.config.js in the root directory ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.15.3 (2023-03-07)
 
 #### :rocket: Enhancement
