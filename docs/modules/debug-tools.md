@@ -4,7 +4,7 @@
 
 Debug tools help you with debugging Storefront X by visualizing some of its functionality like server-side requests.
 
-To see the debug tools, enable this module, start your application and visit the [http://localhost:3000/\_debug](http://localhost:3000/_debug) page (hostname and port depends on your configuration). It should look something like this:
+To see the debug tools, enable this module, start your application and visit the `http://localhost:3000/_debug` page (hostname and port depends on your configuration). It should look something like this:
 
 ![Debug Tools](/assets/images/debug-tools.png)
 
