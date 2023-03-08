@@ -1,40 +1,57 @@
 <template>
-  <h1>server requests</h1>
-  <div>
-    <div v-for="record in records" :key="record.time" class="sectiom">
-      <a href="javascript:void(0)" @click="openRecords[record.time] = !openRecords[record.time]">
-        {{ record.url }}
-      </a>
-      <div v-if="openRecords[record.time]">
-        <div v-for="(request, i) in record.requests" :key="i" class="section">
-          <a href="javascript:void(0)" @click="openRequests[i] = !openRequests[i]">
-            {{ request.url }}
-          </a>
-          <div v-if="openRequests[i]">
-            <pre>{{ request.json }}</pre>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="page">
+    <Section title="Server requests" open>
+      <Section v-for="(record, i) in records" :key="i" :title="`${record.url} - ${formatTime(record.time)}`">
+        <Section v-for="(request, j) in record.requests" :key="j" :title="request.name">
+          <Section title="URL" open>
+            <Code :content="request.url" />
+          </Section>
+
+          <Section title="Query" open>
+            <Code :content="request.query" />
+          </Section>
+
+          <Section title="Variables" open>
+            <Code :content="request.variables" />
+          </Section>
+
+          <Section title="Request headers" open>
+            <Code :content="request.requestHeaders" />
+          </Section>
+
+          <Section title="Response headers">
+            <Code :content="request.responseHeaders" />
+          </Section>
+
+          <Section title="Response" open>
+            <Code :content="request.json" />
+          </Section>
+        </Section>
+      </Section>
+    </Section>
   </div>
 </template>
 
-<script setup>
-import { reactive } from 'vue'
+<script setup lang="ts">
+import Section from '#ioc/components/debugTools/Section'
+import Code from '#ioc/components/debugTools/Code'
 
-const records = Object.values(import.meta.glob('~/.sfx/debug/*.json', { eager: true })).map((module) => module.default)
+const records = Object.values(import.meta.glob('~/.sfx/debug/*.json', { eager: true })).map(
+  (module: any) => module.default,
+)
 
-const openRecords = reactive({})
-const openRequests = reactive({})
+const formatTime = (time: number) => {
+  const date = new Date(time)
+
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+
+  return `${hours}:${minutes}`
+}
 </script>
 
 <style scoped>
-a {
-  white-space: nowrap;
-}
-
-.section {
-  padding-top: 0.5rem;
-  padding-left: 0.5rem;
+.page {
+  margin-bottom: 50rem;
 }
 </style>
