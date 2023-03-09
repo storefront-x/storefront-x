@@ -3,6 +3,7 @@ import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
 
 import '~/cypress/support/commands'
+import 'tailwindcss/tailwind.css'
 
 Cypress.Commands.add('mount', (component: any, options = {}) => {
   options.global = options.global || {}
