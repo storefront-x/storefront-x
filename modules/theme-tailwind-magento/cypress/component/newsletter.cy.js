@@ -1,4 +1,4 @@
-import Newsletter from '~/modules/theme-tailwind-magento/molecules/Newsletter.vue'
+import Newsletter from '#ioc/molecules/Newsletter'
 
 describe('Newsletter', () => {
   it('renders', () => {
@@ -7,6 +7,7 @@ describe('Newsletter', () => {
         default: 'Click me!',
       },
     })
-    cy.get('.button').click()
+
+    cy.get('button').click()
   })
 })
