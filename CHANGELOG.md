@@ -1,3 +1,13 @@
+## v1.16.1 (2023-03-09)
+
+#### :bug: Bug Fix
+
+- [#394](https://github.com/storefront-x/storefront-x/pull/394) Fix "unusable" error caused by debug-tools ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.16.0 (2023-03-08)
 
 #### :rocket: Enhancement
