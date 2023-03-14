@@ -10,5 +10,6 @@ export { default as GeneratingConcept } from './src/GeneratingConcept.js'
 export { default as IocConcept } from './src/IocConcept.js'
 export { default as MergingConcept } from './src/MergingConcept.js'
 export { default as OverridingConcept } from './src/OverridingConcept.js'
+export { default as ExtendingConcept } from './src/ExtendingConcept.js'
 
 export { default as Module } from './src/Module.js'

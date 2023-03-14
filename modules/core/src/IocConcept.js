@@ -1,22 +1,22 @@
 import path from 'node:path'
-import WatchingConcept from './WatchingConcept.js'
+import ExtendingConcept from './ExtendingConcept.js'
 
 /**
  * @typedef {import('@storefront-x/core').Module} Module
+ * @typedef {{module: Module, file: string}} Extension
  */
 
-export default class IocConcept extends WatchingConcept {
+export default class IocConcept extends ExtendingConcept {
   /**
-   * @param {Record<string, {module: Module, file: string}>} files
+   * @param {Record<string, {module: Module, file: string, extensions:Extension[]}>} files
    */
   async execute(files) {
     const loaders = []
 
-    for (const { module, file, extensions } of Object.values(files)) {
+    for (const { file, filePath, extensions } of Object.values(files)) {
       if (!file) continue
 
       const fileWithoutExt = file.replace(/\.\w+$/, '')
-      const filePath = this.getPathForFile(module, file)
 
       if (extensions.length === 0) {
         loaders.push(
@@ -24,8 +24,7 @@ export default class IocConcept extends WatchingConcept {
         )
       } else {
         let content = `import self from '${filePath}'\n`
-        for (const [i, { module, file }] of extensions.entries()) {
-          const filePath = this.getPathForFile(module, file)
+        for (const [i, { filePath }] of extensions.entries()) {
           content += `import ext${i} from '${filePath}'\n`
         }
         content += `export default `
@@ -51,49 +50,5 @@ export default class IocConcept extends WatchingConcept {
 
   get recursive() {
     return true
-  }
-
-  processFiles() {
-    const files = {}
-
-    for (const mod of this._mods) {
-      for (const file of mod.files) {
-        if (this.ignoredFiles.test(file)) continue
-
-        const isExt = file.includes('.ext')
-        const ident = file.replace('.ext', '')
-
-        const obj = {
-          module: mod.module,
-          file,
-        }
-
-        if (files[ident]) {
-          if (isExt) {
-            files[ident].extensions.push(obj)
-          } else {
-            files[ident] = {
-              module: mod.module,
-              file,
-              extensions: files[ident].extensions,
-            }
-          }
-        } else {
-          if (isExt) {
-            files[ident] = {
-              extensions: [obj],
-            }
-          } else {
-            files[ident] = {
-              module: mod.module,
-              file,
-              extensions: [],
-            }
-          }
-        }
-      }
-    }
-
-    return files
   }
 }
