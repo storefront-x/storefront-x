@@ -12,7 +12,10 @@ test('basic server route', async ({ page }) => {
           {
             server: {
               routes: {
-                'hello.js': `export default (req, res) => res.send('Hello, server routes!')`,
+                'hello.js': `
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => 'Hello, server routes!')
+                `,
               },
             },
           },
@@ -37,7 +40,10 @@ test('request on different path doesnt invoke server route', async ({ page }) =>
           {
             server: {
               routes: {
-                'hello.js': `export default (req, res) => res.send('Hello, server routes!')`,
+                'hello.js': `
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => 'Hello, server routes!')
+                `,
               },
             },
             base: {
@@ -68,9 +74,15 @@ test('server route with path prefix', async ({ page }) => {
             server: {
               routes: {
                 '[prefix]': {
-                  'hello.js': `export default (req, res) => res.send(req.baseUrl)`,
+                  'hello.js': `
+                    import { eventHandler, getRequestURL } from 'h3'
+                    export default eventHandler((event) => getRequestURL(event))
+                  `,
                 },
-                'hello.js': `export default (req, res) => res.send(req.baseUrl)`,
+                'hello.js': `
+                    import { eventHandler, getRequestURL } from 'h3'
+                    export default eventHandler((event) => getRequestURL(event))
+                  `,
               },
             },
           },
@@ -78,10 +90,10 @@ test('server route with path prefix', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/sk/hello', { waitUntil: 'networkidle' })
-      await expect(await page.locator('body')).toHaveText('/sk/hello')
-      await page.goto(url + '/hello', { waitUntil: 'networkidle' })
-      await expect(await page.locator('body')).toHaveText('/hello')
+      const response1 = await page.goto(url + '/sk/hello')
+      await expect(await response1.text()).toContain('/sk/hello')
+      const response2 = await page.goto(url + '/sk/hello')
+      await expect(await response2.text()).toContain('/hello')
     },
   )
 })

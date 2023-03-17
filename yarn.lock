@@ -3008,7 +3008,7 @@ __metadata:
     devalue: ^4.3.0
     dotenv: ^16.0.3
     ejs: ^3.1.8
-    h3: ^1.5.0
+    h3: ^1.6.2
     kolorist: ^1.7.0
     lodash-es: ^4.17.21
     node-fetch: ^3.3.0
@@ -8214,18 +8214,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"h3@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "h3@npm:1.5.0"
+"h3@npm:^1.6.2":
+  version: 1.6.2
+  resolution: "h3@npm:1.6.2"
   dependencies:
     cookie-es: ^0.5.0
     defu: ^6.1.2
     destr: ^1.2.2
-    iron-webcrypto: ^0.5.0
+    iron-webcrypto: ^0.6.0
     radix3: ^1.0.0
-    ufo: ^1.1.0
+    ufo: ^1.1.1
     uncrypto: ^0.1.2
-  checksum: afdc37528ee1688b328c2f0098161129ee5ece90f83bb786645194fe0fbe64c0f4ec8ec6b25b0920c29d25d6b50fe97e0b5ccfac53fe4884df03b01c1ff8e0b8
+  checksum: 3a876f414d6790908b4953684cf2237db1a4e1dd17b46fafd38787f0b1b81ce64d9850342ce0d2ff6b40e8601b07429d666c96a6bd119d9de937ccec7f6ce010
   languageName: node
   linkType: hard
 
@@ -8748,10 +8748,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"iron-webcrypto@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "iron-webcrypto@npm:0.5.0"
-  checksum: 8e806c9fdafee83d7d328a60d5bb3c3529840e9de8085cebc93461879cf581a57812a5591b22d90699d9f9808bf8ce709baaeba36a1c8221cafcd4952ca77d8f
+"iron-webcrypto@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "iron-webcrypto@npm:0.6.0"
+  checksum: a0f2d8ed4374c0d3e37562f8030cf5cbe5def64c8ffc4103d64f93d0bf7fdda004849bc425b69cb931c2ad1b933ddeb01faa10c9bb023182d472036377278132
   languageName: node
   linkType: hard
 
@@ -14092,6 +14092,13 @@ __metadata:
   version: 1.1.0
   resolution: "ufo@npm:1.1.0"
   checksum: f4098df457526be8bb1a466f05a2f72075b91580519215e0c219a4ff7dca4327b59964a053012f8547da77501b61cdebffbf8e16ef4d0509a7561efffe8e74ea
+  languageName: node
+  linkType: hard
+
+"ufo@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "ufo@npm:1.1.1"
+  checksum: 6bd210ed93d8c0dedd76c456b1d1dfb0e3b08c2216ee6080e61f0f545de0bac24b3d3a5530cd6a403810855f8d8fc3922583965296142e04cfc287442635e6c7
   languageName: node
   linkType: hard
 

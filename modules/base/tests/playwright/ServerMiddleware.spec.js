@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('basic server middleware', async ({ page }) => {
+test('basic server middleware', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -29,7 +29,7 @@ test.only('basic server middleware', async ({ page }) => {
   )
 })
 
-test.only('basic server middleware under deep URL', async ({ page }) => {
+test('basic server middleware under deep URL', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -57,7 +57,7 @@ test.only('basic server middleware under deep URL', async ({ page }) => {
   )
 })
 
-test.only('hot module reloading', async ({ page }) => {
+test('hot module reloading', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -93,7 +93,7 @@ test.only('hot module reloading', async ({ page }) => {
   )
 })
 
-test.only('module overloading', async ({ page }) => {
+test('module overloading', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -134,7 +134,7 @@ test.only('module overloading', async ({ page }) => {
   )
 })
 
-test.only('typescript support', async ({ page }) => {
+test('typescript support', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -162,7 +162,7 @@ test.only('typescript support', async ({ page }) => {
   )
 })
 
-test.only('transient hmr', async ({ page }) => {
+test('transient hmr', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -197,7 +197,7 @@ test.only('transient hmr', async ({ page }) => {
   )
 })
 
-test.only('transient hmr with overriding', async ({ page }) => {
+test('transient hmr with overriding', async ({ page }) => {
   await makeProject(
     {
       modules: [

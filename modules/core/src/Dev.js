@@ -1,7 +1,7 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import * as vite from 'vite'
-import { createApp, eventHandler, fromNodeMiddleware } from 'h3'
+import { createApp, eventHandler, fromNodeMiddleware, createRouter } from 'h3'
 import consola from 'consola'
 import Youch from 'youch'
 import Core from './Core.js'
@@ -22,6 +22,7 @@ export default class Dev extends Core {
     const app = createApp()
 
     await this._loadServerMiddleware(app, viteDevServer)
+    await this._loadServerRoutes(app, viteDevServer)
 
     app.use(fromNodeMiddleware(viteDevServer.middlewares))
 
@@ -77,5 +78,25 @@ export default class Dev extends Core {
         }
       }),
     )
+  }
+
+  async _loadServerRoutes(app, viteDevServer) {
+    const router = createRouter()
+
+    try {
+      const { default: routes } = await viteDevServer.ssrLoadModule('/server/routes.ts', {
+        fixStacktrace: true,
+      })
+
+      for (const [path, route] of Object.entries(routes)) {
+        if (typeof route === 'function') {
+          router.get(`/${path.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}`)}`, route)
+        }
+      }
+
+      app.use(router)
+    } catch (e) {
+      consola.error('Could not load server routes:', e)
+    }
   }
 }
