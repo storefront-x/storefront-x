@@ -1,3 +1,17 @@
+## v1.16.2 (2023-03-20)
+
+#### :bug: Bug Fix
+
+- [#397](https://github.com/storefront-x/storefront-x/pull/397) Fix hotfix remove debug-toos ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :rocket: Enhancement
+
+- [#395](https://github.com/storefront-x/storefront-x/pull/395) Add extensions to GeneratingConcept ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.16.1 (2023-03-09)
 
 #### :bug: Bug Fix
