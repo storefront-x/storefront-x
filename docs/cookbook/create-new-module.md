@@ -4,7 +4,7 @@ Modules in Storefront X are NPM packages. So they require `package.json` a need 
 
 ## With command
 
-You can use our own command `yarn/npm sfx make module` to create new module. You will be presented with prompts to choose directory, module name, license, description and module access.
+You can use our own command `yarn sfx make module` to create new module. You will be presented with prompts to choose directory, module name, license, description and module access.
 
 Once module with `package.json` is created you can continue to section [Enable module in config](/cookbook/create-new-module.html#enable-module-in-config)
 
@@ -49,7 +49,7 @@ export default {
 
 ## Install new module
 
-And finally, you need to run `npm install`/`yarn install` so the package manager can discover this newly added NPM package and resolve it. After each modification of `storefront-x.config.js` you need to restart the development server (`yarn dev`) or build the application for production use (`yarn build`).
+And finally, you need to run `yarn install` so the package manager can discover this newly added NPM package and resolve it. After each modification of `storefront-x.config.js` you need to restart the development server (`yarn dev`) or build the application for production use (`yarn build`).
 
 To test that everything works, we can, for example, add `test` page to our module.
 
