@@ -8,13 +8,7 @@ In this section, we will introduce, how to scaffold a Storefront X application o
 
 ## Creating your first Storefront X project
 
-With NPM:
-
-```
-npm create storefront-x@latest
-```
-
-or with Yarn:
+With Yarn:
 
 ```
 yarn create storefront-x

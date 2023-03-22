@@ -11,15 +11,15 @@ In this tutorial we will use the NPM package manager, but you can also use Yarn 
 :::
 
 ```sh
-npm create storefront-x@latest
+yarn create storefront-x@latest
 ```
 
 Select a destination directory (or leave the default one) and than select the "Blank application" preset. After the application is generated inside the selected directory, you can `cd` into that directory and install necessary dependencies and start the application in development mode.
 
 ```sh
 cd storefront-x-app
-npm install
-npm run dev
+yarn install
+yarn dev
 ```
 
 The application should now be running on localhost port 3000 and should look something like this:
