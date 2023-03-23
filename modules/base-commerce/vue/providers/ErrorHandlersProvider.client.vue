@@ -26,13 +26,21 @@ window.addEventListener('unhandledrejection', (e) => {
 })
 
 onErrorCaptured((e) => {
+  let errorOnHandling = e
   let wasCaught = false
 
-  for (const errorHandler of bindedErrorHandlers) {
+  for (let index = 0; index < bindedErrorHandlers.length; index++) {
+    const errorHandler = bindedErrorHandlers[index]
+
     try {
-      errorHandler(e)
+      errorHandler(errorOnHandling)
       wasCaught = true
-    } catch {
+    } catch (error) {
+      if (error !== errorOnHandling) {
+        errorOnHandling = error
+        index = 0
+        continue
+      }
       continue
     }
   }
