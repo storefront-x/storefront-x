@@ -28,7 +28,7 @@ export default (el: HTMLElement) => {
     return node.getAttribute('data-appearance')
   }
 
-  const getBackground = (node: HTMLElement | null) => {
+  const getBackground = (node: HTMLElement | null, { mobileImage = false } = {}) => {
     const response: any = {}
 
     const backgroundColor = node?.style.backgroundColor
@@ -39,9 +39,11 @@ export default (el: HTMLElement) => {
       const imagesStructure = JSON.parse(images.replace(/\\"/g, '"'))
       const format = IS_SERVER || supportsWebp() ? 'webp' : 'jpeg'
 
-      // TODO: Support for mobile images
       if (imagesStructure.desktop_image) {
-        response.backgroundImage = `url(${resizeImage({ path: imagesStructure.desktop_image, format })})`
+        response.backgroundImage = `url(${resizeImage({
+          path: imagesStructure[mobileImage ? 'mobile_image' : 'desktop_image'] ?? imagesStructure.desktop_image,
+          format,
+        })})`
         response.backgroundSize = node?.style.backgroundSize
         response.backgroundPosition = node?.style.backgroundPosition
         response.backgroundAttachment = node?.style.backgroundAttachment

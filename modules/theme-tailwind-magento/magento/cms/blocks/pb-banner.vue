@@ -1,7 +1,10 @@
 <template>
   <div v-intersection-observer="onIntersectionObserver" class="flex flex-col" :class="classes" :style="styles">
-    <div :style="{ textAlign: _textAlign }">
-      <div class="p-4 max-w-full" v-html="pbBanner.content" />
+    <div class="hidden lg:flex absolute inset-0" :style="desktopBannerImage" />
+    <div class="flex lg:hidden absolute inset-0" :style="mobileBannerImage" />
+
+    <div class="z-10" :style="{ textAlign: _textAlign }">
+      <div class="p-4 max-w-full content" v-html="pbBanner.content" />
       <RouterLink v-if="pbBanner.showButton === 'always'" class="btn btn-primary" :to="localePath(pbBanner.link ?? '')">
         {{ pbBanner.buttonText }}
       </RouterLink>
@@ -38,14 +41,14 @@ const classes = computed(() => {
 })
 
 const styles = computed(() => {
-  const background = isVisible.value ? pbBanner.background : ''
-
   return {
     ...pbBanner.advanced,
-    ...background,
     minHeight: pbBanner.minHeight,
   }
 })
+
+const desktopBannerImage = computed(() => (isVisible.value ? pbBanner.background : ''))
+const mobileBannerImage = computed(() => (isVisible.value ? pbBanner.mobileBackground : ''))
 
 const _textAlign = computed(() => {
   if (pbBanner.appearance === 'collage-left') return 'left'

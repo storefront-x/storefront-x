@@ -46,7 +46,7 @@ export default (el: HTMLElement) => {
   })
 
   const mobileBackground = computed(() => {
-    const background = pbBlock.getBackground(wrapperElement.value)
+    const background = pbBlock.getBackground(wrapperElement.value, { mobileImage: true })
 
     return {
       ...background,
