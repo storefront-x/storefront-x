@@ -6,6 +6,7 @@ import Product from '~/cypress/support/pageObjects/product/Product'
 import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 import addToCart from '~/cypress/support/pageObjects/product/addToCart'
 import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
+import getNotificationError from '~/cypress/support/pageObjects/base/getNotificationError'
 
 describe('Account', () => {
   /** @type {AccountCredentials} */
@@ -46,5 +47,18 @@ describe('Account', () => {
     cy.reload()
 
     expectMicrocartQuantity(1)
+  })
+
+  it('handle customer authorization error', () => {
+    login(accountCredentials)
+
+    cy.getCookies().then((cookies) => {
+      const customerCookie = cookies.find((cookie) => cookie.name.includes(':customer:id'))
+      cy.setCookie(customerCookie.name, 'invalid')
+    })
+
+    cy.reload()
+
+    getNotificationError().should('be.visible')
   })
 })
