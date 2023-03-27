@@ -28,13 +28,24 @@ const main = async () => {
 
   await fs.copy(src, dst)
 
+  const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
+  const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
+
   console.log(`\n${green('✔')} Done. Now run:\n`)
   if (dst != cwd) {
     console.log(`  cd ${path.relative(cwd, dst)}`)
   }
 
-  console.log('  yarn install')
-  console.log('  yarn dev')
+  switch (pkgManager) {
+    case 'yarn':
+      console.log('  yarn install')
+      console.log('  yarn dev')
+      break
+    default:
+      console.log(`  ${pkgManager} install`)
+      console.log(`  ${pkgManager} run dev`)
+      break
+  }
   console.log('')
 
   switch (responses.integration) {
@@ -112,6 +123,16 @@ async function getResponses() {
 
 function isEmpty(path) {
   return fs.readdirSync(path).length === 0
+}
+
+function pkgFromUserAgent(userAgent) {
+  if (!userAgent) return undefined
+  const pkgSpec = userAgent.split(' ')[0]
+  const pkgSpecArr = pkgSpec.split('/')
+  return {
+    name: pkgSpecArr[0],
+    version: pkgSpecArr[1],
+  }
 }
 
 main().catch(console.error)
