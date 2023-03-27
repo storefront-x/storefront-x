@@ -92,7 +92,9 @@ export default class Module {
 
       return this._path
     } catch {
-      logger.fatal('Could not resolve the "%s" module. Did you run "%s install"?', this.name, 'yarn')
+      const pkgManager = process.env.npm_config_user_agent?.includes('yarn') ? 'yarn' : 'mpm'
+
+      logger.fatal('Could not resolve the "%s" module. Did you run "%s install"?', this.name, pkgManager)
       throw process.exit(1)
     }
   }

@@ -42,9 +42,21 @@ export default async () => {
 
   consola.log(`\n${green('✔')} Done\n`)
 
+  const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
+  const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
+
   consola.log(`Add your module ${responses.moduleName} to your storefront-x config file and then run: \n`)
-  consola.log('  yarn install')
-  consola.log('  yarn dev')
+
+  switch (pkgManager) {
+    case 'yarn':
+      consola.log('  yarn install')
+      consola.log('  yarn dev')
+      break
+    default:
+      consola.log(`  ${pkgManager} install`)
+      consola.log(`  ${pkgManager} run dev`)
+      break
+  }
 }
 
 const getResponses = async () => {
@@ -119,4 +131,14 @@ const getResponses = async () => {
 
 const isEmpty = (path) => {
   return fs.readdirSync(path).length === 0
+}
+
+const pkgFromUserAgent = (userAgent) => {
+  if (!userAgent) return undefined
+  const pkgSpec = userAgent.split(' ')[0]
+  const pkgSpecArr = pkgSpec.split('/')
+  return {
+    name: pkgSpecArr[0],
+    version: pkgSpecArr[1],
+  }
 }
