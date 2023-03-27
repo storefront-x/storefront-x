@@ -95,6 +95,7 @@ jobs:
           yarn install
           yarn build
           yarn serve &
+          sleep 5
           curl http://localhost:3000
 
   create-script-with-npm:
@@ -113,7 +114,7 @@ jobs:
           yarn install
           cp -rf modules/create-storefront-x ../create-storefront-x
           cd ../create-storefront-x
-          npm install
+          yarn install
           node index.js -y -- --directory=../app --integration=${{ matrix.integration }}
           cd ../app
 
@@ -125,4 +126,5 @@ jobs:
           npm install
           npm run build
           npm run serve &
+          sleep 5
           curl http://localhost:3000
