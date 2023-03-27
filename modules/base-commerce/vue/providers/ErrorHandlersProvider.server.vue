@@ -13,25 +13,21 @@ const bindedErrorHandlers = Object.values(errorHandlers)
   .reverse()
 
 onErrorCaptured((e) => {
-  let errorOnHandling = e
-
+  let currentError = e
   for (let index = 0; index < bindedErrorHandlers.length; index++) {
     const errorHandler = bindedErrorHandlers[index]
 
     try {
-      errorHandler(errorOnHandling)
+      errorHandler(currentError)
       // Prevent propagation
       return false
-    } catch (error) {
-      if (error !== errorOnHandling) {
-        errorOnHandling = error
-        index = 0
-        continue
-      }
+    } catch (error: any) {
+      // console.log('catch', { errorInCantch: error })
+      currentError = error
       continue
     }
   }
 
-  ctx.errorCaptured = errorOnHandling
+  ctx.errorCaptured = currentError
 })
 </script>
