@@ -5,8 +5,11 @@ import useCustomerStore from '#ioc/stores/useCustomerStore'
 import useCartStore from '#ioc/stores/useCartStore'
 import useCheckoutStore from '#ioc/stores/useCheckoutStore'
 import useCustomerToken from '#ioc/composables/useCustomerToken'
+import redirect from '#ioc/utils/redirect'
+import useRoute from '#ioc/composables/useRoute'
 
 export default () => {
+  const route = useRoute()
   const customerStore = useCustomerStore()
   const cartStore = useCartStore()
   const checkoutStore = useCheckoutStore()
@@ -22,6 +25,7 @@ export default () => {
       checkoutStore.$reset()
 
       showErrorNotification(t('errors.authorizationError'))
+      redirect(route.fullPath, 302)
     } else {
       throw error
     }

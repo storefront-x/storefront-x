@@ -87,10 +87,6 @@ export default class Core {
         template = await out(template)
       }
 
-      if (ctx.errorCaptured) {
-        throw ctx.errorCaptured
-      }
-
       return res.status(ctx.responseStatus).set(ctx.responseHeaders).end(template)
     } catch (e) {
       if (e.__typename === 'Redirect') {
