@@ -5,7 +5,11 @@ import { computed, reactive } from 'vue'
 
 export default (el: HTMLElement) => {
   const background = computed(() => {
-    return getBackground(el)
+    return getBackgroundStyles(el)
+  })
+
+  const backgroundImages = computed(() => {
+    return getBackgroundImages(el)
   })
 
   const advanced = computed(() => {
@@ -28,29 +32,50 @@ export default (el: HTMLElement) => {
     return node.getAttribute('data-appearance')
   }
 
-  const getBackground = (node: HTMLElement | null, { mobileImage = false } = {}) => {
+  const getImageFormat = () => {
+    return IS_SERVER || supportsWebp() ? 'webp' : 'jpeg'
+  }
+
+  const getImagesStructure = (node: HTMLElement | null) => {
+    const images = node?.getAttribute('data-background-images')
+    if (images) {
+      return JSON.parse(images.replace(/\\"/g, '"'))
+    } else {
+      return null
+    }
+  }
+
+  const getBackgroundStyles = (node: HTMLElement | null) => {
     const response: any = {}
 
     const backgroundColor = node?.style.backgroundColor
     if (backgroundColor) response.backgroundColor = backgroundColor
 
-    const images = node?.getAttribute('data-background-images')
+    const images = getImagesStructure(node)
     if (images) {
-      const imagesStructure = JSON.parse(images.replace(/\\"/g, '"'))
-      const format = IS_SERVER || supportsWebp() ? 'webp' : 'jpeg'
-
-      if (imagesStructure.desktop_image) {
-        response.backgroundImage = `url(${resizeImage({
-          path: imagesStructure[mobileImage ? 'mobile_image' : 'desktop_image'] ?? imagesStructure.desktop_image,
-          format,
-        })})`
-        response.backgroundSize = node?.style.backgroundSize
-        response.backgroundPosition = node?.style.backgroundPosition
-        response.backgroundAttachment = node?.style.backgroundAttachment
-        response.backgroundRepeat = node?.style.backgroundRepeat
-      }
+      response.backgroundSize = node?.style.backgroundSize
+      response.backgroundPosition = node?.style.backgroundPosition
+      response.backgroundAttachment = node?.style.backgroundAttachment
+      response.backgroundRepeat = node?.style.backgroundRepeat
     }
+    return response
+  }
 
+  const getBackgroundImages = (node: HTMLElement | null) => {
+    const response: any = {}
+    const images = getImagesStructure(node)
+
+    if (images) {
+      response.backgroundImageDesktop = `url(${resizeImage({
+        path: images.desktop_image,
+        format: getImageFormat(),
+      })})`
+
+      response.backgroundImageMobile = `url(${resizeImage({
+        path: images.mobile_image ?? images.desktop_image,
+        format: getImageFormat(),
+      })})`
+    }
     return response
   }
 
@@ -119,12 +144,14 @@ export default (el: HTMLElement) => {
   return reactive({
     advanced,
     background,
+    backgroundImages,
     getTagName,
     getTextContent,
     getInnerHtml,
+    getBackgroundStyles,
+    getBackgroundImages,
     getAppearance,
     getAdvanced,
-    getBackground,
     getPadding,
     getMargin,
     getBorder,
