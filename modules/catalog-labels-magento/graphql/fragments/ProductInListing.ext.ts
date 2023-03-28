@@ -13,6 +13,7 @@ const ProductInListing: Extension = (ProductInListing) => () => {
       }),
     }),
   })
+
   return self
 }
 
