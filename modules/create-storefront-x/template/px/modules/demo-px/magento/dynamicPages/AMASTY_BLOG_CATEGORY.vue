@@ -50,14 +50,12 @@ useBlogCategorySchema(blogCategory)
 let metaData = []
 if (blogCategory.meta.description) {
   metaData.push({
-
     name: 'description',
     content: blogCategory.meta.description,
   })
 }
 if (blogCategory.meta.keywords) {
   metaData.push({
-
     name: 'keywords',
     content: blogCategory.meta.keywords,
   })

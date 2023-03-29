@@ -50,6 +50,6 @@ const closeHamburger = () => {
 
 useHead({
   title: 'Storefront X',
-  meta: [{  name: 'description', content: 'SSR + PWA e-commerce solution' }],
+  meta: [{ name: 'description', content: 'SSR + PWA e-commerce solution' }],
 })
 </script>

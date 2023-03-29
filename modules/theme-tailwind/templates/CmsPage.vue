@@ -19,14 +19,12 @@ const props = defineProps({
 let metaData = []
 if (props.cmsPage.meta.description) {
   metaData.push({
-
     name: 'description',
     content: props.cmsPage.meta.description,
   })
 }
 if (props.cmsPage.meta.keywords) {
   metaData.push({
-
     name: 'keywords',
     content: props.cmsPage.meta.keywords,
   })
