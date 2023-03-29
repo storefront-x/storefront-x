@@ -2,6 +2,10 @@
 
 > `@storefront-x/debug-tools`
 
+:::warning
+This module requires Node.js version `>=18.0.0`
+:::
+
 Debug tools help you with debugging Storefront X by visualizing some of its functionality like server-side requests.
 
 To see the debug tools, enable this module, start your application and visit the `http://localhost:3000/_debug` page (hostname and port depends on your configuration). It should look something like this:
