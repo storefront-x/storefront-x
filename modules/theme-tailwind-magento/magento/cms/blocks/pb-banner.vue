@@ -1,7 +1,7 @@
 <template>
   <div v-intersection-observer="onIntersectionObserver" class="flex flex-col" :class="classes" :style="styles">
-    <div class="z-10" :style="{ textAlign: _textAlign }">
-      <div class="p-4 max-w-full content" v-html="pbBanner.content" />
+    <div :style="{ textAlign: _textAlign }">
+      <div class="p-4 max-w-full" v-html="pbBanner.content" />
       <RouterLink v-if="pbBanner.showButton === 'always'" class="btn btn-primary" :to="localePath(pbBanner.link ?? '')">
         {{ pbBanner.buttonText }}
       </RouterLink>
