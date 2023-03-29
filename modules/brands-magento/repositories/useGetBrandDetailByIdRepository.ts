@@ -7,6 +7,7 @@ import transformFilterQuery from '#ioc/utils/magento/transformFilterQuery'
 import ToProduct from '#ioc/mappers/ToProduct'
 import ToAggregation from '#ioc/mappers/ToAggregation'
 import CATALOG_FILTER_ATTRIBUTES_HIDDEN from '#ioc/config/magento/CATALOG_FILTER_ATTRIBUTES_HIDDEN'
+import BRAND_ATTRIBUTE_NAME from '#ioc/config/BRAND_ATTRIBUTE_NAME'
 
 interface BrandOptions {
   page?: number
@@ -34,7 +35,7 @@ export default () => {
         currentPage: page || 1,
         sort: transformSortQuery(sort),
         filter: {
-          manufacturer: { eq: id },
+          [BRAND_ATTRIBUTE_NAME]: { eq: id },
           ...transformFilterQuery(filter),
         },
       }),
