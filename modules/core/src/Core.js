@@ -86,7 +86,6 @@ export default class Core {
       for (const out of Object.values(ctx.out)) {
         template = await out(template)
       }
-
       if (ctx.errorCaptured) {
         throw ctx.errorCaptured
       }
