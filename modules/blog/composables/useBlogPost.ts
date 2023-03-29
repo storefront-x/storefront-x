@@ -24,6 +24,8 @@ export default (post: Ref<ReturnType<typeof ToBlogPost>>) => {
 
   const metaDescription = computed(() => post.value.meta.description)
 
+  const metaKeywords = computed(() => post.value.meta.keywords)
+
   return reactive({
     id,
     title,
@@ -36,5 +38,6 @@ export default (post: Ref<ReturnType<typeof ToBlogPost>>) => {
     listThumbnail,
     metaTitle,
     metaDescription,
+    metaKeywords,
   })
 }

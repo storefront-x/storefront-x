@@ -52,13 +52,23 @@ const blogPost = useBlogPost(toRef(props, 'blogPost'))
 
 useBlogPostSchema(blogPost)
 
+let metaData = []
+if (blogPost.metaDescription) {
+  metaData.push({
+    hid: 'description',
+    name: 'description',
+    content: blogPost.metaDescription,
+  })
+}
+if (blogPost.metaKeywords) {
+  metaData.push({
+    hid: 'keywords',
+    name: 'keywords',
+    content: blogPost.metaKeywords,
+  })
+}
 useHead({
-  title: computed(() => blogPost.metaTitle),
-  meta: [
-    {
-      name: 'description',
-      content: computed(() => blogPost.metaDescription),
-    },
-  ],
+  title: blogPost.metaTitle,
+  meta: metaData,
 })
 </script>

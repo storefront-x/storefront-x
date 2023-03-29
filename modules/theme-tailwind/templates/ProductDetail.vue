@@ -45,20 +45,24 @@ onMounted(() => {
   emitViewProduct({ product })
 })
 
+let metaData = []
+if (product.meta.description) {
+  metaData.push({
+    hid: 'description',
+    name: 'description',
+    content: product.meta.description,
+  })
+}
+if (product.meta.keywords) {
+  metaData.push({
+    hid: 'keywords',
+    name: 'keywords',
+    content: product.meta.keywords,
+  })
+}
 useHead({
   title: product.meta.title,
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content: product.meta.description,
-    },
-    {
-      hid: 'keywords',
-      name: 'keywords',
-      content: product.meta.keywords,
-    },
-  ],
+  meta: metaData,
 })
 </script>
 
