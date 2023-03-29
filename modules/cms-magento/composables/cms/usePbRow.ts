@@ -13,7 +13,7 @@ export default (el: HTMLElement) => {
   })
 
   const background = computed(() => {
-    return pbBlock.getBackground(innerElement.value)
+    return pbBlock.getBackgroundStyles(innerElement.value)
   })
 
   const advanced = computed(() => {
