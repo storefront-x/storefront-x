@@ -27,7 +27,7 @@ onErrorCaptured((e) => {
   }
 
   ctx.errorCaptured = currentError
-  // Return false to prevent propagation of the error
-  return false
+  // Re-trhow current error so that Vue does not propagate the old one
+  throw currentError
 })
 </script>
