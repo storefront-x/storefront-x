@@ -1,1 +1,1 @@
-export default 'sap_brand'
+export default 'manufacturer'
