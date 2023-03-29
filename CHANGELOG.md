@@ -1,3 +1,33 @@
+## v1.17.0 (2023-03-29)
+
+#### :rocket: Enhancement
+
+- [#390](https://github.com/storefront-x/storefront-x/pull/390) Added fallback for CMS page title, refactoring head on pages ([@fajmanm](https://github.com/fajmanm))
+- [#404](https://github.com/storefront-x/storefront-x/pull/404) Added debug-tools startup check for Node version ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#400](https://github.com/storefront-x/storefront-x/pull/400) Added support for mobile image in PB banner ([@fajmanm](https://github.com/fajmanm))
+- [#405](https://github.com/storefront-x/storefront-x/pull/405) Improved product labels fragment extension ([@fajmanm](https://github.com/fajmanm))
+
+#### :bug: Bug Fix
+
+- [#403](https://github.com/storefront-x/storefront-x/pull/403) Fixed error handling ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#402](https://github.com/storefront-x/storefront-x/pull/402) Fix build & serve commands when used over NPM ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :memo: Documentation
+
+- [#396](https://github.com/storefront-x/storefront-x/pull/396) Added documentation for extendingConcept ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#398](https://github.com/storefront-x/storefront-x/pull/398) Removed npm from documentation ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :house: Internal
+
+- [#401](https://github.com/storefront-x/storefront-x/pull/401) Add env var for Lets Encrypt certificates ([@zimalmagexo](https://github.com/zimalmagexo))
+
+#### Committers: 4
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+- [@zimalmagexo](https://github.com/zimalmagexo)
+
 ## v1.16.2 (2023-03-20)
 
 #### :bug: Bug Fix
