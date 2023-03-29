@@ -6,6 +6,7 @@ import consola from 'consola'
 import Youch from 'youch'
 import Core from './Core.js'
 import process from 'node:process'
+import serverStatic from 'serve-static'
 
 export default class Dev extends Core {
   async createServer() {
@@ -24,6 +25,7 @@ export default class Dev extends Core {
     await this._loadServerMiddleware(app, viteDevServer)
     await this._loadServerRoutes(app, viteDevServer)
 
+    app.use(fromNodeMiddleware(serverStatic(path.join(this.buildDir, 'public'), { index: false })))
     app.use(fromNodeMiddleware(viteDevServer.middlewares))
 
     process.on('unhandledRejection', (reason) => {
