@@ -55,14 +55,14 @@ useCategorySchema(category)
 let metaData = []
 if (props.category.meta.description) {
   metaData.push({
-    hid: 'description',
+
     name: 'description',
     content: props.category.meta.description,
   })
 }
 if (props.category.meta.keywords) {
   metaData.push({
-    hid: 'keywords',
+
     name: 'keywords',
     content: props.category.meta.keywords,
   })

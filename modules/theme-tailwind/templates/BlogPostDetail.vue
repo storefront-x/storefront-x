@@ -55,14 +55,14 @@ useBlogPostSchema(blogPost)
 let metaData = []
 if (blogPost.metaDescription) {
   metaData.push({
-    hid: 'description',
+
     name: 'description',
     content: blogPost.metaDescription,
   })
 }
 if (blogPost.metaKeywords) {
   metaData.push({
-    hid: 'keywords',
+
     name: 'keywords',
     content: blogPost.metaKeywords,
   })
