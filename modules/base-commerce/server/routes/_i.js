@@ -1,3 +1,4 @@
+import { eventHandler } from 'h3'
 import sharp from 'sharp'
 import LRU from 'lru-cache'
 import IS_PRODUCTION from '#ioc/config/IS_PRODUCTION'
@@ -12,13 +13,9 @@ const cache = new LRU({
   max: 100,
 })
 
-export default async (req, res) => {
-  try {
-    await resizeImage(req, res)
-  } catch (e) {
-    res.status(500).send(e.message)
-  }
-}
+export default eventHandler(async (event) => {
+  await resizeImage(event.node.req, event.node.res)
+})
 
 const resizeImage = async (req, res) => {
   if (IMAGE_RESIZER_CACHE_ENABLED) {

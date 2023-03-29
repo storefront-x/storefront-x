@@ -1,11 +1,4 @@
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
-import { createProxyMiddleware } from 'http-proxy-middleware'
+import { eventHandler, proxyRequest } from 'h3'
 
-export default createProxyMiddleware({
-  target: MAGENTO_URL,
-  changeOrigin: true,
-  pathRewrite: {
-    '/_magento': '',
-  },
-  logLevel: process.env.NODE_ENV === 'test' ? 'silent' : undefined,
-})
+export default eventHandler((event) => proxyRequest(event, MAGENTO_URL))

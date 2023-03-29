@@ -1,3 +1,4 @@
+import { setHeader } from 'h3'
 import useContext from '#ioc/composables/useContext'
 
 export default () => {
@@ -9,8 +10,8 @@ export default () => {
     const cacheControl = response.headers.get('Cache-Control')
 
     if (cacheControl?.includes('no-cache')) {
-      ctx.responseHeaders['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-      delete ctx.responseHeaders['X-Magento-Tags']
+      setHeader(ctx.event, 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+      setHeader(ctx.event, 'X-Magento-Tags', '')
       ctx._magentoTagsAreSet = true
       return
     }
@@ -25,6 +26,6 @@ export default () => {
       ctx._magentoTags.add(tag)
     }
 
-    ctx.responseHeaders['X-Magento-Tags'] = [...ctx._magentoTags.values()].join(',')
+    setHeader(ctx.event, 'X-Magento-Tags', [...ctx._magentoTags.values()].join(','))
   }
 }
