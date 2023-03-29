@@ -6,6 +6,7 @@ import * as vite from 'vite'
 import consola from 'consola'
 import fetch, { Headers, Request, Response } from 'node-fetch'
 import Module from './Module.js'
+import { sendRedirect } from 'h3'
 
 /**
  * @typedef {import('@storefront-x/core').Concept} Concept
@@ -75,17 +76,25 @@ export default class Core {
       out: {},
     }
 
-    await entry(ctx)
+    try {
+      await entry(ctx)
 
-    for (const out of Object.values(ctx.out)) {
-      template = await out(template)
+      for (const out of Object.values(ctx.out)) {
+        template = await out(template)
+      }
+
+      if (ctx.errorCaptured) {
+        throw ctx.errorCaptured
+      }
+
+      return template
+    } catch (e) {
+      if (e.__typename === 'Redirect') {
+        return sendRedirect(event, e.url, e.status)
+      } else {
+        throw e
+      }
     }
-
-    if (ctx.errorCaptured) {
-      throw ctx.errorCaptured
-    }
-
-    return template
   }
 
   /**
