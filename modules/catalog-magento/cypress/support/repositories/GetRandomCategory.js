@@ -1,10 +1,10 @@
 import randomFrom from '#ioc/utils/array/randomFrom'
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
-import Categories from '#ioc/graphql/queries/Categories'
+import CategoriesWithProductTypes from '#ioc/graphql/queries/CategoriesWithProductTypes'
 import MAGENTO_GRAPHQL_ENDPOINT from '#ioc/config/MAGENTO_GRAPHQL_ENDPOINT'
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 
-const query = Categories()
+const query = CategoriesWithProductTypes()
   .with({
     id: '2',
   })
@@ -17,7 +17,7 @@ const body = JSON.stringify({
   },
 })
 
-export default ({ minProducts = 1 } = {}) =>
+export default ({ minProducts = 1, productType = 'SimpleProduct' } = {}) =>
   cy
     .request({
       method: 'POST',
@@ -30,7 +30,10 @@ export default ({ minProducts = 1 } = {}) =>
     })
     .then(({ body }) => {
       const categories = body.data.categories.items.filter((category) => {
-        return category.products.total_count >= minProducts
+        return (
+          category.products.total_count >= minProducts &&
+          category.products.items.some((item) => item.__typename === productType)
+        )
       })
 
       const category = randomFrom(categories)
