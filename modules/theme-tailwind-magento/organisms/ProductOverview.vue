@@ -1,8 +1,20 @@
 <template>
   <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start relative">
-    <div class="flex flex-col">
-      <ProductGallery />
+    <div v-if="product.isBundleProduct && isConfigurationOpen" class="mt-3">
+      <div class="overflow-y-scroll max-h-[370px] lg:max-h-[522px]">
+        <h2 class="sr-only">Product bundles</h2>
+        <Button
+          v-if="isConfigurationOpen"
+          color="primary"
+          class="relative w-full sm:w-auto sm:h-auto mt-4 sm:mt-0 text-bold"
+          @click="isConfigurationOpen = false"
+        >
+          <slot>{{ t('closeConf') }}</slot>
+        </Button>
+        <ProductBundleOptions />
+      </div>
     </div>
+    <ProductGallery v-else />
 
     <div class="absolute top-2 left-0 pointer-events-none gap-2 p-3 space-y-1">
       <ProductLabel v-for="(label, i) in product.labels" :key="i" :label="label" />
@@ -22,12 +34,6 @@
         <h2 class="sr-only">Product configurations</h2>
 
         <ProductConfigurableOptions />
-      </div>
-
-      <div v-if="product.isBundleProduct" class="mt-3">
-        <h2 class="sr-only">Product bundles</h2>
-
-        <ProductBundleOptions />
       </div>
 
       <div class="mt-4">
@@ -58,8 +64,16 @@
 
           <ProductQuantityConfigurator @input="onQuantityChange" />
         </div>
-
-        <AddToCart :quantity="quantity" />
+        <Button
+          v-if="product.isBundleProduct && !isConfigurationOpen"
+          color="primary"
+          class="relative w-full sm:w-auto sm:h-auto mt-4 sm:mt-0 sm:ml-3 text-bold"
+          :class="product.available || 'opacity-50 pointer-events-none'"
+          @click="isConfigurationOpen = true"
+        >
+          <slot>{{ t('Conf') }}</slot>
+        </Button>
+        <AddToCart v-else :quantity="quantity" />
       </div>
 
       <GroupedItems v-if="product.groupedItems.length && product.isGroupedProduct" />
@@ -95,6 +109,7 @@ import ReviewStars from '#ioc/atoms/ReviewStars'
 import GiftPanel from '#ioc/atoms/GiftPanel'
 import ProductLabel from '#ioc/atoms/ProductLabel'
 import AddToComparison from '#ioc/molecules/AddToComparison'
+import Button from '#ioc/atoms/Button'
 
 const ProductBundleOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductBundleOptions'))
 const ProductConfigurableOptions = defineAsyncComponent(() => import('#ioc/molecules/ProductConfigurableOptions'))
@@ -105,6 +120,7 @@ const { t } = useI18n()
 const product = injectProduct()
 
 const quantity = ref(1)
+const isConfigurationOpen = ref(false)
 
 const discounted = computed(() => {
   return {
@@ -125,6 +141,9 @@ const onQuantityChange = (q: number) => {
 </style>
 
 <i18n lang="yaml">
+en-US:
+  Conf: 'Configure'
+  closeConf: 'Close configuration'
 cs-CZ:
   'IN_STOCK': 'Skladem'
   'OUT_OF_STOCK': 'Vyprodáno'
@@ -132,4 +151,6 @@ cs-CZ:
   'Product information': 'Informace o produktu'
   'Add': 'Oblíbený'
   'Compare': 'Srovnat'
+  Conf: 'Nakonfigurovat'
+  closeConf: 'Zavřít konfiguraci'
 </i18n>
