@@ -20,12 +20,12 @@ on:
         description: 'Storefront X config file'
         required: true
         type: string
-        default: 'storefront-x.px.config.js'
+        default: 'storefront-x.aero.config.js'
       dot-env:
         description: '.env file contents'
         required: true
         type: string
-        default: 'SFX_MAGENTO_URL=https://be-sfx.demo.magexo.cloud'
+        default: 'SFX_MAGENTO_URL=https://commerce-vanilla.magexo.cloud'
 
 env:
   REGISTRY: ghcr.io
