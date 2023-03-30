@@ -3,6 +3,7 @@ import ToBundleOptionValue from '#ioc/mappers/ToBundleOptionValue'
 
 export default (currency: string) => (data: any) => ({
   id: data.id ?? null,
+  isDefault: data.is_default ?? false,
   product: ToProduct(data.product ?? []),
   quantity: data.quantity || 1,
   values: (data.values ?? []).map(ToBundleOptionValue(currency)),

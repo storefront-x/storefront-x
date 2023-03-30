@@ -14,6 +14,7 @@ export default (name = 'bundleItem') =>
       id: field(),
       quantity: field(),
       label: field(),
+      is_default: field(),
       product: field({
         id: field(),
         name: field(),

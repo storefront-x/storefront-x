@@ -32,6 +32,10 @@ export default defineComponent({
       type: [String, Array],
       default: () => [],
     },
+    immediateEmits: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['blur', 'input'],
 
@@ -106,6 +110,12 @@ export default defineComponent({
   created() {
     this.$Form._registerInput(this)
     this.required = this.isRequired
+  },
+
+  mounted() {
+    if (this.immediateEmits) {
+      this.$emit('input', this.innerValue)
+    }
   },
 
   unmounted() {

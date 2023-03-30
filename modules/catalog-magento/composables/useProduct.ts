@@ -73,7 +73,17 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isGroupedProduct = computed(() => productType.value === 'GroupedProduct')
 
-  const isBundleConfigured = computed(() => isNonEmptyObject(bundle.value))
+  const isBundleConfigured = computed(() => {
+    if (isBundleProduct.value) {
+      for (const item of bundleItems.value) {
+        if (item.required && !bundle.value[item.id]) {
+          return false
+        }
+      }
+      return true
+    }
+    return false
+  })
 
   const mediaGallery = computed(() => {
     if (variant.value?.mediaGallery?.length > 0) {
