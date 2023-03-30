@@ -2,7 +2,7 @@ import field from '#ioc/graphql/field'
 import Brand from '#ioc/graphql/fragments/Brand'
 import ProductInListing from '#ioc/graphql/fragments/ProductInListing'
 import query from '#ioc/graphql/query'
-import BRAND_ATTRIBUTE_NAME from '#ioc/config/BRAND_ATTRIBUTE_NAME.ts'
+import BRAND_ATTRIBUTE_NAME from '#ioc/config/BRAND_ATTRIBUTE_NAME'
 
 export default () =>
   query()
