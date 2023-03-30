@@ -12,7 +12,7 @@ LC_ALL=C
 npx lint-staged
 
 local_branch="$(git rev-parse --abbrev-ref HEAD)"
-valid_branch_regex="^[a-z0-9-]+$"
+valid_branch_regex="^[a-z0-9-]{1,40}$"
 
 if [[ ! $local_branch =~ $valid_branch_regex ]]
 then
