@@ -20,7 +20,7 @@ on:
         description: 'Storefront X config file'
         required: true
         type: string
-        default: 'storefront-x.aero.config'
+        default: 'storefront-x.px.config.js'
       dot-env:
         description: '.env file contents'
         required: true
