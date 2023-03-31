@@ -49,6 +49,7 @@
           :name="`${bundleItem.id}-group`"
           :value="`${getDefaultValue(bundleItem)}`"
           :label="''"
+          :classes="`mt-4 space-y-2`"
           @input="onInputSelect(bundleItem, $event)"
         >
           <FormRadio
