@@ -51,8 +51,9 @@ test('config can be used from server middleware', async ({ page }) => {
             server: {
               middleware: {
                 'hello.ts': `
-                  import GREET from '#ioc/config/GREET'
-                  export default (req, res) => res.send(GREET)
+                import { eventHandler } from 'h3'
+                import GREET from '#ioc/config/GREET'
+                export default eventHandler(() => GREET)
                 `,
               },
             },

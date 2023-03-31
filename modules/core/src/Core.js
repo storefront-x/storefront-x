@@ -6,7 +6,7 @@ import * as vite from 'vite'
 import consola from 'consola'
 import fetch, { Headers, Request, Response } from 'node-fetch'
 import Module from './Module.js'
-import { sendRedirect } from 'h3'
+import { sendRedirect, setResponseStatus } from 'h3'
 
 /**
  * @typedef {import('@storefront-x/core').Concept} Concept
@@ -85,6 +85,9 @@ export default class Core {
 
       if (ctx.errorCaptured) {
         throw ctx.errorCaptured
+      }
+      if (ctx.responseStatus) {
+        setResponseStatus(event, ctx.responseStatus)
       }
 
       return template

@@ -1,7 +1,7 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import * as vite from 'vite'
-import { createApp, eventHandler, fromNodeMiddleware, createRouter } from 'h3'
+import { createApp, eventHandler, fromNodeMiddleware, createRouter, setResponseStatus } from 'h3'
 import consola from 'consola'
 import Youch from 'youch'
 import Core from './Core.js'
@@ -58,7 +58,7 @@ export default class Dev extends Core {
 
           const youch = new Youch(e, event.node.req)
           const html = await youch.toHTML()
-
+          setResponseStatus(event, 500)
           return html
         }
       }),

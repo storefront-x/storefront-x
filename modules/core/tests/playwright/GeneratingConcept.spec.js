@@ -29,7 +29,8 @@ test('generating to single file', async ({ page }) => {
               middleware: {
                 'test.js': `
                   import test from '~/.sfx/testFolder'
-                  export default (req, res) => res.send(test.file1+test.file2)
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => test.file1 + test.file2)
                 `,
               },
             },
@@ -77,8 +78,9 @@ test('exportAll from single file', async ({ page }) => {
               middleware: {
                 'test.js': `
                   import test from '~/.sfx/testFolder'
+                  import { eventHandler } from 'h3'
                   const {file1:{foo1,foo2}, file2:{bar1,bar2}} = test
-                  export default (req, res) => res.send(foo1+bar1+foo2+bar2)
+                  export default eventHandler(() => foo1 + bar1 + foo2 + bar2)
                 `,
               },
             },
@@ -125,8 +127,8 @@ test('generate multiple files', async ({ page }) => {
                 'test.js': `
                     import test1 from '~/.sfx/testFolder/file1'
                     import test2 from '~/.sfx/testFolder/file2'
-
-                    export default (req, res) => res.send(test1+test2)
+                    import { eventHandler } from 'h3'
+                    export default eventHandler(() => test1 + test2)
                   `,
               },
             },
@@ -178,7 +180,9 @@ test('exportAll from multiple files', async ({ page }) => {
                 'test.js': `
                   import file1 from '~/.sfx/testFolder/file1'
                   import file2 from '~/.sfx/testFolder/file2'
-                  export default (req, res) => res.send(file1.foo1+file2.bar1+file1.foo2+file2.bar2)
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => file1.foo1 + file2.bar1 + file1.foo2 + file2.bar2)
                 `,
               },
             },

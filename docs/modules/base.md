@@ -127,9 +127,9 @@ Files with [Express](https://expressjs.com) middleware function exported as defa
 ```ts
 // server/middleware/foo.ts
 
-import type { Request, Response } from 'express'
+import { eventHandler } from 'h3'
 
-export default (req: Request, res: Response) => res.send('Hello, World!')
+export default eventHandler((event) => 'Hello, World!')
 ```
 
 ```
@@ -149,9 +149,9 @@ Files with [Express](https://expressjs.com) middleware function exported as defa
 ```ts
 // server/routes/foo.ts
 
-import type { Request, Response } from 'express'
+import { eventHandler } from 'h3'
 
-export default (req: Request, res: Response) => res.send('Hello, World!')
+export default eventHandler((event) => 'Hello, World!')
 ```
 
 ```

@@ -1,4 +1,4 @@
-import { eventHandler } from 'h3'
+import { eventHandler, setResponseStatus } from 'h3'
 import sharp from 'sharp'
 import LRU from 'lru-cache'
 import IS_PRODUCTION from '#ioc/config/IS_PRODUCTION'
@@ -14,7 +14,12 @@ const cache = new LRU({
 })
 
 export default eventHandler(async (event) => {
-  await resizeImage(event.node.req, event.node.res)
+  try {
+    await resizeImage(event.node.req, event.node.res)
+  } catch (error) {
+    setResponseStatus(event, 500)
+    return error.message
+  }
 })
 
 const resizeImage = async (req, res) => {
