@@ -28,7 +28,7 @@
           :label="value.label"
           :value="`${value.index}`"
           :name="`${value.index}-${inModal}-swatch`"
-          :background="value.swatchData.value"
+          :swatch-data="value.swatchData"
           :disabled="value.disabled ?? false"
           @input="$emit('input', configurableOption, value.index)"
         />

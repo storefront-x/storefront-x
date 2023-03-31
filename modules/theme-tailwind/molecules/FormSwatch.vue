@@ -41,9 +41,9 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    background: {
-      type: String,
-      default: '',
+    swatchData: {
+      type: Object,
+      default: () => ({}),
     },
     disabled: {
       type: Boolean,
@@ -71,9 +71,16 @@ export default defineComponent({
       }
     },
     styles() {
-      return {
-        'background-color': this.background,
-        '--tw-ring-color': this.background,
+      if (this.swatchData.thumbnail) {
+        return {
+          'background-image': `url(${this.swatchData.thumbnail})`,
+          '--tw-ring-color': 'grey',
+        }
+      } else {
+        return {
+          'background-color': this.swatchData.value,
+          '--tw-ring-color': this.swatchData.value,
+        }
       }
     },
   },
