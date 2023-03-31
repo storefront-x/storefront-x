@@ -108,7 +108,6 @@ const updateFormValue = computed(() => {
       newValue[keyOutOfModal] = true
     }
   }
-
   return newValue
 })
 
