@@ -143,9 +143,9 @@ yargs(hideBin(process.argv))
         const { default: Serve } = await import('./src/Serve.js')
 
         const serve = new Serve({}, argv)
-        const server = await serve.createServer()
+        const app = await serve.createServer()
 
-        server.listen(argv.port, argv.host, () => {
+        http.createServer(toNodeListener(app)).listen(argv.port, argv.host, () => {
           logger.log(`Server listening on http://${argv.host}:${argv.port}`)
           logger.log(`Server started in ${Date.now() - start}ms`)
         })
