@@ -9,6 +9,7 @@ export default (name = 'configurableProduct') =>
       id: field(),
       label: field(),
       attribute_code: field(),
+      use_default: field(),
       values: field({
         value_index: field(),
         label: field(),
