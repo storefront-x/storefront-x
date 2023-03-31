@@ -1,7 +1,7 @@
 <template>
   <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start relative">
     <div v-if="product.isBundleProduct && isConfigurationOpen" class="mt-3">
-      <div class="overflow-y-scroll max-h-[370px] lg:max-h-[522px]">
+      <div class="overflow-y-scroll max-h-[370px] lg:max-h-[522px] pl-2">
         <h2 class="sr-only">Product bundles</h2>
         <Button
           v-if="isConfigurationOpen"
