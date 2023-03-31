@@ -1,7 +1,7 @@
 <template>
   <Container>
-    <div class="h-16 flex realtive items-center justify-between relative">
-      <div class="flex justify-around lg:w-4/6">
+    <div class="h-16 flex realtive items-center justify-between relative lg:h-[100px]">
+      <div class="flex justify-around">
         <div class="hidden mr-2 lg:flex-1 lg:flex lg:items-center">
           <Link :to="localePath('/')">
             <span class="sr-only">Logo</span>
@@ -24,36 +24,56 @@
       </Link>
 
       <div class="flex items-center justify-end">
-        <MicroComparison class="hidden lg:flex mr-2" />
-        <MicroWishlist class="hidden lg:flex mr-2" />
+        <HeaderMenu />
+
+        <button
+          class="text-black flex flex-wrap items-center justify-center rounded-lg border-2 p-2 border-none border-gray-100 lg:border-solid hover:bg-gray-100"
+          :class="{ 'mx-4': customer.isLoggedIn, 'mx-2': !customer.isLoggedIn }"
+          @click="desktopSearchOpen = !desktopSearchOpen"
+        >
+          <SolidSearch class="text-primary-500 h-6 w-6" />
+        </button>
+
         <MicroAccount :submenu="true" class="hidden lg:flex mr-2" />
-        <MicroSearch class="mr-2" />
+        <MicroSearch class="lg:hidden mr-2" />
         <MicroCart />
       </div>
     </div>
   </Container>
+
+  <div class="bg-grey-555" :class="{ block: desktopSearchOpen, hidden: !desktopSearchOpen }">
+    <Container>
+      <SearchBar class="py-10" />
+    </Container>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
 import Container from '#ioc/atoms/Container'
 import Link from '#ioc/atoms/Link'
-import MicroWishlist from '#ioc/molecules/MicroWishlist'
 import MicroAccount from '#ioc/molecules/MicroAccount'
 import MicroSearch from '#ioc/molecules/MicroSearch'
 import MicroCart from '#ioc/molecules/MicroCart'
-import MicroComparison from '#ioc/molecules/MicroComparison'
 import OutlineMenu from '#ioc/icons/OutlineMenu'
 import OutlineX from '#ioc/icons/OutlineX'
 import logo from '#ioc/assets/logo'
 import useLocalePath from '#ioc/composables/useLocalePath'
+import SearchBar from '#ioc/molecules/SearchBar'
+import HeaderMenu from '#ioc/molecules/HeaderMenu'
+import SolidSearch from '#ioc/icons/SolidSearch'
+import useCustomer from '#ioc/composables/useCustomer'
 
 const localePath = useLocalePath()
 
 const themeTailwindStore = useThemeTailwindStore()
 
 const isBurgerOpen = computed(() => themeTailwindStore.isHamburgerOpened)
+
+const desktopSearchOpen = ref(false)
+
+const customer = useCustomer()
 
 const toggleBurger = () => {
   themeTailwindStore.isHamburgerOpened = !isBurgerOpen.value

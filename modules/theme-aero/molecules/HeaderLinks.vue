@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-grey-555 border-b border-grey-565 mb-4">
-    <Container class="hidden lg:flex items-center justify-between h-[35px]">
+  <div class="bg-grey-555 border-b border-grey-565 mb-4 hidden lg:block">
+    <Container class="flex items-center justify-between h-[35px]">
       <div class="flex items-center space-x-6">
         <div v-for="(pageLink, indexChild) in pageLinkHeader" :key="indexChild" class="text-sm">
           <Link :to="pageLink.path" color="blue" class="font-semibold">
