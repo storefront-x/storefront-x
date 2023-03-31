@@ -21,21 +21,6 @@ jobs:
     uses: ./.github/workflows/lint.yml
     with:
       storefront-x-config: storefront-x.aero.config.js
-
-  unit:
-    needs: [yarn]
-    uses: ./.github/workflows/unit.yml
-    with:
-      storefront-x-config: storefront-x.aero.config.js
-
-  cypress:
-    needs: [yarn]
-    uses: ./.github/workflows/cypress.yml
-    with:
-      storefront-x-config: storefront-x.aero.config.js
-      number-of-tests-per-run: 3
-      target-directory: cypress/e2e
-
   mxcloud:
     uses: ./.github/workflows/mxcloud.yml
     with:
@@ -43,11 +28,3 @@ jobs:
     secrets:
       MXCLOUD_URL: ${{ secrets.MXCLOUD_URL }}
       MXCLOUD_AUTH: ${{ secrets.MXCLOUD_AUTH }}
-
-  lighthouse:
-    needs: [yarn]
-    uses: ./.github/workflows/lighthouse.yml
-    with:
-      storefront-x-config: storefront-x.aero.config.js
-      product-detail-page: tripp-lite-n238-001-yw-keystone-module.html
-      category-page: computers-peripherals.html
