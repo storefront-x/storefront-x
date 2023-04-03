@@ -36,6 +36,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const minimumPrice = computed(() => product.value.minimumPrice)
 
+  const maximumPrice = computed(() => product.value.maximumPrice)
+
   const breadcrumbs = computed(() => [
     ...product.value.categories.map((category: any) => ({
       title: category.name,
@@ -83,6 +85,17 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
       return true
     }
     return false
+  })
+
+  const bundleConfigurationErrors = computed(() => {
+    const errors = []
+
+    for (const item of bundleItems.value) {
+      if (item.required && !bundle.value[item.id]) {
+        errors.push(item.title)
+      }
+    }
+    return errors
   })
 
   const mediaGallery = computed(() => {
@@ -181,6 +194,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     descriptionHtml,
     shortDescriptionHtml,
     thumbnailUrl,
+    minimumPrice,
+    maximumPrice,
     regularPrice,
     finalPrice,
     breadcrumbs,
@@ -200,7 +215,6 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     crossSellProducts,
     upsellProducts,
     bundleItems,
-    minimumPrice,
     bundle,
     configurableOptions,
     configuration,
@@ -210,6 +224,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isConfigured,
     isBundleConfigured,
     isOptionsConfigured,
+    bundleConfigurationErrors,
     groupedItems,
     isGroupedProduct,
     productType,

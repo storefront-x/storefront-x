@@ -31,6 +31,14 @@ export default (name = 'product') =>
           ...Money(),
         }),
       }),
+      maximum_price: field({
+        final_price: field({
+          ...Money(),
+        }),
+        regular_price: field({
+          ...Money(),
+        }),
+      }),
     }),
     description: field({
       html: field(),

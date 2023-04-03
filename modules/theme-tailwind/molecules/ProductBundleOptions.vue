@@ -2,7 +2,7 @@
   <Form :value="updateFormValue">
     <div v-for="bundleItem in product.bundleItems" :key="bundleItem.id" class="mb-4">
       <Heading
-        :level="2"
+        :level="3"
         class="relative inline-block"
         :class="
           bundleItem.required
@@ -119,6 +119,7 @@ const onInput = (bundleItem: any, bundleOption: any, isChecked: any) => {
   if (isChecked) {
     selectedOptions.value[bundleItem.id][bundleOption.id] = {
       id: bundleOption.id,
+      label: bundleOption.label,
       quantity: 1,
       finalPrice: bundleOption.product.finalPrice,
       value: [String(bundleOption.product.id)],
@@ -155,6 +156,7 @@ const onInputSelect = (bundleItem: any, id: any) => {
 
     selectedOptions.value[bundleItem.id][selectedId] = {
       selectedId,
+      label: bundleOption.label,
       quantity: 1,
       finalPrice: bundleOption.product.finalPrice,
       value: [String(bundleOption.product.id)],

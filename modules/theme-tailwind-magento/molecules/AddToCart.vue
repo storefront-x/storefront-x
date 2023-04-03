@@ -27,6 +27,7 @@ import useI18n from '#ioc/composables/useI18n'
 import useEmitAddToCart from '#ioc/bus/emitters/useEmitAddToCart'
 
 import useRouter from '#ioc/composables/useRouter'
+import useRoute from '#ioc/composables/useRoute'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import { ref, computed } from 'vue'
 
@@ -41,6 +42,7 @@ const { t } = useI18n()
 const product = injectProduct()
 const addToCart = useAddToCart()
 const router = useRouter()
+const route = useRoute()
 const localePath = useLocalePath()
 const emitAddToCart = useEmitAddToCart()
 
@@ -66,7 +68,10 @@ const isEnabled = computed(() => {
 
 const onAddToCart = async () => {
   if (!isEnabled.value) {
-    router.push(localePath(product.urlPath))
+    if (route.fullPath != localePath(product.urlPath)) {
+      router.push(localePath(product.urlPath))
+    }
+
     return
   }
   isLoading.value = true
@@ -80,8 +85,6 @@ const onAddToCart = async () => {
     })
     emitAddToCart({ product, quantity: props.quantity })
     isCrossSellModalOpen.value = true
-    product.options = []
-    delete product.bundle
   } finally {
     isLoading.value = false
   }
