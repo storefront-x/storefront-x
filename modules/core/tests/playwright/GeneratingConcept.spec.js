@@ -229,8 +229,9 @@ test('generate multiple files with extension', async ({ page }) => {
                 'test.js': `
                     import test1 from '~/.sfx/testFolder/file1'
                     import test2 from '~/.sfx/testFolder/file2'
+                    import { eventHandler } from 'h3'
 
-                    export default (req, res) => res.send(test1+test2)
+                    export default eventHandler(() => test1 + test2)
                   `,
               },
             },
@@ -282,7 +283,9 @@ test('generating to single file with extensions', async ({ page }) => {
               middleware: {
                 'test.js': `
                   import test from '~/.sfx/testFolder'
-                  export default (req, res) => res.send(test.file1+test.file2)
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => test.file1 + test.file2)
                 `,
               },
             },
@@ -334,7 +337,9 @@ test('generating to single file with multiple extensions', async ({ page }) => {
               middleware: {
                 'test.js': `
                   import test from '~/.sfx/testFolder'
-                  export default (req, res) => res.send(test.file1+test.file2)
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => test.file1 + test.file2)
                 `,
               },
             },
