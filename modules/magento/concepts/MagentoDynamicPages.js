@@ -13,7 +13,7 @@ import { defineAsyncComponent } from 'vue'
 
 export default {
 <%_ for (const [ident, record] of Object.entries(records)) { _%>
-  '<%= ident %>': defineAsyncComponent(() => import('<%= record.path %>')),
+  '<%= ident %>': defineAsyncComponent(() => import('<%= record.filePath %>')),
 <%_ } _%>
 }
 `

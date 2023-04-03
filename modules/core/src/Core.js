@@ -34,6 +34,8 @@ export default class Core {
 
     this.viteConfig = vite.mergeConfig(
       vite.defineConfig({
+        clearScreen: false,
+        root: this.buildDir,
         cacheDir: path.resolve(this.rootDir, '.vite'),
         envDir: this.rootDir,
         envPrefix: 'SFX_',
@@ -82,7 +84,6 @@ export default class Core {
       for (const out of Object.values(ctx.out)) {
         template = await out(template)
       }
-
       if (ctx.errorCaptured) {
         throw ctx.errorCaptured
       }

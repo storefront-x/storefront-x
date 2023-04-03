@@ -1,3 +1,86 @@
+## v1.17.0 (2023-03-29)
+
+#### :rocket: Enhancement
+
+- [#390](https://github.com/storefront-x/storefront-x/pull/390) Added fallback for CMS page title, refactoring head on pages ([@fajmanm](https://github.com/fajmanm))
+- [#404](https://github.com/storefront-x/storefront-x/pull/404) Added debug-tools startup check for Node version ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#400](https://github.com/storefront-x/storefront-x/pull/400) Added support for mobile image in PB banner ([@fajmanm](https://github.com/fajmanm))
+- [#405](https://github.com/storefront-x/storefront-x/pull/405) Improved product labels fragment extension ([@fajmanm](https://github.com/fajmanm))
+
+#### :bug: Bug Fix
+
+- [#403](https://github.com/storefront-x/storefront-x/pull/403) Fixed error handling ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#402](https://github.com/storefront-x/storefront-x/pull/402) Fix build & serve commands when used over NPM ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :memo: Documentation
+
+- [#396](https://github.com/storefront-x/storefront-x/pull/396) Added documentation for extendingConcept ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#398](https://github.com/storefront-x/storefront-x/pull/398) Removed npm from documentation ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :house: Internal
+
+- [#401](https://github.com/storefront-x/storefront-x/pull/401) Add env var for Lets Encrypt certificates ([@zimalmagexo](https://github.com/zimalmagexo))
+
+#### Committers: 4
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+- [@zimalmagexo](https://github.com/zimalmagexo)
+
+## v1.16.2 (2023-03-20)
+
+#### :bug: Bug Fix
+
+- [#397](https://github.com/storefront-x/storefront-x/pull/397) Fix hotfix remove debug-toos ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :rocket: Enhancement
+
+- [#395](https://github.com/storefront-x/storefront-x/pull/395) Add extensions to GeneratingConcept ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.16.1 (2023-03-09)
+
+#### :bug: Bug Fix
+
+- [#394](https://github.com/storefront-x/storefront-x/pull/394) Fix "unusable" error caused by debug-tools ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
+## v1.16.0 (2023-03-08)
+
+#### :rocket: Enhancement
+
+- [#389](https://github.com/storefront-x/storefront-x/pull/389) Add debug tools ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#392](https://github.com/storefront-x/storefront-x/pull/392) Allow vite.config.js in the root directory ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
+## v1.15.3 (2023-03-07)
+
+#### :rocket: Enhancement
+
+- [#387](https://github.com/storefront-x/storefront-x/pull/387) Add Cypress tests for microcart ([@xvyslo05](https://github.com/xvyslo05))
+
+#### :house: Internal
+
+- [#391](https://github.com/storefront-x/storefront-x/pull/391) Don't remove Magento tags on no-cache ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 2
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Robin Vysloužil ([@xvyslo05](https://github.com/xvyslo05))
+
 ## v1.15.2 (2023-02-28)
 
 #### :rocket: Enhancement

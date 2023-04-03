@@ -3047,6 +3047,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/debug-tools@workspace:modules/debug-tools":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/debug-tools@workspace:modules/debug-tools"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento"

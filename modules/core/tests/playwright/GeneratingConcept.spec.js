@@ -196,3 +196,173 @@ test('exportAll from multiple files', async ({ page }) => {
     },
   )
 })
+
+test('generate multiple files with extension', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            concepts: {
+              'TestingConcept.js': `
+                  import { GeneratingConcept } from '@storefront-x/core'
+
+                  export default class TestingConcept extends GeneratingConcept {
+                    get directory() {
+                      return 'testFolder'
+                    }
+                    get generateMultipleFiles() {
+                      return true
+                    }
+                  }
+                `,
+            },
+            testFolder: {
+              'file1.js': `export default "foo"`,
+              'file2.js': `export default "bar"`,
+            },
+            server: {
+              middleware: {
+                'test.js': `
+                    import test1 from '~/.sfx/testFolder/file1'
+                    import test2 from '~/.sfx/testFolder/file2'
+
+                    export default (req, res) => res.send(test1+test2)
+                  `,
+              },
+            },
+          },
+        ],
+        [
+          'my-module-2',
+          {
+            testFolder: {
+              'file1.ext.js': `export default (self) => self + '_extendedFirst_'`,
+              'file2.ext.js': `export default (self) => self + '_extendedSecond_'`,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url, { waitUntil: 'networkidle' })
+      expect(await page.content()).toContain('foo_extendedFirst_bar_extendedSecond_')
+    },
+  )
+})
+
+test('generating to single file with extensions', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            concepts: {
+              'TestingConcept.js': `
+                import { GeneratingConcept } from '@storefront-x/core'
+
+                export default class TestingConcept extends GeneratingConcept {
+                  get directory() {
+                    return 'testFolder'
+                  }
+                }
+              `,
+            },
+            testFolder: {
+              'file1.js': `export default "foo"`,
+              'file2.js': `export default "bar"`,
+            },
+            server: {
+              middleware: {
+                'test.js': `
+                  import test from '~/.sfx/testFolder'
+                  export default (req, res) => res.send(test.file1+test.file2)
+                `,
+              },
+            },
+          },
+        ],
+        [
+          'my-module-2',
+          {
+            testFolder: {
+              'file1.ext.js': `export default (self) => self + '_extendedFirst_'`,
+              'file2.ext.js': `export default (self) => self + '_extendedSecond_'`,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url, { waitUntil: 'networkidle' })
+      expect(await page.content()).toContain('foo_extendedFirst_bar_extendedSecond_')
+    },
+  )
+})
+
+test('generating to single file with multiple extensions', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            concepts: {
+              'TestingConcept.js': `
+                import { GeneratingConcept } from '@storefront-x/core'
+
+                export default class TestingConcept extends GeneratingConcept {
+                  get directory() {
+                    return 'testFolder'
+                  }
+                }
+              `,
+            },
+            testFolder: {
+              'file1.js': `export default "foo"`,
+              'file2.js': `export default "bar"`,
+            },
+            server: {
+              middleware: {
+                'test.js': `
+                  import test from '~/.sfx/testFolder'
+                  export default (req, res) => res.send(test.file1+test.file2)
+                `,
+              },
+            },
+          },
+        ],
+        [
+          'my-module-2',
+          {
+            testFolder: {
+              'file1.ext.js': `export default (self) => self + '_extendedFirst_'`,
+              'file2.ext.js': `export default (self) => self + '_extendedSecond_'`,
+            },
+          },
+        ],
+        [
+          'my-module-3',
+          {
+            testFolder: {
+              'file1.ext.js': `export default (self) => self + '_extA_'`,
+              'file2.ext.js': `export default (self) => self + '_extB_'`,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url, { waitUntil: 'networkidle' })
+      expect(await page.content()).toContain('foo_extendedFirst__extA_bar_extendedSecond__extB_')
+    },
+  )
+})

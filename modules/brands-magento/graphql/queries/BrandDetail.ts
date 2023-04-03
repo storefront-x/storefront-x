@@ -2,6 +2,7 @@ import field from '#ioc/graphql/field'
 import Brand from '#ioc/graphql/fragments/Brand'
 import ProductInListing from '#ioc/graphql/fragments/ProductInListing'
 import query from '#ioc/graphql/query'
+import ATTRIBUTE_NAME from '#ioc/config/brands-magento/ATTRIBUTE_NAME'
 
 export default () =>
   query()
@@ -35,7 +36,7 @@ export default () =>
           }),
         }),
       aggregations: field('products')
-        .args({ filter: { manufacturer: { eq: '$manufacturer' } } })
+        .args({ filter: { [ATTRIBUTE_NAME]: { eq: '$manufacturer' } } })
         .fields({
           aggregations: field({
             attribute_code: field(),

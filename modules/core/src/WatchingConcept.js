@@ -70,9 +70,6 @@ export default class WatchingConcept extends Concept {
     return false
   }
 
-  /**
-   * @returns {Record<string, {module: Module, file: string}>}
-   */
   processFiles() {
     throw new Error('Unimplemented')
   }
@@ -127,6 +124,10 @@ export default class WatchingConcept extends Concept {
    */
   _normalizePath(options) {
     return path.relative(options.module.join(this.directory), options.path)
+  }
+
+  get removesDestinationDirectory() {
+    return false
   }
 }
 

@@ -1,6 +1,5 @@
 import expectMicrocartQuantity from '~/cypress/support/pageObjects/base/expectMicrocartQuantity'
 import expectMicrowishlistQuantity from '~/cypress/support/pageObjects/base/expectMicrowishlistQuantity'
-import expectNotificationReviewConfirm from '~/cypress/support/pageObjects/base/expectNotificationReviewConfirm'
 import Product from '~/cypress/support/pageObjects/product/Product'
 import visitRandom from '~/cypress/support/pageObjects/product/visitRandom'
 import getTitle from '~/cypress/support/pageObjects/product/getTitle'
@@ -10,8 +9,6 @@ import addToWishlist from '~/cypress/support/pageObjects/product/addToWishlist'
 import increaseQuantity from '~/cypress/support/pageObjects/product/increaseQuantity'
 import decreaseQuantity from '~/cypress/support/pageObjects/product/decreaseQuantity'
 import setQuantity from '~/cypress/support/pageObjects/product/setQuantity'
-import openReviewForm from '~/cypress/support/pageObjects/product/openReviewForm'
-import addReviewData from '~/cypress/support/pageObjects/product/addReviewData'
 
 describe('Product', () => {
   /** @type {Product} */
@@ -59,11 +56,5 @@ describe('Product', () => {
     addToCart()
 
     expectMicrocartQuantity(3)
-  })
-
-  it('allows adding reviews', () => {
-    openReviewForm()
-    addReviewData(product.reviewContent)
-    expectNotificationReviewConfirm()
   })
 })

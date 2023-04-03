@@ -9,10 +9,10 @@ import WatchingConcept from './WatchingConcept.js'
 
 export default class OverridingConcept extends WatchingConcept {
   /**
-   * @returns {Record<string, {module: Module, file: string}>}
+   * @returns {Record<string, {module: Module, file: string, filePath: string}>}
    */
   processFiles() {
-    /** @type {Record<string, {module: Module, file: string}>} */
+    /** @type {Record<string, {module: Module, file: string, filePath: string}>} */
     const files = {}
 
     for (const mod of this._mods) {
@@ -22,14 +22,11 @@ export default class OverridingConcept extends WatchingConcept {
         files[file] = {
           module: mod.module,
           file,
+          filePath: this.getPathForFile(mod.module, file),
         }
       }
     }
 
     return files
-  }
-
-  get removesDestinationDirectory() {
-    return false
   }
 }

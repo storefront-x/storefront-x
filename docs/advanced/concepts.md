@@ -14,7 +14,9 @@ IoC concept is the most simple and most common concept.
 
 It requires files inside concept directories to use `default export`.
 
-### Extensions
+### Extending concept
+
+Enables extending functionality.
 
 More information about this functionality can be found [here](/essentials/extending).
 

@@ -34,18 +34,21 @@ const pbBanner = usePbBanner(props.el)
 const classes = computed(() => {
   return {
     'justify-center': pbBanner.appearance === 'poster',
+    'bannerImage': isVisible.value,
   }
 })
 
 const styles = computed(() => {
-  const background = isVisible.value ? pbBanner.background : ''
-
+  const background = isVisible.value ? pbBanner.backgroundStyles : ''
   return {
     ...pbBanner.advanced,
     ...background,
     minHeight: pbBanner.minHeight,
   }
 })
+
+const backgroundImageDesktop = computed(() => pbBanner?.backgroundImages?.backgroundImageDesktop ?? '')
+const backgroundImageMobile = computed(() => pbBanner?.backgroundImages?.backgroundImageMobile ?? '')
 
 const _textAlign = computed(() => {
   if (pbBanner.appearance === 'collage-left') return 'left'
@@ -58,3 +61,14 @@ const onIntersectionObserver = ([{ isIntersecting }]: any) => {
   isVisible.value = isIntersecting
 }
 </script>
+<style scoped>
+.bannerImage {
+  background-image: v-bind(backgroundImageMobile);
+}
+
+@media screen(lg) {
+  .bannerImage {
+    background-image: v-bind(backgroundImageDesktop);
+  }
+}
+</style>
