@@ -3,10 +3,10 @@
     <FormRadioGroup
       :name="configurableOption.attributeCode + '-group'"
       :label="configurableOption.label"
-      :classes="`flex space-x-2 space-y-0 align-start`"
+      :classes="`flex space-x-2 space-y-0 align-start mt-4`"
     >
       <FormSelect
-        v-if="isDropdown(configurableOption.values[0]?.swatchData ?? null)"
+        v-if="configurableOption.isDropdown"
         v-model="selectedLabel[configurableOption.id]"
         :name="`${configurableOption.id}`"
         @input="$emit('input', configurableOption, $event)"
@@ -21,18 +21,27 @@
           {{ value.label }}
         </option>
       </FormSelect>
-      <FormRadioBox
-        v-for="value in configurableOption.values"
-        v-else
-        :key="value.index"
-        :label="value.label"
-        :value="`${value.index}`"
-        :name="`${value.index}-${inModal}`"
-        :is-circle="isVisualSwatch(value)"
-        :background="value.swatchData.value"
-        :disabled="value.disabled ?? false"
-        @input="$emit('input', configurableOption, value.index)"
-      />
+      <template v-for="value in configurableOption.values" v-else>
+        <FormSwatch
+          v-if="configurableOption.isSwatch"
+          :key="`${value.index}-swatch`"
+          :label="value.label"
+          :value="`${value.index}`"
+          :name="`${value.index}-${inModal}-swatch`"
+          :swatch-data="value.swatchData"
+          :disabled="value.disabled ?? false"
+          @input="$emit('input', configurableOption, value.index)"
+        />
+        <FormRadioBox
+          v-else
+          :key="`${value.index}-radio`"
+          :label="value.label"
+          :value="`${value.index}`"
+          :name="`${value.index}-${inModal}-radio`"
+          :disabled="value.disabled ?? false"
+          @input="$emit('input', configurableOption, value.index)"
+        />
+      </template>
     </FormRadioGroup>
   </div>
 </template>
@@ -41,8 +50,8 @@
 import useI18n from '#ioc/composables/useI18n'
 import FormRadioGroup from '#ioc/molecules/FormRadioGroup'
 import FormRadioBox from '#ioc/molecules/FormRadioBox'
+import FormSwatch from '#ioc/molecules/FormSwatch'
 import FormSelect from '#ioc/molecules/FormSelect'
-import isEmpty from '#ioc/utils/isEmpty'
 import { ref } from 'vue'
 
 defineEmits(['input'])
@@ -61,16 +70,6 @@ defineProps({
     default: 'outOfModal',
   },
 })
-
-const isVisualSwatch = (value: any) => {
-  if (!value.swatchData.value.startsWith('#')) return false
-
-  return true
-}
-
-const isDropdown = (value: any) => {
-  return isEmpty(value)
-}
 </script>
 
 <i18n lang="yaml">

@@ -1,6 +1,7 @@
 import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
 import Money from '#ioc/graphql/fragments/Money'
+import on from '#ioc/graphql/on'
 
 export default (name = 'configurableProduct') =>
   fragment(name, 'ConfigurableProduct', {
@@ -9,11 +10,15 @@ export default (name = 'configurableProduct') =>
       id: field(),
       label: field(),
       attribute_code: field(),
+      use_default: field(),
       values: field({
         value_index: field(),
         label: field(),
         swatch_data: field({
           value: field(),
+          ...on('ImageSwatchData', {
+            thumbnail: field(),
+          }),
         }),
       }),
       product_id: field(),
