@@ -30,7 +30,7 @@ import Prose from '#ioc/atoms/Prose'
 import BackgroundTiles from '#ioc/atoms/BackgroundTiles'
 import Heading from '#ioc/atoms/Heading'
 import useBlogPost from '#ioc/composables/useBlogPost'
-import { computed, PropType, toRef } from 'vue'
+import { PropType, toRef } from 'vue'
 import ToBlogPost from '#ioc/mappers/ToBlogPost'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 import useBlogPostSchema from '#ioc/composables/schemaOrg/useBlogPostSchema'
@@ -52,13 +52,21 @@ const blogPost = useBlogPost(toRef(props, 'blogPost'))
 
 useBlogPostSchema(blogPost)
 
+let metaData = []
+if (blogPost.metaDescription) {
+  metaData.push({
+    name: 'description',
+    content: blogPost.metaDescription,
+  })
+}
+if (blogPost.metaKeywords) {
+  metaData.push({
+    name: 'keywords',
+    content: blogPost.metaKeywords,
+  })
+}
 useHead({
-  title: computed(() => blogPost.metaTitle),
-  meta: [
-    {
-      name: 'description',
-      content: computed(() => blogPost.metaDescription),
-    },
-  ],
+  title: blogPost.metaTitle,
+  meta: metaData,
 })
 </script>

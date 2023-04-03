@@ -21,6 +21,8 @@ export const after = async (app: App, ctx: Context) => {
   logger.log(`SSR request profile for URL "${ctx.event.path}", total time: ${last - first}ms`)
 
   for (const [gql, opts] of ctx.requestProfiler.entries()) {
+    opts.to ??= opts.from
+
     const ms = opts.to - opts.from
 
     const percentStart = Math.round(((opts.from - first) / (last - first)) * 100)

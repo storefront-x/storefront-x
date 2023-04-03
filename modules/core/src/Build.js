@@ -10,8 +10,6 @@ export default class Build extends Core {
     const { analyze, minify } = this.argv
 
     const clientConfig = this.buildConfig({
-      clearScreen: false,
-      root: this.buildDir,
       build: {
         minify,
         ssrManifest: true,
@@ -39,8 +37,6 @@ export default class Build extends Core {
     }
 
     const serverConfig = this.buildConfig({
-      clearScreen: false,
-      root: this.buildDir,
       build: {
         ssr: 'entry.server.ts',
         outDir: path.join(this.distDir, 'server'),
@@ -67,7 +63,6 @@ export default class Build extends Core {
     // TODO: Think of a better way for bundling server code?
     await vite.build(
       this.buildConfig({
-        clearScreen: false,
         build: {
           rollupOptions: {
             input: [

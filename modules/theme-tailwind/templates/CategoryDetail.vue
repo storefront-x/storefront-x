@@ -52,19 +52,21 @@ const category = useCategory(computed(() => props.category))
 
 useCategorySchema(category)
 
+let metaData = []
+if (props.category.meta.description) {
+  metaData.push({
+    name: 'description',
+    content: props.category.meta.description,
+  })
+}
+if (props.category.meta.keywords) {
+  metaData.push({
+    name: 'keywords',
+    content: props.category.meta.keywords,
+  })
+}
 useHead({
-  title: props.category.name,
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content: props.category.meta.description,
-    },
-    {
-      hid: 'keywords',
-      name: 'keywords',
-      content: props.category.meta.keywords,
-    },
-  ],
+  title: props.category.meta.title,
+  meta: metaData,
 })
 </script>

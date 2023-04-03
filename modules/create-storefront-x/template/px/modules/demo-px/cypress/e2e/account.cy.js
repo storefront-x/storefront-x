@@ -47,4 +47,17 @@ describe('Account', () => {
 
     expectMicrocartQuantity(1)
   })
+
+  it('handle customer authorization error', () => {
+    login(accountCredentials)
+
+    cy.getCookies().then((cookies) => {
+      const customerCookie = cookies.find((cookie) => cookie.name.includes(':customer:id'))
+      cy.setCookie(customerCookie.name, 'invalid')
+    })
+
+    cy.reload()
+
+    cy.location('pathname').should('eq', '/sign-in')
+  })
 })

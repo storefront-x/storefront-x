@@ -50,7 +50,7 @@ export default () => {
         })
       }
 
-      const response = await fetch(request)
+      const response = await fetch(request.clone())
 
       for (const afterResponse of bindedAfterResponse) {
         await afterResponse(response, request, {

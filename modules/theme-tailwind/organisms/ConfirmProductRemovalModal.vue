@@ -5,10 +5,10 @@
       {{ name }}
     </h4>
     <div class="flex flex-1 justify-between mt-10">
-      <Button color="primary" @click.prevent="removeProduct">
+      <Button color="primary" data-cy="remove-modal-remove-button" @click.prevent="removeProduct">
         {{ t('Remove') }}
       </Button>
-      <Button @click.prevent="keepProduct">
+      <Button data-cy="remove-modal-keep-button" @click.prevent="keepProduct">
         {{ t('Keep') }}
       </Button>
     </div>

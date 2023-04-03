@@ -14,25 +14,39 @@
       <div>
         <div class="flex justify-between text-base font-medium text-gray-900 items-center">
           <h3 class="m-0 p-0 pr-4">
-            <RouterLink :to="cartItem.product.urlPath" class="font-medium text-gray-700 hover:text-gray-800 text-base">
+            <RouterLink
+              :to="cartItem.product.urlPath"
+              class="font-medium text-gray-700 hover:text-gray-800 text-base"
+              data-cy="minicart-item-title"
+            >
               {{ cartItem.product.name }}
             </RouterLink>
           </h3>
 
-          <a class="text-gray-400 hover:text-red-500 hover:cursor-pointer" @click="promptRemoval">
+          <a
+            class="text-gray-400 hover:text-red-500 hover:cursor-pointer"
+            data-cy="minicart-item-remove-button"
+            @click="promptRemoval"
+          >
             <OutlineX />
           </a>
         </div>
       </div>
       <div class="flex flex-1 items-center justify-between text-sm mt-4">
         <div class="flex gap-2">
-          <Button @click="onDec">-</Button>
-          <Input :value="tmpQuantity" :inputmode="'decimal'" class="w-16 text-center" @input="onInput" />
-          <Button @click="onInc">+</Button>
+          <Button data-cy="minicart-item-quantity-decrease-button" @click="onDec">-</Button>
+          <Input
+            :value="tmpQuantity"
+            :inputmode="'decimal'"
+            class="w-16 text-center"
+            data-cy="minicart-item-quantity-input"
+            @input="onInput"
+          />
+          <Button data-cy="minicart-item-quantity-increase-button" @click="onInc">+</Button>
         </div>
 
         <div class="flex">
-          <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-lg" />
+          <SfxMoney :money="cartItem.rowTotal" el="strong" class="text-lg" data-cy="minicart-item-price" />
         </div>
       </div>
     </div>

@@ -36,22 +36,12 @@ export default (el: HTMLElement) => {
     return el.getAttribute('data-show-overlay')
   })
 
-  const background = computed(() => {
-    const background = pbBlock.getBackground(wrapperElement.value)
-
-    return {
-      ...background,
-      backgroundImage: background.backgroundImage,
-    }
+  const backgroundStyles = computed(() => {
+    return pbBlock.getBackgroundStyles(wrapperElement.value)
   })
 
-  const mobileBackground = computed(() => {
-    const background = pbBlock.getBackground(wrapperElement.value)
-
-    return {
-      ...background,
-      backgroundImage: background.backgroundImage,
-    }
+  const backgroundImages = computed(() => {
+    return pbBlock.getBackgroundImages(wrapperElement.value)
   })
 
   const advanced = computed(() => {
@@ -85,7 +75,8 @@ export default (el: HTMLElement) => {
 
   return reactive({
     appearance,
-    background,
+    backgroundStyles,
+    backgroundImages,
     minHeight,
     advanced,
     content,
@@ -93,7 +84,6 @@ export default (el: HTMLElement) => {
     showButton,
     buttonText,
     showOverlay,
-    mobileBackground,
     wrapperElement,
     contentElement,
     overlayElement,

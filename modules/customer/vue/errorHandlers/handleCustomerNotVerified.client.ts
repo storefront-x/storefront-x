@@ -13,7 +13,7 @@ export default () => {
   return (error: any) => {
     if (error instanceof CustomerNotVerified) {
       router.push(localePath('sign-in'))
-      showErrorNotification(t('errors.customerNotAuthorized'))
+      showErrorNotification(t('errors.customerNotVerified'))
     } else {
       throw error
     }

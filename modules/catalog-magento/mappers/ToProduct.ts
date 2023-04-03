@@ -24,7 +24,7 @@ export default (data: any) => ({
   breadcrumbs: [],
   available: (data.stock_status === 'IN_STOCK' ?? false) as boolean,
   meta: {
-    title: data.meta_title ?? data.name,
+    title: data.meta_title || data.name,
     description: data.meta_description ?? '',
     keywords: data.meta_keyword ?? '',
   },

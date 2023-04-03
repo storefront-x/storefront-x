@@ -13,16 +13,21 @@ const bindedErrorHandlers = Object.values(errorHandlers)
   .reverse()
 
 onErrorCaptured((e) => {
+  let currentError = e
+
   for (const errorHandler of bindedErrorHandlers) {
     try {
-      errorHandler(e)
+      errorHandler(currentError)
       // Prevent propagation
       return false
-    } catch {
+    } catch (e: any) {
+      currentError = e
       continue
     }
   }
 
-  ctx.errorCaptured = e
+  ctx.errorCaptured = currentError
+  // Re-trhow current error so that Vue does not propagate the old one
+  throw currentError
 })
 </script>
