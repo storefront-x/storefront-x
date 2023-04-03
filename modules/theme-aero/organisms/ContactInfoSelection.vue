@@ -124,10 +124,6 @@ const onSelectCustomerAddress = (customerAddress: any) => {
   onInput(shippingAddress)
 }
 
-const onCustomAddress = () => {
-  selectedAddress.value = null
-}
-
 const afterLoginSubmit = () => {
   offerLogin.value = false
   showLogin.value = false
