@@ -103,7 +103,7 @@ export const buildProject = async (config, callback = () => undefined) => {
     const app = await serve.createServer()
 
     const server = await new Promise((resolve) => {
-      const server = app.listen(serverPort, () => {
+      const server = http.createServer(toNodeListener(app)).listen(serverPort, () => {
         resolve(server)
       })
     })

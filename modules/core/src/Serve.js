@@ -12,6 +12,7 @@ export default class Serve extends Core {
 
     const template = await fs.readFile(path.join(this.distDir, 'client', 'index.html'), { encoding: 'utf-8' })
 
+    // this can throw syntax errors
     const { default: entry } = await import(
       url.pathToFileURL(path.join(this.distDir, 'server', 'entry.server.js')).href
     )

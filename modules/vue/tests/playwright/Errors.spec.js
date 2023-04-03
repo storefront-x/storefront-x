@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('handle syntax error', async ({ page }) => {
+test('handle syntax error', async ({ page }) => {
   await makeProject(
     {
       modules: [

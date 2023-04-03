@@ -37,10 +37,10 @@ export default class Dev extends Core {
         const index = await fs.readFile(path.join(this.buildDir, 'index.html'), { encoding: 'utf-8' })
         const template = await viteDevServer.transformIndexHtml(event.path, index)
 
-        // Loads entry.server.ts from the .sfx directory
-        const { default: entry } = await viteDevServer.ssrLoadModule('/entry.server.ts')
-
         try {
+          // Loads entry.server.ts from the .sfx directory
+          const { default: entry } = await viteDevServer.ssrLoadModule('/entry.server.ts')
+
           const response = await this.handleRequest({
             event,
             entry,
