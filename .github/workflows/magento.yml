@@ -20,18 +20,4 @@ jobs:
     needs: [yarn]
     uses: ./.github/workflows/lint.yml
     with:
-      storefront-x-config: storefront-x.magento.config.js
-
-  unit:
-    needs: [yarn]
-    uses: ./.github/workflows/unit.yml
-    with:
-      storefront-x-config: storefront-x.magento.config.js
-
-  cypress:
-    needs: [yarn]
-    uses: ./.github/workflows/cypress.yml
-    with:
-      storefront-x-config: storefront-x.magento.config.js
-      number-of-tests-per-run: 3
-      target-directory: cypress/e2e
+      storefront-x-config: storefront-x.aero.config.js

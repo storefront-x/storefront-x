@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-ARG SFX_CONFIG=storefront-x.config.js
+ARG SFX_CONFIG=storefront-x.aero.config
 
 WORKDIR /app
 
