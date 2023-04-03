@@ -23,6 +23,6 @@ const classes = computed(() => ({
   'text-primary-500 hover:text-primary-500': props.color === 'primary',
   'text-gray-600 hover:text-gray-800': props.color === 'gray',
   'text-gray-900': props.color === 'black',
-  'text-primary-555 hover:text-primary-500 transition-colors ease-in-out delay-150': props.color === 'blue',
+  'text-primary-555 hover:text-primary-500 transition-colors ease-in-out delay-100': props.color === 'blue',
 }))
 </script>

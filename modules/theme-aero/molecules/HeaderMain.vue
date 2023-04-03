@@ -27,7 +27,7 @@
         <HeaderMenu />
 
         <button
-          class="text-black flex flex-wrap items-center justify-center rounded-lg border-2 p-2 border-none border-gray-100 lg:border-solid hover:bg-gray-100"
+          class="text-black flex-wrap items-center justify-center rounded-lg border-2 p-2 border-none border-gray-100 lg:border-solid hover:bg-gray-100 hidden lg:flex"
           :class="{ 'mx-4': customer.isLoggedIn, 'mx-2': !customer.isLoggedIn }"
           @click="desktopSearchOpen = !desktopSearchOpen"
         >

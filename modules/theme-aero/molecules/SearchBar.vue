@@ -1,6 +1,6 @@
 <template>
   <form class="relative flex-grow max-w-xl m-auto" @submit.prevent="onSubmit">
-    <div class="relative">
+    <div class="relative" :class="{ 'w-3/4': mobile }">
       <Input
         v-click-outside="close"
         :value="query"
@@ -32,7 +32,8 @@
     <button
       type="submit"
       title="search"
-      class="absolute bg-primary-555 flex items-center text-white justify-center rounded-lg h-12 top-[40px] right-0 p-2 align-middle text-gray-400 hover:text-primary-400 rounded-l-none tracking-[2px]"
+      class="absolute bg-primary-555 flex items-center text-white justify-center rounded-lg h-12 right-0 p-2 align-middle text-gray-400 hover:text-primary-400 rounded-l-none tracking-[2px]"
+      :class="{ 'top-0': mobile, 'top-[40px]': !mobile }"
     >
       {{ t('Search') }}
     </button>

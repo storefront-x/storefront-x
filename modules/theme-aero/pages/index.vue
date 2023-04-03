@@ -1,31 +1,32 @@
 <template>
   <SfxMagentoCmsBlock identifier="aero_hp_banner" />
-  <Container>
-    <div v-if="!customer.isLoggedIn">
-      <div class="py-10 lg:py-20">
-        <h2 class="text-center">Enter your flight number</h2>
 
-        <FlightNumber />
+  <Container>
+    <div class="mt-8">
+      <div class="my-4">
+        <h3 class="text-3xl">{{ t('Top Liquor') }}</h3>
       </div>
+      <SfxMagentoCmsBlock identifier="best_seller_hp" />
     </div>
-    <div v-else>
-      <SfxMagentoCmsBlock identifier="segment_block" />
+
+    <div class="mb-8">
+      <div class="my-4">
+        <h3 class="text-3xl">{{ t('Parking') }}</h3>
+      </div>
+      <SfxMagentoCmsBlock identifier="featured_seller_hp" />
     </div>
   </Container>
 </template>
 
 <script setup lang="ts">
 import Container from '#ioc/atoms/Container'
-
-import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
-import useCustomer from '#ioc/composables/useCustomer'
 import { provide } from 'vue'
+import useI18n from '#ioc/composables/useI18n'
 
 provide('containerContent', true)
 
-const FlightNumber = hydrateWhenVisible(() => import('#ioc/molecules/FlightNumber'))
-const SfxMagentoCmsBlock = hydrateWhenIdle(() => import('#ioc/components/SfxMagentoCmsBlock'))
+const { t } = useI18n()
 
-const customer = useCustomer()
+const SfxMagentoCmsBlock = hydrateWhenIdle(() => import('#ioc/components/SfxMagentoCmsBlock'))
 </script>

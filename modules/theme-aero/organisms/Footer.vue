@@ -51,16 +51,16 @@
                 </p>
               </div>
 
-              <div class="flex justify-center mt-8">
+              <div class="flex justify-center mt-10">
                 <Link
                   href="https://www.subscribepage.com/news-from-the-prague_airport_en"
                   target="_blank"
                   color="blue"
-                  class="font-normal bg-primary-555 text-white flex items-center tracking-2 px-4 py-2 rounded-lg"
+                  class="font-normal bg-primary-555 text-white flex items-center tracking-2 px-4 py-2 rounded-lg group"
                 >
                   {{ t('Subscribe') }}
 
-                  <div class="text-white">
+                  <div class="text-white pl-1 group-hover:text-primary-500 transition-colors ease-in-out delay-100">
                     <svg focusable="false" role="img" viewBox="0 0 80 40" width="10" fill="currentColor" height="10">
                       <path
                         d="M48 26c-1.1 0-2 0.9-2 2v26H10V18h26c1.1 0 2-0.9 2-2s-0.9-2-2-2H8c-1.1 0-2 0.9-2 2v40c0 1.1 0.9 2 2 2h40c1.1 0 2-0.9 2-2V28C50 26.9 49.1 26 48 26z"
@@ -89,7 +89,7 @@
                 href="https://itunes.apple.com/us/app/prague-airport-letiste-praha/id581517376?l=cs&ls=1&mt=8%20"
                 target="_blank"
                 color="blue"
-                class="rounded-full border border-primary-555 p-4 text-primary-555"
+                class="rounded-full border border-primary-555 p-4 text-primary-555 hover:!text-primary-555"
               >
                 <svg viewBox="0 0 256 256" width="25" height="25" fill="currentColor">
                   <path
@@ -102,7 +102,7 @@
                 href="https://play.google.com/store/apps/details?id=cz.sw.upis.upisand&feature=search_result#?t=W251bGwsMSwxLDEsImN6LnN3LnVwaXMudXBpc2FuZCJd"
                 target="_blank"
                 color="blue"
-                class="rounded-full border border-primary-555 p-4 text-primary-555"
+                class="rounded-full border border-primary-555 p-4 text-primary-555 hover:!text-primary-555"
               >
                 <svg viewBox="0 0 256 256" width="25" height="25" fill="currentColor">
                   <path
