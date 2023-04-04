@@ -21,7 +21,6 @@
           :name="`${bundleItem.id}-${bundleOption.id}-${inModal}`"
           :label="bundleOption.label"
           :value="bundleOption.isDefault ? true : null"
-          immediate-emits
           class="mt-2"
           @input="onInput(bundleItem, bundleOption, $event)"
         />
@@ -32,7 +31,6 @@
           v-model="selectedLabel[bundleItem.id]"
           :name="`${bundleItem.id}`"
           :multiple="bundleItem.type === 'multi'"
-          immediate-emits
           class="mt-4"
           :value="getDefaultValue(bundleItem)"
           @input="onInputSelect(bundleItem, $event)"
@@ -45,7 +43,6 @@
       </div>
       <div v-if="bundleItem.type === 'radio'">
         <FormRadioGroup
-          immediate-emits
           :name="`${bundleItem.id}-group`"
           :value="`${getDefaultValue(bundleItem)}`"
           :label="''"
@@ -72,7 +69,7 @@ import FormCheckbox from '#ioc/molecules/FormCheckbox'
 import FormSelect from '#ioc/molecules/FormSelect'
 import FormRadioGroup from '#ioc/molecules/FormRadioGroup'
 import injectProduct from '#ioc/composables/injectProduct'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import isEmpty from '#ioc/utils/isEmpty'
 import FormRadio from '#ioc/molecules/FormRadio'
@@ -91,6 +88,22 @@ defineProps({
 const selectedOptions = ref({} as any)
 const selectedLabel = ref({} as any)
 
+onMounted(() => {
+  for (const bundleItem of product.bundleItems) {
+    const defaultOptionId = getDefaultValue(bundleItem)
+    if (defaultOptionId) {
+      if (bundleItem.type === 'checkbox') {
+        onInput(
+          bundleItem,
+          bundleItem.options.find((option: any) => option.id === defaultOptionId),
+          true,
+        )
+      } else {
+        onInputSelect(bundleItem, defaultOptionId)
+      }
+    }
+  }
+})
 const updateFormValue = computed(() => {
   if (isEmpty(product.bundle)) return
 
