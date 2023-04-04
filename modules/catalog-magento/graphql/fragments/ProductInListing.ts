@@ -31,6 +31,27 @@ export default (name = 'ProductInListing') =>
     thumbnail: field({
       url: field(),
     }),
+    ...on('BundleProduct', {
+      price_view: field(),
+      price_range: field({
+        minimum_price: field({
+          final_price: field({
+            ...Money(),
+          }),
+          regular_price: field({
+            ...Money(),
+          }),
+        }),
+        maximum_price: field({
+          final_price: field({
+            ...Money(),
+          }),
+          regular_price: field({
+            ...Money(),
+          }),
+        }),
+      }),
+    }),
     ...on('SimpleProduct', {
       options: field({
         ...CustomizableOptionInterface(),

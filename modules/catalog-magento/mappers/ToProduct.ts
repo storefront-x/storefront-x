@@ -18,6 +18,7 @@ export default (data: any) => ({
   thumbnailUrl: (data.thumbnail?.url ?? '') as string,
   descriptionHtml: (data.description?.html ?? '') as string,
   shortDescriptionHtml: (data.short_description?.html ?? '') as string,
+  priceView: (data.price_view ?? '') as string,
   maximumPrice: ToMoney(data.price_range?.maximum_price?.final_price ?? { value: 0 }),
   minimumPrice: ToMoney(data.price_range?.minimum_price?.final_price ?? { value: 0 }),
   finalPrice: ToMoney(data.price_range?.minimum_price?.final_price ?? {}),

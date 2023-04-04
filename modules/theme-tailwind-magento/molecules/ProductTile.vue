@@ -30,17 +30,26 @@
           </RouterLink>
         </Heading>
         <ReviewStars class="sm:justify-center" :rating="product.ratingSummary" />
-        <SfxMoney
-          :money="product.finalPrice"
-          class="text-xl font-semibold text-neutral-600 mt-2 sm:mt-4 sm:text-center"
-          :class="product.isOnSale ? 'mb-1' : 'mb-7'"
-          :data-cy="`product-price_val_${product.finalPrice.value}`"
-        />
-        <SfxMoney
-          v-if="product.isOnSale"
-          :money="product.regularPrice"
-          class="line-through text-md text-gray-400 relative bottom-px mb-6 sm:text-center"
-        />
+        <template v-if="product.isBundleProduct">
+          <ProductBundlePrice
+            :classes="`text-xl font-semibold text-gray-900 mr-2`"
+            class="mt-2 sm:mt-4"
+            :label-classes="`-mt-1 mr-1`"
+          />
+        </template>
+        <template v-else>
+          <SfxMoney
+            :money="product.finalPrice"
+            class="text-xl font-semibold text-neutral-600 mt-2 sm:mt-4 sm:text-center"
+            :class="product.isOnSale ? 'mb-1' : 'mb-7'"
+            :data-cy="`product-price_val_${product.finalPrice.value}`"
+          />
+          <SfxMoney
+            v-if="product.isOnSale"
+            :money="product.regularPrice"
+            class="line-through text-md text-gray-400 relative bottom-px mb-6 sm:text-center"
+          />
+        </template>
       </div>
     </div>
     <div class="flex sm:flex-col mt-auto">
@@ -67,6 +76,7 @@ import SfxImage from '#ioc/components/SfxImage'
 import SfxMoney from '#ioc/components/SfxMoney'
 import injectProduct from '#ioc/composables/injectProduct'
 import AddToCart from '#ioc/molecules/AddToCart'
+import ProductBundlePrice from '#ioc/molecules/ProductBundlePrice'
 import StockIndicator from '#ioc/atoms/StockIndicator'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
 import { computed } from 'vue'

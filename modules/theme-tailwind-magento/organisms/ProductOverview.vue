@@ -31,38 +31,26 @@
 
       <StockIndicator :stock-status="product.available" />
 
-      <div v-if="product.isBundleProduct" class="flex">
+      <div class="flex flex-wrap">
         <h2 class="sr-only">{{ t('Product information') }}</h2>
-        <p>{{ t('priceFrom') }}</p>
-        <SfxMoney
-          :money="product.finalPrice"
-          class="text-3xl text-black font-bold m-2"
-          :class="discounted"
-          data-cy="product-price"
-        />
-        <p>{{ t('priceTo') }}</p>
-        <SfxMoney
-          :money="product.maximumPrice"
-          class="text-3xl text-black font-bold m-2"
-          :class="discounted"
-          data-cy="product-price"
-        />
-        <Button
-          color="primary"
-          class="w-full sm:w-auto sm:h-auto mt-4 sm:mt-0 sm:ml-3 text-bold"
-          :class="product.available || 'opacity-50 pointer-events-none'"
-          @click="openAndScrollToBundleConfiguration()"
-        >
-          <slot>{{ t('configureAndAdd') }}</slot>
-        </Button>
-      </div>
-
-      <div v-else class="sm:flex">
-        <div class="flex">
+        <template v-if="product.isBundleProduct">
+          <ProductBundlePrice
+            :classes="`text-3xl text-gray-900 font-bold mr-2`"
+            class="mt-2"
+            :label-classes="`-mt-1 mr-1`"
+          />
+          <Button
+            color="primary"
+            class="w-full sm:w-auto sm:h-auto mt-4 sm:mt-0 sm:ml-3 text-bold"
+            :class="product.available || 'opacity-50 pointer-events-none'"
+            @click="openAndScrollToBundleConfiguration()"
+          >
+            <slot>{{ t('configureAndAdd') }}</slot>
+          </Button>
+        </template>
+        <template v-else>
           <div class="mt-0 mr-4 sm:mr-16">
             <div>
-              <h2 class="sr-only">{{ t('Product information') }}</h2>
-
               <SfxMoney
                 :money="product.finalPrice"
                 class="text-3xl text-black font-bold"
@@ -77,9 +65,9 @@
           </div>
 
           <ProductQuantityConfigurator @input="onQuantityChange" />
-        </div>
 
-        <AddToCart :quantity="quantity" />
+          <AddToCart :quantity="quantity" />
+        </template>
       </div>
 
       <GroupedItems v-if="product.groupedItems.length && product.isGroupedProduct" />
@@ -172,6 +160,7 @@ import ProductGallery from '#ioc/molecules/ProductGallery'
 import StockIndicator from '#ioc/atoms/StockIndicator'
 import FacebookShare from '#ioc/atoms/FacebookShare'
 import AddToWishlist from '#ioc/molecules/AddToWishlist'
+import ProductBundlePrice from '#ioc/molecules/ProductBundlePrice'
 import injectProduct from '#ioc/composables/injectProduct'
 import { computed, defineAsyncComponent, ref } from 'vue'
 import ReviewStars from '#ioc/atoms/ReviewStars'
@@ -231,8 +220,6 @@ en-US:
   configure: 'Configure'
   goBackToProductDetails: 'Go back to product details'
   yourConfiguration: 'Your configuration'
-  priceFrom: 'from'
-  priceTo: 'to'
   summary: 'Summary'
   missingConfiguration: 'Missing configuration: '
 cs-CZ:
@@ -246,8 +233,6 @@ cs-CZ:
   configure: 'Nakonfigurovat'
   goBackToProductDetails: 'Zpět na detail produktu'
   yourConfiguration: 'Vaše konfigurace'
-  priceFrom: 'od'
-  priceTo: 'do'
   summary: 'Souhrn'
   missingConfiguration: 'Chybí konfigurace: '
 </i18n>

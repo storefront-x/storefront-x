@@ -31,14 +31,6 @@ export default (name = 'product') =>
           ...Money(),
         }),
       }),
-      maximum_price: field({
-        final_price: field({
-          ...Money(),
-        }),
-        regular_price: field({
-          ...Money(),
-        }),
-      }),
     }),
     description: field({
       html: field(),
@@ -68,6 +60,25 @@ export default (name = 'product') =>
     ...on('BundleProduct', {
       items: field({
         ...BundleItem(),
+      }),
+      price_view: field(),
+      price_range: field({
+        minimum_price: field({
+          final_price: field({
+            ...Money(),
+          }),
+          regular_price: field({
+            ...Money(),
+          }),
+        }),
+        maximum_price: field({
+          final_price: field({
+            ...Money(),
+          }),
+          regular_price: field({
+            ...Money(),
+          }),
+        }),
       }),
     }),
     ...on('GroupedProduct', {

@@ -187,6 +187,20 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const groupedItems = computed(() => product.value.groupedItems ?? [])
 
+  const isPriceViewRange = computed(() => {
+    if (isBundleProduct.value) {
+      return product.value.priceView === 'PRICE_RANGE'
+    }
+    return false
+  })
+
+  const isPriceViewAsLowAs = computed(() => {
+    if (isBundleProduct.value) {
+      return product.value.priceView === 'AS_LOW_AS'
+    }
+    return false
+  })
+
   return reactive({
     id,
     sku,
@@ -197,6 +211,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     descriptionHtml,
     shortDescriptionHtml,
     thumbnailUrl,
+    isPriceViewAsLowAs,
+    isPriceViewRange,
     minimumPrice,
     maximumPrice,
     regularPrice,
