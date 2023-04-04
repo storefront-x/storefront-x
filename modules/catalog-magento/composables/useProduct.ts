@@ -77,6 +77,9 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isBundleConfigured = computed(() => {
     if (isBundleProduct.value) {
+      if (bundleItems.value.length === 0) {
+        return false
+      }
       for (const item of bundleItems.value) {
         if (item.required && !bundle.value[item.id]) {
           return false
