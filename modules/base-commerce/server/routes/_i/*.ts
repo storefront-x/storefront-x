@@ -1,41 +1,26 @@
 import { eventHandler, setResponseStatus } from 'h3'
 import sharp from 'sharp'
-import LRU from 'lru-cache'
-import IS_PRODUCTION from '#ioc/config/IS_PRODUCTION'
+import { H3Event, getQuery, setHeaders } from 'h3'
 import plugins from '~/.sfx/baseCommerce/imageResizer'
-
-const IMAGE_RESIZER_CACHE_ENABLED = !IS_PRODUCTION
 
 const SERVER_HOST = process.env.SERVER_HOST || 'localhost'
 const SERVER_PORT = process.env.SERVER_PORT || 3000
 
-const cache = new LRU({
-  max: 100,
-})
-
 export default eventHandler(async (event) => {
   try {
-    await resizeImage(event.node.req, event.node.res)
-  } catch (error) {
+    return await resizeImage(event)
+  } catch (error: any) {
     setResponseStatus(event, 500)
     return error.message
   }
 })
 
-const resizeImage = async (req, res) => {
-  if (IMAGE_RESIZER_CACHE_ENABLED) {
-    const cachedBuffer = getBufferFromCache(req.url)
-
-    if (cachedBuffer) {
-      return sendBuffer(req, res, cachedBuffer)
-    }
-  }
-
-  const path = getPath(req)
-  const format = getFormat(req)
-  const { width, height } = getSize(req)
-  const fit = getFit(req)
-  const background = getBackground(req)
+const resizeImage = async (event: H3Event) => {
+  const path = getPath(event)
+  const format = getFormat(event)
+  const { width, height } = getSize(event)
+  const fit = getFit(event)
+  const background = getBackground(event) as any
 
   const image = await fetchImage(path)
 
@@ -46,6 +31,7 @@ const resizeImage = async (req, res) => {
   }
 
   if (width > 0 && height > 0) {
+    // @ts-ignore
     image.resize({
       width,
       height,
@@ -60,27 +46,23 @@ const resizeImage = async (req, res) => {
 
   const buffer = await image.toBuffer()
 
-  if (IMAGE_RESIZER_CACHE_ENABLED) {
-    addBufferToCache(req.url, buffer)
-  }
-
-  return sendBuffer(req, res, buffer)
+  return sendBuffer(event, buffer)
 }
 
-const sendBuffer = (req, res, buffer) => {
-  const format = getFormat(req)
+const sendBuffer = (event: H3Event, buffer: Buffer) => {
+  const format = getFormat(event)
 
   const ONE_YEAR = '31536000'
 
-  const headers = {
+  setHeaders(event, {
     'Cache-Control': `public, max-age=${ONE_YEAR}, immutable`,
     'Content-Type': `image/${format}`,
-  }
+  })
 
-  return res.set(headers).send(buffer)
+  return buffer
 }
 
-const fetchImage = async (path) => {
+const fetchImage = async (path: string) => {
   const options = {
     responseType: 'arraybuffer',
     headers: {},
@@ -97,11 +79,13 @@ const fetchImage = async (path) => {
   return sharp(Buffer.from(data))
 }
 
-const getPath = (req) => {
-  if (req.query.sfx) {
-    return `http://${SERVER_HOST}:${SERVER_PORT}` + req.query.sfx
-  } else if (req.query.path) {
-    let path = req.query.path
+const getPath = (event: H3Event) => {
+  const query = getQuery(event)
+
+  if (query.sfx) {
+    return `http://${SERVER_HOST}:${SERVER_PORT}` + query.sfx
+  } else if (query.path) {
+    let path = query.path as string
 
     for (const plugin of Object.values(plugins)) {
       if (plugin.processPath) {
@@ -115,8 +99,10 @@ const getPath = (req) => {
   }
 }
 
-const getFormat = (req) => {
-  switch (req.query.format) {
+const getFormat = (event: H3Event) => {
+  const query = getQuery(event)
+
+  switch (query.format) {
     case 'jpeg':
       return 'jpeg'
     case 'webp':
@@ -128,21 +114,23 @@ const getFormat = (req) => {
   }
 }
 
-const getSize = (req) => {
-  const width = parseInt(req.query.w) || 0
-  const height = parseInt(req.query.h) || 0
+const getSize = (event: H3Event) => {
+  const query = getQuery(event)
+
+  const width = parseInt(query.w as string) || 0
+  const height = parseInt(query.h as string) || 0
 
   return { width, height }
 }
 
-const getFit = (req) => {
-  return req.query.fit || 'cover'
+const getFit = (event: H3Event) => {
+  const query = getQuery(event)
+
+  return query.fit || 'cover'
 }
 
-const getBackground = (req) => {
-  return req.query.bg || '#FFFFFF'
+const getBackground = (event: H3Event) => {
+  const query = getQuery(event)
+
+  return query.bg || '#FFFFFF'
 }
-
-const addBufferToCache = (url, buffer) => cache.set(url, buffer)
-
-const getBufferFromCache = (url) => cache.get(url)

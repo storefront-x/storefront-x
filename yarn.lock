@@ -2847,6 +2847,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/base-commerce@workspace:modules/base-commerce"
   dependencies:
+    "@types/sharp": ^0.31.1
     keen-slider: ^6.8.5
     lru-cache: ^7.16.1
     photoswipe: ^5.3.5
@@ -3651,6 +3652,15 @@ __metadata:
     "@types/mime": ^1
     "@types/node": "*"
   checksum: eaca858739483e3ded254cad7d7a679dc2c8b3f52c8bb0cd845b3b7eb1984bde0371fdcb0a5c83aa12e6daf61b6beb762545021f520f08a1fe882a3fa4ea5554
+  languageName: node
+  linkType: hard
+
+"@types/sharp@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@types/sharp@npm:0.31.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: 226871181fc88b5ef8a6bc32c1e14a3426cc45480ed49536c45bb5c166c089169b8fe3e5c57aea8c34cc40b08311a95d5582c1a2f540f4425eb66fea3d6e0489
   languageName: node
   linkType: hard
 

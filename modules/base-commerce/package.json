@@ -11,5 +11,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/sharp": "^0.31.1"
   }
 }
