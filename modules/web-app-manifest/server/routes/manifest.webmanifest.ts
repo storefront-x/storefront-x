@@ -1,6 +1,4 @@
-import { Request, Response } from 'express'
+import { eventHandler } from 'h3'
 import manifest from '~/.sfx/webAppManifest'
 
-export default async (req: Request, res: Response) => {
-  res.json(manifest)
-}
+export default eventHandler(() => manifest)

@@ -1,5 +1,6 @@
 import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
+import { getRequestHeader } from 'h3'
 import VUE_I18N_LOCALES from '#ioc/config/VUE_I18N_LOCALES'
 import VUE_I18N_LEGACY from '#ioc/config/VUE_I18N_LEGACY'
 import VUE_I18N_FALLBACK_FORMAT from '#ioc/config/VUE_I18N_FALLBACK_FORMAT'
@@ -11,8 +12,9 @@ import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import messages from '@intlify/unplugin-vue-i18n/messages'
 import i18nNumbers from '~/.sfx/i18n/numbers'
 import i18nDatetimes from '~/.sfx/i18n/datetimes'
+import Context from '#ioc/types/base/Context'
 
-export default async (app: App, ctx: any) => {
+export default async (app: App, ctx: Context) => {
   const locale = getLocale(ctx)
 
   const i18n = createI18n({
@@ -32,11 +34,11 @@ export default async (app: App, ctx: any) => {
   app.use(i18n)
 }
 
-function getLocale(ctx: any): string {
+function getLocale(ctx: Context): string {
   let domain = ''
 
   if (IS_SERVER) {
-    domain = ctx.req.get('host')
+    domain = getRequestHeader(ctx.event, 'host') ?? ''
   } else {
     domain = window.location.host
   }
@@ -50,7 +52,7 @@ function getLocale(ctx: any): string {
   let path = ''
 
   if (IS_SERVER) {
-    path = ctx.req.url.split('/').slice(1)[0]
+    path = ctx.event.path!.split('/').slice(1)[0]
   } else if (IS_CLIENT) {
     path = window.location.pathname.split('/').slice(1)[0]
   }

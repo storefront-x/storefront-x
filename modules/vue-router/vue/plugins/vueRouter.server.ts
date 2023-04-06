@@ -1,8 +1,9 @@
+import Context from '#ioc/types/base/Context'
 import type { App } from 'vue'
 import { createRouter, createMemoryHistory } from 'vue-router'
 import { routes } from '~/.sfx/pages'
 
-export default async (app: App, ctx: any) => {
+export default async (app: App, ctx: Context) => {
   const router = createRouter({
     history: createMemoryHistory(),
     routes,
@@ -14,7 +15,7 @@ export default async (app: App, ctx: any) => {
 
   ctx.$router = router
 
-  await router.push(ctx.req.url)
+  await router.push(ctx.event.path ?? '/')
 
   await router.isReady()
 

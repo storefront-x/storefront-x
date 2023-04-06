@@ -12,7 +12,10 @@ test('basic server middleware', async ({ page }) => {
           {
             server: {
               middleware: {
-                'hello.js': `export default (req, res) => res.send('Hello, server middleware!')`,
+                'hello.js': `
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => 'Hello, server middleware!')
+                `,
               },
             },
           },
@@ -20,8 +23,36 @@ test('basic server middleware', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello, server middleware!')
+      const response = await page.goto(url)
+      await expect(await response.text()).toContain('Hello, server middleware!')
+    },
+  )
+})
+
+test('basic server middleware under deep URL', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            server: {
+              middleware: {
+                'hello.js': `
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => 'Hello, server middleware!')
+                `,
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      const response = await page.goto(url + '/deep/url')
+      await expect(await response.text()).toContain('Hello, server middleware!')
     },
   )
 })
@@ -37,7 +68,10 @@ test('hot module reloading', async ({ page }) => {
           {
             server: {
               middleware: {
-                'hello.js': `export default (req, res) => res.send('Hello, server middleware!')`,
+                'hello.js': `
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => 'Hello, server middleware!')
+                `,
               },
             },
           },
@@ -45,9 +79,16 @@ test('hot module reloading', async ({ page }) => {
       ],
     },
     async ({ url, writeFile }) => {
-      await writeFile('my-module/server/middleware/hello.js', `export default (req, res) => res.send('Hello, HMR!')`)
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello, HMR!')
+      await writeFile(
+        'my-module/server/middleware/hello.js',
+        `
+          import { eventHandler } from 'h3'
+          export default eventHandler(() => 'Hello, HMR!')
+        `,
+      )
+
+      const response = await page.goto(url)
+      await expect(await response.text()).toContain('Hello, HMR!')
     },
   )
 })
@@ -63,7 +104,10 @@ test('module overloading', async ({ page }) => {
           {
             server: {
               middleware: {
-                'hello.js': `export default (req, res) => res.send('Hello, server middleware!')`,
+                'hello.js': `
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => 'Hello, server middleware!')
+                `,
               },
             },
           },
@@ -73,7 +117,10 @@ test('module overloading', async ({ page }) => {
           {
             server: {
               middleware: {
-                'hello.js': `export default (req, res) => res.send('Overrided!')`,
+                'hello.js': `
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => 'Overrided!')
+                `,
               },
             },
           },
@@ -81,8 +128,8 @@ test('module overloading', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Overrided!')
+      const response = await page.goto(url)
+      await expect(await response.text()).toContain('Overrided!')
     },
   )
 })
@@ -99,8 +146,8 @@ test('typescript support', async ({ page }) => {
             server: {
               middleware: {
                 'hello.ts': `
-                  import type { Request, Response } from 'express'
-                  export default (req: Request, res: Response) => res.send('typed')
+                  import { eventHandler, H3Event } from 'h3'
+                  export default eventHandler((event: H3Event) => 'typed')
                 `,
               },
             },
@@ -109,8 +156,8 @@ test('typescript support', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('typed')
+      const response = await page.goto(url)
+      await expect(await response.text()).toContain('typed')
     },
   )
 })
@@ -130,8 +177,9 @@ test('transient hmr', async ({ page }) => {
             server: {
               middleware: {
                 'hello.ts': `
+                  import { eventHandler } from 'h3'
                   import GREET from '#ioc/config/GREET'
-                  export default (req, res) => res.send(GREET)
+                  export default eventHandler(() => GREET)
                 `,
               },
             },
@@ -140,11 +188,11 @@ test('transient hmr', async ({ page }) => {
       ],
     },
     async ({ url, writeFile }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello, World!')
+      const response1 = await page.goto(url)
+      await expect(await response1.text()).toContain('Hello, World!')
       await writeFile('my-module/config/GREET.ts', `export default 'HMR'`)
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('HMR')
+      const response2 = await page.goto(url)
+      await expect(await response2.text()).toContain('HMR')
     },
   )
 })
@@ -164,8 +212,9 @@ test('transient hmr with overriding', async ({ page }) => {
             server: {
               middleware: {
                 'hello.ts': `
+                  import { eventHandler } from 'h3'
                   import GREET from '#ioc/config/GREET'
-                  export default (req, res) => res.send(GREET)
+                  export default eventHandler(() => GREET)
                 `,
               },
             },
@@ -180,8 +229,9 @@ test('transient hmr with overriding', async ({ page }) => {
             server: {
               middleware: {
                 'hello.ts': `
+                  import { eventHandler } from 'h3'
                   import GREET from '#ioc/config/GREET'
-                  export default (req, res) => res.send(GREET)
+                  export default eventHandler(() => GREET)
                 `,
               },
             },
@@ -190,11 +240,11 @@ test('transient hmr with overriding', async ({ page }) => {
       ],
     },
     async ({ url, writeFile }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Hello, World!')
+      const response1 = await page.goto(url)
+      await expect(await response1.text()).toContain('Hello, World!')
       await writeFile('app-2/config/GREET.ts', `export default 'HMR'`)
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('HMR')
+      const response2 = await page.goto(url)
+      await expect(await response2.text()).toContain('HMR')
     },
   )
 })

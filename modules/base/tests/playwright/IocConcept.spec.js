@@ -29,9 +29,10 @@ test('nested directories', async ({ page }) => {
             server: {
               middleware: {
                 'test.js': `
+                  import { eventHandler } from 'h3'
                   import test from '#ioc/nested/concept/test'
 
-                  export default (req, res) => res.send(test)
+                  export default eventHandler(() => test)
                 `,
               },
             },
@@ -73,8 +74,9 @@ test('files with space in name', async ({ page }) => {
               middleware: {
                 'test.js': `
                   import asd_qwe from '#ioc/some/asd qwe'
+                  import { eventHandler } from 'h3'
 
-                  export default (req, res) => res.send(asd_qwe)
+                  export default eventHandler(() => asd_qwe)
                 `,
               },
             },
@@ -117,8 +119,9 @@ test('extensions', async ({ page }) => {
               middleware: {
                 'test.js': `
                   import foo from '#ioc/some/foo'
+                  import { eventHandler } from 'h3'
 
-                  export default (req, res) => res.send(foo.bar)
+                  export default eventHandler(() => foo.bar)
                 `,
               },
             },
@@ -160,8 +163,9 @@ test('multiple extensions', async ({ page }) => {
               middleware: {
                 'test.js': `
                   import foo from '#ioc/some/foo'
+                  import { eventHandler } from 'h3'
 
-                  export default (req, res) => res.send(foo.bar + foo.baz)
+                  export default eventHandler(() => foo.bar + foo.baz)
                 `,
               },
             },
@@ -219,8 +223,9 @@ test('order of multiple extensions', async ({ page }) => {
               middleware: {
                 'test.js': `
                   import foo from '#ioc/some/foo'
+                  import { eventHandler } from 'h3'
 
-                  export default (req, res) => res.send(foo.bar + foo.baz)
+                  export default eventHandler(() => foo.bar + foo.baz)
                 `,
               },
             },

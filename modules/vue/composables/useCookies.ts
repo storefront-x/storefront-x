@@ -1,3 +1,4 @@
+import { deleteCookie, setCookie } from 'h3'
 import { useCookies, createCookies } from '@vueuse/integrations/useCookies'
 import IS_CLIENT from '#ioc/config/IS_CLIENT'
 import useContext from '#ioc/composables/useContext'
@@ -7,23 +8,13 @@ export default () => {
     return useCookies()
   } else {
     const ctx = useContext()
-    const cookies = createCookies(ctx.req)()
+    const cookies = createCookies(ctx.event.node.req)()
 
     cookies.addChangeListener((change) => {
-      if (!ctx.res.cookie || ctx.res.headersSent) {
-        return
-      }
-
       if (change.value === undefined) {
-        ctx.res.clearCookie(change.name, change.options)
+        deleteCookie(ctx.event, change.name, change.options)
       } else {
-        const expressOpt = { ...change.options }
-        if (change?.options?.maxAge) {
-          // the standard for maxAge is seconds but express uses milliseconds
-          expressOpt.maxAge = change.options.maxAge * 1000
-        }
-
-        ctx.res.cookie(change.name, change.value, expressOpt)
+        setCookie(ctx.event, change.name, change.value, change.options)
       }
     })
 

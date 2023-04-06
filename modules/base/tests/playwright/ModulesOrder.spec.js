@@ -12,7 +12,11 @@ test('modules order', async ({ page }) => {
           {
             server: {
               middleware: {
-                'a.js': `export default (req, res) => res.send('a')`,
+                'a.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'a')
+                `,
               },
             },
           },
@@ -22,7 +26,11 @@ test('modules order', async ({ page }) => {
           {
             server: {
               middleware: {
-                'b.js': `export default (req, res) => res.send('b')`,
+                'b.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'b')
+                `,
               },
             },
           },
@@ -47,7 +55,11 @@ test('modules order back', async ({ page }) => {
           {
             server: {
               middleware: {
-                'b.js': `export default (req, res) => res.send('b')`,
+                'b.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'b')
+                `,
               },
             },
           },
@@ -57,7 +69,11 @@ test('modules order back', async ({ page }) => {
           {
             server: {
               middleware: {
-                'a.js': `export default (req, res) => res.send('a')`,
+                'a.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'a')
+                `,
               },
             },
           },
@@ -84,7 +100,11 @@ test('when server middleware from frist module is change, it still returns first
           {
             server: {
               middleware: {
-                'a.js': `export default (req, res) => res.send('a')`,
+                'a.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'a')
+                `,
               },
             },
           },
@@ -92,7 +112,11 @@ test('when server middleware from frist module is change, it still returns first
           {
             server: {
               middleware: {
-                'b.js': `export default (req, res) => res.send('b')`,
+                'b.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'b')
+                `,
               },
             },
           },
@@ -102,7 +126,12 @@ test('when server middleware from frist module is change, it still returns first
     async ({ url, writeFile }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('a')
-      await writeFile('app-a/server/middleware/a.js', `export default (req, res) => res.send('c')`)
+      const file = `
+        import { eventHandler } from 'h3'
+
+        export default eventHandler(() => 'c')
+      `
+      await writeFile('app-a/server/middleware/a.js', file)
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('c')
     },
@@ -122,7 +151,11 @@ test('when server middleware from second module is changed, it still returns res
           {
             server: {
               middleware: {
-                'a.js': `export default (req, res) => res.send('a')`,
+                'a.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'a')
+                `,
               },
             },
           },
@@ -130,7 +163,11 @@ test('when server middleware from second module is changed, it still returns res
           {
             server: {
               middleware: {
-                'b.js': `export default (req, res) => res.send('b')`,
+                'b.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'b')
+                `,
               },
             },
           },
@@ -140,7 +177,12 @@ test('when server middleware from second module is changed, it still returns res
     async ({ url, writeFile }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('a')
-      await writeFile('app-b/server/middleware/b.js', `export default (req, res) => res.send('c')`)
+      const file = `
+        import { eventHandler } from 'h3'
+
+        export default eventHandler(() => 'c')
+      `
+      await writeFile('app-b/server/middleware/b.js', file)
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('a')
     },
@@ -158,7 +200,11 @@ test('when new file is added to second module, it still returns value from first
           {
             server: {
               middleware: {
-                'a.js': `export default (req, res) => res.send('a')`,
+                'a.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'a')
+                `,
               },
             },
           },
@@ -166,7 +212,11 @@ test('when new file is added to second module, it still returns value from first
           {
             server: {
               middleware: {
-                'b.js': `export default (req, res) => res.send('b')`,
+                'b.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'b')
+                `,
               },
             },
           },
@@ -176,7 +226,12 @@ test('when new file is added to second module, it still returns value from first
     async ({ url, writeFile }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('a')
-      await writeFile('app-b/server/middleware/c.js', `export default (req, res) => res.send('c')`)
+      const file = `
+        import { eventHandler } from 'h3'
+
+        export default eventHandler(() => 'c')
+      `
+      await writeFile('app-b/server/middleware/c.js', file)
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('a')
     },
@@ -194,7 +249,11 @@ test('add new file to first module but return value as before', async ({ page })
           {
             server: {
               middleware: {
-                'ab.js': `export default (req, res) => res.send('ab')`,
+                'ab.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'ab')
+                `,
               },
             },
           },
@@ -202,7 +261,11 @@ test('add new file to first module but return value as before', async ({ page })
           {
             server: {
               middleware: {
-                'b.js': `export default (req, res) => res.send('b')`,
+                'b.js': `
+                  import { eventHandler } from 'h3'
+
+                  export default eventHandler(() => 'b')
+                `,
               },
             },
           },
@@ -212,7 +275,12 @@ test('add new file to first module but return value as before', async ({ page })
     async ({ url, writeFile }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('ab')
-      await writeFile('app-a/server/middleware/aa.js', `export default (req, res) => res.send('aa')`)
+      const file = `
+        import { eventHandler } from 'h3'
+
+        export default eventHandler(() => 'aa')
+      `
+      await writeFile('app-a/server/middleware/aa.js', file)
       await page.goto(url, { waitUntil: 'networkidle' })
       await expect(await page.content()).toContain('ab')
     },
