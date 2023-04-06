@@ -73,7 +73,7 @@ test('server route with path prefix', async ({ page }) => {
           {
             server: {
               routes: {
-                ':prefix': {
+                '[prefix]': {
                   'hello.js': `
                     import { eventHandler, getRequestURL } from 'h3'
                     export default eventHandler((event) => getRequestURL(event))
