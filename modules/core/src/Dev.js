@@ -84,21 +84,29 @@ export default class Dev extends Core {
 
   async _loadServerRoutes(app, viteDevServer) {
     const router = createRouter()
+    router.handler.__serverRoutes = true
 
-    try {
-      const { default: routes } = await viteDevServer.ssrLoadModule('/server/routes.ts', {
-        fixStacktrace: true,
-      })
+    app.use(
+      eventHandler(async () => {
+        const router = createRouter()
+        router.handler.__serverRoutes = true
 
-      for (const [path, route] of Object.entries(routes)) {
-        if (typeof route === 'function') {
-          router.get(`/${path.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}`)}`, route)
+        const layer = app.stack.find((layer) => layer.handler.__serverRoutes)
+
+        layer.handler = router.handler
+
+        const { default: routes } = await viteDevServer.ssrLoadModule('/server/routes.ts', {
+          fixStacktrace: true,
+        })
+
+        for (const [path, route] of Object.entries(routes)) {
+          if (typeof route === 'function') {
+            router.use(`/${path}`, route)
+          }
         }
-      }
+      }),
+    )
 
-      app.use(router)
-    } catch (e) {
-      consola.error('Could not load server routes:', e)
-    }
+    app.use(router)
   }
 }

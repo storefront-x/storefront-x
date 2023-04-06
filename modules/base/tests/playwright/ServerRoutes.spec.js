@@ -73,7 +73,7 @@ test('server route with path prefix', async ({ page }) => {
           {
             server: {
               routes: {
-                '[prefix]': {
+                ':prefix': {
                   'hello.js': `
                     import { eventHandler, getRequestURL } from 'h3'
                     export default eventHandler((event) => getRequestURL(event))
@@ -94,6 +94,45 @@ test('server route with path prefix', async ({ page }) => {
       await expect(await response1.text()).toContain('/sk/hello')
       const response2 = await page.goto(url + '/sk/hello')
       await expect(await response2.text()).toContain('/hello')
+    },
+  )
+})
+
+test('hot module reloading', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            server: {
+              routes: {
+                'hello.js': `
+                    import { eventHandler } from 'h3'
+                    export default eventHandler((event) => 'a')
+                  `,
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url, writeFile }) => {
+      const response1 = await page.goto(url + '/hello')
+      await expect(await response1.text()).toBe('a')
+
+      await writeFile(
+        'my-module/server/routes/hello.js',
+        `
+          import { eventHandler } from 'h3'
+          export default eventHandler((event) => 'b')
+        `,
+      )
+
+      const response2 = await page.goto(url + '/hello')
+      await expect(await response2.text()).toBe('b')
     },
   )
 })

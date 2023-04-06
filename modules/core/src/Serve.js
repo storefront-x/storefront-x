@@ -101,20 +101,16 @@ export default class Serve extends Core {
   async _loadServerRoutes(app) {
     const router = createRouter()
 
-    try {
-      const { href } = url.pathToFileURL(path.join(this.distDir, 'server', 'routes.js'))
+    const { href } = url.pathToFileURL(path.join(this.distDir, 'server', 'routes.js'))
 
-      const { default: routes } = await import(href)
+    const { default: routes } = await import(href)
 
-      for (const [path, route] of Object.entries(routes)) {
-        if (typeof route === 'function') {
-          router.get(`/${path.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}`)}`, route)
-        }
+    for (const [path, route] of Object.entries(routes)) {
+      if (typeof route === 'function') {
+        router.use(`/${path}`, route)
       }
-
-      app.use(router)
-    } catch (e) {
-      consola.error('Could not load server routes:', e)
     }
+
+    app.use(router)
   }
 }
