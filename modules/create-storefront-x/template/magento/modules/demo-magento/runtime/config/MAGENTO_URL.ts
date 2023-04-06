@@ -1,1 +1,1 @@
-export default process.env.MAGENTO_URL
+export default globalThis.process?.env?.MAGENTO_URL
