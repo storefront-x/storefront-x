@@ -1,1 +1,3 @@
-export default import.meta.env.SFX_MAGENTO_URL ?? 'https://be-vanilla.demo.magexo.cloud'
+import getRuntimeConfigValue from '#ioc/utils/getRuntimeConfigValue'
+
+export default getRuntimeConfigValue('MAGENTO_URL') ?? 'https://be-vanilla.demo.magexo.cloud'

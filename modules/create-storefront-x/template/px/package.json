@@ -60,6 +60,7 @@
     "@storefront-x/request-profiler": "^1.0.0",
     "@storefront-x/robots-magento": "^1.0.0",
     "@storefront-x/robots": "^1.0.0",
+    "@storefront-x/runtime-config": "^1.0.0",
     "@storefront-x/schema-org": "^1.0.0",
     "@storefront-x/service-worker": "^1.0.0",
     "@storefront-x/sitemap-magento": "^1.0.0",
