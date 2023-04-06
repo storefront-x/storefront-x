@@ -120,7 +120,7 @@ Returned index.html:
 
 ## `server/middleware/` concept
 
-Files with [Express](https://expressjs.com) middleware function exported as default export. They are applied to the server as `.use` middleware.
+Files with [H3](https://github.com/unjs/h3) event handler function exported as default export. They are applied to the server as `.use` middleware.
 
 ### Example
 
@@ -142,7 +142,7 @@ POST /bar  # Hello, World!
 
 ## `server/routes/` concept
 
-Files with [Express](https://expressjs.com) middleware function exported as default export. They are applied to the server as route handlers with path corresponding to the pathname of the file. So, request to `https://my.site/foo` will be handled by the `some-module/server/routes/foo.ts` server route, but won't be handled by the `some-module/server/routes/bar` server route.
+Files with [H3](https://github.com/unjs/h3) event handler function exported as default export. They are applied to the server as route handlers with path corresponding to the pathname of the file. So, request to `https://my.site/foo` will be handled by the `some-module/server/routes/foo.ts` server route, but won't be handled by the `some-module/server/routes/bar` server route.
 
 ### Example
 

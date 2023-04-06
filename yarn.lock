@@ -2849,7 +2849,6 @@ __metadata:
   dependencies:
     "@types/sharp": ^0.31.1
     keen-slider: ^6.8.5
-    lru-cache: ^7.16.1
     photoswipe: ^5.3.5
     sharp: ^0.31.3
   languageName: unknown
@@ -10009,13 +10008,6 @@ __metadata:
   dependencies:
     yallist: ^4.0.0
   checksum: f97f499f898f23e4585742138a22f22526254fdba6d75d41a1c2526b3b6cc5747ef59c5612ba7375f42aca4f8461950e925ba08c991ead0651b4918b7c978297
-  languageName: node
-  linkType: hard
-
-"lru-cache@npm:^7.16.1":
-  version: 7.16.1
-  resolution: "lru-cache@npm:7.16.1"
-  checksum: 64618e3ed4fd1203afedd9bbf5247921b1419f8e3100f20e58e5f04e741f8287bd7d04fefaad332411bb53b3a73445714b235de750cf5d310cba1fa23bd82795
   languageName: node
   linkType: hard
 

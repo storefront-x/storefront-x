@@ -1,26 +1,38 @@
-import { eventHandler, setResponseStatus } from 'h3'
 import sharp from 'sharp'
-import { H3Event, getQuery, setHeaders } from 'h3'
+import consola from 'consola'
+import { eventHandler, setResponseStatus, H3Event, getQuery, setHeaders } from 'h3'
 import plugins from '~/.sfx/baseCommerce/imageResizer'
+import isString from '#ioc/utils/isString'
+
+const logger = consola.withTag('image-resizer')
 
 const SERVER_HOST = process.env.SERVER_HOST || 'localhost'
 const SERVER_PORT = process.env.SERVER_PORT || 3000
+
+const ONE_YEAR = '31536000'
+
+type QueryObject = ReturnType<typeof getQuery>
 
 export default eventHandler(async (event) => {
   try {
     return await resizeImage(event)
   } catch (error: any) {
+    logger.error(error)
+
     setResponseStatus(event, 500)
+
     return error.message
   }
 })
 
 const resizeImage = async (event: H3Event) => {
-  const path = getPath(event)
-  const format = getFormat(event)
-  const { width, height } = getSize(event)
-  const fit = getFit(event)
-  const background = getBackground(event) as any
+  const query = getQuery(event)
+
+  const path = getPath(query)
+  const format = getFormat(query)
+  const { width, height } = getSize(query)
+  const fit = getFit(query)
+  const background = getBackground(query)
 
   const image = await fetchImage(path)
 
@@ -31,7 +43,6 @@ const resizeImage = async (event: H3Event) => {
   }
 
   if (width > 0 && height > 0) {
-    // @ts-ignore
     image.resize({
       width,
       height,
@@ -44,34 +55,19 @@ const resizeImage = async (event: H3Event) => {
     quality: 80,
   })
 
-  const buffer = await image.toBuffer()
-
-  return sendBuffer(event, buffer)
-}
-
-const sendBuffer = (event: H3Event, buffer: Buffer) => {
-  const format = getFormat(event)
-
-  const ONE_YEAR = '31536000'
-
   setHeaders(event, {
     'Cache-Control': `public, max-age=${ONE_YEAR}, immutable`,
     'Content-Type': `image/${format}`,
   })
 
-  return buffer
+  return await image.toBuffer()
 }
 
 const fetchImage = async (path: string) => {
-  const options = {
-    responseType: 'arraybuffer',
-    headers: {},
-  }
-
-  const response = await fetch(path, options)
+  const response = await fetch(path)
 
   if (response.status === 404) {
-    throw new Error('Source image not found')
+    throw new Error(`Source image not found: ${path}`)
   }
 
   const data = await response.arrayBuffer()
@@ -79,9 +75,7 @@ const fetchImage = async (path: string) => {
   return sharp(Buffer.from(data))
 }
 
-const getPath = (event: H3Event) => {
-  const query = getQuery(event)
-
+const getPath = (query: QueryObject): string => {
   if (query.sfx) {
     return `http://${SERVER_HOST}:${SERVER_PORT}` + query.sfx
   } else if (query.path) {
@@ -99,9 +93,7 @@ const getPath = (event: H3Event) => {
   }
 }
 
-const getFormat = (event: H3Event) => {
-  const query = getQuery(event)
-
+const getFormat = (query: QueryObject) => {
   switch (query.format) {
     case 'jpeg':
       return 'jpeg'
@@ -114,23 +106,21 @@ const getFormat = (event: H3Event) => {
   }
 }
 
-const getSize = (event: H3Event) => {
-  const query = getQuery(event)
-
+const getSize = (query: QueryObject) => {
   const width = parseInt(query.w as string) || 0
   const height = parseInt(query.h as string) || 0
 
   return { width, height }
 }
 
-const getFit = (event: H3Event) => {
-  const query = getQuery(event)
-
-  return query.fit || 'cover'
+const getFit = (query: QueryObject) => {
+  if (query.fit === 'contain' || query.fit === 'fill' || query.fit === 'inside' || query.fit === 'outside') {
+    return query.fit
+  } else {
+    return 'cover'
+  }
 }
 
-const getBackground = (event: H3Event) => {
-  const query = getQuery(event)
-
-  return query.bg || '#FFFFFF'
+const getBackground = (query: QueryObject): string => {
+  return isString(query.bg) ? query.bg : '#FFFFFF'
 }
