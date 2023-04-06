@@ -22,11 +22,11 @@ export default class Dev extends Core {
 
     const app = createApp()
 
-    await this._loadServerMiddleware(app, viteDevServer)
-    await this._loadServerRoutes(app, viteDevServer)
-
     app.use(fromNodeMiddleware(serverStatic(path.join(this.buildDir, 'public'), { index: false })))
     app.use(fromNodeMiddleware(viteDevServer.middlewares))
+
+    await this._loadServerMiddleware(app, viteDevServer)
+    await this._loadServerRoutes(app, viteDevServer)
 
     process.on('unhandledRejection', (reason) => {
       consola.error(reason)

@@ -4,6 +4,7 @@ import url from 'node:url'
 import consola from 'consola'
 import Core from './Core.js'
 import { createApp, eventHandler, fromNodeMiddleware, createRouter, setResponseStatus } from 'h3'
+import compression from 'compression'
 import serverStatic from 'serve-static'
 
 export default class Serve extends Core {
@@ -20,16 +21,15 @@ export default class Serve extends Core {
     const manifest = JSON.parse(
       await fs.readFile(path.join(this.distDir, 'client', 'ssr-manifest.json'), { encoding: 'utf-8' }),
     )
+
     const app = createApp()
-    // server.disable('x-powered-by')
 
     if (this.argv.compression) {
       consola.withTag('serve').info('Enabling compression')
 
-      // const { default: compression } = await import('compression')
-
-      // server.use(compression())
+      app.use(fromNodeMiddleware(compression()))
     }
+
     app.use(
       '/assets',
       fromNodeMiddleware(
@@ -40,6 +40,7 @@ export default class Serve extends Core {
         }),
       ),
     )
+
     app.use(
       fromNodeMiddleware(
         serverStatic(path.join(this.distDir, 'client'), {
@@ -50,6 +51,7 @@ export default class Serve extends Core {
 
     await this._loadServerMiddleware(app)
     await this._loadServerRoutes(app)
+
     app.use(
       eventHandler(async (event) => {
         try {

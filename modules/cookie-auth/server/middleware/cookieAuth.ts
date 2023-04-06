@@ -33,11 +33,12 @@ const users: User = credentials
   .reduce((users: string[], [username, password]: [string, string]) => ({ ...users, [username]: password }), {}) as User
 
 const serverMiddleware = eventHandler(async (event) => {
-  const ip = getRequestHeader(event, 'x-forwarded-for')
+  const ip = getRequestHeader(event, 'x-forwarded-for') || event.node.req.socket.remoteAddress
   if (ipWhitelist.includes(ip)) {
     once(`Cookie auth disabled for ${ip} based on IP whitelist`, logger.log)
     return
   }
+
   const requestCookies = parseCookies(event)
   const cookie = requestCookies[cookieName]
   const header = getRequestHeader(event, fallbackHeaderName)
