@@ -6,6 +6,9 @@ on:
       storefront-x-config:
         required: true
         type: string
+      storefront-x-integration:
+        required: true
+        type: string
       dot-env:
         type: string
         default: ''
