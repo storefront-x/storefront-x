@@ -5,11 +5,13 @@
   "type": "module",
   "dependencies": {
     "keen-slider": "^6.8.5",
-    "lru-cache": "^7.16.1",
     "photoswipe": "^5.3.5",
     "sharp": "^0.31.3"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/sharp": "^0.31.1"
   }
 }

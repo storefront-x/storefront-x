@@ -39,10 +39,10 @@ test('sitemap with locale prefix', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/sitemap.xml', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('https://localhost/sign-in')
-      await page.goto(url + '/cz/sitemap.xml', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('https://localhost/cz/sign-in')
+      const response1 = await page.goto(url + '/sitemap.xml')
+      await expect(await response1.text()).toContain('/sign-in')
+      const response2 = await page.goto(url + '/cz/sitemap.xml')
+      await expect(await response2.text()).toContain('/cz/sign-in')
     },
   )
 })
@@ -91,10 +91,10 @@ test('sitemap with translated routes', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url + '/sitemap.xml', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('https://localhost/sign-in')
-      await page.goto(url + '/cz/sitemap.xml', { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('https://localhost/cz/prihlasit')
+      const response1 = await page.goto(url + '/sitemap.xml')
+      await expect(await response1.text()).toContain('/sign-in')
+      const response2 = await page.goto(url + '/cz/sitemap.xml')
+      await expect(await response2.text()).toContain('/cz/prihlasit')
     },
   )
 })

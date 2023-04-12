@@ -1,3 +1,4 @@
+import { setHeader } from 'h3'
 import useContext from '#ioc/composables/useContext'
 
 export default () => {
@@ -14,6 +15,6 @@ export default () => {
       ctx._magentoTags.add(tag)
     }
 
-    ctx.responseHeaders['X-Magento-Tags'] = [...ctx._magentoTags.values()].join(',')
+    setHeader(ctx.event, 'X-Magento-Tags', [...ctx._magentoTags.values()].join(','))
   }
 }

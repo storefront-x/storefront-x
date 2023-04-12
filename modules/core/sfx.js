@@ -2,10 +2,12 @@
 
 import path from 'node:path'
 import url from 'node:url'
+import http from 'node:http'
 import yargs from 'yargs'
 import consola from 'consola'
 import { hideBin } from 'yargs/helpers'
 import * as dotenv from 'dotenv'
+import { toNodeListener } from 'h3'
 
 dotenv.config()
 
@@ -42,10 +44,10 @@ yargs(hideBin(process.argv))
 
         const dev = new Dev(config, argv)
         await dev.bootstrap()
-        const server = await dev.createServer()
+        const app = await dev.createServer()
 
-        server.listen(argv.port, argv.host, () => {
-          logger.log(`Server listening on http://${argv.host}:${argv.port}`)
+        http.createServer(toNodeListener(app)).listen(argv.port, argv.host, () => {
+          logger.success(`Server listening at http://${argv.host}:${argv.port}`)
         })
       } catch (e) {
         consola.error(e)
@@ -141,9 +143,9 @@ yargs(hideBin(process.argv))
         const { default: Serve } = await import('./src/Serve.js')
 
         const serve = new Serve({}, argv)
-        const server = await serve.createServer()
+        const app = await serve.createServer()
 
-        server.listen(argv.port, argv.host, () => {
+        http.createServer(toNodeListener(app)).listen(argv.port, argv.host, () => {
           logger.log(`Server listening on http://${argv.host}:${argv.port}`)
           logger.log(`Server started in ${Date.now() - start}ms`)
         })

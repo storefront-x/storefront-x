@@ -1,11 +1,15 @@
-import { Request, Response } from 'express'
+import { eventHandler, getRequestURL, setResponseHeader } from 'h3'
 import sitemap from '@storefront-x/sitemap/sitemap.js'
 
-export default async (req: Request, res: Response) => {
+export default eventHandler(async (event) => {
+  const requestUrl = getRequestURL(event)
+
   const finalSitemap = await sitemap({
-    path: req.baseUrl,
-    host: req.hostname,
+    path: requestUrl.pathname,
+    host: requestUrl.hostname,
   })
 
-  res.type('text/xml').end(finalSitemap)
-}
+  setResponseHeader(event, 'Content-Type', 'text/xml')
+
+  return finalSitemap
+})
