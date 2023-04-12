@@ -92,7 +92,7 @@ jobs:
             --header 'Content-Type: application/json' \
             --data-raw '{
               "git_project": "storefront-x",
-              "git_branch": "${{ inputs.storefront-x-integration }}-${{ steps.branch-name.outputs.current_branch }}",
+              "git_branch": "${{ steps.branch-name.outputs.current_branch }}",
               "commit_ref": "${{ github.sha }}",
               "env_vars": {
                 "DEPLOY_TYPE": "deploy",
