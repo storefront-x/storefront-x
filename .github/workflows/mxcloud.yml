@@ -21,6 +21,11 @@ on:
         required: true
         type: string
         default: 'storefront-x.px.config.js'
+      storefront-x-integration:
+        description: 'Storefront X integration type'
+        required: true
+        type: string
+        default: 'px'
       dot-env:
         description: '.env file contents'
         required: true
@@ -63,7 +68,7 @@ jobs:
         with:
           file: Dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.branch-name.outputs.current_branch }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ inputs.storefront-x-integration }}_${{ steps.branch-name.outputs.current_branch }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: SFX_CONFIG=${{ inputs.storefront-x-config }}
 
@@ -91,7 +96,7 @@ jobs:
                 "CI_REGISTRY": "${{ env.REGISTRY }}",
                 "CI_REPOSITORY_URL": "git@github.com:storefront-x/storefront-x.git",
                 "PROJECT_NAME": "storefront-x",
-                "BUILD_TAG": "${{ steps.branch-name.outputs.current_branch }}",
+                "BUILD_TAG": "${{ inputs.storefront-x-integration }}_${{ steps.branch-name.outputs.current_branch }}",
                 "CI_REPOSITORY": "${{ env.IMAGE_NAME }}"
               }
             }'
