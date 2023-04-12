@@ -91,7 +91,7 @@ jobs:
             --header 'Authorization: Basic ${{ secrets.MXCLOUD_AUTH }}' \
             --header 'Content-Type: application/json' \
             --data-raw '{
-              "git_project": "storefront-x",
+              "git_project": "storefront-x-${{ inputs.storefront-x-integration }}",
               "git_branch": "${{ steps.branch-name.outputs.current_branch }}",
               "commit_ref": "${{ github.sha }}",
               "env_vars": {
