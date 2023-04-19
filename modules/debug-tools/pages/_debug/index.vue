@@ -35,10 +35,15 @@
 <script setup lang="ts">
 import Section from '#ioc/components/debugTools/Section'
 import Code from '#ioc/components/debugTools/Code'
+import { onMounted, ref } from 'vue'
 
-const records = Object.values(import.meta.glob('~/.sfx/debug/*.json', { eager: true })).map(
-  (module: any) => module.default,
-)
+const records = ref([])
+
+onMounted(async () => {
+  const response = await fetch('_debugData')
+
+  records.value = await response.json()
+})
 
 const formatTime = (time: number) => {
   const date = new Date(time)

@@ -13,7 +13,7 @@ To see the debug tools, enable this module, start your application and visit the
 ![Debug Tools](/assets/images/debug-tools.png)
 
 :::tip
-Content of this page should update automatically. It thats not the case, refresh the page to see the latest data.
+Content of this page does not update automatically. To get fresh data, refresh the page.
 :::
 
 ## Development only
