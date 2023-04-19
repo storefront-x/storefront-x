@@ -1,11 +1,10 @@
-import fs from 'node:fs/promises'
-import path from 'node:path'
 import type { App } from 'vue'
 
-export const after = async (app: App, ctx: any) => {
-  if (ctx.req.url.includes('/_debug')) return
+// @ts-ignore
+global.debugToolsData = []
 
-  await fs.mkdir(path.join(process.cwd(), '.sfx', 'debug'), { recursive: true })
+export const after = async (app: App, ctx: any) => {
+  if (ctx.event.node.req.url.includes('/_debug')) return
 
   const requests: any[] = []
 
@@ -26,9 +25,9 @@ export const after = async (app: App, ctx: any) => {
 
   const data = {
     time: ctx.debugTools.time,
-    url: ctx.req.url,
+    url: ctx.event.node.req.url,
     requests,
   }
-
-  await fs.writeFile(path.join(process.cwd(), '.sfx', 'debug', `${data.time}.json`), JSON.stringify(data))
+  // @ts-ignore
+  global.debugToolsData.push(data)
 }
