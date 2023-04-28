@@ -61,25 +61,6 @@ export default (name = 'product') =>
       items: field({
         ...BundleItem(),
       }),
-      price_view: field(),
-      price_range: field({
-        minimum_price: field({
-          final_price: field({
-            ...Money(),
-          }),
-          regular_price: field({
-            ...Money(),
-          }),
-        }),
-        maximum_price: field({
-          final_price: field({
-            ...Money(),
-          }),
-          regular_price: field({
-            ...Money(),
-          }),
-        }),
-      }),
     }),
     ...on('GroupedProduct', {
       items: field({
