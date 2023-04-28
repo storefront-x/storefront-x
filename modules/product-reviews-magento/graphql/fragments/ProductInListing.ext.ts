@@ -1,13 +1,15 @@
 import field from '#ioc/graphql/field'
 import addFields from '#ioc/utils/graphql/addFields'
+import Extension from '#ioc/types/base/Extension'
 
-export default (self: any) => {
-  return () => {
-    const fragment = self()
-    addFields(fragment, {
-      rating_summary: field(),
-    })
+const ProductInListing: Extension = (ProductInListing) => () => {
+  const self = ProductInListing()
 
-    return fragment
-  }
+  addFields(self, {
+    rating_summary: field(),
+  })
+
+  return self
 }
+
+export default ProductInListing
