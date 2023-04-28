@@ -120,13 +120,15 @@ test('refetch async data', async ({ page }) => {
             server: {
               middleware: {
                 'data.js': `
+                  import { eventHandler, getRequestURL } from 'h3'
                   let count = 0
 
-                  export default (req, res, next) => {
-                    if (!req.url.startsWith('/data/')) return next()
+                  export default eventHandler((event) => {
+                    const pathName = getRequestURL(event).pathname
+                    if (!pathName.startsWith('/data/')) return
 
-                    return res.send({ slug: req.url.replace('/data/', '') })
-                  }
+                    return { slug: pathName.replace('/data/', '') }
+                  })
                 `,
               },
             },

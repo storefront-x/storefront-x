@@ -6,6 +6,7 @@ import * as vite from 'vite'
 import consola from 'consola'
 import fetch, { Headers, Request, Response } from 'node-fetch'
 import Module from './Module.js'
+import { sendRedirect, setResponseStatus } from 'h3'
 
 /**
  * @typedef {import('@storefront-x/core').Concept} Concept
@@ -70,14 +71,11 @@ export default class Core {
   /**
    * @param {any} opts
    */
-  async handleRequest({ entry, template, req, res, manifest }) {
+  async handleRequest({ event, entry, template, manifest }) {
     const ctx = {
-      req,
-      res,
-      manifest,
+      event,
+      manifest: manifest ?? {},
       out: {},
-      responseStatus: 200,
-      responseHeaders: { 'Content-Type': 'text/html' },
     }
 
     try {
@@ -89,16 +87,14 @@ export default class Core {
       if (ctx.errorCaptured) {
         throw ctx.errorCaptured
       }
+      if (ctx.responseStatus) {
+        setResponseStatus(event, ctx.responseStatus)
+      }
 
-      return res.status(ctx.responseStatus).set(ctx.responseHeaders).end(template)
+      return template
     } catch (e) {
       if (e.__typename === 'Redirect') {
-        return res.redirect(e.status, e.url)
-      } else if (process.env.NODE_ENV === 'production') {
-        // TODO: Move this if to the Serve class
-        console.error(e)
-
-        return res.status(500).set({ 'Content-Type': 'text/html' }).end(template)
+        return sendRedirect(event, e.url, e.status)
       } else {
         throw e
       }

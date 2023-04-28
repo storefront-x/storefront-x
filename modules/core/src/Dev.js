@@ -1,11 +1,12 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import * as vite from 'vite'
-import express from 'express'
+import { createApp, eventHandler, fromNodeMiddleware, createRouter, setResponseStatus } from 'h3'
 import consola from 'consola'
 import Youch from 'youch'
 import Core from './Core.js'
 import process from 'node:process'
+import serverStatic from 'serve-static'
 
 export default class Dev extends Core {
   async createServer() {
@@ -19,130 +20,93 @@ export default class Dev extends Core {
 
     const viteDevServer = await vite.createServer(viteConfig)
 
-    await this._loadServerStartup(viteDevServer)
+    const app = createApp()
 
-    const server = express()
+    app.use(fromNodeMiddleware(serverStatic(path.join(this.buildDir, 'public'), { index: false })))
+    app.use(fromNodeMiddleware(viteDevServer.middlewares))
 
-    server.disable('x-powered-by')
-
-    server.use(viteDevServer.middlewares)
-    server.use(express.static(path.join(this.buildDir, 'public')))
-
-    await this._loadServerMiddleware(server, viteDevServer)
-    await this._loadServerRoutes(server, viteDevServer)
+    await this._loadServerMiddleware(app, viteDevServer)
+    await this._loadServerRoutes(app, viteDevServer)
 
     process.on('unhandledRejection', (reason) => {
       consola.error(reason)
     })
 
-    server.get('*', async (req, res, next) => {
-      try {
-        const url = req.url ?? '/'
-
+    app.use(
+      eventHandler(async (event) => {
         const index = await fs.readFile(path.join(this.buildDir, 'index.html'), { encoding: 'utf-8' })
-        const template = await viteDevServer.transformIndexHtml(url, index)
+        const template = await viteDevServer.transformIndexHtml(event.path, index)
 
-        // Loads entry.server.ts from the .sfx directory
-        const { default: entry } = await viteDevServer.ssrLoadModule('/entry.server.ts')
+        try {
+          // Loads entry.server.ts from the .sfx directory
+          const { default: entry } = await viteDevServer.ssrLoadModule('/entry.server.ts')
 
-        const response = await this.handleRequest({
-          entry,
-          req,
-          res,
-          template,
-          manifest: {},
-        })
+          const response = await this.handleRequest({
+            event,
+            entry,
+            template,
+          })
 
-        return response
-      } catch (/** @type {any} */ e) {
-        viteDevServer.ssrFixStacktrace(e)
+          return response
+        } catch (e) {
+          viteDevServer.ssrFixStacktrace(e)
 
-        // TODO: Investigate why Vite doesn't fix the stack properly
-        if (typeof e.stack === 'string') {
-          e.stack = e.stack.replace(/\/@fs\//g, '/')
-        }
+          // TODO: Investigate why Vite doesn't fix the stack properly
+          if (typeof e.stack === 'string') {
+            e.stack = e.stack.replace(/\/@fs\//g, '/')
+          }
 
-        if (process.env.NODE_ENV === 'test') {
-          next(e)
-        } else {
-          consola.error(e)
-
-          const youch = new Youch(e, req)
+          const youch = new Youch(e, event.node.req)
           const html = await youch.toHTML()
-
-          res.status(500).send(html)
+          setResponseStatus(event, 500)
+          return html
         }
-      }
-    })
+      }),
+    )
 
-    this.onClose(async () => {
-      await viteDevServer.close()
-    })
-
-    return server
+    return app
   }
 
-  async _loadServerStartup(viteDevServer) {
-    await viteDevServer.ssrLoadModule('/server/startup.ts', {
-      fixStacktrace: true,
-    })
-  }
-
-  /**
-   * @param {express.Express} server
-   * @param {vite.ViteDevServer} viteDevServer
-   */
-  async _loadServerMiddleware(server, viteDevServer) {
-    const router = express.Router()
-
-    router.use(async (_, __, next) => {
-      router.stack.splice(1)
-
-      try {
+  async _loadServerMiddleware(app, viteDevServer) {
+    app.use(
+      eventHandler(async (event) => {
         const { default: middlewares } = await viteDevServer.ssrLoadModule('/server/middleware.ts', {
           fixStacktrace: true,
         })
 
         for (const middleware of Object.values(middlewares)) {
-          if (typeof middleware === 'function') router.use(middleware)
+          const response = await middleware(event)
+          if (response) return response
         }
-      } catch (e) {
-        consola.error('Could not load server middleware:', e)
-      }
-
-      next()
-    })
-
-    server.use(router)
+      }),
+    )
   }
 
-  /**
-   * @param {express.Express} server
-   * @param {vite.ViteDevServer} viteDevServer
-   */
-  async _loadServerRoutes(server, viteDevServer) {
-    const router = express.Router()
+  async _loadServerRoutes(app, viteDevServer) {
+    const router = createRouter()
+    router.handler.__serverRoutes = true
 
-    router.use(async (_, __, next) => {
-      router.stack.splice(1)
+    app.use(
+      eventHandler(async () => {
+        const router = createRouter()
+        router.handler.__serverRoutes = true
 
-      try {
+        const layer = app.stack.find((layer) => layer.handler.__serverRoutes)
+
+        layer.handler = router.handler
+
         const { default: routes } = await viteDevServer.ssrLoadModule('/server/routes.ts', {
           fixStacktrace: true,
         })
 
         for (const [path, route] of Object.entries(routes)) {
           if (typeof route === 'function') {
-            router.use(`/${path.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}`)}`, route)
+            router.use(`/${path.replace(/\[(.+?)\]/g, (_, $1) => `:${$1}`).replace(/\[\.\.\.\]/g, '*')}`, route)
           }
         }
-      } catch (e) {
-        consola.error('Could not load server routes:', e)
-      }
+      }),
+    )
 
-      next()
-    })
-
-    server.use(router)
+    app.use(router)
   }
 }

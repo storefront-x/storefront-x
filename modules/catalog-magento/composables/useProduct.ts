@@ -1,4 +1,5 @@
 import ToProduct from '#ioc/mappers/ToProduct'
+import isDeepEqual from '#ioc/utils/isDeepEqual'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import isNullish from '#ioc/utils/isNullish'
 import { computed, reactive, Ref, ref } from 'vue'
@@ -165,13 +166,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
   }
 
   const variant = computed(() => {
-    if (!Object.keys(configuration).length) return {}
-
-    out: for (const { attributes, product } of variants.value) {
-      for (const [key, value] of Object.entries(attributes)) {
-        if (configuration[key] !== value) {
-          continue out
-        }
+    for (const { attributes, product } of variants.value) {
+      if (isDeepEqual(attributes, configuration)) {
         return product
       }
     }

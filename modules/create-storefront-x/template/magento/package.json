@@ -45,6 +45,7 @@
     "@storefront-x/product-reviews-magento": "^1.0.0",
     "@storefront-x/product-reviews": "^1.0.0",
     "@storefront-x/request-profiler": "^1.0.0",
+    "@storefront-x/runtime-config": "^1.0.0",
     "@storefront-x/schema-org": "^1.0.0",
     "@storefront-x/service-worker": "^1.0.0",
     "@storefront-x/theme-tailwind-magento": "^1.0.0",

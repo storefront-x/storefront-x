@@ -3,8 +3,9 @@
     <p class="sr-only">{{ label }}</p>
     <Label
       :for="`${id}-input`"
-      class="relative border flex items-center justify-center h-full text-sm font-medium uppercase sm:flex-1 cursor-pointer hover:ring-2"
-      :class="[classes, disabled && 'pointer-events-none opacity-50']"
+      class="cursor-pointer rounded-full w-10 h-10 ring-offset-1"
+      :style="styles"
+      :class="classes"
     >
       <input
         :id="`${id}-input`"
@@ -14,7 +15,6 @@
         :value="innerValue"
         @input="onInput"
       />
-      <span :id="id" :class="{ 'text-primary-500': isSelected }">{{ label }}</span>
     </Label>
   </div>
 </template>
@@ -41,6 +41,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    swatchData: {
+      type: Object,
+      default: () => ({}),
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -60,10 +64,24 @@ export default defineComponent({
       return this.$FormRadioGroup.innerValue === this.value
     },
     classes() {
-      if (this.isSelected) {
-        return 'rounded-md py-2 px-3 ring-2 ring-primary-500'
+      return {
+        'pointer-events-none opacity-50': this.disabled,
+        'ring-2': this.isSelected,
+        'hover:ring-2': !this.isSelected,
       }
-      return 'rounded-md py-2 px-3 hover:ring-primary-500'
+    },
+    styles() {
+      if (this.swatchData.thumbnail) {
+        return {
+          'background-image': `url(${this.swatchData.thumbnail})`,
+          '--tw-ring-color': 'grey',
+        }
+      } else {
+        return {
+          'background-color': this.swatchData.value,
+          '--tw-ring-color': this.swatchData.value,
+        }
+      }
     },
   },
 

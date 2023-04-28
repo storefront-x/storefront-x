@@ -3,9 +3,6 @@
   "version": "1.17.0",
   "license": "MIT",
   "type": "module",
-  "dependencies": {
-    "http-proxy-middleware": "^2.0.6"
-  },
   "publishConfig": {
     "access": "public"
   }
