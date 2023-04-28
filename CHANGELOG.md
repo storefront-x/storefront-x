@@ -1,3 +1,13 @@
+## v1.18.1 (2023-04-28)
+
+#### :bug: Bug Fix
+
+- [#417](https://github.com/storefront-x/storefront-x/pull/417) Fixed useResource issue with doubling ident when called from siblings ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.18.0 (2023-04-28)
 
 #### :boom: Breaking Change
