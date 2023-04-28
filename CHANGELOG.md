@@ -1,3 +1,32 @@
+## v1.18.0 (2023-04-28)
+
+#### :boom: Breaking Change
+
+- [#388](https://github.com/storefront-x/storefront-x/pull/388) Migrate to H3 ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :rocket: Enhancement
+
+- [#410](https://github.com/storefront-x/storefront-x/pull/410) Fixed styling and functionality of bundle product ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#412](https://github.com/storefront-x/storefront-x/pull/412) Fixed brand attribute config naming and position ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#409](https://github.com/storefront-x/storefront-x/pull/409) Added MAGENTO_URL in magento-demo to lead to vanilla BE ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#408](https://github.com/storefront-x/storefront-x/pull/408) Added pre-commit check for max length of branch name ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#413](https://github.com/storefront-x/storefront-x/pull/413) Fixed swatches and options in configurable product ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :house: Internal
+
+- [#414](https://github.com/storefront-x/storefront-x/pull/414) Load MAGENTO_URL during runtime ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#406](https://github.com/storefront-x/storefront-x/pull/406) Load .env file during MxCloud build ([@zimalmagexo](https://github.com/zimalmagexo))
+
+#### Committers: 4
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+- [@zimalmagexo](https://github.com/zimalmagexo)
+
 ## v1.17.0 (2023-03-29)
 
 #### :rocket: Enhancement
