@@ -3,6 +3,7 @@ import query from '#ioc/graphql/query'
 import field from '#ioc/graphql/field'
 import fragment from '#ioc/graphql/fragment'
 import addFields from '#ioc/utils/graphql/addFields'
+import on from '#ioc/graphql/on'
 
 describe('utils/graphql/addFields', () => {
   it('add fields to query', () => {
@@ -91,5 +92,34 @@ describe('utils/graphql/addFields', () => {
     })
 
     expect(f.extract()).toBe('fragment f on F{a{b{c},d}}')
+  })
+
+  it('add fields with on', () => {
+    const f = fragment('f', 'F', {
+      a: field(),
+      ...on('G', {
+        g: field(),
+      }),
+    })
+
+    addFields(f, 'on G', {
+      h: field(),
+    })
+
+    expect(f.extract()).toBe('fragment f on F{a,...on G{g,h}}')
+  })
+
+  it('add fields with on to fragment without on', () => {
+    const f = fragment('f', 'F', {
+      a: field(),
+    })
+
+    addFields(f, {
+      ...on('G', {
+        h: field(),
+      }),
+    })
+
+    expect(f.extract()).toBe('fragment f on F{a,...on G{h}}')
   })
 })

@@ -37,6 +37,8 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const minimumPrice = computed(() => product.value.minimumPrice)
 
+  const maximumPrice = computed(() => product.value.maximumPrice)
+
   const breadcrumbs = computed(() => [
     ...product.value.categories.map((category: any) => ({
       title: category.name,
@@ -74,7 +76,31 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const isGroupedProduct = computed(() => productType.value === 'GroupedProduct')
 
-  const isBundleConfigured = computed(() => isNonEmptyObject(bundle.value))
+  const isBundleConfigured = computed(() => {
+    if (isBundleProduct.value) {
+      if (bundleItems.value.length === 0) {
+        return false
+      }
+      for (const item of bundleItems.value) {
+        if (item.required && !bundle.value[item.id]) {
+          return false
+        }
+      }
+      return true
+    }
+    return false
+  })
+
+  const bundleConfigurationErrors = computed(() => {
+    const errors = []
+
+    for (const item of bundleItems.value) {
+      if (item.required && !bundle.value[item.id]) {
+        errors.push(item.title)
+      }
+    }
+    return errors
+  })
 
   const mediaGallery = computed(() => {
     if (variant.value?.mediaGallery?.length > 0) {
@@ -157,6 +183,20 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
 
   const groupedItems = computed(() => product.value.groupedItems ?? [])
 
+  const isPriceViewRange = computed(() => {
+    if (isBundleProduct.value) {
+      return product.value.priceView === 'PRICE_RANGE'
+    }
+    return false
+  })
+
+  const isPriceViewAsLowAs = computed(() => {
+    if (isBundleProduct.value) {
+      return product.value.priceView === 'AS_LOW_AS'
+    }
+    return false
+  })
+
   return reactive({
     id,
     sku,
@@ -167,6 +207,10 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     descriptionHtml,
     shortDescriptionHtml,
     thumbnailUrl,
+    isPriceViewAsLowAs,
+    isPriceViewRange,
+    minimumPrice,
+    maximumPrice,
     regularPrice,
     finalPrice,
     breadcrumbs,
@@ -186,7 +230,6 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     crossSellProducts,
     upsellProducts,
     bundleItems,
-    minimumPrice,
     bundle,
     configurableOptions,
     configuration,
@@ -196,6 +239,7 @@ export default (product: Ref<ReturnType<typeof ToProduct>>) => {
     isConfigured,
     isBundleConfigured,
     isOptionsConfigured,
+    bundleConfigurationErrors,
     groupedItems,
     isGroupedProduct,
     productType,

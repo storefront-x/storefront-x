@@ -2,7 +2,7 @@
   <Form :value="updateFormValue">
     <div v-for="bundleItem in product.bundleItems" :key="bundleItem.id" class="mb-4">
       <Heading
-        :level="2"
+        :level="3"
         class="relative inline-block"
         :class="
           bundleItem.required
@@ -14,46 +14,48 @@
         <p v-if="bundleItem.required" class="text-xs text-gray-400 mt-0 absolute w-max">Please choose option</p>
       </Heading>
 
-      <div v-if="bundleItem.type === 'checkbox' || bundleItem.type === 'multi'">
+      <div v-if="bundleItem.type === 'checkbox'">
         <FormCheckbox
           v-for="bundleOption in bundleItem.options"
           :key="bundleOption.id"
           :name="`${bundleItem.id}-${bundleOption.id}-${inModal}`"
           :label="bundleOption.label"
+          :value="bundleOption.isDefault ? true : null"
           class="mt-2"
-          @input="onInput(bundleItem, bundleOption, $event, 'checkbox')"
+          @input="onInput(bundleItem, bundleOption, $event)"
         />
       </div>
-      <div v-else>
-        <div v-if="bundleItem.options.length > 5">
-          <FormSelect
-            v-model="selectedLabel[bundleItem.id]"
-            :name="`${bundleItem.id}`"
-            class="mt-4"
-            @input="onInputSelect(bundleItem, $event)"
-          >
-            <option value="">{{ t('Select') }}</option>
-            <option v-for="bundleOption in bundleItem.options" :key="bundleOption.id" :value="bundleOption.id">
-              {{ bundleOption.label }}
-            </option>
-          </FormSelect>
-        </div>
-        <div v-else>
-          <FormRadioGroup
-            :name="`${bundleItem.id}-group`"
-            :label="''"
-            :classes="`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 space-y-0 align-start`"
-          >
-            <FormRadioBox
-              v-for="bundleOption in bundleItem.options"
-              :key="bundleOption.id"
-              :name="`${bundleItem.id}-${bundleOption.id}-${inModal}`"
-              :value="`${bundleOption.id}`"
-              :label="bundleOption.label"
-              @input="onInput(bundleItem, bundleOption, true, 'radio')"
-            />
-          </FormRadioGroup>
-        </div>
+
+      <div v-if="bundleItem.type === 'select' || bundleItem.type === 'multi'">
+        <FormSelect
+          v-model="selectedLabel[bundleItem.id]"
+          :name="`${bundleItem.id}`"
+          :multiple="bundleItem.type === 'multi'"
+          class="mt-4"
+          :value="getDefaultValue(bundleItem)"
+          @input="onInputSelect(bundleItem, $event)"
+        >
+          <option value="">{{ t('Select') }}</option>
+          <option v-for="bundleOption in bundleItem.options" :key="bundleOption.id" :value="bundleOption.id">
+            {{ bundleOption.label }}
+          </option>
+        </FormSelect>
+      </div>
+      <div v-if="bundleItem.type === 'radio'">
+        <FormRadioGroup
+          :name="`${bundleItem.id}-group`"
+          :value="`${getDefaultValue(bundleItem)}`"
+          :label="''"
+          :classes="`mt-4 space-y-2`"
+          @input="onInputSelect(bundleItem, $event)"
+        >
+          <FormRadio
+            v-for="bundleOption in bundleItem.options"
+            :key="bundleOption.id"
+            :value="`${bundleOption.id}`"
+            :label="bundleOption.label"
+          />
+        </FormRadioGroup>
       </div>
     </div>
   </Form>
@@ -65,12 +67,13 @@ import Heading from '#ioc/atoms/Heading'
 import Form from '#ioc/atoms/Form'
 import FormCheckbox from '#ioc/molecules/FormCheckbox'
 import FormSelect from '#ioc/molecules/FormSelect'
-import FormRadioBox from '#ioc/molecules/FormRadioBox'
 import FormRadioGroup from '#ioc/molecules/FormRadioGroup'
 import injectProduct from '#ioc/composables/injectProduct'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import isNonEmptyObject from '#ioc/utils/isNonEmptyObject'
 import isEmpty from '#ioc/utils/isEmpty'
+import FormRadio from '#ioc/molecules/FormRadio'
+import isArray from '#ioc/utils/isArray'
 
 const { t } = useI18n()
 const product = injectProduct()
@@ -85,6 +88,22 @@ defineProps({
 const selectedOptions = ref({} as any)
 const selectedLabel = ref({} as any)
 
+onMounted(() => {
+  for (const bundleItem of product.bundleItems) {
+    const defaultOptionId = getDefaultValue(bundleItem)
+    if (defaultOptionId) {
+      if (bundleItem.type === 'checkbox') {
+        onInput(
+          bundleItem,
+          bundleItem.options.find((option: any) => option.id === defaultOptionId),
+          true,
+        )
+      } else {
+        onInputSelect(bundleItem, defaultOptionId)
+      }
+    }
+  }
+})
 const updateFormValue = computed(() => {
   if (isEmpty(product.bundle)) return
 
@@ -102,24 +121,18 @@ const updateFormValue = computed(() => {
       newValue[keyOutOfModal] = true
     }
   }
-
   return newValue
 })
 
-const onInput = (bundleItem: any, bundleOption: any, isChecked: any, type: string) => {
+const onInput = (bundleItem: any, bundleOption: any, isChecked: any) => {
   if (!selectedOptions.value[bundleItem.id]) {
     selectedOptions.value[bundleItem.id] = {}
-  }
-
-  if (type === 'radio') {
-    delete selectedOptions.value[bundleItem.id]
-    selectedOptions.value[bundleItem.id] = {}
-    updateFinalPrice()
   }
 
   if (isChecked) {
     selectedOptions.value[bundleItem.id][bundleOption.id] = {
       id: bundleOption.id,
+      label: bundleOption.label,
       quantity: 1,
       finalPrice: bundleOption.product.finalPrice,
       value: [String(bundleOption.product.id)],
@@ -150,13 +163,17 @@ const onInputSelect = (bundleItem: any, id: any) => {
     updateFinalPrice()
   }
 
-  const bundleOption = bundleItem.options.find((option: any) => option.id === id)
+  const selectedIds = isArray(id) ? id : [id]
+  for (const selectedId of selectedIds) {
+    const bundleOption = bundleItem.options.find((option: any) => option.id == selectedId)
 
-  selectedOptions.value[bundleItem.id][id] = {
-    id,
-    quantity: 1,
-    finalPrice: bundleOption.product.finalPrice,
-    value: [String(bundleOption.product.id)],
+    selectedOptions.value[bundleItem.id][selectedId] = {
+      selectedId,
+      label: bundleOption.label,
+      quantity: 1,
+      finalPrice: bundleOption.product.finalPrice,
+      value: [String(bundleOption.product.id)],
+    }
   }
 
   updateFinalPrice()
@@ -171,6 +188,15 @@ const updateFinalPrice = () => {
   }
   product.finalPrice.value = finalPriceValue || product.minimumPrice.value
   product.bundle = selectedOptions.value
+}
+
+const getDefaultValue = (bundleItem: any) => {
+  const defaultOption = bundleItem.options.find((o: any) => o.isDefault)
+  if (defaultOption) {
+    return defaultOption.id
+  } else {
+    return null
+  }
 }
 </script>
 

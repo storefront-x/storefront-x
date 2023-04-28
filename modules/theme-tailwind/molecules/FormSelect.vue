@@ -8,6 +8,7 @@
       class="w-full"
       :class="colors"
       :name="name"
+      :multiple="multiple"
       :autocomplete="autocomplete"
       :disabled="disabled"
       @blur="onBlur"
@@ -58,6 +59,10 @@ export default defineComponent({
     modelValue: {
       type: String,
       default: '',
+    },
+    multiple: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ['update:modelValue'],

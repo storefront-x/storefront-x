@@ -384,7 +384,7 @@ As the name of utility says, we can use `addFields()` utility to additionally in
 #### Properties
 
 - `gql: any` - original GraphQL request which will be extended
-- `path?: string` - hierarchical path in original GraphQL request where fields will be added (optional)
+- `path?: string` - hierarchical path in original GraphQL request where fields will be added (optional). You can also specify path as for example `on Product`.
 - `fields: object` - object of additional newly added fields
 
 #### Example
@@ -406,6 +406,10 @@ const CategoryList: Extension =
     })
 
     addFields(self, 'categories.items.children.children.children', {
+      thumbnail: field(),
+    })
+
+    addFields(self, 'on Product', {
       thumbnail: field(),
     })
 

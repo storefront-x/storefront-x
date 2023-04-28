@@ -20,13 +20,11 @@ export default () => {
   }> => {
     const selectedOptions = []
     for (const [itemId, item] of Object.entries(bundle)) {
-      for (const [optionId, option] of Object.entries(item) as any) {
-        selectedOptions.push({
-          id: itemId,
-          quantity: option.quantity,
-          value: optionId,
-        })
-      }
+      selectedOptions.push({
+        id: itemId,
+        quantity: 1,
+        value: Object.keys(item),
+      })
     }
 
     const { data } = await magento.graphql(

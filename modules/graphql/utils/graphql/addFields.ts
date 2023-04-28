@@ -8,7 +8,13 @@ export default (gql: any, ...args: any) => {
     const fields = args[1]
 
     for (const part of path) {
-      gql = gql._fields[part]
+      if (part.startsWith('on ')) {
+        const name = part.substr(3)
+
+        gql = gql._fields[`...on ${name}`]
+      } else {
+        gql = gql._fields[part]
+      }
     }
 
     gql.fields(fields)
