@@ -10,4 +10,4 @@ RUN yarn install --immutable
 
 RUN yarn build --config $SFX_CONFIG
 
-CMD yarn serve
+CMD yarn serve --host=0.0.0.0
