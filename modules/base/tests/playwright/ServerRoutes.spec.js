@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { buildProject, makeProject } from '@storefront-x/testing'
 
 test('basic server route', async ({ page }) => {
   await makeProject(
@@ -133,6 +133,66 @@ test('hot module reloading', async ({ page }) => {
 
       const response2 = await page.goto(url + '/hello')
       await expect(await response2.text()).toBe('b')
+    },
+  )
+})
+
+test('deep nested routes in dev', async ({ page }) => {
+  await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            server: {
+              routes: {
+                _api: {
+                  '[...].js': `
+                    import { eventHandler } from 'h3'
+                    export default eventHandler((event) => 'a')
+                  `,
+                },
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      const response = await page.goto(url + '/_api/a/b/c/d')
+      await expect(await response.text()).toBe('a')
+    },
+  )
+})
+
+test('deep nested routes in prod', async ({ page }) => {
+  await buildProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            server: {
+              routes: {
+                _api: {
+                  '[...].js': `
+                    import { eventHandler } from 'h3'
+                    export default eventHandler((event) => 'a')
+                  `,
+                },
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      const response = await page.goto(url + '/_api/a/b/c/d')
+      await expect(await response.text()).toBe('a')
     },
   )
 })
