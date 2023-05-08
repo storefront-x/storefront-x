@@ -1,3 +1,20 @@
+## v1.18.2 (2023-05-08)
+
+#### :rocket: Enhancement
+
+- [#418](https://github.com/storefront-x/storefront-x/pull/418) Removed gift_image svg to improve perf ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :bug: Bug Fix
+
+- [#421](https://github.com/storefront-x/storefront-x/pull/421) Fix nested server routes ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#420](https://github.com/storefront-x/storefront-x/pull/420) Fixed Dockerfile to serve on 0.0.0.0 ([@midlan](https://github.com/midlan))
+
+#### Committers: 3
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Milan Davídek ([@midlan](https://github.com/midlan))
+
 ## v1.18.1 (2023-04-28)
 
 #### :bug: Bug Fix
