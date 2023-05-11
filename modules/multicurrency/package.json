@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/multicurrency",
-  "version": "1.18.4",
+  "version": "1.18.5",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
