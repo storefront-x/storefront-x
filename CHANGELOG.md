@@ -1,3 +1,13 @@
+## v1.18.4 (2023-05-11)
+
+#### :bug: Bug Fix
+
+- [#423](https://github.com/storefront-x/storefront-x/pull/423) Fixed useResource ident refactoring ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.18.3 (2023-05-11)
 
 #### :bug: Bug Fix
