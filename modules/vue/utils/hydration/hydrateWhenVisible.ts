@@ -39,13 +39,16 @@ export default (source: () => Promise<{ default: any }>): any => {
         const isHydration = !!el
 
         if (isHydration) {
-          const intersectionObserver = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-              intersectionObserver.disconnect()
+          const intersectionObserver = new IntersectionObserver(
+            ([entry]) => {
+              if (entry.isIntersecting) {
+                intersectionObserver.disconnect()
 
-              schedule(() => source().then(resolve))
-            }
-          })
+                schedule(() => source().then(resolve))
+              }
+            },
+            { rootMargin: '400px' },
+          )
 
           onMounted(() => {
             // eslint-disable-next-line no-constant-condition
