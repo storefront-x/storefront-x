@@ -12,7 +12,8 @@ async function useResource(source: any, fetcher?: any) {
   }
 
   const response = shallowRef()
-  const id = useId()
+  const sourceData = source()
+  const id = useId(sourceData)
   const state = useState<any>(id, () => undefined)
 
   const promise = new Promise<[any]>((resolve) => {
