@@ -1,3 +1,13 @@
+## v1.18.5 (2023-05-11)
+
+#### :rocket: Enhancement
+
+- [#424](https://github.com/storefront-x/storefront-x/pull/424) Added rootMargin for IntersectionObserver in hydrateWhenVisible ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.18.4 (2023-05-11)
 
 #### :bug: Bug Fix
