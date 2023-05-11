@@ -1,3 +1,13 @@
+## v1.18.3 (2023-05-11)
+
+#### :bug: Bug Fix
+
+- [#422](https://github.com/storefront-x/storefront-x/pull/422) Fixed useResource client and server ident to be equal ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.18.2 (2023-05-08)
 
 #### :rocket: Enhancement
