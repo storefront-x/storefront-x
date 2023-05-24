@@ -1,3 +1,13 @@
+## v1.19.0 (2023-05-24)
+
+#### :rocket: Enhancement
+
+- [#425](https://github.com/storefront-x/storefront-x/pull/425) Allow concept overriding ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.18.5 (2023-05-11)
 
 #### :rocket: Enhancement
