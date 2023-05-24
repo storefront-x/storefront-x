@@ -47,8 +47,8 @@ export default class Core {
     /** @type {Module[]} */
     this.modules = []
 
-    /** @type {Concept[]} */
-    this.concepts = []
+    /** @type {Record<string, Concept>} */
+    this.concepts = {}
 
     /** @type {(() => Promise<void>)[]} */
     this.closeHandlers = []
@@ -130,7 +130,10 @@ export default class Core {
     if (process.env.NODE_ENV !== 'test') logger.log('Loading concepts')
 
     for (const module of this.modules) {
-      this.concepts.push(...(await module.getConcepts()))
+      this.concepts = {
+        ...this.concepts,
+        ...(await module.getConcepts()),
+      }
     }
 
     if (process.env.NODE_ENV !== 'test') logger.log('Concepts loaded')
@@ -139,7 +142,7 @@ export default class Core {
   async executeConcepts() {
     if (process.env.NODE_ENV !== 'test') logger.log('Executing concepts')
 
-    for (const concept of this.concepts) {
+    for (const concept of Object.values(this.concepts)) {
       await concept.before()
       for (const module of this.modules) {
         await concept.run(module)
