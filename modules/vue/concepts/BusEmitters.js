@@ -5,7 +5,7 @@ import BusListeners from './BusListeners.js'
 export default class BusEmitters extends GeneratingConcept {
   async execute(files) {
     const records = {}
-    const listeners = await this.getConceptFilesFrom(BusListeners)
+    const listeners = await this.getConceptFiles(BusListeners)
 
     for (const { module, file } of Object.values(files)) {
       const filewithoutExt = file.replace(/\.\w+$/, '').replace(/\\/g, '')
@@ -29,10 +29,10 @@ export default class BusEmitters extends GeneratingConcept {
     }
   }
 
-  async getConceptFilesFrom(conceptClass) {
+  async getConceptFiles() {
     if (!(this.core instanceof Build)) return []
 
-    const concept = this.core.concepts.find((c) => c instanceof conceptClass)
+    const concept = this.core.concepts['BusListeners.js']
     const files = new Set()
 
     for (const module of this.core.modules) {

@@ -81,7 +81,7 @@ export default class Build extends Core {
       }),
     )
 
-    for (const concept of this.concepts) {
+    for (const concept of Object.values(this.concepts)) {
       await concept.afterBuild()
     }
   }

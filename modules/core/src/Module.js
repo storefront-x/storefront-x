@@ -27,11 +27,11 @@ export default class Module {
   }
 
   /**
-   * @returns {Promise<Concept[]>}
+   * @returns {Promise<Record<string, Concept>>}
    */
   async getConcepts() {
-    /** @type {Concept[]} */
-    const concepts = []
+    /** @type {Record<string, Concept>} */
+    const concepts = {}
     /** @type {string[]} */
     const names = []
 
@@ -48,7 +48,7 @@ export default class Module {
 
       if (process.env.NODE_ENV !== 'test') logger.log('Loaded concept', concept.directory, '-', this.name)
 
-      concepts.push(concept)
+      concepts[name] = concept
     }
 
     return concepts
