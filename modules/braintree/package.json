@@ -4,12 +4,12 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "braintree-web": "^3.90.0",
-    "braintree-web-drop-in": "^1.34.0"
+    "braintree-web": "^3.95.0-beta-3ds.1",
+    "braintree-web-drop-in": "^1.37.0"
   },
   "devDependencies": {
-    "@types/braintree-web": "^3.75.22",
-    "@types/braintree-web-drop-in": "^1.34.0"
+    "@types/braintree-web": "^3.75.23",
+    "@types/braintree-web-drop-in": "^1.34.2"
   },
   "publishConfig": {
     "access": "public"

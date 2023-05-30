@@ -7,7 +7,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@sentry/node": "^7.38.0",
-    "@sentry/tracing": "^7.38.0"
+    "@sentry/node": "^7.53.1",
+    "@sentry/tracing": "^7.53.1"
   }
 }
