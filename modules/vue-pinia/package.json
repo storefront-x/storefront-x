@@ -4,12 +4,12 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "pinia": "^2.0.30"
+    "pinia": "^2.1.3"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@pinia/testing": "^0.0.14"
+    "@pinia/testing": "^0.1.2"
   }
 }

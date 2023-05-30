@@ -7,7 +7,7 @@
     "access": "public"
   },
   "dependencies": {
-    "workbox-build": "^6.5.4",
-    "workbox-window": "^6.5.4"
+    "workbox-build": "^6.6.0",
+    "workbox-window": "^6.6.0"
   }
 }

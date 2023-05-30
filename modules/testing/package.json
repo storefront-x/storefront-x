@@ -7,8 +7,8 @@
   "dependencies": {
     "@playwright/test": "1.25.2",
     "get-port": "^6.1.2",
-    "jsdom": "^20.0.3",
-    "vitest": "^0.28.5"
+    "jsdom": "^22.1.0",
+    "vitest": "^0.31.2"
   },
   "publishConfig": {
     "access": "public"

@@ -7,6 +7,6 @@
     "access": "public"
   },
   "dependencies": {
-    "atatus-nodejs": "^1.5.5"
+    "atatus-nodejs": "^1.6.0"
   }
 }
