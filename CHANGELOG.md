@@ -1,3 +1,21 @@
+## v1.20.0 (2023-05-30)
+
+#### :rocket: Enhancement
+
+- [#429](https://github.com/storefront-x/storefront-x/pull/429) Add support for recursive global styles ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#430](https://github.com/storefront-x/storefront-x/pull/430) Allow running multiple dev instances at the same time ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :house: Internal
+
+- [#428](https://github.com/storefront-x/storefront-x/pull/428) Upgrade dependencies ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.19.0 (2023-05-24)
 
 #### :rocket: Enhancement
