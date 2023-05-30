@@ -8,6 +8,7 @@ export default () => {
     .then((originalStore) => {
       cy.get('[data-cy=store-switcher-mobile]').click({ multiple: true })
       cy.get('[data-cy=store-switcher-mobile] a:last-child').click()
+      cy.waitForSfx()
 
       // We dont need to close it because switching stores reloads page thus closing hamburger menu
       openHamburgerMenu()
