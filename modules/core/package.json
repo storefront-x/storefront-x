@@ -27,7 +27,7 @@
     "rollup": "^3.17.1",
     "rollup-plugin-visualizer": "^5.9.0",
     "serve-static": "^1.15.0",
-    "vite": "^4.1.2",
+    "vite": "^4.3.9",
     "yargs": "^17.7.0",
     "youch": "^3.2.3"
   },

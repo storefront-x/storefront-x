@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.2.2"
   },
   "publishConfig": {
     "access": "public"
