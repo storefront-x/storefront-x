@@ -138,7 +138,6 @@ yargs(hideBin(process.argv))
         const start = Date.now()
 
         consola.wrapAll()
-        consola.setReporters(new consola.BasicReporter())
 
         const { default: Serve } = await import('./src/Serve.js')
 
