@@ -7,12 +7,20 @@ import Youch from 'youch'
 import Core from './Core.js'
 import process from 'node:process'
 import serverStatic from 'serve-static'
+import getPort from 'get-port'
 
 export default class Dev extends Core {
   async createServer() {
+    const hmrPort = await getPort()
+
     const viteConfig = this.buildConfig({
       appType: 'custom',
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: {
+          port: hmrPort,
+        },
+      },
       clearScreen: false,
       root: this.buildDir,
       logLevel: process.env.NODE_ENV === 'test' ? 'silent' : undefined,

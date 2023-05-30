@@ -3239,6 +3239,7 @@ __metadata:
     devalue: ^4.3.2
     dotenv: ^16.0.3
     ejs: ^3.1.9
+    get-port: ^6.1.2
     h3: ^1.6.6
     kolorist: ^1.8.0
     lodash-es: ^4.17.21
