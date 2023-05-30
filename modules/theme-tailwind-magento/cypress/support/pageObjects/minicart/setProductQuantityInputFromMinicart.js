@@ -2,7 +2,6 @@ import getProductFromMinicart from '~/cypress/support/pageObjects/minicart/getPr
 
 export default (quantity) =>
   getProductFromMinicart().within(() => {
-    cy.get('[data-cy=minicart-item-quantity-input]')
-      .clear()
-      .type(quantity ?? '3')
+    cy.get('[data-cy=minicart-item-quantity-input]').clear()
+    cy.get('[data-cy=minicart-item-quantity-input]').type(quantity ?? '3')
   })
