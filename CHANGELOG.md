@@ -1,3 +1,13 @@
+## v1.20.1 (2023-05-31)
+
+#### :house: Internal
+
+- [#431](https://github.com/storefront-x/storefront-x/pull/431) Upgrade dependencies ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.20.0 (2023-05-30)
 
 #### :rocket: Enhancement
