@@ -14,4 +14,10 @@ export default defineConfig({
   optimizeDeps: {
     include: ['cookie'],
   },
+  resolve: {
+    alias: {
+      // This alias is needed for the NPM create script to work
+      'vue-demi': 'vue-demi/lib/v3/index.mjs',
+    },
+  },
 })
