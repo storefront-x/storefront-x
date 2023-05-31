@@ -14,9 +14,4 @@ export default defineConfig({
   optimizeDeps: {
     include: ['cookie'],
   },
-  resolve: {
-    alias: {
-      'vue-demi': 'vue-demi/lib/v3/index.mjs',
-    },
-  },
 })
