@@ -6,7 +6,7 @@ export default (core) =>
   defineConfig({
     plugins: [
       VueI18n({
-        strictMessage: false,
+        strictMessage: false, // this allows use of HTML in the translations
         include: resolve(core.rootDir, './.sfx/i18n/messages/**'),
       }),
     ],
