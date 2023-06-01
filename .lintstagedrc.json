@@ -1,3 +1,0 @@
-{
-  "*.{js, ts, vue}": "yarn cross-env NODE_ENV=production eslint"
-}
