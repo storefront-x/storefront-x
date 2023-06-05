@@ -24,8 +24,7 @@
     "cypress": "npx cypress",
     "docs:dev": "npx vitepress dev docs",
     "docs:build": "npx vitepress build docs",
-    "docs:serve": "npx vitepress serve docs",
-    "postinstall": "npx husky install"
+    "docs:serve": "npx vitepress serve docs"
   },
   "dependencies": {
     "@storefront-x/core": "*"

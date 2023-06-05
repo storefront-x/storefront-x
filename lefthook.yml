@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: '*.{js,ts,vue}'
+      run: yarn cross-env NODE_ENV=production npx eslint {staged_files}
