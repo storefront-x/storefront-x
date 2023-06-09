@@ -14,7 +14,7 @@ export default (el: HTMLElement) => {
   })
 
   const link = computed(() => {
-    return desktopImageElement.value?.getAttribute('href')
+    return el.querySelector('[data-element=link]')?.getAttribute('href')
   })
 
   const caption = computed(() => {
@@ -22,7 +22,7 @@ export default (el: HTMLElement) => {
   })
 
   const openInNewTab = computed(() => {
-    return desktopImageElement.value?.getAttribute('target') === '_blank'
+    return el.querySelector('[data-element=link]')?.getAttribute('target') === '_blank'
   })
 
   const desktopImageElement = computed(() => {
