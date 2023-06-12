@@ -6,7 +6,7 @@
 import usePbBlock from '#ioc/composables/cms/usePbBlock'
 import usePbImage from '#ioc/composables/cms/usePbImage'
 import SfxImage from '#ioc/components/SfxImage'
-import { computed, h, PropType } from 'vue'
+import { computed, h, PropType, resolveComponent } from 'vue'
 
 const props = defineProps({ el: { type: Object as PropType<HTMLElement>, default: null } })
 
@@ -38,7 +38,17 @@ const render = () => {
   if (!pbImage.src) return null
 
   if (pbImage.link) {
-    return h('RouterLink', { props: { to: pbImage.link, newWindow: pbImage.openInNewTab } }, [imageFragment()])
+    if (pbImage.link.startsWith('/')) {
+      return h(
+        resolveComponent('RouterLink'),
+        { to: pbImage.link, target: pbImage.openInNewTab ? '_blank' : '_self' },
+        [imageFragment()],
+      )
+    } else {
+      return h(resolveComponent('a'), { href: pbImage.link, target: pbImage.openInNewTab ? '_blank' : '_self' }, [
+        imageFragment(),
+      ])
+    }
   } else {
     return imageFragment()
   }
