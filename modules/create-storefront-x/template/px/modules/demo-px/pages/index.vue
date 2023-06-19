@@ -42,8 +42,12 @@ const Usps = hydrateWhenVisible(() => import('#ioc/molecules/Usps'))
 const CategoryPreviews = hydrateWhenVisible(() => import('#ioc/molecules/CategoryPreviews'))
 const ReviewShowreel = hydrateWhenVisible(() => import('#ioc/molecules/ReviewShowreel'))
 const BlogGrid = hydrateWhenVisible(() => import('#ioc/molecules/BlogGrid'))
+import { onMounted } from 'vue'
+import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
+import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
 
 const { t } = useI18n()
+const emitPageViewLabel = useEmitPageViewLabel()
 
 const containersSpacingClass = { 'mb-12': true }
 const usps = [
@@ -79,6 +83,10 @@ const reviews = [
     authorImage: '/images/portrait_3.jpg',
   },
 ]
+
+onMounted(() => {
+  emitPageViewLabel(PAGE_LABELS.HOMEPAGE)
+})
 </script>
 
 <style scoped>

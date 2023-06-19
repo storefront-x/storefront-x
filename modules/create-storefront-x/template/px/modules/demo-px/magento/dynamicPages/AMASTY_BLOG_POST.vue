@@ -9,6 +9,10 @@ import useGetBlogPostByUrl from '#ioc/services/useGetBlogPostByUrl'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import { defineAsyncComponent } from 'vue'
 import BlogPostDetail from '#ioc/templates/BlogPostDetail'
+import { onMounted } from 'vue'
+import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
+import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
 const props = defineProps({
@@ -23,6 +27,7 @@ const props = defineProps({
 })
 
 const getBlogPostByUrl = useGetBlogPostByUrl()
+const emitPageViewLabel = useEmitPageViewLabel()
 
 const { data } = await useAsyncData('blogPost', () =>
   getBlogPostByUrl(
@@ -32,4 +37,8 @@ const { data } = await useAsyncData('blogPost', () =>
       .pop() ?? '',
   ),
 )
+
+onMounted(() => {
+  emitPageViewLabel(PAGE_LABELS.AMASTY_BLOG_POST)
+})
 </script>

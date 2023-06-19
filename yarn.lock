@@ -3484,6 +3484,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/speed-curve@workspace:modules/speed-curve":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/speed-curve@workspace:modules/speed-curve"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/testing@*, @storefront-x/testing@workspace:modules/testing":
   version: 0.0.0-use.local
   resolution: "@storefront-x/testing@workspace:modules/testing"

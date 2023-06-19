@@ -11,6 +11,9 @@ import useGetProductById from '#ioc/services/useGetProductById'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import useResource from '#ioc/composables/useResource'
+import { onMounted } from 'vue'
+import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
+import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 const ProductDetail = hydrateWhenVisible(() => import('#ioc/templates/ProductDetail'))
@@ -27,9 +30,14 @@ const props = defineProps({
 })
 
 const getProductById = useGetProductById()
+const emitPageViewLabel = useEmitPageViewLabel()
 
 const [data] = await useResource(
   () => props.id,
   (id) => getProductById(id),
 )
+
+onMounted(() => {
+  emitPageViewLabel(PAGE_LABELS.PRODUCT)
+})
 </script>

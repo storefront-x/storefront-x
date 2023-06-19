@@ -22,6 +22,9 @@ import useRoute from '#ioc/composables/useRoute'
 import useAsyncData from '#ioc/composables/useAsyncData'
 import useHead from '#ioc/composables/useHead'
 import useBlogCategorySchema from '#ioc/composables/schemaOrg/useBlogCategorySchema'
+import { onMounted } from 'vue'
+import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
+import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
 
 const getBlogCategoryById = useGetBlogCategoryById()
 const getBlogPosts = useGetBlogPosts()
@@ -33,6 +36,8 @@ const props = defineProps({
     default: '',
   },
 })
+
+const emitPageViewLabel = useEmitPageViewLabel()
 
 const {
   data: {
@@ -60,8 +65,13 @@ if (blogCategory.meta.keywords) {
     content: blogCategory.meta.keywords,
   })
 }
+
 useHead({
   title: blogCategory.meta.title,
   meta: metaData,
+})
+
+onMounted(() => {
+  emitPageViewLabel(PAGE_LABELS.AMASTY_BLOG_CATEGORY)
 })
 </script>

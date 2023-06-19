@@ -37,6 +37,7 @@ export default {
     '@storefront-x/product-comparison',
     '@storefront-x/robots',
     '@storefront-x/sitemap',
+    '@storefront-x/speed-curve',
 
     '@storefront-x/blog-magento',
     '@storefront-x/braintree-magento',
