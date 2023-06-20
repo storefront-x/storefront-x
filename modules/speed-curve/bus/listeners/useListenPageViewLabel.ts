@@ -1,11 +1,10 @@
 import PageViewLabel from '#ioc/bus/events/PageViewLabel'
+import useAddSpeedCurveLabel from '#ioc/composables/useAddSpeedCurveLabel'
 
 export default () => {
-  return (label: PageViewLabel) => {
-    // @ts-ignore
-    window.LUX.label = label
+  const addSpeedCurveLabel = useAddSpeedCurveLabel()
 
-    // @ts-ignore
-    window.LUX.markLoadTime()
+  return (label: PageViewLabel) => {
+    addSpeedCurveLabel(label)
   }
 }
