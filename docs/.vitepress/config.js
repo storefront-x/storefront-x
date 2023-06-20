@@ -124,6 +124,7 @@ export default defineConfig({
           { text: 'Web App Manifest', link: '/modules/web-app-manifest' },
           { text: 'Request Profiler', link: '/modules/request-profiler' },
           { text: 'Debug Tools', link: '/modules/debug-tools' },
+          { text: 'Speed Curve', link: '/modules/speed-curve' },
         ],
       },
     ],

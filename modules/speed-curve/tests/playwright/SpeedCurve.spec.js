@@ -117,7 +117,7 @@ test('speedCurve sends beacon with correct label after navigation', async ({ pag
             },
             config: {
               'speed-curve': {
-                'SPEEDCURVE_ID.ts': `export default 4410689865`,
+                'SPEEDCURVE_ID.ts': `export default '4410689865'`,
               },
             },
           },
@@ -174,7 +174,7 @@ test('speedCurve sends beacon with correct custom metrics after navigation', asy
             },
             config: {
               'speed-curve': {
-                'SPEEDCURVE_ID.ts': `export default 4410689865`,
+                'SPEEDCURVE_ID.ts': `export default '4410689865'`,
               },
             },
           },

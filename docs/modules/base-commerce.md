@@ -517,3 +517,59 @@ Advanced config!
 :::
 
 Storefront X doesn't store money as float, but instead as natural numbers. `PRICE_OFFSET` is used as multiplier of every money value coming from backend, so that values like 1.99, 2.5 are instead represented as 199 and 250.
+
+## `pageViewLabel` event
+
+Prepared event for labeling the page. More about events and listeners [here](/advanced/event-bus.html).
+
+### Properties
+
+- `label: string` - label of page
+
+### Example
+
+```vue
+<!-- pages/index.vue -->
+
+<template>
+  <Heading>Homepage</Heading>
+</template>
+
+<script setup lang="ts">
+import Heading from '#ioc/atoms/Heading'
+import { onMounted } from 'vue'
+import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
+import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+
+const emitPageViewLabel = useEmitPageViewLabel()
+
+onMounted(() => {
+  emitPageViewLabel(PAGE_LABELS.HOMEPAGE)
+})
+</script>
+```
+
+## `PAGE_LABELS` config
+
+Together with `pageViewLabel` event you can use default labels config for diferent page types.
+
+```ts
+// config/PAGE_LABELS.ts
+
+export default {
+  HOMEPAGE: 'home-page',
+  PRODUCT: 'product-detail-page',
+  CATEGORY: 'category-detail-page',
+  CMS_PAGE: 'cms-page',
+  AMASTY_BRAND: 'brand-detail-page',
+  AMASTY_BLOG_POST: 'blog-post-detail-page',
+  AMASTY_BLOG_CATEGORY: 'blog-category-detail-page',
+  WISHLIST: 'wishlist-page',
+  CHECKOUT: 'checkout-page',
+  ACCOUNT: 'account-page',
+  SIGN_IN: 'sign-in-page',
+  SIGN_UP: 'sign-up-page',
+  SEARCH: 'search-page',
+  RESET_PASSWORD: 'reset-password-page',
+}
+```
