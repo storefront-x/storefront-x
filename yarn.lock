@@ -3296,6 +3296,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/flash-messages@workspace:modules/flash-messages":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/flash-messages@workspace:modules/flash-messages"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento"
