@@ -17,5 +17,5 @@ const style = `<style>
 const inlineStyle = style.replace(/\s\s+/gs, ' ')
 
 export const after = async (app: App, ctx?: any) => {
-  ctx.out.nprogress = (html: string) => html.replace('<head>', `<head>${inlineStyle}`)
+  ctx.out.nprogress = (html: string) => html.replace('<style', `${inlineStyle}\n<style`)
 }
