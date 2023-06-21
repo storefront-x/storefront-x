@@ -10,7 +10,6 @@ test('with vue', async () => {
       '@storefront-x/atomic-design',
       '@storefront-x/vue-head',
       '@storefront-x/vue-i18n',
-      '@storefront-x/flash-messages',
       '@storefront-x/theme-tailwind',
       [
         'my-module',
