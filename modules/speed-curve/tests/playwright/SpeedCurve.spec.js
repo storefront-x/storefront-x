@@ -8,7 +8,7 @@ test('SpeedCurve script and correct ID in head', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         '@storefront-x/vue-router',
-        '@storefront-x/base-commerce',
+        '@storefront-x/theme-tailwind',
         '@storefront-x/speed-curve',
         [
           'my-module',
@@ -45,7 +45,7 @@ test('SpeedCurve labeling on page mounted', async ({ page }) => {
         '@storefront-x/base',
         '@storefront-x/vue',
         '@storefront-x/vue-router',
-        '@storefront-x/base-commerce',
+        '@storefront-x/theme-tailwind',
         '@storefront-x/speed-curve',
         [
           'my-module',
@@ -91,7 +91,7 @@ test('speedCurve sends beacon with correct label after navigation', async ({ pag
         '@storefront-x/base',
         '@storefront-x/vue',
         '@storefront-x/vue-router',
-        '@storefront-x/base-commerce',
+        '@storefront-x/theme-tailwind',
         '@storefront-x/speed-curve',
         [
           'my-module',
@@ -148,7 +148,7 @@ test('speedCurve sends beacon with correct custom metrics after navigation', asy
         '@storefront-x/base',
         '@storefront-x/vue',
         '@storefront-x/vue-router',
-        '@storefront-x/base-commerce',
+        '@storefront-x/theme-tailwind',
         '@storefront-x/speed-curve',
         [
           'my-module',
