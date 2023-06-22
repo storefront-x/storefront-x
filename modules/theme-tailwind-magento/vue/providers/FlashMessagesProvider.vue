@@ -14,7 +14,7 @@ const { t, te } = useI18n()
 
 onMounted(() => {
   const messages = flashMessages.get()
-  console.log(messages)
+
   for (const messageObject of messages) {
     const { type, title, message } = messageObject
     const notificationOptions = type === 'ERROR' ? { timeout: 0 } : {}
