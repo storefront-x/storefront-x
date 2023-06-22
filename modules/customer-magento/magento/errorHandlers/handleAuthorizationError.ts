@@ -6,7 +6,7 @@ export default () => {
   const flashMessages = useFlashMessages()
   return async (error: any) => {
     if (isAuthorizationError(error)) {
-      flashMessages.add('notification-messages', {
+      flashMessages.add({
         type: 'ERROR',
         title: 'Authorization error',
         message: 'authorizationError',

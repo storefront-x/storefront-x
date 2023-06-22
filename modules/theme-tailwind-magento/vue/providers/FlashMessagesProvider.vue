@@ -13,8 +13,8 @@ const showNotification = useShowNotification()
 const { t, te } = useI18n()
 
 onMounted(() => {
-  const messages = flashMessages.get('notification-messages')
-
+  const messages = flashMessages.get()
+  console.log(messages)
   for (const messageObject of messages) {
     const { type, title, message } = messageObject
     const notificationOptions = type === 'ERROR' ? { timeout: 0 } : {}
@@ -29,8 +29,6 @@ onMounted(() => {
 
     showNotification(notificationTitle, notificationMessage, type, notificationOptions)
   }
-
-  flashMessages.remove('notification-messages')
 })
 
 function getTranslationTarget(type: string, message?: string) {

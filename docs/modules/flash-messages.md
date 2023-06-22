@@ -6,20 +6,11 @@ Flash messages help you display messages after for example reload.
 
 ## `useFlashMessages` composable
 
-Composable used to with methods get/add/remove.
-
-### get Properties
-
-- `ident: string` - name of cookie to get as flash message
+Composable with methods two methods, get (gets all the messages and clears the cookie) and add.
 
 ### add Properties
 
-- `ident: string` - name of cookie to be set as flash message
 - `value: any` - data of message you want to set
-
-### remove Properties
-
-- `ident: string` - name of cookie (flash message) to be removed
 
 ### Example
 
@@ -39,13 +30,13 @@ const showErrorNotification = useShowErrorNotification()
 
 const visitRestrictedZone = () => {
   if (!customerStore.customer) {
-    flashMessages.add('error-messages', 'Your session expired')
+    flashMessages.add('Your session expired')
     window.location.reload()
   }
 }
 
 onMounted(() => {
-  const messages = flashMessages.get('error-messages')
+  const messages = flashMessages.get()
   for (const message of messages) {
     showErrorNotification(message)
   }

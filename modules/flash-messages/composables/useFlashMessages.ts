@@ -1,18 +1,17 @@
 import useCookies from '#ioc/composables/useCookies'
 
-interface Message {
-  type: 'ERROR' | 'SUCCESS'
-  title?: string
-  message: string
-}
-
 export default () => {
   const cookies = useCookies()
+  const ident = 'flash-messages'
+  const clear = () => cookies.remove(ident)
 
-  const get = (ident: string) => (cookies.get(ident) ? cookies.get(ident) : [])
+  const get = () => {
+    const flashMessages = cookies.get(ident) ? cookies.get(ident) : []
+    clear()
+    return flashMessages
+  }
   return {
     get,
-    add: (ident: string, value: Message) => cookies.set(ident, JSON.stringify([...get(ident), value])),
-    remove: (ident: string) => cookies.remove(ident),
+    add: (value: any) => cookies.set(ident, JSON.stringify([...get(), value])),
   }
 }
