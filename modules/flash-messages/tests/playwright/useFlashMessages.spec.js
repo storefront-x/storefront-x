@@ -96,7 +96,7 @@ test('setting multiple flash messages is working', async ({ page }) => {
   )
 })
 
-test.only('flash messages are removed after you get them', async ({ page }) => {
+test('flash messages are removed after you get them', async ({ page }) => {
   await makeProject(
     {
       modules: [
