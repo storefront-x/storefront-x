@@ -45,6 +45,7 @@
     "@storefront-x/customer": "^1.0.0",
     "@storefront-x/cypress": "^1.0.0",
     "@storefront-x/debug-tools": "^1.0.0",
+    "@storefront-x/flash-messages": "^1.0.0",
     "@storefront-x/free-shipping-magento": "^1.0.0",
     "@storefront-x/free-shipping": "^1.0.0",
     "@storefront-x/graphql": "^1.0.0",

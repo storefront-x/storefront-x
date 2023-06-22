@@ -17,6 +17,7 @@ export default {
     '@storefront-x/service-worker',
     '@storefront-x/web-app-manifest',
     '@storefront-x/runtime-config',
+    '@storefront-x/flash-messages',
     ...(process.env.NODE_ENV === 'development' ? ['@storefront-x/request-profiler'] : []),
 
     '@storefront-x/magento',

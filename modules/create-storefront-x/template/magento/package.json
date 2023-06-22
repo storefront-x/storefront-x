@@ -34,6 +34,7 @@
     "@storefront-x/customer": "^1.0.0",
     "@storefront-x/cypress": "^1.0.0",
     "@storefront-x/debug-tools": "^1.0.0",
+    "@storefront-x/flash-messages": "^1.0.0",
     "@storefront-x/graphql": "^1.0.0",
     "@storefront-x/magento": "^1.0.0",
     "@storefront-x/multicurrency-magento": "^1.0.0",

@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/flash-messages",
+  "version": "1.20.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}
