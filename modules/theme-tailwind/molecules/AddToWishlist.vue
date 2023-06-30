@@ -25,7 +25,6 @@ import useAddToWishlist from '#ioc/services/useAddToWishlist'
 import useRemoveFromWishlist from '#ioc/services/useRemoveFromWishlist'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
 import injectProduct from '#ioc/composables/injectProduct'
-import useCustomer from '#ioc/composables/useCustomer'
 
 const props = defineProps({
   fillOnHover: {
