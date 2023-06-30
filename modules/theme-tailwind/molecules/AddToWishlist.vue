@@ -1,5 +1,6 @@
 <template>
   <button
+    v-if="customer.isLoggedIn"
     type="button"
     class="rounded-md flex items-center justify-center"
     :class="classes"
@@ -16,107 +17,90 @@
   </button>
 </template>
 
-<script>
+<script setup lang="ts">
 import OutlineHeartIcon from '#ioc/icons/OutlineHeart'
-import { defineComponent, ref, inject } from 'vue'
+import { ref, computed } from 'vue'
 import useI18n from '#ioc/composables/useI18n'
 import useWishlistStore from '#ioc/stores/useWishlistStore'
 import useAddToWishlist from '#ioc/services/useAddToWishlist'
 import useRemoveFromWishlist from '#ioc/services/useRemoveFromWishlist'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
+import injectProduct from '#ioc/composables/injectProduct'
+import useCustomer from '#ioc/composables/useCustomer'
 
-export default defineComponent({
-  components: {
-    OutlineHeartIcon,
+const props = defineProps({
+  fillOnHover: {
+    default: false,
+    type: Boolean,
   },
-
-  props: {
-    fillOnHover: {
-      default: false,
-      type: Boolean,
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-  },
-  setup() {
-    const { t } = useI18n()
-    const wishlistStore = useWishlistStore()
-    const addToWishlist = useAddToWishlist()
-    const removeFromWishlist = useRemoveFromWishlist()
-    const showErrorNotification = useShowErrorNotification()
-    const Product = inject('$Product')
-    const wishlisted = ref(wishlistStore.items.some((item) => item === Product.sku))
-
-    return {
-      t,
-      wishlisted,
-      addToWishlist,
-      removeFromWishlist,
-      showErrorNotification,
-      Product,
-    }
-  },
-
-  computed: {
-    outlineClasses() {
-      return this.fillOnHover
-        ? [
-            'lg:hover:stroke-pink-500',
-            '!w-4',
-            '!h-4',
-            'md:!w-6',
-            'md:!h-6',
-            'transition',
-            'duration-150',
-            'ease-in-out',
-            'lg:hover:scale-125',
-          ]
-        : []
-    },
-    classes() {
-      return {
-        'fill-on-hover': this.fillOnHover,
-        'text-gray-400 hover:text-gray-500': !this.wishlisted,
-        'text-pink-400 hover:text-pink-500': this.wishlisted,
-        'hover:bg-gray-100': !this.fillOnHover,
-      }
-    },
-  },
-
-  methods: {
-    async add() {
-      try {
-        this.wishlisted = true
-
-        await this.addToWishlist(this.Product)
-      } catch (error) {
-        this.wishlisted = false
-
-        this.showErrorNotification(error)
-      }
-    },
-    async remove() {
-      try {
-        this.wishlisted = false
-
-        await this.removeFromWishlist(this.Product)
-      } catch (error) {
-        this.wishlisted = true
-
-        this.showErrorNotification(error)
-      }
-    },
-    async resolveAddToWishlist() {
-      if (this.wishlisted) {
-        this.remove()
-      } else {
-        this.add()
-      }
-    },
+  title: {
+    type: String,
+    default: '',
   },
 })
+
+const { t } = useI18n()
+const wishlistStore = useWishlistStore()
+const addToWishlist = useAddToWishlist()
+const removeFromWishlist = useRemoveFromWishlist()
+const showErrorNotification = useShowErrorNotification()
+const customer = useCustomer()
+const product = injectProduct()
+const wishlisted = ref(wishlistStore.items.some((item) => item === product.sku))
+
+const outlineClasses = computed(() => {
+  return props.fillOnHover
+    ? [
+        'lg:hover:stroke-pink-500',
+        '!w-4',
+        '!h-4',
+        'md:!w-6',
+        'md:!h-6',
+        'transition',
+        'duration-150',
+        'ease-in-out',
+        'lg:hover:scale-125',
+      ]
+    : []
+})
+const classes = computed(() => {
+  return {
+    'fill-on-hover': props.fillOnHover,
+    'text-gray-400 hover:text-gray-500': !wishlisted.value,
+    'text-pink-400 hover:text-pink-500': wishlisted.value,
+    'hover:bg-gray-100': !props.fillOnHover,
+  }
+})
+
+const add = async () => {
+  try {
+    wishlisted.value = true
+
+    await addToWishlist(product)
+  } catch (error) {
+    wishlisted.value = false
+
+    showErrorNotification(error)
+  }
+}
+const remove = async () => {
+  try {
+    wishlisted.value = false
+
+    await removeFromWishlist(product)
+  } catch (error) {
+    wishlisted.value = true
+
+    showErrorNotification(error)
+  }
+}
+const resolveAddToWishlist = () => {
+  if (wishlisted.value) {
+    remove()
+  } else {
+    add()
+  }
+}
 </script>
 
 <i18n lang="yaml">
