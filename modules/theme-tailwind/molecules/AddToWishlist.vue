@@ -43,7 +43,6 @@ const wishlistStore = useWishlistStore()
 const addToWishlist = useAddToWishlist()
 const removeFromWishlist = useRemoveFromWishlist()
 const showErrorNotification = useShowErrorNotification()
-const customer = useCustomer()
 const product = injectProduct()
 const wishlisted = ref(wishlistStore.items.some((item) => item === product.sku))
 
