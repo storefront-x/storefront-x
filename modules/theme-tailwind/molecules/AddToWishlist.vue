@@ -1,6 +1,5 @@
 <template>
   <button
-    v-if="customer.isLoggedIn"
     type="button"
     class="rounded-md flex items-center justify-center"
     :class="classes"
