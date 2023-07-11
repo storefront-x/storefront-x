@@ -127,6 +127,6 @@ If you use integration with full Magento 2 you have access to prepared events on
 - PageViewResetPassword
 - PageViewSearch
 - PageViewWishlist
-- PageViewAmastyBrand
-- PageViewAmastyBlogPost
-- PageViewAmastyBlogCategory
+- PageViewBrand
+- PageViewBlogPost
+- PageViewBlogCategory
