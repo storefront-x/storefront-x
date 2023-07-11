@@ -16,6 +16,8 @@ import useRoute from '#ioc/composables/useRoute'
 import ensureArray from '#ioc/utils/array/ensureArray'
 import useResource from '#ioc/composables/useResource'
 import { defineAsyncComponent } from 'vue'
+import { onMounted } from 'vue'
+import useEmitPageViewCategory from '#ioc/bus/emitters/useEmitPageViewCategory'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
@@ -32,6 +34,7 @@ const props = defineProps({
 
 const route = useRoute()
 const getCategoryById = useGetCategoryById()
+const emitPageViewCategory = useEmitPageViewCategory()
 
 const [data] = await useResource(
   () => ({
@@ -51,4 +54,8 @@ const [data] = await useResource(
       pageSize: params.pageSize,
     }),
 )
+
+onMounted(() => {
+  emitPageViewCategory()
+})
 </script>

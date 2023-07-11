@@ -111,3 +111,22 @@ onMounted(() => {
 ```
 
 Now, based on the example above, we emitted a `product` which is type of `useProduct` (defined in the event file). Emit function (`emitViewProduct()`) looped over all assigned listeners and executed them.
+
+## Prepared events
+
+If you use integration with full Magento 2 you have access to prepared events on most common pages. Events trigger onMounted and are listed bellow. They accept `any` as parameter so you can emit everything you need.
+
+- PageViewHomepage
+- PageViewCategory
+- PageViewProduct
+- PageViewCmsPage
+- PageViewCheckout
+- PageViewAccountHomepage
+- PageViewSignUp
+- PageViewSignIn
+- PageViewResetPassword
+- PageViewSearch
+- PageViewWishlist
+- PageViewBrand
+- PageViewBlogPost
+- PageViewBlogCategory

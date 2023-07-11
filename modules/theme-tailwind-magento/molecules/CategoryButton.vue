@@ -4,16 +4,17 @@
     class="bg-white border border-gray-400 p-2 rounded-md transition ease-in-out delay-75 hover:no-underline"
   >
     <div class="flex flex-row my-1 items-center">
-      <SfxImage
-        v-if="hasImage"
-        class="mr-2"
-        :height="150"
-        :width="150"
-        :src="category.thumbnailUrl"
-        class-img="h-6 w-6 rounded-full border-1"
-        fit="contain"
-        :alt="category.name"
-      />
+      <div class="shrink-0">
+        <SfxImage
+          v-if="hasImage"
+          :height="150"
+          :width="150"
+          :src="category.thumbnailUrl"
+          class-img="mr-2 h-6 w-6 rounded-full border-1"
+          fit="contain"
+          :alt="category.name"
+        />
+      </div>
       <div class="leading-5 sm truncate whitespace-nowrap overflow-hidden">
         <span>{{ category.name }}</span>
       </div>

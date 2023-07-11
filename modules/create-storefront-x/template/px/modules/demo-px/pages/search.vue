@@ -9,9 +9,12 @@ import useGetSearchSuggestions from '#ioc/services/useGetSearchSuggestions'
 import ensureArray from '#ioc/utils/array/ensureArray'
 import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 import useResource from '#ioc/composables/useResource'
+import { onMounted } from 'vue'
+import useEmitPageViewSearch from '#ioc/bus/emitters/useEmitPageViewSearch'
 
 const route = useRoute()
 const getSearchSuggestions = useGetSearchSuggestions()
+const emitPageViewSearch = useEmitPageViewSearch()
 
 const [data] = await useResource(
   () => ({
@@ -30,4 +33,8 @@ const [data] = await useResource(
       sort: params.sort,
     }),
 )
+
+onMounted(() => {
+  emitPageViewSearch()
+})
 </script>

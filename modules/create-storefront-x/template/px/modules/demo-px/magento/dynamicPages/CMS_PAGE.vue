@@ -6,6 +6,8 @@
 import useGetCmsPageById from '#ioc/services/useGetCmsPageById'
 import useResource from '#ioc/composables/useResource'
 import CmsPage from '#ioc/templates/CmsPage'
+import { onMounted } from 'vue'
+import useEmitPageViewCmsPage from '#ioc/bus/emitters/useEmitPageViewCmsPage'
 
 const props = defineProps({
   entityUid: {
@@ -15,9 +17,14 @@ const props = defineProps({
 })
 
 const getCmsPageById = useGetCmsPageById()
+const emitPageViewCmsPage = useEmitPageViewCmsPage()
 
 const [data] = await useResource(
   () => props.entityUid,
   (id) => getCmsPageById(id),
 )
+
+onMounted(() => {
+  emitPageViewCmsPage()
+})
 </script>

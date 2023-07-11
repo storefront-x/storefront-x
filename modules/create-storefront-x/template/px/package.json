@@ -66,6 +66,7 @@
     "@storefront-x/service-worker": "^1.0.0",
     "@storefront-x/sitemap-magento": "^1.0.0",
     "@storefront-x/sitemap": "^1.0.0",
+    "@storefront-x/speed-curve": "^1.0.0",
     "@storefront-x/theme-tailwind-magento-px": "^1.0.0",
     "@storefront-x/theme-tailwind-magento": "^1.0.0",
     "@storefront-x/theme-tailwind": "^1.0.0",

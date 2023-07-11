@@ -42,8 +42,11 @@ const Usps = hydrateWhenVisible(() => import('#ioc/molecules/Usps'))
 const CategoryPreviews = hydrateWhenVisible(() => import('#ioc/molecules/CategoryPreviews'))
 const ReviewShowreel = hydrateWhenVisible(() => import('#ioc/molecules/ReviewShowreel'))
 const BlogGrid = hydrateWhenVisible(() => import('#ioc/molecules/BlogGrid'))
+import { onMounted } from 'vue'
+import useEmitPageViewHomepage from '#ioc/bus/emitters/useEmitPageViewHomepage'
 
 const { t } = useI18n()
+const emitPageViewHomepage = useEmitPageViewHomepage()
 
 const containersSpacingClass = { 'mb-12': true }
 const usps = [
@@ -79,6 +82,10 @@ const reviews = [
     authorImage: '/images/portrait_3.jpg',
   },
 ]
+
+onMounted(() => {
+  emitPageViewHomepage()
+})
 </script>
 
 <style scoped>
