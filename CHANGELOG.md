@@ -1,3 +1,26 @@
+## v1.21.0 (2023-07-11)
+
+#### :boom: Breaking Change
+
+- [#432](https://github.com/storefront-x/storefront-x/pull/432) Use lefthook instead of husky ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :rocket: Enhancement
+
+- [#436](https://github.com/storefront-x/storefront-x/pull/436) Added speedCurve module for performance tracking ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#438](https://github.com/storefront-x/storefront-x/pull/438) AddToWishlist rewrite to script setup ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#435](https://github.com/storefront-x/storefront-x/pull/435) Added flash-messages module and notifications based on flash-message ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#432](https://github.com/storefront-x/storefront-x/pull/432) Use lefthook instead of husky ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#437](https://github.com/storefront-x/storefront-x/pull/437) Fixed Wishlists query cantBeCached ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 3
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+
 ## v1.20.1 (2023-05-31)
 
 #### :house: Internal
