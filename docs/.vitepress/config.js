@@ -125,6 +125,7 @@ export default defineConfig({
           { text: 'Request Profiler', link: '/modules/request-profiler' },
           { text: 'Debug Tools', link: '/modules/debug-tools' },
           { text: 'Speed Curve', link: '/modules/speed-curve' },
+          { text: 'Flash Messages', link: '/modules/flash-messages' },
         ],
       },
     ],
