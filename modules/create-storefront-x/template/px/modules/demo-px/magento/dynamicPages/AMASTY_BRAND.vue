@@ -16,11 +16,11 @@ import ensureArray from '#ioc/utils/array/ensureArray'
 import useBrand from '#ioc/composables/useBrand'
 import { computed } from 'vue'
 import { onMounted } from 'vue'
-import useEmitPageViewAmastyBrand from '#ioc/bus/emitters/useEmitPageViewAmastyBrand'
+import useEmitPageViewBrand from '#ioc/bus/emitters/useEmitPageViewBrand'
 
 const route = useRoute()
 const getBrandDetailById = useGetBrandDetailById()
-const emitPageViewAmastyBrand = useEmitPageViewAmastyBrand()
+const emitPageViewBrand = useEmitPageViewBrand()
 
 const props = defineProps({
   id: {
@@ -40,6 +40,6 @@ const { data } = await useAsyncData('brandDetail', () =>
 const brand = useBrand(computed(() => data.value.brand))
 
 onMounted(() => {
-  emitPageViewAmastyBrand()
+  emitPageViewBrand()
 })
 </script>

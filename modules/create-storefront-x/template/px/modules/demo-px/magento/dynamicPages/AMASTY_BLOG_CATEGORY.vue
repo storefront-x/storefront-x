@@ -23,7 +23,7 @@ import useAsyncData from '#ioc/composables/useAsyncData'
 import useHead from '#ioc/composables/useHead'
 import useBlogCategorySchema from '#ioc/composables/schemaOrg/useBlogCategorySchema'
 import { onMounted } from 'vue'
-import useEmitPageViewAmastyBlogCategory from '#ioc/bus/emitters/useEmitPageViewAmastyBlogCategory'
+import useEmitPageViewBlogCategory from '#ioc/bus/emitters/useEmitPageViewBlogCategory'
 
 const getBlogCategoryById = useGetBlogCategoryById()
 const getBlogPosts = useGetBlogPosts()
@@ -36,7 +36,7 @@ const props = defineProps({
   },
 })
 
-const emitPageViewAmastyBlogCategory = useEmitPageViewAmastyBlogCategory()
+const emitPageViewBlogCategory = useEmitPageViewBlogCategory()
 
 const {
   data: {
@@ -71,6 +71,6 @@ useHead({
 })
 
 onMounted(() => {
-  emitPageViewAmastyBlogCategory()
+  emitPageViewBlogCategory()
 })
 </script>

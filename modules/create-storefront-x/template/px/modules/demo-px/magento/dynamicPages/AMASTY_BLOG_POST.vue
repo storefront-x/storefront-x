@@ -10,7 +10,7 @@ import useAsyncData from '#ioc/composables/useAsyncData'
 import { defineAsyncComponent } from 'vue'
 import BlogPostDetail from '#ioc/templates/BlogPostDetail'
 import { onMounted } from 'vue'
-import useEmitPageViewAmastyBlogPost from '#ioc/bus/emitters/useEmitPageViewAmastyBlogPost'
+import useEmitPageViewBlogPost from '#ioc/bus/emitters/useEmitPageViewBlogPost'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
@@ -26,7 +26,7 @@ const props = defineProps({
 })
 
 const getBlogPostByUrl = useGetBlogPostByUrl()
-const emitPageViewAmastyBlogPost = useEmitPageViewAmastyBlogPost()
+const emitPageViewBlogPost = useEmitPageViewBlogPost()
 
 const { data } = await useAsyncData('blogPost', () =>
   getBlogPostByUrl(
@@ -38,6 +38,6 @@ const { data } = await useAsyncData('blogPost', () =>
 )
 
 onMounted(() => {
-  emitPageViewAmastyBlogPost()
+  emitPageViewBlogPost()
 })
 </script>
