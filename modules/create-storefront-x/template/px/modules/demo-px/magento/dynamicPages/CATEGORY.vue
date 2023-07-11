@@ -17,8 +17,7 @@ import ensureArray from '#ioc/utils/array/ensureArray'
 import useResource from '#ioc/composables/useResource'
 import { defineAsyncComponent } from 'vue'
 import { onMounted } from 'vue'
-import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+import useEmitPageViewCategory from '#ioc/bus/emitters/useEmitPageViewCategory'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
@@ -35,7 +34,7 @@ const props = defineProps({
 
 const route = useRoute()
 const getCategoryById = useGetCategoryById()
-const emitPageViewLabel = useEmitPageViewLabel()
+const emitPageViewCategory = useEmitPageViewCategory()
 
 const [data] = await useResource(
   () => ({
@@ -57,6 +56,6 @@ const [data] = await useResource(
 )
 
 onMounted(() => {
-  emitPageViewLabel(PAGE_LABELS.CATEGORY)
+  emitPageViewCategory()
 })
 </script>

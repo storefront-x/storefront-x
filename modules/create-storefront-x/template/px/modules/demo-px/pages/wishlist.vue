@@ -5,12 +5,11 @@
 <script setup lang="ts">
 import Wishlist from '#ioc/templates/Wishlist'
 import { onMounted } from 'vue'
-import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+import useEmitPageViewWishlist from '#ioc/bus/emitters/useEmitPageViewWishlist'
 
-const emitPageViewLabel = useEmitPageViewLabel()
+const emitPageViewWishlist = useEmitPageViewWishlist()
 
 onMounted(() => {
-  emitPageViewLabel(PAGE_LABELS.WISHLIST)
+  emitPageViewWishlist()
 })
 </script>

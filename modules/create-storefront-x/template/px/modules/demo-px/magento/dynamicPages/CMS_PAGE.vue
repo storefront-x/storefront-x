@@ -7,8 +7,7 @@ import useGetCmsPageById from '#ioc/services/useGetCmsPageById'
 import useResource from '#ioc/composables/useResource'
 import CmsPage from '#ioc/templates/CmsPage'
 import { onMounted } from 'vue'
-import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+import useEmitPageViewCmsPage from '#ioc/bus/emitters/useEmitPageViewCmsPage'
 
 const props = defineProps({
   entityUid: {
@@ -18,7 +17,7 @@ const props = defineProps({
 })
 
 const getCmsPageById = useGetCmsPageById()
-const emitPageViewLabel = useEmitPageViewLabel()
+const emitPageViewCmsPage = useEmitPageViewCmsPage()
 
 const [data] = await useResource(
   () => props.entityUid,
@@ -26,6 +25,6 @@ const [data] = await useResource(
 )
 
 onMounted(() => {
-  emitPageViewLabel(PAGE_LABELS.CMS_PAGE)
+  emitPageViewCmsPage()
 })
 </script>

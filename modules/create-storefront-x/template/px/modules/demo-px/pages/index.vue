@@ -43,11 +43,10 @@ const CategoryPreviews = hydrateWhenVisible(() => import('#ioc/molecules/Categor
 const ReviewShowreel = hydrateWhenVisible(() => import('#ioc/molecules/ReviewShowreel'))
 const BlogGrid = hydrateWhenVisible(() => import('#ioc/molecules/BlogGrid'))
 import { onMounted } from 'vue'
-import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+import useEmitPageViewHomepage from '#ioc/bus/emitters/useEmitPageViewHomepage'
 
 const { t } = useI18n()
-const emitPageViewLabel = useEmitPageViewLabel()
+const emitPageViewHomepage = useEmitPageViewHomepage()
 
 const containersSpacingClass = { 'mb-12': true }
 const usps = [
@@ -85,7 +84,7 @@ const reviews = [
 ]
 
 onMounted(() => {
-  emitPageViewLabel(PAGE_LABELS.HOMEPAGE)
+  emitPageViewHomepage()
 })
 </script>
 

@@ -8,12 +8,11 @@
 import SideAccountMenu from '#ioc/organisms/SideAccountMenu'
 import AccountDetail from '#ioc/templates/AccountDetail'
 import { onMounted } from 'vue'
-import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+import useEmitPageViewAccountHomepage from '#ioc/bus/emitters/useEmitPageViewAccountHomepage'
 
-const emitPageViewLabel = useEmitPageViewLabel()
+const emitPageViewAccountHomepage = useEmitPageViewAccountHomepage()
 
 onMounted(() => {
-  emitPageViewLabel(PAGE_LABELS.ACCOUNT)
+  emitPageViewAccountHomepage()
 })
 </script>

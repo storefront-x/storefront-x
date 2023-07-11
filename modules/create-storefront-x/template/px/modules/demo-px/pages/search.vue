@@ -10,12 +10,11 @@ import ensureArray from '#ioc/utils/array/ensureArray'
 import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 import useResource from '#ioc/composables/useResource'
 import { onMounted } from 'vue'
-import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+import useEmitPageViewSearch from '#ioc/bus/emitters/useEmitPageViewSearch'
 
 const route = useRoute()
 const getSearchSuggestions = useGetSearchSuggestions()
-const emitPageViewLabel = useEmitPageViewLabel()
+const emitPageViewSearch = useEmitPageViewSearch()
 
 const [data] = await useResource(
   () => ({
@@ -36,6 +35,6 @@ const [data] = await useResource(
 )
 
 onMounted(() => {
-  emitPageViewLabel(PAGE_LABELS.SEARCH)
+  emitPageViewSearch()
 })
 </script>

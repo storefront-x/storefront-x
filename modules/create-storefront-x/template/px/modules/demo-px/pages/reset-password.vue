@@ -5,12 +5,11 @@
 <script setup lang="ts">
 import ResetPassword from '#ioc/templates/ResetPassword'
 import { onMounted } from 'vue'
-import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+import useEmitPageViewResetPassword from '#ioc/bus/emitters/useEmitPageViewResetPassword'
 
-const emitPageViewLabel = useEmitPageViewLabel()
+const emitPageViewResetPassword = useEmitPageViewResetPassword()
 
 onMounted(() => {
-  emitPageViewLabel(PAGE_LABELS.RESET_PASSWORD)
+  emitPageViewResetPassword()
 })
 </script>

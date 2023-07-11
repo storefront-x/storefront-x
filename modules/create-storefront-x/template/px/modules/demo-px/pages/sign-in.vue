@@ -5,12 +5,11 @@
 <script setup lang="ts">
 import SignIn from '#ioc/templates/SignIn'
 import { onMounted } from 'vue'
-import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+import useEmitPageViewSignIn from '#ioc/bus/emitters/useEmitPageViewSignIn'
 
-const emitPageViewLabel = useEmitPageViewLabel()
+const emitPageViewSignIn = useEmitPageViewSignIn()
 
 onMounted(() => {
-  emitPageViewLabel(PAGE_LABELS.SIGN_IN)
+  emitPageViewSignIn()
 })
 </script>

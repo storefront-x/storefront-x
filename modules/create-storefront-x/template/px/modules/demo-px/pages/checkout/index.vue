@@ -5,12 +5,11 @@
 <script setup lang="ts">
 import Checkout from '#ioc/templates/Checkout'
 import { onMounted } from 'vue'
-import useEmitPageViewLabel from '#ioc/bus/emitters/useEmitPageViewLabel'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
+import useEmitPageViewCheckout from '#ioc/bus/emitters/useEmitPageViewCheckout'
 
-const emitPageViewLabel = useEmitPageViewLabel()
+const emitPageViewCheckout = useEmitPageViewCheckout()
 
 onMounted(() => {
-  emitPageViewLabel(PAGE_LABELS.CHECKOUT)
+  emitPageViewCheckout()
 })
 </script>

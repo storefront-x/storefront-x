@@ -22,7 +22,7 @@ export default 'YOUR ID HERE'
 
 This module is using speedCurve in SPA mode, meaning it sends beacon data when the user navigates to a new page. This way, you will get all the measurements and interactions done by the user in between pages. Also, the beacon with data is sent when the user leaves the page ( or simply changes a tab in the browser ) and after default 60 seconds are spent on the page.
 
-Labeling of pages can be done manually with `useAddSpeedCurveLabel` click [here](/modules/speed-curve.html#useaddspeedcurvelabel-composable) or using `emitPageViewLabel` from `@storefront-x/theme-tailwind` [here](/modules/theme-tailwind.html#pageviewlabel-event) with prepared listener doing the labeling in this module ( more about events and listeners [here](/advanced/event-bus.html) ). With this event you can use prepared labels from `config/PAGE_LABELS.ts` (only in Full-featured Magento module configuration). Of Course if you don't like default labels you can override them.
+Labeling of pages can be done manually with `useAddSpeedCurveLabel` click [here](/modules/speed-curve.html#useaddspeedcurvelabel-composable) or using default events on page loads from `@storefront-x/event-bus` [here](/advanced/event-bus.html#prepared-events) (only in Full-featured Magento module configuration) with prepared listener doing the labeling in this module ( more about events and listeners [here](/advanced/event-bus.html)).
 
 ### Example
 

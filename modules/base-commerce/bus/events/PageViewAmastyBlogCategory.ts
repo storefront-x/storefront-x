@@ -1,0 +1,2 @@
+type PageViewAmastyBlogCategory = any
+export default PageViewAmastyBlogCategory
