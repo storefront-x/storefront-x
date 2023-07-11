@@ -11,7 +11,6 @@ import { defineAsyncComponent } from 'vue'
 import BlogPostDetail from '#ioc/templates/BlogPostDetail'
 import { onMounted } from 'vue'
 import useEmitPageViewAmastyBlogPost from '#ioc/bus/emitters/useEmitPageViewAmastyBlogPost'
-import PAGE_LABELS from '#ioc/config/PAGE_LABELS'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 
