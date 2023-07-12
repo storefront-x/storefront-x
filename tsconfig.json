@@ -16,7 +16,6 @@
     "allowJs": true,
     "paths": {
       "@storefront-x/*": ["./modules/*"],
-      "#ioc/*": ["./.sfx/ioc/*"],
       "~/*": ["./*"]
     },
     "types": ["node", "cypress", "vitest/globals", "cypress-wait-until"]

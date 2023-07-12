@@ -12,6 +12,7 @@
   "workspaces": [
     "./modules/*"
   ],
+  "imports": {"#ioc/*": "./.sfx/ioc/*"},
   "scripts": {
     "test:unit": "npx vitest run",
     "test:playwright": "npx playwright test",
