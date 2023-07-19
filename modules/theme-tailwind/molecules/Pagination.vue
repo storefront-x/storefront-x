@@ -27,7 +27,7 @@
             page === pagination.currentPage
               ? 'text-white font-bold bg-primary-500 rounded-lg md:border-primary-500 md:text-primary-600'
               : 'text-black hover:text-white hover:font-bold hover:bg-primary-500 rounded-lg md:border-transparent md:text-gray-500 md:hover:text-gray-700 md:hover:border-gray-300',
-              pagination.currentPage > 1 && pagination.currentPage < pagination.lastPage
+            pagination.currentPage > 1 && pagination.currentPage < pagination.lastPage
               ? page < pagination.currentPage - 1 || page > pagination.currentPage + 1
                 ? 'hidden md:inline-flex'
                 : 'inline-flex'
@@ -97,11 +97,8 @@ import SolidArrowRight from '#ioc/icons/SolidArrowRight'
 import SolidChevronRight from '#ioc/icons/SolidChevronRight'
 import useI18n from '#ioc/composables/useI18n'
 
-    const { t } = useI18n()
-    const pagination = usePagination()
-
-
-
+const { t } = useI18n()
+const pagination = usePagination()
 </script>
 
 <i18n lang="yaml">

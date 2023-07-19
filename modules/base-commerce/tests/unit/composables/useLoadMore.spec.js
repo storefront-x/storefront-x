@@ -1,10 +1,10 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
-import isLoadNext from '#ioc/mixins/IsLoadNext'
+import useLoadMore from '#ioc/composables/useLoadMore'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const Component = {
-  template: `<div class="test">{{currentPage}}</div>`,
+  template: `<div class="test">{{loadMore.currentPage}}</div>`,
 }
 
 const routes = [
@@ -23,7 +23,7 @@ beforeEach(async () => {
   })
 })
 
-describe('mixins/isLoadNext', () => {
+describe('composables/useLoadMore', () => {
   it('shows current page', async () => {
     const wrapper = mount(Component, {
       global: {
@@ -33,18 +33,21 @@ describe('mixins/isLoadNext', () => {
         total: 9,
         perPage: 3,
       },
-      mixins: [isLoadNext],
+      setup: () => {
+        const loadMore = useLoadMore()
+        return { loadMore }
+      },
     })
 
     router.push({ query: { page: 2 } })
     await flushPromises()
 
-    expect(wrapper.vm.currentPage).toEqual(2)
+    expect(wrapper.vm.loadMore.currentPage).toEqual(2)
 
     router.push({ path: '/', query: { page: 1 } })
     await flushPromises()
 
-    expect(wrapper.vm.currentPage).toEqual(1)
+    expect(wrapper.vm.loadMore.currentPage).toEqual(1)
   })
 
   it('loads next page', async () => {
@@ -56,13 +59,16 @@ describe('mixins/isLoadNext', () => {
         total: 9,
         perPage: 3,
       },
-      mixins: [isLoadNext],
+      setup: () => {
+        const loadMore = useLoadMore()
+        return { loadMore }
+      },
     })
 
-    wrapper.vm.loadMore()
+    wrapper.vm.loadMore.load()
     await flushPromises()
 
-    expect(wrapper.vm.loadedPages).toEqual(2)
+    expect(wrapper.vm.loadMore.loadedPages).toEqual(2)
   })
 
   it('shows correct bool canLoadMore', async () => {
@@ -74,18 +80,21 @@ describe('mixins/isLoadNext', () => {
         total: 9,
         perPage: 3,
       },
-      mixins: [isLoadNext],
+      setup: () => {
+        const loadMore = useLoadMore()
+        return { loadMore }
+      },
     })
 
     router.push({ query: { page: 2 } })
     await flushPromises()
 
-    expect(wrapper.vm.canLoadMore).toEqual(true)
+    expect(wrapper.vm.loadMore.canLoadMore).toEqual(true)
 
     router.push({ path: '/', query: { page: 3 } })
     await flushPromises()
 
-    expect(wrapper.vm.canLoadMore).toEqual(false)
+    expect(wrapper.vm.loadMore.canLoadMore).toEqual(false)
   })
 
   it('displays correct loadMoreUrl', async () => {
@@ -97,17 +106,20 @@ describe('mixins/isLoadNext', () => {
         total: 12,
         perPage: 3,
       },
-      mixins: [isLoadNext],
+      setup: () => {
+        const loadMore = useLoadMore()
+        return { loadMore }
+      },
     })
 
-    wrapper.vm.loadMore()
+    wrapper.vm.loadMore.load()
     await flushPromises()
 
-    expect(wrapper.vm.loadMoreUrl).toEqual('?page=3&pages=3')
+    expect(wrapper.vm.loadMore.loadMoreUrl).toEqual('?page=3&pages=3')
 
-    wrapper.vm.loadMore()
+    wrapper.vm.loadMore.load()
     await flushPromises()
 
-    expect(wrapper.vm.loadMoreUrl).toEqual('?page=4&pages=4')
+    expect(wrapper.vm.loadMore.loadMoreUrl).toEqual('?page=4&pages=4')
   })
 })

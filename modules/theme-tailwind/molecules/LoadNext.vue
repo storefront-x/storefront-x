@@ -1,38 +1,39 @@
 <template>
   <Button
-    v-if="canLoadMore"
+    v-if="loadMore.canLoadMore"
     color="primary"
     tag="a"
-    :href="loadMoreUrl"
+    :href="loadMore.loadMoreUrl"
     data-cy="load-more"
     class="w-full md:w-fit md:mx-auto"
-    @click.prevent="loadMore"
+    @click.prevent="loadMore.load()"
   >
-    {{ t('load_next', [perPage]) }}
+    {{ t('load_next', [props.perPage]) }}
   </Button>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
-import IsLoadNext from '#ioc/mixins/IsLoadNext'
-import { defineComponent } from 'vue'
+import useLoadMore from '#ioc/composables/useLoadMore'
+import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 
-export default defineComponent({
-  components: {
-    Button,
+const props = defineProps({
+  total: {
+    type: Number,
+    required: true,
+    default: 0,
   },
-
-  mixins: [IsLoadNext],
-
-  setup() {
-    const { t } = useI18n()
-
-    return {
-      t,
-    }
+  perPage: {
+    type: Number,
+    required: false,
+    default: CATALOG_PAGE_SIZE,
   },
 })
+
+const loadMore = useLoadMore(props)
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yaml">

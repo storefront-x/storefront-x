@@ -1,6 +1,6 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
-import isPagination from '#ioc/mixins/IsPagination'
+import usePagination from '#ioc/composables/usePagination'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const Component = {
@@ -23,7 +23,7 @@ beforeEach(async () => {
   })
 })
 
-describe('mixins/isPagination', () => {
+describe('composables/usePagination', () => {
   it('shows current page', async () => {
     const wrapper = mount(Component, {
       global: {
@@ -33,18 +33,22 @@ describe('mixins/isPagination', () => {
         total: 9,
         perPage: 3,
       },
-      mixins: [isPagination],
+      setup: () => {
+        const pagination = usePagination()
+        return { pagination }
+      },
     })
 
     router.push({ query: { page: 2 } })
+
     await flushPromises()
 
-    expect(wrapper.vm.currentPage).toEqual(2)
+    expect(wrapper.vm.pagination.currentPage).toEqual(2)
 
     router.push({ query: { page: 1 } })
     await flushPromises()
 
-    expect(wrapper.vm.currentPage).toEqual(1)
+    expect(wrapper.vm.pagination.currentPage).toEqual(1)
   })
 
   it('returns correct pagination url', async () => {
@@ -56,9 +60,12 @@ describe('mixins/isPagination', () => {
         total: 9,
         perPage: 3,
       },
-      mixins: [isPagination],
+      setup: () => {
+        const pagination = usePagination()
+        return { pagination }
+      },
     })
 
-    expect(wrapper.vm.getUrlFor(3)).toEqual('/?page=3')
+    expect(wrapper.vm.pagination.getUrlFor(3)).toEqual('/?page=3')
   })
 })
