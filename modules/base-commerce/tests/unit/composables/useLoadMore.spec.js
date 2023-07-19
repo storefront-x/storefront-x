@@ -33,8 +33,8 @@ describe('composables/useLoadMore', () => {
         total: 9,
         perPage: 3,
       },
-      setup: () => {
-        const loadMore = useLoadMore()
+      setup: (props) => {
+        const loadMore = useLoadMore(props)
         return { loadMore }
       },
     })
@@ -59,8 +59,8 @@ describe('composables/useLoadMore', () => {
         total: 9,
         perPage: 3,
       },
-      setup: () => {
-        const loadMore = useLoadMore()
+      setup: (props) => {
+        const loadMore = useLoadMore(props)
         return { loadMore }
       },
     })
@@ -80,8 +80,8 @@ describe('composables/useLoadMore', () => {
         total: 9,
         perPage: 3,
       },
-      setup: () => {
-        const loadMore = useLoadMore()
+      setup: (props) => {
+        const loadMore = useLoadMore(props)
         return { loadMore }
       },
     })
@@ -106,8 +106,8 @@ describe('composables/useLoadMore', () => {
         total: 12,
         perPage: 3,
       },
-      setup: () => {
-        const loadMore = useLoadMore()
+      setup: (props) => {
+        const loadMore = useLoadMore(props)
         return { loadMore }
       },
     })
