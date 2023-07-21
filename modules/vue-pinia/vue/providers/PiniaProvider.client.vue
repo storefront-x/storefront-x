@@ -5,7 +5,7 @@
 <script setup>
 import { onMounted } from 'vue'
 
-const inits = import.meta.glob('#ioc/stores/*.clientInit.*', { eager: true })
+const inits = import.meta.glob('~/.sfx/ioc/stores/*.clientInit.*', { eager: true })
 
 const bindedInits = Object.values(inits ?? {}).map(({ default: use }) => use())
 
