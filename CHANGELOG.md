@@ -1,3 +1,13 @@
+## v1.21.1 (2023-07-21)
+
+#### :rocket: Enhancement
+
+- [#441](https://github.com/storefront-x/storefront-x/pull/441) Added usePagination and useLoadMore ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.21.0 (2023-07-11)
 
 #### :boom: Breaking Change
