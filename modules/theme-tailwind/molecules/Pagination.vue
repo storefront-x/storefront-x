@@ -8,7 +8,7 @@
       <div class="-mt-px flex order-2 justify-center basis-auto md:flex">
         <RouterLink
           v-if="pagination.leftLastItem"
-          :to="getUrlFor(1)"
+          :to="pagination.getUrlFor(1)"
           class="hover:text-white hover:font-bold hover:bg-primary-500 md:hover:bg-inherit rounded-lg md:rounded-none md:border-t-2 border-transparent md:pt-4 px-2 md:px-4 inline-flex items-center font-base md:font-medium text-black md:text-gray-500 md:hover:text-gray-700 md:hover:border-gray-300"
         >
           {{ pagination.firstPage }}
@@ -22,19 +22,15 @@
           v-for="page in pagination.pages"
           :key="page"
           :to="pagination.getUrlFor(page)"
-          :class="[
-            'md:border-t-2 md:pt-4 px-2 mx-1 md:px-4 items-center font-base md:font-medium md:bg-inherit md:hover:bg-inherit md:rounded-none',
-            page === pagination.currentPage
-              ? 'text-white font-bold bg-primary-500 rounded-lg md:border-primary-500 md:text-primary-600'
-              : 'text-black hover:text-white hover:font-bold hover:bg-primary-500 rounded-lg md:border-transparent md:text-gray-500 md:hover:text-gray-700 md:hover:border-gray-300',
-            pagination.currentPage > 1 && pagination.currentPage < pagination.lastPage
-              ? page < pagination.currentPage - 1 || page > pagination.currentPage + 1
-                ? 'hidden md:inline-flex'
-                : 'inline-flex'
-              : page < pagination.currentPage - 2 || page > pagination.currentPage + 2
-              ? 'hidden md:inline-flex'
-              : 'inline-flex',
-          ]"
+          class="'md:border-t-2 md:pt-4 px-2 mx-1 md:px-4 items-center font-base md:font-medium md:bg-inherit md:hover:bg-inherit md:rounded-none'"
+          :class="{
+            'text-white font-bold bg-primary-500 rounded-lg md:border-primary-500 md:text-primary-600':
+              page == pagination.currentPage,
+            'text-black hover:text-white hover:font-bold hover:bg-primary-500 rounded-lg md:border-transparent md:text-gray-500 md:hover:text-gray-700 md:hover:border-gray-300':
+              page !== pagination.currentPage,
+            'hidden': pagination.isPageVisible(page),
+            'inline-flex': !pagination.isPageVisible(page),
+          }"
         >
           {{ page }}
         </RouterLink>
@@ -96,9 +92,28 @@ import SolidArrowLeft from '#ioc/icons/SolidArrowLeft'
 import SolidArrowRight from '#ioc/icons/SolidArrowRight'
 import SolidChevronRight from '#ioc/icons/SolidChevronRight'
 import useI18n from '#ioc/composables/useI18n'
+import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
+
+const props = defineProps({
+  total: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  perPage: {
+    type: Number,
+    required: false,
+    default: CATALOG_PAGE_SIZE,
+  },
+  extraPages: {
+    type: Number,
+    required: false,
+    default: 2,
+  },
+})
 
 const { t } = useI18n()
-const pagination = usePagination()
+const pagination = usePagination(props)
 </script>
 
 <i18n lang="yaml">

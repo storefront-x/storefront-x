@@ -34,7 +34,7 @@ export default () => {
     previousProducts.push(...categoryResponse.products)
 
     if (pages > 1 && previousProducts.length > 0) {
-      return { ...categoryResponse, products: previousProducts }
+      return { ...categoryResponse, products: [...categoryResponse.products, ...previousProducts] }
     } else {
       // User clicks on page, thus resetting load more.
       previousProducts = []

@@ -1,29 +1,10 @@
-import CATALOG_PAGE_SIZE from '#ioc/config/CATALOG_PAGE_SIZE'
 import useRouterQuery from '#ioc/composables/useRouterQuery'
 import useRoute from '#ioc/composables/useRoute'
-import { defineProps, computed, reactive } from 'vue'
+import { computed, reactive } from 'vue'
 
-export default () => {
+export default (props: { total: number; perPage: number; extraPages: number }) => {
   const route = useRoute()
   const routerQuery = useRouterQuery()
-
-  const props = defineProps({
-    total: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    perPage: {
-      type: Number,
-      required: false,
-      default: CATALOG_PAGE_SIZE,
-    },
-    extraPages: {
-      type: Number,
-      required: false,
-      default: 2,
-    },
-  })
 
   const currentPage = computed(() => {
     return Number(route.query.page) || 1
@@ -71,6 +52,10 @@ export default () => {
     return Math.min(leftPagesTotal.value, props.extraPages * 2 - isOnRight)
   })
 
+  const isNotFirstOrLastPage = computed(() => {
+    return currentPage.value > 1 && currentPage.value < lastPage.value
+  })
+
   const pages = computed(() => {
     const pages = []
 
@@ -115,6 +100,10 @@ export default () => {
     return route.path + '?' + routerQuery.getQuery({ page: pageToSet, pages: undefined })
   }
 
+  const isPageVisible = (page: number) => {
+    return page < currentPage.value - 2 || page > currentPage.value + 2
+  }
+
   return reactive({
     currentPage,
     nextPage,
@@ -126,6 +115,7 @@ export default () => {
     isOnLastPage,
     leftPagesTotal,
     rightPagesTotal,
+    isNotFirstOrLastPage,
     leftPages,
     pages,
     rightPages,
@@ -134,5 +124,6 @@ export default () => {
     leftLastItem,
     rightLastItem,
     getUrlFor,
+    isPageVisible,
   })
 }

@@ -3,7 +3,7 @@ import useRouterQuery from '#ioc/composables/useRouterQuery'
 
 import { computed, reactive } from 'vue'
 
-export default (props: any) => {
+export default (props: { total: number; perPage: number }) => {
   const routerQuery = useRouterQuery()
   const route = useRoute()
 
@@ -26,7 +26,6 @@ export default (props: any) => {
   })
 
   const lastPage = computed(() => {
-    console.log(props)
     return Math.ceil(props.total / props.perPage)
   })
 

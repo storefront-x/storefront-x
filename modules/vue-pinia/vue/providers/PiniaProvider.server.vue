@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-const inits = import.meta.glob('#ioc/stores/*.serverInit.*', { eager: true })
+const inits = import.meta.glob('~/.sfx/ioc/stores/*.serverInit.*', { eager: true })
 
 const bindedInits = Object.values(inits ?? {}).map(({ default: use }) => use())
 
