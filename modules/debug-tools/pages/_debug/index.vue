@@ -7,12 +7,8 @@
             <Code :content="request.url" />
           </Section>
 
-          <Section title="Query" open>
-            <Code :content="request.query" />
-          </Section>
-
-          <Section title="Variables" open>
-            <Code :content="request.variables" />
+          <Section v-for="(field, i) in request.fields" :key="i" :title="field.title" :open="field.openByDefault">
+            <Code :content="field.value" />
           </Section>
 
           <Section title="Request headers" open>
@@ -23,8 +19,8 @@
             <Code :content="request.responseHeaders" />
           </Section>
 
-          <Section title="Response" open>
-            <Code :content="request.json" />
+          <Section title="Response">
+            <Code :content="request.response" />
           </Section>
         </Section>
       </Section>

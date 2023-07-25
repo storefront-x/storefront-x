@@ -6,20 +6,25 @@ global.debugToolsData = []
 export const after = async (app: App, ctx: any) => {
   if (ctx.event.node.req.url.includes('/_debug')) return
 
+  if (!ctx.debugTools) {
+    ctx.debugTools = {
+      time: Date.now(),
+      requests: [],
+    }
+  }
+
   const requests: any[] = []
 
-  for (const { request, response, gql } of ctx.debugTools.requests) {
-    const json = await response.json()
-
+  for (const { url, name, request, response, fields } of ctx.debugTools.requests) {
     requests.push({
-      url: request.url,
-      name: gql._name,
-      query: gql.toString(),
-      variables: JSON.stringify(gql._bindings, null, '  '),
-      hasErrors: json.errors?.length > 0,
-      json: JSON.stringify(json, null, '  '),
+      url,
+      name,
       requestHeaders: JSON.stringify(Object.fromEntries(request.headers), null, '  '),
       responseHeaders: JSON.stringify(Object.fromEntries(response.headers), null, '  '),
+      response: await (response.headers.get('content-type')?.includes('application/json')
+        ? response.json()
+        : response.text()),
+      fields,
     })
   }
 

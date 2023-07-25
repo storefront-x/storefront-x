@@ -3290,6 +3290,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/debug-tools-magento@workspace:modules/debug-tools-magento":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/debug-tools-magento@workspace:modules/debug-tools-magento"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/debug-tools@workspace:modules/debug-tools":
   version: 0.0.0-use.local
   resolution: "@storefront-x/debug-tools@workspace:modules/debug-tools"
