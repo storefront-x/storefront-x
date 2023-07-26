@@ -64,10 +64,15 @@ export default class Dev extends Core {
             e.stack = e.stack.replace(/\/@fs\//g, '/')
           }
 
-          const youch = new Youch(e, event.node.req)
-          const html = await youch.toHTML()
           setResponseStatus(event, 500)
-          return html
+
+          if (process.env.NODE_ENV === 'test') {
+            return e.toString()
+          } else {
+            const youch = new Youch(e, event.node.req)
+            const html = await youch.toHTML()
+            return html
+          }
         }
       }),
     )
