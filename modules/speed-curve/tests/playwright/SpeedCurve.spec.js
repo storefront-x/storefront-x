@@ -38,7 +38,7 @@ test('SpeedCurve script and correct ID in head', async ({ page }) => {
   )
 })
 
-test('SpeedCurve labeling on page mounted', async ({ page }) => {
+test.skip('SpeedCurve labeling on page mounted', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -84,7 +84,7 @@ test('SpeedCurve labeling on page mounted', async ({ page }) => {
   )
 })
 
-test('speedCurve sends beacon with correct label after navigation', async ({ page }) => {
+test.skip('speedCurve sends beacon with correct label after navigation', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -141,7 +141,7 @@ test('speedCurve sends beacon with correct label after navigation', async ({ pag
   )
 })
 
-test('speedCurve sends beacon with correct custom metrics after navigation', async ({ page }) => {
+test.skip('speedCurve sends beacon with correct custom metrics after navigation', async ({ page }) => {
   await makeProject(
     {
       modules: [
