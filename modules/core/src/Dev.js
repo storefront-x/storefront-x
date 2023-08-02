@@ -67,7 +67,8 @@ export default class Dev extends Core {
           setResponseStatus(event, 500)
 
           if (process.env.NODE_ENV === 'test') {
-            return e.toString()
+            consola.error(e)
+            return e.message ?? e
           } else {
             const youch = new Youch(e, event.node.req)
             const html = await youch.toHTML()
