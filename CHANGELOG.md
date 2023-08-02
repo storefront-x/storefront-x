@@ -1,3 +1,19 @@
+## v1.22.0 (2023-08-02)
+
+#### :rocket: Enhancement
+
+- [#443](https://github.com/storefront-x/storefront-x/pull/443) Don't use Youch in test mode ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#442](https://github.com/storefront-x/storefront-x/pull/442) Make debug tools universal ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#444](https://github.com/storefront-x/storefront-x/pull/444) Temporary fix speedCurve tests skip ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 2
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.21.1 (2023-07-21)
 
 #### :rocket: Enhancement
