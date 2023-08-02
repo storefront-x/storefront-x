@@ -25,7 +25,7 @@ test('handle syntax error', async ({ page }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('SyntaxError')
+      await expect(await page.content()).toContain('Attribute name cannot contain')
     },
   )
 })
