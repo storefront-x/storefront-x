@@ -48,6 +48,16 @@ export default defineComponent({
       default: null,
       validator: (value: string) => ['cover', 'contain', 'fill', 'inside', 'outside'].includes(value),
     },
+    position: {
+      type: String as PropType<
+        'center' | 'top' | 'right top' | 'right' | 'right bottom' | 'bottom' | 'left bottom' | 'left' | 'left top'
+      >,
+      default: null,
+      validator: (value: string) =>
+        ['center', 'top', 'right top', 'right', 'right bottom', 'bottom', 'left bottom', 'left', 'left top'].includes(
+          value,
+        ),
+    },
     format: {
       type: [Array, String],
       default: () => ['webp', 'jpeg'],
@@ -98,6 +108,7 @@ export default defineComponent({
         w: this.width && this.width * multiple,
         h: this.height && this.height * multiple,
         fit: this.fit,
+        position: this.position,
         format,
         ...rest,
       })
