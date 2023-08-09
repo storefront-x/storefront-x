@@ -32,6 +32,7 @@ const resizeImage = async (event: H3Event) => {
   const format = getFormat(query)
   const { width, height } = getSize(query)
   const fit = getFit(query)
+  const position = getPosition(query)
   const background = getBackground(query)
 
   const image = await fetchImage(path)
@@ -47,6 +48,7 @@ const resizeImage = async (event: H3Event) => {
       width,
       height,
       fit,
+      position,
       background: format !== 'png' ? background : { r: 1, g: 1, b: 1, alpha: 0 },
     })
   }
@@ -118,6 +120,23 @@ const getFit = (query: QueryObject) => {
     return query.fit
   } else {
     return 'cover'
+  }
+}
+
+const getPosition = (query: QueryObject) => {
+  if (
+    query.position === 'top' ||
+    query.position === 'right top' ||
+    query.position === 'right' ||
+    query.position === 'right bottom' ||
+    query.position === 'bottom' ||
+    query.position === 'left bottom' ||
+    query.position === 'left' ||
+    query.position === 'left top'
+  ) {
+    return query.position
+  } else {
+    return 'center'
   }
 }
 
