@@ -1,3 +1,13 @@
+## v1.22.1 (2023-08-09)
+
+#### :rocket: Enhancement
+
+- [#445](https://github.com/storefront-x/storefront-x/pull/445) Add position prop to SfxImage ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.22.0 (2023-08-02)
 
 #### :rocket: Enhancement
