@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/cms",
-  "version": "1.22.0",
+  "version": "1.22.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
