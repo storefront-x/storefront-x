@@ -1,3 +1,13 @@
+## v1.22.2 (2023-08-10)
+
+#### :bug: Bug Fix
+
+- [#446](https://github.com/storefront-x/storefront-x/pull/446) Fix rendering of preload links for some assets ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.22.1 (2023-08-09)
 
 #### :rocket: Enhancement
