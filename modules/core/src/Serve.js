@@ -59,7 +59,7 @@ export default class Serve extends Core {
             event,
             entry,
             template,
-            manifest,
+            manifest: this._normalizeManifest(manifest),
           })
 
           return response
@@ -114,5 +114,21 @@ export default class Serve extends Core {
     }
 
     app.use(router)
+  }
+
+  _normalizeManifest(manifest) {
+    const normalized = {}
+
+    for (const [key, value] of Object.entries(manifest)) {
+      const normalizedKey = key.split('?')[0]
+
+      if (!normalized[normalizedKey]) {
+        normalized[normalizedKey] = []
+      }
+
+      normalized[normalizedKey].push(...value)
+    }
+
+    return normalized
   }
 }
