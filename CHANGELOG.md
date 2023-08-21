@@ -1,3 +1,13 @@
+## v1.22.3 (2023-08-21)
+
+#### :bug: Bug Fix
+
+- [#447](https://github.com/storefront-x/storefront-x/pull/447) Remove savePosition param from subsequent navigations ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.22.2 (2023-08-10)
 
 #### :bug: Bug Fix
