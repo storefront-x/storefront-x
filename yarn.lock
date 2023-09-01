@@ -3457,6 +3457,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/schema-validation@workspace:modules/schema-validation":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/schema-validation@workspace:modules/schema-validation"
+  dependencies:
+    valibot: ^0.13.1
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/sentry-client@workspace:modules/sentry-client":
   version: 0.0.0-use.local
   resolution: "@storefront-x/sentry-client@workspace:modules/sentry-client"
@@ -15549,6 +15557,13 @@ __metadata:
   version: 2.3.0
   resolution: "v8-compile-cache@npm:2.3.0"
   checksum: adb0a271eaa2297f2f4c536acbfee872d0dd26ec2d76f66921aa7fc437319132773483344207bdbeee169225f4739016d8d2dbf0553913a52bb34da6d0334f8e
+  languageName: node
+  linkType: hard
+
+"valibot@npm:^0.13.1":
+  version: 0.13.1
+  resolution: "valibot@npm:0.13.1"
+  checksum: f7c8a1b6dbd2b0cd1a200bfa6d85e5ce0bae3a723e1a691ac89fead3579af5561762a37563b27d9cf22c281b99890dea7cebab47ea579d4d9e1ba47e63b56e32
   languageName: node
   linkType: hard
 
