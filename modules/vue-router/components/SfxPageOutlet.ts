@@ -3,17 +3,28 @@
 
 import useEmitNavigationEnd from '#ioc/bus/emitters/useEmitNavigationEnd'
 import useEmitNavigationStart from '#ioc/bus/emitters/useEmitNavigationStart'
-import { computed, defineComponent, h, provide, reactive, Suspense } from 'vue'
-import { RouterView } from 'vue-router'
+import { computed, defineComponent, h, provide, reactive, Suspense, PropType } from 'vue'
+import { RouterView, RouteLocation } from 'vue-router'
 
 export default defineComponent({
   name: 'SfxPageOutlet',
-  setup: () => {
+  props: {
+    pageKey: {
+      type: [String, Function] as PropType<keyof RouteLocation | ((route: RouteLocation) => string)>,
+      default: 'fullPath',
+    },
+  },
+  setup: (props) => {
     const emitNavigationStart = useEmitNavigationStart()
     const emitNavigationEnd = useEmitNavigationEnd()
 
     const onPending = () => emitNavigationStart({})
     const onResolve = () => emitNavigationEnd({})
+
+    // eslint-disable-next-line vue/no-setup-props-destructure
+    const pageKey = props.pageKey
+
+    const pageKeyFn = typeof pageKey === 'function' ? pageKey : (route: RouteLocation) => JSON.stringify(route[pageKey])
 
     const _default = (slot: any) =>
       h(
@@ -25,8 +36,8 @@ export default defineComponent({
         {
           default: () =>
             h(SfxRouteProvider, {
-              key: slot.route.path,
-              pageKey: slot.route.path,
+              key: pageKeyFn(slot.route),
+              pageKey: pageKeyFn(slot.route),
               component: slot.Component,
               route: slot.route,
             }),
