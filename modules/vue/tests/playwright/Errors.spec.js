@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject, wrapConsole } from '@storefront-x/testing'
 
 test('handle syntax error', async ({ page }) => {
   await makeProject(
@@ -24,8 +24,10 @@ test('handle syntax error', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url, { waitUntil: 'networkidle' })
-      await expect(await page.content()).toContain('Attribute name cannot contain')
+      await wrapConsole(async () => {
+        await page.goto(url, { waitUntil: 'networkidle' })
+        await expect(await page.content()).toContain('Attribute name cannot contain')
+      })
     },
   )
 })

@@ -16,9 +16,11 @@ test('magento error handling is working', async ({ page }) => {
         [
           'my-module',
           {
-            components: {
-              'Error.vue': `
-                <template></template>
+            pages: {
+              'index.vue': `
+                <template>
+                  <div />
+                </template>
                 <script setup>
                   import MagentoError from '#ioc/errors/MagentoError'
 
@@ -27,15 +29,13 @@ test('magento error handling is working', async ({ page }) => {
                   })
                 </script>
               `,
-            },
-            pages: {
-              'index.vue': `
+              '$layout.vue': `
                 <template>
-                  <Error />
+                  <SfxPageOutlet />
                   <p v-if="notification.notifications" id="errMsg">{{ notification.notifications[0].message }}</p>
                 </template>
                 <script setup>
-                  import Error from '#ioc/components/Error'
+                  import SfxPageOutlet from '#ioc/components/SfxPageOutlet'
                   import useNotificationStore from '#ioc/stores/useNotificationStore'
 
                   const notification = useNotificationStore()
@@ -87,9 +87,11 @@ test('magento error messages translation is working', async ({ page }) => {
         [
           'my-module',
           {
-            components: {
-              'Error.vue': `
-                <template></template>
+            pages: {
+              'index.vue': `
+                <template>
+                  <div />
+                </template>
                 <script setup>
                   import MagentoError from '#ioc/errors/MagentoError'
 
@@ -98,15 +100,13 @@ test('magento error messages translation is working', async ({ page }) => {
                   })
                 </script>
               `,
-            },
-            pages: {
-              'index.vue': `
+              '$layout.vue': `
                 <template>
-                  <Error />
+                  <SfxPageOutlet />
                   <p v-if="notification.notifications" id="errMsg">{{ notification.notifications[0].message }}</p>
                 </template>
                 <script setup>
-                  import Error from '#ioc/components/Error'
+                  import SfxPageOutlet from '#ioc/components/SfxPageOutlet'
                   import useNotificationStore from '#ioc/stores/useNotificationStore'
 
                   const notification = useNotificationStore()

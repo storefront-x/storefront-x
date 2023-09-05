@@ -3,35 +3,44 @@
 
 import useEmitNavigationEnd from '#ioc/bus/emitters/useEmitNavigationEnd'
 import useEmitNavigationStart from '#ioc/bus/emitters/useEmitNavigationStart'
-import { computed, defineComponent, h, provide, reactive, Suspense } from 'vue'
+import { computed, defineComponent, h, provide, reactive, Suspense, onErrorCaptured, ref } from 'vue'
 import { RouterView } from 'vue-router'
+import { Error } from '~/.sfx/pages'
 
 export default defineComponent({
   name: 'SfxPageOutlet',
   setup: () => {
+    const hasError = ref(false)
+
     const emitNavigationStart = useEmitNavigationStart()
     const emitNavigationEnd = useEmitNavigationEnd()
 
-    const onPending = () => emitNavigationStart({})
-    const onResolve = () => emitNavigationEnd({})
+    const onPending = () => emitNavigationStart()
+    const onResolve = () => emitNavigationEnd()
+
+    onErrorCaptured(() => {
+      hasError.value = true
+    })
 
     const _default = (slot: any) =>
-      h(
-        Suspense,
-        {
-          onPending,
-          onResolve,
-        },
-        {
-          default: () =>
-            h(SfxRouteProvider, {
-              key: slot.route.path,
-              pageKey: slot.route.path,
-              component: slot.Component,
-              route: slot.route,
-            }),
-        },
-      )
+      !hasError.value
+        ? h(
+            Suspense,
+            {
+              onPending,
+              onResolve,
+            },
+            {
+              default: () =>
+                h(SfxRouteProvider, {
+                  key: slot.route.path,
+                  pageKey: slot.route.path,
+                  component: slot.Component,
+                  route: slot.route,
+                }),
+            },
+          )
+        : h(Error)
 
     return () => h(RouterView, {}, { default: _default })
   },

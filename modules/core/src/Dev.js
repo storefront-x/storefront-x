@@ -2,7 +2,6 @@ import path from 'node:path'
 import fs from 'node:fs/promises'
 import * as vite from 'vite'
 import { createApp, eventHandler, fromNodeMiddleware, createRouter, setResponseStatus } from 'h3'
-import consola from 'consola'
 import Youch from 'youch'
 import Core from './Core.js'
 import process from 'node:process'
@@ -37,7 +36,7 @@ export default class Dev extends Core {
     await this._loadServerRoutes(app, viteDevServer)
 
     process.on('unhandledRejection', (reason) => {
-      consola.error(reason)
+      console.error(reason)
     })
 
     app.use(
@@ -67,7 +66,7 @@ export default class Dev extends Core {
           setResponseStatus(event, 500)
 
           if (process.env.NODE_ENV === 'test') {
-            consola.error(e)
+            console.error(e)
             return e.message ?? e
           } else {
             const youch = new Youch(e, event.node.req)

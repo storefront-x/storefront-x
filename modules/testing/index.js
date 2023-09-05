@@ -74,6 +74,10 @@ export const makeProject = async (config, callback) => {
 }
 
 export const buildProject = async (config, callback = () => undefined) => {
+  const OLD_NODE_ENV = process.env.NODE_ENV
+
+  process.env.NODE_ENV = 'production'
+
   await makeTempDir(async (dir) => {
     for (const pkg of config.modules) {
       if (typeof pkg === 'string') continue
@@ -116,6 +120,8 @@ export const buildProject = async (config, callback = () => undefined) => {
       })
     } finally {
       await server.close()
+
+      process.env.NODE_ENV = OLD_NODE_ENV
     }
   })
 }
@@ -123,9 +129,12 @@ export const buildProject = async (config, callback = () => undefined) => {
 export const wrapConsole = async (callback) => {
   const errors = []
   const warnings = []
+  const logs = []
 
   const oldError = console.error
   const oldWarn = console.warn
+  // eslint-disable-next-line no-console
+  const olLog = console.log
 
   console.error = (e) => {
     errors.push(e.toString())
@@ -135,12 +144,23 @@ export const wrapConsole = async (callback) => {
     warnings.push(e.toString())
   }
 
+  // eslint-disable-next-line no-console
+  console.log = (e) => {
+    logs.push(e.toString())
+  }
+
   await callback()
 
   console.error = oldError
   console.warn = oldWarn
+  // eslint-disable-next-line no-console
+  console.log = olLog
 
-  return { errors: errors.join('\n'), warnings: warnings.join('\n') }
+  return {
+    errors: errors.join('\n'),
+    warnings: warnings.join('\n'),
+    logs: logs.join('\n'),
+  }
 }
 const makeTempDir = async (fn) => {
   const dir = await fs.mkdtemp('.test/temp-')
