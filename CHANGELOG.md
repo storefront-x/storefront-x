@@ -1,3 +1,16 @@
+## v1.23.0 (2023-09-05)
+
+#### :rocket: Enhancement
+
+- [#451](https://github.com/storefront-x/storefront-x/pull/451) Change pageKey to fullPath & make it configurable ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#452](https://github.com/storefront-x/storefront-x/pull/452) Upgrade vue-i18n & @intlify/unplugin-vue-i18n to stable versions ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#449](https://github.com/storefront-x/storefront-x/pull/449) Improve typing and error handling of useResource ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#448](https://github.com/storefront-x/storefront-x/pull/448) Add schema-validation module ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.22.3 (2023-08-21)
 
 #### :bug: Bug Fix
