@@ -1,7 +1,6 @@
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import url from 'node:url'
-import consola from 'consola'
 import Core from './Core.js'
 import { createApp, eventHandler, fromNodeMiddleware, createRouter, setResponseStatus } from 'h3'
 import compression from 'compression'
@@ -25,7 +24,8 @@ export default class Serve extends Core {
     const app = createApp()
 
     if (this.argv.compression) {
-      consola.withTag('serve').info('Enabling compression')
+      // eslint-disable-next-line no-console
+      console.info('Enabling compression')
 
       app.use(fromNodeMiddleware(compression()))
     }
@@ -65,7 +65,7 @@ export default class Serve extends Core {
           return response
         } catch (e) {
           //@ts-ignore
-          consola.error(e)
+          console.error(e)
           setResponseStatus(event, 500)
           if (this.argv.failOnServerError) {
             return 'Internal server error'
