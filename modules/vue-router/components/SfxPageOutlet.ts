@@ -15,11 +15,9 @@ export default defineComponent({
     const emitNavigationStart = useEmitNavigationStart()
     const emitNavigationEnd = useEmitNavigationEnd()
 
-    const onPending = () => emitNavigationStart()
-    const onResolve = () => emitNavigationEnd()
-
     onErrorCaptured(() => {
       hasError.value = true
+      emitNavigationEnd()
     })
 
     const _default = (slot: any) =>
@@ -27,8 +25,8 @@ export default defineComponent({
         ? h(
             Suspense,
             {
-              onPending,
-              onResolve,
+              onPending: () => emitNavigationStart(),
+              onResolve: () => emitNavigationEnd(),
             },
             {
               default: () =>
