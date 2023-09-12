@@ -44,11 +44,10 @@ const ReviewShowreel = hydrateWhenVisible(() => import('#ioc/molecules/ReviewSho
 const BlogGrid = hydrateWhenVisible(() => import('#ioc/molecules/BlogGrid'))
 import { onMounted } from 'vue'
 import useEmitPageViewHomepage from '#ioc/bus/emitters/useEmitPageViewHomepage'
-import BUILD_TIME_VERSION from '#ioc/config/BUILD_TIME_VERSION'
 
 const { t } = useI18n()
 const emitPageViewHomepage = useEmitPageViewHomepage()
-console.log('Build time version:', BUILD_TIME_VERSION)
+
 const containersSpacingClass = { 'mb-12': true }
 const usps = [
   {
