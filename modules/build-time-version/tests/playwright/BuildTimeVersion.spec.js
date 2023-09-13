@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('exports as config to ioc', async ({ page }) => {
+test('exports as config to ioc', async ({ page }) => {
   await makeProject(
     {
       modules: [

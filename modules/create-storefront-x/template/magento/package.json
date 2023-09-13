@@ -22,6 +22,7 @@
     "@storefront-x/atomic-design": "^1.0.0",
     "@storefront-x/base-commerce": "^1.0.0",
     "@storefront-x/base": "^1.0.0",
+    "@storefront-x/build-time-version": "^1.0.0",
     "@storefront-x/cart-magento": "^1.0.0",
     "@storefront-x/cart": "^1.0.0",
     "@storefront-x/catalog-magento": "^1.0.0",

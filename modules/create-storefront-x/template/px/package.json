@@ -28,6 +28,7 @@
     "@storefront-x/braintree": "^1.0.0",
     "@storefront-x/brands-magento": "^1.0.0",
     "@storefront-x/brands": "^1.0.0",
+    "@storefront-x/build-time-version": "^1.0.0",
     "@storefront-x/cart-magento": "^1.0.0",
     "@storefront-x/cart": "^1.0.0",
     "@storefront-x/catalog-attributes-magento": "^1.0.0",
