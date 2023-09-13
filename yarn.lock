@@ -3126,6 +3126,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/build-time-version@workspace:modules/build-time-version":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/build-time-version@workspace:modules/build-time-version"
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/cart-magento@workspace:modules/cart-magento":
   version: 0.0.0-use.local
   resolution: "@storefront-x/cart-magento@workspace:modules/cart-magento"

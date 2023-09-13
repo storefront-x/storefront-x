@@ -1,0 +1,9 @@
+{
+  "name": "@storefront-x/build-time-version",
+  "version": "1.21.1",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}
