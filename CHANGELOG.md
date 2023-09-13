@@ -1,3 +1,13 @@
+## v1.23.1 (2023-09-13)
+
+#### :rocket: Enhancement
+
+- [#453](https://github.com/storefront-x/storefront-x/pull/453) Add build-time-version module ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.23.0 (2023-09-05)
 
 #### :rocket: Enhancement
