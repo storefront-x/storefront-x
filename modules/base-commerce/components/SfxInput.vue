@@ -2,7 +2,8 @@
   <input v-model="innerValue" :type="type" :name="prefixedName" @blur="onBlur" />
 </template>
 
-<script>
+<script lang="ts">
+// @ts-nocheck
 import isFunction from '#ioc/utils/isFunction'
 import isNullish from '#ioc/utils/isNullish'
 import isString from '#ioc/utils/isString'
