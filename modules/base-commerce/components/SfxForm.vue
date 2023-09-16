@@ -4,7 +4,8 @@
   </Component>
 </template>
 
-<script>
+<script lang="ts">
+// @ts-nocheck
 import debounce from '#ioc/utils/debounce'
 import isObject from '#ioc/utils/isObject'
 import { defineComponent } from 'vue'
