@@ -1,3 +1,13 @@
+## v1.23.2 (2023-09-20)
+
+#### :bug: Bug Fix
+
+- [#455](https://github.com/storefront-x/storefront-x/pull/455) Fix generated types for SfxForm and SfxInput ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.23.1 (2023-09-13)
 
 #### :rocket: Enhancement
