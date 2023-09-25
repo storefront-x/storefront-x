@@ -1560,9 +1560,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/request@npm:^2.88.10":
-  version: 2.88.10
-  resolution: "@cypress/request@npm:2.88.10"
+"@cypress/request@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "@cypress/request@npm:3.0.1"
   dependencies:
     aws-sign2: ~0.7.0
     aws4: ^1.8.0
@@ -1577,12 +1577,12 @@ __metadata:
     json-stringify-safe: ~5.0.1
     mime-types: ~2.1.19
     performance-now: ^2.1.0
-    qs: ~6.5.2
+    qs: 6.10.4
     safe-buffer: ^5.1.2
-    tough-cookie: ~2.5.0
+    tough-cookie: ^4.1.3
     tunnel-agent: ^0.6.0
     uuid: ^8.3.2
-  checksum: 69c3e3b332e9be4866a900f6bcca5d274d8cea6c99707fbcce061de8dbab11c9b1e39f4c017f6e83e6e682717781d4f6106fd6b7cf9546580fcfac353b6676cf
+  checksum: 7175522ebdbe30e3c37973e204c437c23ce659e58d5939466615bddcd58d778f3a8ea40f087b965ae8b8138ea8d102b729c6eb18c6324f121f3778f4a2e8e727
   languageName: node
   linkType: hard
 
@@ -3273,9 +3273,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/cypress@workspace:modules/cypress"
   dependencies:
-    cypress: ^12.13.0
-    cypress-vite: ^1.4.0
-    cypress-wait-until: ^1.7.2
+    cypress: ^13.2.0
+    cypress-vite: ^1.4.2
+    cypress-wait-until: ^2.0.1
   languageName: unknown
   linkType: soft
 
@@ -3870,10 +3870,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^14.14.31":
-  version: 14.18.26
-  resolution: "@types/node@npm:14.18.26"
-  checksum: c6ac3f9d4f6f77c0fa5ac17757779ad4d9835abfe3af5708b7552597cb5c7c1103e83499ccaf767a1cfa70040990bcf3f58761c547051dc8d5077f3c419091b1
+"@types/node@npm:^18.17.5":
+  version: 18.17.19
+  resolution: "@types/node@npm:18.17.19"
+  checksum: 6ab47127cd7534511aa199550659d56b44e5a6dbec9df054d0cde279926b4d43f0e6438f92c8392b039ab4e2a85aa0f698b95926430aff860e23bfc36c96576c
   languageName: node
   linkType: hard
 
@@ -6446,32 +6446,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress-vite@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "cypress-vite@npm:1.4.0"
+"cypress-vite@npm:^1.4.2":
+  version: 1.4.2
+  resolution: "cypress-vite@npm:1.4.2"
   dependencies:
     chokidar: ^3.5.3
     debug: ^4.3.4
   peerDependencies:
     vite: ^2.9.0 || ^3.0.0 || ^4.0.0
-  checksum: 4a5b673c1c2e7b7f78861ee93e7282092d5e0e2dfe9d1d8313e9e09f63c60198b5ac846cb8baf3bc85b0b0b88ba440d216e1f495bf3ad256f3700c46ed77e1c1
+  checksum: ca9cdf681f2bb864aae4327e67a118a0a3e50a79e4628ce42fa74edc0c8285bd8767f0dd0b28c8774efdeed49a03bbb5b25d0194a97b38a37b91aaca46c1da9a
   languageName: node
   linkType: hard
 
-"cypress-wait-until@npm:^1.7.2":
-  version: 1.7.2
-  resolution: "cypress-wait-until@npm:1.7.2"
-  checksum: e3fe3c35ef8cfda39fb8919ae63a238bd580a98f5c02120306b32d6502ddfa9bfc3afde733cd9b282035b9f67e8386bd6c58bd59ca5fd2ea65291e6d9bac1ed7
+"cypress-wait-until@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "cypress-wait-until@npm:2.0.1"
+  checksum: 5736d34655ec84a27587647daf5654330f2ca407bbef14bdf7fa32c1dbac4ada04cea06d074f0ca604acae8496741740eedd8974bd90333b81df01bf3c4ef2f5
   languageName: node
   linkType: hard
 
-"cypress@npm:^12.13.0":
-  version: 12.13.0
-  resolution: "cypress@npm:12.13.0"
+"cypress@npm:^13.2.0":
+  version: 13.2.0
+  resolution: "cypress@npm:13.2.0"
   dependencies:
-    "@cypress/request": ^2.88.10
+    "@cypress/request": ^3.0.0
     "@cypress/xvfb": ^1.2.4
-    "@types/node": ^14.14.31
+    "@types/node": ^18.17.5
     "@types/sinonjs__fake-timers": 8.1.1
     "@types/sizzle": ^2.3.2
     arch: ^2.2.0
@@ -6504,16 +6504,17 @@ __metadata:
     minimist: ^1.2.8
     ospath: ^1.2.2
     pretty-bytes: ^5.6.0
+    process: ^0.11.10
     proxy-from-env: 1.0.0
     request-progress: ^3.0.0
-    semver: ^7.3.2
+    semver: ^7.5.3
     supports-color: ^8.1.1
     tmp: ~0.2.1
     untildify: ^4.0.0
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 8e73c7033dadc15caf17b106cd88665107c8bbf3ba66fc266de1f14a2c1401edfa99c222f2ae6070e1ffb8123eb255fb559dc3e5e24460fadf8e05ce74afa41b
+  checksum: 7647814f07626bd63e7b8dc4d066179fa40bf492c588bbc2626d983a2baab6cb77c29958dc92442f277e0a8e94866decc51c4de306021739c47e32baf5970219
   languageName: node
   linkType: hard
 
@@ -13161,6 +13162,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qs@npm:6.10.4":
+  version: 6.10.4
+  resolution: "qs@npm:6.10.4"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: 31e4fedd759d01eae52dde6692abab175f9af3e639993c5caaa513a2a3607b34d8058d3ae52ceeccf37c3025f22ed5e90e9ddd6c2537e19c0562ddd10dc5b1eb
+  languageName: node
+  linkType: hard
+
 "qs@npm:~6.5.2":
   version: 6.5.3
   resolution: "qs@npm:6.5.3"
@@ -13948,6 +13958,17 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: d16dbedad53c65b086f79524b9ef766bf38670b2395bdad5c957f824dcc566b624988013564f4812bcace3f9d405355c3635e2007396a39d1bffc71cfec4a2fc
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.5.3":
+  version: 7.5.4
+  resolution: "semver@npm:7.5.4"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: 12d8ad952fa353b0995bf180cdac205a4068b759a140e5d3c608317098b3575ac2f1e09182206bf2eb26120e1c0ed8fb92c48c592f6099680de56bb071423ca3
   languageName: node
   linkType: hard
 
@@ -15024,6 +15045,18 @@ __metadata:
     universalify: ^0.2.0
     url-parse: ^1.5.3
   checksum: a7359e9a3e875121a84d6ba40cc184dec5784af84f67f3a56d1d2ae39b87c0e004e6ba7c7331f9622a7d2c88609032473488b28fe9f59a1fec115674589de39a
+  languageName: node
+  linkType: hard
+
+"tough-cookie@npm:^4.1.3":
+  version: 4.1.3
+  resolution: "tough-cookie@npm:4.1.3"
+  dependencies:
+    psl: ^1.1.33
+    punycode: ^2.1.1
+    universalify: ^0.2.0
+    url-parse: ^1.5.3
+  checksum: c9226afff36492a52118432611af083d1d8493a53ff41ec4ea48e5b583aec744b989e4280bcf476c910ec1525a89a4a0f1cae81c08b18fb2ec3a9b3a72b91dcc
   languageName: node
   linkType: hard
 
