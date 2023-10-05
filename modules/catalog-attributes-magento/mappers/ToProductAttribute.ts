@@ -14,9 +14,8 @@ export default (data: any) => ({
 
 function toValueLabel(attr: any) {
   return (value: any) => {
-    const optionValue = (attr?.attribute_options ?? []).find(
-      (o: any) => String(o.options_id) === String(value),
-    )?.option_value
+    const optionValue = (attr?.attribute_options ?? []).find((o: any) => String(o.options_id) === String(value))
+      ?.option_value
     return String(optionValue ?? '') ? optionValue : value
   }
 }

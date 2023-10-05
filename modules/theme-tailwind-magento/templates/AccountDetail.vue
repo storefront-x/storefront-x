@@ -196,11 +196,9 @@ cs-CZ:
   New password: Nové heslo
   Confirm new password: Potvrďte nové heslo
   Change password: Změnit heslo
-
   Profile info successfully updated: Osobní informace aktualizovány
   Email address successfully updated: Emailová adresa aktualizována
   Password successfully updated: Heslo aktualizováno
-
   'An honorific, such as Dr., Mr., or Mrs.': 'Například Ing., Mgr.'
   'A value such as Sr., Jr., or III': 'Například Ph.D., CSc.'
 </i18n>
