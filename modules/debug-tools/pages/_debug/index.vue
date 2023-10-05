@@ -7,7 +7,7 @@
             <Code :content="request.url" />
           </Section>
 
-          <Section v-for="(field, i) in request.fields" :key="i" :title="field.title" :open="field.openByDefault">
+          <Section v-for="(field, k) in request.fields" :key="k" :title="field.title" :open="field.openByDefault">
             <Code :content="field.value" />
           </Section>
 
