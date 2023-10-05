@@ -33,6 +33,6 @@
     "@storefront-x/testing": "*",
     "@storefront-x/tooling": "*",
     "cross-env": "^7.0.3",
-    "lerna": "^6.6.2"
+    "lerna": "^7.3.0"
   }
 }
