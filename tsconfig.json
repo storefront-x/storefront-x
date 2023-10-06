@@ -15,7 +15,6 @@
     "skipLibCheck": true,
     "allowJs": true,
     "paths": {
-      "@storefront-x/*": ["./modules/*"],
       "#ioc/*": ["./.sfx/ioc/*"],
       "~/*": ["./*"]
     },

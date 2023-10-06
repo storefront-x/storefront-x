@@ -13,6 +13,7 @@ export default (core) =>
       rollupOptions: {
         output: {
           format: 'es',
+          experimentalMinChunkSize: 10_000, // 10kb
         },
       },
     },

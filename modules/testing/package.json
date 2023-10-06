@@ -5,10 +5,10 @@
   "type": "module",
   "main": "./index.js",
   "dependencies": {
-    "@playwright/test": "1.25.2",
-    "get-port": "^6.1.2",
+    "@playwright/test": "1.38.1",
+    "get-port": "^7.0.0",
     "jsdom": "^22.1.0",
-    "vitest": "^0.31.2"
+    "vitest": "^0.34.6"
   },
   "publishConfig": {
     "access": "public"

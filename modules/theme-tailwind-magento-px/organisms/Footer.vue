@@ -137,7 +137,6 @@ cs-CZ:
   Settings: Nastavení
   My orders: Moje objednávky
   Account: Účet
-
   /terms-of-service: /obchodni-podminky
   /about-company: /o-spolecnosti
   /return-policy: /vraceni-zbozi
