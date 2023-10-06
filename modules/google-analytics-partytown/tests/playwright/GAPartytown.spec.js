@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('Google Analytics script with Partytown enabled', async ({ page }) => {
+test('Google Analytics script with Partytown enabled', async ({ page }) => {
   await makeProject(
     {
       modules: [
