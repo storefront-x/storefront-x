@@ -3319,7 +3319,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/cms-magento@workspace:modules/cms-magento"
   dependencies:
-    happy-dom: ^9.20.3
+    happy-dom: ^12.9.0
   languageName: unknown
   linkType: soft
 
@@ -8843,9 +8843,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"happy-dom@npm:^9.20.3":
-  version: 9.20.3
-  resolution: "happy-dom@npm:9.20.3"
+"happy-dom@npm:^12.9.0":
+  version: 12.9.0
+  resolution: "happy-dom@npm:12.9.0"
   dependencies:
     css.escape: ^1.5.1
     entities: ^4.5.0
@@ -8853,7 +8853,7 @@ __metadata:
     webidl-conversions: ^7.0.0
     whatwg-encoding: ^2.0.0
     whatwg-mimetype: ^3.0.0
-  checksum: 7c737a0005aaf72e1f7138e5fe651759618d45c67597ab9865434da4a980a2854b4179ee678a84a5613c1bf4da88e64437670048cc2466c946265110c8a49f55
+  checksum: be0065b44d0e1c55edf876e307bb179d5ad1ba0e8b966ecf94b369423b18f90387dd09d28a8e36c536fd44100b7d81dce997891d7e82c2cf7cec7d5827845a92
   languageName: node
   linkType: hard
 
