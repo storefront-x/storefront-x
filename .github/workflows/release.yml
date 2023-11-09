@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - run: |
           yarn create storefront-x --directory=app --integration=${{ matrix.integration }}
           cd app
@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - run: |
           npm create storefront-x@latest -y -- --directory=app --integration=${{ matrix.integration }}
           cd app

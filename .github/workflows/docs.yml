@@ -34,7 +34,7 @@ jobs:
         uses: actions/configure-pages@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - name: Restore cached node_modules
         uses: actions/cache/restore@v3
         with:
