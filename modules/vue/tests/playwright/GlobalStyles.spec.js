@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { buildProject } from '@storefront-x/testing'
 
-test.only('global styles are rendered before components styles', async ({ page }) => {
+test('global styles are rendered before components styles', async ({ page }) => {
   await buildProject(
     {
       modules: [
