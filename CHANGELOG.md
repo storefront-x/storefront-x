@@ -1,3 +1,30 @@
+## v1.23.4 (2023-12-18)
+
+#### :bug: Bug Fix
+
+- [#461](https://github.com/storefront-x/storefront-x/pull/461) Change default redirect code to 302 ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#460](https://github.com/storefront-x/storefront-x/pull/460) Fix useI18n typings ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#459](https://github.com/storefront-x/storefront-x/pull/459) Fix global styles order ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :house: Internal
+
+- [#458](https://github.com/storefront-x/storefront-x/pull/458) Upgrade to Node 20 ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#457](https://github.com/storefront-x/storefront-x/pull/457) Upgrade dependencies ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
+## v1.23.3 (2023-09-25)
+
+#### :house: Internal
+
+- [#456](https://github.com/storefront-x/storefront-x/pull/456) Upgrade deps ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.23.2 (2023-09-20)
 
 #### :bug: Bug Fix
