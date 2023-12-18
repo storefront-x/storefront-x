@@ -4,11 +4,12 @@ export default () => {
   const i18n = useI18n()
 
   const d = i18n.d
-  //@ts-ignore
-  i18n.d = (a, b = 'default', ...args) => {
+
+  i18n.d = (a: any, b = 'default', ...args: []) => {
     if (a === null) {
       return ''
     }
+
     return d(a, b, ...args)
   }
 
