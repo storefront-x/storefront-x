@@ -59,7 +59,7 @@ test('redirect results in proper redirect code', async () => {
     async ({ url }) => {
       await wrapConsole(async () => {
         const response = await fetch(url + '/a', { redirect: 'manual' })
-        expect(response.status).toEqual(301)
+        expect(response.status).toEqual(302)
       })
     },
   )
