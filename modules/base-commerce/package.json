@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/base-commerce",
-  "version": "1.23.4",
+  "version": "1.23.5",
   "license": "MIT",
   "type": "module",
   "dependencies": {

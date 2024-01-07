@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/product-comparison",
-  "version": "1.23.4",
+  "version": "1.23.5",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
