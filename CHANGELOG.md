@@ -1,3 +1,17 @@
+## v1.23.5 (2024-01-07)
+
+#### :rocket: Enhancement
+
+- [#462](https://github.com/storefront-x/storefront-x/pull/462) Implement lazy i18n messages ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### :bug: Bug Fix
+
+- [#463](https://github.com/storefront-x/storefront-x/pull/463) Cookies are shared per request on the server side ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.23.4 (2023-12-18)
 
 #### :bug: Bug Fix
