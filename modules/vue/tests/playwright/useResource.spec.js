@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { makeProject } from '@storefront-x/testing'
 
-test.only('downloading async data on the server side', async ({ page }) => {
+test('downloading async data on the server side', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -37,7 +37,7 @@ test.only('downloading async data on the server side', async ({ page }) => {
   )
 })
 
-test.only('allows refetching', async ({ page }) => {
+test('allows refetching', async ({ page }) => {
   await makeProject(
     {
       modules: [
@@ -50,15 +50,19 @@ test.only('allows refetching', async ({ page }) => {
             pages: {
               'index.vue': `
                 <template>
-                  <button data-testid="button" @click="refetch">Count: {{ count }}</button>
+                  <button data-testid="btn" @click="increment">Count: {{ count }}</button>
                 </template>
                 <script setup lang="ts">
                 import useResource from '#ioc/composables/useResource'
 
-                let cnt = 0
+                let cnt = 1
+
+                const increment = async () => {
+                  cnt += 1
+                  await refetch()
+                }
 
                 const [count, { refetch }] = await useResource(async () => {
-                  cnt += 1
                   await new Promise((resolve) => setTimeout(resolve, 250))
                   return cnt
                 })
@@ -70,10 +74,10 @@ test.only('allows refetching', async ({ page }) => {
       ],
     },
     async ({ url }) => {
-      await page.goto(url)
-      await expect(page.getByTestId('button')).toHaveText('Count: 0')
-      await page.getByTestId('button').click()
-      await expect(page.getByTestId('button')).toHaveText('Count: 1')
+      await page.goto(url, { waitUntil: 'networkidle' })
+      await expect(page.getByTestId('btn')).toHaveText('Count: 1')
+      await page.getByTestId('btn').click()
+      await expect(page.getByTestId('btn')).toHaveText('Count: 2')
     },
   )
 })
