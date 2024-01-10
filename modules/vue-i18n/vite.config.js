@@ -5,6 +5,7 @@ export default () =>
   defineConfig({
     plugins: [
       VueI18n({
+        runtimeOnly: false, // We need message compiler in runtime for JSON messages
         strictMessage: false, // this allows use of HTML in the translations
       }),
     ],
