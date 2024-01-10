@@ -1,3 +1,13 @@
+## v1.24.0 (2024-01-10)
+
+#### :rocket: Enhancement
+
+- [#465](https://github.com/storefront-x/storefront-x/pull/465) Add refetch to useResource ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.23.6 (2024-01-10)
 
 #### :bug: Bug Fix
