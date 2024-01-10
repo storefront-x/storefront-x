@@ -1,6 +1,6 @@
 {
   "name": "create-storefront-x",
-  "version": "1.23.6",
+  "version": "1.24.0",
   "type": "module",
   "bin": "index.js",
   "main": "index.js",
