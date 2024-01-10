@@ -1,3 +1,13 @@
+## v1.23.6 (2024-01-10)
+
+#### :bug: Bug Fix
+
+- [#464](https://github.com/storefront-x/storefront-x/pull/464) Fix i18n message interpolation in production ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.23.5 (2024-01-07)
 
 #### :rocket: Enhancement
