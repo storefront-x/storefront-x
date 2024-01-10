@@ -277,7 +277,7 @@ test('global messages interpolation', async ({ page }) => {
   )
 })
 
-test.only('global messages interpolation in production', async ({ page }) => {
+test('global messages interpolation in production', async ({ page }) => {
   await buildProject(
     {
       modules: [
