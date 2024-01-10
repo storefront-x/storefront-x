@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { buildProject, makeProject } from '@storefront-x/testing'
 
 test('global messages', async ({ page }) => {
   await makeProject(
@@ -220,6 +220,65 @@ test('overriding of global messages', async ({ page }) => {
 
 test('global messages interpolation', async ({ page }) => {
   await makeProject(
+    {
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        '@storefront-x/vue-router',
+        '@storefront-x/vue-i18n',
+        [
+          'my-module',
+          {
+            config: {
+              'VUE_I18N_LOCALES.ts': `
+                export default [
+                  {
+                    name: 'en',
+                    locale: 'en-US',
+                    prefix: '/',
+                  },
+                  {
+                    name: 'cz',
+                    locale: 'cs-CZ',
+                    prefix: '/cz',
+                  },
+                ]
+              `,
+            },
+            i18n: {
+              messages: {
+                'cs-CZ.json': `
+                  {
+                    "message": "test {0}"
+                  }
+                `,
+              },
+            },
+            pages: {
+              'cart.vue': `
+                <template>
+                  <h1>{{ t('message', ['success']) }}</h1>
+                </template>
+                <script setup>
+                import useI18n from '#ioc/composables/useI18n'
+
+                const { t } = useI18n()
+                </script>
+              `,
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      await page.goto(url + '/cz/cart', { waitUntil: 'networkidle' })
+      await expect(page.locator('h1')).toContainText('test success')
+    },
+  )
+})
+
+test('global messages interpolation in production', async ({ page }) => {
+  await buildProject(
     {
       modules: [
         '@storefront-x/base',
