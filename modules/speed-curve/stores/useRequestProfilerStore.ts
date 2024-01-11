@@ -4,4 +4,7 @@ export default defineStore('requestProfiler', {
   state: () => ({
     requests: new Map(),
   }),
+  share: {
+    enable: false,
+  },
 })

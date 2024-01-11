@@ -1439,6 +1439,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:7.23.4":
+  version: 7.23.4
+  resolution: "@babel/runtime@npm:7.23.4"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: 8eb6a6b2367f7d60e7f7dd83f477cc2e2fdb169e5460694d7614ce5c730e83324bcf29251b70940068e757ad1ee56ff8073a372260d90cad55f18a825caf97cd
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.8.4":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
@@ -3744,6 +3753,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@storefront-x/vue-pinia-shared-state@workspace:modules/vue-pinia-shared-state":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/vue-pinia-shared-state@workspace:modules/vue-pinia-shared-state"
+  dependencies:
+    pinia: ^2.1.6
+    pinia-shared-state: ^0.5.1
+  languageName: unknown
+  linkType: soft
+
 "@storefront-x/vue-pinia@workspace:modules/vue-pinia":
   version: 0.0.0-use.local
   resolution: "@storefront-x/vue-pinia@workspace:modules/vue-pinia"
@@ -5489,6 +5507,18 @@ __metadata:
     promise-polyfill: 8.2.3
     restricted-input: 3.0.5
   checksum: 0d03d82d1dec23a4f9c8b11e1f4a55bbbd70660d3428e3b76bb93cf3cde272ae6fc3f448e538d88a7de4abaa8631cf21f3c4b42aeb18cdeff3cb1fe61eb5833f
+  languageName: node
+  linkType: hard
+
+"broadcast-channel@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "broadcast-channel@npm:7.0.0"
+  dependencies:
+    "@babel/runtime": 7.23.4
+    oblivious-set: 1.4.0
+    p-queue: 6.6.2
+    unload: 2.4.1
+  checksum: 6285d0796d01541f36a845dcea828f6eabd67a3bca0995c48d8bea35bc583abe23db609284a5f990fad4394c695587e6cb9c9e25afbbc82444b9f2b74a88ff7d
   languageName: node
   linkType: hard
 
@@ -12078,6 +12108,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"oblivious-set@npm:1.4.0":
+  version: 1.4.0
+  resolution: "oblivious-set@npm:1.4.0"
+  checksum: 4503772b19eda65d18afca528a35f73b68956833f88b64c528516159a190f61c5c0c5f7f33a7882aad267ecec67097c11729e497b0bbb34e093a3aa84679cc33
+  languageName: node
+  linkType: hard
+
 "on-finished@npm:2.4.1":
   version: 2.4.1
   resolution: "on-finished@npm:2.4.1"
@@ -12658,6 +12695,18 @@ __metadata:
   version: 4.0.1
   resolution: "pify@npm:4.0.1"
   checksum: 9c4e34278cb09987685fa5ef81499c82546c033713518f6441778fbec623fc708777fe8ac633097c72d88470d5963094076c7305cafc7ad340aae27cfacd856b
+  languageName: node
+  linkType: hard
+
+"pinia-shared-state@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "pinia-shared-state@npm:0.5.1"
+  dependencies:
+    broadcast-channel: ^7.0.0
+    vue-demi: ^0.14.6
+  peerDependencies:
+    pinia: ^2
+  checksum: 37fa25fa8cab1cb5a4cd410cfd4571f9197d1792312ca2a924877cdc9806c314130bbe3aaab53041619d202a4556431c9eb3fc992d35586c97db28c37fa7cdda
   languageName: node
   linkType: hard
 
@@ -13749,6 +13798,13 @@ __metadata:
   version: 0.13.11
   resolution: "regenerator-runtime@npm:0.13.11"
   checksum: 27481628d22a1c4e3ff551096a683b424242a216fee44685467307f14d58020af1e19660bf2e26064de946bad7eff28950eae9f8209d55723e2d9351e632bbb4
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.14.0":
+  version: 0.14.1
+  resolution: "regenerator-runtime@npm:0.14.1"
+  checksum: 9f57c93277b5585d3c83b0cf76be47b473ae8c6d9142a46ce8b0291a04bb2cf902059f0f8445dcabb3fb7378e5fe4bb4ea1e008876343d42e46d3b484534ce38
   languageName: node
   linkType: hard
 
@@ -15892,6 +15948,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"unload@npm:2.4.1":
+  version: 2.4.1
+  resolution: "unload@npm:2.4.1"
+  checksum: a6f92d176e2718af3cb4bf087a338f21f2ded32e81c052d97d020c5b402e4a2925784efd8808827c149d35fddf49dad0a01035ecc6a69941f2c8eae90d33dc12
+  languageName: node
+  linkType: hard
+
 "unplugin@npm:^1.1.0":
   version: 1.3.1
   resolution: "unplugin@npm:1.3.1"
@@ -16272,6 +16335,22 @@ __metadata:
     vue-demi-fix: bin/vue-demi-fix.js
     vue-demi-switch: bin/vue-demi-switch.js
   checksum: ff44b9372b8224590514252a2f73363cced6062205f9628a6b130dccb80e2023d55cd9d1da94aeb68d5539b7ea9eedcecf88ab281a3a9ff48b8db4c5366b9643
+  languageName: node
+  linkType: hard
+
+"vue-demi@npm:^0.14.6":
+  version: 0.14.6
+  resolution: "vue-demi@npm:0.14.6"
+  peerDependencies:
+    "@vue/composition-api": ^1.0.0-rc.1
+    vue: ^3.0.0-0 || ^2.6.0
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
+  bin:
+    vue-demi-fix: bin/vue-demi-fix.js
+    vue-demi-switch: bin/vue-demi-switch.js
+  checksum: 424b1f340d5111fc4d4a0f8042c14ae836ba983bc968773a6d955d6846202d7e6f951993ac1525be8732b0cfe0c81d94ab88f427c97bfa86ead08db06491279b
   languageName: node
   linkType: hard
 
