@@ -1,7 +1,6 @@
 import { PiniaSharedState } from 'pinia-shared-state'
-import type { App } from 'vue'
 
-export default (app: App, ctx: any) => {
+export default (ctx: any) => {
   const pinia = ctx.$pinia
 
   pinia.use(

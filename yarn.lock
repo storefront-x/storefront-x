@@ -3757,7 +3757,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/vue-pinia-shared-state@workspace:modules/vue-pinia-shared-state"
   dependencies:
-    pinia: ^2.1.6
     pinia-shared-state: ^0.5.1
   languageName: unknown
   linkType: soft

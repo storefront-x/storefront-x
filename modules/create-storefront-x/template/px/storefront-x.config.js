@@ -7,7 +7,6 @@ export default {
     '@storefront-x/vue-head',
     '@storefront-x/vue-i18n',
     '@storefront-x/vue-pinia',
-    '@storefront-x/vue-pinia',
     '@storefront-x/vue-pinia-shared-state',
 
     '@storefront-x/base-commerce',

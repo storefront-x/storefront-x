@@ -10,7 +10,7 @@ export default async (app: App, ctx: any) => {
 
   for (const plugin of Object.values(plugins) as any) {
     if (plugin.default) {
-      await plugin.default(app, ctx)
+      await plugin.default(ctx)
     }
   }
 
