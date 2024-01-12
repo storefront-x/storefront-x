@@ -1,8 +1,6 @@
 import { PiniaSharedState } from 'pinia-shared-state'
 
-export default (ctx: any) => {
-  const pinia = ctx.$pinia
-
+export default (pinia: any) => {
   pinia.use(
     PiniaSharedState({
       enable: true,
