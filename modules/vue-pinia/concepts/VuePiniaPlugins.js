@@ -6,8 +6,4 @@ export default class VuePiniaPlugin extends GeneratingConcept {
   get directory() {
     return 'vuePinia/plugins'
   }
-
-  get exportAll() {
-    return true
-  }
 }
