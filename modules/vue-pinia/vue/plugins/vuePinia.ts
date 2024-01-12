@@ -9,7 +9,7 @@ export default async (app: App, ctx: any) => {
   ctx.$pinia = pinia
 
   for (const plugin of Object.values(plugins) as any) {
-    await plugin.default(ctx.$pinia)
+    await plugin(ctx.$pinia)
   }
 
   app.use(pinia)
