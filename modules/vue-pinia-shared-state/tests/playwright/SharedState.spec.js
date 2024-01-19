@@ -24,7 +24,7 @@ test('shared state test', async ({ page, context }) => {
                 const mainStore = useMainStore()
 
                 const updateStoreCount = ()=> {
-                  mainStore.$patch({ count: 1 })
+                  mainStore.count++
                 }
                 </script>
               `,
@@ -45,12 +45,14 @@ test('shared state test', async ({ page, context }) => {
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
-      await page.locator('button').click()
-      await expect(page.locator('button')).toContainText('1')
 
       const newTab = await context.newPage()
       await newTab.goto(url, { waitUntil: 'networkidle' })
-      await expect(newTab.locator('button')).toContainText('1')
+
+      await page.locator('button').click()
+      await expect(page.locator('button')).toContainText('1')
+      await page.locator('button').click()
+      await expect(newTab.locator('button')).toContainText('2')
     },
   )
 })
