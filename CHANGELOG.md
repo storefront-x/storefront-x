@@ -1,3 +1,13 @@
+## v1.25.0 (2024-01-21)
+
+#### :rocket: Enhancement
+
+- [#466](https://github.com/storefront-x/storefront-x/pull/466) Add pinia-shared-state module ([@fajmanm](https://github.com/fajmanm))
+
+#### Committers: 1
+
+- Martin Fajman ([@fajmanm](https://github.com/fajmanm))
+
 ## v1.24.0 (2024-01-10)
 
 #### :rocket: Enhancement
