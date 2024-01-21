@@ -1,0 +1,12 @@
+{
+  "name": "@storefront-x/vue-pinia-shared-state",
+  "version": "1.23.5",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "pinia-shared-state": "^0.5.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
