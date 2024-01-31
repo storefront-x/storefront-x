@@ -34,6 +34,16 @@ on:
         required: true
         type: string
         default: 'SFX_MAGENTO_URL=https://be-sfx.demo.magexo.cloud'
+      cloud-url:
+        description: 'override MXCLOUD_URL, leave empty if you don''t need it'
+        required: false
+        type: string
+        default: ''
+      cloud-auth:
+        description: 'override MXCLOUD_AUTH, leave empty if you don''t need it'
+        required: false
+        type: string
+        default: ''
 
 env:
   REGISTRY: ghcr.io
@@ -86,9 +96,12 @@ jobs:
       - name: Deploy to MxCloud
         shell: bash
         run: |
+          MXCLOUD_URL='${{ secrets.MXCLOUD_URL }}'
+          MXCLOUD_AUTH='${{ secrets.MXCLOUD_AUTH }}'
+          test -n '${{ inputs.cloud-url }}' && MXCLOUD_URL='${{ inputs.cloud-url }}' MXCLOUD_AUTH='${{ inputs.cloud-auth }}' && echo "Cloud URL override applied"
           echo "Deploying '${{ steps.branch-name.outputs.current_branch }}'"
-          curl --fail-with-body -L --max-time 120 --retry 3 --retry-delay 20 --retry-all-errors --request POST '${{ secrets.MXCLOUD_URL }}/api/env/deploy' \
-            --header 'Authorization: Basic ${{ secrets.MXCLOUD_AUTH }}' \
+          curl --fail-with-body -L --max-time 120 --retry 3 --retry-delay 20 --retry-all-errors --request POST "${MXCLOUD_URL}/api/env/deploy" \
+            --header "Authorization: Basic ${MXCLOUD_AUTH}" \
             --header 'Content-Type: application/json' \
             --data-raw '{
               "git_project": "storefront-x",
