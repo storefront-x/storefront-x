@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@builder.io/partytown": "^0.8.1"
+    "@builder.io/partytown": "^0.9.1"
   },
   "publishConfig": {
     "access": "public"
