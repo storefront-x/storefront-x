@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./index.js",
   "dependencies": {
-    "@playwright/test": "1.38.1",
+    "@playwright/test": "1.41.2",
     "get-port": "^7.0.0",
     "jsdom": "^24.0.0",
     "vitest": "^1.2.2"
