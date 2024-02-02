@@ -1,3 +1,21 @@
+## v1.25.2 (2024-02-02)
+
+#### :house: Internal
+* [#18de5d](https://github.com/storefront-x/storefront-x/commit/18de5de219fd9b7e7e2f1fac974d2a396e1979e2) Upgrade deps ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 2
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.25.1 (2024-02-02)
+
+#### :house: Internal
+* [#468](https://github.com/storefront-x/storefront-x/pull/468) Upgrade deps ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+* [#467](https://github.com/storefront-x/storefront-x/pull/467) Add possibility to override MxCloud url ([@midlan](https://github.com/midlan))
+
+#### Committers: 2
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- Milan Davídek ([@midlan](https://github.com/midlan))
+
 ## v1.25.0 (2024-01-21)
 
 #### :rocket: Enhancement
