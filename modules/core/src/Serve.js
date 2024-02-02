@@ -19,7 +19,7 @@ export default class Serve extends Core {
     )
 
     const manifest = JSON.parse(
-      await fs.readFile(path.join(this.distDir, 'client', 'ssr-manifest.json'), { encoding: 'utf-8' }),
+      await fs.readFile(path.join(this.distDir, 'client', '.vite', 'ssr-manifest.json'), { encoding: 'utf-8' }),
     )
 
     const app = createApp()

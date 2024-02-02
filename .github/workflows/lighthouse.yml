@@ -28,7 +28,7 @@ jobs:
             node_modules
             ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-      - run: npm install -g @lhci/cli@0.9.x
+      - run: npm install -g @lhci/cli@0.13.x
       - run: yarn build --config ${{ inputs.storefront-x-config }}
       - run: >
           lhci collect --startServerCommand "yarn serve --compression"

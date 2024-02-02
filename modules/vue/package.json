@@ -4,16 +4,16 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@vitejs/plugin-vue": "^4.4.0",
-    "@vueuse/components": "^10.4.1",
-    "@vueuse/integrations": "^10.4.1",
-    "universal-cookie": "^4.0.4",
-    "vue": "^3.3.4"
+    "@vitejs/plugin-vue": "^5.0.3",
+    "@vueuse/components": "^10.7.2",
+    "@vueuse/integrations": "^10.7.2",
+    "universal-cookie": "^7.0.2",
+    "vue": "^3.4.15"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@vue/test-utils": "^2.4.1"
+    "@vue/test-utils": "^2.4.4"
   }
 }

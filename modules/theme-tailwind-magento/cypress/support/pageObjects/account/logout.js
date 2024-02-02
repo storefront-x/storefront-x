@@ -8,4 +8,5 @@ export default (params = {}) => {
 
   getMicroAccount().should('not.include.text', params.firstName ?? 'Karel')
   getMicroAccount().should('not.include.text', params.lastName ?? 'Varel')
+  cy.visit('/').waitForSfx()
 }
