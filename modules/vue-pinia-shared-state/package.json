@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/vue-pinia-shared-state",
-  "version": "1.25.0",
+  "version": "1.25.1",
   "license": "MIT",
   "type": "module",
   "dependencies": {
