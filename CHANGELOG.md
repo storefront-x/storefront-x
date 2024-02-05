@@ -1,3 +1,13 @@
+## v1.25.4 (2024-02-05)
+
+#### :bug: Bug Fix
+
+- [#470](https://github.com/storefront-x/storefront-x/pull/470) Fixed SSR Assets build without prefix ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.25.3 (2024-02-05)
 
 #### :house: Internal
