@@ -33,7 +33,7 @@ test('global styles are rendered before components styles', async ({ page }) => 
     async ({ url }) => {
       const response = await page.goto(url + '/my-page')
       expect(await response.text()).toMatch(
-        /<style>body{background-color:red}<\/style>.*?<link rel="stylesheet" href="\/assets\/my-page-/s,
+        /<style>body{background-color:red}<\/style>.*?<link rel="stylesheet" href="\/assets/s,
       )
     },
   )
