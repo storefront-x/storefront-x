@@ -41,6 +41,9 @@ export default class Build extends Core {
         outDir: path.join(this.distDir, 'server'),
         emptyOutDir: false,
         rollupOptions: {
+          output: {
+            assetFileNames: 'assets/[hash][extname]',
+          },
           onwarn: (msg) => {
             if (msg.code === 'UNUSED_EXTERNAL_IMPORT') return
 
