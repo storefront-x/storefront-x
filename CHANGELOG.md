@@ -1,18 +1,32 @@
+## v1.25.3 (2024-02-05)
+
+#### :house: Internal
+
+- [#469](https://github.com/storefront-x/storefront-x/pull/469) Internal fixes ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.25.2 (2024-02-02)
 
 #### :house: Internal
-* [#18de5d](https://github.com/storefront-x/storefront-x/commit/18de5de219fd9b7e7e2f1fac974d2a396e1979e2) Upgrade deps ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+- [#18de5d](https://github.com/storefront-x/storefront-x/commit/18de5de219fd9b7e7e2f1fac974d2a396e1979e2) Upgrade deps ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
 
 #### Committers: 2
+
 - Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
 
 ## v1.25.1 (2024-02-02)
 
 #### :house: Internal
-* [#468](https://github.com/storefront-x/storefront-x/pull/468) Upgrade deps ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
-* [#467](https://github.com/storefront-x/storefront-x/pull/467) Add possibility to override MxCloud url ([@midlan](https://github.com/midlan))
+
+- [#468](https://github.com/storefront-x/storefront-x/pull/468) Upgrade deps ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+- [#467](https://github.com/storefront-x/storefront-x/pull/467) Add possibility to override MxCloud url ([@midlan](https://github.com/midlan))
 
 #### Committers: 2
+
 - Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
 - Milan Davídek ([@midlan](https://github.com/midlan))
 
