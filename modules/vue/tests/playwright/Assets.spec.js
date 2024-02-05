@@ -77,7 +77,7 @@ test('overriding of assets via ioc', async ({ page }) => {
   )
 })
 
-test.only('large asset files are build with right path', async ({ page }) => {
+test('large asset files are build with right path', async ({ page }) => {
   await buildProject(
     {
       modules: [
