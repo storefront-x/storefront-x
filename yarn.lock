@@ -2119,7 +2119,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@intlify/shared@npm:^9.9.1":
+"@intlify/shared@npm:9.5.0":
+  version: 9.5.0
+  resolution: "@intlify/shared@npm:9.5.0"
+  checksum: a796ab99c9f3b7c1f53f62f3d888772a40b9024ba3da6fcbb6cbdf3d92e074ae3e022e0718257eba9124a727e131eb21a30b0c5a7bf380c84fd2497fa39d6af5
+  languageName: node
+  linkType: hard
+
+"@intlify/shared@npm:9.9.1, @intlify/shared@npm:^9.4.0":
   version: 9.9.1
   resolution: "@intlify/shared@npm:9.9.1"
   checksum: 55adbee41bd171a6a1e746b11b4206f53f3dcdf4b990869f8ddd0e47d1c5510c2e26a5cd20a1d43256c754357014c3fbd9f7660adae52289be0f4081c53536a0
