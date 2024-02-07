@@ -33,14 +33,14 @@ on:
         description: '.env file contents'
         required: true
         type: string
-        default: 'SFX_MAGENTO_URL=https://be-sfx.demo.magexo.cloud'
+        default: ''
       cloud-url:
-        description: 'override MXCLOUD_URL, leave empty if you don''t need it'
+        description: "override MXCLOUD_URL, leave empty if you don't need it"
         required: false
         type: string
         default: ''
       cloud-auth:
-        description: 'override MXCLOUD_AUTH, leave empty if you don''t need it'
+        description: "override MXCLOUD_AUTH, leave empty if you don't need it"
         required: false
         type: string
         default: ''
