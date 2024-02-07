@@ -9,5 +9,6 @@ services:
     environment:
       - SERVER_HOST=0.0.0.0
       - SERVER_PORT=3000
+      - MAGENTO_URL='https://core-demo-sfx-new.magexo.cloud'
     expose:
       - 3000
