@@ -6,8 +6,8 @@ services:
       - VIRTUAL_INNER_PROTO=http
       - VIRTUAL_PORT=3000
       - VIRTUAL_PROTO=https
-      - VIRTUAL_HOST=testdemo.storefrontx.io
-      - LETSENCRYPT_HOST=testdemo.storefrontx.io
+      - VIRTUAL_HOST=magento.storefrontx.io
+      - LETSENCRYPT_HOST=magento.storefrontx.io
     restart: ${RESTART_POLICY:-unless-stopped}
     env_file:
       - .env
