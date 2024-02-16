@@ -7,7 +7,6 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 import useGetCmsPageById from '#ioc/services/useGetCmsPageById'
-import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
 import useResource from '#ioc/composables/useResource'
 import Container from '#ioc/atoms/Container'
 
