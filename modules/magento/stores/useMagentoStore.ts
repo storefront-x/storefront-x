@@ -13,6 +13,7 @@ import beforeRequestClient from '~/.sfx/magento/beforeRequest.client'
 import beforeRequestServer from '~/.sfx/magento/beforeRequest.server'
 import afterResponseClient from '~/.sfx/magento/afterResponse.client'
 import afterResponseServer from '~/.sfx/magento/afterResponse.server'
+import { ref } from 'vue'
 
 interface Options {
   headers?: object
@@ -20,6 +21,9 @@ interface Options {
 }
 
 export default defineStore('magento', () => {
+  const isOnCatalog = ref(0)
+  const isMiniCartVisible = ref(true)
+
   const storeStore = useStoreStore()
   const currentLocale = useCurrentLocale()
   const use = (composables: any) => Object.values(composables).map((use: any) => use())
@@ -114,6 +118,8 @@ export default defineStore('magento', () => {
   }
 
   return {
+    isOnCatalog,
+    isMiniCartVisible,
     graphql,
   }
 })
