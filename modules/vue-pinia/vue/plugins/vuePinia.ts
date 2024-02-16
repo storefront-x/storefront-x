@@ -13,7 +13,7 @@ export default async (app: App, ctx: any) => {
   }
 
   app.use(pinia)
-
+  console.log('APP USE PINIA')
   if (IS_CLIENT) {
     //@ts-ignore
     if (window.$pinia) pinia.state.value = window.$pinia

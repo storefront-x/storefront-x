@@ -6,11 +6,11 @@ import ProductInListing from '#ioc/graphql/fragments/ProductInListing'
 export default () =>
   query()
     .variables({
-      $urlKey: 'String!',
+      $sku: 'String!',
     })
     .fields({
       products: field()
-        .args({ filter: { url_key: { eq: '$urlKey' } } })
+        .args({ filter: { sku: { eq: '$sku' } } })
         .fields({
           items: field({
             ...Product(),
