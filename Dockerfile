@@ -1,13 +1,16 @@
 FROM node:20-alpine
 
-ARG SFX_CONFIG=storefront-x.config.js
-
 WORKDIR /app
 
 COPY . .
 
-RUN yarn install --immutable
+EXPOSE 8080
 
-RUN yarn build --config $SFX_CONFIG
+ENV HOST=0.0.0.0
+ENV PORT=8080
 
-CMD yarn serve --host=0.0.0.0
+RUN yarn install
+
+RUN yarn build --config storefront-x.magento.config.js
+
+CMD yarn serve --host 0.0.0.0 --port 8080
