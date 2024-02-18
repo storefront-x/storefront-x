@@ -1,0 +1,8 @@
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'europe-west1-docker.pkg.dev/shopify-infrastructure/sfx-cloud-test/sfx-czub', '.']
+
+  # Push the Docker image to the registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'europe-west1-docker.pkg.dev/shopify-infrastructure/sfx-cloud-test/sfx-czub']

@@ -24,7 +24,9 @@
     "cypress": "npx cypress",
     "docs:dev": "npx vitepress dev docs",
     "docs:build": "npx vitepress build docs",
-    "docs:serve": "npx vitepress serve docs"
+    "docs:serve": "npx vitepress serve docs",
+    "gcloud:build" : "gcloud builds submit --tag gcr.io/shopify-infrastructure/sfx-czub:0.0.1",
+    "gcloud:deploy": "gcloud run deploy shopify-infrastructure --image=europe-west1-docker.pkg.dev/shopify-infrastructure/sfx-cloud-test/sfx-czub --platform managed --allow-unauthenticated --port 8080"
   },
   "dependencies": {
     "@storefront-x/core": "*"
