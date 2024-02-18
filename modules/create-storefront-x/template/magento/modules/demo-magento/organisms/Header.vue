@@ -6,5 +6,6 @@
 </template>
 
 <script setup lang="ts">
+import HeaderLinks from '#ioc/molecules/HeaderLinks'
 import HeaderMain from '#ioc/molecules/HeaderMain'
 </script>

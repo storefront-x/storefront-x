@@ -23,7 +23,7 @@
         <img :src="logo" alt="Logo" class="h-8 w-auto px-4" />
       </Link>
 
-      <HeaderMenu class="gap-x-0" />
+      <HeaderMenu />
 
       <div class="flex items-center justify-end">
         <MicroCart />
