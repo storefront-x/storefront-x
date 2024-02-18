@@ -1,0 +1,17 @@
+footer {
+  @apply bg-no-repeat bg-right-bottom bg-[url('/images/bg-footer-triangle.svg')];
+}
+footer h4 {
+  @apply text-white uppercase tracking-[1px] font-bold text-2xl mb-5;
+}
+
+footer ul {
+  @apply mb-8;
+}
+
+footer ul a:hover {
+  @apply bg-secondary-500;
+}
+footer ul a {
+  @apply transition ease-in-out delay-[10ms] text-xs text-white p-1;
+}
