@@ -3,22 +3,6 @@
     <template #default="{ slide }">
       <img :src="slide.src" alt="" />
     </template>
-    <template #controls="{ isLastPage, isFirstPage, showPrevSlide, showNextSlide }">
-      <button
-        v-if="!isFirstPage"
-        class="absolute hidden md:block h-full left-0 top-0 z-10 w-5 h-5"
-        @click="showPrevSlide()"
-      >
-        prev
-      </button>
-      <button
-        v-if="!isLastPage"
-        class="absolute hidden md:block h-full right-0 top-0 z-10 w-5 h-5"
-        @click="showNextSlide()"
-      >
-        next
-      </button>
-    </template>
 
     <template #pagination="{ pageIds, currentPage, showPage }">
       <div class="absolute w-full flex justify-center gap-4 bottom-0 p-4">

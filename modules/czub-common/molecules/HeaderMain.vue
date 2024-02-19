@@ -2,7 +2,7 @@
   <Container>
     <div class="h-16 flex relative items-center justify-between">
       <div class="flex justify-around">
-        <div class="hidden mr-2 lg:flex-1 lg:flex lg:items-center">
+        <div class="hidden mr-2 lg:flex lg:items-center">
           <Link :to="localePath('/')">
             <span class="sr-only">Logo</span>
             <img class="h-8 w-auto" :src="logo" alt="Logo" />
@@ -26,7 +26,8 @@
       <HeaderMenu />
 
       <div class="flex items-center justify-end">
-        <MicroCart />
+        <MicroWishlist class="hidden lg:flex mr-2" />
+        <MicroAccount :submenu="true" class="hidden lg:flex" />
       </div>
     </div>
   </Container>
@@ -37,12 +38,13 @@ import { computed } from 'vue'
 import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
 import Container from '#ioc/atoms/Container'
 import Link from '#ioc/atoms/Link'
-import MicroCart from '#ioc/molecules/MicroCart'
 import OutlineMenu from '#ioc/icons/OutlineMenu'
 import OutlineX from '#ioc/icons/OutlineX'
 import logo from '#ioc/assets/images/logo-czub'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import HeaderMenu from '#ioc/molecules/HeaderMenu'
+import MicroAccount from '#ioc/molecules/MicroAccount'
+import MicroWishlist from '#ioc/molecules/MicroWishlist'
 
 const localePath = useLocalePath()
 
