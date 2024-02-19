@@ -1634,12 +1634,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@czub/common@workspace:modules/czub":
-  version: 0.0.0-use.local
-  resolution: "@czub/common@workspace:modules/czub"
-  languageName: unknown
-  linkType: soft
-
 "@docsearch/css@npm:3.5.2, @docsearch/css@npm:^3.5.2":
   version: 3.5.2
   resolution: "@docsearch/css@npm:3.5.2"
@@ -3500,6 +3494,12 @@ __metadata:
     cypress: ^13.6.4
     cypress-vite: ^1.5.0
     cypress-wait-until: ^3.0.1
+  languageName: unknown
+  linkType: soft
+
+"@storefront-x/czub-common@workspace:modules/czub-common":
+  version: 0.0.0-use.local
+  resolution: "@storefront-x/czub-common@workspace:modules/czub-common"
   languageName: unknown
   linkType: soft
 

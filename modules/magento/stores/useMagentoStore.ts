@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import defineStore from '#ioc/utils/vuePinia/defineStore'
 import MAGENTO_URL from '#ioc/config/MAGENTO_URL'
 import MAGENTO_GRAPHQL_ENDPOINT from '#ioc/config/MAGENTO_GRAPHQL_ENDPOINT'
 import objectToQuery from '#ioc/utils/url/objectToQuery'

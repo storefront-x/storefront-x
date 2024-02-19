@@ -46,6 +46,6 @@ export default {
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
 
-    '@czub/common',
+    '@storefront-x/czub-common',
   ],
 }
