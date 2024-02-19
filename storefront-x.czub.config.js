@@ -23,7 +23,6 @@ export default {
 
     '@storefront-x/cart',
     '@storefront-x/catalog',
-    '@storefront-x/checkout',
     '@storefront-x/cms',
     '@storefront-x/customer',
     '@storefront-x/multicurrency',
@@ -34,7 +33,6 @@ export default {
     '@storefront-x/magento',
     '@storefront-x/cart-magento',
     '@storefront-x/catalog-magento',
-    '@storefront-x/checkout-magento',
     '@storefront-x/cms-magento',
     '@storefront-x/customer-magento',
     '@storefront-x/multicurrency-magento',
@@ -46,6 +44,9 @@ export default {
     '@storefront-x/theme-tailwind',
     '@storefront-x/theme-tailwind-magento',
 
-    '@storefront-x/czub-common',
+    '@supplo/supplo-checkout-common',
+    '@supplo/supplo-one-step-checkout',
+
+    '@czub/czub-common',
   ],
 }
