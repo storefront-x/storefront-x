@@ -21,14 +21,13 @@ import Heading from '#ioc/atoms/Heading'
 import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
 import useBlockBodyFromScrolling from '#ioc/composables/useBlockBodyFromScrolling'
-import usePushGtmRemoveFromCart from '#ioc/services/usePushGtmRemoveFromCart'
 
 const { t } = useI18n()
 const emit = defineEmits(['keep-product', 'remove-product'])
 
 useBlockBodyFromScrolling()
 
-const props = defineProps({
+defineProps({
   product: {
     type: Object,
     default: () => ({}),
@@ -39,14 +38,11 @@ const props = defineProps({
   },
 })
 
-const pushGtmRemoveFromCart = usePushGtmRemoveFromCart()
-
 const keepProduct = () => {
   emit('keep-product')
 }
 
 const removeProduct = () => {
-  pushGtmRemoveFromCart(props.product, props.quantity)
   emit('remove-product')
 }
 </script>
