@@ -2,9 +2,6 @@ import ToShippingAddress from '#ioc/mappers/ToShippingAddress'
 import ToMoney from '#ioc/mappers/ToMoney'
 import ToShippingMethod from '#ioc/mappers/ToShippingMethod'
 import ToPaymentMethod from '#ioc/mappers/ToPaymentMethod'
-import ToReturnable from '#ioc/mappers/ToReturnable'
-import ToOrderable from '#ioc/mappers/ToOrderable'
-
 interface Extension<Ext = Record<string, never>> {
   <T extends (...arg: any) => any>(ToCart: T): (...arg: any) => ReturnType<T> & Ext
 }

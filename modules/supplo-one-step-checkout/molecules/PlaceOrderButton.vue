@@ -23,21 +23,13 @@
   </div>
 </template>
 <script setup lang="ts">
-import useCart from '#ioc/composables/useCart'
 import useI18n from '#ioc/composables/useI18n'
 import usePlaceOrder from '#ioc/services/usePlaceOrder'
-import useLocalePath from '#ioc/composables/useLocalePath'
 import { ref, inject } from 'vue'
 import Button from '#ioc/atoms/Button'
-import useRouter from '#ioc/composables/useRouter'
-import useCheckout from '#ioc/composables/useCheckout'
 
 const { t } = useI18n()
-const localePath = useLocalePath()
-const router = useRouter()
-const cart = useCart()
 const placeOrder = usePlaceOrder()
-const checkout = useCheckout()
 
 const isPlacingOrder = ref(false)
 
@@ -60,7 +52,7 @@ const onPlaceOrder = async () => {
   try {
     isPlacingOrder.value = true
 
-    const { order } = await placeOrder()
+    await placeOrder()
   } catch (e) {
     isPlacingOrder.value = false
 
