@@ -11,6 +11,6 @@ ENV PORT=8080
 
 RUN yarn install
 
-RUN yarn build --config storefront-x.magento.config.js
+RUN yarn build --config storefront-x.czub.config.js
 
 CMD yarn serve --host 0.0.0.0 --port 8080
