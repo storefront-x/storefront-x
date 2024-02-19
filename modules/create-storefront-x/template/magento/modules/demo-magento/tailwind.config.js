@@ -26,9 +26,6 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
-      },
       colors: {
         primary: {
           500: '#000000',
