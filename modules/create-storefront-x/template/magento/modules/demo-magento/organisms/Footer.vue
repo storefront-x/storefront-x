@@ -25,7 +25,7 @@
               <img src="/images/comgate.png" alt="Platební brána ComGate" />
             </a>
           </div>
-          <div class="col-span-12 lg:col-span-4">
+          <div class="col-span-12 lg:col-span-4 mt-8 lg:mt-0">
             <h4>Jsme tu pro vás</h4>
             <ul>
               <li><a href="https://www.czub.cz/podpora-navody/">Návody ke stažení</a></li>

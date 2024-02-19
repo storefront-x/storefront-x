@@ -42,6 +42,9 @@ export default {
         yellow: {
           550: '#b89e60',
         },
+        grey: {
+          550: '#f4f4f4',
+        },
       },
     },
   },
