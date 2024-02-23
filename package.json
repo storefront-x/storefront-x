@@ -26,7 +26,7 @@
     "docs:build": "npx vitepress build docs",
     "docs:serve": "npx vitepress serve docs",
     "gcloud:build": "gcloud builds submit --config cloudbuild.yaml",
-    "gcloud:deploy": "gcloud run deploy sfx-czub --image=europe-west1-docker.pkg.dev/shopify-infrastructure/sfx-cloud-test/sfx-czub --platform managed --allow-unauthenticated --port 8080"
+    "gcloud:deploy": "gcloud run deploy sfx-czub --image=europe-west1-docker.pkg.dev/sfx-cloud-test/sfx-czub --platform managed --allow-unauthenticated --port 8080"
   },
   "dependencies": {
     "@storefront-x/core": "*"

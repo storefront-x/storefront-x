@@ -6,11 +6,9 @@
       :category="category"
       classes="p-2 text-primary-500 !font-bold text-base transition ease-in-out delay-[10ms] hover:bg-secondary-500"
       color="primary"
-      @mouseenter="onMouseEnter(category)"
-      @mouseleave="onMouseLeave(category)"
-      @mouseout="removeTimeout"
+      @mouseenter="onMouseEnter(category.id)"
     >
-      <FlyoutMenu v-if="selectedCategory === category" :categories="category.children" />
+      <FlyoutMenu v-if="selectedCategoryId === category.id" :categories="category.children" />
     </CategoryLink>
   </Container>
 </template>
@@ -27,31 +25,19 @@ import useRoute from '#ioc/composables/useRoute'
 const catalogStore = useCatalogStore()
 const route = useRoute()
 
-const selectedCategory = ref()
-const timeout = ref()
+const selectedCategoryId = ref<number | null>()
 
 watch(route, () => {
-  selectedCategory.value = null
+  selectedCategoryId.value = null
 })
 
-const onMouseEnter = (category: any) => {
-  if (!selectedCategory.value) {
-    timeout.value = setTimeout(() => {
-      selectedCategory.value = category
-    }, 250)
-  } else {
-    selectedCategory.value = category
-  }
+const onMouseEnter = (categoryId: number) => {
+  selectedCategoryId.value = categoryId
 }
 
-const removeTimeout = () => {
-  if (!timeout.value) return
-  clearTimeout(timeout.value)
-  timeout.value = undefined
-}
-const onMouseLeave = debounce((category: any) => {
-  if (selectedCategory.value === category) {
-    selectedCategory.value = undefined
+const onMouseLeave = debounce((categoryId: number) => {
+  if (selectedCategoryId.value === categoryId) {
+    selectedCategoryId.value = null
   }
 }, 250)
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="categories?.length"
-    class="absolute bg-white inset-x-0 text-gray-500 z-20 border-b-2 border-primary-400 shadow-md top-[66px]"
+    class="absolute bg-white inset-x-0 text-gray-500 z-20 border-b-2 border-primary-400 shadow-md"
   >
     <Container class="relative flex py-8">
       <div class="w-full grid grid-cols-4 gap-y-10 gap-x-8">
