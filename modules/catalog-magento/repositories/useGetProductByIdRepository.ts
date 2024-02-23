@@ -6,7 +6,7 @@ export default () => {
   const magento = useMagento()
 
   return async (
-    id: string,
+    sku: string,
   ): Promise<{
     product: ReturnType<typeof ToProduct>
   }> => {
@@ -14,12 +14,12 @@ export default () => {
       data: { products },
     } = await magento.graphql(
       ProductDetail().with({
-        urlKey: id,
+        sku,
       }),
     )
 
     return {
-      product: ToProduct(products?.items?.find((item: any) => item.url_key === id) || []),
+      product: ToProduct(products?.items?.find((item: any) => item.sku === sku) || []),
     }
   }
 }

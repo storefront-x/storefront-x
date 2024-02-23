@@ -16,12 +16,6 @@ export default () => {
   }> => {
     const { data } = await magento.graphql(UrlResolver().with({ url }))
 
-    return {
-      entityUid: data.urlResolver?.entity_uid,
-      id: String(data.urlResolver?.id),
-      type: data.urlResolver?.type ?? '',
-      relativeUrl: data.urlResolver?.relative_url ?? '',
-      redirectCode: data.urlResolver?.redirectCode ?? '',
-    }
+    return data.route
   }
 }

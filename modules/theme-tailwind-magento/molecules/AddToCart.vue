@@ -21,7 +21,6 @@
 import Button from '#ioc/atoms/Button'
 import Spinner from '#ioc/atoms/Spinner'
 import injectProduct from '#ioc/composables/injectProduct'
-import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
 import useEmitAddToCart from '#ioc/bus/emitters/useEmitAddToCart'
@@ -30,6 +29,7 @@ import useRouter from '#ioc/composables/useRouter'
 import useRoute from '#ioc/composables/useRoute'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import { ref, computed } from 'vue'
+import useCartStore from '#ioc/stores/useCartStore'
 
 const props = defineProps({
   quantity: {
@@ -40,9 +40,9 @@ const props = defineProps({
 
 const { t } = useI18n()
 const product = injectProduct()
-const addToCart = useAddToCart()
 const router = useRouter()
 const route = useRoute()
+const cartStore = useCartStore()
 const localePath = useLocalePath()
 const emitAddToCart = useEmitAddToCart()
 
@@ -77,7 +77,7 @@ const onAddToCart = async () => {
   isLoading.value = true
 
   try {
-    await addToCart(product, {
+    await cartStore.addToCart(product, {
       quantity: props.quantity,
       bundle: product.bundle,
       variantSku: product.variant?.sku,

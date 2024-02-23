@@ -1,11 +1,10 @@
 <template>
-  <div v-click-outside="close" :class="{ hidden: !cartStore.isMiniCartVisible }">
-    <div
-      id="minicart-wrapper"
-      aria-live="assertive"
-      class="absolute max-w-lg px-4 z-50 inset-y-28 right-0"
-      :class="{ 'min-w-[20em]': cart.items.length === 0 }"
-    >
+  <div
+    v-click-outside="close"
+    class="absolute max-w-lg px-4 z-50 inset-y-28 right-0"
+    :class="{ hidden: !cartStore.isMiniCartVisible }"
+  >
+    <div id="minicart-wrapper" aria-live="assertive" :class="{ 'min-w-[20em]': cart.items.length === 0 }">
       <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
         <div class="flex h-full flex-col overflow-y-hidden shadow-xl">
           <div class="flex-1 overflow-y-hidden py-6 px-4 sm:px-6">

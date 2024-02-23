@@ -19,10 +19,10 @@
 import Button from '#ioc/atoms/Button'
 import Spinner from '#ioc/atoms/Spinner'
 import injectProduct from '#ioc/composables/injectProduct'
-import useAddToCart from '#ioc/services/useAddToCart'
 import CrossSellModal from '#ioc/organisms/CrossSellModal'
 import useI18n from '#ioc/composables/useI18n'
 import useEmitAddToCart from '#ioc/bus/emitters/useEmitAddToCart'
+import useCartStore from '#ioc/stores/useCartStore'
 import { ref } from 'vue'
 
 const props = defineProps({
@@ -33,8 +33,8 @@ const props = defineProps({
 })
 
 const { t } = useI18n()
+const cartStore = useCartStore()
 const product = injectProduct()
-const addToCart = useAddToCart()
 const emitAddToCart = useEmitAddToCart()
 
 const loading = ref(false)
@@ -47,7 +47,7 @@ const onClose = () => {
 const onAddToCart = async () => {
   loading.value = true
   try {
-    await addToCart(product, {
+    await cartStore.addToCart(product, {
       quantity: props.quantity,
     })
     emitAddToCart({ product, quantity: props.quantity })

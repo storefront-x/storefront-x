@@ -25,13 +25,13 @@
 <script setup lang="ts">
 import Button from '#ioc/atoms/Button'
 import useI18n from '#ioc/composables/useI18n'
-import useAddToCart from '#ioc/services/useAddToCart'
 import injectProduct from '#ioc/composables/injectProduct'
+import useCartStore from '#ioc/stores/useCartStore'
 import { ref, computed } from 'vue'
 
 const product = injectProduct()
-const addToCart = useAddToCart()
 const { t } = useI18n()
+const cartStore = useCartStore()
 const isLoading = ref(false)
 const isProductAdded = ref(false)
 
@@ -42,7 +42,7 @@ const text = computed(() => {
 })
 
 const onAddToCart = async () => {
-  await addToCart(product, { quantity: 1 })
+  await cartStore.addToCart(product, { quantity: 1 })
   isProductAdded.value = true
 }
 </script>

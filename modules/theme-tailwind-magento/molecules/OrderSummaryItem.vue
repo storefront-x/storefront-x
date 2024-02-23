@@ -90,11 +90,10 @@ import SolidTrash from '#ioc/icons/SolidTrash'
 import Button from '#ioc/atoms/Button'
 import Input from '#ioc/atoms/Input'
 import { computed, defineAsyncComponent, PropType, ref, toRef, watch } from 'vue'
-import useRemoveFromCart from '#ioc/services/useRemoveFromCart'
 import useShowErrorNotification from '#ioc/composables/useShowErrorNotification'
-import useUpdateCartItem from '#ioc/services/useUpdateCartItem'
 import useLocalePath from '#ioc/composables/useLocalePath'
 import useEmitRemoveFromCart from '#ioc/bus/emitters/useEmitRemoveFromCart'
+import useCartStore from '#ioc/stores/useCartStore'
 
 const ConfirmProductRemovalModal = defineAsyncComponent(() => import('#ioc/organisms/ConfirmProductRemovalModal'))
 
@@ -107,8 +106,7 @@ const props = defineProps({
 
 const { t } = useI18n()
 const cartItem = useCartItem(toRef(props, 'cartItem'))
-const removeFromCart = useRemoveFromCart()
-const updateCartItem = useUpdateCartItem()
+const cartStore = useCartStore()
 const showErrorNotification = useShowErrorNotification()
 const localePath = useLocalePath()
 const emitRemoveFromCart = useEmitRemoveFromCart()
@@ -170,7 +168,7 @@ const removeItem = async () => {
   try {
     isRemoveLoading.value = true
 
-    await removeFromCart(cartItem)
+    await cartStore.removeFromCart(cartItem)
     emitRemoveFromCart({ cartItem })
   } catch (e) {
     showErrorNotification(e)
@@ -188,7 +186,7 @@ const updateQuantity = async (quantity: number) => {
   if (quantity === cartItem.quantity) return
 
   try {
-    await updateCartItem(cartItem, { quantity })
+    await cartStore.updateCartItem(cartItem, { quantity })
   } catch (e) {
     showErrorNotification(e)
 

@@ -24,7 +24,9 @@
     "cypress": "npx cypress",
     "docs:dev": "npx vitepress dev docs",
     "docs:build": "npx vitepress build docs",
-    "docs:serve": "npx vitepress serve docs"
+    "docs:serve": "npx vitepress serve docs",
+    "gcloud:build": "gcloud builds submit --config cloudbuild.yaml",
+    "gcloud:deploy": "gcloud run deploy czub --image=europe-west1-docker.pkg.dev/sfx-cloud-test/sfx-czub/czub:latest --platform managed --allow-unauthenticated --port 8080"
   },
   "dependencies": {
     "@storefront-x/core": "*"

@@ -4,12 +4,12 @@ import query from '#ioc/graphql/query'
 export default () =>
   query()
     .variables({
-      $id: 'Int!',
+      $identifier: 'String!',
     })
     .fields({
       cmsPage: field()
         .args({
-          id: '$id',
+          identifier: '$identifier',
         })
         .fields({
           content: field(),
