@@ -1,3 +1,13 @@
+## v1.26.0 (2024-03-28)
+
+#### :rocket: Enhancement
+
+- [#474](https://github.com/storefront-x/storefront-x/pull/474) Allow resizing images based on only one dimension ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.25.4 (2024-02-05)
 
 #### :bug: Bug Fix
