@@ -11,7 +11,7 @@ const SERVER_PORT = process.env.SERVER_PORT || 3000
 
 const ONE_YEAR = '31536000'
 
-type QueryObject = ReturnType<typeof getQuery>
+type QueryObject = ReturnType<typeof getQuery<unknown>>
 
 export default eventHandler(async (event) => {
   try {
@@ -43,7 +43,7 @@ const resizeImage = async (event: H3Event) => {
     })
   }
 
-  if (width > 0 && height > 0) {
+  if (width !== undefined || height !== undefined) {
     image.resize({
       width,
       height,
@@ -109,8 +109,8 @@ const getFormat = (query: QueryObject) => {
 }
 
 const getSize = (query: QueryObject) => {
-  const width = parseInt(query.w as string) || 0
-  const height = parseInt(query.h as string) || 0
+  const width = parseInt(query.w as string) || undefined
+  const height = parseInt(query.h as string) || undefined
 
   return { width, height }
 }
