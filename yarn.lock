@@ -1634,12 +1634,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@czub/czub-common@workspace:modules/czub-common":
-  version: 0.0.0-use.local
-  resolution: "@czub/czub-common@workspace:modules/czub-common"
-  languageName: unknown
-  linkType: soft
-
 "@docsearch/css@npm:3.5.2, @docsearch/css@npm:^3.5.2":
   version: 3.5.2
   resolution: "@docsearch/css@npm:3.5.2"
@@ -3846,20 +3840,6 @@ __metadata:
 "@storefront-x/wishlist@workspace:modules/wishlist":
   version: 0.0.0-use.local
   resolution: "@storefront-x/wishlist@workspace:modules/wishlist"
-  languageName: unknown
-  linkType: soft
-
-"@supplo/supplo-checkout-common@0.2.8, @supplo/supplo-checkout-common@workspace:modules/supplo-checkout-common":
-  version: 0.0.0-use.local
-  resolution: "@supplo/supplo-checkout-common@workspace:modules/supplo-checkout-common"
-  languageName: unknown
-  linkType: soft
-
-"@supplo/supplo-one-step-checkout@workspace:modules/supplo-one-step-checkout":
-  version: 0.0.0-use.local
-  resolution: "@supplo/supplo-one-step-checkout@workspace:modules/supplo-one-step-checkout"
-  dependencies:
-    "@supplo/supplo-checkout-common": 0.2.8
   languageName: unknown
   linkType: soft
 
