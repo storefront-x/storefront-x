@@ -2,12 +2,12 @@ import Locale from '#ioc/types/vue-i18n/Locale'
 
 const locales: Locale[] = [
   {
-    fullName: 'Czech',
-    name: 'cz',
-    locale: 'cz-CS',
+    fullName: 'English',
+    name: 'en',
+    locale: 'en-US',
     prefix: '/',
-    flag: '/flags/1x1/cz.svg',
-    magentoStore: 'cz',
+    flag: '/flags/1x1/us.svg',
+    magentoStore: 'default',
   },
 ]
 
