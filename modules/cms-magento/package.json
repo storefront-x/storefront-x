@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "happy-dom": "^13.3.8"
+    "happy-dom": "13.3.8"
   },
   "publishConfig": {
     "access": "public"

@@ -3420,7 +3420,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storefront-x/cms-magento@workspace:modules/cms-magento"
   dependencies:
-    happy-dom: ^13.3.8
+    happy-dom: 13.3.8
   languageName: unknown
   linkType: soft
 
@@ -9042,7 +9042,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"happy-dom@npm:^13.3.8":
+"happy-dom@npm:13.3.8":
   version: 13.3.8
   resolution: "happy-dom@npm:13.3.8"
   dependencies:
