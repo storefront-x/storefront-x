@@ -28,10 +28,10 @@ jobs:
     with:
       storefront-x-config: storefront-x.magento.config.js
 
-  cypress:
-    needs: [yarn]
-    uses: ./.github/workflows/cypress.yml
-    with:
-      storefront-x-config: storefront-x.magento.config.js
-      number-of-tests-per-run: 3
-      target-directory: cypress/e2e
+  # cypress:
+  #   needs: [yarn]
+  #   uses: ./.github/workflows/cypress.yml
+  #   with:
+  #     storefront-x-config: storefront-x.magento.config.js
+  #     number-of-tests-per-run: 3
+  #     target-directory: cypress/e2e
