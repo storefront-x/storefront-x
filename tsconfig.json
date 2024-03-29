@@ -16,10 +16,10 @@
     "allowJs": true,
     "paths": {
       "#ioc/*": ["./.sfx/ioc/*"],
-      "~/*": ["./*"]
+      "~/*": ["./*"],
     },
-    "types": ["node", "cypress", "vitest/globals", "cypress-wait-until"]
+    "types": ["node", "cypress", "vitest/globals", "cypress-wait-until"],
   },
-  "include": ["modules/**/*", "local_modules/**/*", "cypress/**/*", ".sfx/**/*"],
-  "exclude": [".sfx/vite"]
+  "include": ["types.d.ts", "modules/**/*", "local_modules/**/*", "cypress/**/*", ".sfx/**/*"],
+  "exclude": [".sfx/vite"],
 }

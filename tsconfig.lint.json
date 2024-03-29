@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [".sfx/**/*", "modules/wishlist/**/*"],
+  "compilerOptions": {
+    "isolatedModules": false
+  }
+}
