@@ -1,4 +1,4 @@
-name: PX
+name: Magento
 
 on:
   push:
@@ -20,26 +20,27 @@ jobs:
     needs: [yarn]
     uses: ./.github/workflows/lint.yml
     with:
-      storefront-x-config: storefront-x.px.config.js
+      storefront-x-config: storefront-x.magento.config.js
 
   unit:
     needs: [yarn]
     uses: ./.github/workflows/unit.yml
     with:
-      storefront-x-config: storefront-x.px.config.js
+      storefront-x-config: storefront-x.magento.config.js
 
   cypress:
     needs: [yarn]
     uses: ./.github/workflows/cypress.yml
     with:
-      storefront-x-config: storefront-x.px.config.js
+      storefront-x-config: storefront-x.magento.config.js
       number-of-tests-per-run: 3
       target-directory: cypress/e2e
 
-  lighthouse:
-    needs: [yarn]
-    uses: ./.github/workflows/lighthouse.yml
+  mxcloud:
+    uses: ./.github/workflows/mxcloud.yml
     with:
-      storefront-x-config: storefront-x.px.config.js
-      product-detail-page: tripp-lite-n238-001-yw-keystone-module.html
-      category-page: computers-peripherals.html
+      storefront-x-config: storefront-x.magento.config.js
+      storefront-x-integration: vanilla
+    secrets:
+      MXCLOUD_URL: ${{ secrets.MXCLOUD_URL }}
+      MXCLOUD_AUTH: ${{ secrets.MXCLOUD_AUTH }}
