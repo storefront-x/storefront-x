@@ -1,1 +1,2 @@
-export default import.meta.env.SSR
+// @ts-ignore
+export default import.meta.env.SSR as boolean
