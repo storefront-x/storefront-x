@@ -25,7 +25,7 @@ export default async (app: App, ctx: Context) => {
     fallbackLocale: VUE_I18N_LOCALES[0].locale,
     messages: IS_SERVER
       ? { [locale]: allMessages[`/i18n/messages/${locale}.json`]?.default ?? {} }
-      : { [locale]: window.$i18nMessages },
+      : { [locale]: (window as any).$i18nMessages },
     legacy: VUE_I18N_LEGACY,
     fallbackFormat: VUE_I18N_FALLBACK_FORMAT,
     missingWarn: VUE_I18N_MISSING_WARN,
@@ -68,7 +68,7 @@ function getLocale(ctx: Context): string {
 
   if (isRouteConfigDefined) {
     for (const [, value] of Object.entries(VUE_I18N_ROUTE_PATHS)) {
-      for (const [name, localePath] of Object.entries(value as keyof typeof VUE_I18N_ROUTE_PATHS)) {
+      for (const [name, localePath] of Object.entries(value)) {
         if (path === localePath) {
           localeName = name
           break

@@ -1,1 +1,2 @@
-export default import.meta.env.MODE
+// @ts-ignore
+export default import.meta.env.MODE as string

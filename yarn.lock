@@ -3300,6 +3300,8 @@ __metadata:
 "@storefront-x/base@workspace:modules/base":
   version: 0.0.0-use.local
   resolution: "@storefront-x/base@workspace:modules/base"
+  dependencies:
+    "@types/lodash-es": ^4.17.12
   languageName: unknown
   linkType: soft
 

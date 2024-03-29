@@ -8,7 +8,7 @@ export default (options: Options, sitemap: string) => {
     const routePaths = (VUE_I18N_ROUTE_PATHS as any)[$1]
 
     if (routePaths) {
-      return `${options.host}${options.prefix}${routePaths[options.locale.name]}</loc>`
+      return `${options.host}${options.prefix}${routePaths[options.locale!.name]}</loc>`
     } else {
       return match
     }
