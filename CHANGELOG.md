@@ -1,3 +1,14 @@
+## v1.27.0 (2024-03-29)
+
+#### :rocket: Enhancement
+
+- [#476](https://github.com/storefront-x/storefront-x/pull/476) Improve typings ([@adamjedlicka](https://github.com/adamjedlicka))
+- [#475](https://github.com/storefront-x/storefront-x/pull/475) Add memo composable util ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.26.0 (2024-03-28)
 
 #### :rocket: Enhancement
