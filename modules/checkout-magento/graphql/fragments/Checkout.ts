@@ -30,7 +30,6 @@ export default (name = 'checkout') =>
         postcode: field(),
         street: field(),
         telephone: field(),
-        pickup_location_code: field(),
         selected_shipping_method: field({
           carrier_code: field(),
           carrier_title: field(),
