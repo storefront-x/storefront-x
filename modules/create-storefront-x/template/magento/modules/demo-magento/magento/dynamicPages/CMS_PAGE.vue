@@ -1,18 +1,21 @@
 <template>
   <Container class="mt-2 mb-8 md:mt-3 md:mb-10 links">
-    <SfxMagentoCmsPage :cms-page="data.cmsPage" />
+    <div v-html="data.cmsPage.content" />
   </Container>
 </template>
 
 <script setup lang="ts">
+import { PropType } from 'vue'
 import useGetCmsPageById from '#ioc/services/useGetCmsPageById'
-import SfxMagentoCmsPage from '#ioc/components/SfxMagentoCmsPage'
 import useResource from '#ioc/composables/useResource'
 import Container from '#ioc/atoms/Container'
 
+interface ProductResolverResponse {
+  identifier: string
+}
 const props = defineProps({
-  entityUid: {
-    type: String,
+  resolverData: {
+    type: Object as PropType<ProductResolverResponse>,
     required: true,
   },
 })
@@ -20,7 +23,7 @@ const props = defineProps({
 const getCmsPageById = useGetCmsPageById()
 
 const [data] = await useResource(
-  () => props.entityUid,
+  () => props.resolverData.identifier,
   (id) => getCmsPageById(id),
 )
 </script>

@@ -118,6 +118,7 @@ onMounted(async () => {
     street: 'DUMMYDATA',
     city: 'DUMMYDATA',
     postcode: 'DUMMYDATA',
+    region: 'DUMMYDATA',
     countryCode: 'CZ',
   })
 

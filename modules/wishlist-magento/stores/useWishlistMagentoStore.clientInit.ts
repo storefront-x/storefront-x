@@ -9,13 +9,16 @@ export default () => {
   const getWishlistRepository = useGetWishlistRepository()
 
   return async () => {
+    if (customerStore.customer === null) {
+      return
+    }
     await waitForStore(
       customerStore,
       () => customerStore.customer !== undefined,
       async () => {
         if (customerStore.customer) {
-          const { id } = await getWishlistRepository()
-          wishlistMagentoStore.$patch({ wishlistId: id })
+          const { id, items } = await getWishlistRepository()
+          wishlistMagentoStore.$patch({ wishlistId: id, items })
         }
       },
     )
