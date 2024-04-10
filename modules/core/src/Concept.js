@@ -91,13 +91,10 @@ export default class Concept {
    * @returns {string}
    */
   getPathForFile(module, file) {
-    return (
-      '~/' +
-      path
-        .relative(this.core.rootDir, module.join(this.directory, file))
-        .replace(/\.tsx?$/, '')
-        .replace(/\\/g, '/')
-    )
+    return path
+      .join(module.meta.name, this.directory, file)
+      .replace(/\.tsx?$/, '')
+      .replace(/\\/g, '/')
   }
 
   /**
