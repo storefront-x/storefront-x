@@ -29,10 +29,12 @@ export default () => {
           lastname: contactInformation.lastName,
           street: contactInformation.street,
           city: contactInformation.city,
+          region: contactInformation.region,
           country_code: contactInformation.countryCode,
           postcode: contactInformation.postcode,
           save_in_address_book: false,
         },
+        pickupLocationCode: contactInformation.countryCode,
       })
 
       checkoutStore.$patch(checkout)

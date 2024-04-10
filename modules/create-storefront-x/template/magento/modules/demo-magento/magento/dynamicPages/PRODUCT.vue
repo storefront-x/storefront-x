@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, PropType } from 'vue'
 import useGetProductById from '#ioc/services/useGetProductById'
 import ProductProvider from '#ioc/providers/ProductProvider'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
@@ -14,14 +14,14 @@ import useResource from '#ioc/composables/useResource'
 
 const NotFound = defineAsyncComponent(() => import('#ioc/templates/NotFound'))
 const ProductDetail = hydrateWhenVisible(() => import('#ioc/templates/ProductDetail'))
-
+interface ProductResolverResponse {
+  sku: string
+  url_key: string
+  uid: string
+}
 const props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
-  relativeUrl: {
-    type: String,
+  resolverData: {
+    type: Object as PropType<ProductResolverResponse>,
     required: true,
   },
 })
@@ -29,7 +29,7 @@ const props = defineProps({
 const getProductById = useGetProductById()
 
 const [data] = await useResource(
-  () => props.relativeUrl.replace(/\.html$/, ''),
+  () => props.resolverData.sku,
   (id) => getProductById(id),
 )
 </script>
