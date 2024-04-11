@@ -1,3 +1,18 @@
+## v1.28.0 (2024-04-11)
+
+#### :rocket: Enhancement
+
+- [#477](https://github.com/storefront-x/storefront-x/pull/477) Improve performance of Magento modules ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### :house: Internal
+
+- [#478](https://github.com/storefront-x/storefront-x/pull/478) Update generated import path ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 2
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.27.0 (2024-03-29)
 
 #### :rocket: Enhancement
