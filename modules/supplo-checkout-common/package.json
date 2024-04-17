@@ -1,0 +1,7 @@
+{
+  "name": "@supplo/supplo-checkout-common",
+  "version": "0.2.8",
+  "license": "UNLICENSED",
+  "type": "module",
+  "private": true
+}
