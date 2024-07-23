@@ -2,6 +2,6 @@
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "useNx": true,
   "useWorkspaces": true,
-  "version": "1.28.1",
+  "version": "1.29.0",
   "independent": false
 }
