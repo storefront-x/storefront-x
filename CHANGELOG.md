@@ -1,3 +1,13 @@
+## v1.29.0 (2024-07-23)
+
+#### :rocket: Enhancement
+
+- [#479](https://github.com/storefront-x/storefront-x/pull/479) Implement image resizer fallback url ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.28.0 (2024-04-11)
 
 #### :rocket: Enhancement
