@@ -78,6 +78,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    fallbackImageUrl: {
+      type: String,
+      default: undefined,
+    },
   },
 
   computed: {
@@ -110,6 +114,7 @@ export default defineComponent({
         fit: this.fit,
         position: this.position,
         format,
+        fallback: this.fallbackImageUrl,
         ...rest,
       })
     },

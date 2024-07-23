@@ -3,6 +3,7 @@ import consola from 'consola'
 import { eventHandler, setResponseStatus, H3Event, getQuery, setHeaders } from 'h3'
 import plugins from '~/.sfx/baseCommerce/imageResizer'
 import isString from '#ioc/utils/isString'
+import IMAGE_RESIZER_FALLBACK_IMAGE_URL from '#ioc/config/IMAGE_RESIZER_FALLBACK_IMAGE_URL'
 
 const logger = consola.withTag('image-resizer')
 
@@ -34,8 +35,25 @@ const resizeImage = async (event: H3Event) => {
   const fit = getFit(query)
   const position = getPosition(query)
   const background = getBackground(query)
+  const fallbackImageUrl = getFallbackImageUrl(query)
 
-  const image = await fetchImage(path)
+  let image: sharp.Sharp
+
+  try {
+    image = await fetchImage(path)
+  } catch (e) {
+    const _fallbackImageUrl = fallbackImageUrl ?? IMAGE_RESIZER_FALLBACK_IMAGE_URL
+
+    if (_fallbackImageUrl) {
+      image = await fetchImage(
+        _fallbackImageUrl.startsWith('/')
+          ? `http://${SERVER_HOST}:${SERVER_PORT}${_fallbackImageUrl}`
+          : _fallbackImageUrl,
+      )
+    } else {
+      throw e
+    }
+  }
 
   if (format !== 'png') {
     image.flatten({
@@ -68,7 +86,7 @@ const resizeImage = async (event: H3Event) => {
 const fetchImage = async (path: string) => {
   const response = await fetch(path)
 
-  if (response.status === 404) {
+  if (!response.headers.get('content-type')?.includes('image/')) {
     throw new Error(`Source image not found: ${path}`)
   }
 
@@ -142,4 +160,8 @@ const getPosition = (query: QueryObject) => {
 
 const getBackground = (query: QueryObject): string => {
   return isString(query.bg) ? query.bg : '#FFFFFF'
+}
+
+const getFallbackImageUrl = (query: QueryObject): string | null => {
+  return isString(query.fallback) ? query.fallback : null
 }
