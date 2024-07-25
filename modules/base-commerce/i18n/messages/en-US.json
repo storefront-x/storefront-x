@@ -15,6 +15,7 @@
     "Guests can not subscribe to the newsletter. You must create an account to subscribe.": "Guests can not subscribe to the newsletter. You must create an account to subscribe.",
     "The account sign-in was incorrect or your account is disabled temporarily.": "The account sign-in was incorrect or your account is disabled temporarily.",
     "This email address is already subscribed.": "This email address is already subscribed.",
-    "You must specify an email address to subscribe to a newsletter.": "You must specify an email address to subscribe to a newsletter."
+    "You must specify an email address to subscribe to a newsletter.": "You must specify an email address to subscribe to a newsletter.",
+    "oldAppVersionReloading": "The application has been updated. Please wait for page to reload."
   }
 }
