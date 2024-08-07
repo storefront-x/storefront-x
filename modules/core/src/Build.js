@@ -1,4 +1,5 @@
 import path from 'node:path'
+import fs from 'node:fs/promises'
 import * as vite from 'vite'
 import open from 'open'
 import cssnano from 'cssnano'
@@ -86,5 +87,7 @@ export default class Build extends Core {
     for (const concept of Object.values(this.concepts)) {
       await concept.afterBuild()
     }
+
+    await fs.writeFile(path.resolve(this.distDir, 'sfx.json'), JSON.stringify(this.config))
   }
 }
