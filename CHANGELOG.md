@@ -1,3 +1,13 @@
+## v1.30.0 (2024-08-07)
+
+#### :rocket: Enhancement
+
+- [#480](https://github.com/storefront-x/storefront-x/pull/480) Add support for baseUrl ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.29.0 (2024-07-23)
 
 #### :rocket: Enhancement
