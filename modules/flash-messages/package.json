@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/flash-messages",
-  "version": "1.29.0",
+  "version": "1.30.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
