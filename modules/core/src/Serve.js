@@ -33,7 +33,7 @@ export default class Serve extends Core {
     }
 
     app.use(
-      path.join(config.baseUrl, '/assets'),
+      path.join(config.baseUrl ?? '/', '/assets'),
       fromNodeMiddleware(
         serverStatic(path.join(this.distDir, 'client', 'assets'), {
           index: false,
