@@ -9,6 +9,8 @@ import serverStatic from 'serve-static'
 
 export default class Serve extends Core {
   async createServer() {
+    const config = await this._loadConfig()
+
     await this._loadServerStartup()
 
     const template = await fs.readFile(path.join(this.distDir, 'client', 'index.html'), { encoding: 'utf-8' })
@@ -31,7 +33,7 @@ export default class Serve extends Core {
     }
 
     app.use(
-      '/assets',
+      path.join(config.baseUrl ?? '/', '/assets'),
       fromNodeMiddleware(
         serverStatic(path.join(this.distDir, 'client', 'assets'), {
           index: false,
@@ -130,5 +132,15 @@ export default class Serve extends Core {
     }
 
     return normalized
+  }
+
+  async _loadConfig() {
+    try {
+      const config = await fs.readFile(path.resolve(this.distDir, 'sfx.json'), { encoding: 'utf-8' })
+      return JSON.parse(config)
+    } catch {
+      console.error('Could not load sfx.json')
+      return {}
+    }
   }
 }

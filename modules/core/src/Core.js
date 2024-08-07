@@ -34,6 +34,7 @@ export default class Core {
 
     this.viteConfig = vite.mergeConfig(
       vite.defineConfig({
+        base: config.baseUrl,
         clearScreen: false,
         root: this.buildDir,
         cacheDir: path.resolve(this.rootDir, '.vite'),

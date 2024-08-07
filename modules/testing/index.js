@@ -19,6 +19,7 @@ export const makeProject = async (config, callback) => {
     const serverPort = await getPort()
 
     const dev = new Dev({
+      ...config,
       dir,
       modules: config.modules.map((pkg) => {
         if (typeof pkg === 'string') return pkg
@@ -82,6 +83,7 @@ export const buildProject = async (config, callback = () => undefined) => {
     }
 
     const build = new Build({
+      ...config,
       dir,
       modules: config.modules.map((pkg) => {
         if (typeof pkg === 'string') return pkg
