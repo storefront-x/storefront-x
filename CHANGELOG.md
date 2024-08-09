@@ -1,3 +1,13 @@
+## v1.31.0 (2024-08-09)
+
+#### :rocket: Enhancement
+
+- [#481](https://github.com/storefront-x/storefront-x/pull/481) Upgrade dependencies ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.30.0 (2024-08-07)
 
 #### :rocket: Enhancement
