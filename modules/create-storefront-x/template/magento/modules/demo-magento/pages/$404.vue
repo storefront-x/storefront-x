@@ -18,7 +18,7 @@ const route = useRoute()
 const localePath = useLocalePath()
 const urlResover = useUrlResolver()
 
-const pathMatch = isArray(route.params.pathMatch) ? route.params.pathMatch.join('/') : route.params.pathMatch ?? '/'
+const pathMatch = isArray(route.params.pathMatch) ? route.params.pathMatch.join('/') : (route.params.pathMatch ?? '/')
 const [data] = await useResource(
   () => pathMatch,
   (routePath) => urlResover(routePath),
