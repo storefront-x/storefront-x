@@ -44,6 +44,7 @@ export default class Serve extends Core {
     )
 
     app.use(
+      config.baseUrl ?? '/',
       fromNodeMiddleware(
         serverStatic(path.join(this.distDir, 'client'), {
           index: false,
@@ -52,7 +53,7 @@ export default class Serve extends Core {
     )
 
     await this._loadServerMiddleware(app)
-    await this._loadServerRoutes(app)
+    await this._loadServerRoutes(app, config)
 
     app.use(
       eventHandler(async (event) => {
@@ -102,7 +103,7 @@ export default class Serve extends Core {
     )
   }
 
-  async _loadServerRoutes(app) {
+  async _loadServerRoutes(app, config) {
     const router = createRouter()
 
     const { href } = url.pathToFileURL(path.join(this.distDir, 'server', 'routes.js'))
@@ -115,7 +116,7 @@ export default class Serve extends Core {
       }
     }
 
-    app.use(router)
+    app.use(config.baseUrl ?? '/', router)
   }
 
   _normalizeManifest(manifest) {

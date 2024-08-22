@@ -30,7 +30,10 @@ export default class Dev extends Core {
 
     const app = createApp()
 
-    app.use(fromNodeMiddleware(serverStatic(path.join(this.buildDir, 'public'), { index: false })))
+    app.use(
+      this.config.baseUrl ?? '/',
+      fromNodeMiddleware(serverStatic(path.join(this.buildDir, 'public'), { index: false })),
+    )
     app.use(fromNodeMiddleware(viteDevServer.middlewares))
 
     await this._loadServerMiddleware(app, viteDevServer)
@@ -121,6 +124,6 @@ export default class Dev extends Core {
       }),
     )
 
-    app.use(router)
+    app.use(this.config.baseUrl ?? '/', router)
   }
 }
