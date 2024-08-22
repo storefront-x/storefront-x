@@ -121,6 +121,6 @@ export default class Dev extends Core {
       }),
     )
 
-    app.use(router)
+    app.use(this.config.baseUrl ?? '/', router)
   }
 }

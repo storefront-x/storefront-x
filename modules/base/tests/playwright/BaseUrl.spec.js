@@ -143,3 +143,61 @@ test.skip('app is hydrated properly in production', async ({ page }) => {
     },
   )
 })
+
+test('it supports base bath for server routes', async ({ page }) => {
+  await makeProject(
+    {
+      baseUrl: '/web',
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            server: {
+              routes: {
+                'hello.js': `
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => 'Hello, server routes!')
+                `,
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      const response = await page.goto(url + '/web/hello')
+      await expect(await response.text()).toContain('Hello, server routes!')
+    },
+  )
+})
+
+test('it supports base bath for server routes in production', async ({ page }) => {
+  await buildProject(
+    {
+      baseUrl: '/web',
+      modules: [
+        '@storefront-x/base',
+        '@storefront-x/vue',
+        [
+          'my-module',
+          {
+            server: {
+              routes: {
+                'hello.js': `
+                  import { eventHandler } from 'h3'
+                  export default eventHandler(() => 'Hello, server routes!')
+                `,
+              },
+            },
+          },
+        ],
+      ],
+    },
+    async ({ url }) => {
+      const response = await page.goto(url + '/web/hello')
+      await expect(await response.text()).toContain('Hello, server routes!')
+    },
+  )
+})
