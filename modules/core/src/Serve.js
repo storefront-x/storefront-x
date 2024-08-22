@@ -44,6 +44,7 @@ export default class Serve extends Core {
     )
 
     app.use(
+      config.baseUrl ?? '/',
       fromNodeMiddleware(
         serverStatic(path.join(this.distDir, 'client'), {
           index: false,
