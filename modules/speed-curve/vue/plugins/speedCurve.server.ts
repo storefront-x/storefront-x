@@ -35,6 +35,8 @@ export const after = async (app: App, ctx?: any) => {
     }
 
     requests.set(`${queryName}`, queryTookTimeInMs)
+
+    ctx.$speedCurveServerRequests.delete(gql)
   }
 
   const rendered = JSON.stringify({ requests: Array.from(requests.entries()), totalTime: last - first })
