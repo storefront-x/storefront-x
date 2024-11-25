@@ -1,3 +1,23 @@
+## v1.31.2 (2024-11-25)
+
+#### :bug: Bug Fix
+
+- [#483](https://github.com/storefront-x/storefront-x/pull/483) Fixed speedCurve memory leak on NodeJs ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+## v1.31.1 (2024-08-22)
+
+#### :bug: Bug Fix
+
+- [#482](https://github.com/storefront-x/storefront-x/pull/482) Fix server base path ([@adamjedlicka](https://github.com/adamjedlicka))
+
+#### Committers: 1
+
+- Adam Jedlička ([@adamjedlicka](https://github.com/adamjedlicka))
+
 ## v1.31.0 (2024-08-09)
 
 #### :rocket: Enhancement
