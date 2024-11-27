@@ -15,6 +15,7 @@
     "Guests can not subscribe to the newsletter. You must create an account to subscribe.": "Hosté se nemohou přihlásit k odběru newsletteru. Chcete-li se přihlásit k odběru, musíte si vytvořit účet.",
     "The account sign-in was incorrect or your account is disabled temporarily.": "Přihlášení k účtu bylo nesprávné nebo je váš účet dočasně deaktivován.",
     "This email address is already subscribed.": "Tato e-mailová adresa je již přihlášena k odběru.",
-    "You must specify an email address to subscribe to a newsletter.": "Chcete-li se přihlásit k odběru newsletteru, musíte zadat e-mailovou adresu."
+    "You must specify an email address to subscribe to a newsletter.": "Chcete-li se přihlásit k odběru newsletteru, musíte zadat e-mailovou adresu.",
+    "oldAppVersionReloading": "Verze vaší aplikace je zastaralá, počkejte, až se aplikace znovu načte."
   }
 }
