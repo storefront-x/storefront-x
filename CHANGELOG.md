@@ -1,3 +1,13 @@
+## v1.32.0 (2025-02-21)
+
+#### :rocket: Enhancement
+
+- [#484](https://github.com/storefront-x/storefront-x/pull/484) Added unhandled rejection to SFX core Serve ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.31.2 (2024-11-25)
 
 #### :bug: Bug Fix
