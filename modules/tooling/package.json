@@ -1,6 +1,6 @@
 {
   "name": "@storefront-x/tooling",
-  "version": "1.31.2",
+  "version": "1.31.3",
   "license": "MIT",
   "type": "module",
   "dependencies": {
