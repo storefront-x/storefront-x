@@ -1,3 +1,13 @@
+## v1.32.1 (2025-02-24)
+
+#### :rocket: Enhancement
+
+- [#485](https://github.com/storefront-x/storefront-x/pull/485) Added exit after global unhandled rejection ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
+#### Committers: 1
+
+- Jan Vaněk ([@JanVanekRelitas](https://github.com/JanVanekRelitas))
+
 ## v1.32.0 (2025-02-21)
 
 #### :rocket: Enhancement
