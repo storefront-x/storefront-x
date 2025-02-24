@@ -81,10 +81,15 @@ export default class Serve extends Core {
 
     process.on('unhandledRejection', (reason, promise) => {
       consola.error('Unhandled Rejection at:', promise, 'reason:', reason)
+      consola.error('Exiting...')
+      process.exit(2)
     })
 
     process.on('uncaughtException', (error) => {
-      consola.error('Uncaught Exception:', error)
+      consola.error(new Date().toUTCString() + ' uncaughtException:', error.message)
+      consola.error(error.stack)
+      consola.error('Exiting...')
+      process.exit(2)
     })
 
     return app
