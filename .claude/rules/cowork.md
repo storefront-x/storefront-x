@@ -1,115 +1,70 @@
----
-alwaysApply: true
----
+# Workflow for Storefront X Framework Development
 
-# AI Coding Assistant - Collaboration Rules
+## General Philosophy
 
-## MANDATORY: Implementation Plan First
+- **Read first** before modifying code — always read the affected files
+- Changes must make sense in the context of the entire monorepo — one module can affect many others
+- When fixing bugs, look for the root cause, not a workaround
 
-**Before any coding work**, you MUST:
+## Git Workflow
 
-1. **Create a detailed implementation plan** in markdown format
-2. **Save the plan** to the `implementationPlans/` folder
-3. **Use naming convention**: `{task-id}-implementation-plan.md` or `{feature-name}-implementation-plan.md`
-4. **Include these sections**:
-   - Task Summary
-   - Current State Analysis
-   - Objectives
-   - Affected Areas (files/modules/functions)
-   - Proposed Changes / Implementation Steps
-   - Potential Risks & Mitigation
-   - Success Criteria
-   - Testing Strategy (E2E tests required - see `e2e.md`)
+```bash
+# Always start from main
+git checkout main && git pull
 
----
+# Feature branch
+git checkout -b fix/description-of-fix
+git checkout -b feat/new-feature
+git checkout -b chore/upgrade-vue
 
-## Workflow for Jira Tasks
-
-When I paste a Jira task number (e.g., ABC-123) or full task description:
-
-### Step 1: Task Analysis
-- If it's a Jira ID, fetch/search for the description (if tools available)
-- Understand the task and extract engineering intent
-- Analyze in context of current repository
-
-### Step 2: Create Implementation Plan
-- Identify key files, modules, or functions likely involved
-- Determine if logic is extending, modifying, or refactoring
-- Document affected areas and implementation approach
-- **Save to `implementationPlans/` folder** (MANDATORY)
-
-### Step 3: Present Plan
-- Share the implementation plan for review
-- Provide clear, actionable steps
-- Include implementation prompt
-
-### Step 4: Implementation
-- Proceed only after plan is reviewed/confirmed
-- Follow the documented approach
-- Stay within planned scope
-
-### Step 5: E2E Testing
-- **After every implementation**, create E2E tests following `e2e.md` rules
-- Use Page Object Model pattern for test structure
-- Add `data-cy` attributes to all interactive elements
-- Test both happy path and error scenarios
-- Ensure tests are country-specific if needed (tags: `cz`, `sk`, `si`, `hr`)
-- Place tests in appropriate location:
-  - Shared tests: `modules/supplo-common/cypress/e2e/`
-  - Feature-specific tests: `cypress/e2e/`
-
----
-
-## Rules
-
-1. **Work only within the current repository**
-2. **Avoid rewriting existing logic** unless clearly required
-3. **Avoid creating new files/components** unless necessary
-4. **Be concise, actionable, and practical** for real-world dev flow
-5. **Always create implementation plan first** - no exceptions
-6. **Save plans to `implementationPlans/` folder** with proper naming
-7. **Create E2E tests after every implementation** - follow `e2e.md` guidelines
-
----
-
-## Output Format
-
-After creating and saving the implementation plan, present:
-
-```markdown
-## Task Summary
-[Concise summary of the task]
-
-## Affected Areas
-- [File/module/function 1]
-- [File/module/function 2]
-- [etc.]
-
-## Implementation Plan
-Saved to: `implementationPlans/{task-id}-implementation-plan.md`
-
-## Implementation Prompt
-[Clear, actionable prompt that can be used to implement this task]
+# Conventional commits
+git commit -m "fix: fix hydration mismatch in vue/composables/useHead"
+git commit -m "feat: add OverridingConcept to core"
+git commit -m "chore: upgrade vue to 3.5.x"
+git commit -m "docs: update concepts section"
 ```
 
----
+## Bug Fix Workflow
 
-## Example
+1. **Understand the problem** — reproduce it on the dev server: `yarn dev --config storefront-x.magento.config.js`
+2. **Find affected files** — search in the `modules/` directory
+3. **Fix** — minimal changes, no unnecessary refactoring
+4. **Verify** — dev server + `yarn lint`
+5. **Check impact** — will the change affect other modules?
 
-For task KFL-2520:
+## Dependency Upgrade Workflow
 
-1. Create `implementationPlans/KFL-2520-implementation-plan.md`
-2. Document analysis, approach, affected areas
-3. Present summary with link to plan
-4. Provide implementation prompt
+1. **Find breaking changes** — read the CHANGELOG and migration guide
+2. **Update `package.json`** in all affected modules
+3. `yarn install`
+4. **Fix TypeScript errors** — run `yarn lint` or check IDE
+5. **Verify build** — `yarn build --config storefront-x.magento.config.js`
+6. **Run tests** — `yarn test:playwright`
+7. **Manual test** — `yarn dev --config storefront-x.magento.config.js`
 
----
+## Documentation Workflow
 
-## Notes
+Documentation is in `docs/` (VitePress). Dev server: `yarn docs:dev`
 
-- Implementation plans help ensure clarity before coding
-- Plans serve as documentation for future reference
-- They enable better collaboration and review
-- They reduce risk of misunderstanding requirements
-- **E2E tests are mandatory** for all implementations - they ensure quality and prevent regressions
-- Follow Cypress best practices and Page Object Model as defined in `e2e.md`
+```bash
+yarn docs:dev     # Local preview at http://localhost:5173
+yarn docs:build   # Verify the build works
+```
+
+## Key Commands
+
+```bash
+yarn dev --config storefront-x.magento.config.js   # Demo dev server (main testing method)
+yarn build --config storefront-x.magento.config.js # Verify production build
+yarn lint                                            # ESLint
+yarn test:unit                                       # Vitest unit tests
+yarn test:playwright                                 # Playwright e2e tests
+yarn docs:dev                                        # VitePress dev server
+```
+
+## What Not to Do
+
+- **Don't edit the `.sfx/` directory** — it's generated, changes will be overwritten
+- **Don't add dependencies to the root `package.json`** except for shared dev tools
+- **Don't change versions in individual `package.json` manually** — versions are managed by Lerna
+- **Don't create files unnecessarily** — prefer editing existing ones

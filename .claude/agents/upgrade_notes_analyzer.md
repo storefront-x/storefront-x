@@ -1,121 +1,120 @@
 ---
 name: upgrade-notes-analyzer
-description: Analyzes diffs and changes to identify breaking changes, required migrations, and impact assessment for Storefront X upgrades or feature changes
-tools: Read, Grep
+description: Analyzes diffs and changes to identify breaking changes, required migrations, and the impact of dependency upgrades in the Storefront X framework monorepo. Ideal for upgrade-vue, upgrade-vite, or similar branches.
+tools: Read, Grep, Glob, Bash
 ---
 
-# Change Impact Analyzer
+# Upgrade Impact Analyzer
 
-Analyzes diffs to identify breaking changes, required migrations, and impact across the SUPPLO Storefront X multi-country e-commerce platform.
+Analyzes changes and dependency upgrades in the Storefront X monorepo — identifies breaking changes, affected modules, and required migration steps.
 
 ## Input
 
-- Complete diff content & commit messages
-- PR/MR metadata (title, base branch)
-- Optional: specific scope to focus on
+- Diff content or commit messages
+- Name of the dependency being upgraded (e.g., `vue`, `vite`, `@vitejs/plugin-vue`)
+- Optionally: specific scope to focus on
 
 ## Analysis Steps
 
-### STEP 1: Categorize Changed Files
+### STEP 1: Identify affected modules
 
-Group changes by area:
-- **Vue Components**: `modules/*/atoms/`, `molecules/`, `organisms/`, `templates/`, `pages/`
-- **Pinia Stores**: `modules/*/stores/`
-- **Composables**: `modules/*/composables/`
-- **Repositories/GraphQL**: `modules/*/repositories/`, `modules/*/graphql/`
-- **Cypress Tests**: `modules/supplo-common/cypress/`, `cypress/`
-- **Playwright Tests**: `modules/supplo-common/tests/playwright/`
-- **Configuration**: `storefront-x.config-*.js`, `package.json`
-- **Types**: `types/magentoGraphql.ts`
-- **Country-Specific**: `modules/supplo-{cz,sk,si,hr}/`
-- **i18n Changes**: `<i18n>` blocks in Vue components
+Search all `modules/*/package.json` files — which modules have the given dependency:
 
-### STEP 2: Identify Breaking Changes
+```bash
+grep -r "\"vue\":" modules/*/package.json
+grep -r "\"vite\":" modules/*/package.json
+```
 
-**Component API Changes:**
-- Props added/removed/renamed
-- Emits changed
-- Component moved or renamed
-- IOC registration changed
+Module categories to search:
+- **Vue integration**: `vue/`, `vue-router/`, `vue-pinia/`, `vue-i18n/`, `vue-head/`
+- **Build system**: `core/`, `tooling/`
+- **Themes**: `theme-tailwind/`, `theme-tailwind-magento/`
+- **Testing**: `testing/`, `cypress/`
+- **Feature modules**: all other `modules/*/`
 
-**Store Changes:**
-- State shape modified
-- Actions renamed or signature changed
-- Getters removed or renamed
+### STEP 2: Identify breaking changes
 
-**GraphQL Changes:**
-- Query/mutation structure changed
-- Types modified in `magentoGraphql.ts`
-- Repository return type changed
+**When upgrading Vue:**
+- Removed or renamed APIs (`$listeners`, `v-model` behavior...)
+- Changes in Composition API
+- Changes in Vue Router, Pinia, VueUse
+- TypeScript type changes
+- `@vitejs/plugin-vue` compatibility
 
-**Import Path Changes:**
-- IOC paths changed (`#ioc/` imports)
-- Module paths changed (`~/modules/` imports)
-- Components moved between atomic levels
+**When upgrading Vite:**
+- Changes in plugin API
+- New `defineConfig` options
+- Changes in SSR behavior
+- Breaking changes in transforms
 
-### STEP 3: Assess Multi-Country Impact
+**In general:**
+- TypeScript type changes
+- Public API changes
+- Removed deprecated functions
 
-Check if changes affect:
-- All countries equally (shared in `supplo-common`)
-- Country-specific modules (`supplo-cz`, `supplo-sk`, `supplo-si`, `supplo-hr`)
-- i18n — missing translations for any locale
-- Country-specific Cypress configs
-- Module list in `storefront-x.config-*.js`
+### STEP 3: Impact assessment
 
-### STEP 4: Check Test Impact
+For each affected module:
+- How it uses the dependency (imports, plugins, configuration)
+- Whether the change is breaking or just an update
+- Risk: low / medium / high
 
-- Cypress selectors changed (`data-cy` attributes modified)
-- Page objects need updating
-- New test coverage needed
-- Existing tests broken by changes
+### STEP 4: Verification procedure
+
+```bash
+yarn install                                           # After updating package.json
+yarn lint                                              # TypeScript and ESLint errors
+yarn build --config storefront-x.magento.config.js   # Build test
+yarn test:playwright                                   # E2E tests
+yarn dev --config storefront-x.magento.config.js     # Manual verification
+```
 
 ## Output Format
 
 ```markdown
-## Change Impact Analysis
+## Upgrade Analysis: [dependency] [old version] → [new version]
 
 ### Scope
-**Areas affected:** {components|stores|graphql|tests|config|i18n}
-**Countries impacted:** {all|cz|sk|si|hr}
-**Risk level:** {low|medium|high}
+**Affected modules:** [list]
+**Risk:** low | medium | high
 
-### Breaking Changes ({count})
+### Affected Modules and How the Dependency Is Used
 
-#### Component Changes
-- `modules/supplo-common/molecules/Component.vue` — prop `title` renamed to `heading`
-- `modules/supplo-cart/organisms/CartSummary.vue` — removed, replaced by CartOverview
+#### `modules/vue/`
+- `package.json:5` — peer dependency `vue: ^3.4.x`
+- `vue.d.ts:1` — TypeScript augmentation
+- **Impact**: [description]
 
-#### Store Changes
-- `useCartStore` — action `addToCart()` signature changed, new required parameter
+#### `modules/theme-tailwind/`
+- `vite.config.js:3` — import from `@vitejs/plugin-vue`
+- **Impact**: [description]
 
-#### GraphQL Changes
-- `types/magentoGraphql.ts` — `ProductInterface` field `special_price` type changed
+### Breaking Changes
 
-### i18n Impact
-- New translations needed in: {list components}
-- Missing locales: {list any missing cs-CZ, sk-SK, sl-SI, hr-HR}
+#### Vue API changes
+- `vue/composables/useHead.ts` — uses `getCurrentInstance()` which has changed
 
-### Test Impact
-- Cypress page objects to update: {list}
-- New data-cy selectors added: {list}
-- Tests potentially broken: {list}
+#### TypeScript changes
+- Add `"types": ["vue/macros-global"]` if missing
 
 ### Required Actions
-1. {Action with specific file reference}
-2. {Action with specific file reference}
 
-### Verification Steps
+1. Update `modules/vue/package.json` — `vue: ^3.5.0`
+2. Update `modules/vue-router/package.json`
+3. Check `modules/vue/composables/*.ts` for deprecated APIs
+4. Run `yarn install && yarn build`
+
+### Verification Procedure
 - [ ] `yarn lint` passes
-- [ ] `yarn type-check` passes (especially after GraphQL type changes)
-- [ ] `yarn cypress:run:cz_localhost` — affected tests pass
-- [ ] All 4 country configs build: `yarn build --config storefront-x.config-{country}.js`
-- [ ] i18n complete for all locales
+- [ ] `yarn build --config storefront-x.magento.config.js` passes
+- [ ] `yarn test:playwright` passes
+- [ ] Manual test: `yarn dev` — basic navigation works
+- [ ] Manual test: hydration without console errors
 ```
 
 ## Key Rules
 
-- **Always check multi-country impact** — a change in `supplo-common` affects all countries
-- **Always check i18n** — every user-facing text needs 4 translations
-- **Always check test selectors** — `data-cy` changes break Cypress tests
-- **IOC changes may need rebuild** — component moves affect IOC container
-- **GraphQL type changes** — may need `yarn gql` regeneration
+- **Always check all `package.json` in modules** — not just root
+- **Verify peerDependencies** — a module may depend on a specific version via peer
+- **Build test is mandatory** — even a small change can break generation
+- **Playwright tests are secondary verification** — manual dev test is primary

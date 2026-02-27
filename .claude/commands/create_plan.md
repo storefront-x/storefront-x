@@ -1,190 +1,147 @@
-# Implementation Plan
+# Creating an Implementation Plan
 
-You are tasked with creating detailed implementation plans through an interactive, iterative process. You should be skeptical, thorough, and work collaboratively with the user to produce high-quality technical specifications for the SUPPLO Storefront X e-commerce platform.
+You are responsible for creating a detailed implementation plan for the Storefront X framework monorepo. Be skeptical, thorough, and work collaboratively to produce a quality technical specification.
 
 ## Initial Response
 
-When this command is invoked:
-
-1. **If parameters provided** — begin research immediately
-2. **If no parameters** — respond with:
+If parameters are provided — start research immediately.
+If not, ask:
 ```
-I'll help you create a detailed implementation plan. Please provide:
-1. The task/feature description
-2. Any relevant context or constraints
-3. Links to related implementations in the codebase
+I'll help you create a detailed implementation plan. Provide:
+1. Description of the task or fix
+2. Relevant context or constraints
+3. Any files or modules involved
 
-I'll analyze this and work with you to create a comprehensive plan.
-
-Tip: You can invoke this with a description directly: `/create_plan Add product comparison feature`
+Tip: You can call the command directly with a description: /create_plan Fix bug in IocConcept
 ```
 
 ## Process Steps
 
-### Step 1: Context Gathering & Initial Analysis
+### Step 1: Gather Context
 
-1. **Read all mentioned files FULLY** — no partial reads
-2. **Spawn parallel research tasks**:
-    - **codebase-locator** — find all files related to the task
-    - **codebase-analyzer** — understand current implementation
-    - **codebase-pattern-finder** — find similar features to model after
-3. **Read all files identified by research tasks** into main context
-4. **Present informed understanding**:
+1. **Read all mentioned files in full** — without truncation
+2. **Run parallel research**:
+   - **codebase-locator** — find all relevant files
+   - **codebase-analyzer** — understand the current implementation
+   - **codebase-pattern-finder** — find similar patterns in the monorepo
+3. **Read results** into the main context
+4. **Present your understanding**:
    ```
-   Based on the task and my research, I understand we need to [summary].
+   Based on the task and research, I understand that [summary] is needed.
 
-   I've found:
-   - [Current implementation detail with file:line reference]
+   I found:
+   - [Implementation detail with file:line references]
    - [Relevant pattern or constraint]
    - [Potential complexity or edge case]
 
-   Questions my research couldn't answer:
-   - [Specific question requiring human judgment]
+   Questions that research didn't answer:
+   - [Specific question requiring a decision]
    ```
 
-### Step 2: Research & Discovery
+### Step 2: Research and Design
 
-After getting clarifications:
+After clarification:
 
-1. **If user corrects a misunderstanding** — spawn new research to verify
-2. **Spawn deeper research tasks**:
-    - **codebase-pattern-finder** — find concrete examples of each component type you plan to implement
-    - **docs-researcher** — find relevant documentation and existing implementation plans
-3. **Present findings and design options**:
+1. **If the user corrects a misunderstanding** — run new research to verify
+2. **Present design options**:
    ```
-   **Current State:**
-   - [Key discovery with file:line]
+   **Current state:**
+   - [Key finding with file:line]
 
-   **Design Options:**
-   1. [Option A] - [pros/cons]
-   2. [Option B] - [pros/cons]
+   **Design options:**
+   1. [Option A] — pros/cons
+   2. [Option B] — pros/cons
 
-   Which approach aligns best?
+   Which approach is correct?
    ```
 
 ### Step 3: Plan Structure
 
-Once aligned:
-1. **Create plan outline** with phases and get approval before writing details
-2. **Validate patterns** — verify all component types have correct codebase examples
+After the approach is approved:
+1. **Create a plan outline** with phases — get approval before writing details
+2. **Validate patterns** — verify that planned changes have examples in the codebase
 
 ### Step 4: Write the Plan
 
-Save to `implementationPlans/{descriptive_name}.md` using this template:
+Save to `docs/plans/YYYY-MM-DD-plan-name.md` using this template:
 
 ```markdown
-# [Feature/Task Name] Implementation Plan
+# [Task Name] — Implementation Plan
 
 ## Overview
 [Brief description of what and why]
 
 ## Current State Analysis
-[What exists now, constraints discovered]
-- [Finding with file:line reference]
-- [Pattern to follow]
+[What exists now, constraints]
+- [Finding with file:line references]
 
 ## What We're NOT Doing
-[Out-of-scope items to prevent scope creep]
+[What is out of scope — preventing scope creep]
 
 ## Implementation Approach
 [High-level strategy]
 
-## Phase 1: [Descriptive Name]
+## Phase 1: [Description]
 
-### Changes Required:
+### Required Changes:
 
-#### 1. [Component/File]
-**File**: `modules/supplo-{module}/molecules/ComponentName.vue`
+#### 1. [File/Module]
+**File**: `modules/module-name/concepts/Feature.js`
 **Changes**: [Summary]
 
-```vue
-<!-- Specific code -->
+```javascript
+// specific code
 ```
 
 ### Success Criteria:
 
 #### Automated:
 - [ ] `yarn lint` passes
-- [ ] `yarn type-check` passes
-- [ ] `yarn cypress:run:cz_localhost` — relevant tests pass
+- [ ] `yarn build --config storefront-x.magento.config.js` passes
+- [ ] `yarn test:playwright` passes (if relevant)
 
 #### Manual:
-- [ ] Feature works in CZ store (http://localhost:3000)
-- [ ] Responsive design (375px, 768px, 1920px)
-- [ ] All translations present (cs-CZ, sk-SK, sl-SI, hr-HR)
+- [ ] Feature works on dev server (`yarn dev --config storefront-x.magento.config.js`)
+- [ ] No console errors
+- [ ] No TypeScript errors in IDE
 
-## Phase 2: [Descriptive Name]
+## Phase 2: [Description]
 [Similar structure...]
 
 ## Testing Strategy
 
-### Cypress E2E:
-- **Location**: `modules/supplo-common/cypress/e2e/` or `cypress/e2e/`
-- **Pattern**: Page Object Model with data-cy selectors
-- **Tags**: Country-specific (`cz`, `sk`, `si`, `hr`)
-
 ### Manual Testing:
-1. `yarn dev --config storefront-x.config-cz.js`
+1. `yarn dev --config storefront-x.magento.config.js`
 2. [Specific verification steps]
-3. Test all countries: CZ, SK, SI, HR
 
-## i18n Requirements
-All text translated to: cs-CZ, sk-SK, sl-SI, hr-HR
-Use component-level `<i18n lang="yaml">`.
+### Playwright (if relevant):
+- Run `yarn test:playwright`
+- Check `tests/` for existing tests
 
 ## References
 - Similar implementation: `[file:line]`
+- Documentation: `docs/advanced/concepts.md`
 ```
 
-### Step 5: Review & Iterate
+### Step 5: Review and Iteration
 
-1. Present plan location and request review
-2. Iterate until user is satisfied
+1. Present the plan location and ask for review
+2. Iterate until the user is satisfied
 
 ## Important Guidelines
 
-1. **Be Skeptical** — question vague requirements, verify with code
-2. **Be Interactive** — get buy-in at each step, don't write full plan in one shot
-3. **Be Thorough** — read files completely, include file:line references, consider all 4 countries
-4. **Be Practical** — incremental testable changes, include "what we're NOT doing"
-5. **No Open Questions in Final Plan** — resolve everything before finalizing
-6. **Validate Patterns** — always verify implementation patterns have codebase examples
+1. **Be skeptical** — challenge vague requirements, verify in code
+2. **Be interactive** — get approval at every step, let the user decide
+3. **Be thorough** — read files in full, include file:line references
+4. **Be practical** — incremental testable changes
+5. **No open questions in the final plan** — resolve everything upfront
+6. **Validate patterns** — always verify that the planned approach has examples in the codebase
 
-## Common Patterns
-
-### Vue Components
-- `<script setup lang="ts">` with Composition API
-- Atomic Design: atoms/ molecules/ organisms/ templates/ pages/
-- IOC imports: `#ioc/atoms/Button`
-- `data-cy` attributes for E2E
-- i18n for all 4 countries
-- Tailwind utility classes
-
-### State Management
-- Pinia stores in `modules/*/stores/`
-- Composition API style with `ref()`, `computed()`
-- Loading/error states
-
-### GraphQL
-- Repositories in `modules/*/repositories/`
-- `useMagentoStore().graphql()` for API calls
-- Types from `~/types/magentoGraphql`
-
-### E2E Testing
-- Cypress: Page Object Model, `data-cy` selectors
-- Page objects in `modules/supplo-common/cypress/support/pageObjects/`
-- Test specs in `modules/supplo-common/cypress/e2e/` or `cypress/e2e/`
-- Country tags: `cz`, `sk`, `si`, `hr`
-
-## Development Commands
+## Key Verification Commands
 
 ```bash
-yarn dev --config storefront-x.config-{cz,sk,si,hr}.js  # Dev server
-yarn build --config storefront-x.config-{cz,sk,si,hr}.js # Build
-yarn lint                                                  # Lint
-yarn type-check                                            # TypeScript
-yarn gql                                                   # GraphQL types
-yarn cypress:open:cz_localhost                             # Cypress UI
-yarn cypress:run:cz_localhost                              # Cypress headless
-yarn test:pw:cz                                            # Playwright
+yarn lint                                              # ESLint
+yarn build --config storefront-x.magento.config.js   # Build test
+yarn test:playwright                                   # E2E tests
+yarn dev --config storefront-x.magento.config.js     # Manual test
 ```

@@ -87,4 +87,4 @@ git diff {base_branch}...HEAD
 - **Never assume base branch** — detect it or ask
 - **Verify diff completeness** — incomplete diff = missed changes
 - **Check git remote** to determine platform (GitLab vs GitHub)
-- This project uses `master` as the main branch
+- This project uses `main` as the main branch
