@@ -51,3 +51,6 @@ docs/.vitepress/cache
 .npmrc
 
 storefront-x.local.config.js
+
+
+.claude/settings.local.json
