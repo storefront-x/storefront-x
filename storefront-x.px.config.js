@@ -1,1 +1,1 @@
-./modules/create-storefront-x/template/px/storefront-x.config.js
+./modules/create-magexo-storefront/template/px/storefront-x.config.js
