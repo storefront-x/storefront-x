@@ -7542,6 +7542,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"demo-blank@workspace:modules/demo-blank":
+  version: 0.0.0-use.local
+  resolution: "demo-blank@workspace:modules/demo-blank"
+  languageName: unknown
+  linkType: soft
+
+"demo-magento@workspace:modules/demo-magento":
+  version: 0.0.0-use.local
+  resolution: "demo-magento@workspace:modules/demo-magento"
+  languageName: unknown
+  linkType: soft
+
+"demo-px@workspace:modules/demo-px":
+  version: 0.0.0-use.local
+  resolution: "demo-px@workspace:modules/demo-px"
+  languageName: unknown
+  linkType: soft
+
 "depd@npm:2.0.0":
   version: 2.0.0
   resolution: "depd@npm:2.0.0"
