@@ -5,14 +5,14 @@
 
 ## Overview
 
-Migration of the Storefront X monorepo to an independent repository under the `magexo` GitHub organization, with npm scope rename from `@storefront-x/*` to `@magexo/*` and publishing via GitHub Packages.
+Migration of the Storefront X monorepo to an independent repository under the `magexo` GitHub organization, with npm scope rename from `@magexo/*` to `@magexo/*` and publishing via GitHub Packages.
 
 ## Decisions
 
 | Aspect | Decision |
 |---|---|
 | **New remote** | `git@github.com:magexo/storefront-x.git` |
-| **NPM scope** | `@storefront-x/*` → `@magexo/*` |
+| **NPM scope** | `@magexo/*` → `@magexo/*` |
 | **Registry** | GitHub Packages (`npm.pkg.github.com`) |
 | **Git history** | Preserve full history (fork) |
 | **Versioning** | Continue from 1.33.1 (first release: 1.34.0) |
@@ -59,7 +59,7 @@ An automated rename script will perform all changes. No manual file editing.
 ### 2.1 package.json changes (80 modules)
 
 For each `modules/*/package.json`:
-- Rename `name`: `@storefront-x/xyz` → `@magexo/xyz`
+- Rename `name`: `@magexo/xyz` → `@magexo/xyz`
 - Update `publishConfig`:
   ```json
   "publishConfig": {
@@ -75,11 +75,11 @@ For each `modules/*/package.json`:
     "directory": "modules/<module-name>"
   }
   ```
-- Update any `dependencies` / `devDependencies` referencing `@storefront-x/*`
+- Update any `dependencies` / `devDependencies` referencing `@magexo/*`
 
 ### 2.2 Source file changes
 
-Global find-replace `@storefront-x/` → `@magexo/` in:
+Global find-replace `@magexo/` → `@magexo/` in:
 
 | File type | Location | Estimated count |
 |---|---|---|
@@ -95,7 +95,7 @@ Global find-replace `@storefront-x/` → `@magexo/` in:
 - Rename directory: `modules/create-storefront-x/` → `modules/create-magexo-storefront/`
 - Update `package.json` name and bin
 - Update all 3 templates inside (`blank`, `magento`, `px`):
-  - Template `package.json` — all `@storefront-x/*` → `@magexo/*`
+  - Template `package.json` — all `@magexo/*` → `@magexo/*`
   - Template `storefront-x.config.js` — module names
 
 ### 2.4 Root changes
@@ -120,9 +120,9 @@ A Node.js CLI script (`migrate-to-magexo`) that automates downstream project mig
 
 ### What it does
 
-1. **package.json** — rewrites all `@storefront-x/*` dependencies to `@magexo/*`
+1. **package.json** — rewrites all `@magexo/*` dependencies to `@magexo/*`
 2. **storefront-x.config.js** — rewrites module names
-3. **Source files** (`.js`, `.ts`, `.vue`) — replaces imports referencing `@storefront-x/*`
+3. **Source files** (`.js`, `.ts`, `.vue`) — replaces imports referencing `@magexo/*`
 4. **Creates `.npmrc`** — with GitHub Packages registry configuration for `@magexo` scope
 5. **Prints summary** of all changes made
 
@@ -156,7 +156,7 @@ After running the script, downstream developers need to:
 
 ## Scope Rename — Complete File Impact Analysis
 
-### Direct `@storefront-x/` references
+### Direct `@magexo/` references
 
 | Category | File pattern | Count | Change type |
 |---|---|---|---|

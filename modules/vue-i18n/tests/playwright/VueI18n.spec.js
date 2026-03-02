@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('en translation', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {
@@ -54,10 +54,10 @@ test('navigation loads translations', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {
@@ -109,10 +109,10 @@ test('navigating to different locale', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {
@@ -164,10 +164,10 @@ test('navigating to different locale of non-index page', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {
@@ -223,10 +223,10 @@ test('navigating to different locale of non-index page in deep structure', async
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {

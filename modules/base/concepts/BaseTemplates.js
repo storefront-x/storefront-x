@@ -1,6 +1,6 @@
 //@ts-check
 
-import { CopyingConcept } from '@storefront-x/core'
+import { CopyingConcept } from '@magexo/core'
 
 export default class BaseTemplates extends CopyingConcept {
   get directory() {

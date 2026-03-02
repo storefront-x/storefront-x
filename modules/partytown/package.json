@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/partytown",
+  "name": "@magexo/partytown",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
@@ -7,6 +7,12 @@
     "@builder.io/partytown": "^0.9.1"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/partytown"
   }
 }

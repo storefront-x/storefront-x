@@ -36,10 +36,10 @@ Next, enable the module in `storefront-x.config.js`.
 ```js{9}
 export default {
   modules: [
-    '@storefront-x/base',
+    '@magexo/base',
 
-    '@storefront-x/vue',
-    '@storefront-x/vue-router',
+    '@magexo/vue',
+    '@magexo/vue-router',
     // other modules
 
     'my-module',

@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('query stays after reload', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {

@@ -1,6 +1,6 @@
 # Cookie-script
 
-> `@storefront-x/cookie-script`
+> `@magexo/cookie-script`
 
 This module provides https://cookie-script.com/ integration.
 

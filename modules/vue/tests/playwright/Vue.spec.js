@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('basic application', async ({ page }) => {
   await makeProject(
     {
-      modules: ['@storefront-x/base', '@storefront-x/vue'],
+      modules: ['@magexo/base', '@magexo/vue'],
     },
     async ({ url }) => {
       await page.goto(url, { waitUntil: 'networkidle' })
@@ -17,8 +17,8 @@ test('basic interactivity', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -52,8 +52,8 @@ test('overriding of App.vue', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -77,8 +77,8 @@ test('hot module reloading of App.vue', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {

@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('config can be used from Vue components', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -40,8 +40,8 @@ test('config can be used from server middleware', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {

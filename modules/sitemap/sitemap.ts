@@ -1,5 +1,5 @@
 import Options from '#ioc/types/sitemap/Options'
-import SitemapRenderer from '@storefront-x/sitemap/SitemapRenderer.js'
+import SitemapRenderer from '@magexo/sitemap/SitemapRenderer.js'
 import modules from '~/.sfx/sitemap'
 import beforeRender from '~/.sfx/sitemap/beforeRender'
 import afterRender from '~/.sfx/sitemap/afterRender'

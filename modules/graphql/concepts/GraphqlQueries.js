@@ -1,8 +1,8 @@
 import path from 'node:path'
-import { IocConcept } from '@storefront-x/core'
+import { IocConcept } from '@magexo/core'
 
 /**
- * @typedef {import('@storefront-x/core').Module} Module
+ * @typedef {import('@magexo/core').Module} Module
  */
 
 export default class GraphqlQueries extends IocConcept {

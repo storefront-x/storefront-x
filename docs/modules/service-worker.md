@@ -1,6 +1,6 @@
 # Service Worker
 
-> `@storefront-x/service-worker`
+> `@magexo/service-worker`
 
 This module adds service worker to your application. It uses the (Workbox)(https://developer.chrome.com/docs/workbox/) library.
 

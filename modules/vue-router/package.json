@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/vue-router",
+  "name": "@magexo/vue-router",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
@@ -7,6 +7,12 @@
     "vue-router": "^4.2.5"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/vue-router"
   }
 }

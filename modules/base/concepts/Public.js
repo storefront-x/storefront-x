@@ -1,7 +1,7 @@
 //@ts-check
 
 import path from 'node:path'
-import { CopyingConcept, Build } from '@storefront-x/core'
+import { CopyingConcept, Build } from '@magexo/core'
 
 export default class Public extends CopyingConcept {
   get directory() {

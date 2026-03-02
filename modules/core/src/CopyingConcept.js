@@ -4,7 +4,7 @@ import path from 'node:path'
 import OverridingConcept from './OverridingConcept.js'
 
 /**
- * @typedef {import('@storefront-x/core').Module} Module
+ * @typedef {import('@magexo/core').Module} Module
  */
 
 export default class CopyingConcept extends OverridingConcept {

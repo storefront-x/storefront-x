@@ -29,7 +29,7 @@ Generates only one file. This one generated file re-exports default exports of f
 > `module-a/concepts/ServerRoutes.js`
 
 ```js
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class ServerRoutes extends GeneratingConcept {
   get directory() {
@@ -84,7 +84,7 @@ You can override the `template` getter in your concept to customize how the gene
 ```js
 // @ts-check
 
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class AsyncComponents extends GeneratingConcept {
   get directory() {
@@ -124,7 +124,7 @@ Sometimes you might wish to separate client/server code. This can be done with t
 #### Example concept
 
 ```js
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class Plugins extends GeneratingConcept {
   get directory() {

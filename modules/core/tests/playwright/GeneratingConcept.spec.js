@@ -1,18 +1,18 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('generating to single file', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'TestingConcept.js': `
-                import { GeneratingConcept } from '@storefront-x/core'
+                import { GeneratingConcept } from '@magexo/core'
 
                 export default class TestingConcept extends GeneratingConcept {
                   get directory() {
@@ -49,14 +49,14 @@ test('exportAll from single file', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'TestingConcept.js': `
-                import { GeneratingConcept } from '@storefront-x/core'
+                import { GeneratingConcept } from '@magexo/core'
 
                 export default class TestingConcept extends GeneratingConcept {
                   get directory() {
@@ -99,14 +99,14 @@ test('generate multiple files', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'TestingConcept.js': `
-                  import { GeneratingConcept } from '@storefront-x/core'
+                  import { GeneratingConcept } from '@magexo/core'
 
                   export default class TestingConcept extends GeneratingConcept {
                     get directory() {
@@ -147,14 +147,14 @@ test('exportAll from multiple files', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'TestingConcept.js': `
-                import { GeneratingConcept } from '@storefront-x/core'
+                import { GeneratingConcept } from '@magexo/core'
 
                 export default class TestingConcept extends GeneratingConcept {
                   get directory() {
@@ -201,14 +201,14 @@ test('generate multiple files with extension', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'TestingConcept.js': `
-                  import { GeneratingConcept } from '@storefront-x/core'
+                  import { GeneratingConcept } from '@magexo/core'
 
                   export default class TestingConcept extends GeneratingConcept {
                     get directory() {
@@ -259,14 +259,14 @@ test('generating to single file with extensions', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'TestingConcept.js': `
-                import { GeneratingConcept } from '@storefront-x/core'
+                import { GeneratingConcept } from '@magexo/core'
 
                 export default class TestingConcept extends GeneratingConcept {
                   get directory() {
@@ -313,14 +313,14 @@ test('generating to single file with multiple extensions', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'TestingConcept.js': `
-                import { GeneratingConcept } from '@storefront-x/core'
+                import { GeneratingConcept } from '@magexo/core'
 
                 export default class TestingConcept extends GeneratingConcept {
                   get directory() {

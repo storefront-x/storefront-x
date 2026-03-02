@@ -1,9 +1,15 @@
 {
-  "name": "@storefront-x/web-app-manifest",
+  "name": "@magexo/web-app-manifest",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/web-app-manifest"
   }
 }

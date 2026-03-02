@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('Google Analytics script with Partytown enabled', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/partytown',
-        '@storefront-x/google-analytics',
-        '@storefront-x/google-analytics-partytown',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/partytown',
+        '@magexo/google-analytics',
+        '@magexo/google-analytics-partytown',
         [
           'my-module',
           {

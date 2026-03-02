@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/braintree",
+  "name": "@magexo/braintree",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
@@ -12,6 +12,12 @@
     "@types/braintree-web-drop-in": "^1.39.3"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/braintree"
   }
 }

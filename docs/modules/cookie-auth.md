@@ -1,6 +1,6 @@
 # Cookie Auth
 
-> `@storefront-x/cookie-auth`
+> `@magexo/cookie-auth`
 
 This module provides authorization functionality similar to [HTTP basic auth](https://en.wikipedia.org/wiki/Basic_access_authentication), but instead of relying on the `Authorization` header, it uses cookies and it's own login form. This is useful when the basic auth `Authorization` header would clash with some other functionality (Magento uses the `Authorization` header for customer authorization), or when you need more flexibility for designing the login form.
 

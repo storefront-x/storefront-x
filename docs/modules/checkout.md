@@ -1,8 +1,8 @@
 # Checkout
 
-> `@storefront-x/checkout`
+> `@magexo/checkout`
 
-Module for e-commerce checkout (payment methods, shipping methods, place order). Requires corresponding integration module (e.g. `@storefront-x/checkout-magento`).
+Module for e-commerce checkout (payment methods, shipping methods, place order). Requires corresponding integration module (e.g. `@magexo/checkout-magento`).
 
 ## `useGetPaymentMethods` service
 

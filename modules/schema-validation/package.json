@@ -1,12 +1,18 @@
 {
-  "name": "@storefront-x/schema-validation",
+  "name": "@magexo/schema-validation",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "valibot": "^0.37.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/schema-validation"
   }
 }

@@ -1,6 +1,6 @@
 # Google Tag Manager
 
-> `@storefront-x/google-tag-manager`
+> `@magexo/google-tag-manager`
 
 This module provides https://tagmanager.google.com/ integration.
 

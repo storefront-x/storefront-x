@@ -1,6 +1,6 @@
 //@ts-check
 
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class SitemapAfterRender extends GeneratingConcept {
   get directory() {

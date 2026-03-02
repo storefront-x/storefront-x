@@ -5,7 +5,7 @@ Sometimes, you might wish for your concept to generate a single file which re-ex
 > `my-module/concepts/PaymentMethods.js`
 
 ```js
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class PaymentMethods extends GeneratingConcept {
   get directory() {

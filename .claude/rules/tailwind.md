@@ -4,7 +4,7 @@ alwaysApply: true
 
 # Tailwind CSS v3 — Conventions in Storefront X Framework
 
-Tailwind CSS is integrated via the `@storefront-x/theme-tailwind` module (and `theme-tailwind-magento`).
+Tailwind CSS is integrated via the `@magexo/theme-tailwind` module (and `theme-tailwind-magento`).
 
 ## Core Principles
 

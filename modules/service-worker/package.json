@@ -1,13 +1,19 @@
 {
-  "name": "@storefront-x/service-worker",
+  "name": "@magexo/service-worker",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "workbox-build": "^7.0.0",
     "workbox-window": "^7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/service-worker"
   }
 }

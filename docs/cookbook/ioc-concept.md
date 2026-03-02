@@ -5,7 +5,7 @@ IoC concepts are the most common and the most easy to create. Just add the conce
 > `my-module/concepts/Foobars.js`
 
 ```js
-import { IocConcept } from '@storefront-x/core'
+import { IocConcept } from '@magexo/core'
 
 export default class Foobars extends IocConcept {
   get directory() {

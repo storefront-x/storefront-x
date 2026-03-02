@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('handle syntax error', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -34,9 +34,9 @@ test('handle syntax error after click', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {

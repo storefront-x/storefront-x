@@ -1,18 +1,18 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('nested directories', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'NestedConcept.js': `
-                import { IocConcept } from '@storefront-x/core'
+                import { IocConcept } from '@magexo/core'
 
                 export default class NestedConcept extends IocConcept {
                   get directory() {
@@ -51,14 +51,14 @@ test('files with space in name', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'SomeConcept.js': `
-                import { IocConcept } from '@storefront-x/core'
+                import { IocConcept } from '@magexo/core'
 
                 export default class SomeConcept extends IocConcept {
                   get directory() {
@@ -95,14 +95,14 @@ test('extensions', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'SomeConcept.js': `
-                import { IocConcept } from '@storefront-x/core'
+                import { IocConcept } from '@magexo/core'
 
                 export default class SomeConcept extends IocConcept {
                   get directory() {
@@ -140,14 +140,14 @@ test('multiple extensions', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'SomeConcept.js': `
-                import { IocConcept } from '@storefront-x/core'
+                import { IocConcept } from '@magexo/core'
 
                 export default class SomeConcept extends IocConcept {
                   get directory() {
@@ -200,14 +200,14 @@ test('order of multiple extensions', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
             concepts: {
               'SomeConcept.js': `
-                import { IocConcept } from '@storefront-x/core'
+                import { IocConcept } from '@magexo/core'
 
                 export default class SomeConcept extends IocConcept {
                   get directory() {

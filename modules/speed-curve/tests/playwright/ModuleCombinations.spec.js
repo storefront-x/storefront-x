@@ -1,12 +1,12 @@
 import { test } from '@playwright/test'
-import { buildProject } from '@storefront-x/testing'
+import { buildProject } from '@magexo/testing'
 
 test('with vue', async () => {
   await buildProject({
     modules: [
-      '@storefront-x/base',
-      '@storefront-x/vue',
-      '@storefront-x/speed-curve',
+      '@magexo/base',
+      '@magexo/vue',
+      '@magexo/speed-curve',
       [
         'my-module',
         {

@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test'
-import { buildProject } from '@storefront-x/testing'
+import { buildProject } from '@magexo/testing'
 
 test('global styles are rendered before components styles', async ({ page }) => {
   await buildProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {

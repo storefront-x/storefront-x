@@ -1,6 +1,6 @@
 //@ts-check
 
-import { IocConcept } from '@storefront-x/core'
+import { IocConcept } from '@magexo/core'
 
 export default class Components extends IocConcept {
   get directory() {

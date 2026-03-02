@@ -1,6 +1,6 @@
 # Google Tag Manager
 
-> `@storefront-x/google-analytics`
+> `@magexo/google-analytics`
 
 This module provides https://developers.google.com/analytics/devguides/collection/ga4 integration.
 

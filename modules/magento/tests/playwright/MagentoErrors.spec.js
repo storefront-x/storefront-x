@@ -1,18 +1,18 @@
 import { expect, test } from '@playwright/test'
-import { makeProject, wrapConsole } from '@storefront-x/testing'
+import { makeProject, wrapConsole } from '@magexo/testing'
 
 test('magento error handling is working', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
-        '@storefront-x/vue-pinia',
-        '@storefront-x/base-commerce',
-        '@storefront-x/graphql',
-        '@storefront-x/magento',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
+        '@magexo/vue-pinia',
+        '@magexo/base-commerce',
+        '@magexo/graphql',
+        '@magexo/magento',
         [
           'my-module',
           {
@@ -76,14 +76,14 @@ test('magento error messages translation is working', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
-        '@storefront-x/vue-pinia',
-        '@storefront-x/base-commerce',
-        '@storefront-x/graphql',
-        '@storefront-x/magento',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
+        '@magexo/vue-pinia',
+        '@magexo/base-commerce',
+        '@magexo/graphql',
+        '@magexo/magento',
         [
           'my-module',
           {
@@ -172,14 +172,14 @@ test('magento error is logged to console', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
-        '@storefront-x/vue-pinia',
-        '@storefront-x/base-commerce',
-        '@storefront-x/graphql',
-        '@storefront-x/magento',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
+        '@magexo/vue-pinia',
+        '@magexo/base-commerce',
+        '@magexo/graphql',
+        '@magexo/magento',
         [
           'my-module',
           {

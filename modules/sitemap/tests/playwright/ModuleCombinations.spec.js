@@ -1,19 +1,19 @@
 import { test } from '@playwright/test'
-import { buildProject } from '@storefront-x/testing'
+import { buildProject } from '@magexo/testing'
 
 test('with only vue', async () => {
   await buildProject({
-    modules: ['@storefront-x/base', '@storefront-x/vue', '@storefront-x/sitemap'],
+    modules: ['@magexo/base', '@magexo/vue', '@magexo/sitemap'],
   })
 })
 
 test('with vue-i18n', async () => {
   await buildProject({
     modules: [
-      '@storefront-x/base',
-      '@storefront-x/vue',
-      '@storefront-x/vue-i18n',
-      '@storefront-x/sitemap',
+      '@magexo/base',
+      '@magexo/vue',
+      '@magexo/vue-i18n',
+      '@magexo/sitemap',
       [
         'my-module',
         {
@@ -35,6 +35,6 @@ test('with vue-i18n', async () => {
 
 test('with vue-router', async () => {
   await buildProject({
-    modules: ['@storefront-x/base', '@storefront-x/vue', '@storefront-x/vue-router', '@storefront-x/sitemap'],
+    modules: ['@magexo/base', '@magexo/vue', '@magexo/vue-router', '@magexo/sitemap'],
   })
 })

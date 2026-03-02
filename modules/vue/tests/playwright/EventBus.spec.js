@@ -1,15 +1,15 @@
 import { expect, test } from '@playwright/test'
-import { makeProject, wrapConsole } from '@storefront-x/testing'
+import { makeProject, wrapConsole } from '@magexo/testing'
 
 test('event bus with single listener', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-pinia',
-        '@storefront-x/base-commerce',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-pinia',
+        '@magexo/base-commerce',
         [
           'my-module-1',
           {
@@ -81,11 +81,11 @@ test('event bus with multiple listeners', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-pinia',
-        '@storefront-x/base-commerce',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-pinia',
+        '@magexo/base-commerce',
         [
           'my-module-1',
           {
@@ -178,10 +178,10 @@ test('event bus without listeners', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/base-commerce',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/base-commerce',
         [
           'my-module',
           {

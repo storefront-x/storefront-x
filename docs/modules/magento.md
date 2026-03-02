@@ -1,6 +1,6 @@
 # Magento
 
-> `@storefront-x/magento`
+> `@magexo/magento`
 
 This module provides basic functionality for Magento integration.
 

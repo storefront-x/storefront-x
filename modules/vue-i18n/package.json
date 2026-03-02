@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/vue-i18n",
+  "name": "@magexo/vue-i18n",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
@@ -8,6 +8,12 @@
     "vue-i18n": "^9.9.1"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/vue-i18n"
   }
 }

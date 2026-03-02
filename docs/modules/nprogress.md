@@ -1,6 +1,6 @@
 # NProgress
 
-> `@storefront-x/nprogress`
+> `@magexo/nprogress`
 
 This module provides https://ricostacruz.com/nprogress/ integration.
 

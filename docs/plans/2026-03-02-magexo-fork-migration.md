@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Migrate the Storefront X monorepo to `git@github.com:magexo/storefront-x.git` with npm scope rename `@storefront-x/*` → `@magexo/*` and GitHub Packages publishing.
+**Goal:** Migrate the Storefront X monorepo to `git@github.com:magexo/storefront-x.git` with npm scope rename `@magexo/*` → `@magexo/*` and GitHub Packages publishing.
 
 **Architecture:** Fork with full git history. Automated Node.js rename script handles the bulk of changes (~294 files). A separate downstream migration script automates consumer project migration. Publishing via GitHub Packages (`npm.pkg.github.com`) under the `@magexo` scope tied to the GitHub org.
 
@@ -64,7 +64,7 @@ This script does all the heavy lifting. It modifies ~294 files in a single run.
  * Automated scope rename script for Storefront X → Magexo migration.
  *
  * Renames:
- * - @storefront-x/* → @magexo/* in all source files
+ * - @magexo/* → @magexo/* in all source files
  * - package.json name, dependencies, publishConfig, repository fields
  * - create-storefront-x directory → create-magexo-storefront
  *
@@ -77,7 +77,7 @@ import path from 'node:path'
 const DRY_RUN = process.argv.includes('--dry-run')
 const ROOT = path.resolve(import.meta.dirname, '..')
 
-const OLD_SCOPE = '@storefront-x/'
+const OLD_SCOPE = '@magexo/'
 const NEW_SCOPE = '@magexo/'
 const GITHUB_REPO = 'https://github.com/magexo/storefront-x.git'
 const GITHUB_PACKAGES_REGISTRY = 'https://npm.pkg.github.com'
@@ -125,8 +125,8 @@ function updatePackageJson(filePath) {
   let changed = false
 
   // Rename the package name
-  if (pkg.name && pkg.name.startsWith('@storefront-x/')) {
-    pkg.name = pkg.name.replace('@storefront-x/', '@magexo/')
+  if (pkg.name && pkg.name.startsWith('@magexo/')) {
+    pkg.name = pkg.name.replace('@magexo/', '@magexo/')
     changed = true
   }
 
@@ -161,8 +161,8 @@ function updatePackageJson(filePath) {
     if (pkg[depType]) {
       const newDeps = {}
       for (const [key, value] of Object.entries(pkg[depType])) {
-        if (key.startsWith('@storefront-x/')) {
-          newDeps[key.replace('@storefront-x/', '@magexo/')] = value
+        if (key.startsWith('@magexo/')) {
+          newDeps[key.replace('@magexo/', '@magexo/')] = value
           changed = true
         } else {
           newDeps[key] = value
@@ -184,9 +184,9 @@ function updatePackageJson(filePath) {
 function replaceInFile(filePath) {
   const content = readFile(filePath)
 
-  if (!content.includes('@storefront-x/')) return
+  if (!content.includes('@magexo/')) return
 
-  const newContent = content.replaceAll('@storefront-x/', '@magexo/')
+  const newContent = content.replaceAll('@magexo/', '@magexo/')
   writeFile(filePath, newContent)
   stats.filesModified++
   console.log(`  Replaced: ${path.relative(ROOT, filePath)}`)
@@ -218,13 +218,13 @@ function updateRootPackageJson() {
   // Update repository URL
   pkg.repository = GITHUB_REPO
 
-  // Rename @storefront-x/* dependencies
+  // Rename @magexo/* dependencies
   for (const depType of ['dependencies', 'devDependencies']) {
     if (pkg[depType]) {
       const newDeps = {}
       for (const [key, value] of Object.entries(pkg[depType])) {
-        if (key.startsWith('@storefront-x/')) {
-          newDeps[key.replace('@storefront-x/', '@magexo/')] = value
+        if (key.startsWith('@magexo/')) {
+          newDeps[key.replace('@magexo/', '@magexo/')] = value
         } else {
           newDeps[key] = value
         }
@@ -263,8 +263,8 @@ function main() {
   const templatePkgs = getAllFiles(path.join(createModuleDir, 'template'), ['package.json'])
   for (const pkgPath of templatePkgs) {
     const raw = readFile(pkgPath)
-    if (raw.includes('@storefront-x/')) {
-      const newContent = raw.replaceAll('@storefront-x/', '@magexo/')
+    if (raw.includes('@magexo/')) {
+      const newContent = raw.replaceAll('@magexo/', '@magexo/')
       writeFile(pkgPath, newContent)
       stats.filesModified++
       console.log(`  Replaced: ${path.relative(ROOT, pkgPath)}`)
@@ -272,7 +272,7 @@ function main() {
   }
 
   // Phase 2: Source file find-replace
-  console.log('\nPhase 2: Replacing @storefront-x/ in source files...')
+  console.log('\nPhase 2: Replacing @magexo/ in source files...')
   const sourceExtensions = ['.js', '.ts', '.vue', '.md', '.yml', '.yaml', '.json']
   const ignoreDirs = ['node_modules', '.sfx', '.git', '.yarn', 'yarn.lock']
 
@@ -376,7 +376,7 @@ Expected: Output listing all files that would be modified. Approximately 80 pack
 **Step 2: Review the dry-run output**
 
 Verify:
-- All 79 `@storefront-x/*` package names are listed for rename
+- All 79 `@magexo/*` package names are listed for rename
 - `create-storefront-x` directory rename is listed
 - Concept files (64), test files (76), core source (10), docs (50) are all covered
 - No unexpected files listed (e.g., nothing in `node_modules/`, `.sfx/`, `.git/`)
@@ -395,9 +395,9 @@ Verify:
 Run: `node scripts/rename-scope.mjs`
 Expected: All files modified, directory renamed, summary printed.
 
-**Step 2: Verify no `@storefront-x/` references remain in source files**
+**Step 2: Verify no `@magexo/` references remain in source files**
 
-Run: `grep -r "@storefront-x/" --include="*.js" --include="*.ts" --include="*.vue" --include="*.json" --exclude-dir=node_modules --exclude-dir=.sfx --exclude-dir=.git --exclude-dir=.yarn --exclude=yarn.lock . | head -20`
+Run: `grep -r "@magexo/" --include="*.js" --include="*.ts" --include="*.vue" --include="*.json" --exclude-dir=node_modules --exclude-dir=.sfx --exclude-dir=.git --exclude-dir=.yarn --exclude=yarn.lock . | head -20`
 
 Expected: No output (zero matches), OR only matches in files that intentionally reference the old upstream (like CHANGELOG.md GitHub URLs which are OK to keep pointing to the original repo).
 
@@ -423,9 +423,9 @@ Expected: Lockfile regenerated with new package names. No resolution errors.
 
 ```bash
 git add -A
-git commit -m "chore: rename npm scope @storefront-x/* → @magexo/* for GitHub Packages
+git commit -m "chore: rename npm scope @magexo/* → @magexo/* for GitHub Packages
 
-- Renamed all 80 publishable packages from @storefront-x/* to @magexo/*
+- Renamed all 80 publishable packages from @magexo/* to @magexo/*
 - Renamed create-storefront-x to create-magexo-storefront
 - Updated publishConfig to target npm.pkg.github.com
 - Added repository field to all package.json (required by GitHub Packages)
@@ -437,7 +437,7 @@ git commit -m "chore: rename npm scope @storefront-x/* → @magexo/* for GitHub 
 
 ## Task 5: Update Files with Bare `storefront-x` References
 
-Some files reference `storefront-x` outside the `@storefront-x/` scope pattern. These need manual review — the automated script only handles `@storefront-x/` → `@magexo/`.
+Some files reference `storefront-x` outside the `@magexo/` scope pattern. These need manual review — the automated script only handles `@magexo/` → `@magexo/`.
 
 **Files:**
 - Modify: `modules/create-magexo-storefront/index.js` (line 83 — default directory name)
@@ -544,7 +544,7 @@ Expected: Build completes successfully. The config file uses module names — if
 **Step 2: If build fails, debug**
 
 Common issues:
-- Config file references old `@storefront-x/*` module names → update to `@magexo/*`
+- Config file references old `@magexo/*` module names → update to `@magexo/*`
 - Vite can't resolve a module → check `yarn install` was run
 
 **Step 3: Commit any fixes**
@@ -591,7 +591,7 @@ git commit -m "fix: resolve test failures after scope rename"
 #!/usr/bin/env node
 
 /**
- * Migration script for downstream projects consuming @storefront-x/* packages.
+ * Migration script for downstream projects consuming @magexo/* packages.
  * Renames all references to @magexo/* and creates .npmrc for GitHub Packages.
  *
  * Usage:
@@ -606,7 +606,7 @@ import path from 'node:path'
 
 const DRY_RUN = process.argv.includes('--dry-run')
 const PROJECT_ROOT = process.cwd()
-const OLD_SCOPE = '@storefront-x/'
+const OLD_SCOPE = '@magexo/'
 const NEW_SCOPE = '@magexo/'
 
 const stats = { files: 0, packageJson: false, config: false, npmrc: false }
@@ -753,9 +753,9 @@ git commit -m "chore: add downstream migration script for @storefront-x → @mag
 **Files:**
 - None (verification only)
 
-**Step 1: Search for any remaining `@storefront-x/` references**
+**Step 1: Search for any remaining `@magexo/` references**
 
-Run: `grep -rn "@storefront-x/" --include="*.js" --include="*.ts" --include="*.vue" --include="*.json" --exclude-dir=node_modules --exclude-dir=.sfx --exclude-dir=.git --exclude-dir=.yarn --exclude=yarn.lock .`
+Run: `grep -rn "@magexo/" --include="*.js" --include="*.ts" --include="*.vue" --include="*.json" --exclude-dir=node_modules --exclude-dir=.sfx --exclude-dir=.git --exclude-dir=.yarn --exclude=yarn.lock .`
 
 Expected: Zero matches, or only in:
 - `CHANGELOG.md` (GitHub URLs to original repo — OK)

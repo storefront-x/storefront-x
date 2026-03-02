@@ -1,6 +1,6 @@
 # Storefront X Framework
 
-Storefront X is a modern e-commerce framework for building high-performance PWAs with SSR (server-side rendering). It is published as a monorepo of npm packages (`@storefront-x/*`) that other projects install and use.
+Storefront X is a modern e-commerce framework for building high-performance PWAs with SSR (server-side rendering). It is published as a monorepo of npm packages (`@magexo/*`) that other projects install and use.
 
 - **Website**: https://docs.storefrontx.io/
 - **Repo**: https://github.com/storefront-x/storefront-x
@@ -10,7 +10,7 @@ Storefront X is a modern e-commerce framework for building high-performance PWAs
 ## Project Structure
 
 ```
-modules/                    # 83 npm packages (@storefront-x/*)
+modules/                    # 83 npm packages (@magexo/*)
 ├── core/                   # CLI (sfx command), build system, Dev/Build/Serve
 ├── vue/                    # Vue 3 integration
 ├── vue-router/             # Vue Router
@@ -91,7 +91,7 @@ import useCartStore from '#ioc/stores/useCartStore'
 
 ```
 modules/my-module/
-├── package.json            # npm metadata (@storefront-x/my-module)
+├── package.json            # npm metadata (@magexo/my-module)
 ├── index.js                # Module entry point
 ├── concepts/               # Concept classes (define bootstrap behavior)
 ├── atoms/                  # Atomic design — atomic components
@@ -113,7 +113,7 @@ The project uses **Yarn 3** with workspaces and **Lerna** for versioning.
 
 ```bash
 yarn install                                        # Install all dependencies
-yarn workspace @storefront-x/core add <dep>         # Add dependency to a module
+yarn workspace @magexo/core add <dep>         # Add dependency to a module
 ```
 
 ## Versioning and Release

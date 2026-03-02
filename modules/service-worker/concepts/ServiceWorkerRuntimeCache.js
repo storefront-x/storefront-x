@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { generateSW } from 'workbox-build'
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class ServiceWorkerRuntimeCache extends GeneratingConcept {
   get directory() {

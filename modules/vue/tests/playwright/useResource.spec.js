@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('downloading async data on the server side', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -41,9 +41,9 @@ test('allows refetching', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {

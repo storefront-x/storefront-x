@@ -1,6 +1,6 @@
 # Vue Router
 
-> `@storefront-x/vue-router`
+> `@magexo/vue-router`
 
 Module providing the application with functionality of the [Vue Router](https://router.vuejs.org) library.
 

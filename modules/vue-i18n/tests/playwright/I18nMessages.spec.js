@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test'
-import { buildProject, makeProject } from '@storefront-x/testing'
+import { buildProject, makeProject } from '@magexo/testing'
 
 test('global messages', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {
@@ -65,10 +65,10 @@ test('merging of global messages', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {
@@ -143,10 +143,10 @@ test('overriding of global messages', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {
@@ -222,10 +222,10 @@ test('global messages interpolation', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {
@@ -281,10 +281,10 @@ test('global messages interpolation in production', async ({ page }) => {
   await buildProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
         [
           'my-module',
           {

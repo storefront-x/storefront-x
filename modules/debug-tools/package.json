@@ -1,12 +1,18 @@
 {
-  "name": "@storefront-x/debug-tools",
+  "name": "@magexo/debug-tools",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/debug-tools"
   }
 }

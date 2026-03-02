@@ -1,8 +1,8 @@
 # Wishlist
 
-> `@storefront-x/wishlist`
+> `@magexo/wishlist`
 
-Module for e-commerce wishlist. Requires corresponding integration module (e.g. `@storefront-x/wishlist-magento`).
+Module for e-commerce wishlist. Requires corresponding integration module (e.g. `@magexo/wishlist-magento`).
 
 ## `useWishlist` composable
 

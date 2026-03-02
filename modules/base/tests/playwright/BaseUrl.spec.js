@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test'
-import { makeProject, buildProject } from '@storefront-x/testing'
+import { makeProject, buildProject } from '@magexo/testing'
 
 test('it supports base bath', async ({ page }) => {
   await makeProject(
     {
       baseUrl: '/web',
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -36,9 +36,9 @@ test('it supports base bath in production', async ({ page }) => {
     {
       baseUrl: '/web',
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -65,9 +65,9 @@ test('app is hydrated properly', async ({ page }) => {
     {
       baseUrl: '/web',
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -108,9 +108,9 @@ test.skip('app is hydrated properly in production', async ({ page }) => {
     {
       baseUrl: '/web',
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -150,8 +150,8 @@ test('it supports base bath for server routes', async ({ page }) => {
     {
       baseUrl: '/web',
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -179,8 +179,8 @@ test('it supports base bath for server routes in production', async ({ page }) =
     {
       baseUrl: '/web',
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -208,8 +208,8 @@ test('it supports base url for public concept', async ({ page }) => {
     {
       baseUrl: '/web',
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -232,8 +232,8 @@ test('it supports base url for public concept in production', async ({ page }) =
     {
       baseUrl: '/web',
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {

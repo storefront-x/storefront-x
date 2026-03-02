@@ -8,8 +8,8 @@ import Dev from './Dev.js'
 import Concept from './Concept.js'
 
 /**
- * @typedef {import('@storefront-x/core').Core} Core
- * @typedef {import('@storefront-x/core').Module} Module
+ * @typedef {import('@magexo/core').Core} Core
+ * @typedef {import('@magexo/core').Module} Module
  */
 
 export default class WatchingConcept extends Concept {

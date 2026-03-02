@@ -6,8 +6,8 @@ import ejs from 'ejs'
 import ExtendingConcept from './ExtendingConcept.js'
 
 /**
- * @typedef {import('@storefront-x/core').Core} Core
- * @typedef {import('@storefront-x/core').Module} Module
+ * @typedef {import('@magexo/core').Core} Core
+ * @typedef {import('@magexo/core').Module} Module
  * @typedef {{module: Module, file: string}} Extension
  */
 

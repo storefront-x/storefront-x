@@ -1,6 +1,6 @@
 # Sentry
 
-> `@storefront-x/sentry-client` & `@storefront-x/sentry-server`
+> `@magexo/sentry-client` & `@magexo/sentry-server`
 
 The [Sentry](https://sentry.io/welcome/) integration is made from two modules, so you can separately decide whether to use Sentry on the client and/or on the server.
 

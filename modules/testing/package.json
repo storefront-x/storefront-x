@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/testing",
+  "name": "@magexo/testing",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
@@ -11,6 +11,12 @@
     "vitest": "^1.2.2"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/testing"
   }
 }

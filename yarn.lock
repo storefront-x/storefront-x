@@ -2448,6 +2448,587 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@magexo/atatus-client@workspace:modules/atatus-client":
+  version: 0.0.0-use.local
+  resolution: "@magexo/atatus-client@workspace:modules/atatus-client"
+  dependencies:
+    atatus-spa: ^4.6.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/atatus-server@workspace:modules/atatus-server":
+  version: 0.0.0-use.local
+  resolution: "@magexo/atatus-server@workspace:modules/atatus-server"
+  dependencies:
+    atatus-nodejs: ^2.0.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/atomic-design@workspace:modules/atomic-design":
+  version: 0.0.0-use.local
+  resolution: "@magexo/atomic-design@workspace:modules/atomic-design"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/base-commerce@workspace:modules/base-commerce":
+  version: 0.0.0-use.local
+  resolution: "@magexo/base-commerce@workspace:modules/base-commerce"
+  dependencies:
+    "@types/sharp": ^0.32.0
+    keen-slider: ^6.8.6
+    photoswipe: ^5.4.3
+    sharp: ^0.32.6
+  languageName: unknown
+  linkType: soft
+
+"@magexo/base@workspace:modules/base":
+  version: 0.0.0-use.local
+  resolution: "@magexo/base@workspace:modules/base"
+  dependencies:
+    "@types/lodash-es": ^4.17.12
+  languageName: unknown
+  linkType: soft
+
+"@magexo/blog-magento@workspace:modules/blog-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/blog-magento@workspace:modules/blog-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/blog@workspace:modules/blog":
+  version: 0.0.0-use.local
+  resolution: "@magexo/blog@workspace:modules/blog"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/braintree-magento@workspace:modules/braintree-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/braintree-magento@workspace:modules/braintree-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/braintree@workspace:modules/braintree":
+  version: 0.0.0-use.local
+  resolution: "@magexo/braintree@workspace:modules/braintree"
+  dependencies:
+    "@types/braintree-web": ^3.96.10
+    "@types/braintree-web-drop-in": ^1.39.3
+    braintree-web: ^3.99.2
+    braintree-web-drop-in: ^1.42.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/brands-magento@workspace:modules/brands-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/brands-magento@workspace:modules/brands-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/brands@workspace:modules/brands":
+  version: 0.0.0-use.local
+  resolution: "@magexo/brands@workspace:modules/brands"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/build-time-version@workspace:modules/build-time-version":
+  version: 0.0.0-use.local
+  resolution: "@magexo/build-time-version@workspace:modules/build-time-version"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/cart-magento@workspace:modules/cart-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/cart-magento@workspace:modules/cart-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/cart@workspace:modules/cart":
+  version: 0.0.0-use.local
+  resolution: "@magexo/cart@workspace:modules/cart"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/catalog-attributes-magento@workspace:modules/catalog-attributes-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/catalog-attributes-magento@workspace:modules/catalog-attributes-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/catalog-labels-magento@workspace:modules/catalog-labels-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/catalog-labels-magento@workspace:modules/catalog-labels-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/catalog-labels@workspace:modules/catalog-labels":
+  version: 0.0.0-use.local
+  resolution: "@magexo/catalog-labels@workspace:modules/catalog-labels"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/catalog-magento-px@workspace:modules/catalog-magento-px":
+  version: 0.0.0-use.local
+  resolution: "@magexo/catalog-magento-px@workspace:modules/catalog-magento-px"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/catalog-magento@workspace:modules/catalog-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/catalog-magento@workspace:modules/catalog-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/catalog@workspace:modules/catalog":
+  version: 0.0.0-use.local
+  resolution: "@magexo/catalog@workspace:modules/catalog"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/checkout-magento-px@workspace:modules/checkout-magento-px":
+  version: 0.0.0-use.local
+  resolution: "@magexo/checkout-magento-px@workspace:modules/checkout-magento-px"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/checkout-magento@workspace:modules/checkout-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/checkout-magento@workspace:modules/checkout-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/checkout@workspace:modules/checkout":
+  version: 0.0.0-use.local
+  resolution: "@magexo/checkout@workspace:modules/checkout"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/cms-magento@workspace:modules/cms-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/cms-magento@workspace:modules/cms-magento"
+  dependencies:
+    happy-dom: 13.3.8
+  languageName: unknown
+  linkType: soft
+
+"@magexo/cms@workspace:modules/cms":
+  version: 0.0.0-use.local
+  resolution: "@magexo/cms@workspace:modules/cms"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/cookie-auth@workspace:modules/cookie-auth":
+  version: 0.0.0-use.local
+  resolution: "@magexo/cookie-auth@workspace:modules/cookie-auth"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/cookie-script@workspace:modules/cookie-script":
+  version: 0.0.0-use.local
+  resolution: "@magexo/cookie-script@workspace:modules/cookie-script"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/core@*, @magexo/core@workspace:modules/core":
+  version: 0.0.0-use.local
+  resolution: "@magexo/core@workspace:modules/core"
+  dependencies:
+    "@types/compression": ^1.7.5
+    "@types/ejs": ^3.1.5
+    "@types/lodash-es": ^4.17.12
+    "@types/minimist": ^1.2.5
+    chokidar: ^3.5.3
+    compression: ^1.7.4
+    consola: ^3.2.3
+    cssnano: ^7.0.6
+    devalue: ^5.0.0
+    dotenv: ^16.4.5
+    ejs: ^3.1.10
+    get-port: ^7.1.0
+    h3: ^1.12.0
+    kolorist: ^1.8.0
+    lodash-es: ^4.17.21
+    node-fetch: ^3.3.2
+    open: ^10.1.0
+    prompts: ^2.4.2
+    rollup: ^4.20.0
+    rollup-plugin-visualizer: ^5.12.0
+    serve-static: ^1.15.0
+    vite: 5.4.0
+    yargs: ^17.7.2
+    youch: ^3.3.3
+  bin:
+    sfx: sfx.js
+  languageName: unknown
+  linkType: soft
+
+"@magexo/customer-magento@workspace:modules/customer-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/customer-magento@workspace:modules/customer-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/customer@workspace:modules/customer":
+  version: 0.0.0-use.local
+  resolution: "@magexo/customer@workspace:modules/customer"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/cypress@workspace:modules/cypress":
+  version: 0.0.0-use.local
+  resolution: "@magexo/cypress@workspace:modules/cypress"
+  dependencies:
+    cypress: ^13.6.4
+    cypress-vite: ^1.5.0
+    cypress-wait-until: ^3.0.1
+  languageName: unknown
+  linkType: soft
+
+"@magexo/debug-tools-magento@workspace:modules/debug-tools-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/debug-tools-magento@workspace:modules/debug-tools-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/debug-tools@workspace:modules/debug-tools":
+  version: 0.0.0-use.local
+  resolution: "@magexo/debug-tools@workspace:modules/debug-tools"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/flash-messages@workspace:modules/flash-messages":
+  version: 0.0.0-use.local
+  resolution: "@magexo/flash-messages@workspace:modules/flash-messages"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/free-shipping-magento@workspace:modules/free-shipping-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/free-shipping-magento@workspace:modules/free-shipping-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/free-shipping@workspace:modules/free-shipping":
+  version: 0.0.0-use.local
+  resolution: "@magexo/free-shipping@workspace:modules/free-shipping"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/google-analytics-listeners@workspace:modules/google-analytics-listeners":
+  version: 0.0.0-use.local
+  resolution: "@magexo/google-analytics-listeners@workspace:modules/google-analytics-listeners"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/google-analytics-partytown@workspace:modules/google-analytics-partytown":
+  version: 0.0.0-use.local
+  resolution: "@magexo/google-analytics-partytown@workspace:modules/google-analytics-partytown"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/google-analytics@workspace:modules/google-analytics":
+  version: 0.0.0-use.local
+  resolution: "@magexo/google-analytics@workspace:modules/google-analytics"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/google-tag-manager-listeners@workspace:modules/google-tag-manager-listeners":
+  version: 0.0.0-use.local
+  resolution: "@magexo/google-tag-manager-listeners@workspace:modules/google-tag-manager-listeners"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/google-tag-manager-partytown@workspace:modules/google-tag-manager-partytown":
+  version: 0.0.0-use.local
+  resolution: "@magexo/google-tag-manager-partytown@workspace:modules/google-tag-manager-partytown"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/google-tag-manager@workspace:modules/google-tag-manager":
+  version: 0.0.0-use.local
+  resolution: "@magexo/google-tag-manager@workspace:modules/google-tag-manager"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/graphql@workspace:modules/graphql":
+  version: 0.0.0-use.local
+  resolution: "@magexo/graphql@workspace:modules/graphql"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/magento@workspace:modules/magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/magento@workspace:modules/magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/multicurrency-magento@workspace:modules/multicurrency-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/multicurrency-magento@workspace:modules/multicurrency-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/multicurrency@workspace:modules/multicurrency":
+  version: 0.0.0-use.local
+  resolution: "@magexo/multicurrency@workspace:modules/multicurrency"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/newsletter-magento@workspace:modules/newsletter-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/newsletter-magento@workspace:modules/newsletter-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/nprogress@workspace:modules/nprogress":
+  version: 0.0.0-use.local
+  resolution: "@magexo/nprogress@workspace:modules/nprogress"
+  dependencies:
+    "@types/nprogress": ^0.2.3
+    nprogress: ^0.2.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/partytown@workspace:modules/partytown":
+  version: 0.0.0-use.local
+  resolution: "@magexo/partytown@workspace:modules/partytown"
+  dependencies:
+    "@builder.io/partytown": ^0.9.1
+  languageName: unknown
+  linkType: soft
+
+"@magexo/product-comparison-magento@workspace:modules/product-comparison-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/product-comparison-magento@workspace:modules/product-comparison-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/product-comparison@workspace:modules/product-comparison":
+  version: 0.0.0-use.local
+  resolution: "@magexo/product-comparison@workspace:modules/product-comparison"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/product-reviews-magento@workspace:modules/product-reviews-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/product-reviews-magento@workspace:modules/product-reviews-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/product-reviews@workspace:modules/product-reviews":
+  version: 0.0.0-use.local
+  resolution: "@magexo/product-reviews@workspace:modules/product-reviews"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/request-profiler@workspace:modules/request-profiler":
+  version: 0.0.0-use.local
+  resolution: "@magexo/request-profiler@workspace:modules/request-profiler"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/robots-magento@workspace:modules/robots-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/robots-magento@workspace:modules/robots-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/robots@workspace:modules/robots":
+  version: 0.0.0-use.local
+  resolution: "@magexo/robots@workspace:modules/robots"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/runtime-config@workspace:modules/runtime-config":
+  version: 0.0.0-use.local
+  resolution: "@magexo/runtime-config@workspace:modules/runtime-config"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/schema-org@workspace:modules/schema-org":
+  version: 0.0.0-use.local
+  resolution: "@magexo/schema-org@workspace:modules/schema-org"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/schema-validation@workspace:modules/schema-validation":
+  version: 0.0.0-use.local
+  resolution: "@magexo/schema-validation@workspace:modules/schema-validation"
+  dependencies:
+    valibot: ^0.37.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/sentry-client@workspace:modules/sentry-client":
+  version: 0.0.0-use.local
+  resolution: "@magexo/sentry-client@workspace:modules/sentry-client"
+  dependencies:
+    "@sentry/tracing": ^7.99.0
+    "@sentry/vue": ^7.99.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/sentry-server@workspace:modules/sentry-server":
+  version: 0.0.0-use.local
+  resolution: "@magexo/sentry-server@workspace:modules/sentry-server"
+  dependencies:
+    "@sentry/node": ^7.99.0
+    "@sentry/tracing": ^7.99.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/service-worker@workspace:modules/service-worker":
+  version: 0.0.0-use.local
+  resolution: "@magexo/service-worker@workspace:modules/service-worker"
+  dependencies:
+    workbox-build: ^7.0.0
+    workbox-window: ^7.0.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/sitemap-magento@workspace:modules/sitemap-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/sitemap-magento@workspace:modules/sitemap-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/sitemap@workspace:modules/sitemap":
+  version: 0.0.0-use.local
+  resolution: "@magexo/sitemap@workspace:modules/sitemap"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/speed-curve@workspace:modules/speed-curve":
+  version: 0.0.0-use.local
+  resolution: "@magexo/speed-curve@workspace:modules/speed-curve"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/testing@*, @magexo/testing@workspace:modules/testing":
+  version: 0.0.0-use.local
+  resolution: "@magexo/testing@workspace:modules/testing"
+  dependencies:
+    "@playwright/test": 1.41.2
+    get-port: ^7.1.0
+    jsdom: ^24.0.0
+    vitest: ^1.2.2
+  languageName: unknown
+  linkType: soft
+
+"@magexo/theme-tailwind-magento-px@workspace:modules/theme-tailwind-magento-px":
+  version: 0.0.0-use.local
+  resolution: "@magexo/theme-tailwind-magento-px@workspace:modules/theme-tailwind-magento-px"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/theme-tailwind-magento@workspace:modules/theme-tailwind-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/theme-tailwind-magento@workspace:modules/theme-tailwind-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/theme-tailwind@workspace:modules/theme-tailwind":
+  version: 0.0.0-use.local
+  resolution: "@magexo/theme-tailwind@workspace:modules/theme-tailwind"
+  dependencies:
+    "@tailwindcss/forms": ^0.5.7
+    cssnano: ^7.0.6
+    postcss: ^8.4.41
+    tailwindcss: ^3.4.1
+  languageName: unknown
+  linkType: soft
+
+"@magexo/tooling@*, @magexo/tooling@workspace:modules/tooling":
+  version: 0.0.0-use.local
+  resolution: "@magexo/tooling@workspace:modules/tooling"
+  dependencies:
+    "@types/yargs": ^17.0.32
+    "@typescript-eslint/eslint-plugin": ^6.20.0
+    "@typescript-eslint/parser": ^6.20.0
+    eslint: ^8.56.0
+    eslint-config-prettier: ^9.1.0
+    eslint-plugin-cypress: ^2.15.1
+    eslint-plugin-prettier: ^5.1.3
+    eslint-plugin-vue: ^9.21.1
+    lefthook: ^1.7.11
+    prettier: ^3.3.3
+    typescript: ^5.5.4
+    vitepress: 1.3.2
+  languageName: unknown
+  linkType: soft
+
+"@magexo/vue-head@workspace:modules/vue-head":
+  version: 0.0.0-use.local
+  resolution: "@magexo/vue-head@workspace:modules/vue-head"
+  dependencies:
+    "@vueuse/head": ^2.0.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/vue-i18n@workspace:modules/vue-i18n":
+  version: 0.0.0-use.local
+  resolution: "@magexo/vue-i18n@workspace:modules/vue-i18n"
+  dependencies:
+    "@intlify/unplugin-vue-i18n": ^2.0.0
+    vue-i18n: ^9.9.1
+  languageName: unknown
+  linkType: soft
+
+"@magexo/vue-pinia-shared-state@workspace:modules/vue-pinia-shared-state":
+  version: 0.0.0-use.local
+  resolution: "@magexo/vue-pinia-shared-state@workspace:modules/vue-pinia-shared-state"
+  dependencies:
+    pinia-shared-state: ^0.5.1
+  languageName: unknown
+  linkType: soft
+
+"@magexo/vue-pinia@workspace:modules/vue-pinia":
+  version: 0.0.0-use.local
+  resolution: "@magexo/vue-pinia@workspace:modules/vue-pinia"
+  dependencies:
+    "@pinia/testing": ^0.1.3
+    pinia: ^2.1.7
+  languageName: unknown
+  linkType: soft
+
+"@magexo/vue-router@workspace:modules/vue-router":
+  version: 0.0.0-use.local
+  resolution: "@magexo/vue-router@workspace:modules/vue-router"
+  dependencies:
+    vue-router: ^4.2.5
+  languageName: unknown
+  linkType: soft
+
+"@magexo/vue@workspace:modules/vue":
+  version: 0.0.0-use.local
+  resolution: "@magexo/vue@workspace:modules/vue"
+  dependencies:
+    "@vitejs/plugin-vue": ^5.0.3
+    "@vue/test-utils": ^2.4.4
+    "@vueuse/components": ^10.7.2
+    "@vueuse/integrations": ^10.7.2
+    universal-cookie: ^7.2.0
+    vue: ^3.5.0
+  languageName: unknown
+  linkType: soft
+
+"@magexo/web-app-manifest@workspace:modules/web-app-manifest":
+  version: 0.0.0-use.local
+  resolution: "@magexo/web-app-manifest@workspace:modules/web-app-manifest"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/wishlist-magento@workspace:modules/wishlist-magento":
+  version: 0.0.0-use.local
+  resolution: "@magexo/wishlist-magento@workspace:modules/wishlist-magento"
+  languageName: unknown
+  linkType: soft
+
+"@magexo/wishlist@workspace:modules/wishlist":
+  version: 0.0.0-use.local
+  resolution: "@magexo/wishlist@workspace:modules/wishlist"
+  languageName: unknown
+  linkType: soft
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -3476,587 +4057,6 @@ __metadata:
   checksum: 00bd7362a3439021aa1ea51b0e0d0a0e8ca1351a3d54c606b115fdcc49b51b16db6e5f43b4fe7a28c38688523e22a94d49dd31168868b655f0d4d50f032d07a1
   languageName: node
   linkType: hard
-
-"@storefront-x/atatus-client@workspace:modules/atatus-client":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/atatus-client@workspace:modules/atatus-client"
-  dependencies:
-    atatus-spa: ^4.6.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/atatus-server@workspace:modules/atatus-server":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/atatus-server@workspace:modules/atatus-server"
-  dependencies:
-    atatus-nodejs: ^2.0.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/atomic-design@workspace:modules/atomic-design":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/atomic-design@workspace:modules/atomic-design"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/base-commerce@workspace:modules/base-commerce":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/base-commerce@workspace:modules/base-commerce"
-  dependencies:
-    "@types/sharp": ^0.32.0
-    keen-slider: ^6.8.6
-    photoswipe: ^5.4.3
-    sharp: ^0.32.6
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/base@workspace:modules/base":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/base@workspace:modules/base"
-  dependencies:
-    "@types/lodash-es": ^4.17.12
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/blog-magento@workspace:modules/blog-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/blog-magento@workspace:modules/blog-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/blog@workspace:modules/blog":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/blog@workspace:modules/blog"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/braintree-magento@workspace:modules/braintree-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/braintree-magento@workspace:modules/braintree-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/braintree@workspace:modules/braintree":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/braintree@workspace:modules/braintree"
-  dependencies:
-    "@types/braintree-web": ^3.96.10
-    "@types/braintree-web-drop-in": ^1.39.3
-    braintree-web: ^3.99.2
-    braintree-web-drop-in: ^1.42.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/brands-magento@workspace:modules/brands-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/brands-magento@workspace:modules/brands-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/brands@workspace:modules/brands":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/brands@workspace:modules/brands"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/build-time-version@workspace:modules/build-time-version":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/build-time-version@workspace:modules/build-time-version"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/cart-magento@workspace:modules/cart-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/cart-magento@workspace:modules/cart-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/cart@workspace:modules/cart":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/cart@workspace:modules/cart"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/catalog-attributes-magento@workspace:modules/catalog-attributes-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/catalog-attributes-magento@workspace:modules/catalog-attributes-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/catalog-labels-magento@workspace:modules/catalog-labels-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/catalog-labels-magento@workspace:modules/catalog-labels-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/catalog-labels@workspace:modules/catalog-labels":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/catalog-labels@workspace:modules/catalog-labels"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/catalog-magento-px@workspace:modules/catalog-magento-px":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/catalog-magento-px@workspace:modules/catalog-magento-px"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/catalog-magento@workspace:modules/catalog-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/catalog-magento@workspace:modules/catalog-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/catalog@workspace:modules/catalog":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/catalog@workspace:modules/catalog"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/checkout-magento-px@workspace:modules/checkout-magento-px":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/checkout-magento-px@workspace:modules/checkout-magento-px"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/checkout-magento@workspace:modules/checkout-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/checkout-magento@workspace:modules/checkout-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/checkout@workspace:modules/checkout":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/checkout@workspace:modules/checkout"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/cms-magento@workspace:modules/cms-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/cms-magento@workspace:modules/cms-magento"
-  dependencies:
-    happy-dom: 13.3.8
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/cms@workspace:modules/cms":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/cms@workspace:modules/cms"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/cookie-auth@workspace:modules/cookie-auth":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/cookie-auth@workspace:modules/cookie-auth"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/cookie-script@workspace:modules/cookie-script":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/cookie-script@workspace:modules/cookie-script"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/core@*, @storefront-x/core@workspace:modules/core":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/core@workspace:modules/core"
-  dependencies:
-    "@types/compression": ^1.7.5
-    "@types/ejs": ^3.1.5
-    "@types/lodash-es": ^4.17.12
-    "@types/minimist": ^1.2.5
-    chokidar: ^3.5.3
-    compression: ^1.7.4
-    consola: ^3.2.3
-    cssnano: ^7.0.6
-    devalue: ^5.0.0
-    dotenv: ^16.4.5
-    ejs: ^3.1.10
-    get-port: ^7.1.0
-    h3: ^1.12.0
-    kolorist: ^1.8.0
-    lodash-es: ^4.17.21
-    node-fetch: ^3.3.2
-    open: ^10.1.0
-    prompts: ^2.4.2
-    rollup: ^4.20.0
-    rollup-plugin-visualizer: ^5.12.0
-    serve-static: ^1.15.0
-    vite: 5.4.0
-    yargs: ^17.7.2
-    youch: ^3.3.3
-  bin:
-    sfx: sfx.js
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/customer-magento@workspace:modules/customer-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/customer-magento@workspace:modules/customer-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/customer@workspace:modules/customer":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/customer@workspace:modules/customer"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/cypress@workspace:modules/cypress":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/cypress@workspace:modules/cypress"
-  dependencies:
-    cypress: ^13.6.4
-    cypress-vite: ^1.5.0
-    cypress-wait-until: ^3.0.1
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/debug-tools-magento@workspace:modules/debug-tools-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/debug-tools-magento@workspace:modules/debug-tools-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/debug-tools@workspace:modules/debug-tools":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/debug-tools@workspace:modules/debug-tools"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/flash-messages@workspace:modules/flash-messages":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/flash-messages@workspace:modules/flash-messages"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/free-shipping-magento@workspace:modules/free-shipping-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/free-shipping@workspace:modules/free-shipping":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/free-shipping@workspace:modules/free-shipping"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/google-analytics-listeners@workspace:modules/google-analytics-listeners":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/google-analytics-listeners@workspace:modules/google-analytics-listeners"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/google-analytics-partytown@workspace:modules/google-analytics-partytown":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/google-analytics-partytown@workspace:modules/google-analytics-partytown"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/google-analytics@workspace:modules/google-analytics":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/google-analytics@workspace:modules/google-analytics"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/google-tag-manager-listeners@workspace:modules/google-tag-manager-listeners":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/google-tag-manager-listeners@workspace:modules/google-tag-manager-listeners"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/google-tag-manager-partytown@workspace:modules/google-tag-manager-partytown":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/google-tag-manager-partytown@workspace:modules/google-tag-manager-partytown"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/google-tag-manager@workspace:modules/google-tag-manager":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/google-tag-manager@workspace:modules/google-tag-manager"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/graphql@workspace:modules/graphql":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/graphql@workspace:modules/graphql"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/magento@workspace:modules/magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/magento@workspace:modules/magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/multicurrency-magento@workspace:modules/multicurrency-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/multicurrency-magento@workspace:modules/multicurrency-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/multicurrency@workspace:modules/multicurrency":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/multicurrency@workspace:modules/multicurrency"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/newsletter-magento@workspace:modules/newsletter-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/newsletter-magento@workspace:modules/newsletter-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/nprogress@workspace:modules/nprogress":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/nprogress@workspace:modules/nprogress"
-  dependencies:
-    "@types/nprogress": ^0.2.3
-    nprogress: ^0.2.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/partytown@workspace:modules/partytown":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/partytown@workspace:modules/partytown"
-  dependencies:
-    "@builder.io/partytown": ^0.9.1
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/product-comparison-magento@workspace:modules/product-comparison-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/product-comparison-magento@workspace:modules/product-comparison-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/product-comparison@workspace:modules/product-comparison":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/product-comparison@workspace:modules/product-comparison"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/product-reviews-magento@workspace:modules/product-reviews-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/product-reviews@workspace:modules/product-reviews":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/product-reviews@workspace:modules/product-reviews"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/request-profiler@workspace:modules/request-profiler":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/request-profiler@workspace:modules/request-profiler"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/robots-magento@workspace:modules/robots-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/robots-magento@workspace:modules/robots-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/robots@workspace:modules/robots":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/robots@workspace:modules/robots"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/runtime-config@workspace:modules/runtime-config":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/runtime-config@workspace:modules/runtime-config"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/schema-org@workspace:modules/schema-org":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/schema-org@workspace:modules/schema-org"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/schema-validation@workspace:modules/schema-validation":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/schema-validation@workspace:modules/schema-validation"
-  dependencies:
-    valibot: ^0.37.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/sentry-client@workspace:modules/sentry-client":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/sentry-client@workspace:modules/sentry-client"
-  dependencies:
-    "@sentry/tracing": ^7.99.0
-    "@sentry/vue": ^7.99.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/sentry-server@workspace:modules/sentry-server":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/sentry-server@workspace:modules/sentry-server"
-  dependencies:
-    "@sentry/node": ^7.99.0
-    "@sentry/tracing": ^7.99.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/service-worker@workspace:modules/service-worker":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/service-worker@workspace:modules/service-worker"
-  dependencies:
-    workbox-build: ^7.0.0
-    workbox-window: ^7.0.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/sitemap-magento@workspace:modules/sitemap-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/sitemap-magento@workspace:modules/sitemap-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/sitemap@workspace:modules/sitemap":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/sitemap@workspace:modules/sitemap"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/speed-curve@workspace:modules/speed-curve":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/speed-curve@workspace:modules/speed-curve"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/testing@*, @storefront-x/testing@workspace:modules/testing":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/testing@workspace:modules/testing"
-  dependencies:
-    "@playwright/test": 1.41.2
-    get-port: ^7.1.0
-    jsdom: ^24.0.0
-    vitest: ^1.2.2
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/theme-tailwind-magento-px@workspace:modules/theme-tailwind-magento-px":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/theme-tailwind-magento-px@workspace:modules/theme-tailwind-magento-px"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/theme-tailwind-magento@workspace:modules/theme-tailwind-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/theme-tailwind-magento@workspace:modules/theme-tailwind-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/theme-tailwind@workspace:modules/theme-tailwind":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/theme-tailwind@workspace:modules/theme-tailwind"
-  dependencies:
-    "@tailwindcss/forms": ^0.5.7
-    cssnano: ^7.0.6
-    postcss: ^8.4.41
-    tailwindcss: ^3.4.1
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/tooling@*, @storefront-x/tooling@workspace:modules/tooling":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/tooling@workspace:modules/tooling"
-  dependencies:
-    "@types/yargs": ^17.0.32
-    "@typescript-eslint/eslint-plugin": ^6.20.0
-    "@typescript-eslint/parser": ^6.20.0
-    eslint: ^8.56.0
-    eslint-config-prettier: ^9.1.0
-    eslint-plugin-cypress: ^2.15.1
-    eslint-plugin-prettier: ^5.1.3
-    eslint-plugin-vue: ^9.21.1
-    lefthook: ^1.7.11
-    prettier: ^3.3.3
-    typescript: ^5.5.4
-    vitepress: 1.3.2
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/vue-head@workspace:modules/vue-head":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/vue-head@workspace:modules/vue-head"
-  dependencies:
-    "@vueuse/head": ^2.0.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/vue-i18n@workspace:modules/vue-i18n":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/vue-i18n@workspace:modules/vue-i18n"
-  dependencies:
-    "@intlify/unplugin-vue-i18n": ^2.0.0
-    vue-i18n: ^9.9.1
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/vue-pinia-shared-state@workspace:modules/vue-pinia-shared-state":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/vue-pinia-shared-state@workspace:modules/vue-pinia-shared-state"
-  dependencies:
-    pinia-shared-state: ^0.5.1
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/vue-pinia@workspace:modules/vue-pinia":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/vue-pinia@workspace:modules/vue-pinia"
-  dependencies:
-    "@pinia/testing": ^0.1.3
-    pinia: ^2.1.7
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/vue-router@workspace:modules/vue-router":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/vue-router@workspace:modules/vue-router"
-  dependencies:
-    vue-router: ^4.2.5
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/vue@workspace:modules/vue":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/vue@workspace:modules/vue"
-  dependencies:
-    "@vitejs/plugin-vue": ^5.0.3
-    "@vue/test-utils": ^2.4.4
-    "@vueuse/components": ^10.7.2
-    "@vueuse/integrations": ^10.7.2
-    universal-cookie: ^7.2.0
-    vue: ^3.5.0
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/web-app-manifest@workspace:modules/web-app-manifest":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/web-app-manifest@workspace:modules/web-app-manifest"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/wishlist-magento@workspace:modules/wishlist-magento":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/wishlist-magento@workspace:modules/wishlist-magento"
-  languageName: unknown
-  linkType: soft
-
-"@storefront-x/wishlist@workspace:modules/wishlist":
-  version: 0.0.0-use.local
-  resolution: "@storefront-x/wishlist@workspace:modules/wishlist"
-  languageName: unknown
-  linkType: soft
 
 "@surma/rollup-plugin-off-main-thread@npm:^2.2.3":
   version: 2.2.3
@@ -7017,16 +7017,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-storefront-x@workspace:modules/create-storefront-x":
+"create-magexo-storefront@workspace:modules/create-magexo-storefront":
   version: 0.0.0-use.local
-  resolution: "create-storefront-x@workspace:modules/create-storefront-x"
+  resolution: "create-magexo-storefront@workspace:modules/create-magexo-storefront"
   dependencies:
     fs-extra: ^11.2.0
     kolorist: ^1.8.0
     prompts: ^2.4.2
     yargs: ^17.7.2
   bin:
-    create-storefront-x: index.js
+    create-magexo-storefront: index.js
   languageName: unknown
   linkType: soft
 
@@ -7541,24 +7541,6 @@ __metadata:
   checksum: a51744d9b53c164ba9c0492471a1a2ffa0b6727451bdc89e31627fdf4adda9d51277cfcbfb20f0a6f08ccb3c436f341df3e92631a3440226d93a8971724771fd
   languageName: node
   linkType: hard
-
-"demo-blank@workspace:modules/demo-blank":
-  version: 0.0.0-use.local
-  resolution: "demo-blank@workspace:modules/demo-blank"
-  languageName: unknown
-  linkType: soft
-
-"demo-magento@workspace:modules/demo-magento":
-  version: 0.0.0-use.local
-  resolution: "demo-magento@workspace:modules/demo-magento"
-  languageName: unknown
-  linkType: soft
-
-"demo-px@workspace:modules/demo-px":
-  version: 0.0.0-use.local
-  resolution: "demo-px@workspace:modules/demo-px"
-  languageName: unknown
-  linkType: soft
 
 "depd@npm:2.0.0":
   version: 2.0.0
@@ -15680,9 +15662,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "storefront-x@workspace:."
   dependencies:
-    "@storefront-x/core": "*"
-    "@storefront-x/testing": "*"
-    "@storefront-x/tooling": "*"
+    "@magexo/core": "*"
+    "@magexo/testing": "*"
+    "@magexo/tooling": "*"
     cross-env: ^7.0.3
     lerna: ^6.6.2
   languageName: unknown

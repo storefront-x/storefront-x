@@ -1,16 +1,16 @@
 import { test } from '@playwright/test'
-import { buildProject } from '@storefront-x/testing'
+import { buildProject } from '@magexo/testing'
 
 test('minimal stack', async () => {
   await buildProject({
     modules: [
-      '@storefront-x/base',
-      '@storefront-x/vue',
-      '@storefront-x/vue-i18n',
-      '@storefront-x/vue-pinia',
-      '@storefront-x/base-commerce',
-      '@storefront-x/graphql',
-      '@storefront-x/magento',
+      '@magexo/base',
+      '@magexo/vue',
+      '@magexo/vue-i18n',
+      '@magexo/vue-pinia',
+      '@magexo/base-commerce',
+      '@magexo/graphql',
+      '@magexo/magento',
       [
         'my-module',
         {
@@ -27,15 +27,15 @@ test('minimal stack', async () => {
 test('with full vue stack', async () => {
   await buildProject({
     modules: [
-      '@storefront-x/base',
-      '@storefront-x/vue',
-      '@storefront-x/vue-router',
-      '@storefront-x/vue-head',
-      '@storefront-x/vue-i18n',
-      '@storefront-x/vue-pinia',
-      '@storefront-x/base-commerce',
-      '@storefront-x/graphql',
-      '@storefront-x/magento',
+      '@magexo/base',
+      '@magexo/vue',
+      '@magexo/vue-router',
+      '@magexo/vue-head',
+      '@magexo/vue-i18n',
+      '@magexo/vue-pinia',
+      '@magexo/base-commerce',
+      '@magexo/graphql',
+      '@magexo/magento',
       [
         'my-module',
         {

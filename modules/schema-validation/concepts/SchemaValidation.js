@@ -1,4 +1,4 @@
-import { IocConcept } from '@storefront-x/core'
+import { IocConcept } from '@magexo/core'
 
 export default class SchemaValidation extends IocConcept {
   get directory() {

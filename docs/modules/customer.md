@@ -1,8 +1,8 @@
 # Customer
 
-> `@storefront-x/customer`
+> `@magexo/customer`
 
-Module for e-commerce customer account (sign-in, sign-out, account page). Requires corresponding integration module (e.g. `@storefront-x/wishlist-customer`).
+Module for e-commerce customer account (sign-in, sign-out, account page). Requires corresponding integration module (e.g. `@magexo/wishlist-customer`).
 
 ## `useCustomer` composable
 

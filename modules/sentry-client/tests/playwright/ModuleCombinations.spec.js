@@ -1,12 +1,12 @@
 import { test } from '@playwright/test'
-import { buildProject } from '@storefront-x/testing'
+import { buildProject } from '@magexo/testing'
 
 test('with only vue', async () => {
   await buildProject({
     modules: [
-      '@storefront-x/base',
-      '@storefront-x/vue',
-      '@storefront-x/sentry-client',
+      '@magexo/base',
+      '@magexo/vue',
+      '@magexo/sentry-client',
       [
         'my-module',
         {

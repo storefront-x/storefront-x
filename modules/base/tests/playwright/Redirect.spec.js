@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test'
-import { makeProject, wrapConsole } from '@storefront-x/testing'
+import { makeProject, wrapConsole } from '@magexo/testing'
 
 test('redirect is working', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -37,9 +37,9 @@ test('redirect results in proper redirect code', async () => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -69,9 +69,9 @@ test('redirect works on client', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {

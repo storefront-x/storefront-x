@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/core",
+  "name": "@magexo/core",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
@@ -39,6 +39,12 @@
     "@types/minimist": "^1.2.5"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/core"
   }
 }

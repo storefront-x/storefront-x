@@ -1,15 +1,21 @@
 {
-  "name": "@storefront-x/nprogress",
+  "name": "@magexo/nprogress",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "nprogress": "^0.2.0"
   },
   "devDependencies": {
     "@types/nprogress": "^0.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/nprogress"
   }
 }

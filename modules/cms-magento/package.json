@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/cms-magento",
+  "name": "@magexo/cms-magento",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
@@ -7,6 +7,12 @@
     "happy-dom": "13.3.8"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/cms-magento"
   }
 }

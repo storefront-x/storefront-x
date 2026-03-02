@@ -1,6 +1,6 @@
 # Base
 
-> `@storefront-x/base`
+> `@magexo/base`
 
 This is the base module for the whole application. It is framework and application agnostic, so it provides only the general functionality and it should always be enabled.
 
@@ -198,7 +198,7 @@ Concept containing utility functions.
 Advanced concept!
 :::
 
-Concept copying files from the `base/templates/` directories to the build (`.sfx/`) directory. Used by framework modules (`@storefront-x/vue`) as a starting point for the application.
+Concept copying files from the `base/templates/` directories to the build (`.sfx/`) directory. Used by framework modules (`@magexo/vue`) as a starting point for the application.
 
 ## `IS_CLIENT` config
 

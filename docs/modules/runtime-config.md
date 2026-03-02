@@ -1,6 +1,6 @@
 # Runtime Config
 
-> `@storefront-x/runtime-config`
+> `@magexo/runtime-config`
 
 Runtime config module allows you to define config values that are not baked-in during build process. This is useful when you need to set some config value (e.g. API key) during application start-up, or when you need to dynamically change it during runtime.
 

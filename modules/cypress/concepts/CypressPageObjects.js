@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class CypressPageObjects extends GeneratingConcept {
   get directory() {

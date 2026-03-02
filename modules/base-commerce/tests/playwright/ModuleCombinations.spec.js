@@ -1,22 +1,22 @@
 import { test } from '@playwright/test'
-import { buildProject } from '@storefront-x/testing'
+import { buildProject } from '@magexo/testing'
 
 test('with only vue', async () => {
   await buildProject({
-    modules: ['@storefront-x/base', '@storefront-x/vue', '@storefront-x/base-commerce'],
+    modules: ['@magexo/base', '@magexo/vue', '@magexo/base-commerce'],
   })
 })
 
 test('with full vue stack', async () => {
   await buildProject({
     modules: [
-      '@storefront-x/base',
-      '@storefront-x/vue',
-      '@storefront-x/vue-router',
-      '@storefront-x/vue-head',
-      '@storefront-x/vue-i18n',
-      '@storefront-x/vue-pinia',
-      '@storefront-x/base-commerce',
+      '@magexo/base',
+      '@magexo/vue',
+      '@magexo/vue-router',
+      '@magexo/vue-head',
+      '@magexo/vue-i18n',
+      '@magexo/vue-pinia',
+      '@magexo/base-commerce',
       [
         'my-module',
         {

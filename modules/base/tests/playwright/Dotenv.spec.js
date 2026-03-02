@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('config can be used from Vue components', async ({ page }) => {
   await makeProject(
@@ -8,8 +8,8 @@ test('config can be used from Vue components', async ({ page }) => {
         '.env': 'SFX_GREET=Hello, Dotenv!',
       },
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {

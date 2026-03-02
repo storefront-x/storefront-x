@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/theme-tailwind",
+  "name": "@magexo/theme-tailwind",
   "version": "1.33.1",
   "license": "MIT",
   "type": "module",
@@ -10,6 +10,12 @@
     "tailwindcss": "^3.4.1"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/theme-tailwind"
   }
 }

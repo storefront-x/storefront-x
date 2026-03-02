@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('exports as config to ioc', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/build-time-version',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/build-time-version',
         [
           'my-module',
           {

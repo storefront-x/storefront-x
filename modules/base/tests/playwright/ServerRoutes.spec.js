@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test'
-import { buildProject, makeProject } from '@storefront-x/testing'
+import { buildProject, makeProject } from '@magexo/testing'
 
 test('basic server route', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -33,8 +33,8 @@ test('request on different path doesnt invoke server route', async ({ page }) =>
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -66,8 +66,8 @@ test('server route with path prefix', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -102,8 +102,8 @@ test('hot module reloading', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -141,8 +141,8 @@ test('deep nested routes in dev', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
@@ -171,8 +171,8 @@ test('deep nested routes in prod', async ({ page }) => {
   await buildProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'my-module',
           {
