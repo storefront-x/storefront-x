@@ -80,7 +80,7 @@ async function getResponses() {
           type: targetDir ? null : 'text',
           name: 'directory',
           message: 'Target directory',
-          initial: 'storefront-x-app',
+          initial: 'magexo-storefront-app',
         },
         {
           type: (_, { directory }) => (fs.existsSync(directory) && !isEmpty(directory) ? 'confirm' : null),

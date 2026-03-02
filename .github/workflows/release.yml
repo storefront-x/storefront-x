@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 20
       - run: |
-          yarn create storefront-x --directory=app --integration=magento
+          yarn create magexo-storefront --directory=app --integration=magento
           cd app
           yarn install
           yarn build
@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: 20
       - run: |
-          npm create storefront-x@latest -y -- --directory=app --integration=magento
+          npm create magexo-storefront@latest -y -- --directory=app --integration=magento
           cd app
           npm install
           npm run build

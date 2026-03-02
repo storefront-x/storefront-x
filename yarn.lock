@@ -11457,6 +11457,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"magexo-storefront@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "magexo-storefront@workspace:."
+  dependencies:
+    "@magexo/core": "*"
+    "@magexo/testing": "*"
+    "@magexo/tooling": "*"
+    cross-env: ^7.0.3
+    lerna: ^6.6.2
+  languageName: unknown
+  linkType: soft
+
 "magic-string@npm:^0.25.0, magic-string@npm:^0.25.7":
   version: 0.25.9
   resolution: "magic-string@npm:0.25.9"
@@ -15657,18 +15669,6 @@ __metadata:
   checksum: 4f489d13ff2ab838c9acd4ed6b786b51aa52ecacdfeaefe9275fcb220ff2ac80c6e95674723508fd29850a694569563a8caaaea738eb82ca16429b3a0b50e510
   languageName: node
   linkType: hard
-
-"storefront-x@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "storefront-x@workspace:."
-  dependencies:
-    "@magexo/core": "*"
-    "@magexo/testing": "*"
-    "@magexo/tooling": "*"
-    cross-env: ^7.0.3
-    lerna: ^6.6.2
-  languageName: unknown
-  linkType: soft
 
 "streamx@npm:^2.15.0, streamx@npm:^2.18.0":
   version: 2.18.0

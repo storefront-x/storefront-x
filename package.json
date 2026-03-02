@@ -1,10 +1,10 @@
 {
-  "name": "storefront-x",
+  "name": "magexo-storefront",
   "version": "0.1.1",
   "description": "Storefront X",
   "main": "index.js",
   "repository": "https://github.com/magexo/storefront-x.git",
-  "author": "Storefront-x",
+  "author": "Magexo",
   "license": "MIT",
   "private": true,
   "type": "module",
