@@ -1,6 +1,6 @@
 {
   "name": "@magexo/sitemap",
-  "version": "1.33.2",
+  "version": "1.34.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
