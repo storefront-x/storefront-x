@@ -17,7 +17,7 @@
   "devDependencies": {
     "@vue/test-utils": "^2.4.4"
   },
-  "gitHead": "37b2d4b6b3df609e78b66aaf3285335a9b4fa503",
+  "gitHead": "49f154dfc6eade9e0624f32c12249b197b4f750d",
   "repository": {
     "type": "git",
     "url": "https://github.com/magexo/storefront-x.git",

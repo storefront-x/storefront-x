@@ -15,5 +15,6 @@
     "type": "git",
     "url": "https://github.com/magexo/storefront-x.git",
     "directory": "modules/service-worker"
-  }
+  },
+  "gitHead": "49f154dfc6eade9e0624f32c12249b197b4f750d"
 }
