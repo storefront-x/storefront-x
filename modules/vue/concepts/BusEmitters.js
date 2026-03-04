@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { GeneratingConcept, Build } from '@storefront-x/core'
+import { GeneratingConcept, Build } from '@magexo/core'
 import BusListeners from './BusListeners.js'
 
 export default class BusEmitters extends GeneratingConcept {

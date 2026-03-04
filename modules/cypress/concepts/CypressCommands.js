@@ -1,6 +1,6 @@
 //@ts-check
 
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 import path from 'node:path'
 
 export default class CypressSupport extends GeneratingConcept {

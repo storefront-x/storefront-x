@@ -1,6 +1,6 @@
 # Atomic Design
 
-> `@storefront-x/atomic-design`
+> `@magexo/atomic-design`
 
 Module allowing component structure of [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/). It is a good patter for keeping large amount of components organized, but it's not required and other patterns might be used.
 

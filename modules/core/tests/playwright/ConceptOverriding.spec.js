@@ -1,21 +1,21 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('concept overriding', async () => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/atomic-design',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/atomic-design',
         [
           'my-module',
           {
             concepts: {
               'Atoms.js': `
                 import path from 'node:path'
-                import { IocConcept } from '@storefront-x/core'
+                import { IocConcept } from '@magexo/core'
 
                 export default class Atoms extends IocConcept {
                   get directory() {

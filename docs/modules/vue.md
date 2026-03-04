@@ -1,6 +1,6 @@
 # Vue
 
-> `@storefront-x/vue`
+> `@magexo/vue`
 
 Framework module enabling usage of [Vue.js](https://vuejs.org) in the application.
 

@@ -1,8 +1,8 @@
 # Multicurrency
 
-> `@storefront-x/multicurrency`
+> `@magexo/multicurrency`
 
-Module enables switching between currencies. It uses `SfxCurrencySwitcher` component to switch between currencies, which are sourced from the `useMulticurrencyStore` store. Requires corresponding integration module (e.g. `@storefront-x/multicurrency-magento`).
+Module enables switching between currencies. It uses `SfxCurrencySwitcher` component to switch between currencies, which are sourced from the `useMulticurrencyStore` store. Requires corresponding integration module (e.g. `@magexo/multicurrency-magento`).
 
 ## Requirements
 

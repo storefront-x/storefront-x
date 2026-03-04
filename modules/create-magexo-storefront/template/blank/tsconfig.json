@@ -15,12 +15,12 @@
     "skipLibCheck": true,
     "allowJs": true,
     "paths": {
-      "@storefront-x/*": ["./modules/*"],
+      "@magexo/*": ["./modules/*"],
       "#ioc/*": ["./.sfx/ioc/*"],
       "~/*": ["./*"]
     },
     "types": ["node", "cypress", "vitest/globals"]
   },
-  "include": ["modules/**/*", "node_modules/@storefront-x/**/*", "cypress/**/*", ".sfx/**/*"],
+  "include": ["modules/**/*", "node_modules/@magexo/**/*", "cypress/**/*", ".sfx/**/*"],
   "exclude": [".sfx/vite"]
 }

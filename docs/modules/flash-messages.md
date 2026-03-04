@@ -1,6 +1,6 @@
 # Flash Messages
 
-> `@storefront-x/flash-messages`
+> `@magexo/flash-messages`
 
 Flash messages help you display messages after for example reload.
 

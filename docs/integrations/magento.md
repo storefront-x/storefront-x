@@ -2,7 +2,7 @@
 
 Storefront X contains integration for [Magento 2](https://www.magento.com/).
 
-General integration code is inside the [`@storefront-x/magento`](/modules/magento) module. Module's specific integrations are in modules, like `@storefront-x/catalog-magento`.
+General integration code is inside the [`@magexo/magento`](/modules/magento) module. Module's specific integrations are in modules, like `@magexo/catalog-magento`.
 
 ## List of covered features
 

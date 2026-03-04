@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('modules order', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'app-a',
           {
@@ -48,8 +48,8 @@ test('modules order back', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'app-b',
           {
@@ -93,8 +93,8 @@ test('when server middleware from frist module is change, it still returns first
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'app-a',
           {
@@ -144,8 +144,8 @@ test('when server middleware from second module is changed, it still returns res
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'app-a',
           {
@@ -193,8 +193,8 @@ test('when new file is added to second module, it still returns value from first
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'app-a',
           {
@@ -242,8 +242,8 @@ test('add new file to first module but return value as before', async ({ page })
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
+        '@magexo/base',
+        '@magexo/vue',
         [
           'app-a',
           {

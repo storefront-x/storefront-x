@@ -1,6 +1,6 @@
 # Base Commerce
 
-> `@storefront-x/base-commerce`
+> `@magexo/base-commerce`
 
 This module contains general concepts, components, utilities, functionalities and best practices for e-commerce storefronts.
 
@@ -46,7 +46,7 @@ IoC concept containing GraphQL fragments.
 ```ts
 // gql/fragments/Product.ts
 
-import { fragment, field } from '@storefront-x/base-commerce/adapters/GraphQL'
+import { fragment, field } from '@magexo/base-commerce/adapters/GraphQL'
 
 export default (name = 'product') =>
   fragment(name, 'ProductInterface', {
@@ -65,7 +65,7 @@ IoC concept containing GraphQL mutations.
 ```ts
 // gql/mutations/CreateEmptyCart.ts
 
-import { mutation, field } from '@storefront-x/base-commerce/adapters/GraphQL'
+import { mutation, field } from '@magexo/base-commerce/adapters/GraphQL'
 
 export default () =>
   mutation({
@@ -82,7 +82,7 @@ IoC concept containing GraphQL queries.
 ```ts
 // gql/queries/Product.ts
 
-import { query, field } from '@storefront-x/base-commerce/adapters/GraphQL'
+import { query, field } from '@magexo/base-commerce/adapters/GraphQL'
 import Cart from '#ioc/gql/fragments/Cart'
 
 export default () =>
@@ -223,7 +223,7 @@ export default function required(value) {
 ```js
 // validators/email.js
 
-import { isEmail } from '@storefront-x/utils/ValidationUtils'
+import { isEmail } from '@magexo/utils/ValidationUtils'
 
 export default function email(value) {
   return isEmail(value) || this.$('Invalid email format')

@@ -38,13 +38,13 @@ Storefront X uses only one global configuration file `storefront-x.config.js`, i
 // storefront-x.config.js
 export default {
   modules: [
-    '@storefront-x/base',
+    '@magexo/base',
 
-    '@storefront-x/vue',
-    '@storefront-x/vue-router',
-    '@storefront-x/vue-head',
+    '@magexo/vue',
+    '@magexo/vue-router',
+    '@magexo/vue-head',
 
-    '@storefront-x/demo-blank',
+    '@magexo/demo-blank',
   ],
 }
 ```
@@ -65,7 +65,7 @@ One more thing that needs to be explained beforehand are `#ioc` imports. Look at
 import Counter from '#ioc/components/Counter'
 ```
 
-As you can see, the `Counter.vue` component is placed inside the `components` directory in the `demo-blank` module. Imports from `#ioc` are imports from global directory generated during build. Storefront X collects all the files from enabled modules and compiles them into `.sfx/ioc` directory, that means `#ioc` import may lead to any of the currently enabled modules (defined in `storefront-x.config.js`). This can be seen in `pages/$layout.vue` where the layout imports the `SfxPageOutlet` component, but this component is nowhere to be seen in our application. That is because this component comes from the global `@storefront-x/vue-router` module (installed as dependencies from `package.json`).
+As you can see, the `Counter.vue` component is placed inside the `components` directory in the `demo-blank` module. Imports from `#ioc` are imports from global directory generated during build. Storefront X collects all the files from enabled modules and compiles them into `.sfx/ioc` directory, that means `#ioc` import may lead to any of the currently enabled modules (defined in `storefront-x.config.js`). This can be seen in `pages/$layout.vue` where the layout imports the `SfxPageOutlet` component, but this component is nowhere to be seen in our application. That is because this component comes from the global `@magexo/vue-router` module (installed as dependencies from `package.json`).
 
 How the `#ioc` import actually works will be explained later. For now you can image that it looks into all of the enabled modules and somehow chooses the module that contains the requested file.
 
@@ -107,7 +107,7 @@ const [data] = await useResource(
 </script>
 ```
 
-For data fetching, we use the `useResource` composable. It comes from the `@storefront-x/vue` module so it can be imported with the `#ioc` import.
+For data fetching, we use the `useResource` composable. It comes from the `@magexo/vue` module so it can be imported with the `#ioc` import.
 
 The `useResource` composable takes two functions as parameters. The first function is responsible for gathering the input for the actual fetching logic in the second function. This needs to be separated so we can safely re-execute the first function to know if the input changed without re-executing the second function which would cause unnecessary network request. The first function uses [Vue.js watcher](https://vuejs.org/guide/essentials/watchers.html) so you can use refs, reactives or composables inside to make the data fetching reactive. How this is done, will be shown later.
 
@@ -145,7 +145,7 @@ const route = useRoute()
 </script>
 ```
 
-The `useRoute` composable is the same as the `useRoute` composable from the [Vue Router](https://router.vuejs.org) library, but because it's provided by the `@storefront-x/vue-router` module, it is imported using the `#ioc` import. It returns information about the current route. And because this is parametrized route, with parameter named `id`, we can get the value of that parameter with `route.params.id`.
+The `useRoute` composable is the same as the `useRoute` composable from the [Vue Router](https://router.vuejs.org) library, but because it's provided by the `@magexo/vue-router` module, it is imported using the `#ioc` import. It returns information about the current route. And because this is parametrized route, with parameter named `id`, we can get the value of that parameter with `route.params.id`.
 
 Of course we would like to download and show detail of the todo. We do that using the `useResource` composable.
 

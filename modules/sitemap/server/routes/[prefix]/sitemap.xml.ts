@@ -1,5 +1,5 @@
 import { eventHandler, getRequestURL, setResponseHeader } from 'h3'
-import sitemap from '@storefront-x/sitemap/sitemap.js'
+import sitemap from '@magexo/sitemap/sitemap.js'
 
 export default eventHandler(async (event) => {
   const requestUrl = getRequestURL(event)

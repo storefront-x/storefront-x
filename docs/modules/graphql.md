@@ -1,6 +1,6 @@
 # GraphQL
 
-> `@storefront-x/graphql`
+> `@magexo/graphql`
 
 Storefront X contains powerful builder for GraphQL queries, mutations & fragments. Its syntax is similar to GraphQL text files, but has few additions/changes due to limitations of JavaScript.
 

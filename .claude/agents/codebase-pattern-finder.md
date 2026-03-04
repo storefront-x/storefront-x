@@ -47,7 +47,7 @@ You are a specialist in finding code patterns and examples in the Storefront X f
 **Usage**: Registration of Vue components from the atoms/ directory into IOC
 
 ```javascript
-import { IocConcept } from '@storefront-x/core'
+import { IocConcept } from '@magexo/core'
 
 export default class Atoms extends IocConcept {
   get directory() {
@@ -65,7 +65,7 @@ export default class Atoms extends IocConcept {
 **Found in**: `modules/vue-router/concepts/Routes.js:1`
 
 ```javascript
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class Routes extends GeneratingConcept {
   get directory() { return 'pages' }

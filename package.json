@@ -1,10 +1,10 @@
 {
-  "name": "storefront-x",
+  "name": "magexo-storefront",
   "version": "0.1.1",
   "description": "Storefront X",
   "main": "index.js",
-  "repository": "https://github.com/storefront-x/storefront-x",
-  "author": "Storefront-x",
+  "repository": "https://github.com/magexo/storefront-x.git",
+  "author": "Magexo",
   "license": "MIT",
   "private": true,
   "type": "module",
@@ -29,11 +29,11 @@
     "gcloud:deploy": "gcloud run deploy czub --image=europe-west1-docker.pkg.dev/sfx-cloud-test/sfx-czub/czub:latest --platform managed --allow-unauthenticated --port 8080"
   },
   "dependencies": {
-    "@storefront-x/core": "*"
+    "@magexo/core": "*"
   },
   "devDependencies": {
-    "@storefront-x/testing": "*",
-    "@storefront-x/tooling": "*",
+    "@magexo/testing": "*",
+    "@magexo/tooling": "*",
     "cross-env": "^7.0.3",
     "lerna": "^6.6.2"
   }

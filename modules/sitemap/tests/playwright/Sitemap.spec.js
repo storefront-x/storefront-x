@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('sitemap with locale prefix', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
-        '@storefront-x/vue-pinia',
-        '@storefront-x/sitemap',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
+        '@magexo/vue-pinia',
+        '@magexo/sitemap',
         [
           'demo',
           {
@@ -51,11 +51,11 @@ test('sitemap with translated routes', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-i18n',
-        '@storefront-x/sitemap',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-i18n',
+        '@magexo/sitemap',
         [
           'demo',
           {

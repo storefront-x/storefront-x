@@ -1,4 +1,4 @@
-import { IocConcept } from '@storefront-x/core'
+import { IocConcept } from '@magexo/core'
 
 export default class BusEvents extends IocConcept {
   get directory() {

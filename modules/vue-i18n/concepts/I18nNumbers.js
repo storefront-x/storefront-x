@@ -1,4 +1,4 @@
-import { MergingConcept } from '@storefront-x/core'
+import { MergingConcept } from '@magexo/core'
 
 export default class I18nNumbers extends MergingConcept {
   get directory() {

@@ -1,4 +1,4 @@
-import { MergingConcept } from '@storefront-x/core'
+import { MergingConcept } from '@magexo/core'
 import path from 'node:path'
 
 export default class BusListeners extends MergingConcept {

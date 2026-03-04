@@ -3,7 +3,7 @@ import http from 'node:http'
 import fs from 'node:fs/promises'
 import getPort from 'get-port'
 import { toNodeListener } from 'h3'
-import { Build, Dev, Serve } from '@storefront-x/core'
+import { Build, Dev, Serve } from '@magexo/core'
 
 export const makeProject = async (config, callback) => {
   await makeTempDir(async (dir) => {

@@ -1,4 +1,4 @@
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class BaseCommerceImageResizer extends GeneratingConcept {
   get directory() {

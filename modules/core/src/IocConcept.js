@@ -2,7 +2,7 @@ import path from 'node:path'
 import ExtendingConcept from './ExtendingConcept.js'
 
 /**
- * @typedef {import('@storefront-x/core').Module} Module
+ * @typedef {import('@magexo/core').Module} Module
  * @typedef {{module: Module, file: string}} Extension
  */
 

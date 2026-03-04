@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test'
-import { makeProject, wrapConsole } from '@storefront-x/testing'
+import { makeProject, wrapConsole } from '@magexo/testing'
 
 test('sets correct response status', async () => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {

@@ -9,7 +9,7 @@ import Module from './Module.js'
 import { sendRedirect, setResponseStatus } from 'h3'
 
 /**
- * @typedef {import('@storefront-x/core').Concept} Concept
+ * @typedef {import('@magexo/core').Concept} Concept
  */
 
 const logger = consola.withTag('core')

@@ -1,0 +1,51 @@
+export default {
+  modules: [
+    '@magexo/base',
+
+    '@magexo/vue',
+    '@magexo/vue-router',
+    '@magexo/vue-head',
+    '@magexo/vue-i18n',
+    '@magexo/vue-pinia',
+
+    '@magexo/base-commerce',
+    '@magexo/atomic-design',
+    '@magexo/graphql',
+    '@magexo/cypress',
+    '@magexo/schema-org',
+    '@magexo/nprogress',
+    '@magexo/service-worker',
+    '@magexo/web-app-manifest',
+    '@magexo/runtime-config',
+    '@magexo/flash-messages',
+    '@magexo/build-time-version',
+    ...(process.env.NODE_ENV === 'development' ? ['@magexo/request-profiler'] : []),
+
+    '@magexo/cart',
+    '@magexo/catalog',
+    '@magexo/checkout',
+    '@magexo/cms',
+    '@magexo/customer',
+    '@magexo/multicurrency',
+    '@magexo/product-reviews',
+    '@magexo/product-comparison',
+    '@magexo/wishlist',
+
+    '@magexo/magento',
+    '@magexo/cart-magento',
+    '@magexo/catalog-magento',
+    '@magexo/checkout-magento',
+    '@magexo/cms-magento',
+    '@magexo/customer-magento',
+    '@magexo/multicurrency-magento',
+    '@magexo/product-reviews-magento',
+    '@magexo/product-comparison-magento',
+    '@magexo/wishlist-magento',
+    '@magexo/newsletter-magento',
+
+    '@magexo/theme-tailwind',
+    '@magexo/theme-tailwind-magento',
+
+    'demo-magento',
+  ],
+}

@@ -3,8 +3,8 @@ import forms from '@tailwindcss/forms'
 
 export default {
   content: [
-    './node_modules/@storefront-x/theme-tailwind/**/*.vue',
-    './node_modules/@storefront-x/theme-tailwind-magento/**/*.vue',
+    './node_modules/@magexo/theme-tailwind/**/*.vue',
+    './node_modules/@magexo/theme-tailwind-magento/**/*.vue',
     './modules/demo-magento/**/*.vue',
   ],
   plugins: [forms],

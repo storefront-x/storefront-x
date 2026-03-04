@@ -1,8 +1,8 @@
 # Catalog
 
-> `@storefront-x/catalog`
+> `@magexo/catalog`
 
-Module for e-commerce catalog (products and categories). Requires corresponding integration module (e.g. `@storefront-x/catalog-magento`) which provides mappers, repositories and integration specific services.
+Module for e-commerce catalog (products and categories). Requires corresponding integration module (e.g. `@magexo/catalog-magento`) which provides mappers, repositories and integration specific services.
 
 ## `useProduct` composable
 

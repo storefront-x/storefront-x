@@ -7,8 +7,8 @@ import url from 'node:url'
 import consola from 'consola'
 
 /**
- * @typedef {import('@storefront-x/core').Core} Core
- * @typedef {import('@storefront-x/core').Concept} Concept
+ * @typedef {import('@magexo/core').Core} Core
+ * @typedef {import('@magexo/core').Concept} Concept
  */
 
 const require = module.createRequire(import.meta.url)

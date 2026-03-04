@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test'
-import { buildProject } from '@storefront-x/testing'
+import { buildProject } from '@magexo/testing'
 
 test('service worker allows setting runtime cache', async ({ page }) => {
   await buildProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/service-worker',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/service-worker',
         [
           'my-module',
           {

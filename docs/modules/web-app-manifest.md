@@ -1,6 +1,6 @@
 # Web App Manifest
 
-> `@storefront-x/web-app-manifest`
+> `@magexo/web-app-manifest`
 
 This module adds support for [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest).
 

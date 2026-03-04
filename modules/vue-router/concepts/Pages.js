@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 
 export default class Pages extends GeneratingConcept {
   get directory() {
@@ -11,7 +11,7 @@ export default class Pages extends GeneratingConcept {
   }
 
   /**
-   * @param {Record<string, {module: import('@storefront-x/core').Module, file: string}>} files
+   * @param {Record<string, {module: import('@magexo/core').Module, file: string}>} files
    */
   async execute(files) {
     let app

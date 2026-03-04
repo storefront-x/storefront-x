@@ -1,6 +1,6 @@
 # Vue I18n
 
-> `@storefront-x/vue-i18n`
+> `@magexo/vue-i18n`
 
 Wrapper module around the [vue-i18n](https://www.npmjs.com/package/vue-i18n) library. It extends router to allow for translated routes, locale route prefixes and other functionalities.
 
@@ -252,7 +252,7 @@ cs-CZ:
 
 ## `useLocalePath` composable
 
-Used to map route identifiers to concrete routes of the current locale. When the `@storefront-x/i18n` module is enabled, each route now contains locale identifier in it's name, so the old route names no longer work.
+Used to map route identifiers to concrete routes of the current locale. When the `@magexo/i18n` module is enabled, each route now contains locale identifier in it's name, so the old route names no longer work.
 
 ### Example
 

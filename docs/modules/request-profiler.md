@@ -1,6 +1,6 @@
 # Request Profiler
 
-> `@storefront-x/request-profiler`
+> `@magexo/request-profiler`
 
 When enabled, this module will start logging network requests performed during SSR to the console.
 
@@ -59,7 +59,7 @@ To enable this module only in development, you can condition it in your SFX conf
 export default {
   modules: [
     // modules...
-    ...(process.env.NODE_ENV === 'development' ? ['@storefront-x/request-profiler'] : []),
+    ...(process.env.NODE_ENV === 'development' ? ['@magexo/request-profiler'] : []),
     // modules...
   ],
 }

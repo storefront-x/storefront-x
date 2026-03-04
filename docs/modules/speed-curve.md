@@ -1,6 +1,6 @@
 # SpeedCurve
 
-> `@storefront-x/speed-curve`
+> `@magexo/speed-curve`
 
 This module provides https://www.speedcurve.com/ integration.
 
@@ -22,7 +22,7 @@ export default 'YOUR ID HERE'
 
 This module is using speedCurve in SPA mode, meaning it sends beacon data when the user navigates to a new page. This way, you will get all the measurements and interactions done by the user in between pages. Also, the beacon with data is sent when the user leaves the page ( or simply changes a tab in the browser ) and after default 60 seconds are spent on the page.
 
-Labeling of pages can be done manually with `useAddSpeedCurveLabel` click [here](/modules/speed-curve.html#useaddspeedcurvelabel-composable) or using default events on page loads from `@storefront-x/event-bus` [here](/advanced/event-bus.html#prepared-events) (only in Full-featured Magento module configuration) with prepared listener doing the labeling in this module ( more about events and listeners [here](/advanced/event-bus.html)).
+Labeling of pages can be done manually with `useAddSpeedCurveLabel` click [here](/modules/speed-curve.html#useaddspeedcurvelabel-composable) or using default events on page loads from `@magexo/event-bus` [here](/advanced/event-bus.html#prepared-events) (only in Full-featured Magento module configuration) with prepared listener doing the labeling in this module ( more about events and listeners [here](/advanced/event-bus.html)).
 
 ### Example
 
@@ -75,7 +75,7 @@ const addLabel = () => {
 
 ## custom data collection
 
-There is a prepared solution together with `@storefront-x/magento` module which collects graphql requests names and time they took and sends them as custom metrics to speedCurve LUX object. Requests done during SSR rendering are prefixed with `SSR_`. You will also get `SSR_RequestsTotalResponseTime` custom metrics representing how long, total time, all the requests on graphql took during SSR rendering.
+There is a prepared solution together with `@magexo/magento` module which collects graphql requests names and time they took and sends them as custom metrics to speedCurve LUX object. Requests done during SSR rendering are prefixed with `SSR_`. You will also get `SSR_RequestsTotalResponseTime` custom metrics representing how long, total time, all the requests on graphql took during SSR rendering.
 
 ## `useAddSpeedCurveCustomMetrics` composable
 

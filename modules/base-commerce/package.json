@@ -1,5 +1,5 @@
 {
-  "name": "@storefront-x/base-commerce",
+  "name": "@magexo/base-commerce",
   "version": "1.33.2",
   "license": "MIT",
   "type": "module",
@@ -9,9 +9,16 @@
     "sharp": "^0.32.6"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@types/sharp": "^0.32.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/base-commerce"
+  },
+  "gitHead": "49f154dfc6eade9e0624f32c12249b197b4f750d"
 }

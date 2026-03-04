@@ -1,6 +1,6 @@
 # Atatus
 
-> `@storefront-x/atatus-client` & `@storefront-x/atatus-server`
+> `@magexo/atatus-client` & `@magexo/atatus-server`
 
 This module provides https://www.atatus.com/ integration.
 

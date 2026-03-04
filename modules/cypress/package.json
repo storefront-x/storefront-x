@@ -1,14 +1,21 @@
 {
-  "name": "@storefront-x/cypress",
+  "name": "@magexo/cypress",
   "version": "1.33.2",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "cypress": "^13.6.4",
     "cypress-vite": "^1.5.0",
     "cypress-wait-until": "^3.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magexo/storefront-x.git",
+    "directory": "modules/cypress"
+  },
+  "gitHead": "49f154dfc6eade9e0624f32c12249b197b4f750d"
 }

@@ -3,8 +3,8 @@
 import WatchingConcept from './WatchingConcept.js'
 
 /**
- * @typedef {import('@storefront-x/core').Core} Core
- * @typedef {import('@storefront-x/core').Module} Module
+ * @typedef {import('@magexo/core').Core} Core
+ * @typedef {import('@magexo/core').Module} Module
  */
 
 export default class OverridingConcept extends WatchingConcept {

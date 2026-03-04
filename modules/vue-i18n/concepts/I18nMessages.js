@@ -1,4 +1,4 @@
-import { WatchingConcept } from '@storefront-x/core'
+import { WatchingConcept } from '@magexo/core'
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import { merge } from 'lodash-es'

@@ -1,15 +1,15 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('shared state test', async ({ page, context }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
-        '@storefront-x/vue-pinia',
-        '@storefront-x/vue-pinia-shared-state',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
+        '@magexo/vue-pinia',
+        '@magexo/vue-pinia-shared-state',
         [
           'my-module',
           {

@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test'
-import { makeProject } from '@storefront-x/testing'
+import { makeProject } from '@magexo/testing'
 
 test('basic public file', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
+        '@magexo/base',
         [
           'my-module',
           {
@@ -27,7 +27,7 @@ test('basic public file in nested directory', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
+        '@magexo/base',
         [
           'my-module',
           {
@@ -53,9 +53,9 @@ test('removing files works with HMR', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -81,9 +81,9 @@ test('writing into public directory does not remove other files', async ({ page 
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {

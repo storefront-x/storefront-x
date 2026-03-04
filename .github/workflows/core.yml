@@ -81,8 +81,8 @@ jobs:
           node-version: 20
       - run: |
           yarn install
-          cp -rf modules/create-storefront-x ../create-storefront-x
-          cd ../create-storefront-x
+          cp -rf modules/create-magexo-storefront ../create-magexo-storefront
+          cd ../create-magexo-storefront
           yarn install
           node index.js -y -- --directory=../app --integration=${{ matrix.integration }}
           cd ../app
@@ -112,8 +112,8 @@ jobs:
           node-version: 20
       - run: |
           yarn install
-          cp -rf modules/create-storefront-x ../create-storefront-x
-          cd ../create-storefront-x
+          cp -rf modules/create-magexo-storefront ../create-magexo-storefront
+          cd ../create-magexo-storefront
           npm install
           node index.js -y -- --directory=../app --integration=${{ matrix.integration }}
           cd ../app

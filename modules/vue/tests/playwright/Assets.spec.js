@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test'
-import { buildProject, makeProject } from '@storefront-x/testing'
+import { buildProject, makeProject } from '@magexo/testing'
 
 test('import of assets via ioc', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -39,9 +39,9 @@ test('overriding of assets via ioc', async ({ page }) => {
   await makeProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {
@@ -81,9 +81,9 @@ test('large asset files are build with right path', async ({ page }) => {
   await buildProject(
     {
       modules: [
-        '@storefront-x/base',
-        '@storefront-x/vue',
-        '@storefront-x/vue-router',
+        '@magexo/base',
+        '@magexo/vue',
+        '@magexo/vue-router',
         [
           'my-module',
           {

@@ -1,13 +1,13 @@
 # Debug Tools
 
-> `@storefront-x/debug-tools`
+> `@magexo/debug-tools`
 
 :::warning
 This module requires Node.js version `>=18.0.0`
 :::
 
 :::warning
-This module requires additional integration specific module to be turned on, e.g. `@storefront-x/debug-tools-magento`.
+This module requires additional integration specific module to be turned on, e.g. `@magexo/debug-tools-magento`.
 :::
 
 Debug tools help you with debugging Storefront X by visualizing some of its functionality like server-side requests.
@@ -32,7 +32,7 @@ To enable this module only in development, you can condition it in your SFX conf
 export default {
   modules: [
     // modules...
-    ...(process.env.NODE_ENV === 'development' ? ['@storefront-x/debug-tools'] : []),
+    ...(process.env.NODE_ENV === 'development' ? ['@magexo/debug-tools'] : []),
     // modules...
   ],
 }

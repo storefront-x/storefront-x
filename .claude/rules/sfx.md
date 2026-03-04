@@ -2,14 +2,14 @@
 
 ## What This Repository Is
 
-This is the **source code of the Storefront X framework itself** — not a project that uses the framework. A monorepo with 83 npm packages (`@storefront-x/*`).
+This is the **source code of the Storefront X framework itself** — not a project that uses the framework. A monorepo with 83 npm packages (`@magexo/*`).
 
 Documentation: https://docs.storefrontx.io/
 
 ## Monorepo Structure
 
 ```
-modules/                    # All npm packages (@storefront-x/*)
+modules/                    # All npm packages (@magexo/*)
 ├── core/                   # CLI (sfx), build system, base concept classes
 │   └── src/
 │       ├── Core.js         # Bootstrap orchestrator
@@ -40,13 +40,13 @@ Bootstrap process (`sfx dev` / `sfx build`):
 
 ```javascript
 // IocConcept — registers files into the IOC container
-import { IocConcept } from '@storefront-x/core'
+import { IocConcept } from '@magexo/core'
 export default class Atoms extends IocConcept {
   get directory() { return 'atoms' }
 }
 
 // GeneratingConcept — generates a single file re-exporting everything from modules
-import { GeneratingConcept } from '@storefront-x/core'
+import { GeneratingConcept } from '@magexo/core'
 export default class ServerRoutes extends GeneratingConcept {
   get directory() { return 'server/routes' }
 }
@@ -68,7 +68,7 @@ import useI18n from '#ioc/composables/useI18n'
 
 ```
 modules/my-module/
-├── package.json       # { "name": "@storefront-x/my-module", "version": "1.32.1" }
+├── package.json       # { "name": "@magexo/my-module", "version": "1.32.1" }
 ├── index.js           # Entry point
 ├── concepts/          # Concept classes (how the module integrates into bootstrap)
 ├── atoms/             # Vue components — atom level
@@ -94,8 +94,8 @@ modules/my-module/
 ## Dependency Management
 
 ```bash
-yarn workspace @storefront-x/vue add vue@^3.5.0        # Add dependency to a module
-yarn workspace @storefront-x/core add -D typescript    # Add dev dependency to a module
+yarn workspace @magexo/vue add vue@^3.5.0        # Add dependency to a module
+yarn workspace @magexo/core add -D typescript    # Add dev dependency to a module
 yarn add -W -D eslint                                   # Shared root dev dependency
 ```
 
