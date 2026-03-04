@@ -1,5 +1,6 @@
 {
   "name": "create-storefront-x",
+  "private": true,
   "version": "1.34.0",
   "type": "module",
   "bin": "index.js",
@@ -12,5 +13,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "e19fc8b6349ccf787ddf8d926b80663945c51dfc"
 }
