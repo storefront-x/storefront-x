@@ -2661,6 +2661,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@magexo/create-magexo-storefront@workspace:modules/create-magexo-storefront":
+  version: 0.0.0-use.local
+  resolution: "@magexo/create-magexo-storefront@workspace:modules/create-magexo-storefront"
+  dependencies:
+    fs-extra: ^11.2.0
+    kolorist: ^1.8.0
+    prompts: ^2.4.2
+    yargs: ^17.7.2
+  bin:
+    create-magexo-storefront: index.js
+  languageName: unknown
+  linkType: soft
+
 "@magexo/customer-magento@workspace:modules/customer-magento":
   version: 0.0.0-use.local
   resolution: "@magexo/customer-magento@workspace:modules/customer-magento"
@@ -7016,19 +7029,6 @@ __metadata:
   checksum: 6801feaa0249e9b9fdde5b3d70dc33b4f9c69095bec94d67e3fe08b66eac24dc7e2099f053597cfbc94b743de269aa5d2cfa7da3fde765433423b06bd122941a
   languageName: node
   linkType: hard
-
-"create-magexo-storefront@workspace:modules/create-magexo-storefront":
-  version: 0.0.0-use.local
-  resolution: "create-magexo-storefront@workspace:modules/create-magexo-storefront"
-  dependencies:
-    fs-extra: ^11.2.0
-    kolorist: ^1.8.0
-    prompts: ^2.4.2
-    yargs: ^17.7.2
-  bin:
-    create-magexo-storefront: index.js
-  languageName: unknown
-  linkType: soft
 
 "create-storefront-x@workspace:modules/create-storefront-x":
   version: 0.0.0-use.local
