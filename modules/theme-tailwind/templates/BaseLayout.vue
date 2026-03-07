@@ -16,6 +16,7 @@ import useThemeTailwindStore from '#ioc/stores/useThemeTailwindStore'
 import hydrateWhenVisible from '#ioc/utils/hydration/hydrateWhenVisible'
 import hydrateWhenIdle from '#ioc/utils/hydration/hydrateWhenIdle'
 import useHead from '#ioc/composables/useHead'
+import useAppVersionCheckAndForceReload from '#ioc/composables/useAppVersionCheckAndForceReload'
 
 const HamburgerMenu = defineAsyncComponent(() => import('#ioc/organisms/HamburgerMenu'))
 const Header = hydrateWhenIdle(() => import('#ioc/organisms/Header'))
@@ -24,6 +25,8 @@ const Notifications = hydrateWhenIdle(() => import('#ioc/organisms/Notifications
 
 const route = useRoute()
 const themeTailwindStore = useThemeTailwindStore()
+
+useAppVersionCheckAndForceReload()
 
 const hamburgerStatus = ref(false)
 
